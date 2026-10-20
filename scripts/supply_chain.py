@@ -72,7 +72,7 @@ def main():
             sbom['metadata']['timestamp'] = previous['metadata']['timestamp']
     sbom_path.write_text(json.dumps(sbom, indent=2)+'\n', encoding='utf-8', newline='\n')
     (verification/'license-inventory.json').write_text(json.dumps({'status':'FAIL' if missing else 'PASS', 'packages':inventory, 'missing':missing}, indent=2)+'\n', encoding='utf-8', newline='\n')
-    (ROOT/'docs/THIRD_PARTY_LICENSES.txt').write_text('\n'.join(notices)+'\n', encoding='utf-8', newline='\n')
+    (ROOT/'docs/THIRD_PARTY_LICENSES.txt').write_text('\n'.join(notices).rstrip('\n')+'\n', encoding='utf-8', newline='\n')
 
     rules = {
         'github_token':r'\bgh[pousr]_[A-Za-z0-9]{30,255}\b|\bgithub_pat_[A-Za-z0-9_]{30,255}\b',

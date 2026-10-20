@@ -69,7 +69,7 @@ def main():
         for path, label in [(str(ROOT), '<WORKSPACE>'), (str(Path.home()), '<USERPROFILE>')]:
             output = output.replace(path, label).replace(path.replace('\\','/'), label)
         log = f'verification/logs/{name}.txt'
-        (ROOT/log).write_text(output, encoding='utf-8', newline='\n')
+        (ROOT/log).write_text(output.rstrip('\r\n')+'\n', encoding='utf-8', newline='\n')
         entry.update(status='PASS' if code == 0 else 'FAIL', exit_code=code, elapsed_seconds=round(time.monotonic()-start,3), log=log,
                      log_sha256=hashlib.sha256((ROOT/log).read_bytes()).hexdigest())
         print(f'{name}: {entry["status"]} (exit {code})', flush=True)
