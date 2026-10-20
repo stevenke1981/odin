@@ -7,6 +7,7 @@ mod results;
 pub mod schema;
 mod shell;
 mod symbols;
+mod text_replace;
 
 use odin_core::{
     Fault, Result,
@@ -676,6 +677,11 @@ impl Engine {
                     string(a, "needle")?,
                     string(a, "replacement")?,
                     boolean(a, "regex", false),
+                    (
+                        limit.max_file_bytes,
+                        limit.max_matches,
+                        number(a, "expected_matches", 1) as usize,
+                    ),
                 )?;
                 if count != number(a, "expected_matches", 1) as usize {
                     return Err(Fault::conflict(format!(
@@ -692,8 +698,12 @@ impl Engine {
                     None,
                 )
             }
-            "replacement_preview" => occurrences::prepare(p, a, true, limit.max_matches),
-            "replace_in_files" => occurrences::prepare(p, a, false, limit.max_matches),
+            "replacement_preview" => {
+                occurrences::prepare(p, a, true, limit.max_matches, limit.max_output_bytes)
+            }
+            "replace_in_files" => {
+                occurrences::prepare(p, a, false, limit.max_matches, limit.max_output_bytes)
+            }
             "replace_lines" | "delete_lines" | "insert_at_line" => {
                 let path = string(a, "relative_path")?;
                 let before = read_expected(p, path, string(a, "expected_sha256")?)?;
@@ -848,6 +858,11 @@ impl Engine {
                     string(a, "needle")?,
                     string(a, "replacement")?,
                     false,
+                    (
+                        limit.max_file_bytes,
+                        limit.max_matches,
+                        number(a, "expected_matches", 1) as usize,
+                    ),
                 )?;
                 if count != number(a, "expected_matches", 1) as usize {
                     return Err(Fault::conflict("Unexpected replacement count"));
@@ -1032,10 +1047,14 @@ impl Engine {
         let mut truncated = listing.truncated;
         let mut unavailable_languages = BTreeSet::new();
         let mut successful_documents = 0;
-        let needed = query_filter
-            .offset
-            .saturating_add(query_filter.limit)
-            .saturating_add(1);
+        let mut skipped = 0usize;
+        let mut has_next = false;
+        let mut page_left = (16 * 1024 * 1024usize - 1024)
+            / if boolean(a, "group_by_file", false) {
+                2
+            } else {
+                1
+            };
         for path in listing.files {
             if filter.is_some_and(|f| {
                 f != "." && path != f && !path.starts_with(&format!("{}/", f.trim_end_matches('/')))
@@ -1061,43 +1080,43 @@ impl Engine {
                     continue;
                 }
             };
-            let body_snapshot = if boolean(a, "include_body", false) {
-                Some(p.root.read(&path)?)
-            } else {
-                None
-            };
+            let mut body_snapshot = None;
             match client.symbols(&path).await {
                 Ok(found) => {
-                    if body_snapshot
-                        .as_ref()
-                        .is_some_and(|before| p.root.read(&path).as_ref().ok() != Some(before))
-                    {
-                        return Err(Fault::conflict(
-                            "Source changed while resolving symbol bodies",
-                        ));
-                    }
                     successful_documents += 1;
                     for symbol in found {
                         if !query_filter.accepts(&symbol) {
                             continue;
                         }
-                        if symbols.len() >= needed {
-                            truncated = true;
+                        if skipped < query_filter.offset {
+                            skipped += 1;
+                            continue;
+                        }
+                        if symbols.len() >= query_filter.limit {
+                            has_next = true;
                             break;
                         }
-                        let mut value = serde_json::to_value(&symbol)?;
+                        if boolean(a, "include_body", false) && body_snapshot.is_none() {
+                            body_snapshot = Some(p.root.read(&path)?);
+                        }
+                        let mut selected_body = None;
                         if let Some(body) = &body_snapshot {
                             let start = offset(body, symbol.range.start).map_err(backend_error)?;
                             let end = offset(body, symbol.range.end).map_err(backend_error)?;
-                            value["body"] = body
-                                .get(start..end)
-                                .ok_or_else(|| {
-                                    Fault::new(
-                                        "BACKEND_ERROR",
-                                        "Backend symbol range is reversed or outside the document",
-                                    )
-                                })?
-                                .into();
+                            selected_body = Some(body.get(start..end).ok_or_else(|| {
+                                Fault::new(
+                                    "BACKEND_ERROR",
+                                    "Backend symbol range is reversed or outside the document",
+                                )
+                            })?);
+                        }
+                        let cost = symbols::value_cost(&symbol, selected_body, page_left)?;
+                        page_left -= cost;
+                        let mut value = serde_json::to_value(&symbol)?;
+                        if let Some(body) = selected_body {
+                            value["body"] = body.into();
+                        }
+                        if let Some(body) = &body_snapshot {
                             value["sha256"] = sha256(body.as_bytes()).into();
                         }
                         symbols.push(value);
@@ -1111,8 +1130,7 @@ impl Engine {
                     }
                 }
             }
-            if symbols.len() >= needed {
-                truncated = true;
+            if has_next {
                 break;
             }
         }
@@ -1129,12 +1147,7 @@ impl Engine {
                 },
             ));
         }
-        let has_next = symbols.len() > query_filter.offset.saturating_add(query_filter.limit);
-        let page = symbols
-            .into_iter()
-            .skip(query_filter.offset)
-            .take(query_filter.limit)
-            .collect::<Vec<_>>();
+        let page = symbols;
         let mut result = json!({"symbols":page,"truncated":truncated||has_next,"backend_errors":errors,"source":"lsp_not_regex","offset":query_filter.offset,
             "next_offset":if has_next{Some(query_filter.offset+query_filter.limit)}else{None},"successful_documents":successful_documents});
         if boolean(a, "group_by_file", false) {
@@ -1232,23 +1245,14 @@ fn read_expected(p: &Project, path: &str, expected: &str) -> Result<String> {
     }
     Ok(content)
 }
-fn replace(text: &str, needle: &str, replacement: &str, regex: bool) -> Result<(String, usize)> {
-    if needle.is_empty() || needle.len() > 4096 {
-        return Err(Fault::invalid("Empty or oversized pattern"));
-    }
-    if regex {
-        let re = regex::RegexBuilder::new(needle)
-            .size_limit(2 * 1024 * 1024)
-            .build()?;
-        if re.find_iter(text).any(|found| found.is_empty()) {
-            return Err(Fault::invalid("Zero-width matches cannot be edited"));
-        }
-        let count = re.find_iter(text).count();
-        Ok((re.replace_all(text, replacement).into_owned(), count))
-    } else {
-        let count = text.matches(needle).count();
-        Ok((text.replace(needle, replacement), count))
-    }
+fn replace(
+    text: &str,
+    needle: &str,
+    replacement: &str,
+    regex: bool,
+    limits: (usize, usize, usize),
+) -> Result<(String, usize)> {
+    text_replace::replace(text, needle, replacement, regex, limits)
 }
 fn line_edit(text: &str, start: usize, end: usize, content: &str, insert: bool) -> Result<String> {
     let lines = text.split_inclusive('\n').collect::<Vec<_>>();
@@ -1272,13 +1276,15 @@ mod tests {
     use super::*;
     #[test]
     fn literal_replacement_count() {
-        let (s, n) = replace("a a", "a", "b", false).unwrap();
+        let (s, n) = replace("a a", "a", "b", false, (1024, 10, 2)).unwrap();
         assert_eq!((s, n), ("b b".into(), 2));
     }
     #[test]
     fn regex_replacement_captures() {
         assert_eq!(
-            replace("foo12", r"foo(\d+)", "bar$1", true).unwrap().0,
+            replace("foo12", r"foo(\d+)", "bar$1", true, (1024, 10, 1))
+                .unwrap()
+                .0,
             "bar12"
         );
     }

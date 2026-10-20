@@ -1,63 +1,32 @@
-//! Source-hash-bound occurrence selection for explicit text edits, not semantic refactoring.
-use crate::{Project, boolean, number, optional_string, read_expected, string};
+//! Source-hash-bound, allocation-bounded text edits, not semantic refactoring.
+use crate::{
+    Project, boolean, number, optional_string, read_expected, string,
+    text_replace::{Hit, Pattern, json_string_bytes},
+};
 use odin_core::{Fault, Result, sha256, transaction::Change};
 use serde_json::{Value, json};
 use std::collections::BTreeSet;
 
-struct Occurrence {
-    id: String,
-    start: usize,
-    end: usize,
-    replacement: String,
+fn limit() -> Fault {
+    Fault::new(
+        "LIMIT_EXCEEDED",
+        "Occurrence preview or planned file output exceeds the host size limit",
+    )
 }
-
-fn matches(path: &str, text: &str, args: &Value) -> Result<Vec<Occurrence>> {
-    let needle = string(args, "needle")?;
-    if needle.is_empty() || needle.len() > 4096 {
-        return Err(Fault::invalid("Empty or oversized pattern"));
-    }
-    let regex = boolean(args, "regex", false);
-    let pattern = if regex {
-        needle.to_owned()
-    } else {
-        regex::escape(needle)
-    };
-    let expression = regex::RegexBuilder::new(&pattern)
-        .case_insensitive(!boolean(args, "case_sensitive", true))
-        .multi_line(boolean(args, "multiline", false))
-        .dot_matches_new_line(boolean(args, "dot_matches_new_line", false))
-        .size_limit(2 * 1024 * 1024)
-        .build()?;
+fn matches(
+    path: &str,
+    text: &str,
+    args: &Value,
+    pattern: &Pattern<'_>,
+    limits: (usize, usize),
+) -> Result<Vec<(String, Hit)>> {
     let hash = sha256(text.as_bytes());
-    let replacement = string(args, "replacement")?;
-    let mut output = Vec::new();
-    for captures in expression.captures_iter(text) {
-        let found = captures
-            .get(0)
-            .ok_or_else(|| Fault::invalid("Missing full match"))?;
-        if found.is_empty() {
-            return Err(Fault::invalid("Zero-width matches cannot be edited"));
-        }
-        if output.len() >= 10_000 {
-            return Err(Fault::new("LIMIT_EXCEEDED", "More than 10000 occurrences"));
-        }
-        let identity = json!({"path":path,"source_sha256":hash,"start":found.start(),"end":found.end(),
-            "needle":needle,"regex":regex,"case_sensitive":boolean(args,"case_sensitive",true),
+    pattern.find(text,limits.0,limits.1)?.into_iter().map(|hit|{
+        let identity=json!({"path":path,"source_sha256":hash,"start":hit.start,"end":hit.end,
+            "needle":string(args,"needle")?,"regex":boolean(args,"regex",false),"case_sensitive":boolean(args,"case_sensitive",true),
             "multiline":boolean(args,"multiline",false),"dot_matches_new_line":boolean(args,"dot_matches_new_line",false)});
-        let mut expanded = String::new();
-        if regex {
-            captures.expand(replacement, &mut expanded);
-        } else {
-            expanded.push_str(replacement);
-        }
-        output.push(Occurrence {
-            id: sha256(&serde_json::to_vec(&identity)?),
-            start: found.start(),
-            end: found.end(),
-            replacement: expanded,
-        });
-    }
-    Ok(output)
+        Ok((sha256(&serde_json::to_vec(&identity)?),hit))
+    }).collect()
 }
 
 pub fn prepare(
@@ -65,6 +34,7 @@ pub fn prepare(
     args: &Value,
     preview: bool,
     max_matches: usize,
+    max_preview: usize,
 ) -> Result<Value> {
     let files = args["files"]
         .as_array()
@@ -72,32 +42,41 @@ pub fn prepare(
     if files.is_empty() {
         return Err(Fault::invalid("At least one file is required"));
     }
-    let selected = args
+    let mut selected_set = None;
+    if let Some(ids) = args
         .get("selected_occurrence_ids")
         .and_then(Value::as_array)
-        .map(|ids| {
-            ids.iter()
-                .map(|id| {
-                    id.as_str()
-                        .map(str::to_owned)
-                        .ok_or_else(|| Fault::invalid("Occurrence IDs must be strings"))
-                })
-                .collect::<Result<Vec<_>>>()
-        })
-        .transpose()?;
-    if selected.as_ref().is_some_and(Vec::is_empty) {
-        return Err(Fault::invalid("Empty occurrence selection"));
-    }
-    let selected_set = selected
-        .as_ref()
-        .map(|ids| ids.iter().cloned().collect::<BTreeSet<_>>());
-    if selected
-        .as_ref()
-        .zip(selected_set.as_ref())
-        .is_some_and(|(ids, set)| ids.len() != set.len())
     {
-        return Err(Fault::invalid("Duplicate occurrence ID"));
+        if ids.is_empty() {
+            return Err(Fault::invalid("Empty occurrence selection"));
+        }
+        let mut selection = BTreeSet::new();
+        for id in ids {
+            let id = id
+                .as_str()
+                .ok_or_else(|| Fault::invalid("Occurrence IDs must be strings"))?;
+            if !selection.insert(id) {
+                return Err(Fault::invalid("Duplicate occurrence ID"));
+            }
+        }
+        selected_set = Some(selection);
     }
+    let max_file = project.root.max_file_bytes();
+    let pattern = Pattern::new(
+        string(args, "needle")?,
+        string(args, "replacement")?,
+        boolean(args, "regex", false),
+        [
+            boolean(args, "case_sensitive", true),
+            boolean(args, "multiline", false),
+            boolean(args, "dot_matches_new_line", false),
+        ],
+        max_file,
+    )?;
+    // Reserve envelope/trace space and conservatively charge per-occurrence JSON
+    // metadata, escaped source text and capture pieces before materializing them.
+    let mut preview_left = max_preview.min(16 * 1024 * 1024).saturating_sub(512);
+    let mut planned_bytes = 0usize;
     let mut seen_files = BTreeSet::new();
     let mut found_ids = BTreeSet::new();
     let mut occurrences = Vec::new();
@@ -113,46 +92,74 @@ pub fn prepare(
             return Err(Fault::invalid("Duplicate file path"));
         }
         let before = read_expected(project, path, string(file, "expected_sha256")?)?;
-        let matches = matches(path, &before, args)?;
+        let matches = matches(
+            path,
+            &before,
+            args,
+            &pattern,
+            (max_matches.saturating_sub(count), max_file),
+        )?;
         count += matches.len();
-        if count > max_matches {
-            return Err(Fault::new(
-                "LIMIT_EXCEEDED",
-                "Occurrence list exceeds max_matches; narrow the query",
-            ));
-        }
-        let mut after = before.clone();
+        let mut hits = Vec::new();
         let mut chosen = Vec::new();
-        for item in matches {
-            let is_selected = selected_set
+        let mut ids = Vec::new();
+        for (id, hit) in matches {
+            let selected = selected_set
                 .as_ref()
-                .is_none_or(|ids| ids.contains(&item.id));
-            found_ids.insert(item.id.clone());
-            let prefix = &before[..item.start];
-            let line_start = prefix.rfind('\n').map_or(0, |offset| offset + 1);
-            occurrences.push(json!({"occurrence_id":item.id,"relative_path":path,"sha256":sha256(before.as_bytes()),
-                "start_byte":item.start,"end_byte":item.end,"line":prefix.bytes().filter(|b|*b==b'\n').count()+1,
-                "utf16_column":before[line_start..item.start].encode_utf16().count(),"line_base":1,"column_base":0,
-                "before":&before[item.start..item.end],"after":item.replacement,"selected":is_selected}));
-            if is_selected {
-                chosen.push(item);
+                .is_none_or(|ids| ids.contains(id.as_str()));
+            if selected {
                 chosen_count += 1;
             }
+            let cost = 512usize
+                .checked_add(json_string_bytes(path, preview_left)?)
+                .and_then(|n| {
+                    n.checked_add(
+                        json_string_bytes(&before[hit.start..hit.end], preview_left).ok()?,
+                    )
+                })
+                .and_then(|n| {
+                    n.checked_add(pattern.preview_bytes(&before, &hit, preview_left).ok()?)
+                })
+                .ok_or_else(limit)?;
+            preview_left = preview_left.checked_sub(cost).ok_or_else(limit)?;
+            found_ids.insert(id.clone());
+            ids.push(id);
+            hits.push(hit);
+            chosen.push(selected);
         }
-        for item in chosen.iter().rev() {
-            after.replace_range(item.start..item.end, &item.replacement);
-        }
-        if !chosen.is_empty() {
+        let output_length = Pattern::output_length(&before, &hits, &chosen, max_file)?;
+        if !preview && chosen.iter().any(|chosen| *chosen) {
+            planned_bytes = planned_bytes
+                .checked_add(before.len())
+                .and_then(|n| n.checked_add(output_length))
+                .filter(|n| *n <= 16 * 1024 * 1024)
+                .ok_or_else(limit)?;
+            let after = pattern.render(&before, &hits, &chosen, max_file)?;
             changes.push(Change {
                 path: path.into(),
                 expected_sha256: Some(sha256(before.as_bytes())),
                 content: Some(after),
             });
         }
+        let hash = sha256(before.as_bytes());
+        let (mut cursor, mut line, mut column) = (0, 1, 0);
+        for ((id, hit), selected) in ids.into_iter().zip(hits).zip(chosen) {
+            let segment = &before[cursor..hit.start];
+            line += segment.bytes().filter(|byte| *byte == b'\n').count();
+            column = if let Some(last) = segment.rfind('\n') {
+                segment[last + 1..].encode_utf16().count()
+            } else {
+                column + segment.encode_utf16().count()
+            };
+            cursor = hit.start;
+            let after = pattern.expansion(&before, &hit, max_file)?;
+            occurrences.push(json!({"occurrence_id":id,"relative_path":path,"sha256":hash,"start_byte":hit.start,"end_byte":hit.end,
+                "line":line,"utf16_column":column,"line_base":1,"column_base":0,"before":&before[hit.start..hit.end],"after":after,"selected":selected}));
+        }
     }
     if selected_set
         .as_ref()
-        .is_some_and(|ids| !ids.is_subset(&found_ids))
+        .is_some_and(|ids| ids.iter().any(|id| !found_ids.contains(*id)))
     {
         return Err(Fault::conflict(
             "Occurrence IDs do not match these file hashes and search options",
@@ -194,34 +201,42 @@ mod tests {
     #[test]
     fn regex_expands_only_selected_capture_and_preserves_crlf() {
         let args = json!({"needle":"(?m)^foo(\\d+)\\r$","replacement":"bar$1\r","regex":true});
-        let found = matches("x", "foo1\r\nfoo2\r\n", &args).unwrap();
+        let pattern = Pattern::new(
+            string(&args, "needle").unwrap(),
+            string(&args, "replacement").unwrap(),
+            true,
+            [true, false, false],
+            1024,
+        )
+        .unwrap();
+        let found = matches("x", "foo1\r\nfoo2\r\n", &args, &pattern, (10, 1024)).unwrap();
         assert_eq!(found.len(), 2);
-        assert_eq!(found[1].replacement, "bar2\r");
-        assert_eq!(&"foo1\r\nfoo2\r\n"[found[1].start..found[1].end], "foo2\r");
+        assert_eq!(
+            pattern
+                .expansion("foo1\r\nfoo2\r\n", &found[1].1, 1024)
+                .unwrap(),
+            "bar2\r"
+        );
     }
     #[test]
     fn empty_regex_matches_are_rejected() {
-        assert!(
-            matches(
-                "x",
-                "abc",
-                &json!({"needle":"a*","replacement":"x","regex":true})
-            )
-            .is_err()
-        );
+        let args = json!({"needle":"a*","replacement":"x","regex":true});
+        let pattern = Pattern::new("a*", "x", true, [true, false, false], 1024).unwrap();
+        assert!(matches("x", "abc", &args, &pattern, (10, 1024)).is_err());
     }
     #[test]
     fn occurrence_ids_change_with_content_or_flags() {
         let a = json!({"needle":"a","replacement":"b"});
+        let pattern = Pattern::new("a", "b", false, [true, false, false], 1024).unwrap();
         assert_ne!(
-            matches("x", "a", &a).unwrap()[0].id,
-            matches("x", "a!", &a).unwrap()[0].id
+            matches("x", "a", &a, &pattern, (10, 1024)).unwrap()[0].0,
+            matches("x", "a!", &a, &pattern, (10, 1024)).unwrap()[0].0
         );
         let mut b = a.clone();
         b["case_sensitive"] = json!(false);
         assert_ne!(
-            matches("x", "a", &a).unwrap()[0].id,
-            matches("x", "a", &b).unwrap()[0].id
+            matches("x", "a", &a, &pattern, (10, 1024)).unwrap()[0].0,
+            matches("x", "a", &b, &pattern, (10, 1024)).unwrap()[0].0
         );
     }
 }

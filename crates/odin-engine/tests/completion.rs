@@ -571,3 +571,111 @@ async fn protocol_fixture_debug_batch_is_session_bound_and_reports_each_request(
         "SESSION_CLOSED"
     );
 }
+
+#[tokio::test]
+async fn flow_repeated_references_tool_outputs_and_namespace_are_bounded_before_copying() {
+    let root = tempfile::tempdir().unwrap();
+    let state = tempfile::tempdir().unwrap();
+    let config=serde_json::from_value(json!({"state_dir":state.path(),"limits":{"max_session_bytes":1024,"max_file_bytes":4096},"projects":{"one":{"root":root.path()}}})).unwrap();
+    let engine = Engine::new(config).unwrap();
+    call(
+        &engine,
+        "flow_run",
+        json!({"session":"bounded","steps":[{"as":"base","select":7}]}),
+    )
+    .await;
+    for arguments in [
+        json!({"session":"bounded","steps":[{"as":"x","select":"x".repeat(700)}],"return":[{"$ref":"x"},{"$ref":"x"},{"$ref":"x"}]}),
+        json!({"session":"bounded","steps":[{"as":"x","select":"x".repeat(700)},{"as":"y","select":{"$ref":"x"}}]}),
+        json!({"session":"bounded","steps":[{"as":"x","select":[{"v":"x".repeat(600)},{"v":"y".repeat(600)}],"map":"/v"}]}),
+    ] {
+        assert_eq!(
+            engine
+                .call("one".into(), "flow_run".into(), arguments)
+                .await
+                .unwrap_err()
+                .code,
+            "LIMIT_EXCEEDED"
+        );
+        let variables = call(&engine, "flow_vars", json!({"session":"bounded"})).await;
+        assert_eq!(variables["variables"].as_array().unwrap().len(), 1);
+        assert_eq!(variables["variables"][0]["name"], "base");
+    }
+    std::fs::write(root.path().join("large"), "x".repeat(1500)).unwrap();
+    let request = json!({"session":"bounded","steps":[{"as":"large","tool":"read_file","arguments":{"relative_path":"large"},"pointer":"/sha256"}]});
+    assert_eq!(
+        engine
+            .call("one".into(), "flow_run".into(), request)
+            .await
+            .unwrap_err()
+            .code,
+        "LIMIT_EXCEEDED"
+    );
+}
+
+#[tokio::test]
+async fn literal_capture_memory_and_occurrence_growth_fail_before_materializing_output() {
+    let root = tempfile::tempdir().unwrap();
+    let state = tempfile::tempdir().unwrap();
+    let config=serde_json::from_value(json!({"state_dir":state.path(),"limits":{"max_file_bytes":256,"max_output_bytes":2048,"max_matches":8},"projects":{"one":{"root":root.path(),"allow_write":true}}})).unwrap();
+    let engine = Engine::new(config).unwrap();
+    std::fs::write(root.path().join("x"), "aaaa").unwrap();
+    for (is_regex, needle, replacement) in
+        [(false, "a", "x".repeat(80)), (true, "(a)", "$1".repeat(80))]
+    {
+        let arguments = json!({"relative_path":"x","expected_sha256":sha256(b"aaaa"),"needle":needle,"replacement":replacement,"regex":is_regex,"expected_matches":4});
+        assert_eq!(
+            engine
+                .call("one".into(), "replace_content".into(), arguments)
+                .await
+                .unwrap_err()
+                .code,
+            "LIMIT_EXCEEDED"
+        );
+    }
+    let arguments = json!({"files":[{"relative_path":"x","expected_sha256":sha256(b"aaaa")}],"needle":"a","replacement":"small","expected_total_matches":4});
+    assert_eq!(
+        engine
+            .call("one".into(), "replacement_preview".into(), arguments)
+            .await
+            .unwrap_err()
+            .code,
+        "LIMIT_EXCEEDED"
+    );
+    call(
+        &engine,
+        "write_memory",
+        json!({"name":"tiny","content":"aaaa","expected_sha256":null}),
+    )
+    .await;
+    assert_eq!(engine.call("one".into(),"edit_memory".into(),json!({"name":"tiny","expected_sha256":sha256(b"aaaa"),"needle":"a","replacement":"x".repeat(80),"expected_matches":4})).await.unwrap_err().code,"LIMIT_EXCEEDED");
+    assert_eq!(
+        std::fs::read_to_string(root.path().join("x")).unwrap(),
+        "aaaa"
+    );
+    assert_eq!(
+        call(&engine, "read_memory", json!({"name":"tiny"})).await["content"],
+        "aaaa"
+    );
+    std::fs::write(root.path().join("many"), "a".repeat(32)).unwrap();
+    assert_eq!(engine.call("one".into(),"replace_content".into(),json!({"relative_path":"many","expected_sha256":sha256("a".repeat(32).as_bytes()),"needle":"a","replacement":"x","expected_matches":32})).await.unwrap_err().code,"LIMIT_EXCEEDED");
+}
+
+#[tokio::test]
+async fn symbol_offset_skips_body_resolution_before_copying() {
+    let (_root, _state, old_engine) = setup_lsp();
+    let mut config = old_engine.config.clone();
+    config.projects.get_mut("one").unwrap().languages[0]
+        .args
+        .push("--bad-first".into());
+    drop(old_engine);
+    let engine = Engine::new(config).unwrap();
+    let result = call(
+        &engine,
+        "find_symbol",
+        json!({"query":"module/*","match_mode":"glob","offset":1,"limit":1,"include_body":true}),
+    )
+    .await;
+    assert_eq!(result["symbols"].as_array().unwrap().len(), 1);
+    assert_eq!(result["symbols"][0]["body"], "fn bar() {}");
+}

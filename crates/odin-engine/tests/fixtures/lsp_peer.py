@@ -36,6 +36,8 @@ while (message := read_message()) is not None:
         result = [{'name': 'module', 'kind': 2, 'range': {'start': {'line': 0, 'character': 0}, 'end': {'line': 2, 'character': 0}}, 'selectionRange': INSERT,
                    'children': [{'name': name, 'kind': 12, 'range': {'start': {'line': line, 'character': 0}, 'end': {'line': line, 'character': 11}},
                                  'selectionRange': {'start': {'line': line, 'character': 3}, 'end': {'line': line, 'character': 6}}} for line, name in enumerate(['foo', 'bar'])]}]
+        if '--bad-first' in sys.argv:
+            result[0]['children'][0]['range'] = {'start': {'line': 999, 'character': 0}, 'end': {'line': 999, 'character': 1}}
     elif method == 'textDocument/diagnostic':
         result = {'kind': 'full', 'items': [{'range': RANGE, 'severity': 2, 'code': 'fixture-rule', 'message': 'fixture diagnostic'}]}
     elif method in ('textDocument/definition', 'textDocument/references', 'textDocument/implementation'):

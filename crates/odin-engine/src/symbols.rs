@@ -13,6 +13,35 @@ pub struct Filter {
     pub offset: usize,
     pub limit: usize,
 }
+pub fn value_cost(symbol: &Symbol, body: Option<&str>, maximum: usize) -> Result<usize> {
+    let limit = || {
+        Fault::new(
+            "LIMIT_EXCEEDED",
+            "Symbol page exceeds its 16 MiB output budget",
+        )
+    };
+    let mut cost = 512usize;
+    for text in [&symbol.name, &symbol.name_path, &symbol.relative_path] {
+        cost = cost
+            .checked_add(
+                crate::text_replace::json_string_bytes(text, maximum).map_err(|_| limit())?,
+            )
+            .filter(|cost| *cost <= maximum)
+            .ok_or_else(limit)?;
+    }
+    if let Some(body) = body {
+        cost = cost
+            .checked_add(
+                crate::text_replace::json_string_bytes(body, maximum).map_err(|_| limit())?,
+            )
+            .filter(|cost| *cost <= maximum)
+            .ok_or_else(limit)?;
+    }
+    if cost > maximum {
+        return Err(limit());
+    }
+    Ok(cost)
+}
 impl Filter {
     pub fn new(args: &Value, maximum: usize) -> Result<Self> {
         let query = string(args, "query")?;
@@ -107,5 +136,18 @@ mod tests {
         .unwrap();
         assert!(filter.accepts(&symbol("run", 12)));
         assert!(!filter.accepts(&symbol("module/run", 12)));
+    }
+    #[test]
+    fn repeated_overlapping_bodies_exhaust_budget_before_copy() {
+        let symbol = symbol("run", 12);
+        let body = "x".repeat(1024);
+        let mut remaining = 2048;
+        remaining -= value_cost(&symbol, Some(&body), remaining).unwrap();
+        assert_eq!(
+            value_cost(&symbol, Some(&body), remaining)
+                .unwrap_err()
+                .code,
+            "LIMIT_EXCEEDED"
+        );
     }
 }

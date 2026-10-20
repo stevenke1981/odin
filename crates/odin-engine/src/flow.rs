@@ -32,8 +32,10 @@ pub async fn run(engine: &Arc<Engine>, project: &str, args: &Value) -> Result<Va
     };
     // Only this session is serialized. Cancellation/error drops the draft.
     let mut committed = namespace.lock().await;
+    let maximum = engine.config.limits.max_session_bytes;
+    check_namespace(&committed, None, maximum)?;
     let mut vars = committed.clone();
-    let mut last = Value::Null;
+    let mut last_name = None;
     for step in steps {
         let name = string(step, "as")?;
         validate_id(name)?;
@@ -46,20 +48,23 @@ pub async fn run(engine: &Arc<Engine>, project: &str, args: &Value) -> Result<Va
                     "Flows can call nonrecursive native read tools only",
                 ));
             }
-            let arguments = resolve(step.get("arguments").unwrap_or(&json!({})), &vars, 0)?;
+            let arguments = resolve(step.get("arguments").unwrap_or(&json!({})), &vars, maximum)?;
             engine
                 .invoke(project.into(), tool.into(), arguments)
                 .await?
         } else if let Some(select) = step.get("select") {
-            resolve(select, &vars, 0)?
+            resolve(select, &vars, maximum)?
         } else {
             return Err(Fault::invalid("A step requires tool or select"));
         };
+        // Tool results are untrusted values too. Check them before pointer/map
+        // can clone any subtree; narrowing does not bypass the input budget.
+        Budget::new(maximum).consume(&value, 0)?;
         if let Some(pointer) = step.get("pointer").and_then(Value::as_str) {
-            value = value
+            let selected = value
                 .pointer(pointer)
-                .cloned()
                 .ok_or_else(|| Fault::invalid("Step pointer does not exist"))?;
+            value = bounded_clone(selected, maximum)?;
         }
         if step.get("take").is_some() {
             let take = number(step, "take", 0) as usize;
@@ -78,16 +83,20 @@ pub async fn run(engine: &Arc<Engine>, project: &str, args: &Value) -> Result<Va
                     "map input exceeds 10000 values",
                 ));
             }
-            value = Value::Array(
-                items
-                    .iter()
-                    .map(|item| {
-                        item.pointer(pointer)
-                            .cloned()
-                            .ok_or_else(|| Fault::invalid("map pointer does not exist"))
-                    })
-                    .collect::<Result<_>>()?,
-            );
+            let mut budget = Budget::new(maximum);
+            budget.charge(2, 1)?;
+            let mut mapped = Vec::new();
+            for item in items {
+                if !mapped.is_empty() {
+                    budget.charge(1, 0)?;
+                }
+                let selected = item
+                    .pointer(pointer)
+                    .ok_or_else(|| Fault::invalid("map pointer does not exist"))?;
+                budget.consume(selected, 1)?;
+                mapped.push(selected.clone());
+            }
+            value = Value::Array(mapped);
         }
         if let Some(filter) = step.get("filter") {
             let pointer = string(filter, "pointer")?;
@@ -129,30 +138,156 @@ pub async fn run(engine: &Arc<Engine>, project: &str, args: &Value) -> Result<Va
                 _ => return Err(Fault::invalid("Unknown reduce builtin")),
             };
         }
-        last = value.clone();
+        // Include every retained variable, its key and structural overhead
+        // before insertion. Avoid a second clone of every step as `last`.
+        check_namespace(&vars, Some((name, &value)), maximum)?;
         vars.insert(name.into(), value);
-        if vars.len() > 128
-            || serde_json::to_vec(&vars)?.len() > engine.config.limits.max_session_bytes
-        {
-            return Err(Fault::new(
-                "LIMIT_EXCEEDED",
-                "Flow namespace exceeds limit; select only required fields",
-            ));
-        }
+        last_name = Some(name);
     }
     let result = if let Some(ret) = args.get("return") {
-        resolve(ret, &vars, 0)?
+        resolve(ret, &vars, maximum)?
+    } else if let Some(name) = last_name {
+        bounded_clone(
+            vars.get(name)
+                .ok_or_else(|| Fault::new("CORRUPT_STATE", "Missing final flow value"))?,
+            maximum,
+        )?
     } else {
-        last
+        Value::Null
     };
     *committed = vars;
     Ok(
         json!({"session":session,"steps_executed":steps.len(),"result":result,"language":"odin-json-flow","python_compatible":false}),
     )
 }
-fn resolve(value: &Value, vars: &BTreeMap<String, Value>, depth: usize) -> Result<Value> {
-    if depth > 24 {
-        return Err(Fault::invalid("Reference tree too deep"));
+const MAX_VALUE_NODES: usize = 65_536;
+const MAX_VALUE_DEPTH: usize = 24;
+
+struct Budget {
+    bytes: usize,
+    nodes: usize,
+}
+impl Budget {
+    fn new(maximum: usize) -> Self {
+        Self {
+            bytes: maximum,
+            nodes: maximum.min(MAX_VALUE_NODES),
+        }
+    }
+    fn charge(&mut self, bytes: usize, nodes: usize) -> Result<()> {
+        let remaining_bytes = self.bytes.checked_sub(bytes).ok_or_else(limit_error)?;
+        let remaining_nodes = self.nodes.checked_sub(nodes).ok_or_else(limit_error)?;
+        self.bytes = remaining_bytes;
+        self.nodes = remaining_nodes;
+        Ok(())
+    }
+    fn string(&mut self, text: &str) -> Result<()> {
+        self.charge(2, 0)?;
+        for byte in text.bytes() {
+            let length = match byte {
+                b'"' | b'\\' | b'\n' | b'\r' | b'\t' | 0x08 | 0x0c => 2,
+                0..=0x1f => 6,
+                _ => 1,
+            };
+            self.charge(length, 0)?;
+        }
+        Ok(())
+    }
+    // This walks borrowed data without allocating a serialized representation.
+    // Charge before cloning a referenced subtree, never after allocation.
+    fn consume(&mut self, value: &Value, depth: usize) -> Result<()> {
+        if depth > MAX_VALUE_DEPTH {
+            return Err(limit_error());
+        }
+        self.charge(0, 1)?;
+        match value {
+            Value::Null => self.charge(4, 0),
+            Value::Bool(true) => self.charge(4, 0),
+            Value::Bool(false) => self.charge(5, 0),
+            Value::Number(number) => self.charge(number.to_string().len(), 0),
+            Value::String(text) => self.string(text),
+            Value::Array(items) => {
+                self.charge(2, 0)?;
+                for (index, item) in items.iter().enumerate() {
+                    if index > 0 {
+                        self.charge(1, 0)?;
+                    }
+                    self.consume(item, depth + 1)?;
+                }
+                Ok(())
+            }
+            Value::Object(items) => {
+                self.charge(2, 0)?;
+                for (index, (key, value)) in items.iter().enumerate() {
+                    if index > 0 {
+                        self.charge(1, 0)?;
+                    }
+                    self.key(key)?;
+                    self.consume(value, depth + 1)?;
+                }
+                Ok(())
+            }
+        }
+    }
+    fn key(&mut self, key: &str) -> Result<()> {
+        self.charge(1, 1)?;
+        self.string(key)
+    }
+}
+fn limit_error() -> Fault {
+    Fault::new(
+        "LIMIT_EXCEEDED",
+        "Flow value exceeds byte, node or depth budget; narrow the input or references",
+    )
+}
+fn bounded_clone(value: &Value, maximum: usize) -> Result<Value> {
+    Budget::new(maximum).consume(value, 0)?;
+    Ok(value.clone())
+}
+fn check_namespace(
+    vars: &BTreeMap<String, Value>,
+    replacement: Option<(&str, &Value)>,
+    maximum: usize,
+) -> Result<()> {
+    let count =
+        vars.len() + usize::from(replacement.is_some_and(|(name, _)| !vars.contains_key(name)));
+    if count > 128 {
+        return Err(limit_error());
+    }
+    let mut budget = Budget::new(maximum);
+    budget.charge(2, 1)?;
+    let mut nonempty = false;
+    for (name, value) in vars
+        .iter()
+        .filter(|(name, _)| replacement.is_none_or(|(replace, _)| name.as_str() != replace))
+    {
+        if nonempty {
+            budget.charge(1, 0)?;
+        }
+        nonempty = true;
+        budget.key(name)?;
+        budget.consume(value, 1)?;
+    }
+    if let Some((name, value)) = replacement {
+        if nonempty {
+            budget.charge(1, 0)?;
+        }
+        budget.key(name)?;
+        budget.consume(value, 1)?;
+    }
+    Ok(())
+}
+fn resolve(value: &Value, vars: &BTreeMap<String, Value>, maximum: usize) -> Result<Value> {
+    resolve_inner(value, vars, &mut Budget::new(maximum), 0)
+}
+fn resolve_inner(
+    value: &Value,
+    vars: &BTreeMap<String, Value>,
+    budget: &mut Budget,
+    depth: usize,
+) -> Result<Value> {
+    if depth > MAX_VALUE_DEPTH {
+        return Err(limit_error());
     }
     match value {
         Value::Object(object) if object.len() == 1 && object.contains_key("$ref") => {
@@ -161,25 +296,40 @@ fn resolve(value: &Value, vars: &BTreeMap<String, Value>, depth: usize) -> Resul
                 .ok_or_else(|| Fault::invalid("$ref must be a string"))?;
             let (name, pointer) = reference.split_once('#').unwrap_or((reference, ""));
             validate_id(name)?;
-            vars.get(name)
+            let selected = vars
+                .get(name)
                 .and_then(|v| v.pointer(pointer))
-                .cloned()
-                .ok_or_else(|| Fault::invalid(format!("Unresolved data reference: {reference}")))
+                .ok_or_else(|| Fault::invalid(format!("Unresolved data reference: {reference}")))?;
+            budget.consume(selected, depth)?;
+            Ok(selected.clone())
         }
         Value::Object(object) => {
+            budget.charge(2, 1)?;
             let mut result = serde_json::Map::new();
             for (key, value) in object {
-                result.insert(key.clone(), resolve(value, vars, depth + 1)?);
+                if !result.is_empty() {
+                    budget.charge(1, 0)?;
+                }
+                budget.key(key)?;
+                result.insert(key.clone(), resolve_inner(value, vars, budget, depth + 1)?);
             }
             Ok(Value::Object(result))
         }
-        Value::Array(values) => Ok(Value::Array(
-            values
-                .iter()
-                .map(|v| resolve(v, vars, depth + 1))
-                .collect::<Result<_>>()?,
-        )),
-        other => Ok(other.clone()),
+        Value::Array(values) => {
+            budget.charge(2, 1)?;
+            let mut output = Vec::new();
+            for value in values {
+                if !output.is_empty() {
+                    budget.charge(1, 0)?;
+                }
+                output.push(resolve_inner(value, vars, budget, depth + 1)?);
+            }
+            Ok(Value::Array(output))
+        }
+        other => {
+            budget.consume(other, depth)?;
+            Ok(other.clone())
+        }
     }
 }
 pub async fn vars(engine: &Arc<Engine>, project: &str, session: &str) -> Result<Value> {
@@ -219,11 +369,14 @@ mod tests {
     #[test]
     fn refs_select_values_not_code() {
         let vars = BTreeMap::from([("x".into(), json!({"items":[1,2]}))]);
-        assert_eq!(resolve(&json!({"$ref":"x#/items/1"}), &vars, 0).unwrap(), 2);
+        assert_eq!(
+            resolve(&json!({"$ref":"x#/items/1"}), &vars, 1024).unwrap(),
+            2
+        );
     }
     #[test]
     fn missing_reference_is_an_error() {
-        assert!(resolve(&json!({"$ref":"missing"}), &BTreeMap::new(), 0).is_err());
+        assert!(resolve(&json!({"$ref":"missing"}), &BTreeMap::new(), 1024).is_err());
     }
     #[test]
     fn source_strings_are_inert() {
@@ -231,7 +384,7 @@ mod tests {
             resolve(
                 &json!("__import__('os').system('echo nope')"),
                 &BTreeMap::new(),
-                0
+                1024
             )
             .unwrap(),
             json!("__import__('os').system('echo nope')")
@@ -273,6 +426,36 @@ mod tests {
             clear(&engine, "one", "other").await.unwrap()["cleared"]
                 .as_bool()
                 .unwrap()
+        );
+    }
+    #[test]
+    fn repeated_references_and_namespace_growth_fail_before_large_clones() {
+        let vars = BTreeMap::from([("x".into(), json!("x".repeat(1024)))]);
+        let references = json!([{"$ref":"x"},{"$ref":"x"},{"$ref":"x"}]);
+        assert_eq!(
+            resolve(&references, &vars, 1536).unwrap_err().code,
+            "LIMIT_EXCEEDED"
+        );
+        assert_eq!(
+            check_namespace(&vars, Some(("y", &json!("y".repeat(1024)))), 1536)
+                .unwrap_err()
+                .code,
+            "LIMIT_EXCEEDED"
+        );
+        assert_eq!(vars.len(), 1);
+    }
+    #[test]
+    fn measurement_handles_escaping_and_node_limit_without_serialized_copy() {
+        let value = json!({"繁體\"":"\n\u{0000}\\世界","array":[1,true,null]});
+        let size = serde_json::to_vec(&value).unwrap().len();
+        let mut budget = Budget::new(size);
+        budget.consume(&value, 0).unwrap();
+        assert_eq!(budget.bytes, 0);
+        assert_eq!(
+            bounded_clone(&json!(vec![0; MAX_VALUE_NODES + 1]), 1_048_576)
+                .unwrap_err()
+                .code,
+            "LIMIT_EXCEEDED"
         );
     }
 }

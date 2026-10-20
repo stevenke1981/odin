@@ -18,6 +18,12 @@ FTS5 查詢先執行 core 增量 refresh，能看到新增、修改和刪除的�
 
 flow 使用每個 `(project, session)` 的獨立 namespace mutex；全域 map 鎖不跨工具 await。pointer、take、map、filter、reduce(count/sum) 是有界 JSON 資料操作，每個步驟的工具仍經 host policy 與 project gate。單一 flow 受 host RPC timeout 約束；取消或錯誤只丟棄 namespace draft，已發生的唯讀後端 cache/audit 副作用仍存在。busy session 的 clear 回 CONFLICT。sum 使用有限 f64，沒有聲稱任意精度。
 
+Flow 展開引用前會以借用走訪計算 escaped JSON bytes 和節點數，扣除同一 operation 的累計預算後才能 clone。單值、return、工具回傳與整個 namespace 均受 max_session_bytes、最多 65,536 個節點和 24 層深度限制；map 也先累計輸出再逐項 clone。超大工具結果即使稍後 pointer/take 會縮小也會先拒絕，避免先分配後截斷。namespace 在複製及插入前檢查，不為最後一步再保留額外副本。
+
+文字替換先計 matches 與 host max_matches，再以 checked arithmetic 檢查結果不超過 max_file_bytes；regex replacement template 解析為借用片段，先計 capture 展開長度才配置輸出，沒有先呼叫無界 replace_all。template 最多 65,536 個片段。Occurrence preview 不建立修改後的檔案；每筆 metadata、escaped before/after 總量在展開前保守限制於 host max_output_bytes 與 16 MiB 較小值，超限請縮小檔案／匹配／replacement。多檔案的原始及目標文字合計另限 16 MiB，衝突與超限均不修改來源。
+
+find_symbol 先跳過 offset，才讀取和複製該頁的 body，最多只保留 limit 筆及下一頁旗標；metadata 和 escaped body 在複製前累計限制 16 MiB，分組輸出會預留重複資料的預算。rename/CodeAction 的來源快照維持 64 MiB 上限，先檢查才加入 map。
+
 debug_start 回 project-scoped session UUID。debug_batch 最多 32 個 allowlisted DAP requests，核對 session ID、每步回 request ID、pending ticket 或真實錯誤；全批次有 host RPC deadline，逾時明確標示 adapter-side outcome unknown。這不是 Python REPL。host 的 allow_debug 代表授權除錯器執行 target；adapter 繼承的環境採 allowlist，launch payload 仍是具執行權限的除錯輸入，沒有 OS 沙箱保證。
 
 `debug_request` 的原生命令 `cancel_ticket` 接受 `arguments.ticket`，對 launch/attach ticket 請求 best-effort 取消，回 outcome_may_be_unknown，不宣稱 debuggee 一定沒啟動。debug_stop 會要求 terminateDebuggee 並收尾 adapter 程序；restart_language_server 先移除 client 再執行 shutdown/exit，沒有持 map mutex 跨 shutdown await。
