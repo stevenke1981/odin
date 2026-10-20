@@ -1,0 +1,34 @@
+{
+  "scope": "REAL_BINARY_MCP_CANCELLATION_WITH_PROTOCOL_FIXTURE",
+  "status": "FAIL",
+  "binary": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin\\target\\debug\\odin.exe",
+  "binary_sha256": "13e399822281f45029558db792e1f9a60c16143b1f1f4b165afe615e1a1a5975",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "checks": [
+    {
+      "name": "real_binary_initialize",
+      "status": "PASS"
+    },
+    {
+      "name": "slow_backend_holds_project_gate",
+      "status": "PASS"
+    },
+    {
+      "name": "earlier_backend_request_completes",
+      "status": "PASS"
+    },
+    {
+      "name": "cancelled_queued_write_never_applied",
+      "status": "FAIL"
+    }
+  ],
+  "observations": {
+    "queued_write_source_sha256": "7fa987360eeab481d2d0526aff23d36bc55da3a6e04684006a3d9ad51dc91e50",
+    "original_sha256": "ef00998678cc4f84733e80f0cff82163b01e89ff0bf311daed29ce44e50e5182"
+  },
+  "error": "cancelled_queued_write_never_applied",
+  "fixture_is_real_language_server": false,
+  "real_language_semantics_tested": false,
+  "sdk_cancelled_response_behavior": "rmcp 3.6 suppresses wire responses for cancelled request IDs",
+  "timestamp_unix": 1792538790.2386572
+}

@@ -1,0 +1,108 @@
+{
+  "task_id": "ODIN-MCP-CANCELLATION",
+  "actor_instance": "platform_implementation",
+  "base_sha": "ba9cf57",
+  "source_head_sha": "ba9cf571b23641c683049dd4308e15da44ed3be3",
+  "source_sha256": {
+    "crates/odin/src/mcp.rs": "16ac2886ea5003b116f025ae48b8368700dd10b9fb59520d4f96e999c3c1ba95",
+    "scripts/mcp_cancel_smoke.py": "4dc49b3efa569bdcddfa8279faf83caa311c16bccbd2c9eb15b0adb25bd19496",
+    "scripts/verify.ps1": "e550704033f1d2caf6bfee12d9d265fc19614c890c035412cd2715c4986453cc",
+    "scripts/verify.sh": "2c6f02574b78ae735f4f931a45be86112910ac18e8da10a2343d81d4f6a1b3cb",
+    "docs/PLATFORM_IMPLEMENTATION.md": "f02e580eb423ea42bc4e9fd3dd1150eed1c74ad0347e482faa8eeb2a96f3ad2c",
+    "Cargo.lock": "f7cb9807f31bf33df4510e22a6f92f5d0abaeb1621cc890bb48f2b6bb93b1131"
+  },
+  "platform": "Windows-11-10.0.26300-SP0",
+  "observed_at": "2026-10-20T23:27:45.622339+00:00",
+  "commands": [
+    {
+      "command": [
+        "cargo",
+        "fmt",
+        "-p",
+        "odin-agent",
+        "--",
+        "--check"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "odin-agent",
+        "--locked"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "\nrunning 6 tests\ntest http::tests::tokens_are_compared_exactly ... ok\ntest setup::tests::hooks_are_idempotent_and_disable_restores_surroundings ... ok\ntest http::tests::audit_export_uses_a_metadata_allowlist ... ok\ntest setup::tests::client_command_preserves_restrictive_policy_selection ... ok\ntest setup::tests::malformed_sections_are_rejected ... ok\ntest setup::tests::preserves_unrelated_json_and_toml_settings ... ok\n\ntest result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n   Compiling odin-agent v0.2.0 (<WORKTREE>\\crates\\odin)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.06s\n     Running unittests src\\main.rs (target\\debug\\deps\\odin-ee6eb30859d9c5bd.exe)\n"
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "-p",
+        "odin-agent",
+        "--all-targets",
+        "--locked",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "    Checking anyhow v1.0.104\n   Compiling odin-agent v0.2.0 (<WORKTREE>\\crates\\odin)\n    Checking odin-core v0.2.0 (<WORKTREE>\\crates\\odin-core)\n    Checking odin-protocol v0.2.0 (<WORKTREE>\\crates\\odin-protocol)\n    Checking odin-engine v0.2.0 (<WORKTREE>\\crates\\odin-engine)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.33s\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/mcp_smoke.py",
+        "--binary",
+        "target/debug/odin.exe",
+        "--output",
+        "verification/platform-mcp-cancellation-normal-stdio.json"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"scope\": \"REAL_ODIN_BINARY_STDIO_SMOKE\", \"status\": \"PASS\", \"binary\": \"C:\\\\Users\\\\steven\\\\.codex\\\\worktrees\\\\odin-platform\\\\odin\\\\target\\\\debug\\\\odin.exe\", \"binary_sha256\": \"ebe70208eb1d0eca966a60913d93c9a5b8e777eaf7cf63dd3ac8b97ffe03031c\", \"platform\": \"Windows-11-10.0.26300-SP0\", \"checks\": [{\"name\": \"initialize\", \"status\": \"PASS\"}, {\"name\": \"catalog_copies_equal\", \"status\": \"PASS\"}, {\"name\": \"catalog_names_match\", \"status\": \"PASS\"}, {\"name\": \"catalog_contracts_match\", \"status\": \"PASS\"}, {\"name\": \"no_upstream_bridge_tools\", \"status\": \"PASS\"}, {\"name\": \"tool_result:read_file\", \"status\": \"PASS\"}, {\"name\": \"tool_result:read_file\", \"status\": \"PASS\"}, {\"name\": \"read_sha\", \"status\": \"PASS\"}, {\"name\": \"tool_result:create_text_file\", \"status\": \"PASS\"}, {\"name\": \"tool_result:replace_content\", \"status\": \"PASS\"}, {\"name\": \"preview_does_not_mutate\", \"status\": \"PASS\"}, {\"name\": \"tool_result:transaction_apply\", \"status\": \"PASS\"}, {\"name\": \"apply_changes_file\", \"status\": \"PASS\"}, {\"name\": \"tool_result:transaction_rollback\", \"status\": \"PASS\"}, {\"name\": \"rollback_restores_file\", \"status\": \"PASS\"}, {\"name\": \"tool_result:write_memory\", \"status\": \"PASS\"}, {\"name\": \"tool_result:read_memory\", \"status\": \"PASS\"}, {\"name\": \"memory_content\", \"status\": \"PASS\"}, {\"name\": \"tool_result:flow_run\", \"status\": \"PASS\"}, {\"name\": \"flow_result\", \"status\": \"PASS\"}, {\"name\": \"tool_result:status\", \"status\": \"PASS\"}, {\"name\": \"standalone_status\", \"status\": \"PASS\"}, {\"name\": \"removed_tool:serena_tools\", \"status\": \"PASS\"}, {\"name\": \"removed_tool:serena_call\", \"status\": \"PASS\"}], \"error\": null, \"real_lsp_dap_tested\": false, \"timestamp_unix\": 1792538873.7641234}\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/http_smoke.py",
+        "--binary",
+        "target/debug/odin.exe",
+        "--output",
+        "verification/platform-mcp-cancellation-normal-http.json"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"scope\": \"REAL_ODIN_BINARY_LOOPBACK_HTTP_AND_MCP_SMOKE\", \"status\": \"PASS\", \"binary\": \"C:\\\\Users\\\\steven\\\\.codex\\\\worktrees\\\\odin-platform\\\\odin\\\\target\\\\debug\\\\odin.exe\", \"binary_sha256\": \"ebe70208eb1d0eca966a60913d93c9a5b8e777eaf7cf63dd3ac8b97ffe03031c\", \"platform\": \"Windows-11-10.0.26300-SP0\", \"checks\": [{\"name\": \"server_starts\", \"status\": \"PASS\"}, {\"name\": \"unauthenticated_rejected:/api/projects\", \"status\": \"PASS\"}, {\"name\": \"unauthenticated_rejected:/api/status\", \"status\": \"PASS\"}, {\"name\": \"unauthenticated_rejected:/api/metadata\", \"status\": \"PASS\"}, {\"name\": \"unauthenticated_rejected:/api/audit/demo\", \"status\": \"PASS\"}, {\"name\": \"unauthenticated_rejected:/api/audit/demo/export\", \"status\": \"PASS\"}, {\"name\": \"unauthenticated_rejected:/mcp\", \"status\": \"PASS\"}, {\"name\": \"authenticated_projects\", \"status\": \"PASS\"}, {\"name\": \"no_store_api\", \"status\": \"PASS\"}, {\"name\": \"host_header_rejected\", \"status\": \"PASS\"}, {\"name\": \"cross_origin_rejected\", \"status\": \"PASS\"}, {\"name\": \"wrong_token_rejected\", \"status\": \"PASS\"}, {\"name\": \"dashboard_csp\", \"status\": \"PASS\"}, {\"name\": \"build_metadata\", \"status\": \"PASS\"}, {\"name\": \"readonly_status\", \"status\": \"PASS\"}, {\"name\": \"api_methods_readonly\", \"status\": \"PASS\"}, {\"name\": \"mcp_http_status:initialize\", \"status\": \"PASS\"}, {\"name\": \"mcp_response:initialize\", \"status\": \"PASS\"}, {\"name\": \"mcp_initialize\", \"status\": \"PASS\"}, {\"name\": \"mcp_notification_accepted\", \"status\": \"PASS\"}, {\"name\": \"mcp_http_status:tools/list\", \"status\": \"PASS\"}, {\"name\": \"mcp_response:tools/list\", \"status\": \"PASS\"}, {\"name\": \"mcp_catalog_names\", \"status\": \"PASS\"}, {\"name\": \"mcp_catalog_schemas\", \"status\": \"PASS\"}, {\"name\": \"mcp_http_status:tools/call\", \"status\": \"PASS\"}, {\"name\": \"mcp_response:tools/call\", \"status\": \"PASS\"}, {\"name\": \"mcp_real_tool_call\", \"status\": \"PASS\"}, {\"name\": \"api_no_raw_content_or_token:/api/projects\", \"status\": \"PASS\"}, {\"name\": \"api_no_raw_content_or_token:/api/status\", \"status\": \"PASS\"}, {\"name\": \"api_no_raw_content_or_token:/api/metadata\", \"status\": \"PASS\"}, {\"name\": \"api_no_raw_content_or_token:/api/audit/demo\", \"status\": \"PASS\"}, {\"name\": \"api_no_raw_content_or_token:/api/audit/demo/export\", \"status\": \"PASS\"}, {\"name\": \"audit_records_real_tool\", \"status\": \"PASS\"}, {\"name\": \"audit_metadata_allowlist\", \"status\": \"PASS\"}, {\"name\": \"audit_jsonl_export\", \"status\": \"PASS\"}, {\"name\": \"no_token_in_server_log\", \"status\": \"PASS\"}], \"error\": null, \"full_mcp_http_conformance\": false, \"timestamp_unix\": 1792538874.557582}\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/mcp_cancel_smoke.py",
+        "--binary",
+        "target/debug/odin.exe",
+        "--output",
+        "verification/platform-mcp-cancellation.json"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"scope\": \"REAL_BINARY_MCP_CANCELLATION_WITH_PROTOCOL_FIXTURE\", \"status\": \"PASS\", \"binary\": \"C:\\\\Users\\\\steven\\\\.codex\\\\worktrees\\\\odin-platform\\\\odin\\\\target\\\\debug\\\\odin.exe\", \"binary_sha256\": \"ebe70208eb1d0eca966a60913d93c9a5b8e777eaf7cf63dd3ac8b97ffe03031c\", \"platform\": \"Windows-11-10.0.26300-SP0\", \"checks\": [{\"name\": \"real_binary_initialize\", \"status\": \"PASS\"}, {\"name\": \"slow_backend_holds_project_gate\", \"status\": \"PASS\"}, {\"name\": \"earlier_backend_request_completes\", \"status\": \"PASS\"}, {\"name\": \"cancelled_queued_write_never_applied\", \"status\": \"PASS\"}, {\"name\": \"cancelled_transaction_remains_draft\", \"status\": \"PASS\"}, {\"name\": \"pending_backend_receives_protocol_cancellation\", \"status\": \"PASS\"}, {\"name\": \"cancelled_pending_backend_releases_gate\", \"status\": \"PASS\"}, {\"name\": \"backend_transport_usable_after_cancel\", \"status\": \"PASS\"}], \"observations\": {\"queued_write_source_sha256\": \"ef00998678cc4f84733e80f0cff82163b01e89ff0bf311daed29ce44e50e5182\", \"original_sha256\": \"ef00998678cc4f84733e80f0cff82163b01e89ff0bf311daed29ce44e50e5182\", \"transaction_phase_after_cancel\": \"draft\", \"gate_release_after_cancel_seconds\": 0.012770300003467128, \"fixture_events\": [{\"kind\": \"slow_started\", \"id\": 2}, {\"kind\": \"released\", \"id\": 2}, {\"kind\": \"slow_started\", \"id\": 3}, {\"kind\": \"cancel_received\", \"id\": 3}, {\"kind\": \"cancel_processed\", \"id\": 3}, {\"kind\": \"slow_started\", \"id\": 4}, {\"kind\": \"released\", \"id\": 4}]}, \"error\": null, \"fixture_is_real_language_server\": false, \"real_language_semantics_tested\": false, \"sdk_cancelled_response_behavior\": \"rmcp 3.6 suppresses wire responses for cancelled request IDs\", \"timestamp_unix\": 1792538875.0173397}\n"
+    }
+  ],
+  "before_fix_evidence": "verification/platform-mcp-cancellation-before-fix.json",
+  "real_language_semantics_tested": false,
+  "source_unchanged_during_verification": true,
+  "status": "PASS"
+}

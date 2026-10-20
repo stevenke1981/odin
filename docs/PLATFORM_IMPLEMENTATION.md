@@ -52,6 +52,8 @@ Dashboard 僅提供讀取和下載；操作紀錄允許欄位為時間、project
 
 這不是公網／OAuth／多租戶服務。status 無法取代實際 LSP／DAP 功能測試，稽核也不是完整 OpenTelemetry export。process RSS／model token 數目前沒有來源，不會虛構。
 
+MCP `notifications/cancelled` 會取消 handler 等待的 engine future；同時收到取消與 gate／backend 可用時，先處理取消。仍排隊等待 project gate 的寫入會被丟棄，pending LSP／DAP request 依 protocol 的 drop guard 傳遞取消。已開始的同步 transaction apply 無法由 async cancellation 中斷；取消不代表 rollback，也不證明沒有改檔。handler 使用 -32800／REQUEST_CANCELLED 與 UNKNOWN_IF_STARTED 說明，操作者應先核對 journal、phase 與檔案 hash 再決定是否重試。rmcp 3.6 對已取消的 request ID 會抑制 wire response，不能以沒有 response 推定交易結果。`mcp_cancel_smoke.py` 以真 binary 加明確設定的慢 LSP 協定 fixture 驗證取消排隊寫入、Draft journal 保持不變及 pending backend 取消；此 fixture 不是語言語意支援的證據。
+
 ## 打包與驗證
 
 ```powershell

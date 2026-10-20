@@ -68,7 +68,7 @@ impl ServerHandler for OdinMcp {
     async fn call_tool(
         &self,
         request: CallToolRequestParams,
-        _context: RequestContext<RoleServer>,
+        context: RequestContext<RoleServer>,
     ) -> Result<CallToolResponse, ErrorData> {
         let name = request.name.to_string();
         if self.engine.tool(&name).is_none() {
@@ -83,9 +83,27 @@ impl ServerHandler for OdinMcp {
             .as_str()
             .map(str::to_owned)
             .or_else(|| self.engine.default_project().ok());
-        let result = match project {
-            Some(project) => self.engine.call(project, name, arguments).await,
-            None => Err(odin_core::Fault::invalid("Provide an explicit project ID")),
+        let result = tokio::select! {
+            // If both the gate/backend and cancellation become ready together,
+            // cancellation must win before polling the queued engine operation.
+            biased;
+            _ = context.ct.cancelled() => {
+                return Err(ErrorData::new(
+                    ErrorCode(-32800),
+                    "Request cancelled; effects may already have occurred",
+                    Some(json!({
+                        "code":"REQUEST_CANCELLED",
+                        "outcome":"UNKNOWN_IF_STARTED",
+                        "guidance":"Inspect transaction journals and current hashes before retrying; cancellation does not roll back synchronous work already started."
+                    })),
+                ));
+            }
+            result = async {
+                match project {
+                    Some(project) => self.engine.call(project, name, arguments).await,
+                    None => Err(odin_core::Fault::invalid("Provide an explicit project ID")),
+                }
+            } => result,
         };
         let (value, is_error) = match result {
             Ok(value) => (value, false),
