@@ -153,9 +153,22 @@ impl Config {
         if config.state_dir.is_relative() {
             config.state_dir = parent.join(&config.state_dir);
         }
-        config.state_dir = normalize_absolute(&config.state_dir);
+        config.state_dir = canonical_storage_path(&normalize_absolute(&config.state_dir))?;
         if config.projects.is_empty() {
             return Err(Fault::invalid("At least one project is required"));
+        }
+        #[cfg(windows)]
+        {
+            let identities: std::collections::BTreeSet<_> = config
+                .projects
+                .keys()
+                .map(|id| id.to_ascii_lowercase())
+                .collect();
+            if identities.len() != config.projects.len() {
+                return Err(Fault::invalid(
+                    "Project IDs collide on the Windows filesystem",
+                ));
+            }
         }
         if config.limits.max_file_bytes == 0
             || config.limits.max_file_bytes > 16 * 1024 * 1024
@@ -269,6 +282,37 @@ fn normalize_absolute(path: &Path) -> PathBuf {
     }
     output
 }
+fn canonical_storage_path(path: &Path) -> Result<PathBuf> {
+    let mut existing = path;
+    let mut suffix = Vec::new();
+    loop {
+        match std::fs::symlink_metadata(existing) {
+            Ok(_) => break,
+            Err(error) if error.kind() == std::io::ErrorKind::NotFound => {
+                suffix.push(
+                    existing
+                        .file_name()
+                        .ok_or_else(|| Fault::invalid("State has no existing ancestor"))?
+                        .to_os_string(),
+                );
+                existing = existing
+                    .parent()
+                    .ok_or_else(|| Fault::invalid("State has no parent"))?;
+            }
+            Err(error) => return Err(error.into()),
+        }
+    }
+    for ancestor in existing.ancestors() {
+        if crate::paths::is_redirect(&std::fs::symlink_metadata(ancestor)?) {
+            return Err(Fault::denied("State path contains a link or reparse point"));
+        }
+    }
+    let mut canonical = existing.canonicalize()?;
+    for component in suffix.into_iter().rev() {
+        canonical.push(component);
+    }
+    Ok(canonical)
+}
 fn literal_glob(value: &str) -> String {
     let mut output = String::new();
     for ch in value.chars() {
@@ -369,7 +413,9 @@ mod tests {
         let directory = tempfile::tempdir().unwrap();
         let path = directory.path().join("protected-host-configuration.toml");
         let state = directory.path().join("host-state-storage");
+        let source = directory.path().join("ordinary-long-source-name.txt");
         std::fs::create_dir(&state).unwrap();
+        std::fs::write(&source, "before").unwrap();
         std::fs::write(
             &path,
             "state_dir='host-state-storage'\n[projects.demo]\nroot='.'\nallow_write=true\n",
@@ -379,8 +425,8 @@ mod tests {
         let project = &config.projects["demo"];
         let root = crate::paths::SafeRoot::new(&project.root, &project.deny_globs, 10000).unwrap();
         let output = std::process::Command::new("powershell.exe")
-            .args(["-NoProfile", "-NonInteractive", "-Command", "$fs = New-Object -ComObject Scripting.FileSystemObject; @{file=$fs.GetFile($env:ODIN_ALIAS_FILE).ShortName; directory=$fs.GetFolder($env:ODIN_ALIAS_DIRECTORY).ShortName} | ConvertTo-Json -Compress"])
-            .env("ODIN_ALIAS_FILE", &path).env("ODIN_ALIAS_DIRECTORY", &state).output().unwrap();
+            .args(["-NoProfile", "-NonInteractive", "-Command", "$fs = New-Object -ComObject Scripting.FileSystemObject; @{file=$fs.GetFile($env:ODIN_ALIAS_FILE).ShortName; directory=$fs.GetFolder($env:ODIN_ALIAS_DIRECTORY).ShortName; source=$fs.GetFile($env:ODIN_ALIAS_SOURCE).ShortName} | ConvertTo-Json -Compress"])
+            .env("ODIN_ALIAS_FILE", &path).env("ODIN_ALIAS_DIRECTORY", &state).env("ODIN_ALIAS_SOURCE", &source).output().unwrap();
         assert!(
             output.status.success(),
             "{}",
@@ -389,6 +435,7 @@ mod tests {
         let aliases: serde_json::Value = serde_json::from_slice(&output.stdout).unwrap();
         let file = aliases["file"].as_str().unwrap();
         let directory_alias = aliases["directory"].as_str().unwrap();
+        let source_alias = aliases["source"].as_str().unwrap();
         eprintln!("NTFS short aliases: file={file}, directory={directory_alias}");
         // An 8.3-disabled volume returns long names; do not claim short-name
         // coverage from such a run, although policy is still checked.
@@ -399,5 +446,51 @@ mod tests {
                 .code,
             "PERMISSION_DENIED"
         );
+        std::fs::write(
+            &path,
+            format!("state_dir='{directory_alias}'\n[projects.demo]\nroot='.'\nallow_write=true\n"),
+        )
+        .unwrap();
+        let config = Config::load(&path).unwrap();
+        let project = &config.projects["demo"];
+        let root = crate::paths::SafeRoot::new(&project.root, &project.deny_globs, 10000).unwrap();
+        assert_eq!(
+            root.resolve("host-state-storage/new", true)
+                .unwrap_err()
+                .code,
+            "PERMISSION_DENIED"
+        );
+        let journal = tempfile::tempdir().unwrap();
+        let transactions =
+            crate::transaction::Transactions::new(root.clone(), journal.path(), 16).unwrap();
+        let changes = ["ordinary-long-source-name.txt", source_alias]
+            .iter()
+            .enumerate()
+            .map(|(index, name)| crate::transaction::Change {
+                path: (*name).into(),
+                expected_sha256: Some(crate::sha256(b"before")),
+                content: Some(index.to_string()),
+            })
+            .collect();
+        assert_eq!(
+            transactions.prepare(changes, None).unwrap_err().code,
+            "INVALID_ARGUMENT"
+        );
+        root.write_atomic(source_alias, b"after").unwrap();
+        assert_eq!(std::fs::read_to_string(source).unwrap(), "after");
+    }
+    #[cfg(windows)]
+    #[test]
+    fn windows_project_ids_cannot_share_a_state_namespace_by_case() {
+        let directory = tempfile::tempdir().unwrap();
+        std::fs::create_dir(directory.path().join("a")).unwrap();
+        std::fs::create_dir(directory.path().join("b")).unwrap();
+        let path = directory.path().join("host.toml");
+        std::fs::write(
+            &path,
+            "[projects.demo]\nroot='a'\n[projects.DEMO]\nroot='b'\n",
+        )
+        .unwrap();
+        assert_eq!(Config::load(&path).unwrap_err().code, "INVALID_ARGUMENT");
     }
 }

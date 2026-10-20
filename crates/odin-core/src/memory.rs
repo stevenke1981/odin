@@ -48,6 +48,16 @@ impl Memories {
         max_bytes: usize,
         max_changes: usize,
     ) -> Result<Self> {
+        #[cfg(windows)]
+        if projects
+            .iter()
+            .map(|id| id.to_ascii_lowercase())
+            .collect::<BTreeSet<_>>()
+            .len()
+            != projects.len()
+        {
+            return Err(Fault::invalid("Memory project IDs collide on Windows"));
+        }
         let dir = state.join("memories");
         private_dir(&dir.join("global"))?;
         for id in &projects {
@@ -64,7 +74,11 @@ impl Memories {
             global_writable,
             read_only: patterns
                 .iter()
-                .map(|p| regex::Regex::new(p))
+                .map(|p| {
+                    regex::RegexBuilder::new(p)
+                        .case_insensitive(cfg!(windows))
+                        .build()
+                })
                 .collect::<std::result::Result<_, _>>()?,
             max_changes,
         })
@@ -74,12 +88,24 @@ impl Memories {
             return Err(Fault::invalid("Unknown memory project"));
         }
         validate_name(name)?;
-        if let Some(name) = name.strip_prefix("global/") {
+        let relative = if let Some(name) = name.strip_prefix("global/") {
             validate_name(name)?;
-            Ok(format!("global/{name}.md"))
+            format!("global/{name}.md")
         } else {
-            Ok(format!("projects/{project}/{name}.md"))
+            format!("projects/{project}/{name}.md")
+        };
+        #[cfg(windows)]
+        if let Ok(canonical) = self.root.root().join(&relative).canonicalize() {
+            let actual = canonical
+                .strip_prefix(self.root.root())
+                .map_err(|_| Fault::denied("Memory escaped storage"))?
+                .to_string_lossy()
+                .replace('\\', "/");
+            if actual != relative {
+                return Err(Fault::denied("Use the canonical existing memory name"));
+            }
         }
+        Ok(relative)
     }
     fn check_write(&self, project: &str, name: &str) -> Result<()> {
         if self.read_only.iter().any(|r| r.is_match(name)) {
@@ -651,6 +677,70 @@ mod tests {
         let ps = BTreeSet::from(["demo".into()]);
         let m = Memories::new(d.path(), ps.clone(), ps, false, &[], 10000, 32).unwrap();
         assert!(m.write("demo", "global/x", Some("x".into()), None).is_err());
+    }
+    #[cfg(windows)]
+    #[test]
+    fn windows_memory_aliases_cannot_bypass_readonly_or_reference_policy() {
+        let directory = tempfile::tempdir().unwrap();
+        let projects = BTreeSet::from(["demo".into()]);
+        let memories = Memories::new(
+            directory.path(),
+            projects.clone(),
+            projects.clone(),
+            false,
+            &["^policy$".into(), "^index$".into()],
+            10000,
+            16,
+        )
+        .unwrap();
+        let notes = directory.path().join("memories/projects/demo");
+        std::fs::write(notes.join("policy.md"), "immutable").unwrap();
+        std::fs::write(notes.join("INDEX.md"), "mem:core").unwrap();
+        std::fs::write(notes.join("core.md"), "body").unwrap();
+        for content in [Some("changed".into()), None] {
+            assert_eq!(
+                memories
+                    .write("demo", "POLICY", content, Some(sha256(b"immutable")))
+                    .unwrap_err()
+                    .code,
+                "PERMISSION_DENIED"
+            );
+        }
+        assert_eq!(
+            memories
+                .rename("demo", "core", "design", &sha256(b"body"))
+                .unwrap_err()
+                .code,
+            "PERMISSION_DENIED"
+        );
+        assert!(memories.read("demo", "core").is_ok());
+        assert_eq!(
+            memories
+                .write(
+                    "demo",
+                    "CORE",
+                    Some("changed".into()),
+                    Some(sha256(b"body"))
+                )
+                .unwrap_err()
+                .code,
+            "PERMISSION_DENIED"
+        );
+        assert_eq!(
+            Memories::new(
+                directory.path(),
+                BTreeSet::from(["demo".into(), "DEMO".into()]),
+                projects,
+                false,
+                &[],
+                10000,
+                16
+            )
+            .err()
+            .unwrap()
+            .code,
+            "INVALID_ARGUMENT"
+        );
     }
     fn two_projects(state: &Path, global: bool) -> Memories {
         let projects = BTreeSet::from(["one".into(), "two".into()]);

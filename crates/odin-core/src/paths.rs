@@ -128,7 +128,7 @@ impl SafeRoot {
             .strip_prefix(&self.root)
             .map_err(|_| Fault::denied("Resolved path escaped project"))?;
         self.check_policy_identity(canonical_relative)?;
-        Ok(current)
+        Ok(canonical)
     }
     fn check_policy_identity(&self, rel: &Path) -> Result<()> {
         for component in rel.components() {
@@ -151,7 +151,12 @@ impl SafeRoot {
         Ok(())
     }
     pub fn read(&self, relative: &str) -> Result<String> {
-        self.resolve(relative, false)?;
+        let canonical = self.resolve(relative, false)?;
+        let relative = canonical
+            .strip_prefix(&self.root)
+            .map_err(|_| Fault::denied("Outside project"))?
+            .to_str()
+            .ok_or_else(|| Fault::invalid("Paths must be UTF-8"))?;
         let (parent, leaf) = self.parent_handle(relative)?;
         let mut options = cap_std::fs::OpenOptions::new();
         options.read(true).follow(FollowSymlinks::No);
@@ -194,7 +199,12 @@ impl SafeRoot {
     /// Hold parent directory handles through creation and rename. Each parent
     /// is opened without following links; native source writes use this path.
     pub fn write_atomic(&self, relative: &str, bytes: &[u8]) -> Result<()> {
-        self.resolve(relative, true)?;
+        let canonical = self.resolve(relative, true)?;
+        let relative = canonical
+            .strip_prefix(&self.root)
+            .map_err(|_| Fault::denied("Outside project"))?
+            .to_str()
+            .ok_or_else(|| Fault::invalid("Paths must be UTF-8"))?;
         if bytes.len() > self.max_file_bytes {
             return Err(Fault::new(
                 "LIMIT_EXCEEDED",
@@ -230,7 +240,12 @@ impl SafeRoot {
         result
     }
     pub fn remove_file(&self, relative: &str) -> Result<()> {
-        self.resolve(relative, false)?;
+        let canonical = self.resolve(relative, false)?;
+        let relative = canonical
+            .strip_prefix(&self.root)
+            .map_err(|_| Fault::denied("Outside project"))?
+            .to_str()
+            .ok_or_else(|| Fault::invalid("Paths must be UTF-8"))?;
         let (parent, leaf) = self.parent_handle(relative)?;
         parent.remove_file(leaf)?;
         #[cfg(unix)]
@@ -288,7 +303,7 @@ pub fn private_dir(path: &Path) -> Result<()> {
     }
     Ok(())
 }
-fn is_redirect(metadata: &std::fs::Metadata) -> bool {
+pub(crate) fn is_redirect(metadata: &std::fs::Metadata) -> bool {
     #[cfg(windows)]
     {
         use std::os::windows::fs::MetadataExt;
