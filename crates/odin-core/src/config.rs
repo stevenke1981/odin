@@ -17,6 +17,20 @@ pub struct Config {
     pub memory_read_only_patterns: Vec<String>,
     #[serde(default)]
     pub allow_global_memory_write: bool,
+    #[serde(default)]
+    pub contexts: BTreeMap<String, PolicyConfig>,
+    #[serde(default)]
+    pub modes: BTreeMap<String, PolicyConfig>,
+}
+/// Host-owned declarative permission reductions. A true value can preserve a
+/// host grant, never grant a permission denied by the host or earlier layer.
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+#[serde(default, deny_unknown_fields)]
+pub struct PolicyConfig {
+    pub allow_write: bool,
+    pub allow_shell: bool,
+    pub allow_debug: bool,
+    pub excluded_tools: Vec<String>,
 }
 fn default_state() -> PathBuf {
     PathBuf::from("state")
@@ -108,6 +122,27 @@ pub struct LanguageConfig {
     pub settings: serde_json::Value,
 }
 impl Config {
+    pub fn with_policy(mut self, context: Option<&str>, mode: Option<&str>) -> Result<Self> {
+        for (name, policies) in [(context, &self.contexts), (mode, &self.modes)] {
+            if let Some(name) = name {
+                let policy = policies.get(name).ok_or_else(|| {
+                    Fault::new("UNKNOWN_POLICY", format!("Unknown context or mode: {name}"))
+                })?;
+                for project in self.projects.values_mut() {
+                    project.allow_write &= policy.allow_write;
+                    project.allow_shell &= policy.allow_shell;
+                    project.allow_debug &= policy.allow_debug;
+                    project
+                        .excluded_tools
+                        .extend(policy.excluded_tools.iter().cloned());
+                    project.excluded_tools.sort();
+                    project.excluded_tools.dedup();
+                }
+                self.allow_global_memory_write &= policy.allow_write;
+            }
+        }
+        Ok(self)
+    }
     pub fn load(path: &Path) -> Result<Self> {
         let path = path.canonicalize()?;
         let raw = std::fs::read_to_string(&path)?;
@@ -195,6 +230,9 @@ impl Config {
         for pattern in &config.memory_read_only_patterns {
             regex::Regex::new(pattern)?;
         }
+        for name in config.contexts.keys().chain(config.modes.keys()) {
+            validate_id(name)?;
+        }
         Ok(config)
     }
 }
@@ -269,5 +307,35 @@ mod tests {
         )
         .unwrap();
         assert!(Config::load(&config_path).is_err());
+    }
+    #[test]
+    fn context_then_mode_only_reduce_explicit_host_grants() {
+        let directory = tempfile::tempdir().unwrap();
+        let path = directory.path().join("host.toml");
+        std::fs::write(&path, "allow_global_memory_write = true\n[projects.demo]\nroot='.'\nallow_write=true\nallow_shell=false\nallow_debug=true\n[contexts.editor]\nallow_write=true\nallow_shell=true\nallow_debug=false\nexcluded_tools=['debug_start']\n[modes.readonly]\nallow_write=false\nallow_shell=true\nallow_debug=true\nexcluded_tools=['transaction_apply']\n").unwrap();
+        let config = Config::load(&path)
+            .unwrap()
+            .with_policy(Some("editor"), Some("readonly"))
+            .unwrap();
+        let project = &config.projects["demo"];
+        assert!(!project.allow_write);
+        assert!(!project.allow_shell);
+        assert!(!project.allow_debug);
+        assert!(!config.allow_global_memory_write);
+        assert_eq!(project.excluded_tools, ["debug_start", "transaction_apply"]);
+    }
+    #[test]
+    fn unknown_context_fails_closed() {
+        let directory = tempfile::tempdir().unwrap();
+        let path = directory.path().join("host.toml");
+        std::fs::write(&path, "[projects.demo]\nroot='.'\n").unwrap();
+        assert_eq!(
+            Config::load(&path)
+                .unwrap()
+                .with_policy(Some("missing"), None)
+                .unwrap_err()
+                .code,
+            "UNKNOWN_POLICY"
+        );
     }
 }

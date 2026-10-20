@@ -283,7 +283,9 @@ impl Transactions {
         }
         journal.phase = Phase::Prepared;
         self.save(&journal)?;
-        for file in &journal.files {
+        #[cfg(test)]
+        crash_checkpoint("prepared", 0);
+        for (_index, file) in journal.files.iter().enumerate() {
             let result = (|| -> Result<()> {
                 if self.current(&file.path)? != file.before {
                     return Err(Fault::conflict(format!(
@@ -306,9 +308,13 @@ impl Transactions {
                     format!("{error}; rollback_status={:?}", journal.phase),
                 ));
             }
+            #[cfg(test)]
+            crash_checkpoint("write", _index);
         }
         journal.phase = Phase::Committed;
         self.save(&journal)?;
+        #[cfg(test)]
+        crash_checkpoint("committed", 0);
         Ok(serde_json::json!({"transaction_id":id,"phase":"committed","files":journal.files.len()}))
     }
     fn restore(&self, journal: &Journal) -> Result<()> {
@@ -381,6 +387,14 @@ impl Transactions {
         let mut result = self.apply(undo_id)?;
         result["undo_of"] = id.into();
         Ok(result)
+    }
+}
+// Present only in the unit-test executable; impossible to enable in an Odin
+// product binary or by placing files/configuration in a repository.
+#[cfg(test)]
+fn crash_checkpoint(phase: &str, index: usize) {
+    if std::env::var("ODIN_TEST_CRASH_PHASE").ok().as_deref() == Some(&format!("{phase}:{index}")) {
+        std::process::exit(86);
     }
 }
 #[cfg(test)]
@@ -528,6 +542,101 @@ mod tests {
         assert_eq!(
             std::fs::read_to_string(root.path().join("x")).unwrap(),
             "external"
+        );
+    }
+    #[test]
+    fn crash_process_worker() {
+        let Some(root) = std::env::var_os("ODIN_TEST_CRASH_ROOT") else {
+            return;
+        };
+        let state = std::env::var_os("ODIN_TEST_CRASH_STATE").unwrap();
+        let tx = Transactions::new(SafeRoot::new(root, &[], 10000).unwrap(), state, 16).unwrap();
+        let preview = tx
+            .prepare(
+                vec![
+                    Change {
+                        path: "a".into(),
+                        expected_sha256: Some(sha256(b"before")),
+                        content: Some("after".into()),
+                    },
+                    Change {
+                        path: "b".into(),
+                        expected_sha256: None,
+                        content: Some("created".into()),
+                    },
+                ],
+                None,
+            )
+            .unwrap();
+        crash_checkpoint("draft", 0);
+        tx.apply(preview["transaction_id"].as_str().unwrap())
+            .unwrap();
+    }
+    #[test]
+    fn real_process_crashes_at_transaction_checkpoints_are_recoverable() {
+        for phase in ["draft:0", "prepared:0", "write:0", "write:1", "committed:0"] {
+            let (root, state, tx) = setup();
+            std::fs::write(root.path().join("a"), "before").unwrap();
+            let output = std::process::Command::new(std::env::current_exe().unwrap())
+                .args([
+                    "--exact",
+                    "transaction::tests::crash_process_worker",
+                    "--nocapture",
+                ])
+                .env("ODIN_TEST_CRASH_ROOT", root.path())
+                .env("ODIN_TEST_CRASH_STATE", state.path())
+                .env("ODIN_TEST_CRASH_PHASE", phase)
+                .output()
+                .unwrap();
+            assert_eq!(
+                output.status.code(),
+                Some(86),
+                "phase={phase}: {}",
+                String::from_utf8_lossy(&output.stderr)
+            );
+            tx.recover().unwrap();
+            if phase == "committed:0" {
+                assert_eq!(
+                    std::fs::read_to_string(root.path().join("a")).unwrap(),
+                    "after"
+                );
+                assert_eq!(
+                    std::fs::read_to_string(root.path().join("b")).unwrap(),
+                    "created"
+                );
+            } else {
+                assert_eq!(
+                    std::fs::read_to_string(root.path().join("a")).unwrap(),
+                    "before"
+                );
+                assert!(!root.path().join("b").exists());
+            }
+        }
+    }
+    #[cfg(windows)]
+    #[test]
+    fn case_aliases_are_duplicate_targets_on_windows() {
+        let (root, _state, tx) = setup();
+        std::fs::write(root.path().join("Source.txt"), "before").unwrap();
+        assert_eq!(
+            tx.prepare(
+                vec![
+                    Change {
+                        path: "Source.txt".into(),
+                        expected_sha256: Some(sha256(b"before")),
+                        content: Some("one".into())
+                    },
+                    Change {
+                        path: "source.txt".into(),
+                        expected_sha256: Some(sha256(b"before")),
+                        content: Some("two".into())
+                    },
+                ],
+                None
+            )
+            .unwrap_err()
+            .code,
+            "INVALID_ARGUMENT"
         );
     }
 }
