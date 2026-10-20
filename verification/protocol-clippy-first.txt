@@ -1,0 +1,172 @@
+    Checking smallvec v1.16.3
+    Checking serde v1.0.228
+    Checking zerofrom v0.1.8
+    Checking percent-encoding v2.3.2
+    Checking tracing-core v0.1.36
+    Checking tempfile v3.23.0
+    Checking yoke v0.8.3
+    Checking form_urlencoded v1.2.2
+    Checking parking_lot_core v0.9.12
+    Checking rusqlite v0.37.0
+    Checking zerovec v0.11.8
+    Checking zerotrie v0.2.5
+    Checking tracing v0.1.41
+    Checking parking_lot v0.12.5
+    Checking uuid v1.18.1
+    Checking tokio v1.48.0
+    Checking tinystr v0.8.4
+    Checking potential_utf v0.1.6
+    Checking icu_collections v2.3.0
+    Checking icu_locale_core v2.3.0
+    Checking icu_provider v2.3.1
+    Checking icu_properties v2.3.0
+    Checking icu_normalizer v2.3.0
+    Checking idna_adapter v1.2.2
+    Checking idna v1.1.0
+    Checking url v2.5.7
+    Checking odin-core v0.2.0 (C:\Users\steven\.codex\worktrees\odin-protocol\odin\crates\odin-core)
+    Checking odin-protocol v0.2.0 (C:\Users\steven\.codex\worktrees\odin-protocol\odin\crates\odin-protocol)
+error: this `if` statement can be collapsed
+   --> crates\odin-protocol\src\dap.rs:247:17
+    |
+247 | /                 if let Ok(mut state) = state.lock() {
+248 | |                     if state.generation == generation {
+249 | |                         if result.is_err()
+250 | |                             && matches!(state.phase, Phase::Launching | Phase::Configured)
+...   |
+259 | |                 }
+    | |_________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#collapsible_if
+    = note: `-D clippy::collapsible-if` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::collapsible_if)]`
+help: collapse nested if block
+    |
+247 ~                 if let Ok(mut state) = state.lock()
+248 ~                     && state.generation == generation {
+249 |                         if result.is_err()
+...
+257 |                         }
+258 ~                     }
+    |
+
+error: this `if` statement can be collapsed
+  --> crates\odin-protocol\src\rpc.rs:85:9
+   |
+85 | /         if removed {
+86 | |             if let (Some(cancellation), Ok(runtime)) = (
+87 | |                 self.cancellation.take(),
+88 | |                 tokio::runtime::Handle::try_current(),
+...  |
+95 | |         }
+   | |_________^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#collapsible_if
+help: collapse nested if block
+   |
+85 ~         if removed
+86 ~             && let (Some(cancellation), Ok(runtime)) = (
+87 |                 self.cancellation.take(),
+...
+93 |                 });
+94 ~             }
+   |
+
+error: this function has too many arguments (8/7)
+   --> crates\odin-protocol\src\rpc.rs:136:5
+    |
+136 | /     pub fn spawn(
+137 | |         program: &str,
+138 | |         args: &[String],
+139 | |         cwd: &Path,
+...   |
+144 | |         settings: Value,
+145 | |     ) -> Result<Arc<Self>> {
+    | |__________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#too_many_arguments
+    = note: `-D clippy::too-many-arguments` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::too_many_arguments)]`
+
+error: this `if` statement can be collapsed
+   --> crates\odin-protocol\src\rpc.rs:226:21
+    |
+226 | /                     if message["method"]=="textDocument/publishDiagnostics" {
+227 | |                         if let Some(uri)=message["params"]["uri"].as_str() {
+228 | |                             let mut map=d.lock().map_err(|_|anyhow!("Diagnostics lock poisoned"))?;
+229 | |                             if map.len()<1024 || map.contains_key(uri) {map.insert(uri.into(),message["params"].clone());}
+230 | |                         }
+231 | |                     }
+    | |_____________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#collapsible_if
+help: collapse nested if block
+    |
+226 ~                     if message["method"]=="textDocument/publishDiagnostics"
+227 ~                         && let Some(uri)=message["params"]["uri"].as_str() {
+228 |                             let mut map=d.lock().map_err(|_|anyhow!("Diagnostics lock poisoned"))?;
+229 |                             if map.len()<1024 || map.contains_key(uri) {map.insert(uri.into(),message["params"].clone());}
+230 ~                         }
+    |
+
+error: this `if` statement can be collapsed
+   --> crates\odin-protocol\src\rpc.rs:544:9
+    |
+544 | /         if let Some((name, value)) = line.trim().split_once(':') {
+545 | |             if name.eq_ignore_ascii_case("Content-Length") {
+546 | |                 if length.is_some() {
+547 | |                     bail!("Duplicate Content-Length");
+...   |
+551 | |         }
+    | |_________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#collapsible_if
+help: collapse nested if block
+    |
+544 ~         if let Some((name, value)) = line.trim().split_once(':')
+545 ~             && name.eq_ignore_ascii_case("Content-Length") {
+546 |                 if length.is_some() {
+...
+549 |                 length = Some(value.trim().parse::<usize>()?);
+550 ~             }
+    |
+
+error: this `if` statement can be collapsed
+   --> crates\odin-protocol\src\workspace.rs:370:9
+    |
+370 | /         if let Some(previous) = self.aliases.insert(key, path.clone()) {
+371 | |             if previous != path {
+372 | |                 bail!("Conflicting path aliases in WorkspaceEdit: {previous} and {path}");
+373 | |             }
+374 | |         }
+    | |_________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#collapsible_if
+help: collapse nested if block
+    |
+370 ~         if let Some(previous) = self.aliases.insert(key, path.clone())
+371 ~             && previous != path {
+372 |                 bail!("Conflicting path aliases in WorkspaceEdit: {previous} and {path}");
+373 ~             }
+    |
+
+error: could not compile `odin-protocol` (lib) due to 6 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: items after a test module
+   --> crates\odin-protocol\src\workspace.rs:56:1
+    |
+ 56 | mod tests {
+    | ^^^^^^^^^
+...
+332 | pub(crate) struct Planner<'a> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+341 | impl<'a> Planner<'a> {
+    | ^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#items_after_test_module
+    = note: `-D clippy::items-after-test-module` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::items_after_test_module)]`
+    = help: move the items to before the test module was defined
+
+error: could not compile `odin-protocol` (lib test) due to 7 previous errors

@@ -1,0 +1,91 @@
+{
+  "task_id": "protocol-completion",
+  "actor_instance": "/root/protocol_implementation",
+  "base_sha": "2ed95d6",
+  "initial_protocol_commit": "656cc49",
+  "date": "2026-10-21",
+  "platform": "x86_64-pc-windows-msvc",
+  "rustc": "1.90.0 (1159e78c4 2025-09-14)",
+  "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-protocol\\odin",
+  "source_binding": "Per-file hashes below identify tested code; head is the commit containing this manifest.",
+  "source_sha256": {
+    "crates/odin-protocol/src/dap.rs": "6ccfe79aae1e7ad30ec066cdc75234a5f068e66a042ea323706afec400176c7f",
+    "crates/odin-protocol/src/lib.rs": "99a75cf5cf2f0f42c91bb5d4344fa56ca54aab6d2c0c8bc498da1a1f9b98e68c",
+    "crates/odin-protocol/src/lsp.rs": "00e4eea46d553694e66e2155bf600d4b572c5402fa89a29dd3857507588f0dd3",
+    "crates/odin-protocol/src/rpc.rs": "11249e0fcdf15c499f73fc96fbbbcb422ae376b756d5652ef22bc681c60a9a59",
+    "crates/odin-protocol/src/text.rs": "8e9714d98171d83721bc07100f776df6982ccc798f7df88cbd6329e2a01ce9ae",
+    "crates/odin-protocol/src/workspace.rs": "bbd5af31583f9c1322f2c6b90fcfaf438270e9be8b9e664b616c7cefc8647d16",
+    "crates/odin-protocol/tests/fixture_protocols.rs": "07237985127e1beab6408834e166c338c1cff405794c88ac8a485570cec1db97",
+    "tests/fixtures/protocol_peer.py": "a58552cdc914ba93dcc6068b3f91878965320fe5e4e94f4be89733c0f6e9677d",
+    "docs/PROTOCOL_IMPLEMENTATION.md": "a6d85c256f04d51cd40b45c592d52ad449463a918d3eb4f89b7313d395eb572a"
+  },
+  "checks": [
+    {
+      "status": "PASS",
+      "command": "cargo test -p odin-protocol --locked",
+      "exit_code": 0,
+      "unit_tests_passed": 26,
+      "fixture_tests_passed": 13,
+      "ignored_real_backend_tests": 1,
+      "log": "verification/protocol-tests-regressions.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "cargo test -p odin-protocol --locked real_rust_analyzer_smoke -- --ignored --nocapture",
+      "exit_code": 0,
+      "tests_passed": 1,
+      "backend": "rust-analyzer 1.90.0",
+      "scope": "Actual LSP initialize and Rust documentSymbol only",
+      "log": "verification/protocol-real-rust-analyzer.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "cargo clippy -p odin-protocol --all-targets --locked -- -D warnings",
+      "exit_code": 0,
+      "log": "verification/protocol-clippy.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "rustfmt --edition 2024 --check crates/odin-protocol/src/lib.rs crates/odin-protocol/tests/fixture_protocols.rs",
+      "exit_code": 0,
+      "log": "verification/protocol-fmt.txt"
+    },
+    {
+      "status": "NOT_RUN",
+      "command": "cargo test --workspace --locked",
+      "owner": "/root",
+      "reason": "Full integration owner runs workspace checks after merging branches"
+    },
+    {
+      "status": "NOT_RUN",
+      "command": "binary multi-language and debugpy smoke",
+      "owner": "/root",
+      "reason": "Package fixtures do not prove real Python, TypeScript, or debugging support"
+    },
+    {
+      "status": "NOT_RUN",
+      "command": "Linux and macOS native tests",
+      "reason": "This task ran on native Windows only"
+    }
+  ],
+  "resolved_failures": [
+    "Existing fixture depended on didOpen but omitted textDocumentSync; fixture now advertises the capability it exercises.",
+    "First ordered-resource tests exposed URL non-verbatim Windows path mismatch; root normalization now handles the canonical prefix.",
+    "Core cherry-pick conflict caused an unclosed-delimiter build attempt before resolution; incoming core snapshots were then integrated.",
+    "Strict Clippy first failed on style, test module placement, and the existing 8-argument public constructor; fixed without changing public construction API or lint thresholds. First output: verification/protocol-clippy-first.txt"
+  ],
+  "unsupported_or_limited": [
+    "Resource operations cover regular UTF-8 files with existing parents; directory, recursive, binary and overwrite operations fail explicitly.",
+    "Confirmation-required change annotations require an explicit future approval mechanism and are rejected.",
+    "Readiness stays unknown without backend evidence; no generic index-completeness guarantee.",
+    "Dynamic LSP registration and backend-originated applyEdit/terminal execution remain disabled.",
+    "Rename transactions transfer text, not inode identity or all file metadata.",
+    "DAP adapter launch arguments require trusted host debug authorization; process lifetime guards are not OS security sandboxes.",
+    "Process queue/frame limits are bounded; exhaustive malicious-backend fuzzing and all-adapter conformance remain NOT_RUN."
+  ],
+  "next_owner": "/root and /root/engine_implementation",
+  "external_effects": {
+    "remote_push": false,
+    "cloud_ci": false
+  }
+}

@@ -92,7 +92,10 @@ impl DebugAdapter {
             .map_err(|_| anyhow!("DAP state lock poisoned"))?;
         for event in events {
             match event["event"].as_str() {
-                Some("initialized") => state.initialized_event = true,
+                Some("initialized") => {
+                    state.initialized_event = true;
+                    state.configured = false;
+                }
                 Some("stopped") => state.phase = Phase::Stopped,
                 Some("continued") => state.phase = Phase::Running,
                 Some("terminated") => state.phase = Phase::Terminated,
@@ -122,7 +125,7 @@ impl DebugAdapter {
             .lock()
             .map_err(|_| anyhow!("DAP state lock poisoned"))?;
         Ok(
-            json!({"phase":state.phase,"initialized_event":state.initialized_event,
+            json!({"phase":state.phase,"initialized_event":state.initialized_event,"configured":state.configured,
             "generation":state.generation,"closed":self.rpc.is_closed() || state.phase == Phase::Disconnected,
             "capabilities":self.capabilities,"transport":self.rpc.status()?}),
         )
@@ -171,7 +174,7 @@ impl DebugAdapter {
             "pause" => phase == Phase::Running,
             "threads" | "source" | "loadedSources" => active,
             "terminate" => active,
-            "restart" => active || phase == Phase::Terminated,
+            "restart" => active || matches!(phase, Phase::Terminated | Phase::OutcomeUnknown),
             "disconnect" => phase != Phase::Disconnected,
             _ => false,
         };
@@ -219,7 +222,7 @@ impl DebugAdapter {
             bail!("Debug adapter is closed; explicitly start a new session");
         }
         self.validate(command)?;
-        if command == "launch" || command == "attach" {
+        if matches!(command, "launch" | "attach" | "restart") {
             let mut jobs = self.launches.lock().await;
             if jobs.len() >= 8 {
                 bail!("Drain launch tickets before starting another launch");
@@ -244,17 +247,17 @@ impl DebugAdapter {
             let (started_tx, started_rx) = oneshot::channel();
             let job = tokio::spawn(async move {
                 let result = rpc.request_signaled(&command, args, Some(started_tx)).await;
-                if let Ok(mut state) = state.lock() {
-                    if state.generation == generation {
-                        if result.is_err()
-                            && matches!(state.phase, Phase::Launching | Phase::Configured)
-                        {
-                            state.phase = Phase::OutcomeUnknown;
-                        } else if result.is_ok()
-                            && matches!(state.phase, Phase::Launching | Phase::Configured)
-                        {
-                            state.phase = Phase::Running;
-                        }
+                if let Ok(mut state) = state.lock()
+                    && state.generation == generation
+                {
+                    if result.is_err()
+                        && matches!(state.phase, Phase::Launching | Phase::Configured)
+                    {
+                        state.phase = Phase::OutcomeUnknown;
+                    } else if result.is_ok()
+                        && matches!(state.phase, Phase::Launching | Phase::Configured)
+                    {
+                        state.phase = Phase::Running;
                     }
                 }
                 result
@@ -271,8 +274,29 @@ impl DebugAdapter {
                 json!({"ticket":ticket,"pending":true,"next":"Poll events, configure breakpoints, then send configurationDone if required"}),
             );
         }
-        let result = self.rpc.request(command, args).await?;
+        let resumes = matches!(command, "continue" | "next" | "stepIn" | "stepOut");
+        if resumes {
+            let mut state = self
+                .state
+                .lock()
+                .map_err(|_| anyhow!("DAP state lock poisoned"))?;
+            state.phase = Phase::Running;
+        }
+        let outcome = self.rpc.request(command, args).await;
         self.capture_events()?;
+        let result = match outcome {
+            Ok(value) => value,
+            Err(error) => {
+                let mut state = self
+                    .state
+                    .lock()
+                    .map_err(|_| anyhow!("DAP state lock poisoned"))?;
+                if resumes && state.phase == Phase::Running {
+                    state.phase = Phase::OutcomeUnknown;
+                }
+                return Err(error);
+            }
+        };
         {
             let mut state = self
                 .state
@@ -285,14 +309,7 @@ impl DebugAdapter {
                         state.phase = Phase::Configured;
                     }
                 }
-                "continue" | "next" | "stepIn" | "stepOut" if state.phase == Phase::Stopped => {
-                    state.phase = Phase::Running
-                }
                 "disconnect" => state.phase = Phase::Disconnected,
-                "restart" => {
-                    state.generation += 1;
-                    state.phase = Phase::Running;
-                }
                 _ => {}
             }
         }

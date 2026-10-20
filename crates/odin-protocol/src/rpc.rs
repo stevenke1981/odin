@@ -33,6 +33,7 @@ type Pending = Arc<StdMutex<HashMap<u64, oneshot::Sender<std::result::Result<Val
 type Events = Arc<StdMutex<VecDeque<Value>>>;
 #[derive(Clone)]
 struct Cancellation {
+    pending: Pending,
     stdin: Arc<Mutex<ChildStdin>>,
     framing: Framing,
     dialect: Dialect,
@@ -52,11 +53,18 @@ impl Cancellation {
             let seq = self.next_id.fetch_add(1, Ordering::Relaxed);
             json!({"seq":seq,"type":"request","command":"cancel","arguments":{"requestId":id}})
         };
+        let mut guard = WriteGuard {
+            closed: self.closed.clone(),
+            pending: self.pending.clone(),
+            complete: false,
+        };
         if write_frame_bounded(&self.stdin, self.framing, &message, self.timeout)
             .await
             .is_err()
         {
             self.closed.store(true, Ordering::SeqCst);
+        } else {
+            guard.complete = true;
         }
     }
 }
@@ -74,16 +82,16 @@ impl Drop for PendingRegistration {
             .ok()
             .and_then(|mut pending| pending.remove(&self.id))
             .is_some();
-        if removed {
-            if let (Some(cancellation), Ok(runtime)) = (
+        if removed
+            && let (Some(cancellation), Ok(runtime)) = (
                 self.cancellation.take(),
                 tokio::runtime::Handle::try_current(),
-            ) {
-                let id = self.id;
-                runtime.spawn(async move {
-                    cancellation.send(id).await;
-                });
-            }
+            )
+        {
+            let id = self.id;
+            runtime.spawn(async move {
+                cancellation.send(id).await;
+            });
         }
     }
 }
@@ -91,12 +99,18 @@ impl Drop for PendingRegistration {
 /// connection rather than appending another request to a corrupted stream.
 struct WriteGuard {
     closed: Arc<AtomicBool>,
+    pending: Pending,
     complete: bool,
 }
 impl Drop for WriteGuard {
     fn drop(&mut self) {
         if !self.complete {
             self.closed.store(true, Ordering::SeqCst);
+            if let Ok(mut pending) = self.pending.lock() {
+                for (_, sender) in pending.drain() {
+                    let _=sender.send(Err("Backend connection closed during frame write; operation outcome may be unknown".into()));
+                }
+            }
         }
     }
 }
@@ -119,6 +133,10 @@ pub struct RpcProcess {
     timeout: Duration,
 }
 impl RpcProcess {
+    #[expect(
+        clippy::too_many_arguments,
+        reason = "Preserve the established public RPC construction API"
+    )]
     pub fn spawn(
         program: &str,
         args: &[String],
@@ -209,11 +227,10 @@ impl RpcProcess {
                             "command":message["command"],"success":false,"message":"Reverse requests are disabled"}),timeout).await?;
                         continue;
                     }
-                    if message["method"]=="textDocument/publishDiagnostics" {
-                        if let Some(uri)=message["params"]["uri"].as_str() {
+                    if message["method"]=="textDocument/publishDiagnostics"
+                        && let Some(uri)=message["params"]["uri"].as_str() {
                             let mut map=d.lock().map_err(|_|anyhow!("Diagnostics lock poisoned"))?;
                             if map.len()<1024 || map.contains_key(uri) {map.insert(uri.into(),message["params"].clone());}
-                        }
                     }
                     if message["method"]=="experimental/serverStatus" {
                         *status.lock().map_err(|_|anyhow!("Status lock poisoned"))?=Some(message["params"].clone());
@@ -266,6 +283,7 @@ impl RpcProcess {
     }
     fn cancellation(&self) -> Cancellation {
         Cancellation {
+            pending: self.pending.clone(),
             stdin: self.stdin.clone(),
             framing: self.framing,
             dialect: self.dialect,
@@ -284,17 +302,18 @@ impl RpcProcess {
     /// Called after a protocol-specific graceful exit notification. A backend
     /// that ignores it is killed and reaped; no request is retried.
     pub async fn wait_for_exit(&self) -> Result<()> {
-        let mut child = self.child.lock().await;
-        match tokio::time::timeout(self.timeout, child.wait()).await {
+        let result = {
+            let mut child = self.child.lock().await;
+            tokio::time::timeout(self.timeout, child.wait()).await
+        };
+        match result {
             Ok(status) => {
                 status?;
                 self.closed.store(true, Ordering::SeqCst);
                 Ok(())
             }
             Err(_) => {
-                let _ = child.start_kill();
-                let _ = child.wait().await;
-                self.closed.store(true, Ordering::SeqCst);
+                self.terminate().await?;
                 bail!("Backend shutdown timed out; process was terminated")
             }
         }
@@ -312,7 +331,9 @@ impl RpcProcess {
         let mut child = self.child.lock().await;
         if child.try_wait()?.is_none() {
             child.start_kill()?;
-            child.wait().await?;
+            tokio::time::timeout(self.timeout.max(Duration::from_secs(1)), child.wait())
+                .await
+                .map_err(|_| anyhow!("Backend process cleanup timed out"))??;
         }
         Ok(())
     }
@@ -388,6 +409,7 @@ impl RpcProcess {
         }
         let mut guard = WriteGuard {
             closed: self.closed.clone(),
+            pending: self.pending.clone(),
             complete: false,
         };
         let result = write_frame_bounded(&self.stdin, self.framing, value, self.timeout).await;
@@ -516,13 +538,19 @@ pub async fn read_frame<R: AsyncBufRead + Unpin>(
             break;
         }
         let line = std::str::from_utf8(&line)?;
-        if let Some((name, value)) = line.trim().split_once(':') {
-            if name.eq_ignore_ascii_case("Content-Length") {
-                if length.is_some() {
-                    bail!("Duplicate Content-Length");
-                }
-                length = Some(value.trim().parse::<usize>()?);
+        if !line.is_ascii() {
+            bail!("Frame headers must be ASCII");
+        }
+        if !line.contains(':') {
+            bail!("Malformed frame header");
+        }
+        if let Some((name, value)) = line.trim().split_once(':')
+            && name.eq_ignore_ascii_case("Content-Length")
+        {
+            if length.is_some() {
+                bail!("Duplicate Content-Length");
             }
+            length = Some(value.trim().parse::<usize>()?);
         }
     }
     let length = length.ok_or_else(|| anyhow!("Missing Content-Length"))?;
@@ -536,6 +564,20 @@ pub async fn read_frame<R: AsyncBufRead + Unpin>(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[tokio::test]
+    async fn malformed_headers_are_rejected() {
+        for input in [
+            b"garbage\r\nContent-Length: 2\r\n\r\n{}".as_slice(),
+            b"Content-Length: 2\r\nX-Name: \xff\r\n\r\n{}".as_slice(),
+        ] {
+            let mut reader = BufReader::new(input);
+            assert!(
+                read_frame(&mut reader, Framing::ContentLength)
+                    .await
+                    .is_err()
+            );
+        }
+    }
     #[tokio::test]
     async fn framed_json_roundtrip() {
         let input = b"Content-Length: 2\r\n\r\n{}";

@@ -66,6 +66,8 @@ impl LspClient {
             "processId":std::process::id(),"clientInfo":{"name":"odin","version":env!("CARGO_PKG_VERSION")},
             "rootUri":uri,"workspaceFolders":workspace,"initializationOptions":language.initialization_options,
             "capabilities":{
+                "window":{"workDoneProgress":true},
+                "experimental":{"serverStatusNotification":true},
                 "general":{"positionEncodings":["utf-16"]},
                 "workspace":{"configuration":true,"workspaceFolders":true,"applyEdit":false,
                     "workspaceEdit":{"documentChanges":true,"resourceOperations":["create","rename","delete"]}},

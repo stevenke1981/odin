@@ -14,6 +14,7 @@ P.add_argument('--sync-kind', type=int, default=1)
 P.add_argument('--push-only', action='store_true')
 P.add_argument('--stale-diagnostics', action='store_true')
 P.add_argument('--dap-minimal', action='store_true')
+P.add_argument('--dap-restart-config', action='store_true')
 A = P.parse_args()
 DOCS = {}
 VERSIONS = {}
@@ -139,7 +140,7 @@ def lsp(request):
         send({'jsonrpc': '2.0', 'method': 'experimental/serverStatus', 'params': {'health': 'ok', 'quiescent': True}})
         respond(request, {})
     elif method == 'fixture/cancelable':
-        pass
+        send({'jsonrpc': '2.0', 'method': 'fixture/awaiting', 'params': {'id': request['id']}})
     elif method == '$/cancelRequest':
         CANCELLED.append(params['id'])
     elif method == 'fixture/exit':
@@ -175,12 +176,19 @@ def dap(request):
     elif cmd == 'cancel':
         CANCELLED.append(request['arguments']['requestId'])
         respond(request, {})
+    elif cmd == 'restart' and A.dap_restart_config:
+        LAUNCHES.append(request)
+        send({'seq': 107, 'type': 'event', 'event': 'initialized'})
     elif cmd in ('continue', 'restart'):
         respond(request, {})
         send({'seq': 103, 'type': 'event', 'event': 'continued', 'body': {'threadId': 1, 'allThreadsContinued': True}})
     elif cmd == 'pause':
         respond(request, {})
         send({'seq': 104, 'type': 'event', 'event': 'stopped', 'body': {'reason': 'pause', 'threadId': 1}})
+    elif cmd in ('next', 'stepIn', 'stepOut'):
+        # A fast target can stop again before the step response arrives.
+        send({'seq': 106, 'type': 'event', 'event': 'stopped', 'body': {'reason': 'step', 'threadId': 1}})
+        respond(request, {})
     elif cmd == 'terminate':
         respond(request, {})
         send({'seq': 105, 'type': 'event', 'event': 'terminated'})

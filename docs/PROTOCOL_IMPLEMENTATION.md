@@ -54,12 +54,15 @@ must return an explicit error; there is no automatic upstream retry.
 
 ## DAP and RPC
 
-Launch/attach returns a ticket after the frame is sent, allowing the client to
+Launch/attach/restart returns a ticket after the frame is sent, allowing the client to
 wait for `initialized`, configure breakpoints, and send `configurationDone`.
 State guards reject duplicate launches, configuration before initialization,
 frame/variable/evaluate/step requests outside stopped state, and unsupported
 capabilities. Running/stopped/terminated events update the observed state.
 `poll()` includes phase, generation, events, and launch outcomes.
+Restart can therefore receive a new initialized/configurationDone cycle without
+blocking the command path. A step's expected running transition happens before
+send; a stopped event received before the response remains authoritative.
 
 RPC timeouts remove pending requests and send cancellation where supported.
 Dropping a caller removes its registration and sends best-effort cancellation.
@@ -82,3 +85,16 @@ evidence; unsupported OS/backend combinations stay NOT_RUN.
 References: [LSP WorkspaceEdit](https://github.com/microsoft/language-server-protocol/blob/gh-pages/_specifications/lsp/3.17/types/workspaceEdit.md),
 [LSP synchronization](https://github.com/microsoft/language-server-protocol/blob/gh-pages/_specifications/lsp/3.17/textDocument/didChange.md),
 [DAP lifecycle](https://microsoft.github.io/debug-adapter-protocol/overview).
+
+## Verification on 2026-10-21
+
+On Rust 1.90.0, Windows x64 MSVC, the package run executed 26 unit tests and
+13 fixture integration tests successfully. The separately selected real
+rust-analyzer 1.90.0 document-symbol smoke also passed. These are distinct
+evidence levels. Strict package Clippy and scoped rustfmt checks passed; the
+workspace/binary/other-language release checks belong to the integration owner.
+
+Logs and source hashes are in `verification/protocol-verification.json` and its
+referenced text files. The first Clippy failure is preserved separately. An
+earlier test failure exposed Windows verbatim-prefix URI comparison, now covered
+by successful native WorkspaceEdit transaction tests.

@@ -104,6 +104,70 @@ impl Range {
 mod tests {
     use super::*;
     #[test]
+    fn bare_cr_is_a_line_break_and_end_position_uses_utf16() {
+        let text = "a😀\rb中\r\nc\n";
+        assert_eq!(
+            offset(
+                text,
+                Position {
+                    line: 1,
+                    character: 2
+                }
+            )
+            .unwrap(),
+            10
+        );
+        assert_eq!(
+            offset(
+                text,
+                Position {
+                    line: 2,
+                    character: 1
+                }
+            )
+            .unwrap(),
+            13
+        );
+        assert_eq!(
+            end_position(text),
+            Position {
+                line: 3,
+                character: 0
+            }
+        );
+        assert_eq!(
+            end_position("😀"),
+            Position {
+                line: 0,
+                character: 2
+            }
+        );
+    }
+    #[test]
+    fn same_position_inserts_preserve_the_server_order() {
+        let at = Range {
+            start: Position {
+                line: 0,
+                character: 1,
+            },
+            end: Position {
+                line: 0,
+                character: 1,
+            },
+        };
+        let edits = vec![
+            TextEdit {
+                range: at,
+                new_text: "first".into(),
+            },
+            TextEdit {
+                range: at,
+                new_text: "second".into(),
+            },
+        ];
+        assert_eq!(edit("ab", &edits).unwrap(), "afirstsecondb");
+    }
+    #[test]
     fn ascii_offsets() {
         assert_eq!(
             offset(

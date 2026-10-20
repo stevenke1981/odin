@@ -52,6 +52,284 @@ struct FileState {
     after: Option<String>,
 }
 
+pub(crate) struct Planner<'a> {
+    root: &'a SafeRoot,
+    snapshots: &'a BTreeMap<String, String>,
+    versions: &'a BTreeMap<String, i64>,
+    files: BTreeMap<String, FileState>,
+    aliases: BTreeMap<String, String>,
+    annotations: BTreeMap<String, Value>,
+}
+
+impl<'a> Planner<'a> {
+    pub(crate) fn new(
+        root: &'a SafeRoot,
+        snapshots: &'a BTreeMap<String, String>,
+        versions: &'a BTreeMap<String, i64>,
+    ) -> Self {
+        Self {
+            root,
+            snapshots,
+            versions,
+            files: BTreeMap::new(),
+            aliases: BTreeMap::new(),
+            annotations: BTreeMap::new(),
+        }
+    }
+
+    fn path(&mut self, uri: &str) -> Result<String> {
+        let path = relative_uri(self.root, uri, true)?;
+        let full = self.root.resolve(&path, true)?;
+        if full.exists() && !full.is_file() {
+            bail!(
+                "CAPABILITY_UNAVAILABLE: resource operations support regular UTF-8 files only: {path}"
+            );
+        }
+        let key = if cfg!(windows) {
+            path.to_lowercase()
+        } else {
+            path.clone()
+        };
+        if let Some(previous) = self.aliases.insert(key, path.clone())
+            && previous != path
+        {
+            bail!("Conflicting path aliases in WorkspaceEdit: {previous} and {path}");
+        }
+        Ok(path)
+    }
+
+    fn file(&mut self, path: &str) -> Result<&mut FileState> {
+        if !self.files.contains_key(path) {
+            let full = self.root.resolve(path, true)?;
+            let before = if full.exists() {
+                let snapshot = self
+                    .snapshots
+                    .get(path)
+                    .ok_or_else(|| anyhow!("No pre-request snapshot for affected file: {path}"))?;
+                if self.root.read(path)? != *snapshot {
+                    bail!("File changed while language server computed edits: {path}");
+                }
+                Some(snapshot.clone())
+            } else {
+                if self.snapshots.contains_key(path) {
+                    bail!("File disappeared while language server computed edits: {path}");
+                }
+                None
+            };
+            self.files.insert(
+                path.into(),
+                FileState {
+                    after: before.clone(),
+                    before,
+                },
+            );
+        }
+        self.files
+            .get_mut(path)
+            .ok_or_else(|| anyhow!("Missing planned file"))
+    }
+
+    fn annotation(&self, value: &Value) -> Result<()> {
+        if let Some(id) = value.get("annotationId") {
+            let id = id
+                .as_str()
+                .ok_or_else(|| anyhow!("Invalid change annotation ID"))?;
+            let annotation = self
+                .annotations
+                .get(id)
+                .ok_or_else(|| anyhow!("Missing change annotation: {id}"))?;
+            if !annotation.is_object()
+                || annotation
+                    .get("needsConfirmation")
+                    .is_some_and(|v| !v.is_boolean())
+            {
+                bail!("Invalid change annotation: {id}");
+            }
+            if annotation.get("needsConfirmation").and_then(Value::as_bool) == Some(true) {
+                bail!(
+                    "CAPABILITY_UNAVAILABLE: change annotation requires explicit confirmation: {id}"
+                );
+            }
+        }
+        Ok(())
+    }
+
+    fn text(&mut self, uri: &str, edits: &Value, version: Option<&Value>) -> Result<()> {
+        let path = self.path(uri)?;
+        if let Some(version) = version.filter(|v| !v.is_null()) {
+            let version = version
+                .as_i64()
+                .ok_or_else(|| anyhow!("Invalid document version"))?;
+            if self.versions.get(&path) != Some(&version) {
+                bail!("Stale LSP document version: {path}");
+            }
+        }
+        let values = edits
+            .as_array()
+            .ok_or_else(|| anyhow!("Expected text edit array"))?;
+        for value in values {
+            self.annotation(value)?;
+        }
+        let edits: Vec<TextEdit> = serde_json::from_value(edits.clone())?;
+        let max_bytes = self.root.max_file_bytes();
+        let file = self.file(&path)?;
+        let before = file
+            .after
+            .as_ref()
+            .ok_or_else(|| anyhow!("Cannot edit missing file: {path}"))?;
+        let after = edit(before, &edits)?;
+        if after.len() > max_bytes {
+            bail!("LIMIT_EXCEEDED: edited file exceeds host limit: {path}");
+        }
+        file.after = Some(after);
+        Ok(())
+    }
+
+    fn flag(options: &Value, name: &str) -> Result<bool> {
+        match options.get(name) {
+            None => Ok(false),
+            Some(Value::Bool(value)) => Ok(*value),
+            _ => bail!("Invalid resource operation option: {name}"),
+        }
+    }
+
+    fn resource(&mut self, change: &Value) -> Result<()> {
+        self.annotation(change)?;
+        let options = change
+            .get("options")
+            .cloned()
+            .unwrap_or_else(|| serde_json::json!({}));
+        if !options.is_object() {
+            bail!("Resource operation options must be an object");
+        }
+        if Self::flag(&options, "overwrite")? {
+            bail!("WorkspaceEdit overwrite is forbidden; resolve the conflict explicitly");
+        }
+        let uri = |name: &str| -> Result<&str> {
+            change
+                .get(name)
+                .and_then(Value::as_str)
+                .ok_or_else(|| anyhow!("Missing resource URI: {name}"))
+        };
+        match change["kind"].as_str() {
+            Some("create") => {
+                let path = self.path(uri("uri")?)?;
+                let file = self.file(&path)?;
+                if file.after.is_some() {
+                    if !Self::flag(&options, "ignoreIfExists")? {
+                        bail!("CreateFile target exists: {path}");
+                    }
+                } else {
+                    file.after = Some(String::new());
+                }
+            }
+            Some("rename") => {
+                let old = self.path(uri("oldUri")?)?;
+                let new = self.path(uri("newUri")?)?;
+                if old == new {
+                    bail!("RenameFile source and target must differ");
+                }
+                let content = self
+                    .file(&old)?
+                    .after
+                    .clone()
+                    .ok_or_else(|| anyhow!("RenameFile source does not exist: {old}"))?;
+                if self.file(&new)?.after.is_some() {
+                    if Self::flag(&options, "ignoreIfExists")? {
+                        return Ok(());
+                    }
+                    bail!("RenameFile target exists: {new}");
+                }
+                self.file(&old)?.after = None;
+                self.file(&new)?.after = Some(content);
+            }
+            Some("delete") => {
+                if Self::flag(&options, "recursive")? {
+                    bail!("CAPABILITY_UNAVAILABLE: recursive DeleteFile is not supported");
+                }
+                let path = self.path(uri("uri")?)?;
+                let file = self.file(&path)?;
+                if file.after.is_none() && !Self::flag(&options, "ignoreIfNotExists")? {
+                    bail!("DeleteFile target does not exist: {path}");
+                }
+                file.after = None;
+            }
+            _ => bail!("CAPABILITY_UNAVAILABLE: unknown WorkspaceEdit resource operation"),
+        }
+        Ok(())
+    }
+
+    pub(crate) fn plan(mut self, workspace_edit: &Value) -> Result<Vec<Change>> {
+        if !workspace_edit.is_object() {
+            bail!("Language server returned no valid WorkspaceEdit");
+        }
+        if let Some(annotations) = workspace_edit.get("changeAnnotations") {
+            self.annotations = serde_json::from_value(annotations.clone())?;
+        }
+        // Servers must choose one representation; combining them makes order ambiguous.
+        if workspace_edit.get("changes").is_some()
+            && workspace_edit.get("documentChanges").is_some()
+        {
+            bail!("WorkspaceEdit must use either changes or documentChanges");
+        }
+        if let Some(changes) = workspace_edit.get("changes") {
+            for (uri, edits) in changes
+                .as_object()
+                .ok_or_else(|| anyhow!("Expected changes object"))?
+            {
+                self.text(uri, edits, None)?;
+            }
+        }
+        if let Some(changes) = workspace_edit.get("documentChanges") {
+            for change in changes
+                .as_array()
+                .ok_or_else(|| anyhow!("Expected documentChanges array"))?
+            {
+                if change.get("kind").is_some() {
+                    self.resource(change)?;
+                } else {
+                    let document = &change["textDocument"];
+                    let uri = document["uri"]
+                        .as_str()
+                        .ok_or_else(|| anyhow!("Missing document URI"))?;
+                    self.text(uri, &change["edits"], document.get("version"))?;
+                }
+            }
+        }
+        let mut changes = Vec::new();
+        if !self.files.values().any(|file| file.before != file.after) {
+            bail!("WorkspaceEdit contains no effective changes");
+        }
+        for (path, file) in self.files {
+            // An existing file that ends unchanged can still be the source of
+            // a rename sequence. Preserve its CAS guard in the transaction.
+            if file.before.is_none() && file.after.is_none() {
+                continue;
+            }
+            // Validate again after the entire proposal; core Transactions repeats CAS at
+            // prepare/apply. The planner itself never changes files or creates parents.
+            let full = self.root.resolve(&path, true)?;
+            let current = if full.exists() {
+                Some(self.root.read(&path)?)
+            } else {
+                None
+            };
+            if current != file.before {
+                bail!("File changed while planning WorkspaceEdit: {path}");
+            }
+            changes.push(Change {
+                path,
+                expected_sha256: file.before.as_ref().map(|text| sha256(text.as_bytes())),
+                content: file.after,
+            });
+        }
+        if changes.is_empty() {
+            bail!("WorkspaceEdit contains no effective changes");
+        }
+        Ok(changes)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -326,283 +604,5 @@ mod tests {
                 .is_err()
         );
         assert!(!root.root().join("new.rs").exists());
-    }
-}
-
-pub(crate) struct Planner<'a> {
-    root: &'a SafeRoot,
-    snapshots: &'a BTreeMap<String, String>,
-    versions: &'a BTreeMap<String, i64>,
-    files: BTreeMap<String, FileState>,
-    aliases: BTreeMap<String, String>,
-    annotations: BTreeMap<String, Value>,
-}
-
-impl<'a> Planner<'a> {
-    pub(crate) fn new(
-        root: &'a SafeRoot,
-        snapshots: &'a BTreeMap<String, String>,
-        versions: &'a BTreeMap<String, i64>,
-    ) -> Self {
-        Self {
-            root,
-            snapshots,
-            versions,
-            files: BTreeMap::new(),
-            aliases: BTreeMap::new(),
-            annotations: BTreeMap::new(),
-        }
-    }
-
-    fn path(&mut self, uri: &str) -> Result<String> {
-        let path = relative_uri(self.root, uri, true)?;
-        let full = self.root.resolve(&path, true)?;
-        if full.exists() && !full.is_file() {
-            bail!(
-                "CAPABILITY_UNAVAILABLE: resource operations support regular UTF-8 files only: {path}"
-            );
-        }
-        let key = if cfg!(windows) {
-            path.to_lowercase()
-        } else {
-            path.clone()
-        };
-        if let Some(previous) = self.aliases.insert(key, path.clone()) {
-            if previous != path {
-                bail!("Conflicting path aliases in WorkspaceEdit: {previous} and {path}");
-            }
-        }
-        Ok(path)
-    }
-
-    fn file(&mut self, path: &str) -> Result<&mut FileState> {
-        if !self.files.contains_key(path) {
-            let full = self.root.resolve(path, true)?;
-            let before = if full.exists() {
-                let snapshot = self
-                    .snapshots
-                    .get(path)
-                    .ok_or_else(|| anyhow!("No pre-request snapshot for affected file: {path}"))?;
-                if self.root.read(path)? != *snapshot {
-                    bail!("File changed while language server computed edits: {path}");
-                }
-                Some(snapshot.clone())
-            } else {
-                if self.snapshots.contains_key(path) {
-                    bail!("File disappeared while language server computed edits: {path}");
-                }
-                None
-            };
-            self.files.insert(
-                path.into(),
-                FileState {
-                    after: before.clone(),
-                    before,
-                },
-            );
-        }
-        self.files
-            .get_mut(path)
-            .ok_or_else(|| anyhow!("Missing planned file"))
-    }
-
-    fn annotation(&self, value: &Value) -> Result<()> {
-        if let Some(id) = value.get("annotationId") {
-            let id = id
-                .as_str()
-                .ok_or_else(|| anyhow!("Invalid change annotation ID"))?;
-            let annotation = self
-                .annotations
-                .get(id)
-                .ok_or_else(|| anyhow!("Missing change annotation: {id}"))?;
-            if !annotation.is_object()
-                || annotation
-                    .get("needsConfirmation")
-                    .is_some_and(|v| !v.is_boolean())
-            {
-                bail!("Invalid change annotation: {id}");
-            }
-            if annotation.get("needsConfirmation").and_then(Value::as_bool) == Some(true) {
-                bail!(
-                    "CAPABILITY_UNAVAILABLE: change annotation requires explicit confirmation: {id}"
-                );
-            }
-        }
-        Ok(())
-    }
-
-    fn text(&mut self, uri: &str, edits: &Value, version: Option<&Value>) -> Result<()> {
-        let path = self.path(uri)?;
-        if let Some(version) = version.filter(|v| !v.is_null()) {
-            let version = version
-                .as_i64()
-                .ok_or_else(|| anyhow!("Invalid document version"))?;
-            if self.versions.get(&path) != Some(&version) {
-                bail!("Stale LSP document version: {path}");
-            }
-        }
-        let values = edits
-            .as_array()
-            .ok_or_else(|| anyhow!("Expected text edit array"))?;
-        for value in values {
-            self.annotation(value)?;
-        }
-        let edits: Vec<TextEdit> = serde_json::from_value(edits.clone())?;
-        let max_bytes = self.root.max_file_bytes();
-        let file = self.file(&path)?;
-        let before = file
-            .after
-            .as_ref()
-            .ok_or_else(|| anyhow!("Cannot edit missing file: {path}"))?;
-        let after = edit(before, &edits)?;
-        if after.len() > max_bytes {
-            bail!("LIMIT_EXCEEDED: edited file exceeds host limit: {path}");
-        }
-        file.after = Some(after);
-        Ok(())
-    }
-
-    fn flag(options: &Value, name: &str) -> Result<bool> {
-        match options.get(name) {
-            None => Ok(false),
-            Some(Value::Bool(value)) => Ok(*value),
-            _ => bail!("Invalid resource operation option: {name}"),
-        }
-    }
-
-    fn resource(&mut self, change: &Value) -> Result<()> {
-        self.annotation(change)?;
-        let options = change
-            .get("options")
-            .cloned()
-            .unwrap_or_else(|| serde_json::json!({}));
-        if !options.is_object() {
-            bail!("Resource operation options must be an object");
-        }
-        if Self::flag(&options, "overwrite")? {
-            bail!("WorkspaceEdit overwrite is forbidden; resolve the conflict explicitly");
-        }
-        let uri = |name: &str| -> Result<&str> {
-            change
-                .get(name)
-                .and_then(Value::as_str)
-                .ok_or_else(|| anyhow!("Missing resource URI: {name}"))
-        };
-        match change["kind"].as_str() {
-            Some("create") => {
-                let path = self.path(uri("uri")?)?;
-                let file = self.file(&path)?;
-                if file.after.is_some() {
-                    if !Self::flag(&options, "ignoreIfExists")? {
-                        bail!("CreateFile target exists: {path}");
-                    }
-                } else {
-                    file.after = Some(String::new());
-                }
-            }
-            Some("rename") => {
-                let old = self.path(uri("oldUri")?)?;
-                let new = self.path(uri("newUri")?)?;
-                if old == new {
-                    bail!("RenameFile source and target must differ");
-                }
-                let content = self
-                    .file(&old)?
-                    .after
-                    .clone()
-                    .ok_or_else(|| anyhow!("RenameFile source does not exist: {old}"))?;
-                if self.file(&new)?.after.is_some() {
-                    if Self::flag(&options, "ignoreIfExists")? {
-                        return Ok(());
-                    }
-                    bail!("RenameFile target exists: {new}");
-                }
-                self.file(&old)?.after = None;
-                self.file(&new)?.after = Some(content);
-            }
-            Some("delete") => {
-                if Self::flag(&options, "recursive")? {
-                    bail!("CAPABILITY_UNAVAILABLE: recursive DeleteFile is not supported");
-                }
-                let path = self.path(uri("uri")?)?;
-                let file = self.file(&path)?;
-                if file.after.is_none() && !Self::flag(&options, "ignoreIfNotExists")? {
-                    bail!("DeleteFile target does not exist: {path}");
-                }
-                file.after = None;
-            }
-            _ => bail!("CAPABILITY_UNAVAILABLE: unknown WorkspaceEdit resource operation"),
-        }
-        Ok(())
-    }
-
-    pub(crate) fn plan(mut self, workspace_edit: &Value) -> Result<Vec<Change>> {
-        if !workspace_edit.is_object() {
-            bail!("Language server returned no valid WorkspaceEdit");
-        }
-        if let Some(annotations) = workspace_edit.get("changeAnnotations") {
-            self.annotations = serde_json::from_value(annotations.clone())?;
-        }
-        // Servers must choose one representation; combining them makes order ambiguous.
-        if workspace_edit.get("changes").is_some()
-            && workspace_edit.get("documentChanges").is_some()
-        {
-            bail!("WorkspaceEdit must use either changes or documentChanges");
-        }
-        if let Some(changes) = workspace_edit.get("changes") {
-            for (uri, edits) in changes
-                .as_object()
-                .ok_or_else(|| anyhow!("Expected changes object"))?
-            {
-                self.text(uri, edits, None)?;
-            }
-        }
-        if let Some(changes) = workspace_edit.get("documentChanges") {
-            for change in changes
-                .as_array()
-                .ok_or_else(|| anyhow!("Expected documentChanges array"))?
-            {
-                if change.get("kind").is_some() {
-                    self.resource(change)?;
-                } else {
-                    let document = &change["textDocument"];
-                    let uri = document["uri"]
-                        .as_str()
-                        .ok_or_else(|| anyhow!("Missing document URI"))?;
-                    self.text(uri, &change["edits"], document.get("version"))?;
-                }
-            }
-        }
-        let mut changes = Vec::new();
-        if !self.files.values().any(|file| file.before != file.after) {
-            bail!("WorkspaceEdit contains no effective changes");
-        }
-        for (path, file) in self.files {
-            // An existing file that ends unchanged can still be the source of
-            // a rename sequence. Preserve its CAS guard in the transaction.
-            if file.before.is_none() && file.after.is_none() {
-                continue;
-            }
-            // Validate again after the entire proposal; core Transactions repeats CAS at
-            // prepare/apply. The planner itself never changes files or creates parents.
-            let full = self.root.resolve(&path, true)?;
-            let current = if full.exists() {
-                Some(self.root.read(&path)?)
-            } else {
-                None
-            };
-            if current != file.before {
-                bail!("File changed while planning WorkspaceEdit: {path}");
-            }
-            changes.push(Change {
-                path,
-                expected_sha256: file.before.as_ref().map(|text| sha256(text.as_bytes())),
-                content: file.after,
-            });
-        }
-        if changes.is_empty() {
-            bail!("WorkspaceEdit contains no effective changes");
-        }
-        Ok(changes)
     }
 }
