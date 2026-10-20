@@ -338,4 +338,66 @@ mod tests {
             "UNKNOWN_POLICY"
         );
     }
+    #[cfg(windows)]
+    #[test]
+    fn windows_case_aliases_cannot_rewrite_host_policy_or_state() {
+        let directory = tempfile::tempdir().unwrap();
+        let path = directory.path().join("protected-host-configuration.toml");
+        std::fs::create_dir(directory.path().join("host-state-storage")).unwrap();
+        std::fs::write(directory.path().join(".ENV"), "secret").unwrap();
+        std::fs::write(&path, "state_dir='host-state-storage'\n[projects.demo]\nroot='.'\nallow_write=true\nallow_shell=false\nallow_debug=false\n").unwrap();
+        let config = Config::load(&path).unwrap();
+        let project = &config.projects["demo"];
+        let root = crate::paths::SafeRoot::new(&project.root, &project.deny_globs, 10000).unwrap();
+        assert_eq!(
+            root.read("PROTECTED-HOST-CONFIGURATION.TOML")
+                .unwrap_err()
+                .code,
+            "PERMISSION_DENIED"
+        );
+        assert_eq!(
+            root.resolve("HOST-STATE-STORAGE/new", true)
+                .unwrap_err()
+                .code,
+            "PERMISSION_DENIED"
+        );
+        assert_eq!(root.read(".ENV").unwrap_err().code, "PERMISSION_DENIED");
+    }
+    #[cfg(windows)]
+    #[test]
+    fn windows_short_aliases_use_canonical_host_policy() {
+        let directory = tempfile::tempdir().unwrap();
+        let path = directory.path().join("protected-host-configuration.toml");
+        let state = directory.path().join("host-state-storage");
+        std::fs::create_dir(&state).unwrap();
+        std::fs::write(
+            &path,
+            "state_dir='host-state-storage'\n[projects.demo]\nroot='.'\nallow_write=true\n",
+        )
+        .unwrap();
+        let config = Config::load(&path).unwrap();
+        let project = &config.projects["demo"];
+        let root = crate::paths::SafeRoot::new(&project.root, &project.deny_globs, 10000).unwrap();
+        let output = std::process::Command::new("powershell.exe")
+            .args(["-NoProfile", "-NonInteractive", "-Command", "$fs = New-Object -ComObject Scripting.FileSystemObject; @{file=$fs.GetFile($env:ODIN_ALIAS_FILE).ShortName; directory=$fs.GetFolder($env:ODIN_ALIAS_DIRECTORY).ShortName} | ConvertTo-Json -Compress"])
+            .env("ODIN_ALIAS_FILE", &path).env("ODIN_ALIAS_DIRECTORY", &state).output().unwrap();
+        assert!(
+            output.status.success(),
+            "{}",
+            String::from_utf8_lossy(&output.stderr)
+        );
+        let aliases: serde_json::Value = serde_json::from_slice(&output.stdout).unwrap();
+        let file = aliases["file"].as_str().unwrap();
+        let directory_alias = aliases["directory"].as_str().unwrap();
+        eprintln!("NTFS short aliases: file={file}, directory={directory_alias}");
+        // An 8.3-disabled volume returns long names; do not claim short-name
+        // coverage from such a run, although policy is still checked.
+        assert_eq!(root.read(file).unwrap_err().code, "PERMISSION_DENIED");
+        assert_eq!(
+            root.resolve(&format!("{directory_alias}/new"), true)
+                .unwrap_err()
+                .code,
+            "PERMISSION_DENIED"
+        );
+    }
 }

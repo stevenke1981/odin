@@ -36,6 +36,7 @@ pub struct Memories {
     writable_projects: BTreeSet<String>,
     global_writable: bool,
     read_only: Vec<regex::Regex>,
+    max_changes: usize,
 }
 impl Memories {
     pub fn new(
@@ -65,6 +66,7 @@ impl Memories {
                 .iter()
                 .map(|p| regex::Regex::new(p))
                 .collect::<std::result::Result<_, _>>()?,
+            max_changes,
         })
     }
     fn name_path(&self, project: &str, name: &str) -> Result<String> {
@@ -167,12 +169,17 @@ impl Memories {
     pub fn export(&self, project: &str) -> Result<Value> {
         self.name_path(project, "validation")?;
         let mut notes = Vec::new();
+        let mut bytes = 0usize;
         for path in self.all_paths()? {
             let (scope, name) = self.path_name(&path)?;
             if !scope.is_empty() && scope != project {
                 continue;
             }
             let content = self.root.read(&path)?;
+            bytes = bytes
+                .checked_add(content.len())
+                .filter(|bytes| *bytes <= 16 * 1024 * 1024)
+                .ok_or_else(|| Fault::new("LIMIT_EXCEEDED", "Memory export exceeds 16 MiB"))?;
             notes.push(ExportedNote {
                 name,
                 sha256: sha256(content.as_bytes()),
@@ -196,6 +203,9 @@ impl Memories {
                 "SCHEMA_UNSUPPORTED",
                 "Unsupported memory bundle format/version",
             ));
+        }
+        if bundle.notes.len() > self.max_changes {
+            return Err(Fault::new("LIMIT_EXCEEDED", "Too many imported notes"));
         }
         let mut names = BTreeSet::new();
         let mut changes = Vec::new();
@@ -289,7 +299,12 @@ impl Memories {
             Change {
                 path: destination.clone(),
                 expected_sha256: None,
-                content: Some(rewrite_refs(&content, name, destination_name)),
+                content: Some(rewrite_refs(
+                    &content,
+                    name,
+                    destination_name,
+                    self.root.max_file_bytes(),
+                )?),
             },
         ];
         for path in self.all_paths()? {
@@ -307,7 +322,7 @@ impl Memories {
             {
                 continue;
             }
-            let after = rewrite_refs(&before, name, destination_name);
+            let after = rewrite_refs(&before, name, destination_name, self.root.max_file_bytes())?;
             if !target_global && (scope.is_empty() || scope != destination_project) {
                 return Err(Fault::new(
                     "NEED_REVIEW",
@@ -316,6 +331,7 @@ impl Memories {
             }
             let check_project = if scope.is_empty() { project } else { &scope };
             self.check_write(check_project, &referring_name)?;
+            check_change_budget(&changes, &before, &after, self.max_changes)?;
             changes.push(Change {
                 path,
                 expected_sha256: Some(sha256(before.as_bytes())),
@@ -403,7 +419,12 @@ impl Memories {
             Change {
                 path: new_path,
                 expected_sha256: None,
-                content: Some(rewrite_refs(&content, old, new)),
+                content: Some(rewrite_refs(
+                    &content,
+                    old,
+                    new,
+                    self.root.max_file_bytes(),
+                )?),
             },
         ];
         for path in self.all_paths()? {
@@ -416,7 +437,7 @@ impl Memories {
                 continue;
             }
             let before = self.root.read(&path)?;
-            let after = rewrite_refs(&before, old, new);
+            let after = rewrite_refs(&before, old, new, self.root.max_file_bytes())?;
             if before == after {
                 continue;
             }
@@ -426,6 +447,7 @@ impl Memories {
                 scope.as_str()
             };
             self.check_write(check_project, &name)?;
+            check_change_budget(&changes, &before, &after, self.max_changes)?;
             changes.push(Change {
                 path,
                 expected_sha256: Some(sha256(before.as_bytes())),
@@ -516,18 +538,59 @@ pub fn validate_name(name: &str) -> Result<()> {
     }
     Ok(())
 }
-fn rewrite_refs(content: &str, old: &str, new: &str) -> String {
-    let Ok(re) = reference_regex() else {
-        return content.into();
-    };
-    re.replace_all(content, |caps: &regex::Captures<'_>| {
-        if &caps[1] == old {
-            format!("mem:{new}")
-        } else {
-            caps[0].to_owned()
+fn rewrite_refs(content: &str, old: &str, new: &str, limit: usize) -> Result<String> {
+    let re = reference_regex()?;
+    let mut size = content.len();
+    for captures in re.captures_iter(content) {
+        if &captures[1] == old {
+            size = size
+                .checked_sub(captures[0].len())
+                .and_then(|size| size.checked_add(4 + new.len()))
+                .filter(|size| *size <= limit)
+                .ok_or_else(|| {
+                    Fault::new(
+                        "LIMIT_EXCEEDED",
+                        "Memory reference expansion exceeds file limit",
+                    )
+                })?;
         }
-    })
-    .into_owned()
+    }
+    if size > limit {
+        return Err(Fault::new("LIMIT_EXCEEDED", "Memory exceeds file limit"));
+    }
+    Ok(re
+        .replace_all(content, |caps: &regex::Captures<'_>| {
+            if &caps[1] == old {
+                format!("mem:{new}")
+            } else {
+                caps[0].to_owned()
+            }
+        })
+        .into_owned())
+}
+fn check_change_budget(
+    changes: &[Change],
+    before: &str,
+    after: &str,
+    max_changes: usize,
+) -> Result<()> {
+    if changes.len() >= max_changes {
+        return Err(Fault::new("LIMIT_EXCEEDED", "Too many memory changes"));
+    }
+    let current = changes
+        .iter()
+        .try_fold(0usize, |sum, change| {
+            sum.checked_add(change.content.as_ref().map_or(0, String::len))
+        })
+        .and_then(|bytes| bytes.checked_add(before.len()))
+        .and_then(|bytes| bytes.checked_add(after.len()));
+    if current.is_none_or(|bytes| bytes > crate::transaction::MAX_JOURNAL_BYTES) {
+        return Err(Fault::new(
+            "LIMIT_EXCEEDED",
+            "Memory changes exceed journal budget",
+        ));
+    }
+    Ok(())
 }
 #[cfg(test)]
 mod tests {
@@ -535,8 +598,27 @@ mod tests {
     #[test]
     fn reference_replacement_is_exact() {
         assert_eq!(
-            rewrite_refs("`mem:core` mem:core_extra mem:core/api", "core", "main"),
+            rewrite_refs(
+                "`mem:core` mem:core_extra mem:core/api",
+                "core",
+                "main",
+                1000
+            )
+            .unwrap(),
             "`mem:main` mem:core_extra mem:core/api"
+        );
+    }
+    #[test]
+    fn reference_expansion_is_rejected_before_allocating_the_result() {
+        assert_eq!(
+            rewrite_refs("mem:x mem:x mem:x", "x", &"long".repeat(20), 64)
+                .unwrap_err()
+                .code,
+            "LIMIT_EXCEEDED"
+        );
+        assert_eq!(
+            rewrite_refs("mem:longname", "longname", "x", 8).unwrap(),
+            "mem:x"
         );
     }
     #[test]

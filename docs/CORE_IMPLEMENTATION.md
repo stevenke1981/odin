@@ -20,6 +20,11 @@ checked before preparation, before the changeset starts, and before each write.
 Uncooperative outside processes can race the final check and rename; this is
 not an OS-wide compare-and-swap primitive or multi-file atomic visibility.
 Directory capabilities bind to opened directories, not a filesystem-wide lock.
+On Windows, deny rules are case-insensitive and are checked against canonical
+long identities as well as supplied names. Native regressions exercise actual
+NTFS 8.3 file/directory aliases, uppercase host config/state and secret names.
+Transaction snapshots have a 32 MiB aggregate budget. Memory exports have a
+16 MiB content budget, and reference rewrites preflight their resulting length.
 Native tests also start two independent transaction writers and terminate a
 test-only worker at draft, prepared, each file-write and committed checkpoints.
 Recovery is then performed in the surviving process against the actual files.

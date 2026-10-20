@@ -13,6 +13,8 @@ use std::{
     path::{Path, PathBuf},
 };
 
+pub const MAX_JOURNAL_BYTES: usize = 32 * 1024 * 1024;
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Change {
@@ -169,6 +171,7 @@ impl Transactions {
         }
         let mut seen = BTreeSet::new();
         let mut snapshots = Vec::new();
+        let mut snapshot_bytes = 0usize;
         for change in changes {
             let full = self.root.resolve(&change.path, true)?;
             let identity = full.to_string_lossy().into_owned();
@@ -188,6 +191,13 @@ impl Transactions {
                 ));
             }
             let before = self.current(&change.path)?;
+            snapshot_bytes = snapshot_bytes
+                .checked_add(before.as_ref().map_or(0, String::len))
+                .and_then(|bytes| bytes.checked_add(change.content.as_ref().map_or(0, String::len)))
+                .filter(|bytes| *bytes <= MAX_JOURNAL_BYTES)
+                .ok_or_else(|| {
+                    Fault::new("LIMIT_EXCEEDED", "Transaction snapshots exceed 32 MiB")
+                })?;
             if Self::digest(&before) != change.expected_sha256 {
                 return Err(Fault::conflict(format!(
                     "Version mismatch: {}",
@@ -501,6 +511,35 @@ mod tests {
         let mut other = c;
         other.content = Some("b".into());
         assert!(tx.prepare(vec![other], Some("k")).is_err());
+    }
+    #[test]
+    fn aggregate_snapshot_budget_is_checked_before_journal_creation() {
+        let root = tempfile::tempdir().unwrap();
+        let state = tempfile::tempdir().unwrap();
+        let tx = Transactions::new(
+            SafeRoot::new(root.path(), &[], 8 * 1024 * 1024).unwrap(),
+            state.path(),
+            16,
+        )
+        .unwrap();
+        let changes = (0..5)
+            .map(|index| Change {
+                path: format!("{index}.txt"),
+                expected_sha256: None,
+                content: Some("x".repeat(8 * 1024 * 1024)),
+            })
+            .collect();
+        assert_eq!(
+            tx.prepare(changes, None).unwrap_err().code,
+            "LIMIT_EXCEEDED"
+        );
+        assert!(
+            tx.list().unwrap()["transactions"]
+                .as_array()
+                .unwrap()
+                .is_empty()
+        );
+        assert_eq!(std::fs::read_dir(root.path()).unwrap().count(), 0);
     }
     #[test]
     fn recovery_restores_a_simulated_interrupted_commit() {

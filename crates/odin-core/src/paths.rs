@@ -1,6 +1,6 @@
 use crate::{Fault, Result};
 use cap_fs_ext::{DirExt, FollowSymlinks, MetadataExt, OpenOptionsFollowExt};
-use globset::{Glob, GlobSet, GlobSetBuilder};
+use globset::{GlobBuilder, GlobSet, GlobSetBuilder};
 use std::{
     io::{Read, Write},
     path::{Component, Path, PathBuf},
@@ -26,7 +26,12 @@ impl SafeRoot {
         }
         let mut builder = GlobSetBuilder::new();
         for pattern in deny_globs {
-            builder.add(Glob::new(pattern).map_err(|e| Fault::invalid(e.to_string()))?);
+            builder.add(
+                GlobBuilder::new(pattern)
+                    .case_insensitive(cfg!(windows))
+                    .build()
+                    .map_err(|e| Fault::invalid(e.to_string()))?,
+            );
         }
         let directory = Arc::new(cap_std::fs::Dir::open_ambient_dir(
             &root,
@@ -102,6 +107,39 @@ impl SafeRoot {
         let rel = current
             .strip_prefix(&self.root)
             .map_err(|_| Fault::denied("Outside project"))?;
+        self.check_policy_identity(rel)?;
+        // Windows case/8.3 aliases must never acquire a different policy than
+        // their canonical long identity. For a create, validate the opened
+        // parent's identity as well as the not-yet-existing leaf.
+        let canonical = if current.exists() {
+            current.canonicalize()?
+        } else {
+            current
+                .parent()
+                .ok_or_else(|| Fault::denied("Missing parent"))?
+                .canonicalize()?
+                .join(
+                    current
+                        .file_name()
+                        .ok_or_else(|| Fault::denied("Missing leaf"))?,
+                )
+        };
+        let canonical_relative = canonical
+            .strip_prefix(&self.root)
+            .map_err(|_| Fault::denied("Resolved path escaped project"))?;
+        self.check_policy_identity(canonical_relative)?;
+        Ok(current)
+    }
+    fn check_policy_identity(&self, rel: &Path) -> Result<()> {
+        for component in rel.components() {
+            if let Component::Normal(name) = component
+                && name.to_str().is_some_and(|name| {
+                    name.eq_ignore_ascii_case(".git") || name.eq_ignore_ascii_case(".odin")
+                })
+            {
+                return Err(Fault::denied("Protected canonical path component"));
+            }
+        }
         // A deny glob can match a directory as well as a file.
         let mut ancestor = Some(rel);
         while let Some(path) = ancestor {
@@ -110,10 +148,7 @@ impl SafeRoot {
             }
             ancestor = path.parent().filter(|p| !p.as_os_str().is_empty());
         }
-        if current.exists() && !current.canonicalize()?.starts_with(&self.root) {
-            return Err(Fault::denied("Resolved path escaped project"));
-        }
-        Ok(current)
+        Ok(())
     }
     pub fn read(&self, relative: &str) -> Result<String> {
         self.resolve(relative, false)?;
