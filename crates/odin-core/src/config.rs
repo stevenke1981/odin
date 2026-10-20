@@ -282,7 +282,7 @@ fn normalize_absolute(path: &Path) -> PathBuf {
     }
     output
 }
-fn canonical_storage_path(path: &Path) -> Result<PathBuf> {
+pub(crate) fn canonical_storage_path(path: &Path) -> Result<PathBuf> {
     let mut existing = path;
     let mut suffix = Vec::new();
     loop {

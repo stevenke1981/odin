@@ -95,7 +95,9 @@ impl Memories {
             format!("projects/{project}/{name}.md")
         };
         #[cfg(windows)]
-        if let Ok(canonical) = self.root.root().join(&relative).canonicalize() {
+        {
+            let canonical =
+                crate::config::canonical_storage_path(&self.root.root().join(&relative))?;
             let actual = canonical
                 .strip_prefix(self.root.root())
                 .map_err(|_| Fault::denied("Memory escaped storage"))?
@@ -740,6 +742,48 @@ mod tests {
             .unwrap()
             .code,
             "INVALID_ARGUMENT"
+        );
+    }
+    #[cfg(windows)]
+    #[test]
+    fn new_windows_notes_cannot_use_existing_parent_case_aliases() {
+        let directory = tempfile::tempdir().unwrap();
+        let projects = BTreeSet::from(["demo".into()]);
+        let memories = Memories::new(
+            directory.path(),
+            projects.clone(),
+            projects,
+            false,
+            &[],
+            10000,
+            16,
+        )
+        .unwrap();
+        std::fs::create_dir(directory.path().join("memories/projects/demo/design")).unwrap();
+        memories
+            .write("demo", "core", Some("body".into()), None)
+            .unwrap();
+        assert_eq!(
+            memories
+                .rename("demo", "core", "Design/new_note", &sha256(b"body"))
+                .unwrap_err()
+                .code,
+            "PERMISSION_DENIED"
+        );
+        assert_eq!(
+            memories
+                .write("demo", "Design/new_note", Some("new".into()), None)
+                .unwrap_err()
+                .code,
+            "PERMISSION_DENIED"
+        );
+        assert!(memories.read("demo", "core").is_ok());
+        memories
+            .write("demo", "design/new_note", Some("new".into()), None)
+            .unwrap();
+        assert_eq!(
+            memories.read("demo", "design/new_note").unwrap()["content"],
+            "new"
         );
     }
     fn two_projects(state: &Path, global: bool) -> Memories {
