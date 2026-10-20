@@ -2,7 +2,7 @@
 
 目前交付為 **Windows x64 MSVC 原生預覽、72 個工具契約**。40 項需求仍是完整目標，未全數驗收。`NATIVE_SOURCE_PARTIAL` 描述原始碼範圍；`PARTIAL` 描述已執行驗收的子集，兩者都不是 DONE。
 
-需求來源為 [requirements/features.json](../requirements/features.json)，實際 command、exit code、來源報告 digest 與未驗收條件見 [feature-evidence.json](../verification/feature-evidence.json)。本文件不執行測試。完整候選 runner 及發佈由整合 owner 在實際完成後更新，準備中的命令不會標 PASS。
+需求來源為 [requirements/features.json](../requirements/features.json)，實際 command、exit code、來源報告 digest 與未驗收條件見 [feature-evidence.json](../verification/feature-evidence.json)。本文件不執行測試。Windows 候選 runner 已完成 16 個命令且皆 exit 0，144 Rust tests 通過、1 ignored；其 source/binary hash 已綁定。最終打包及公開發佈仍分開記錄。
 
 既有 58 個工具名稱保留，擴充後共 72 個；新增契約、policy、dispatch、測試及 API 文件必須同步。Serena 僅可作開發導航工具，產品維持獨立，沒有 bridge/fallback、任意 eval 或 regex 語意冒充。
 
@@ -24,7 +24,7 @@
 
 **設計：** 固定 rust-toolchain 與 Cargo.lock；解決 rmcp SDK 的實際型別/feature 相容；所有 crate 必須能獨立及 workspace 編譯；建置工件標記 Git SHA。
 
-**本次範圍：** Windows Rust toolchain、真實 Cargo.lock 與具 metadata 的 binary 已有實測；最終整合與跨平台矩陣分開驗收。
+**本次範圍：** Windows 最終整合 16 個命令 exit 0；144 Rust tests 通過、1 ignored，locked release build 與 clean revision/binary metadata 已核對；跨平台矩陣未完成。
 
 **原驗收條件：**
 
@@ -34,9 +34,7 @@
 
 **尚未驗收／完成：**
 
-- A1：全新 checkout 的最終 integrated release build／來源綁定待整合 runner 完成。
-- A2：目前引用 package 檢查；本次候選的完整 workspace fmt/test/clippy 結果由 root 的最終報告更新。
-- A3：Windows metadata 已 smoke；最終發佈 binary 的 revision/digest 仍需核對。
+- A1：Windows clean revision 的 locked release build 與來源綁定已完成；全新 checkout 重建及 Linux/macOS 原生建置矩陣仍未完成。
 
 **測試案例 ID：** M0-compile-linux, M0-compile-win-msvc, M0-compile-macos。 **前置需求：** 無。
 
@@ -66,7 +64,7 @@
 
 - A1：使用專案測試 client，尚未完成官方 MCP client/conformance suite。
 - A2：Windows smoke 檢查 frame；完整 disconnect/logging 壓力矩陣未驗收。
-- A3：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A3：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 
 **測試案例 ID：** M0-mcp-smoke, M0-http-auth-negative, M0-mcp-disconnect。 **前置需求：** ODIN-001。
 
@@ -95,7 +93,7 @@
 **尚未驗收／完成：**
 
 - A1：已驗 schema/name 一致及代表功能；尚無 72 個工具每項完整成功／拒絕的獨立功能矩陣。
-- A2：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A2：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 - A3：schema version 已提供；破壞式升版及遷移相容矩陣尚未實際升版驗收。
 
 **測試案例 ID：** M0-contract-schema, M0-error-mapping, M0-capabilities。 **前置需求：** ODIN-002。
@@ -125,7 +123,7 @@
 **尚未驗收／完成：**
 
 - A1：已有隔離負例；完整雙 Agent 多 project 同時讀寫壓力矩陣未驗收。
-- A2：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A2：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 - A3：LSP/DAP 可明確停止；停止整個 project 並驗證其他 project 持續服務的完整生命週期未驗收。
 
 **測試案例 ID：** M0-project-concurrency, M0-cross-scope-negative, M0-process-shutdown。 **前置需求：** ODIN-001。
@@ -184,9 +182,9 @@
 
 **尚未驗收／完成：**
 
-- A1：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A1：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 - A2：真 process crash checkpoint 紀錄已存在；磁碟故障／斷電耐久性與全部平台仍未驗收。
-- A3：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A3：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 
 **測試案例 ID：** M0-transaction-crash-matrix, M0-cas-race, M0-rollback-conflict。 **前置需求：** ODIN-005。
 
@@ -204,7 +202,7 @@
 
 **設計：** 初始化 initialize/initialized、capabilities negotiation、document didOpen/didChange/didClose、WorkspaceFolder；單調版本、UTF-16 索引、超時/取消/重啟、子程序 stderr 分離、按語言設定 stdout framing。
 
-**本次範圍：** LSP sync/capability/readiness/shutdown/restart、版本與 UTF-16/CRLF 回歸已執行。
+**本次範圍：** LSP sync/capability/readiness/shutdown/restart、UTF-16/CRLF 已測；Windows 三語真後端 cross-file references/rename/rollback 已執行。
 
 **原驗收條件：**
 
@@ -234,7 +232,7 @@
 
 **設計：** 實作 documentSymbol/workspaceSymbol/definition/declaration/references/implementation；符號 name_path、kind、scope、depth、include_body、include/exclude kind、matches 分頁；限定只讀必要檔案。
 
-**本次範圍：** 已新增 symbol filters/depth/scope/paging/body budget，真實三語 symbols/references 有報告。
+**本次範圍：** symbol filters/depth/scope/paging/body budget 已有回歸；真實三語 cross-file references/rename consumer uses/rollback 已執行。
 
 **原驗收條件：**
 
@@ -246,7 +244,7 @@
 
 - A1：尚未完成至少 20 個真實 rust-analyzer 查詢逐項結果對照。
 - A2：消歧與 filters 有 protocol fixtures；完整真實同名/註解反例矩陣未驗收。
-- A3：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A3：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 
 **測試案例 ID：** M1-symbol-20-cases, M1-symbol-collision, M1-capability-negative。 **前置需求：** ODIN-007。
 
@@ -276,7 +274,7 @@
 
 - A1：protocol ordered resource edits 已測；真實 backend source+RenameFile 的重構整合案例未驗收。
 - A2：case-only/collision 有回歸；權限拒絕、跨磁碟、磁碟中斷等矩陣未全驗收。
-- A3：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A3：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 
 **測試案例 ID：** M1-resource-ops-fixture, M1-win-case-rename, M1-journal-fileop-crash。 **前置需求：** ODIN-006, ODIN-007。
 
@@ -294,7 +292,7 @@
 
 **設計：** 首批 Rust rust-analyzer、Python basedpyright/Pyright、TypeScript typescript-language-server；固定 fixtures、backend version、安裝指令、工作區設定；公開能力矩陣。
 
-**本次範圍：** Windows 真 rust-analyzer、basedpyright、TypeScript language-server 的 symbols/references/rename/rollback 已有報告。
+**本次範圍：** Windows 真 rust-analyzer、basedpyright、TypeScript language-server 已實測 symbols、cross-file references、rename definition/consumer uses 與 rollback；完整原驗收尚未完成。
 
 **原驗收條件：**
 
@@ -305,8 +303,8 @@
 **尚未驗收／完成：**
 
 - A1：三語 diagnostics 成功／失敗與所有反例尚未驗收。
-- A2：目前 report 有 backend versions/binary digest；完整每語言原始 stdout/stderr 與最終 command exit manifest 待補。
-- A3：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A2：command exit、backend version、OS、source/binary digest 與整合 stdout/stderr log 已具備；每語言的完整原始協定/錯誤診斷矩陣未完成。
+- A3：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 
 **測試案例 ID：** M1-rust-language, M1-python-language, M1-typescript-language。 **前置需求：** ODIN-007, ODIN-008, ODIN-009。
 
@@ -336,7 +334,7 @@
 
 - A1：目前主機供開發使用而安裝 Python/Serena；無這些工具的乾淨隔離主機驗收未執行。
 - A2：lock/dependency/原碼掃描已有報告；最終 binary/dependency artifact 的獨立掃描仍待發佈整合。
-- A3：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A3：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 
 **測試案例 ID：** M0-standalone-no-serena, M0-sbom-audit, M0-backend-missing。 **前置需求：** ODIN-001。
 
@@ -384,7 +382,7 @@
 
 **設計：** 完整 initialize/launch/attach/configurationDone、setBreakpoints、stack/scopes/variables/evaluate、step/continue/disconnect；支持 capability negotiation、events、cancel、timeouts。
 
-**本次範圍：** DAP 狀態、events、capabilities、launch tickets、取消與 session 有 fixtures；Windows debugpy 實際 breakpoint/variables/evaluate/step 有報告。
+**本次範圍：** DAP 狀態/session/tickets/取消已有 fixtures；最終 release binary 對 Windows debugpy 的 breakpoint/variables/evaluate/step/disconnect 已實測。
 
 **原驗收條件：**
 
@@ -396,7 +394,7 @@
 
 - A1：Linux 真實 adapter breakpoint 仍 NOT_RUN。
 - A2：Windows debugpy 有功能結果；各 adapter/OS 的 debuggee process-tree 清除矩陣尚未完成。
-- A3：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A3：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 
 **測試案例 ID：** M2-dap-real-debuggee-win, M2-dap-real-debuggee-linux, M2-dap-timeout。 **前置需求：** ODIN-012。
 
@@ -516,7 +514,7 @@
 
 - A1：沒有完成 LSP+Clippy/Ruff/ESLint providers 匯入與去重。
 - A2：pending/unavailable 已處理；完整 normalized rule/source/confidence provider schema 尚未完成。
-- A3：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A3：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 
 **測試案例 ID：** M2-diagnostic-dedup, M2-inspection-cargo-clippy, M2-diagnostic-pending。 **前置需求：** ODIN-007, ODIN-006。
 
@@ -546,7 +544,7 @@
 
 - A1：真實後端跨檔父類/子類與依賴 hierarchy 的專項 fixture 未驗收。
 - A2：read-only project query 已測；external workspace activation/Project Server/resolver invalidation 未完整實作。
-- A3：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A3：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 
 **測試案例 ID：** M2-hierarchy, M2-external-project, M2-scope-negative。 **前置需求：** ODIN-008。
 
@@ -605,7 +603,7 @@
 **尚未驗收／完成：**
 
 - A1：ref/readonly/rename 已測；完整 ignored patterns 與 repo-local layout 未實作。
-- A2：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A2：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 - A3：尚未提供 central→repo-local 的自動備份遷移與回復驗收。
 
 **測試案例 ID：** M2-memory-rename, M2-memory-migration, M2-readonly-integrity。 **前置需求：** ODIN-006。
@@ -665,7 +663,7 @@
 **尚未驗收／完成：**
 
 - A1：輸出投影已測；固定 fixture 的 bytes 對比 benchmark 尚未發布。
-- A2：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A2：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 - A3：session 隔離已有測試；完整 DAG scheduler、cycle validation 與 bounded DAG concurrency 未實作。
 
 **測試案例 ID：** M2-flow-projection, M2-flow-isolation, M2-flow-deny。 **前置需求：** ODIN-003, ODIN-004。
@@ -695,7 +693,7 @@
 **尚未驗收／完成：**
 
 - A1：尚未在真正 Codex/Claude/OpenCode 應用中各自完成安裝與 tools/list。
-- A2：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A2：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 - A3：doctor 的 LSP probe 已實作；MCP transport、檔案權限、DAP health 的全分類矩陣尚未驗收。
 
 **測試案例 ID：** M2-codex-setup, M2-claude-setup, M2-opencode-setup。 **前置需求：** ODIN-002。
@@ -755,7 +753,7 @@
 **尚未驗收／完成：**
 
 - A1：schema 驗證前拒絕尚無 audit trace；index/memory/resource/完整 backend health 指標仍不完整。
-- A2：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A2：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 - A3：token UNKNOWN 已驗；RSS/LLM token/完整 OpenTelemetry 沒有來源，未提供數值。
 
 **測試案例 ID：** M3-dashboard-auth, M3-tracing-metadata, M3-log-redaction。 **前置需求：** ODIN-002。
@@ -804,7 +802,7 @@
 
 **設計：** 手動 self-hosted first；fmt、clippy、unit、integration、security、platform workflow；上傳 test log、toolchain、commit SHA、coverage；GitHub-hosted minutes 預設不啟用。
 
-**本次範圍：** 已有 package command logs、source hashes、binary smoke，workflow 僅 workflow_dispatch/self-hosted。
+**本次範圍：** 同一 clean Windows revision 的 16 個整合命令全部 exit 0，source_changed=[]；144 Rust tests/1 ignored，fixture/真後端分層並綁定 source/binary digest。
 
 **原驗收條件：**
 
@@ -814,9 +812,7 @@
 
 **尚未驗收／完成：**
 
-- A1：最終整合 source snapshot 的 full local runner/clean checkout 證據仍由 root 完成。
-- A2：fixture/真 backend 分層已明列；最終 report 的 source/binary digest 綁定待整合。
-- A3：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A1：clean candidate 的可審計 logs 已完成；全新 checkout 重建與完整故障 gate 阻擋 release 的負例矩陣仍待驗收。
 
 **測試案例 ID：** M0-ci-selfhosted-manual, M0-evidence-manifest, M0-failure-blocks-release。 **前置需求：** ODIN-001。
 
@@ -924,7 +920,7 @@
 
 **設計：** Cargo.lock、SBOM、licenses、advisories；依賴 pinning/checksum；secret scanning、路徑 allowlist；沒有 GitHub token、API keys、機器絕對路徑與私有專案碼。
 
-**本次範圍：** Cargo.lock、SBOM、license inventory、advisory/pattern scan 有已執行報告；非 formal security/legal audit。
+**本次範圍：** 最終 Windows candidate 已執行 advisory、licenses、SBOM/pattern/allowlist 相關命令且 exit 0；新增文件與最終打包工件仍需同步 manifest。
 
 **原驗收條件：**
 
@@ -934,9 +930,9 @@
 
 **尚未驗收／完成：**
 
-- A1：現有報告涵蓋當時 candidate；本次新增／修改文件與最終 artifact allowlist 的完整掃描待 root 整合。
-- A2：文件已改據實分級；最終命令數與發布狀態仍待 root 實際完成後更新。
-- A3：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A1：已完成被測 source snapshot 的掃描與 license/advisory；此次文件更新及最終封裝的 artifact allowlist/manifest 還需最後核對。
+- A2：Windows 最終命令與數量已更新；最終封裝內容、交付狀態及實際 GitHub 發布紀錄仍需同步。
+- A3：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 
 **測試案例 ID：** M0-no-secret-scan, M0-sbom-license, M0-security-policy。 **前置需求：** ODIN-001。
 
@@ -965,7 +961,7 @@
 **尚未驗收／完成：**
 
 - A1：有真 process failpoints；partial disk write/permission denied/目錄替換的完整敵意矩陣未完成。
-- A2：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A2：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 - A3：Windows NTFS 有原生紀錄；Linux ext4 等 native FS 仍 NOT_RUN。
 
 **測試案例 ID：** M0-crash-failpoints, M0-two-process-race, M0-permission-denied。 **前置需求：** ODIN-006。
@@ -984,7 +980,7 @@
 
 **設計：** 中文需求規格、英語 API tags、每項 id/priority/source/status/deps/acceptance/test；修版時更新 machine-readable backlog 與 traceability；文件語義單一來源。
 
-**本次範圍：** 40 需求／53 參考映射保留；新增工具後同步至 72 契約，文件與本次分級證據正在整合。
+**本次範圍：** 40 需求／53 參考映射與 72 契約經整合 runner 檢查；Windows 16 gates 已完成，發布與最終包內文件仍由實際結果同步。
 
 **原驗收條件：**
 
@@ -994,9 +990,9 @@
 
 **尚未驗收／完成：**
 
-- A1：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A1：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 - A2：72 個工具與 schema 已生成；全部新增 API 功能矩陣尚未全數驗收。
-- A3：候選 final runner、交付狀態、公開發布紀錄須在 root 完成後最後同步。
+- A3：Windows final runner 已完成且 source/binary 綁定；最終封裝文件、交付狀態及公開發布紀錄仍需按實際結果同步。
 
 **測試案例 ID：** M0-spec-coverage, M0-spec-validator, M0-doc-links。 **前置需求：** ODIN-003。
 
@@ -1116,7 +1112,7 @@
 
 - A1：沒有 central→repo-local 自動 migration/dry-run/reverse 流程。
 - A2：bundle corruption/collision 有測試；完整跨版本備份/恢復矩陣未驗收。
-- A3：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A3：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 
 **測試案例 ID：** M3-memory-roundtrip, M3-memory-conflicts。 **前置需求：** ODIN-020。
 
@@ -1144,8 +1140,8 @@
 
 **尚未驗收／完成：**
 
-- A1：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
-- A2：已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。
+- A1：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
+- A2：Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。
 - A3：已執行空匹配/duplicate/stale 與 count 負例；完整 overlapping replacement selection 的獨立案例清單仍需補齊。
 
 **測試案例 ID：** M2-occurrence-select, M2-regex-multiline, M2-conflicting-replacements。 **前置需求：** ODIN-006。

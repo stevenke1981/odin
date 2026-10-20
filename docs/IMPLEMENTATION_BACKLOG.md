@@ -66,7 +66,7 @@ Windows 原生預覽已有真實 Rust build、package tests、binary MCP/HTTP/CL
 
 ## 下一個可驗收切片
 
-- 整合 owner：完成候選 workspace fmt/test/clippy/release build、真 binary smoke、real backend、供應鏈與 manifest，綁定實際 source/binary hash。
+- 整合 owner：Windows 候選已完成 16 個零退出 gates、144 Rust tests/1 ignored 並綁定 source/binary hash；下一步重新打包最新文件、核對 artifact manifest 與獨立 review。
 - 安全／平台 owner：保留預設 deny，另行實作真正 OS sandbox；在乾淨 Windows、Linux、macOS 做 lifecycle／敵意案例，不以 Job Objects 當沙箱。
 - 協定／語言 owner：補齊三語 diagnostics/失敗案例、20 個真實符號查詢，再擴六語言；對 Move/Inline/QuickFix 逐後端測編譯與 rollback。
 - 資料／效能 owner：repo-local memory migration、背景 watcher、完整 DAG、三規模／20 任務 benchmark。

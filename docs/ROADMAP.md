@@ -2,7 +2,7 @@
 
 目前是 **0.2.0 Windows x64 MSVC 原生預覽**：四個 Rust crates、72 個工具契約，原有 58 個工具保留並新增 14 個。Cargo.lock 已實際產生並納入 Git；已執行 Windows package tests、CLI/MCP/HTTP smoke，另有三個真實 LSP 與 debugpy 的定向報告。工具存在與局部測試通過，不能代表全部 40 項需求完成。
 
-[FEATURE_SPEC.md](FEATURE_SPEC.md)、[IMPLEMENTATION_BACKLOG.md](IMPLEMENTATION_BACKLOG.md) 與 [feature-evidence.json](../verification/feature-evidence.json) 定義需求、相依、實際證據及未驗收條件。最終整合 runner 與公開 GitHub 發布均由 owner 在實際完成後更新，不能預先填 PASS。
+[FEATURE_SPEC.md](FEATURE_SPEC.md)、[IMPLEMENTATION_BACKLOG.md](IMPLEMENTATION_BACKLOG.md) 與 [feature-evidence.json](../verification/feature-evidence.json) 定義需求、相依、實際證據及未驗收條件。Windows 最終整合 runner 已完成 16 個零退出命令及 144 Rust tests（1 ignored）；最終 Windows portable／installer 已打包並通過隔離安裝驗收；公開 GitHub 發布結果見 delivery-status.json 的實際紀錄。
 
 ## 當前可用範圍
 
@@ -15,7 +15,7 @@
 
 ## 下一個整合門檻
 
-完成同一候選來源的 workspace fmt/test/clippy、release build、真 binary CLI/stdio/HTTP/cancellation、真實後端與供應鏈檢查，保存 command、exit code、source/binary digest。套件切片和舊 binary 的 PASS 不自動適用後續變更；整合結果由 `verification/local-validation.json` 在實際執行後記錄。
+同一候選來源的 workspace fmt/test/clippy、release build、真 binary CLI/stdio/HTTP/cancellation、真實後端與供應鏈已執行，16 個 command 皆 exit 0，結果與 source/binary digest 記在 `verification/local-validation.json`。套件切片和舊 binary 的 PASS 不自動適用後續變更；下一步是包含最新文件的最終打包與 artifact manifest 核對。
 
 公開前保留獨立 review、機密掃描、license/SBOM/advisory、manifest 和 manual self-hosted workflow policy。推送後才核對 public visibility 與 remote HEAD；不因 push 啟動雲端 CI。
 

@@ -1,0 +1,182 @@
+{
+  "task_id": "ODIN-FINAL-WINDOWS-PACKAGE",
+  "actor_instance": "platform_implementation",
+  "receiver_instance": "root",
+  "result": "PASS",
+  "scope": "Exact final Windows binary packaging, portable integrity, isolated install/reinstall/uninstall",
+  "observed_at_utc": "2026-10-20T23:56:52.203408+00:00",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "binary": {
+    "path": "<WORKSPACE>\\target\\release\\odin.exe",
+    "sha256": "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be",
+    "metadata": {
+      "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+      "external_tool_bridge": false,
+      "model_token_usage": "UNKNOWN",
+      "name": "Odin",
+      "profile": "release",
+      "revision": "82901e5cd45845c75c7475d2697db42d472b67ac",
+      "schema_version": 1,
+      "standalone": true,
+      "target": "x86_64-pc-windows-msvc",
+      "tracked_source_dirty": false,
+      "version": "0.2.0"
+    }
+  },
+  "artifacts": [
+    {
+      "path": "<WORKSPACE>\\dist\\0.2.0-native-preview-82901e5\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+      "sha256": "7d49eeb990499b3da986965da73ba43ae856851bf783187ca6bacd5554084c76",
+      "bytes": 5544446
+    },
+    {
+      "path": "<WORKSPACE>\\dist\\0.2.0-native-preview-82901e5\\odin-0.2.0-windows-x64-setup.exe",
+      "sha256": "d9be19e270bd5152c6f47bf905254a17d2fb92dfe4f30d8476562e72080a423a",
+      "bytes": 5606310
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+        "-NoProfile",
+        "-File",
+        "<WORKSPACE>/scripts/package.ps1",
+        "-SkipBuild",
+        "-Binary",
+        "<WORKSPACE>/target/release/odin.exe",
+        "-OutputDirectory",
+        "<WORKSPACE>/dist/0.2.0-native-preview-82901e5",
+        "-Iscc",
+        "C:/Program Files/Inno Setup 7/ISCC.exe"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "fixed_binary_sha256": "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be",
+      "binary_sha256_after": "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be",
+      "output_directory": "<WORKSPACE>/dist/0.2.0-native-preview-82901e5"
+    },
+    {
+      "command": [
+        "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+        "-NoProfile",
+        "-File",
+        "<WORKSPACE>/scripts/verify_installer.ps1",
+        "-Installer",
+        "<WORKSPACE>\\dist\\0.2.0-native-preview-82901e5\\odin-0.2.0-windows-x64-setup.exe",
+        "-ExpectedBinarySha256",
+        "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "python",
+        "-"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "report": "<WORKSPACE>/dist/0.2.0-native-preview-82901e5/portable-verification.json"
+    }
+  ],
+  "portable": {
+    "status": "PASS",
+    "files_verified": 39,
+    "checks": 87,
+    "inventory_and_frozen_source_match": true
+  },
+  "installer": {
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "installer_exit",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_binary_hash",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_metadata",
+        "status": "PASS"
+      },
+      {
+        "name": "reinstall_exit",
+        "status": "PASS"
+      },
+      {
+        "name": "reinstall_preserves_user_file",
+        "status": "PASS"
+      },
+      {
+        "name": "uninstaller_exit",
+        "status": "PASS"
+      },
+      {
+        "name": "owned_binary_removed",
+        "status": "PASS"
+      },
+      {
+        "name": "uninstall_preserves_user_file",
+        "status": "PASS"
+      }
+    ],
+    "qa_directory": "<WORKSPACE>\\dist\\installer-qa-05a6c6c41feb4c17b410bf5efedf821e",
+    "original_report": "<WORKSPACE>\\dist\\installer-qa-05a6c6c41feb4c17b410bf5efedf821e\\installer-report.json"
+  },
+  "reports": [
+    {
+      "path": "<WORKSPACE>\\dist\\0.2.0-native-preview-82901e5\\package-report.json",
+      "sha256": "577ddf737b93e739c450b8aa7538425aac3ca42ff7f53b0d15d77eb48a0cfc8e"
+    },
+    {
+      "path": "<WORKSPACE>\\dist\\0.2.0-native-preview-82901e5\\packaging-command.json",
+      "sha256": "33f07898d3cbcceb5bcd6e13e46838cb400db4b003c568f26c2d7d72dacf3fa4"
+    },
+    {
+      "path": "<WORKSPACE>\\dist\\0.2.0-native-preview-82901e5\\installer-command.json",
+      "sha256": "12eacacecb204822db81668a62d1707d0e3fbc3c6df4b3bc3913f9d1781fa013"
+    },
+    {
+      "path": "<WORKSPACE>\\dist\\0.2.0-native-preview-82901e5\\portable-command.json",
+      "sha256": "7ac45a7bac71c2be4a46acf26e1f6cb708d3890ac386bc41a59c19c954320512"
+    },
+    {
+      "path": "<WORKSPACE>\\dist\\0.2.0-native-preview-82901e5\\portable-verification.json",
+      "sha256": "3296863f17c0c938c634361e5dbeede744d1684d7c20cc27c1909c53a5b863d6"
+    },
+    {
+      "path": "<WORKSPACE>\\dist\\0.2.0-native-preview-82901e5\\installer-lifecycle-report.json",
+      "sha256": "57df46ff0047e2b128660e4e1bded917ef0ea217a6d35642ac603fef41876e4e"
+    },
+    {
+      "path": "<WORKSPACE>\\dist\\0.2.0-native-preview-82901e5\\SHA256SUMS.txt",
+      "sha256": "93dcf8bcf2f8105ceeedcb6465dc3e25ef2f6d7140d30e09b6e5220d0c307618"
+    }
+  ],
+  "not_run": [
+    "Cross-version installer upgrade",
+    "Interrupted/cancelled installation rollback",
+    "Linux/macOS native packaging and runtime",
+    "Clean-machine installation"
+  ],
+  "signed": false,
+  "package_report_snapshot_note": "package-report.json preserves installer_lifecycle=NOT_RUN at compile time; installer-lifecycle-report.json is the later executed PASS evidence.",
+  "source_modified": false,
+  "build_executed": false,
+  "commit_created": false,
+  "remote_operations_performed": false,
+  "next_owner": "root",
+  "next_action": "Sanitize/copy evidence into verification and publish the fixed artifacts under existing authorization.",
+  "original_local_report_sha256": "18f5bed473ed8caecac0bfc91c03554532b7e11dc7bb3bc4038f8ce58bd03754",
+  "public_copy_processing": "Absolute local paths replaced with labels; result fields and artifact hashes unchanged. Embedded source-report hashes refer to original local bytes.",
+  "public_report_copies": {
+    "verification/windows-package-build.json": "8c3a9dbddccb8363991b4dba3b2f02b2406f61e1ddaa523f87e647d7cd58aaaf",
+    "verification/windows-installer-lifecycle.json": "7b5fd5a22826d0d28357641c18175ab7c7f9b10ce47e59a49661d377be332e8c",
+    "verification/windows-portable-integrity.json": "050fb4ddc3fdd7c77cd6ae4dfdac18a55fb1162f365d07f183e71e4ad7842dd0"
+  }
+}

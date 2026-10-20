@@ -30,7 +30,7 @@
       ],
       "depends_on": [],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-001",
-      "implementation_summary": "Windows Rust toolchain、真實 Cargo.lock 與具 metadata 的 binary 已有實測；最終整合與跨平台矩陣分開驗收。"
+      "implementation_summary": "Windows 最終整合 16 個命令 exit 0；144 Rust tests 通過、1 ignored，locked release build 與 clean revision/binary metadata 已核對；跨平台矩陣未完成。"
     },
     {
       "id": "ODIN-002",
@@ -198,7 +198,7 @@
         "ODIN-004"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-007",
-      "implementation_summary": "LSP sync/capability/readiness/shutdown/restart、版本與 UTF-16/CRLF 回歸已執行。"
+      "implementation_summary": "LSP sync/capability/readiness/shutdown/restart、UTF-16/CRLF 已測；Windows 三語真後端 cross-file references/rename/rollback 已執行。"
     },
     {
       "id": "ODIN-008",
@@ -226,7 +226,7 @@
         "ODIN-007"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-008",
-      "implementation_summary": "已新增 symbol filters/depth/scope/paging/body budget，真實三語 symbols/references 有報告。"
+      "implementation_summary": "symbol filters/depth/scope/paging/body budget 已有回歸；真實三語 cross-file references/rename consumer uses/rollback 已執行。"
     },
     {
       "id": "ODIN-009",
@@ -285,7 +285,7 @@
         "ODIN-009"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-010",
-      "implementation_summary": "Windows 真 rust-analyzer、basedpyright、TypeScript language-server 的 symbols/references/rename/rollback 已有報告。"
+      "implementation_summary": "Windows 真 rust-analyzer、basedpyright、TypeScript language-server 已實測 symbols、cross-file references、rename definition/consumer uses 與 rollback；完整原驗收尚未完成。"
     },
     {
       "id": "ODIN-011",
@@ -369,7 +369,7 @@
         "ODIN-012"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-013",
-      "implementation_summary": "DAP 狀態、events、capabilities、launch tickets、取消與 session 有 fixtures；Windows debugpy 實際 breakpoint/variables/evaluate/step 有報告。"
+      "implementation_summary": "DAP 狀態/session/tickets/取消已有 fixtures；最終 release binary 對 Windows debugpy 的 breakpoint/variables/evaluate/step/disconnect 已實測。"
     },
     {
       "id": "ODIN-014",
@@ -761,7 +761,7 @@
         "ODIN-001"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-027",
-      "implementation_summary": "已有 package command logs、source hashes、binary smoke，workflow 僅 workflow_dispatch/self-hosted。"
+      "implementation_summary": "同一 clean Windows revision 的 16 個整合命令全部 exit 0，source_changed=[]；144 Rust tests/1 ignored，fixture/真後端分層並綁定 source/binary digest。"
     },
     {
       "id": "ODIN-028",
@@ -872,7 +872,7 @@
         "ODIN-001"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-031",
-      "implementation_summary": "Cargo.lock、SBOM、license inventory、advisory/pattern scan 有已執行報告；非 formal security/legal audit。"
+      "implementation_summary": "最終 Windows candidate 已執行 advisory、licenses、SBOM/pattern/allowlist 相關命令且 exit 0；新增文件與最終打包工件仍需同步 manifest。"
     },
     {
       "id": "ODIN-032",
@@ -927,7 +927,7 @@
         "ODIN-003"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-033",
-      "implementation_summary": "40 需求／53 參考映射保留；新增工具後同步至 72 契約，文件與本次分級證據正在整合。"
+      "implementation_summary": "40 需求／53 參考映射與 72 契約經整合 runner 檢查；Windows 16 gates 已完成，發布與最終包內文件仍由實際結果同步。"
     },
     {
       "id": "ODIN-034",

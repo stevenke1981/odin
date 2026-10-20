@@ -1,0 +1,569 @@
+{
+  "scope": "FINAL_PORTABLE_ZIP_INVENTORY_AND_SOURCE_BINDING",
+  "archive": "<WORKSPACE>\\dist\\0.2.0-native-preview-82901e5\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+  "checks": [
+    {
+      "name": "fixed_archive_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "zip_crc_integrity",
+      "status": "PASS"
+    },
+    {
+      "name": "unique_members",
+      "status": "PASS"
+    },
+    {
+      "name": "safe_relative_member_paths",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_has_unique_paths",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_exact_member_coverage",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:LICENSE",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:LICENSE",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:README.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:README.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:THIRD_PARTY_NOTICES.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:THIRD_PARTY_NOTICES.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:build-metadata.json",
+      "status": "PASS"
+    },
+    {
+      "name": "embedded_build_identity",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/API.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/API.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/ARCHITECTURE.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/ARCHITECTURE.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/CORE_IMPLEMENTATION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/CORE_IMPLEMENTATION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/DEPENDENCIES.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/DEPENDENCIES.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/ENGINE_IMPLEMENTATION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/ENGINE_IMPLEMENTATION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/FEATURE_SPEC.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/FEATURE_SPEC.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/IMPLEMENTATION_BACKLOG.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/IMPLEMENTATION_BACKLOG.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/KNOWN_LIMITATIONS.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/KNOWN_LIMITATIONS.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/LANGUAGE_SUPPORT.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/LANGUAGE_SUPPORT.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/PLATFORM_IMPLEMENTATION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/PLATFORM_IMPLEMENTATION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/PROTOCOL_IMPLEMENTATION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/PROTOCOL_IMPLEMENTATION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/PUBLISH_GITHUB.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/PUBLISH_GITHUB.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/RELEASE_GATES.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/RELEASE_GATES.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/ROADMAP.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/ROADMAP.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/SECURITY.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/SECURITY.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/SERENA_COVERAGE_PLAN.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/SERENA_COVERAGE_PLAN.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/SERENA_PARITY.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/SERENA_PARITY.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/SOURCES.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/SOURCES.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/STANDALONE.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/STANDALONE.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/THIRD_PARTY_LICENSES.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/THIRD_PARTY_LICENSES.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/USAGE.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/USAGE.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/dependency-licenses/index.json",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/dependency-licenses/index.json",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/dependency-licenses/valuable-0.1.1-MIT.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/dependency-licenses/valuable-0.1.1-MIT.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/dependency-licenses/winapi-0.4.0-MIT.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/dependency-licenses/winapi-0.4.0-MIT.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/dispatch-plan.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/dispatch-plan.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/serena-parity.csv",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/serena-parity.csv",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/serena-parity.json",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/serena-parity.json",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/specs/CORE_PROTOCOL.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/specs/CORE_PROTOCOL.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/specs/LANGUAGE_DEBUG_INSPECTIONS.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/specs/LANGUAGE_DEBUG_INSPECTIONS.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/specs/OPERATIONS_RELEASE.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/specs/OPERATIONS_RELEASE.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:docs/specs/REFACTOR_TRANSACTION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:docs/specs/REFACTOR_TRANSACTION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:odin.example.toml",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:odin.example.toml",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:odin.exe",
+      "status": "PASS"
+    },
+    {
+      "name": "embedded_binary_fixed_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:schemas/tools.json",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:schemas/tools.json",
+      "status": "PASS"
+    },
+    {
+      "name": "inventory_hash:verification/sbom.cdx.json",
+      "status": "PASS"
+    },
+    {
+      "name": "matches_frozen_package_input:verification/sbom.cdx.json",
+      "status": "PASS"
+    },
+    {
+      "name": "license_notices_included",
+      "status": "PASS"
+    },
+    {
+      "name": "sbom_included",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed_source_binary_still_unchanged",
+      "status": "PASS"
+    }
+  ],
+  "files": [
+    {
+      "path": "LICENSE",
+      "sha256": "4dc38da916919233d88cd17b3b1cafa6fa723aead4776792d00d47e79f429043",
+      "status": "PASS"
+    },
+    {
+      "path": "README.md",
+      "sha256": "89ec35b90160b69108583e3aa1cb5f95ee00a68d0d42b4848be6633e9ffb012f",
+      "status": "PASS"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "sha256": "ffd4426faae7cad2d58bd6a76ea083965c2838245588f7828c409f55b3301259",
+      "status": "PASS"
+    },
+    {
+      "path": "build-metadata.json",
+      "sha256": "6b65477ce852deea7fce5dcd4b857f08dbc4ab3fde60c63205f74b8a00219dbc",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/API.md",
+      "sha256": "fc7e43913ac2e2bc321e60500d3f3d726f33444805ad5a6b2f9b0375e0822de9",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "dfa6d07a9b82188c745c91299fa61302cc4b9f3ee7f4a084b5bcd032de9e3af3",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/CORE_IMPLEMENTATION.md",
+      "sha256": "7d9ff3c2a0530d5d792a6db75e1060725a0f80dde9ef4327dd168e99a94a07ae",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/DEPENDENCIES.md",
+      "sha256": "4e11b5a504eaf17d6cc169543fde5307bcdf93c91729fdd8a1be5ae403a4cab4",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/ENGINE_IMPLEMENTATION.md",
+      "sha256": "a685b7b268958db1a1282cbd9d5fe3dc93459ce6e10a956773a5db3b32b345f9",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/FEATURE_SPEC.md",
+      "sha256": "3a3ecaf3a61af1edab0b3a3406fdc184067bb51b145ffd082502190e71bff555",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_BACKLOG.md",
+      "sha256": "7527b84253157cc5c74d6950dc299d2ef250c3f367f98c1a0c94aada514a76f4",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/KNOWN_LIMITATIONS.md",
+      "sha256": "3f031722eadadf4d5f46b6fe82668886d31e8bdee2892124afd85b077d4ee71b",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/LANGUAGE_SUPPORT.md",
+      "sha256": "e3b07cd0ee74801419a9d751b61c1a663533b4deef0da1aea4a2ea4ba0cdb80b",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/PLATFORM_IMPLEMENTATION.md",
+      "sha256": "f02e580eb423ea42bc4e9fd3dd1150eed1c74ad0347e482faa8eeb2a96f3ad2c",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/PROTOCOL_IMPLEMENTATION.md",
+      "sha256": "a6d85c256f04d51cd40b45c592d52ad449463a918d3eb4f89b7313d395eb572a",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/PUBLISH_GITHUB.md",
+      "sha256": "700a4df9c15673e30ee3d9ecf5049b3f77fde25d76dc196f3eaf3fe0f199a062",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/RELEASE_GATES.md",
+      "sha256": "f6370dadb5d257c125099839b2c0af214b10151ab7d7f1a00b12b561e08fa483",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "sha256": "0f759513596ebe35f204f2889c204a1bf72b08c8018a046cde86093049c58e5b",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/SECURITY.md",
+      "sha256": "2f4cbd7ce8e32e1863c2d509942499b2c38e4f0a2cedec50b9658ff8929f00d3",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/SERENA_COVERAGE_PLAN.md",
+      "sha256": "ccaa2c91e8165f73d0d1b83e5ab29557951f912ff4d9846ebe483cae18732e77",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/SERENA_PARITY.md",
+      "sha256": "16e112181469c600701a4384a593dec2a64abb24d7d6f4ff9b1c444aba6f8e6d",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/SOURCES.md",
+      "sha256": "943995dc7a750e6aa52c597bd58d6fdf4dc435c536eb4617d03989edfc9b6aa0",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/STANDALONE.md",
+      "sha256": "c5f14f4dfd239d30742c41ec346e214dfef9f73f828912bb816ef827b52becfa",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/THIRD_PARTY_LICENSES.txt",
+      "sha256": "4de450b34e325e2e0e4b493eb8f3a3a2d3a85fedd328ef0a260a2445b97c0b95",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/USAGE.md",
+      "sha256": "095e8dc60d781a8a64b6ae68995ab297e68916f24f03e3242a50d3423386238b",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/dependency-licenses/index.json",
+      "sha256": "98a44a0e1ae77a7b0a948ac59c3d59ee10118784500f7e2e0d0199d3dbe5592d",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/dependency-licenses/valuable-0.1.1-MIT.txt",
+      "sha256": "ed60d479b8fd1f64e9cbc3de449a16a53ac1b3d1b6aeb9bf9d190a8e93061b44",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/dependency-licenses/winapi-0.4.0-MIT.txt",
+      "sha256": "ce7bc3499fee93d5022ef430d5e4201e79a6d9154f3974e42f41349f0569e09b",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/dispatch-plan.md",
+      "sha256": "59756575702abc3269ec182c5b941e473de1692f481f18fa8ed24f5422354d9d",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/serena-parity.csv",
+      "sha256": "a3525a607fe356bbf3f2b3b5f669698c4209cb7bf4c4d52bccc33235aadafb6c",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/serena-parity.json",
+      "sha256": "bb0be783c720ccff68e02a1db2eeefedcd87b68da0bc6161b9e19f1f2a3cfea3",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/specs/CORE_PROTOCOL.md",
+      "sha256": "83acb528b940c4fccbddb9cc4fb349a9670ad92eb0794c18a05b5596e8242308",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/specs/LANGUAGE_DEBUG_INSPECTIONS.md",
+      "sha256": "be782a20f8bafe0b8dd8632a062dda28d847b740995634c6453b41ac99c7cb17",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/specs/OPERATIONS_RELEASE.md",
+      "sha256": "6a562424c43db0e647d9f2f1f968094bf70201632e31fbf5fbc782b22dfebec9",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/specs/REFACTOR_TRANSACTION.md",
+      "sha256": "579f31abc2fccdc6601b64ed619a51868b7ab7c66d06199ed02f5e508faa9ac9",
+      "status": "PASS"
+    },
+    {
+      "path": "odin.example.toml",
+      "sha256": "7c3c63f232742245054cf864a057bd38056be34a7d3dc0c347dc3aad1dd2711e",
+      "status": "PASS"
+    },
+    {
+      "path": "odin.exe",
+      "sha256": "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be",
+      "status": "PASS"
+    },
+    {
+      "path": "schemas/tools.json",
+      "sha256": "c833096e3c4068427a7cf569b3afde7937be1a49769e613032e35c7fc0644da8",
+      "status": "PASS"
+    },
+    {
+      "path": "verification/sbom.cdx.json",
+      "sha256": "ff87a7793794945da79cb8fa1c1b5c326fc78f2711aa222b9e809bc16b07b999",
+      "status": "PASS"
+    }
+  ],
+  "observed_at_utc": "2026-10-20T23:55:44.613721+00:00",
+  "archive_sha256": "7d49eeb990499b3da986965da73ba43ae856851bf783187ca6bacd5554084c76",
+  "build_metadata": {
+    "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "external_tool_bridge": false,
+    "model_token_usage": "UNKNOWN",
+    "name": "Odin",
+    "profile": "release",
+    "revision": "82901e5cd45845c75c7475d2697db42d472b67ac",
+    "schema_version": 1,
+    "standalone": true,
+    "target": "x86_64-pc-windows-msvc",
+    "tracked_source_dirty": false,
+    "version": "0.2.0"
+  },
+  "status": "PASS",
+  "original_local_report_sha256": "3296863f17c0c938c634361e5dbeede744d1684d7c20cc27c1909c53a5b863d6",
+  "public_copy_processing": "Absolute local paths replaced with labels; result fields and artifact hashes unchanged. Embedded source-report hashes refer to original local bytes."
+}

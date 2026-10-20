@@ -5,7 +5,7 @@
 ## 逐需求與整合結果
 
 - `feature-evidence.json`：40 項原驗收條件的逐項整理，38 PARTIAL、2 NOT_RUN。checks 只引用已有 status PASS 且 exit_code 0 的命令；每筆附來源 report/pointer/digest。supporting_reports 是補充觀察，不推造缺少的 exit code。
-- `local-validation.json`：由 root 的最終整合 runner 實際執行後產生，記錄 workspace fmt/test/clippy/release build、binary smokes、backend、供應鏈與檢查的 exit code/log/digest。尚未開始、執行中或準備中的 entry 保留 NOT_RUN；不得先把整份報告寫 PASS。
+- `local-validation.json`：已由 root 實際執行完成，16 個命令皆 exit 0，144 Rust tests 通過、1 ignored，source_changed=[]；記錄 workspace fmt/test/clippy/release build、binary smokes、backend、供應鏈與檢查的 exit code/log/digest。此 Windows gate PASS 不等於 40 項全部驗收。
 - `delivery-status.json`：由整合 owner 更新的整體交付結果。不能只改需求文件便宣稱 build/release/publish 通過。
 
 報告中的 source SHA 與 source hashes/binary digest 共同界定測試內容。文件/evidence commit 可能晚於被測 binary 的 commit；需要比對實際 source hash，不強行宣稱 SHA 必然相同。公共日誌可使用 `<WORKSPACE>`、`<USERPROFILE>` 代換本機路徑；原始測試結果及失敗不變。
@@ -19,7 +19,7 @@
 | `platform-verification.json` | CLI/HTTP/setup/hook package command/exit、來源與 binary smoke |
 | `platform-mcp-cancellation-verification.json` | 真 binary 取消排隊寫入／pending backend；慢 peer 不是語言能力證明 |
 | `platform-*-smoke.json` | 真 binary hash、實際 stdio/HTTP/CLI 子案例；真 client 應用未因此視為已安裝 |
-| `real-backends.json` | 真 rust-analyzer/basedpyright/TypeScript LSP 與 debugpy 子案例、版本及 binary digest；完整 command exit 由整合 manifest 補足 |
+| `real-backends.json` | 真 rust-analyzer/basedpyright/TypeScript LSP 與 debugpy 子案例、版本及 binary digest；最終 29 checks PASS，三語 consumer 跨檔案例已實跑；command exit 0 見 `local-validation.json` /commands/9 |
 | `core-*.txt`、`windows-short-aliases.txt` | 原生交易、crash checkpoint、雙程序競爭、NTFS path aliases 的命令輸出；單靠文字結尾不推造 exit code |
 | `platform-packaging-recipe.json` | 較早 binary 的 ZIP/Inno recipe 編譯；不代表最終工件或 installer lifecycle |
 | `cargo-audit.json`、`license-inventory.json`、`sbom.cdx.json`、`public-candidate-scan.json` | 對當時候選/lock 的 advisory、license、SBOM 與 pattern scan；不是 formal security/legal audit |

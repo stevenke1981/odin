@@ -1,0 +1,44 @@
+{
+  "scope": "ISOLATED_WINDOWS_INSTALL_REINSTALL_UNINSTALL",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "installer_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_binary_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_preserves_user_file",
+      "status": "PASS"
+    },
+    {
+      "name": "uninstaller_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "owned_binary_removed",
+      "status": "PASS"
+    },
+    {
+      "name": "uninstall_preserves_user_file",
+      "status": "PASS"
+    }
+  ],
+  "error": null,
+  "installer_sha256": "d9be19e270bd5152c6f47bf905254a17d2fb92dfe4f30d8476562e72080a423a",
+  "qa_directory": "<WORKSPACE>\\dist\\installer-qa-05a6c6c41feb4c17b410bf5efedf821e",
+  "interruption_rollback": "NOT_RUN",
+  "cross_version_upgrade": "NOT_RUN",
+  "native_binary_expected_sha256": "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be"
+}

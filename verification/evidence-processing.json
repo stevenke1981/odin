@@ -1,0 +1,77 @@
+{
+  "scope": "PUBLIC_EVIDENCE_TEXT_PROCESSING",
+  "changes": [
+    {
+      "path": "verification/local-cli-smoke.json",
+      "original_sha256": "9c6a04472ad6c5b5a740b1df3d2541df3a74783fabb09325255335a1a11fc0db",
+      "public_sha256": "c55f07d6406afe48645d84153d68d064a79130ef396984d02428b81a17a80348"
+    },
+    {
+      "path": "verification/local-http-smoke.json",
+      "original_sha256": "e7212956ce86e00e1d83ca5e1beb6f6cf3f530def40fc094d5247d99f81c24ff",
+      "public_sha256": "a35a791b5b3ef98122b444b6c23363259aadc61294753a4bc1c9b70a7dc84498"
+    },
+    {
+      "path": "verification/local-mcp-cancellation.json",
+      "original_sha256": "f806c33f4c358c9b8c3412a75013b331ea467693ee92a9cc610624bca5eb76c3",
+      "public_sha256": "c3ac0f9e60eeb0d728a69b54938a15e0cc59bad4655dea0f6a0817c4cb5e7faf"
+    },
+    {
+      "path": "verification/local-mcp-smoke.json",
+      "original_sha256": "0987d7a0d6b488c1cf1dcc6473acf71919c6cfc697dcde0b9d2d0462c3230e64",
+      "public_sha256": "a775ccf4e787f1279b2753f27a808ca9cab269cc28f85fe6639529b1dd84d958"
+    },
+    {
+      "path": "verification/local-source-check.json",
+      "original_sha256": "09ca357473d35a82f5f72beb4a16bdd7faa17ed6e6699b0c62e79b4adf945883",
+      "public_sha256": "154a4ff20b07fc546ba6a7c4ac559c7d85e0836f84be2b356fedc0b2b457e401"
+    },
+    {
+      "path": "verification/real-backends.json",
+      "original_sha256": "193664f4390453388ec7314de9f5c63cadf8f04390ef032fdfe1409cbac1a81f",
+      "public_sha256": "3a13e07e1a77ec0492ccc1091064641dc9259c6b45eabe5be8faafc6e5cb0846"
+    },
+    {
+      "path": "verification/logs/cli.txt",
+      "original_sha256": "8f58c33c3f6f8ca007177433854028b3c47f5055fa7b5765087dcc668021df2c",
+      "public_sha256": "af68cd053674afbe449a294775c35347f15bfa44c56b9ed363367ab5cdf12b96"
+    },
+    {
+      "path": "verification/logs/generated_artifacts.txt",
+      "original_sha256": "cd35d37a9507da14c27a5faa9e3d050291b7a96c4259221692d096a1dbbf2c2f",
+      "public_sha256": "db4d9338118aa96b5738b69f6b99e52dae3180112e73a50b784606915f3759f8"
+    },
+    {
+      "path": "verification/logs/mcp_cancellation.txt",
+      "original_sha256": "feef737adcb4ec6e7d1e9e6bfad51a916f8f69340d98e71dd0952363e2ae1e55",
+      "public_sha256": "4c92886873775f6dcc53107de1b4e7f149794f46837f191415299b419fc7be72"
+    },
+    {
+      "path": "verification/logs/mcp_http.txt",
+      "original_sha256": "657d901c933dc663da85e7325945cc16fac9c4b3fd14f8f4a4894c7859bc4683",
+      "public_sha256": "1d22fe1d840f0319013e96c61641ae4a5305229a67cf3cb764cee7887d0071a7"
+    },
+    {
+      "path": "verification/logs/mcp_stdio.txt",
+      "original_sha256": "0f368ca7c12ec82278a137cf86995153e0e0d1a23ff8cf6a84edda481f6c3982",
+      "public_sha256": "d2e8f9d76d82885d661df285b5d1d3fb56e20e2d2e8fadb5a4ddb00ccdaccb29"
+    },
+    {
+      "path": "verification/logs/requirements.txt",
+      "original_sha256": "2dbe10df21500c7ad3cf92009d5477aeb449be2ce90c3a92af2f663eda9b3a8d",
+      "public_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2"
+    },
+    {
+      "path": "verification/logs/static_source.txt",
+      "original_sha256": "f303b0925735d501f91f4c3f45b139363d4609e699aeb63ccb3d5f558cf70995",
+      "public_sha256": "e93ca1910ca494edf175e590c43ac3e74cf4273d91a973049d3040392d28d5f5"
+    }
+  ],
+  "operations": [
+    "Replace local absolute workspace/home paths with labels",
+    "Normalize CRLF to LF for portable Git/manifest hashes",
+    "Trim only trailing blank log lines"
+  ],
+  "result_fields_modified": false,
+  "original_bytes_location": "Ignored local .odin/raw-final-evidence; not shipped"
+}

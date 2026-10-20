@@ -8,11 +8,13 @@ Serena 僅用於開發代理導航；Odin 直接操作自己的 Rust core、LSP/
 
 - Windows engine/protocol/platform 的 package tests、嚴格 package Clippy 與 formatting 有命令及 exit code；見 `verification/*-verification.json`。
 - 真 binary CLI、stdio、loopback HTTP、授權負例、generated client config handshake、取消與結果/交易流程已有 smoke。
-- Windows 真 rust-analyzer、basedpyright、TypeScript language-server 完成定向 symbols/references/rename/rollback；debugpy 完成真 breakpoint、variables、evaluate、step。
+- Windows 真 rust-analyzer、basedpyright、TypeScript language-server 完成真 symbols、cross-file references、definition/consumer rename 與 rollback（真後端報告共 29 個 PASS 子案例）；debugpy 完成真 breakpoint、variables、evaluate、step。
 - core 日誌記錄 NTFS aliases/reparse/hardlink、交易 crash checkpoint 與雙 process contention。供應鏈另有 SBOM、license inventory、advisory/pattern scan 報告。
-- portable ZIP 與 Inno recipe 已編譯；recipe 報告使用較早 binary，不是最終發佈工件或完整 installer lifecycle 證明。
+- 最終 release binary 已產生 portable ZIP 與 Inno installer；39 檔／87 項 ZIP 完整性檢查及安裝、重裝、卸載 8 項檢查全部通過。見 `verification/windows-final-packaging.json`；乾淨機、跨版及中斷情境未納入。
 
-以上只適用各自 source/binary snapshot。`verification/feature-evidence.json` 逐項引用真實零退出 command，並保留原驗收條件的缺口；本次文件工作沒有執行產品測試。最終整合的 workspace/release/binary/supply-chain runner 在實際執行後由 root 更新 `verification/local-validation.json`、交付狀態與最終數量；準備中的命令不可填 PASS。
+以上只適用各自 source/binary snapshot。`verification/feature-evidence.json` 逐項引用真實零退出 command，並保留原驗收條件的缺口；本次文件工作沒有執行產品測試。最終整合 runner 已完成：`verification/local-validation.json` 記錄 **16 個命令全部 exit 0、144 Rust tests 通過、1 ignored、source_changed=[]**，包括 workspace fmt/test/clippy、release build、CLI/stdio/HTTP/cancellation、真後端、advisory/licenses/supply-chain、source/requirements/publish-policy。
+
+被測 clean revision 為 `82901e5cd45845c75c7475d2697db42d472b67ac`；release binary SHA-256 為 `5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be`。此後文件/evidence commit 可以不同；Rust/test source digest 及最終封裝 manifest 須據實對照。
 
 ## 尚未完成
 

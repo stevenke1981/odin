@@ -5,7 +5,7 @@
   "release_class": "WINDOWS_NATIVE_PREVIEW",
   "observed_date": "2026-10-21",
   "source_head_sha_at_documentation_review": "83655ac50cb9f2fcc309f95455e196b3836178ba",
-  "scope": "Requirement-level assessment of completed Windows slice reports; this document is not an independent runtime test run.",
+  "scope": "Requirement-level assessment of completed Windows slice reports and the executed integrated candidate. Documentation review is not an independent runtime test run.",
   "tool_contracts": 72,
   "requirements_total": 40,
   "status_semantics": {
@@ -15,10 +15,341 @@
   },
   "evidence_binding": "Each check references an executed command and the digest/pointer of its source report. Slice reports bind their own source snapshot or binary hash; they do not certify later integrated changes.",
   "final_integrated_candidate": {
-    "status": "NOT_RUN",
+    "status": "PASS",
     "owner": "/root",
-    "expected_report": "verification/local-validation.json",
-    "note": "The integration owner must complete the final runner and bind the final source/binary digest. A prepared or running command is not PASS."
+    "report": "verification/local-validation.json",
+    "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+    "source_head_sha": "82901e5cd45845c75c7475d2697db42d472b67ac",
+    "binary_sha256": "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be",
+    "binary_metadata": {
+      "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+      "external_tool_bridge": false,
+      "model_token_usage": "UNKNOWN",
+      "name": "Odin",
+      "profile": "release",
+      "revision": "82901e5cd45845c75c7475d2697db42d472b67ac",
+      "schema_version": 1,
+      "standalone": true,
+      "target": "x86_64-pc-windows-msvc",
+      "tracked_source_dirty": false,
+      "version": "0.2.0"
+    },
+    "commands_executed": 16,
+    "rust_tests_passed": 144,
+    "rust_tests_ignored": 1,
+    "source_changed_during_validation": [],
+    "completed_at_utc": "2026-10-20T23:50:41.338540+00:00",
+    "checks": [
+      {
+        "name": "generated_artifacts",
+        "argv": [
+          "python",
+          "scripts/check_generated.py"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/generated_artifacts.txt",
+        "log_sha256": "db4d9338118aa96b5738b69f6b99e52dae3180112e73a50b784606915f3759f8",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/0",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      },
+      {
+        "name": "fmt",
+        "argv": [
+          "cargo",
+          "fmt",
+          "--all",
+          "--",
+          "--check"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/fmt.txt",
+        "log_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/1",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      },
+      {
+        "name": "workspace_tests",
+        "argv": [
+          "cargo",
+          "test",
+          "--workspace",
+          "--locked"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/workspace_tests.txt",
+        "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/2",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      },
+      {
+        "name": "clippy",
+        "argv": [
+          "cargo",
+          "clippy",
+          "--workspace",
+          "--all-targets",
+          "--locked",
+          "--",
+          "-D",
+          "warnings"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/clippy.txt",
+        "log_sha256": "f6f3a21d8c5d8e3a33979ba951575a33ec53665fb18d249ace4f1b778c80dc3d",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/3",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      },
+      {
+        "name": "release_build",
+        "argv": [
+          "cargo",
+          "build",
+          "--workspace",
+          "--release",
+          "--locked"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/release_build.txt",
+        "log_sha256": "d9a91e46f54a46a85e1d3f4e76773845981d7182a4b48c2cbc7894a86b7f842f",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/4",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      },
+      {
+        "name": "cli",
+        "argv": [
+          "python",
+          "scripts/cli_smoke.py",
+          "--binary",
+          "target/release/odin.exe",
+          "--output",
+          "verification/local-cli-smoke.json"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/cli.txt",
+        "log_sha256": "af68cd053674afbe449a294775c35347f15bfa44c56b9ed363367ab5cdf12b96",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/5",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      },
+      {
+        "name": "mcp_stdio",
+        "argv": [
+          "python",
+          "scripts/mcp_smoke.py",
+          "--binary",
+          "target/release/odin.exe",
+          "--output",
+          "verification/local-mcp-smoke.json"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/mcp_stdio.txt",
+        "log_sha256": "d2e8f9d76d82885d661df285b5d1d3fb56e20e2d2e8fadb5a4ddb00ccdaccb29",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/6",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      },
+      {
+        "name": "mcp_http",
+        "argv": [
+          "python",
+          "scripts/http_smoke.py",
+          "--binary",
+          "target/release/odin.exe",
+          "--output",
+          "verification/local-http-smoke.json"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/mcp_http.txt",
+        "log_sha256": "1d22fe1d840f0319013e96c61641ae4a5305229a67cf3cb764cee7887d0071a7",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/7",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      },
+      {
+        "name": "mcp_cancellation",
+        "argv": [
+          "python",
+          "scripts/mcp_cancel_smoke.py",
+          "--binary",
+          "target/release/odin.exe",
+          "--output",
+          "verification/local-mcp-cancellation.json"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/mcp_cancellation.txt",
+        "log_sha256": "4c92886873775f6dcc53107de1b4e7f149794f46837f191415299b419fc7be72",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/8",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      },
+      {
+        "name": "real_backends",
+        "argv": [
+          "python",
+          "tests/real_backends.py",
+          "--binary",
+          "target/release/odin.exe",
+          "--python",
+          ".odin/validation-tools/python/Scripts/python.exe",
+          "--python-lsp",
+          ".odin/validation-tools/python/Scripts/basedpyright-langserver.exe",
+          "--typescript-lsp",
+          ".odin/validation-tools/typescript/node_modules/typescript-language-server/lib/cli.mjs",
+          "--node",
+          "C:/Program Files/nodejs/node.exe",
+          "--output",
+          "verification/real-backends.json"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/real_backends.txt",
+        "log_sha256": "d80560eecf47c06751ef92fbc62eeb7f08ccd21a5f77034835677e0b003aeb8f",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/9",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      },
+      {
+        "name": "dependency_audit",
+        "argv": [
+          "cargo",
+          "audit",
+          "--deny",
+          "warnings",
+          "--json"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/dependency_audit.txt",
+        "log_sha256": "9254d5c1ca8495ae225f2289fdc4394683abe266961f0dbfa231771c6eb2658f",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/10",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      },
+      {
+        "name": "licenses",
+        "argv": [
+          "cargo",
+          "deny",
+          "--format",
+          "json",
+          "check",
+          "licenses"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/licenses.txt",
+        "log_sha256": "b87ff50d7cc1bf36ebb4295f2e6f418c52149ab1d889a4a9cfddcffae397ad39",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/11",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      },
+      {
+        "name": "supply_chain",
+        "argv": [
+          "python",
+          "scripts/supply_chain.py"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/supply_chain.txt",
+        "log_sha256": "101802573c4356f827e230588cf9822c4d68d3178c267cb34e3a83a4580b1387",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/12",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      },
+      {
+        "name": "static_source",
+        "argv": [
+          "python",
+          "scripts/check_source.py",
+          "--output",
+          "verification/local-source-check.json"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/static_source.txt",
+        "log_sha256": "e93ca1910ca494edf175e590c43ac3e74cf4273d91a973049d3040392d28d5f5",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/13",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      },
+      {
+        "name": "requirements",
+        "argv": [
+          "python",
+          "scripts/check_requirements.py"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/requirements.txt",
+        "log_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/14",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      },
+      {
+        "name": "publish_policy",
+        "argv": [
+          "python",
+          "scripts/check_publish_policy.py"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/logs/publish_policy.txt",
+        "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983",
+        "report": "verification/local-validation.json",
+        "report_pointer": "/commands/15",
+        "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+        "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+      }
+    ],
+    "scope": "All 16 integrated Windows commands actually exited 0 on the recorded clean source revision. This is not full acceptance of all 40 requirements.",
+    "documentation_note": "This evidence/documentation update follows validation without changing Rust or test sources; final packaged documentation/artifact hashes are separate."
   },
   "publication": {
     "status": "NOT_PUBLISHED_IN_THIS_REPORT",
@@ -33,7 +364,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "Windows Rust toolchain、真實 Cargo.lock 與具 metadata 的 binary 已有實測；最終整合與跨平台矩陣分開驗收。",
+      "summary": "Windows 最終整合 16 個命令 exit 0；144 Rust tests 通過、1 ignored，locked release build 與 clean revision/binary metadata 已核對；跨平台矩陣未完成。",
       "checks": [
         {
           "command": [
@@ -86,6 +417,104 @@
           "report_pointer": "/commands/3",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Strict Windows package Clippy on the report-bound source snapshot."
+        },
+        {
+          "name": "fmt",
+          "argv": [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/fmt.txt",
+          "log_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "clippy",
+          "argv": [
+            "cargo",
+            "clippy",
+            "--workspace",
+            "--all-targets",
+            "--locked",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/clippy.txt",
+          "log_sha256": "f6f3a21d8c5d8e3a33979ba951575a33ec53665fb18d249ace4f1b778c80dc3d",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/3",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "release_build",
+          "argv": [
+            "cargo",
+            "build",
+            "--workspace",
+            "--release",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/release_build.txt",
+          "log_sha256": "d9a91e46f54a46a85e1d3f4e76773845981d7182a4b48c2cbc7894a86b7f842f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/4",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "cli",
+          "argv": [
+            "python",
+            "scripts/cli_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-cli-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/cli.txt",
+          "log_sha256": "af68cd053674afbe449a294775c35347f15bfa44c56b9ed363367ab5cdf12b96",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/5",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -93,36 +522,26 @@
           "id": "ODIN-001-A1",
           "criterion": "在全新工作樹執行 cargo generate-lockfile、cargo build --workspace --locked 成功且 Cargo.lock 納入 Git。",
           "status": "PARTIAL",
-          "remaining": "全新 checkout 的最終 integrated release build／來源綁定待整合 runner 完成。"
+          "remaining": "Windows clean revision 的 locked release build 與來源綁定已完成；全新 checkout 重建及 Linux/macOS 原生建置矩陣仍未完成。"
         },
         {
           "id": "ODIN-001-A2",
           "criterion": "cargo fmt --all -- --check、cargo clippy --workspace --all-targets --locked -- -D warnings、cargo test --workspace --locked 均退出 0。",
-          "status": "PARTIAL",
-          "remaining": "目前引用 package 檢查；本次候選的完整 workspace fmt/test/clippy 結果由 root 的最終報告更新。"
+          "status": "PASS",
+          "remaining": null
         },
         {
           "id": "ODIN-001-A3",
           "criterion": "Release binary 的 --version 與 commit metadata 可讀，沒有 false PASS 或預製空 binary。",
-          "status": "PARTIAL",
-          "remaining": "Windows metadata 已 smoke；最終發佈 binary 的 revision/digest 仍需核對。"
+          "status": "PASS",
+          "remaining": null
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-001-A1",
           "criterion": "在全新工作樹執行 cargo generate-lockfile、cargo build --workspace --locked 成功且 Cargo.lock 納入 Git。",
-          "remaining": "全新 checkout 的最終 integrated release build／來源綁定待整合 runner 完成。"
-        },
-        {
-          "id": "ODIN-001-A2",
-          "criterion": "cargo fmt --all -- --check、cargo clippy --workspace --all-targets --locked -- -D warnings、cargo test --workspace --locked 均退出 0。",
-          "remaining": "目前引用 package 檢查；本次候選的完整 workspace fmt/test/clippy 結果由 root 的最終報告更新。"
-        },
-        {
-          "id": "ODIN-001-A3",
-          "criterion": "Release binary 的 --version 與 commit metadata 可讀，沒有 false PASS 或預製空 binary。",
-          "remaining": "Windows metadata 已 smoke；最終發佈 binary 的 revision/digest 仍需核對。"
+          "remaining": "Windows clean revision 的 locked release build 與來源綁定已完成；全新 checkout 重建及 Linux/macOS 原生建置矩陣仍未完成。"
         }
       ],
       "supporting_reports": [
@@ -194,6 +613,66 @@
           "report_pointer": "/commands/5",
           "report_sha256": "53dc715620df4010afd045d07eb48b05051ea04933b7bb70c1c62d50a6130b1c",
           "scope": "Real binary MCP cancellation with a slow protocol peer; no language-semantic guarantee."
+        },
+        {
+          "name": "mcp_stdio",
+          "argv": [
+            "python",
+            "scripts/mcp_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-mcp-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/mcp_stdio.txt",
+          "log_sha256": "d2e8f9d76d82885d661df285b5d1d3fb56e20e2d2e8fadb5a4ddb00ccdaccb29",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/6",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "mcp_http",
+          "argv": [
+            "python",
+            "scripts/http_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-http-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/mcp_http.txt",
+          "log_sha256": "1d22fe1d840f0319013e96c61641ae4a5305229a67cf3cb764cee7887d0071a7",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/7",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "mcp_cancellation",
+          "argv": [
+            "python",
+            "scripts/mcp_cancel_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-mcp-cancellation.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/mcp_cancellation.txt",
+          "log_sha256": "4c92886873775f6dcc53107de1b4e7f149794f46837f191415299b419fc7be72",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/8",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -213,7 +692,7 @@
           "id": "ODIN-002-A3",
           "criterion": "HTTP 無 token、錯誤 token、惡意 Origin/Host 均被拒絕；預設只綁 127.0.0.1。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "unverified_acceptance": [
@@ -230,7 +709,7 @@
         {
           "id": "ODIN-002-A3",
           "criterion": "HTTP 無 token、錯誤 token、惡意 Origin/Host 均被拒絕；預設只綁 127.0.0.1。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "supporting_reports": []
@@ -275,6 +754,40 @@
           "report_pointer": "/commands/9",
           "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
           "scope": "Real binary MCP stdio initialize/catalog/read/transaction/memory/flow smoke; not official conformance certification."
+        },
+        {
+          "name": "generated_artifacts",
+          "argv": [
+            "python",
+            "scripts/check_generated.py"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/generated_artifacts.txt",
+          "log_sha256": "db4d9338118aa96b5738b69f6b99e52dae3180112e73a50b784606915f3759f8",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/0",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -288,7 +801,7 @@
           "id": "ODIN-003-A2",
           "criterion": "錯參數、未知專案、未知工具與後端失聯各得到不同可機械判別 error code。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-003-A3",
@@ -306,7 +819,7 @@
         {
           "id": "ODIN-003-A2",
           "criterion": "錯參數、未知專案、未知工具與後端失聯各得到不同可機械判別 error code。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-003-A3",
@@ -349,6 +862,24 @@
           "report_pointer": "/checks/0",
           "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
           "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -362,7 +893,7 @@
           "id": "ODIN-004-A2",
           "criterion": "未知 project_id 和 workspace 外部的任何路徑一律拒絕。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-004-A3",
@@ -380,7 +911,7 @@
         {
           "id": "ODIN-004-A2",
           "criterion": "未知 project_id 和 workspace 外部的任何路徑一律拒絕。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-004-A3",
@@ -423,6 +954,24 @@
           "report_pointer": "/commands/1",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -527,6 +1076,44 @@
           "report_pointer": "/commands/9",
           "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
           "scope": "Real binary MCP stdio initialize/catalog/read/transaction/memory/flow smoke; not official conformance certification."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "mcp_stdio",
+          "argv": [
+            "python",
+            "scripts/mcp_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-mcp-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/mcp_stdio.txt",
+          "log_sha256": "d2e8f9d76d82885d661df285b5d1d3fb56e20e2d2e8fadb5a4ddb00ccdaccb29",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/6",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -534,7 +1121,7 @@
           "id": "ODIN-006-A1",
           "criterion": "外部先行修改檔案時，apply 回 CONFLICT，外部修改保持不變。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-006-A2",
@@ -546,14 +1133,14 @@
           "id": "ODIN-006-A3",
           "criterion": "rollback 永不覆蓋未知第三方資料；同 request_id 不同 payload 被拒絕。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-006-A1",
           "criterion": "外部先行修改檔案時，apply 回 CONFLICT，外部修改保持不變。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-006-A2",
@@ -563,7 +1150,7 @@
         {
           "id": "ODIN-006-A3",
           "criterion": "rollback 永不覆蓋未知第三方資料；同 request_id 不同 payload 被拒絕。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "supporting_reports": [
@@ -583,7 +1170,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "LSP sync/capability/readiness/shutdown/restart、版本與 UTF-16/CRLF 回歸已執行。",
+      "summary": "LSP sync/capability/readiness/shutdown/restart、UTF-16/CRLF 已測；Windows 三語真後端 cross-file references/rename/rollback 已執行。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked",
@@ -604,6 +1191,52 @@
           "report_pointer": "/checks/1",
           "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
           "scope": "Real rust-analyzer 1.90.0 initialize/documentSymbol only."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "real_backends",
+          "argv": [
+            "python",
+            "tests/real_backends.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--python",
+            ".odin/validation-tools/python/Scripts/python.exe",
+            "--python-lsp",
+            ".odin/validation-tools/python/Scripts/basedpyright-langserver.exe",
+            "--typescript-lsp",
+            ".odin/validation-tools/typescript/node_modules/typescript-language-server/lib/cli.mjs",
+            "--node",
+            "C:/Program Files/nodejs/node.exe",
+            "--output",
+            "verification/real-backends.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/real_backends.txt",
+          "log_sha256": "d80560eecf47c06751ef92fbc62eeb7f08ccd21a5f77034835677e0b003aeb8f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -646,7 +1279,7 @@
       "supporting_reports": [
         {
           "report": "verification/real-backends.json",
-          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+          "scope": "Executed real-backend observations, bound to local-validation.json /commands/9 exit 0 and the integrated release binary SHA-256."
         }
       ]
     },
@@ -656,7 +1289,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "已新增 symbol filters/depth/scope/paging/body budget，真實三語 symbols/references 有報告。",
+      "summary": "symbol filters/depth/scope/paging/body budget 已有回歸；真實三語 cross-file references/rename consumer uses/rollback 已執行。",
       "checks": [
         {
           "command": [
@@ -683,6 +1316,52 @@
           "report_pointer": "/checks/1",
           "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
           "scope": "Real rust-analyzer 1.90.0 initialize/documentSymbol only."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "real_backends",
+          "argv": [
+            "python",
+            "tests/real_backends.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--python",
+            ".odin/validation-tools/python/Scripts/python.exe",
+            "--python-lsp",
+            ".odin/validation-tools/python/Scripts/basedpyright-langserver.exe",
+            "--typescript-lsp",
+            ".odin/validation-tools/typescript/node_modules/typescript-language-server/lib/cli.mjs",
+            "--node",
+            "C:/Program Files/nodejs/node.exe",
+            "--output",
+            "verification/real-backends.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/real_backends.txt",
+          "log_sha256": "d80560eecf47c06751ef92fbc62eeb7f08ccd21a5f77034835677e0b003aeb8f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -702,7 +1381,7 @@
           "id": "ODIN-008-A3",
           "criterion": "不可用功能需回 CAPABILITY_UNAVAILABLE；不默默降級為純文字結果。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "unverified_acceptance": [
@@ -719,13 +1398,13 @@
         {
           "id": "ODIN-008-A3",
           "criterion": "不可用功能需回 CAPABILITY_UNAVAILABLE；不默默降級為純文字結果。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "supporting_reports": [
         {
           "report": "verification/real-backends.json",
-          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+          "scope": "Executed real-backend observations, bound to local-validation.json /commands/9 exit 0 and the integrated release binary SHA-256."
         }
       ]
     },
@@ -762,6 +1441,24 @@
           "report_pointer": "/commands/1",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -781,7 +1478,7 @@
           "id": "ODIN-009-A3",
           "criterion": "遇到不支援 annotation 或檔案版本不符全部拒絕，不遺漏操作後回成功。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "unverified_acceptance": [
@@ -798,7 +1495,7 @@
         {
           "id": "ODIN-009-A3",
           "criterion": "遇到不支援 annotation 或檔案版本不符全部拒絕，不遺漏操作後回成功。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "supporting_reports": []
@@ -809,7 +1506,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "Windows 真 rust-analyzer、basedpyright、TypeScript language-server 的 symbols/references/rename/rollback 已有報告。",
+      "summary": "Windows 真 rust-analyzer、basedpyright、TypeScript language-server 已實測 symbols、cross-file references、rename definition/consumer uses 與 rollback；完整原驗收尚未完成。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked real_rust_analyzer_smoke -- --ignored --nocapture",
@@ -820,6 +1517,34 @@
           "report_pointer": "/checks/1",
           "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
           "scope": "Real rust-analyzer 1.90.0 initialize/documentSymbol only."
+        },
+        {
+          "name": "real_backends",
+          "argv": [
+            "python",
+            "tests/real_backends.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--python",
+            ".odin/validation-tools/python/Scripts/python.exe",
+            "--python-lsp",
+            ".odin/validation-tools/python/Scripts/basedpyright-langserver.exe",
+            "--typescript-lsp",
+            ".odin/validation-tools/typescript/node_modules/typescript-language-server/lib/cli.mjs",
+            "--node",
+            "C:/Program Files/nodejs/node.exe",
+            "--output",
+            "verification/real-backends.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/real_backends.txt",
+          "log_sha256": "d80560eecf47c06751ef92fbc62eeb7f08ccd21a5f77034835677e0b003aeb8f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -833,13 +1558,13 @@
           "id": "ODIN-010-A2",
           "criterion": "每個語言都記錄版本、OS、commit、命令行與 stdout/stderr 原始 log。",
           "status": "PARTIAL",
-          "remaining": "目前 report 有 backend versions/binary digest；完整每語言原始 stdout/stderr 與最終 command exit manifest 待補。"
+          "remaining": "command exit、backend version、OS、source/binary digest 與整合 stdout/stderr log 已具備；每語言的完整原始協定/錯誤診斷矩陣未完成。"
         },
         {
           "id": "ODIN-010-A3",
           "criterion": "未驗證語言不能以「40+ 已支援」列為 PASS。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "unverified_acceptance": [
@@ -851,18 +1576,18 @@
         {
           "id": "ODIN-010-A2",
           "criterion": "每個語言都記錄版本、OS、commit、命令行與 stdout/stderr 原始 log。",
-          "remaining": "目前 report 有 backend versions/binary digest；完整每語言原始 stdout/stderr 與最終 command exit manifest 待補。"
+          "remaining": "command exit、backend version、OS、source/binary digest 與整合 stdout/stderr log 已具備；每語言的完整原始協定/錯誤診斷矩陣未完成。"
         },
         {
           "id": "ODIN-010-A3",
           "criterion": "未驗證語言不能以「40+ 已支援」列為 PASS。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "supporting_reports": [
         {
           "report": "verification/real-backends.json",
-          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+          "scope": "Executed real-backend observations, bound to local-validation.json /commands/9 exit 0 and the integrated release binary SHA-256."
         },
         {
           "report": "verification/real-backends-first-run.json",
@@ -914,6 +1639,42 @@
           "report_pointer": "/commands/1",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "name": "mcp_stdio",
+          "argv": [
+            "python",
+            "scripts/mcp_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-mcp-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/mcp_stdio.txt",
+          "log_sha256": "d2e8f9d76d82885d661df285b5d1d3fb56e20e2d2e8fadb5a4ddb00ccdaccb29",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/6",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "supply_chain",
+          "argv": [
+            "python",
+            "scripts/supply_chain.py"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/supply_chain.txt",
+          "log_sha256": "101802573c4356f827e230588cf9822c4d68d3178c267cb34e3a83a4580b1387",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/12",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -933,7 +1694,7 @@
           "id": "ODIN-011-A3",
           "criterion": "缺少 LSP/DAP 時明確提示必要後端，不會執行下載 Serena。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "unverified_acceptance": [
@@ -950,7 +1711,7 @@
         {
           "id": "ODIN-011-A3",
           "criterion": "缺少 LSP/DAP 時明確提示必要後端，不會執行下載 Serena。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "supporting_reports": [
@@ -997,6 +1758,24 @@
           "report_pointer": "/checks/0",
           "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
           "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -1049,7 +1828,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "DAP 狀態、events、capabilities、launch tickets、取消與 session 有 fixtures；Windows debugpy 實際 breakpoint/variables/evaluate/step 有報告。",
+      "summary": "DAP 狀態/session/tickets/取消已有 fixtures；最終 release binary 對 Windows debugpy 的 breakpoint/variables/evaluate/step/disconnect 已實測。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked",
@@ -1076,6 +1855,52 @@
           "report_pointer": "/commands/1",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "real_backends",
+          "argv": [
+            "python",
+            "tests/real_backends.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--python",
+            ".odin/validation-tools/python/Scripts/python.exe",
+            "--python-lsp",
+            ".odin/validation-tools/python/Scripts/basedpyright-langserver.exe",
+            "--typescript-lsp",
+            ".odin/validation-tools/typescript/node_modules/typescript-language-server/lib/cli.mjs",
+            "--node",
+            "C:/Program Files/nodejs/node.exe",
+            "--output",
+            "verification/real-backends.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/real_backends.txt",
+          "log_sha256": "d80560eecf47c06751ef92fbc62eeb7f08ccd21a5f77034835677e0b003aeb8f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -1095,7 +1920,7 @@
           "id": "ODIN-013-A3",
           "criterion": "不支援的 DAP 指令明確回 unsupported，不能把送出 request 當成功完成操作。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "unverified_acceptance": [
@@ -1112,13 +1937,13 @@
         {
           "id": "ODIN-013-A3",
           "criterion": "不支援的 DAP 指令明確回 unsupported，不能把送出 request 當成功完成操作。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "supporting_reports": [
         {
           "report": "verification/real-backends.json",
-          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+          "scope": "Executed real-backend observations, bound to local-validation.json /commands/9 exit 0 and the integrated release binary SHA-256."
         }
       ]
     },
@@ -1145,6 +1970,24 @@
           "report_pointer": "/commands/1",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -1209,6 +2052,24 @@
           "report_pointer": "/commands/1",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -1283,6 +2144,24 @@
           "report_pointer": "/checks/0",
           "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
           "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -1357,6 +2236,24 @@
           "report_pointer": "/commands/1",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -1376,7 +2273,7 @@
           "id": "ODIN-017-A3",
           "criterion": "quick fix 必須先預覽 WorkspaceEdit，再交由交易引擎執行。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "unverified_acceptance": [
@@ -1393,7 +2290,7 @@
         {
           "id": "ODIN-017-A3",
           "criterion": "quick fix 必須先預覽 WorkspaceEdit，再交由交易引擎執行。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "supporting_reports": []
@@ -1431,6 +2328,24 @@
           "report_pointer": "/commands/1",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -1450,7 +2365,7 @@
           "id": "ODIN-018-A3",
           "criterion": "不支援 hierarchy 的 LSP 返回 capability unavailable 並標明缺失。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "unverified_acceptance": [
@@ -1467,7 +2382,7 @@
         {
           "id": "ODIN-018-A3",
           "criterion": "不支援 hierarchy 的 LSP 返回 capability unavailable 並標明缺失。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "supporting_reports": []
@@ -1489,6 +2404,34 @@
           "report_pointer": "/checks/1",
           "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
           "scope": "Real rust-analyzer 1.90.0 initialize/documentSymbol only."
+        },
+        {
+          "name": "real_backends",
+          "argv": [
+            "python",
+            "tests/real_backends.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--python",
+            ".odin/validation-tools/python/Scripts/python.exe",
+            "--python-lsp",
+            ".odin/validation-tools/python/Scripts/basedpyright-langserver.exe",
+            "--typescript-lsp",
+            ".odin/validation-tools/typescript/node_modules/typescript-language-server/lib/cli.mjs",
+            "--node",
+            "C:/Program Files/nodejs/node.exe",
+            "--output",
+            "verification/real-backends.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/real_backends.txt",
+          "log_sha256": "d80560eecf47c06751ef92fbc62eeb7f08ccd21a5f77034835677e0b003aeb8f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -1531,7 +2474,7 @@
       "supporting_reports": [
         {
           "report": "verification/real-backends.json",
-          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+          "scope": "Executed real-backend observations, bound to local-validation.json /commands/9 exit 0 and the integrated release binary SHA-256."
         }
       ]
     },
@@ -1575,6 +2518,44 @@
           "report_pointer": "/commands/9",
           "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
           "scope": "Real binary MCP stdio initialize/catalog/read/transaction/memory/flow smoke; not official conformance certification."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "mcp_stdio",
+          "argv": [
+            "python",
+            "scripts/mcp_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-mcp-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/mcp_stdio.txt",
+          "log_sha256": "d2e8f9d76d82885d661df285b5d1d3fb56e20e2d2e8fadb5a4ddb00ccdaccb29",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/6",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -1588,7 +2569,7 @@
           "id": "ODIN-020-A2",
           "criterion": "跨 session 重啟後內容與 hashes 保持；無權限範圍不得寫入。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-020-A3",
@@ -1606,7 +2587,7 @@
         {
           "id": "ODIN-020-A2",
           "criterion": "跨 session 重啟後內容與 hashes 保持；無權限範圍不得寫入。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-020-A3",
@@ -1644,6 +2625,24 @@
           "report_pointer": "/commands/1",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -1725,6 +2724,44 @@
           "report_pointer": "/commands/9",
           "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
           "scope": "Real binary MCP stdio initialize/catalog/read/transaction/memory/flow smoke; not official conformance certification."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "mcp_stdio",
+          "argv": [
+            "python",
+            "scripts/mcp_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-mcp-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/mcp_stdio.txt",
+          "log_sha256": "d2e8f9d76d82885d661df285b5d1d3fb56e20e2d2e8fadb5a4ddb00ccdaccb29",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/6",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -1738,7 +2775,7 @@
           "id": "ODIN-022-A2",
           "criterion": "forbid write/execute/unknown call 即使透過 flow 包裹也仍拒絕。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-022-A3",
@@ -1756,7 +2793,7 @@
         {
           "id": "ODIN-022-A2",
           "criterion": "forbid write/execute/unknown call 即使透過 flow 包裹也仍拒絕。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-022-A3",
@@ -1806,6 +2843,26 @@
           "report_pointer": "/commands/8",
           "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
           "scope": "Real binary CLI/setup generated argv/backup/conflict/hook smoke; actual Codex/Claude/OpenCode apps not tested."
+        },
+        {
+          "name": "cli",
+          "argv": [
+            "python",
+            "scripts/cli_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-cli-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/cli.txt",
+          "log_sha256": "af68cd053674afbe449a294775c35347f15bfa44c56b9ed363367ab5cdf12b96",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/5",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -1819,7 +2876,7 @@
           "id": "ODIN-023-A2",
           "criterion": "覆寫既有配置要顯式同意，保證原有未關聯設定不變。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-023-A3",
@@ -1837,7 +2894,7 @@
         {
           "id": "ODIN-023-A2",
           "criterion": "覆寫既有配置要顯式同意，保證原有未關聯設定不變。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-023-A3",
@@ -1886,6 +2943,44 @@
           "report_pointer": "/commands/1",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "cli",
+          "argv": [
+            "python",
+            "scripts/cli_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-cli-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/cli.txt",
+          "log_sha256": "af68cd053674afbe449a294775c35347f15bfa44c56b9ed363367ab5cdf12b96",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/5",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -1972,6 +3067,26 @@
           "report_pointer": "/commands/1",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "name": "mcp_http",
+          "argv": [
+            "python",
+            "scripts/http_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-http-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/mcp_http.txt",
+          "log_sha256": "1d22fe1d840f0319013e96c61641ae4a5305229a67cf3cb764cee7887d0071a7",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/7",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -1985,7 +3100,7 @@
           "id": "ODIN-025-A2",
           "criterion": "未經授權的 HTTP 請求無法讀到任何專案資料。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-025-A3",
@@ -2003,7 +3118,7 @@
         {
           "id": "ODIN-025-A2",
           "criterion": "未經授權的 HTTP 請求無法讀到任何專案資料。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-025-A3",
@@ -2053,6 +3168,26 @@
           "report_pointer": "/commands/8",
           "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
           "scope": "Real binary CLI/setup generated argv/backup/conflict/hook smoke; actual Codex/Claude/OpenCode apps not tested."
+        },
+        {
+          "name": "cli",
+          "argv": [
+            "python",
+            "scripts/cli_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-cli-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/cli.txt",
+          "log_sha256": "af68cd053674afbe449a294775c35347f15bfa44c56b9ed363367ab5cdf12b96",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/5",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -2100,7 +3235,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "已有 package command logs、source hashes、binary smoke，workflow 僅 workflow_dispatch/self-hosted。",
+      "summary": "同一 clean Windows revision 的 16 個整合命令全部 exit 0，source_changed=[]；144 Rust tests/1 ignored，fixture/真後端分層並綁定 source/binary digest。",
       "checks": [
         {
           "command": [
@@ -2164,6 +3299,168 @@
           "report_pointer": "/commands/7",
           "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
           "scope": "Manual self-hosted workflow/publisher policy source checks; no remote publication performed."
+        },
+        {
+          "name": "fmt",
+          "argv": [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/fmt.txt",
+          "log_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "clippy",
+          "argv": [
+            "cargo",
+            "clippy",
+            "--workspace",
+            "--all-targets",
+            "--locked",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/clippy.txt",
+          "log_sha256": "f6f3a21d8c5d8e3a33979ba951575a33ec53665fb18d249ace4f1b778c80dc3d",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/3",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "release_build",
+          "argv": [
+            "cargo",
+            "build",
+            "--workspace",
+            "--release",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/release_build.txt",
+          "log_sha256": "d9a91e46f54a46a85e1d3f4e76773845981d7182a4b48c2cbc7894a86b7f842f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/4",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "mcp_stdio",
+          "argv": [
+            "python",
+            "scripts/mcp_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-mcp-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/mcp_stdio.txt",
+          "log_sha256": "d2e8f9d76d82885d661df285b5d1d3fb56e20e2d2e8fadb5a4ddb00ccdaccb29",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/6",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "mcp_http",
+          "argv": [
+            "python",
+            "scripts/http_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-http-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/mcp_http.txt",
+          "log_sha256": "1d22fe1d840f0319013e96c61641ae4a5305229a67cf3cb764cee7887d0071a7",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/7",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "real_backends",
+          "argv": [
+            "python",
+            "tests/real_backends.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--python",
+            ".odin/validation-tools/python/Scripts/python.exe",
+            "--python-lsp",
+            ".odin/validation-tools/python/Scripts/basedpyright-langserver.exe",
+            "--typescript-lsp",
+            ".odin/validation-tools/typescript/node_modules/typescript-language-server/lib/cli.mjs",
+            "--node",
+            "C:/Program Files/nodejs/node.exe",
+            "--output",
+            "verification/real-backends.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/real_backends.txt",
+          "log_sha256": "d80560eecf47c06751ef92fbc62eeb7f08ccd21a5f77034835677e0b003aeb8f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "publish_policy",
+          "argv": [
+            "python",
+            "scripts/check_publish_policy.py"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/publish_policy.txt",
+          "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/15",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -2171,36 +3468,26 @@
           "id": "ODIN-027-A1",
           "criterion": "從全新 checkout 執行驗收有可審計 logs；失敗 gate 阻止 release。",
           "status": "PARTIAL",
-          "remaining": "最終整合 source snapshot 的 full local runner/clean checkout 證據仍由 root 完成。"
+          "remaining": "clean candidate 的可審計 logs 已完成；全新 checkout 重建與完整故障 gate 阻擋 release 的負例矩陣仍待驗收。"
         },
         {
           "id": "ODIN-027-A2",
           "criterion": "fixture self-test 與真實 binary/LS/DAP 驗證分開標記。",
-          "status": "PARTIAL",
-          "remaining": "fixture/真 backend 分層已明列；最終 report 的 source/binary digest 綁定待整合。"
+          "status": "PASS",
+          "remaining": null
         },
         {
           "id": "ODIN-027-A3",
           "criterion": "Actions 只有 workflow_dispatch，不自動啟動付費或額度計費的工作流程。",
-          "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "status": "PASS",
+          "remaining": null
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-027-A1",
           "criterion": "從全新 checkout 執行驗收有可審計 logs；失敗 gate 阻止 release。",
-          "remaining": "最終整合 source snapshot 的 full local runner/clean checkout 證據仍由 root 完成。"
-        },
-        {
-          "id": "ODIN-027-A2",
-          "criterion": "fixture self-test 與真實 binary/LS/DAP 驗證分開標記。",
-          "remaining": "fixture/真 backend 分層已明列；最終 report 的 source/binary digest 綁定待整合。"
-        },
-        {
-          "id": "ODIN-027-A3",
-          "criterion": "Actions 只有 workflow_dispatch，不自動啟動付費或額度計費的工作流程。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "clean candidate 的可審計 logs 已完成；全新 checkout 重建與完整故障 gate 阻擋 release 的負例矩陣仍待驗收。"
         }
       ],
       "supporting_reports": []
@@ -2367,7 +3654,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "Cargo.lock、SBOM、license inventory、advisory/pattern scan 有已執行報告；非 formal security/legal audit。",
+      "summary": "最終 Windows candidate 已執行 advisory、licenses、SBOM/pattern/allowlist 相關命令且 exit 0；新增文件與最終打包工件仍需同步 manifest。",
       "checks": [
         {
           "command": [
@@ -2381,6 +3668,95 @@
           "report_pointer": "/commands/7",
           "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
           "scope": "Manual self-hosted workflow/publisher policy source checks; no remote publication performed."
+        },
+        {
+          "name": "dependency_audit",
+          "argv": [
+            "cargo",
+            "audit",
+            "--deny",
+            "warnings",
+            "--json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/dependency_audit.txt",
+          "log_sha256": "9254d5c1ca8495ae225f2289fdc4394683abe266961f0dbfa231771c6eb2658f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/10",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "licenses",
+          "argv": [
+            "cargo",
+            "deny",
+            "--format",
+            "json",
+            "check",
+            "licenses"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/licenses.txt",
+          "log_sha256": "b87ff50d7cc1bf36ebb4295f2e6f418c52149ab1d889a4a9cfddcffae397ad39",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/11",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "supply_chain",
+          "argv": [
+            "python",
+            "scripts/supply_chain.py"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/supply_chain.txt",
+          "log_sha256": "101802573c4356f827e230588cf9822c4d68d3178c267cb34e3a83a4580b1387",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/12",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "static_source",
+          "argv": [
+            "python",
+            "scripts/check_source.py",
+            "--output",
+            "verification/local-source-check.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/static_source.txt",
+          "log_sha256": "e93ca1910ca494edf175e590c43ac3e74cf4273d91a973049d3040392d28d5f5",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/13",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "publish_policy",
+          "argv": [
+            "python",
+            "scripts/check_publish_policy.py"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/publish_policy.txt",
+          "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/15",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -2388,36 +3764,36 @@
           "id": "ODIN-031-A1",
           "criterion": "公開候選 repo 目錄通過 secret scan、license scanner 與 artifact allowlist。",
           "status": "PARTIAL",
-          "remaining": "現有報告涵蓋當時 candidate；本次新增／修改文件與最終 artifact allowlist 的完整掃描待 root 整合。"
+          "remaining": "已完成被測 source snapshot 的掃描與 license/advisory；此次文件更新及最終封裝的 artifact allowlist/manifest 還需最後核對。"
         },
         {
           "id": "ODIN-031-A2",
           "criterion": "README 不聲稱尚未執行的 tests 成功；所有 NOT_RUN 有出處。",
           "status": "PARTIAL",
-          "remaining": "文件已改據實分級；最終命令數與發布狀態仍待 root 實際完成後更新。"
+          "remaining": "Windows 最終命令與數量已更新；最終封裝內容、交付狀態及實際 GitHub 發布紀錄仍需同步。"
         },
         {
           "id": "ODIN-031-A3",
           "criterion": "權限最小化；公眾 PR 不在無防護 self-hosted runner 上自動執行。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-031-A1",
           "criterion": "公開候選 repo 目錄通過 secret scan、license scanner 與 artifact allowlist。",
-          "remaining": "現有報告涵蓋當時 candidate；本次新增／修改文件與最終 artifact allowlist 的完整掃描待 root 整合。"
+          "remaining": "已完成被測 source snapshot 的掃描與 license/advisory；此次文件更新及最終封裝的 artifact allowlist/manifest 還需最後核對。"
         },
         {
           "id": "ODIN-031-A2",
           "criterion": "README 不聲稱尚未執行的 tests 成功；所有 NOT_RUN 有出處。",
-          "remaining": "文件已改據實分級；最終命令數與發布狀態仍待 root 實際完成後更新。"
+          "remaining": "Windows 最終命令與數量已更新；最終封裝內容、交付狀態及實際 GitHub 發布紀錄仍需同步。"
         },
         {
           "id": "ODIN-031-A3",
           "criterion": "權限最小化；公眾 PR 不在無防護 self-hosted runner 上自動執行。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "supporting_reports": [
@@ -2472,6 +3848,24 @@
           "report_pointer": "/commands/1",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -2485,7 +3879,7 @@
           "id": "ODIN-032-A2",
           "criterion": "兩個獨立 process 同時修改同檔，其中一個必須安全拒絕或重新協商，不能靜默覆蓋。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-032-A3",
@@ -2503,7 +3897,7 @@
         {
           "id": "ODIN-032-A2",
           "criterion": "兩個獨立 process 同時修改同檔，其中一個必須安全拒絕或重新協商，不能靜默覆蓋。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-032-A3",
@@ -2536,7 +3930,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "40 需求／53 參考映射保留；新增工具後同步至 72 契約，文件與本次分級證據正在整合。",
+      "summary": "40 需求／53 參考映射與 72 契約經整合 runner 檢查；Windows 16 gates 已完成，發布與最終包內文件仍由實際結果同步。",
       "checks": [
         {
           "command": [
@@ -2563,6 +3957,72 @@
           "report_pointer": "/commands/7",
           "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
           "scope": "Manual self-hosted workflow/publisher policy source checks; no remote publication performed."
+        },
+        {
+          "name": "generated_artifacts",
+          "argv": [
+            "python",
+            "scripts/check_generated.py"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/generated_artifacts.txt",
+          "log_sha256": "db4d9338118aa96b5738b69f6b99e52dae3180112e73a50b784606915f3759f8",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/0",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "requirements",
+          "argv": [
+            "python",
+            "scripts/check_requirements.py"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/requirements.txt",
+          "log_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/14",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "static_source",
+          "argv": [
+            "python",
+            "scripts/check_source.py",
+            "--output",
+            "verification/local-source-check.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/static_source.txt",
+          "log_sha256": "e93ca1910ca494edf175e590c43ac3e74cf4273d91a973049d3040392d28d5f5",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/13",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "publish_policy",
+          "argv": [
+            "python",
+            "scripts/check_publish_policy.py"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/publish_policy.txt",
+          "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/15",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -2570,7 +4030,7 @@
           "id": "ODIN-033-A1",
           "criterion": "公開的 53 Serena 功能全部映射至少一項 Odin 原生需求。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-033-A2",
@@ -2582,14 +4042,14 @@
           "id": "ODIN-033-A3",
           "criterion": "README 入口、ROADMAP、RELEASE_GATES 與驗收證據一致。",
           "status": "PARTIAL",
-          "remaining": "候選 final runner、交付狀態、公開發布紀錄須在 root 完成後最後同步。"
+          "remaining": "Windows final runner 已完成且 source/binary 綁定；最終封裝文件、交付狀態及公開發布紀錄仍需按實際結果同步。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-033-A1",
           "criterion": "公開的 53 Serena 功能全部映射至少一項 Odin 原生需求。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-033-A2",
@@ -2599,7 +4059,7 @@
         {
           "id": "ODIN-033-A3",
           "criterion": "README 入口、ROADMAP、RELEASE_GATES 與驗收證據一致。",
-          "remaining": "候選 final runner、交付狀態、公開發布紀錄須在 root 完成後最後同步。"
+          "remaining": "Windows final runner 已完成且 source/binary 綁定；最終封裝文件、交付狀態及公開發布紀錄仍需按實際結果同步。"
         }
       ],
       "supporting_reports": []
@@ -2654,6 +4114,54 @@
           "report_pointer": "/checks/1",
           "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
           "scope": "Real rust-analyzer 1.90.0 initialize/documentSymbol only."
+        },
+        {
+          "name": "cli",
+          "argv": [
+            "python",
+            "scripts/cli_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-cli-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/cli.txt",
+          "log_sha256": "af68cd053674afbe449a294775c35347f15bfa44c56b9ed363367ab5cdf12b96",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/5",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "real_backends",
+          "argv": [
+            "python",
+            "tests/real_backends.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--python",
+            ".odin/validation-tools/python/Scripts/python.exe",
+            "--python-lsp",
+            ".odin/validation-tools/python/Scripts/basedpyright-langserver.exe",
+            "--typescript-lsp",
+            ".odin/validation-tools/typescript/node_modules/typescript-language-server/lib/cli.mjs",
+            "--node",
+            "C:/Program Files/nodejs/node.exe",
+            "--output",
+            "verification/real-backends.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/real_backends.txt",
+          "log_sha256": "d80560eecf47c06751ef92fbc62eeb7f08ccd21a5f77034835677e0b003aeb8f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -2718,6 +4226,24 @@
           "report_pointer": "/commands/1",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -2792,6 +4318,52 @@
           "report_pointer": "/checks/0",
           "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
           "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "real_backends",
+          "argv": [
+            "python",
+            "tests/real_backends.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--python",
+            ".odin/validation-tools/python/Scripts/python.exe",
+            "--python-lsp",
+            ".odin/validation-tools/python/Scripts/basedpyright-langserver.exe",
+            "--typescript-lsp",
+            ".odin/validation-tools/typescript/node_modules/typescript-language-server/lib/cli.mjs",
+            "--node",
+            "C:/Program Files/nodejs/node.exe",
+            "--output",
+            "verification/real-backends.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/real_backends.txt",
+          "log_sha256": "d80560eecf47c06751ef92fbc62eeb7f08ccd21a5f77034835677e0b003aeb8f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -2834,7 +4406,7 @@
       "supporting_reports": [
         {
           "report": "verification/real-backends.json",
-          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+          "scope": "Executed real-backend observations, bound to local-validation.json /commands/9 exit 0 and the integrated release binary SHA-256."
         }
       ]
     },
@@ -2861,6 +4433,24 @@
           "report_pointer": "/commands/1",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -2880,7 +4470,7 @@
           "id": "ODIN-037-A3",
           "criterion": "不要求安裝 Serena 或讀取 Serena 私有路徑。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "unverified_acceptance": [
@@ -2897,7 +4487,7 @@
         {
           "id": "ODIN-037-A3",
           "criterion": "不要求安裝 Serena 或讀取 Serena 私有路徑。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         }
       ],
       "supporting_reports": [
@@ -2930,6 +4520,24 @@
           "report_pointer": "/commands/1",
           "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
           "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -2937,13 +4545,13 @@
           "id": "ODIN-038-A1",
           "criterion": "同檔 5 命中可只改指定 2 個且衝突拒絕，不多改任何匹配。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-038-A2",
           "criterion": "Regex 多行與 CRLF 的預覽與實際套用位移一致。",
           "status": "PARTIAL",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-038-A3",
@@ -2956,12 +4564,12 @@
         {
           "id": "ODIN-038-A1",
           "criterion": "同檔 5 命中可只改指定 2 個且衝突拒絕，不多改任何匹配。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-038-A2",
           "criterion": "Regex 多行與 CRLF 的預覽與實際套用位移一致。",
-          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
         },
         {
           "id": "ODIN-038-A3",
@@ -3004,6 +4612,52 @@
           "report_pointer": "/checks/0",
           "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
           "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "real_backends",
+          "argv": [
+            "python",
+            "tests/real_backends.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--python",
+            ".odin/validation-tools/python/Scripts/python.exe",
+            "--python-lsp",
+            ".odin/validation-tools/python/Scripts/basedpyright-langserver.exe",
+            "--typescript-lsp",
+            ".odin/validation-tools/typescript/node_modules/typescript-language-server/lib/cli.mjs",
+            "--node",
+            "C:/Program Files/nodejs/node.exe",
+            "--output",
+            "verification/real-backends.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/real_backends.txt",
+          "log_sha256": "d80560eecf47c06751ef92fbc62eeb7f08ccd21a5f77034835677e0b003aeb8f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -3050,7 +4704,7 @@
         },
         {
           "report": "verification/real-backends.json",
-          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+          "scope": "Executed real-backend observations, bound to local-validation.json /commands/9 exit 0 and the integrated release binary SHA-256."
         }
       ]
     },
@@ -3094,6 +4748,44 @@
           "report_pointer": "/commands/10",
           "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
           "scope": "Real loopback HTTP initialize/tools/call, Bearer/Host/Origin negatives, metadata allowlist and JSONL."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/workspace_tests.txt",
+          "log_sha256": "e76ba35f023bdc07d979b3606ae9e3ef223580c824068a659d161d40a408280f",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
+        },
+        {
+          "name": "mcp_http",
+          "argv": [
+            "python",
+            "scripts/http_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/local-http-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/logs/mcp_http.txt",
+          "log_sha256": "1d22fe1d840f0319013e96c61641ae4a5305229a67cf3cb764cee7887d0071a7",
+          "report": "verification/local-validation.json",
+          "report_pointer": "/commands/7",
+          "report_sha256": "8b7ffb198f63ba9900fffb29fe14fc0a6598f089bc5529a4ad5f5356f6f60a4a",
+          "scope": "Executed Windows integrated candidate gate; this does not prove unimplemented features or other OS acceptance."
         }
       ],
       "acceptance_results": [
@@ -3140,5 +4832,92 @@
     "PASS": 0,
     "PARTIAL": 38,
     "NOT_RUN": 2
+  },
+  "real_backend_validation": {
+    "status": "PASS",
+    "report": "verification/real-backends.json",
+    "report_sha256": "3a13e07e1a77ec0492ccc1091064641dc9259c6b45eabe5be8faafc6e5cb0846",
+    "checks_passed": 29,
+    "binary_sha256": "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be",
+    "backends": {
+      "rust": "rust-analyzer 1.90.0 (1159e78c 2025-09-14)",
+      "python_lsp": "Version: 1.40.2",
+      "typescript_lsp": "6.0.2",
+      "debugpy": "1.8.22"
+    },
+    "command_report": "verification/local-validation.json",
+    "command_pointer": "/commands/9",
+    "command_exit_code": 0,
+    "scope": "Actual Windows three-language cross-file references, rename definition/consumer uses and rollback; actual debugpy breakpoint/variables/evaluate/step. Diagnostics, language-specific refactors and other OS remain incomplete."
+  },
+  "final_artifacts": {
+    "portable_zip": "NOT_RUN",
+    "installer_package": "NOT_RUN",
+    "note": "Final candidate repackaging including updated documentation is pending; earlier recipe/installer reports remain historical and do not certify the final artifact."
+  },
+  "final_windows_packaging": {
+    "status": "PASS",
+    "scope": "Exact final Windows binary packaging, portable integrity, isolated install/reinstall/uninstall",
+    "report": "verification/windows-final-packaging.json",
+    "report_sha256": "6eecfaf47d8cb6385f1abb26fa240fd896c37be5423679044d4f846424c77ecd",
+    "binary_sha256": "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be",
+    "commands": [
+      {
+        "command": [
+          "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+          "-NoProfile",
+          "-File",
+          "<WORKSPACE>/scripts/package.ps1",
+          "-SkipBuild",
+          "-Binary",
+          "<WORKSPACE>/target/release/odin.exe",
+          "-OutputDirectory",
+          "<WORKSPACE>/dist/0.2.0-native-preview-82901e5",
+          "-Iscc",
+          "C:/Program Files/Inno Setup 7/ISCC.exe"
+        ],
+        "cwd": "<WORKSPACE>",
+        "exit_code": 0,
+        "status": "PASS",
+        "fixed_binary_sha256": "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be",
+        "binary_sha256_after": "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be",
+        "output_directory": "<WORKSPACE>/dist/0.2.0-native-preview-82901e5"
+      },
+      {
+        "command": [
+          "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+          "-NoProfile",
+          "-File",
+          "<WORKSPACE>/scripts/verify_installer.ps1",
+          "-Installer",
+          "<WORKSPACE>\\dist\\0.2.0-native-preview-82901e5\\odin-0.2.0-windows-x64-setup.exe",
+          "-ExpectedBinarySha256",
+          "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be"
+        ],
+        "cwd": "<WORKSPACE>",
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      {
+        "command": [
+          "python",
+          "-"
+        ],
+        "cwd": "<WORKSPACE>",
+        "exit_code": 0,
+        "status": "PASS",
+        "report": "<WORKSPACE>/dist/0.2.0-native-preview-82901e5/portable-verification.json"
+      }
+    ],
+    "portable_files_verified": 39,
+    "portable_checks_passed": 87,
+    "installer_lifecycle_checks_passed": 8,
+    "not_run": [
+      "Cross-version installer upgrade",
+      "Interrupted/cancelled installation rollback",
+      "Linux/macOS native packaging and runtime",
+      "Clean-machine installation"
+    ],
+    "note": "This is the later final-binary packaging evidence. Earlier recipe reports remain historical; full clean-machine/cross-version acceptance is not complete."
   }
 }

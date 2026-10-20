@@ -19,12 +19,22 @@
       "detail": null
     },
     {
+      "name": "rust:real_cross_file_references",
+      "status": "PASS",
+      "detail": null
+    },
+    {
       "name": "rust:rename_preview_is_readonly",
       "status": "PASS",
       "detail": null
     },
     {
       "name": "rust:rename_definition_and_reference",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "rust:rename_cross_file_uses",
       "status": "PASS",
       "detail": null
     },
@@ -44,12 +54,22 @@
       "detail": null
     },
     {
+      "name": "python:real_cross_file_references",
+      "status": "PASS",
+      "detail": null
+    },
+    {
       "name": "python:rename_preview_is_readonly",
       "status": "PASS",
       "detail": null
     },
     {
       "name": "python:rename_definition_and_reference",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "python:rename_cross_file_uses",
       "status": "PASS",
       "detail": null
     },
@@ -69,12 +89,22 @@
       "detail": null
     },
     {
+      "name": "typescript:real_cross_file_references",
+      "status": "PASS",
+      "detail": null
+    },
+    {
       "name": "typescript:rename_preview_is_readonly",
       "status": "PASS",
       "detail": null
     },
     {
       "name": "typescript:rename_definition_and_reference",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "typescript:rename_cross_file_uses",
       "status": "PASS",
       "detail": null
     },
@@ -120,11 +150,7 @@
     }
   ],
   "attempt_errors": [
-    "{\"error\": {\"code\": \"BACKEND_ERROR\", \"message\": \"Expected exactly one symbol named greet; found 0\"}}",
-    "{\"error\": {\"code\": \"BACKEND_ERROR\", \"message\": \"Expected exactly one symbol named greet; found 0\"}}",
-    "{\"error\": {\"code\": \"BACKEND_ERROR\", \"message\": \"Expected exactly one symbol named greet; found 0\"}}",
-    "{\"error\": {\"code\": \"BACKEND_ERROR\", \"message\": \"Expected exactly one symbol named greet; found 0\"}}",
-    "{\"error\": {\"code\": \"BACKEND_ERROR\", \"message\": \"{\\\"code\\\":-32801,\\\"message\\\":\\\"content modified\\\"}\"}}"
+    "{\"error\": {\"code\": \"BACKEND_ERROR\", \"message\": \"Expected exactly one symbol named greet; found 0\"}}"
   ],
   "backends": {
     "rust": "rust-analyzer 1.90.0 (1159e78c 2025-09-14)",
@@ -132,5 +158,5 @@
     "typescript_lsp": "6.0.2",
     "debugpy": "1.8.22"
   },
-  "binary_sha256": "20c8037978ad86b9fb96056b4dcb0fccb07bb328dbc995c8ea8d920509870741"
+  "binary_sha256": "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be"
 }
