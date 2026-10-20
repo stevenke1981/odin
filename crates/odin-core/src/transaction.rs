@@ -30,6 +30,8 @@ struct Journal {
     input_hash: String,
     phase: Phase,
     files: Vec<Snapshot>,
+    #[serde(default)]
+    owner: Option<String>,
 }
 #[derive(Clone)]
 pub struct Transactions {
@@ -88,9 +90,14 @@ impl Transactions {
     }
     /// Produces a durable immutable changeset; never edits project files.
     pub fn prepare(&self, changes: Vec<Change>, request_id: Option<&str>) -> Result<serde_json::Value> {
+        self.prepare_scoped(changes, request_id, None)
+    }
+    /// Bind a shared-storage transaction to its initiating project. Ownership
+    /// is part of the immutable journal and the idempotency input digest.
+    pub fn prepare_scoped(&self, changes: Vec<Change>, request_id: Option<&str>, owner: Option<&str>) -> Result<serde_json::Value> {
         let _lock = self.lock()?;
         if changes.is_empty() || changes.len() > self.max_changes { return Err(Fault::invalid("Empty or oversized changeset")); }
-        let input_hash = sha256(&serde_json::to_vec(&changes)?);
+        let input_hash = sha256(&serde_json::to_vec(&(&changes, owner))?);
         let key_path = request_id.map(|key| self.directory.join("keys").join(format!("{}.json", sha256(key.as_bytes()))));
         if let Some(path) = key_path.as_ref().filter(|p| p.exists()) {
             let existing: serde_json::Value = serde_json::from_slice(&std::fs::read(path)?)?;
@@ -112,7 +119,7 @@ impl Transactions {
             snapshots.push(Snapshot { path: change.path, before, after: change.content });
         }
         let journal = Journal { id: uuid::Uuid::new_v4().to_string(), created_ms: unix_ms(), input_hash,
-            phase: Phase::Draft, files: snapshots };
+            phase: Phase::Draft, files: snapshots, owner: owner.map(str::to_owned) };
         self.save(&journal)?;
         if let Some(path) = key_path {
             atomic_write(&path, &serde_json::to_vec(&serde_json::json!({"id":journal.id,"input_hash":journal.input_hash}))?)?;
@@ -131,6 +138,11 @@ impl Transactions {
     }
     pub fn preview(&self, id: &str) -> Result<serde_json::Value> {
         let _lock = self.lock()?; self.preview_unlocked(&self.load(id)?)
+    }
+    pub fn owner_and_paths(&self, id: &str) -> Result<(Option<String>, Vec<String>)> {
+        let _lock = self.lock()?;
+        let journal = self.load(id)?;
+        Ok((journal.owner, journal.files.into_iter().map(|file| file.path).collect()))
     }
     pub fn list(&self) -> Result<serde_json::Value> {
         let _lock = self.lock()?;

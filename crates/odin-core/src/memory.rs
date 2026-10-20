@@ -4,6 +4,18 @@ use crate::{Fault, Result, paths::{SafeRoot, private_dir}, transaction::{Transac
 use serde_json::{Value, json};
 use std::{collections::BTreeSet, path::{Path, PathBuf}};
 
+#[derive(serde::Serialize, serde::Deserialize)]
+#[serde(deny_unknown_fields)]
+struct MemoryBundle {
+    format: String,
+    schema_version: u32,
+    project: String,
+    notes: Vec<ExportedNote>,
+}
+#[derive(serde::Serialize, serde::Deserialize)]
+#[serde(deny_unknown_fields)]
+struct ExportedNote { name: String, content: String, sha256: String }
+
 #[derive(Clone)]
 pub struct Memories {
     root: SafeRoot,
@@ -78,6 +90,111 @@ impl Memories {
     pub fn read(&self, project: &str, name: &str) -> Result<Value> {
         let content=self.root.read(&self.name_path(project,name)?)?;
         Ok(json!({"name":name,"sha256":sha256(content.as_bytes()),"content":content}))
+    }
+    /// Versioned data only: no YAML tags, templates, commands or executable config.
+    pub fn export(&self, project: &str) -> Result<Value> {
+        self.name_path(project, "validation")?;
+        let mut notes = Vec::new();
+        for path in self.all_paths()? {
+            let (scope, name) = self.path_name(&path)?;
+            if !scope.is_empty() && scope != project { continue; }
+            let content = self.root.read(&path)?;
+            notes.push(ExportedNote { name, sha256: sha256(content.as_bytes()), content });
+        }
+        Ok(serde_json::to_value(MemoryBundle { format: "odin-memory-bundle".into(), schema_version: 1, project: project.into(), notes })?)
+    }
+    /// Create-only import. All digests and references are validated before the
+    /// journal is prepared; existing notes are never silently merged/overwritten.
+    pub fn import(&self, project: &str, bundle: &Value) -> Result<Value> {
+        self.name_path(project, "validation")?;
+        let bundle: MemoryBundle = serde_json::from_value(bundle.clone())?;
+        if bundle.format != "odin-memory-bundle" || bundle.schema_version != 1 {
+            return Err(Fault::new("SCHEMA_UNSUPPORTED", "Unsupported memory bundle format/version"));
+        }
+        let mut names = BTreeSet::new();
+        let mut changes = Vec::new();
+        for note in &bundle.notes {
+            self.check_write(project, &note.name)?;
+            let path = self.name_path(project, &note.name)?;
+            if !names.insert(note.name.clone()) { return Err(Fault::invalid("Duplicate memory name in bundle")); }
+            if sha256(note.content.as_bytes()) != note.sha256 { return Err(Fault::new("INTEGRITY_ERROR", "Memory bundle digest mismatch")); }
+            if self.root.root().join(&path).exists() { return Err(Fault::conflict("Import destination memory exists")); }
+            changes.push(Change { path, expected_sha256: None, content: Some(note.content.clone()) });
+        }
+        for note in &bundle.notes {
+            for cap in reference_regex()?.captures_iter(&note.content) {
+                let target = &cap[1];
+                if note.name.starts_with("global/") && !target.starts_with("global/") {
+                    return Err(Fault::invalid("Global memories cannot contain project-local references"));
+                }
+                if !names.contains(target) && self.read(project, target).is_err() {
+                    return Err(Fault::invalid(format!("Unresolved imported memory reference: {target}")));
+                }
+            }
+        }
+        for change in &changes { self.ensure_parent(&change.path)?; }
+        self.tx.prepare_scoped(changes, None, Some(project))
+    }
+    /// A scope move refuses references that cannot be expressed in the current
+    /// mem: name syntax, instead of rebinding them to an unrelated local note.
+    pub fn move_scope(&self, project: &str, name: &str, destination_project: &str, destination_name: &str, expected: &str) -> Result<Value> {
+        self.check_write(project, name)?;
+        self.check_write(destination_project, destination_name)?;
+        let source = self.name_path(project, name)?;
+        let destination = self.name_path(destination_project, destination_name)?;
+        if source == destination { return Err(Fault::invalid("Memory source and destination are identical")); }
+        if self.root.root().join(&destination).exists() { return Err(Fault::conflict("Destination memory exists")); }
+        let content = self.root.read(&source)?;
+        if sha256(content.as_bytes()) != expected { return Err(Fault::conflict("Memory changed before move")); }
+        let source_global = name.starts_with("global/");
+        let target_global = destination_name.starts_with("global/");
+        let changes_scope = target_global || project != destination_project;
+        if changes_scope {
+            for cap in reference_regex()?.captures_iter(&content) {
+                let target = &cap[1];
+                if target != name && !target.starts_with("global/") {
+                    return Err(Fault::new("NEED_REVIEW", "Outgoing local references cannot be moved across memory scopes"));
+                }
+            }
+        }
+        let mut changes = vec![
+            Change { path: source.clone(), expected_sha256: Some(expected.into()), content: None },
+            Change { path: destination.clone(), expected_sha256: None, content: Some(rewrite_refs(&content, name, destination_name)) },
+        ];
+        for path in self.all_paths()? {
+            if path == source { continue; }
+            let (scope, referring_name) = self.path_name(&path)?;
+            if !source_global && scope != project { continue; }
+            let before = self.root.read(&path)?;
+            if !reference_regex()?.captures_iter(&before).any(|cap| &cap[1] == name) { continue; }
+            let after = rewrite_refs(&before, name, destination_name);
+            if !target_global && (scope.is_empty() || scope != destination_project) {
+                return Err(Fault::new("NEED_REVIEW", "Incoming references cannot cross project-local memory scopes"));
+            }
+            let check_project = if scope.is_empty() { project } else { &scope };
+            self.check_write(check_project, &referring_name)?;
+            changes.push(Change { path, expected_sha256: Some(sha256(before.as_bytes())), content: Some(after) });
+        }
+        self.ensure_parent(&destination)?;
+        self.tx.prepare_scoped(changes, None, Some(project))
+    }
+    fn authorize_transaction(&self, project: &str, id: &str) -> Result<()> {
+        self.name_path(project, "validation")?;
+        let (owner, paths) = self.tx.owner_and_paths(id)?;
+        if owner.as_deref() != Some(project) { return Err(Fault::denied("Memory transaction belongs to another project or operator")); }
+        for path in paths {
+            let (scope, name) = self.path_name(&path)?;
+            self.check_write(if scope.is_empty() { project } else { &scope }, &name)?;
+        }
+        Ok(())
+    }
+    pub fn preview(&self, project: &str, id: &str) -> Result<Value> {
+        self.authorize_transaction(project, id)?;
+        self.tx.preview(id)
+    }
+    pub fn apply(&self, project: &str, id: &str) -> Result<Value> {
+        self.authorize_transaction(project, id)?;
+        self.tx.apply(id)
     }
     pub fn write(&self, project: &str, name: &str, content: Option<String>, expected: Option<String>) -> Result<Value> {
         self.check_write(project,name)?;
@@ -184,5 +301,70 @@ mod tests {
         let d=tempfile::tempdir().unwrap();let ps=BTreeSet::from(["demo".into()]);
         let m=Memories::new(d.path(),ps.clone(),ps,false,&[],10000,32).unwrap();
         assert!(m.write("demo","global/x",Some("x".into()),None).is_err());
+    }
+    fn two_projects(state: &Path, global: bool) -> Memories {
+        let projects = BTreeSet::from(["one".into(), "two".into()]);
+        Memories::new(state, projects.clone(), projects, global, &[], 10000, 32).unwrap()
+    }
+    #[test]
+    fn memory_bundle_roundtrip_is_previewed_and_owned() {
+        let state = tempfile::tempdir().unwrap();
+        let memories = two_projects(state.path(), false);
+        memories.write("one", "core", Some("Architecture".into()), None).unwrap();
+        memories.write("one", "index", Some("See mem:core".into()), None).unwrap();
+        let bundle = memories.export("one").unwrap();
+        let preview = memories.import("two", &bundle).unwrap();
+        let id = preview["transaction_id"].as_str().unwrap();
+        assert!(memories.read("two", "core").is_err());
+        assert_eq!(memories.preview("one", id).unwrap_err().code, "PERMISSION_DENIED");
+        assert_eq!(memories.apply("one", id).unwrap_err().code, "PERMISSION_DENIED");
+        memories.apply("two", id).unwrap();
+        assert_eq!(memories.read("two", "core").unwrap()["content"], "Architecture");
+        assert_eq!(memories.check("two").unwrap()["valid"], true);
+        assert_eq!(memories.import("two", &bundle).unwrap_err().code, "CONFLICT");
+    }
+    #[test]
+    fn memory_import_rejects_digest_tampering_and_unresolved_refs() {
+        let state = tempfile::tempdir().unwrap();
+        let memories = two_projects(state.path(), false);
+        let mut bundle = json!({"format":"odin-memory-bundle","schema_version":1,"project":"one", "notes":[{"name":"core","content":"tampered","sha256":sha256(b"original")}]});
+        assert_eq!(memories.import("two", &bundle).unwrap_err().code, "INTEGRITY_ERROR");
+        bundle["notes"][0]["content"] = "mem:missing".into();
+        bundle["notes"][0]["sha256"] = sha256(b"mem:missing").into();
+        assert_eq!(memories.import("two", &bundle).unwrap_err().code, "INVALID_ARGUMENT");
+        assert!(memories.read("two", "core").is_err());
+    }
+    #[test]
+    fn scope_move_updates_references_in_one_cas_journal() {
+        let state = tempfile::tempdir().unwrap();
+        let memories = two_projects(state.path(), true);
+        memories.write("one", "core", Some("Architecture".into()), None).unwrap();
+        memories.write("one", "index", Some("See mem:core".into()), None).unwrap();
+        let preview = memories.move_scope("one", "core", "one", "global/core", &sha256(b"Architecture")).unwrap();
+        assert!(memories.read("one", "core").is_ok());
+        memories.apply("one", preview["transaction_id"].as_str().unwrap()).unwrap();
+        assert!(memories.read("one", "core").is_err());
+        assert_eq!(memories.read("one", "index").unwrap()["content"], "See mem:global/core");
+        assert_eq!(memories.read("two", "global/core").unwrap()["content"], "Architecture");
+    }
+    #[test]
+    fn scope_move_never_rebinds_cross_project_local_references() {
+        let state = tempfile::tempdir().unwrap();
+        let memories = two_projects(state.path(), true);
+        memories.write("one", "core", Some("Architecture".into()), None).unwrap();
+        memories.write("one", "index", Some("See mem:core".into()), None).unwrap();
+        assert_eq!(memories.move_scope("one", "core", "two", "core", &sha256(b"Architecture")).unwrap_err().code, "NEED_REVIEW");
+        assert_eq!(memories.read("one", "index").unwrap()["content"], "See mem:core");
+        assert!(memories.read("two", "core").is_err());
+    }
+    #[test]
+    fn prepared_import_detects_external_writes() {
+        let state = tempfile::tempdir().unwrap();
+        let memories = two_projects(state.path(), false);
+        memories.write("one", "core", Some("Architecture".into()), None).unwrap();
+        let preview = memories.import("two", &memories.export("one").unwrap()).unwrap();
+        memories.write("two", "core", Some("third party".into()), None).unwrap();
+        assert_eq!(memories.apply("two", preview["transaction_id"].as_str().unwrap()).unwrap_err().code, "CONFLICT");
+        assert_eq!(memories.read("two", "core").unwrap()["content"], "third party");
     }
 }
