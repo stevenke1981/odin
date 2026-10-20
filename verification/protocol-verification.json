@@ -16,7 +16,7 @@
     "crates/odin-protocol/src/text.rs": "8e9714d98171d83721bc07100f776df6982ccc798f7df88cbd6329e2a01ce9ae",
     "crates/odin-protocol/src/workspace.rs": "bbd5af31583f9c1322f2c6b90fcfaf438270e9be8b9e664b616c7cefc8647d16",
     "crates/odin-protocol/tests/fixture_protocols.rs": "07237985127e1beab6408834e166c338c1cff405794c88ac8a485570cec1db97",
-    "tests/fixtures/protocol_peer.py": "a58552cdc914ba93dcc6068b3f91878965320fe5e4e94f4be89733c0f6e9677d",
+    "tests/fixtures/protocol_peer.py": "623d2e919add5fede422bf550bda5afa797ab824dc1e7048e6077db3f059c3c0",
     "docs/PROTOCOL_IMPLEMENTATION.md": "a6d85c256f04d51cd40b45c592d52ad449463a918d3eb4f89b7313d395eb572a"
   },
   "checks": [
@@ -87,5 +87,7 @@
   "external_effects": {
     "remote_push": false,
     "cloud_ci": false
-  }
+  },
+  "tested_code_commit": "a16743d7b49ec3aa9792a82492fe234729df1c72",
+  "source_hash_normalization": "UTF-8 source bytes with CRLF normalized to LF, independent of Git checkout eol conversion"
 }
