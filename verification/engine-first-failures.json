@@ -1,0 +1,37 @@
+{
+  "purpose": "Preserve actual earlier failures; final gates are recorded separately in engine-verification.json.",
+  "source": "Command outputs from the engine-completion author worktree on Windows x64 MSVC.",
+  "failures": [
+    {
+      "command": "cargo test -p odin-engine --locked",
+      "outer_shell_exit_code": 1,
+      "status": "FAIL",
+      "scope": "Initial compilation, before protocol API integration; Rust tests did not execute.",
+      "output_excerpt": "error[E0599]: no method named actions_with_diagnostics / resolve_action / is_closed; error[E0689]: cannot call saturating_add on ambiguous numeric type",
+      "resolution": "Merged protocol API 656cc49; made result store byte count explicitly u64."
+    },
+    {
+      "command": "cargo test -p odin-engine --locked",
+      "outer_shell_exit_code": 1,
+      "status": "FAIL",
+      "scope": "19 unit tests passed; completion integration tests had 13 passed and 1 failed.",
+      "output_excerpt": "protocol_fixture_move_and_inline_produce_transaction_previews_without_text_fallback FAILED: IO_ERROR, os error 2",
+      "resolution": "Move destination normalization had incorrectly required an existing file via SafeRoot.relative; now normalize the already validated create-only destination path. Targeted regression and later full suite passed."
+    },
+    {
+      "command": "cargo clippy -p odin-engine --all-targets --locked -- -D warnings",
+      "status": "FAIL",
+      "scope": "Protocol dependency lint failure, followed by separately scoped engine lint corrections.",
+      "output_excerpt": "protocol: collapsible_if at dap.rs and rpc.rs/workspace.rs; RpcProcess::spawn too_many_arguments. engine: collapsible_if and needless_borrow.",
+      "resolution": "Protocol owner supplied a16743d; engine applied compiler suggestions without lint suppression. Final strict command returned exit 0."
+    },
+    {
+      "command": "cargo test -p odin-engine --test completion --locked protocol_fixture_symbol_filters",
+      "outer_shell_exit_code": 1,
+      "status": "FAIL",
+      "scope": "Added graceful LSP shutdown regression exposed a fixture-only null params parsing bug.",
+      "output_excerpt": "AttributeError: NoneType object has no attribute get; shutdown_warnings contained Backend process exited",
+      "resolution": "Fixture accepts null shutdown params as an empty object; same targeted regression passed."
+    }
+  ]
+}

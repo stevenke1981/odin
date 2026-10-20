@@ -107,6 +107,8 @@ pub fn prepare(
     for file in files {
         let path = string(file, "relative_path")?;
         let normalized = project.root.relative(&project.root.resolve(path, false)?)?;
+        #[cfg(windows)]
+        let normalized = normalized.to_lowercase();
         if !seen_files.insert(normalized) {
             return Err(Fault::invalid("Duplicate file path"));
         }

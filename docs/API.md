@@ -76,7 +76,7 @@ LSP position 為 0-based UTF-16；檔案行數為 1-based inclusive。參數細�
 | `flow_clear` | state | `project`, `session` | Clear this per-project flow session |
 | `execute_shell_command` | execute | `project`, `profile` | Run a fixed operator-defined argv profile; no caller-supplied shell string |
 | `debug_start` | execute | `project`, `profile` | Start a configured DAP adapter; requires allow_debug |
-| `debug_request` | execute | `project`, `command`, `arguments` | Send an allowlisted DAP request; launch/attach return asynchronous tickets |
+| `debug_request` | execute | `project`, `command`, `arguments` | Send an allowlisted DAP request; launch/attach/restart return tickets; native cancel_ticket requests best-effort cancellation |
 | `debug_events` | execute | `project` | Drain DAP events and completed launch tickets |
 | `debug_stop` | execute | `project` | Disconnect debuggee with termination requested and drop the adapter |
 | `debug_batch` | execute | `project`, `session_id`, `commands` | Run 1..32 allowlisted DAP requests in an explicit project session with per-step request IDs |

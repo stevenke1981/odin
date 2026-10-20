@@ -333,6 +333,26 @@ impl Engine {
         result["backend_sync_warnings"] = json!(warnings);
         Ok(())
     }
+    async fn stop_language_servers(&self, project: &str) -> Vec<String> {
+        let clients = {
+            let mut servers = self.lsp.lock().await;
+            let keys = servers
+                .keys()
+                .filter(|(id, _)| id == project)
+                .cloned()
+                .collect::<Vec<_>>();
+            keys.into_iter()
+                .filter_map(|key| servers.remove(&key))
+                .collect::<Vec<_>>()
+        };
+        let mut warnings = Vec::new();
+        for client in clients {
+            if let Err(error) = client.shutdown().await {
+                warnings.push(error.to_string());
+            }
+        }
+        warnings
+    }
     async fn dispatch(self: &Arc<Self>, p: &Arc<Project>, tool: &str, a: &Value) -> Result<Value> {
         let limit = &self.config.limits;
         match tool {
@@ -615,8 +635,10 @@ impl Engine {
                 refactor::prepare(self, p, tool, a).await
             }
             "restart_language_server" => {
-                self.lsp.lock().await.retain(|(id, _), _| id != &p.id);
-                Ok(json!({"stopped":true,"restart":"lazy on next semantic request"}))
+                let warnings = self.stop_language_servers(&p.id).await;
+                Ok(
+                    json!({"stopped":true,"shutdown_warnings":warnings,"restart":"lazy on next semantic request"}),
+                )
             }
             "transaction_prepare" => p.transactions.prepare(
                 serde_json::from_value(a["changes"].clone())?,
@@ -635,7 +657,7 @@ impl Engine {
             }
             "transaction_recover" => {
                 let result = p.transactions.recover()?;
-                self.lsp.lock().await.retain(|(id, _), _| id != &p.id);
+                self.stop_language_servers(&p.id).await;
                 Ok(result)
             }
             "create_text_file" => p.transactions.prepare(
@@ -924,9 +946,10 @@ impl Engine {
                     let response = adapter
                         .request("disconnect", json!({"terminateDebuggee":true}))
                         .await;
+                    let cleanup = adapter.shutdown().await;
                     self.debuggers.lock().await.remove(&p.id);
                     Ok(
-                        json!({"adapter_dropped":true,"disconnect_succeeded":response.is_ok(),"warning":response.err().map(|e|e.to_string())}),
+                        json!({"adapter_dropped":true,"disconnect_succeeded":response.is_ok(),"cleanup_succeeded":cleanup.is_ok(),"warning":response.err().map(|e|e.to_string()),"cleanup_warning":cleanup.err().map(|e|e.to_string())}),
                     )
                 } else if tool == "debug_events" {
                     adapter.poll().await.map_err(backend_error)
@@ -969,10 +992,18 @@ impl Engine {
                         json!({"session_id":session_id,"success":successful,"steps_executed":outcomes.len(),"outcomes":outcomes,"closed":adapter.is_closed(),"language":"odin-dap-batch","sandbox":false}),
                     )
                 } else {
-                    adapter
-                        .request(string(a, "command")?, a["arguments"].clone())
-                        .await
-                        .map_err(backend_error)
+                    let command = string(a, "command")?;
+                    if command == "cancel_ticket" {
+                        adapter
+                            .cancel(string(&a["arguments"], "ticket")?)
+                            .await
+                            .map_err(backend_error)
+                    } else {
+                        adapter
+                            .request(command, a["arguments"].clone())
+                            .await
+                            .map_err(backend_error)
+                    }
                 }
             }
             "result_read" => results::read(self, p, a),
@@ -1138,7 +1169,10 @@ impl Engine {
             let mut value = json!({"location":location,"external":true});
             if let (Some(uri), Some(range)) = (uri, range_value)
                 && let Ok(url) = url::Url::parse(uri)
+                && url.query().is_none()
+                && url.fragment().is_none()
                 && let Ok(absolute) = url.to_file_path()
+                && let Ok(absolute) = absolute.canonicalize()
                 && let Ok(path) = p.root.relative(&absolute)
             {
                 value["external"] = false.into();

@@ -98,7 +98,7 @@ add("flow_vars","List retained per-project flow variable names and sizes","read"
 add("flow_clear","Clear this per-project flow session","state",{"session":s()},["session"])
 add("execute_shell_command","Run a fixed operator-defined argv profile; no caller-supplied shell string","execute",{"profile":s()},["profile"])
 add("debug_start","Start a configured DAP adapter; requires allow_debug","execute",{"profile":s()},["profile"])
-add("debug_request","Send an allowlisted DAP request; launch/attach return asynchronous tickets","execute",{"command":s(),"arguments":obj(additional=True),"session_id":s()},["command","arguments"])
+add("debug_request","Send an allowlisted DAP request; launch/attach/restart return tickets; native cancel_ticket requests best-effort cancellation","execute",{"command":s(),"arguments":obj(additional=True),"session_id":s()},["command","arguments"])
 add("debug_events","Drain DAP events and completed launch tickets","execute",{"session_id":s()})
 add("debug_stop","Disconnect debuggee with termination requested and drop the adapter","execute",{"session_id":s()})
 add("debug_batch","Run 1..32 allowlisted DAP requests in an explicit project session with per-step request IDs","execute",{"session_id":s(),"commands":arr(obj({"command":s(),"arguments":obj(additional=True)},["command","arguments"]),32),"stop_on_error":b(True)},["session_id","commands"])

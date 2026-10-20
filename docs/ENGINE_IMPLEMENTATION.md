@@ -20,6 +20,8 @@ flow 使用每個 `(project, session)` 的獨立 namespace mutex；全域 map �
 
 debug_start 回 project-scoped session UUID。debug_batch 最多 32 個 allowlisted DAP requests，核對 session ID、每步回 request ID、pending ticket 或真實錯誤；全批次有 host RPC deadline，逾時明確標示 adapter-side outcome unknown。這不是 Python REPL。host 的 allow_debug 代表授權除錯器執行 target；adapter 繼承的環境採 allowlist，launch payload 仍是具執行權限的除錯輸入，沒有 OS 沙箱保證。
 
+`debug_request` 的原生命令 `cancel_ticket` 接受 `arguments.ticket`，對 launch/attach ticket 請求 best-effort 取消，回 outcome_may_be_unknown，不宣稱 debuggee 一定沒啟動。debug_stop 會要求 terminateDebuggee 並收尾 adapter 程序；restart_language_server 先移除 client 再執行 shutdown/exit，沒有持 map mutex 跨 shutdown await。
+
 shell 執行 host 固定 argv profile，使用 core 的環境 allowlist 與 ProcessTree。Windows Job Object／Unix process group 的生命周期管理不等於安全隔離；程序啟動與 Job 指派之間仍有窗口。
 
 成功工具結果附 trace ID、elapsed_ms、加 trace 前的 JSON bytes/digest；metadata audit 使用同一 ID，不保存原始輸入輸出。schema 驗證前被拒絕的請求尚不產生 audit trace。大結果保留 exact bytes SHA-256、每塊 digest、到期時間，並依 project 隔離。固定保留 24 小時／最多 128 份／128 MiB，滿額拒絕新 spill；到期於 spill/read 時清理，沒有背景排程、加密或備份。

@@ -27,16 +27,19 @@ while (message := read_message()) is not None:
         if method == 'exit':
             break
         continue
-    params = message.get('params', {})
+    params = message.get('params') or {}
     uri = params.get('textDocument', {}).get('uri', '')
     if method == 'initialize':
-        result = {'capabilities': {'documentSymbolProvider': True, 'codeActionProvider': {'resolveProvider': True}, 'diagnosticProvider': {'interFileDependencies': False, 'workspaceDiagnostics': False}}}
+        result = {'capabilities': {'documentSymbolProvider': True, 'definitionProvider': True, 'referencesProvider': True, 'implementationProvider': True,
+                                   'codeActionProvider': {'resolveProvider': True}, 'diagnosticProvider': {'interFileDependencies': False, 'workspaceDiagnostics': False}}}
     elif method == 'textDocument/documentSymbol':
         result = [{'name': 'module', 'kind': 2, 'range': {'start': {'line': 0, 'character': 0}, 'end': {'line': 2, 'character': 0}}, 'selectionRange': INSERT,
                    'children': [{'name': name, 'kind': 12, 'range': {'start': {'line': line, 'character': 0}, 'end': {'line': line, 'character': 11}},
                                  'selectionRange': {'start': {'line': line, 'character': 3}, 'end': {'line': line, 'character': 6}}} for line, name in enumerate(['foo', 'bar'])]}]
     elif method == 'textDocument/diagnostic':
         result = {'kind': 'full', 'items': [{'range': RANGE, 'severity': 2, 'code': 'fixture-rule', 'message': 'fixture diagnostic'}]}
+    elif method in ('textDocument/definition', 'textDocument/references', 'textDocument/implementation'):
+        result = [{'uri': uri, 'range': {'start': {'line': 0, 'character': 3}, 'end': {'line': 0, 'character': 6}}}]
     elif method == 'textDocument/codeAction':
         quickfix = {'changes': {uri: [{'range': INSERT, 'newText': '// fixed\n'}]}}
         target = uri.rsplit('/', 1)[0] + '/target.rs'

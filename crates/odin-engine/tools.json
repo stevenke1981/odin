@@ -2636,7 +2636,7 @@
   },
   {
     "name": "debug_request",
-    "description": "Send an allowlisted DAP request; launch/attach return asynchronous tickets",
+    "description": "Send an allowlisted DAP request; launch/attach/restart return tickets; native cancel_ticket requests best-effort cancellation",
     "policy": "execute",
     "inputSchema": {
       "type": "object",

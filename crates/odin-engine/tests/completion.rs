@@ -411,6 +411,32 @@ async fn protocol_fixture_symbol_filters_and_capability_probe_use_actual_backend
     .await;
     assert_eq!(overview["symbols"].as_array().unwrap().len(), 1);
     assert_eq!(overview["symbols"][0]["name_path"], "module");
+    let declaration = call(
+        &engine,
+        "find_declaration",
+        json!({"relative_path":"source.rs","position":{"line":0,"character":3}}),
+    )
+    .await;
+    assert_eq!(declaration["locations"][0]["external"], false);
+    assert_eq!(declaration["locations"][0]["relative_path"], "source.rs");
+    assert_eq!(
+        declaration["locations"][0]["enclosing_symbol"]["name_path"],
+        "module/foo"
+    );
+    let stopped = call(&engine, "restart_language_server", json!({})).await;
+    assert_eq!(stopped["stopped"], true);
+    assert_eq!(stopped["shutdown_warnings"], json!([]));
+    let snapshot = call(&engine, "get_capabilities", json!({"language":"fixture"})).await;
+    assert_eq!(snapshot["languages"][0]["ready"], false);
+    assert_eq!(
+        call(
+            &engine,
+            "get_capabilities",
+            json!({"language":"fixture","probe":true})
+        )
+        .await["languages"][0]["ready"],
+        true
+    );
 }
 
 #[tokio::test]
@@ -518,6 +544,9 @@ async fn protocol_fixture_debug_batch_is_session_bound_and_reports_each_request(
         assert!(uuid::Uuid::parse_str(outcome["request_id"].as_str().unwrap()).is_ok());
         assert_eq!(outcome["ok"], true);
     }
+    let cancelled=call(&engine,"debug_request",json!({"session_id":session,"command":"cancel_ticket","arguments":{"ticket":launch["outcomes"][0]["result"]["ticket"]}})).await;
+    assert_eq!(cancelled["cancelled"], true);
+    assert_eq!(cancelled["outcome_may_be_unknown"], true);
     for _ in 0..100 {
         let events = call(&engine, "debug_events", json!({"session_id":session})).await;
         if events["phase"] == "stopped" {
