@@ -9,19 +9,19 @@ def main():
     checks=[]
     def record(name,ok,detail=''):
         checks.append({'name':name,'status':'PASS' if ok else 'FAIL','detail':detail})
-    files=[p for p in ROOT.rglob('*') if p.is_file() and not any(v in p.parts for v in ['target','.git','__pycache__'])]
+    files=[p for p in ROOT.rglob('*') if p.is_file() and not any(v in p.relative_to(ROOT).parts for v in ['target','dist','.git','.odin','__pycache__'])]
     for p in files:
         if p.suffix in ['.rs','.py','.json','.toml','.md','.html','.sh','.ps1','.yml']:
             try:p.read_text(encoding='utf-8');record('utf8:'+str(p.relative_to(ROOT)),True)
             except UnicodeError as error:record('utf8:'+str(p.relative_to(ROOT)),False,str(error))
-    for p in ROOT.rglob('*.toml'):
+    for p in (p for p in files if p.suffix=='.toml'):
         try:tomllib.loads(p.read_text(encoding='utf-8'));record('toml:'+str(p.relative_to(ROOT)),True)
         except Exception as error:record('toml:'+str(p.relative_to(ROOT)),False,str(error))
-    for p in ROOT.rglob('*.json'):
+    for p in (p for p in files if p.suffix=='.json'):
         if 'verification' in p.parts:continue
         try:json.loads(p.read_text(encoding='utf-8'));record('json:'+str(p.relative_to(ROOT)),True)
         except Exception as error:record('json:'+str(p.relative_to(ROOT)),False,str(error))
-    for p in ROOT.rglob('*.py'):
+    for p in (p for p in files if p.suffix=='.py'):
         try:ast.parse(p.read_text(encoding='utf-8'),filename=str(p));record('python_ast:'+str(p.relative_to(ROOT)),True)
         except Exception as error:record('python_ast:'+str(p.relative_to(ROOT)),False,str(error))
     workspace=tomllib.loads((ROOT/'Cargo.toml').read_text(encoding='utf-8'))
@@ -36,7 +36,7 @@ def main():
     tools=json.loads((ROOT/'schemas/tools.json').read_text(encoding='utf-8'))
     mirror=json.loads((ROOT/'crates/odin-engine/tools.json').read_text(encoding='utf-8'))
     record('catalog_mirror',tools==mirror)
-    names=[t['name'] for t in tools];record('unique_58_contracts',len(names)==len(set(names))==58)
+    names=[t['name'] for t in tools];record('unique_nonempty_contracts',bool(names) and len(names)==len(set(names)))
     engine=(ROOT/'crates/odin-engine/src/lib.rs').read_text(encoding='utf-8')
     record('no_bridge_tools',not any(name.startswith('serena_') for name in names))
     record('no_bridge_policy',all(t['policy'] in ['read','state','write','execute'] for t in tools))
@@ -69,7 +69,7 @@ def main():
         for filename,name in cases.items():
             try:Draft202012Validator(catalog[name]['inputSchema']).validate(json.loads((ROOT/'examples'/filename).read_text(encoding='utf-8')));record('example_contract:'+filename,True)
             except Exception as error:record('example_contract:'+filename,False,str(error))
-    rust=list((ROOT/'crates').rglob('*.rs'))
+    rust=[p for p in files if p.suffix=='.rs' and 'crates' in p.relative_to(ROOT).parts]
     for path in rust:
         text=path.read_text(encoding='utf-8')
         record('no_stub_macro:'+str(path.relative_to(ROOT)),not re.search(r'\b(?:todo|unimplemented)!\s*\(',text))
@@ -90,7 +90,7 @@ def main():
     tests=sum(len(re.findall(r'#\[(?:tokio::)?test\]',p.read_text(encoding='utf-8'))) for p in rust)
     report={'scope':'ARTIFACT_AND_CONTRACT_STATIC_CHECKS_ONLY','status':'FAIL' if any(c['status']=='FAIL' for c in checks) else 'PASS',
             'checks':checks,'rust_files':len(rust),'rust_lines':sum(len(p.read_text(encoding='utf-8').splitlines()) for p in rust),
-            'rust_test_declarations':tests,'rust_tests_executed':0,'rust_compilation':'NOT_RUN',
+            'rust_test_declarations':tests,'rust_tests_executed_by_this_check':0,'rust_compilation':'NOT_PERFORMED_BY_STATIC_CHECK','tool_contracts':len(tools),
             'compiler_presence':{name:shutil.which(name) for name in ['rustc','cargo','rustfmt']},
             'not_proven':['Rust syntax/types/linking','real backend compatibility','security correctness','runtime performance']}
     args.output.parent.mkdir(parents=True,exist_ok=True);args.output.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n', encoding='utf-8')

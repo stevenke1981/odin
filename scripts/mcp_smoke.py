@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run ONLY against a real compiled Odin binary. Missing binary is NOT_RUN + failure exit."""
 from pathlib import Path
-import argparse, json, sys, tempfile, time
+import argparse, hashlib, json, platform, subprocess, sys, tempfile, time
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tests'))
 from protocol_harness import Peer
@@ -17,7 +17,7 @@ def main():
         status='FAIL'
         with tempfile.TemporaryDirectory(prefix='odin-mcp-') as directory:
             base=Path(directory);rw=base/'rw';ro=base/'ro';rw.mkdir();ro.mkdir()
-            (rw/'a.txt').write_text('alpha\n', encoding='utf-8');(ro/'b.txt').write_text('beta\n', encoding='utf-8')
+            (rw/'a.txt').write_bytes(b'alpha\n');(ro/'b.txt').write_bytes(b'beta\n')
             config=base/'host.toml'
             config.write_text(f'state_dir = {json.dumps(str(base/"state"))}\n[projects.rw]\nroot = {json.dumps(str(rw))}\nallow_write = true\n[projects.ro]\nroot = {json.dumps(str(ro))}\nallow_write = false\n', encoding='utf-8')
             with Peer([str(args.binary.resolve()),'--config',str(config),'serve','--transport','stdio']) as peer:
@@ -25,7 +25,12 @@ def main():
                 check('initialize',response.get('result',{}).get('serverInfo',{}).get('name')=='odin')
                 peer.notify('notifications/initialized')
                 tools=peer.request('tools/list')['result']['tools']
-                check('fifty_eight_tools',len(tools)==58)
+                catalog=json.loads((ROOT/'schemas/tools.json').read_text(encoding='utf-8'))
+                mirror=json.loads((ROOT/'crates/odin-engine/tools.json').read_text(encoding='utf-8'))
+                check('catalog_copies_equal',catalog==mirror)
+                check('catalog_names_match',sorted(t['name'] for t in tools)==sorted(t['name'] for t in catalog))
+                live={t['name']:t for t in tools}
+                check('catalog_contracts_match',all(all(live[t['name']].get(k)==t.get(k) for k in ['name','description','inputSchema']) for t in catalog))
                 check('no_upstream_bridge_tools',not any(t['name'].startswith('serena_') for t in tools))
                 def call(name,args,expect_error=False):
                     response=peer.request('tools/call',{'name':name,'arguments':args})
@@ -55,7 +60,7 @@ def main():
                     check('removed_tool:'+removed_name,removed.get('error',{}).get('code')==-32601)
         status='PASS'
     except Exception as exc:error=str(exc)
-    report={'scope':'REAL_ODIN_BINARY_STDIO_SMOKE','status':status,'binary':str(args.binary),'checks':results,'error':error,'real_lsp_dap_tested':False,'timestamp_unix':time.time()}
+    report={'scope':'REAL_ODIN_BINARY_STDIO_SMOKE','status':status,'binary':str(args.binary.resolve()),'binary_sha256':hashlib.sha256(args.binary.read_bytes()).hexdigest() if args.binary.is_file() else None,'platform':platform.platform(),'checks':results,'error':error,'real_lsp_dap_tested':False,'timestamp_unix':time.time()}
     args.output.parent.mkdir(parents=True,exist_ok=True);args.output.write_text(json.dumps(report,indent=2)+'\n', encoding='utf-8')
     print(json.dumps(report));return 0 if status=='PASS' else 1
 if __name__=='__main__':raise SystemExit(main())

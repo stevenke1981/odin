@@ -24,5 +24,6 @@ try {
     Invoke-Checked cargo @('build','--workspace','--release','--locked')
     Invoke-Checked python @('scripts/mcp_smoke.py','--binary','target/release/odin.exe')
     Invoke-Checked python @('scripts/http_smoke.py','--binary','target/release/odin.exe')
+    Invoke-Checked python @('scripts/cli_smoke.py','--binary','target/release/odin.exe')
     Write-Host 'Local gates passed. Real LSP, DAP and additional language gates remain separate.'
 } finally { Stop-Transcript | Out-Null }

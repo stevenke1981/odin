@@ -1,0 +1,60 @@
+{
+  "scope": "REAL_ODIN_BINARY_CLI_AND_GENERATED_MCP_CONFIG",
+  "status": "FAIL",
+  "binary": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin\\target\\debug\\odin.exe",
+  "binary_sha256": "4fd70925d8c047317c1fa32c6ab2d817c1b0a2204c2cce392d79ed1df1907fa2",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "checks": [
+    {
+      "name": "exit:metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "build_identity",
+      "status": "PASS"
+    },
+    {
+      "name": "tools_without_config",
+      "status": "PASS"
+    },
+    {
+      "name": "exit:validate",
+      "status": "PASS"
+    },
+    {
+      "name": "validate_does_not_create_state",
+      "status": "PASS"
+    },
+    {
+      "name": "exit:setup",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_dry_run:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "preview_omits_unrelated_values:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "exit:setup",
+      "status": "PASS"
+    },
+    {
+      "name": "exit:setup",
+      "status": "PASS"
+    },
+    {
+      "name": "conflict_preserves_original:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "exit:setup",
+      "status": "FAIL"
+    }
+  ],
+  "error": "exit:setup",
+  "actual_codex_claude_opencode_applications_tested": false,
+  "timestamp_unix": 1792537811.7464273
+}

@@ -17,4 +17,5 @@ run cargo clippy --workspace --all-targets --locked -- -D warnings
 run cargo build --workspace --release --locked
 run python3 scripts/mcp_smoke.py --binary target/release/odin
 run python3 scripts/http_smoke.py --binary target/release/odin
+run python3 scripts/cli_smoke.py --binary target/release/odin
 printf '\nLocal gates passed. This does NOT prove real LSP / DAP / all-language parity.\n' | tee -a "$log"

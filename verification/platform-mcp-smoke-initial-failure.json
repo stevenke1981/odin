@@ -1,0 +1,44 @@
+{
+  "scope": "REAL_ODIN_BINARY_STDIO_SMOKE",
+  "status": "FAIL",
+  "binary": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin\\target\\debug\\odin.exe",
+  "binary_sha256": "4fd70925d8c047317c1fa32c6ab2d817c1b0a2204c2cce392d79ed1df1907fa2",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "checks": [
+    {
+      "name": "initialize",
+      "status": "PASS"
+    },
+    {
+      "name": "catalog_copies_equal",
+      "status": "PASS"
+    },
+    {
+      "name": "catalog_names_match",
+      "status": "PASS"
+    },
+    {
+      "name": "catalog_contracts_match",
+      "status": "PASS"
+    },
+    {
+      "name": "no_upstream_bridge_tools",
+      "status": "PASS"
+    },
+    {
+      "name": "tool_result:read_file",
+      "status": "PASS"
+    },
+    {
+      "name": "tool_result:read_file",
+      "status": "PASS"
+    },
+    {
+      "name": "read_sha",
+      "status": "FAIL"
+    }
+  ],
+  "error": "read_sha",
+  "real_lsp_dap_tested": false,
+  "timestamp_unix": 1792537811.7576022
+}
