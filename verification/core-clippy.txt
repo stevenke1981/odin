@@ -1,0 +1,2 @@
+    Checking odin-core v0.2.0 (<WORKSPACE>\crates\odin-core)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.89s

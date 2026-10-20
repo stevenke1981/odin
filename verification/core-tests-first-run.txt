@@ -1,0 +1,49 @@
+   Compiling odin-core v0.2.0 (<WORKSPACE>\crates\odin-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.00s
+     Running unittests src\lib.rs (target\debug\deps\odin_core-38cbb842052375a5.exe)
+
+running 28 tests
+test memory::tests::memory_name_traversal_is_rejected ... ok
+test process::tests::environment_is_an_explicit_allowlist ... ok
+test config::tests::aliases_cannot_bypass_project_scope ... ok
+test config::tests::host_configuration_is_protected_inside_workspace ... ok
+test paths::tests::traversal_is_denied ... ok
+test process::tests::closing_job_terminates_a_live_child ... ok
+test paths::tests::missing_parent_is_not_created ... ok
+test paths::tests::deny_secrets ... ok
+test memory::tests::reference_replacement_is_exact ... ok
+test paths::tests::limits_and_utf8 ... ok
+test search::tests::match_limit_is_explicit ... ok
+test search::tests::search_returns_live_hash_and_line ... ok
+test memory::tests::global_writes_require_separate_permission ... ok
+test memory::tests::memory_import_rejects_digest_tampering_and_unresolved_refs ... ok
+test transaction::tests::idempotency_key_cannot_change_meaning ... ok
+test transaction::tests::conflict_before_commit_has_no_partial_write ... ok
+test transaction::tests::recovery_refuses_to_destroy_an_external_change ... ok
+test transaction::tests::recovery_restores_a_simulated_interrupted_commit ... ok
+test transaction::tests::prepare_does_not_write_and_apply_is_idempotent ... ok
+test store::tests::trace_audit_contains_metadata_without_source ... ok
+test store::tests::fts_excludes_stale_contents ... ok
+test memory::tests::prepared_import_detects_external_writes ... ok
+test store::tests::incremental_refresh_updates_additions_changes_and_deletions ... ok
+test transaction::tests::undo_create_and_edit ... ok
+test memory::tests::scope_move_never_rebinds_cross_project_local_references ... FAILED
+test memory::tests::memory_rename_updates_references ... ok
+test memory::tests::memory_bundle_roundtrip_is_previewed_and_owned ... ok
+test memory::tests::scope_move_updates_references_in_one_cas_journal ... ok
+
+failures:
+
+---- memory::tests::scope_move_never_rebinds_cross_project_local_references stdout ----
+
+thread 'memory::tests::scope_move_never_rebinds_cross_project_local_references' panicked at crates\odin-core\src\memory.rs:356:96:
+called `Result::unwrap_err()` on an `Ok` value: Object {"atomic_visibility": String("per_file_only"), "files": Array [Object {"after_sha256": Null, "before_sha256": String("cd74053c54816e473883dede0ad3b152f38a41995409eade6b42704919bb1359"), "diff": String("--- a/projects/one/core.md\n+++ b/projects/one/core.md\n@@ -1 +0,0 @@\n-Architecture\n\\ No newline at end of file\n"), "path": String("projects/one/core.md")}, Object {"after_sha256": String("cd74053c54816e473883dede0ad3b152f38a41995409eade6b42704919bb1359"), "before_sha256": Null, "diff": String("--- a/projects/two/core.md\n+++ b/projects/two/core.md\n@@ -0,0 +1 @@\n+Architecture\n\\ No newline at end of file\n"), "path": String("projects/two/core.md")}], "journaled_recovery": Bool(true), "phase": String("draft"), "requires_apply": Bool(true), "transaction_id": String("4799d30e-12e1-498a-97fc-139ca4049168")}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    memory::tests::scope_move_never_rebinds_cross_project_local_references
+
+test result: FAILED. 27 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.33s
+
+error: test failed, to rerun pass `-p odin-core --lib`

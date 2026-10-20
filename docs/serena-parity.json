@@ -7,7 +7,7 @@
       "odin_native": "find_declaration",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生接受 LSP position；沒有上游 regex-occurrence 完全同形 API。"
     },
     {
@@ -16,7 +16,7 @@
       "odin_native": "find_implementations",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。"
     },
     {
@@ -25,7 +25,7 @@
       "odin_native": "find_referencing_symbols",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生位置＋可取得的 enclosing symbol；結果受 LSP / workspace 影響。"
     },
     {
@@ -34,8 +34,8 @@
       "odin_native": "find_symbol",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "原生 name_path substring；未重現全部 kind/depth/grouping 選項。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "LSP name paths 的 exact/substring/glob/regex 篩選、kind/depth/scope/grouping/page；不保證上游輸出同形。"
     },
     {
       "serena_tool": "get_diagnostics_for_file",
@@ -43,7 +43,7 @@
       "odin_native": "get_diagnostics_for_file",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生 pull/push report；不等同 IDE inspection 或已完成 build。"
     },
     {
@@ -52,7 +52,7 @@
       "odin_native": "get_diagnostics_for_symbol",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生 range 篩選；未遞迴檢查全部 referencing symbols。"
     },
     {
@@ -61,7 +61,7 @@
       "odin_native": "get_symbols_overview",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生 DocumentSymbol flatten；不重現全部上游輸出格式。"
     },
     {
@@ -70,7 +70,7 @@
       "odin_native": "insert_after_symbol",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
     },
     {
@@ -79,7 +79,7 @@
       "odin_native": "insert_before_symbol",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
     },
     {
@@ -88,8 +88,8 @@
       "odin_native": "rename_symbol",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "原生文字 WorkspaceEdit → journal；resource operations 明確拒絕。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "有序 text/resource WorkspaceEdit → CAS journal；限regular UTF-8 files，拒絕overwrite/directory/recursive。"
     },
     {
       "serena_tool": "replace_symbol_body",
@@ -97,7 +97,7 @@
       "odin_native": "replace_symbol_body",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
     },
     {
@@ -106,7 +106,7 @@
       "odin_native": "restart_language_server",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。"
     },
     {
@@ -115,71 +115,71 @@
       "odin_native": "safe_delete_symbol",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生只檢查 LSP 靜態引用；不含動態使用或 cascading delete。"
     },
     {
       "serena_tool": "jet_brains_debug",
       "group": "jetbrains_tools",
-      "odin_native": "—",
-      "status": "NOT_IMPLEMENTED",
+      "odin_native": "debug_start / debug_request / debug_batch",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。"
     },
     {
       "serena_tool": "jet_brains_find_declaration",
       "group": "jetbrains_tools",
-      "odin_native": "—",
-      "status": "NOT_IMPLEMENTED",
+      "odin_native": "find_declaration",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。"
     },
     {
       "serena_tool": "jet_brains_find_implementations",
       "group": "jetbrains_tools",
-      "odin_native": "—",
-      "status": "NOT_IMPLEMENTED",
+      "odin_native": "find_implementations",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。"
     },
     {
       "serena_tool": "jet_brains_find_referencing_symbols",
       "group": "jetbrains_tools",
-      "odin_native": "—",
-      "status": "NOT_IMPLEMENTED",
+      "odin_native": "find_referencing_symbols",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。"
     },
     {
       "serena_tool": "jet_brains_find_symbol",
       "group": "jetbrains_tools",
-      "odin_native": "—",
-      "status": "NOT_IMPLEMENTED",
+      "odin_native": "find_symbol",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。"
     },
     {
       "serena_tool": "jet_brains_get_symbols_overview",
       "group": "jetbrains_tools",
-      "odin_native": "—",
-      "status": "NOT_IMPLEMENTED",
+      "odin_native": "get_symbols_overview",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。"
     },
     {
       "serena_tool": "jet_brains_inline_symbol",
       "group": "jetbrains_tools",
-      "odin_native": "—",
-      "status": "NOT_IMPLEMENTED",
+      "odin_native": "inline_symbol",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。"
     },
     {
       "serena_tool": "jet_brains_list_inspections",
@@ -187,53 +187,53 @@
       "odin_native": "—",
       "status": "NOT_IMPLEMENTED",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。"
     },
     {
       "serena_tool": "jet_brains_move",
       "group": "jetbrains_tools",
-      "odin_native": "—",
-      "status": "NOT_IMPLEMENTED",
+      "odin_native": "move_symbol",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。"
     },
     {
       "serena_tool": "jet_brains_rename",
       "group": "jetbrains_tools",
-      "odin_native": "—",
-      "status": "NOT_IMPLEMENTED",
+      "odin_native": "rename_symbol",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。"
     },
     {
       "serena_tool": "jet_brains_run_inspections",
       "group": "jetbrains_tools",
-      "odin_native": "—",
-      "status": "NOT_IMPLEMENTED",
+      "odin_native": "get_diagnostics_for_file (LSP only)",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。"
     },
     {
       "serena_tool": "jet_brains_safe_delete",
       "group": "jetbrains_tools",
-      "odin_native": "—",
-      "status": "NOT_IMPLEMENTED",
+      "odin_native": "safe_delete_symbol",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。"
     },
     {
       "serena_tool": "jet_brains_type_hierarchy",
       "group": "jetbrains_tools",
-      "odin_native": "—",
-      "status": "NOT_IMPLEMENTED",
+      "odin_native": "type_hierarchy",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。"
     },
     {
       "serena_tool": "execute_shell_command",
@@ -241,7 +241,7 @@
       "odin_native": "execute_shell_command",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生僅固定 host argv profile；不接受上游任意 shell 字串。"
     },
     {
@@ -250,7 +250,7 @@
       "odin_native": "explicit project argument",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生每次指定 project ID；不允許任意 root 動態註冊。"
     },
     {
@@ -259,8 +259,8 @@
       "odin_native": "get_current_config",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "原生 host TOML 與 flags；不含上游 YAML/Jinja contexts/modes。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "Host TOML、project flags與只收緊權限的contexts/modes；不解析上游YAML/Jinja。"
     },
     {
       "serena_tool": "open_dashboard",
@@ -268,7 +268,7 @@
       "odin_native": "HTTP /",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生手動開 loopback / 唯讀頁；沒有完整上游 UI 或自動 browser-open API。"
     },
     {
@@ -277,7 +277,7 @@
       "odin_native": "host configuration only",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生編輯 host config 後重啟；沒有 Agent 動態刪配置。"
     },
     {
@@ -286,7 +286,7 @@
       "odin_native": "create_text_file",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
     },
     {
@@ -295,7 +295,7 @@
       "odin_native": "delete_lines",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
     },
     {
@@ -304,7 +304,7 @@
       "odin_native": "find_file",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生 glob 對專案相對路徑；參數與上游不完全相同。"
     },
     {
@@ -313,7 +313,7 @@
       "odin_native": "insert_at_line",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
     },
     {
@@ -322,7 +322,7 @@
       "odin_native": "list_dir",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生 files_only；不列獨立空目錄。"
     },
     {
@@ -331,7 +331,7 @@
       "odin_native": "read_file",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。"
     },
     {
@@ -340,7 +340,7 @@
       "odin_native": "replace_content",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
     },
     {
@@ -349,8 +349,8 @@
       "odin_native": "replace_in_files",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "原生全檔 hash＋match count＋preview；無逐 occurrence selection。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "原生全檔 hash＋match count＋preview，可依 hash 綁定 occurrence IDs 選取；有展開預算。"
     },
     {
       "serena_tool": "replace_lines",
@@ -358,7 +358,7 @@
       "odin_native": "replace_lines",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
     },
     {
@@ -367,7 +367,7 @@
       "odin_native": "search_for_pattern",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。"
     },
     {
@@ -376,7 +376,7 @@
       "odin_native": "delete_memory",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。"
     },
     {
@@ -385,7 +385,7 @@
       "odin_native": "edit_memory",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生 literal replace＋CAS；非上游全部 regex 選項。 原生使用 central Markdown storage。"
     },
     {
@@ -394,7 +394,7 @@
       "odin_native": "list_memories",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。"
     },
     {
@@ -403,7 +403,7 @@
       "odin_native": "read_memory",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。"
     },
     {
@@ -412,8 +412,8 @@
       "odin_native": "rename_memory",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
-      "notes": "原生同 scope 改名及引用更新；無跨 scope move。 原生使用 central Markdown storage。"
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
+      "notes": "原生同 scope 改名及引用更新；另提供 scope move/import/export 交易與 CAS。 原生使用 central Markdown storage。"
     },
     {
       "serena_tool": "write_memory",
@@ -421,7 +421,7 @@
       "odin_native": "write_memory",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。"
     },
     {
@@ -430,7 +430,7 @@
       "odin_native": "list_projects",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生 list_projects；只有 host 已配置的範圍。"
     },
     {
@@ -439,7 +439,7 @@
       "odin_native": "query_project",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生只接受 nonrecursive native read tools；不啟動 Serena Project Server。"
     },
     {
@@ -448,7 +448,7 @@
       "odin_native": "flow_run (not Python)",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生 flow_run 是受限 JSON，不是 Python REPL；沒有任意 Python REPL；此差異不會以橋接補足。"
     },
     {
@@ -457,7 +457,7 @@
       "odin_native": "initial_instructions",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。"
     },
     {
@@ -466,7 +466,7 @@
       "odin_native": "onboarding",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生收集結構與證據；讓 Agent 決定記憶，不宣稱自動理解／測試。"
     },
     {
@@ -475,7 +475,7 @@
       "odin_native": "initial_instructions + docs",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
-      "verification": "NOT_RUN",
+      "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
       "notes": "原生文件及 initial_instructions；提供 Odin 自己的工具說明，不提供上游主題 API。"
     }
   ]

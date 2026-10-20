@@ -24,8 +24,8 @@
     Checking idna_adapter v1.2.2
     Checking idna v1.1.0
     Checking url v2.5.7
-    Checking odin-core v0.2.0 (C:\Users\steven\.codex\worktrees\odin-protocol\odin\crates\odin-core)
-    Checking odin-protocol v0.2.0 (C:\Users\steven\.codex\worktrees\odin-protocol\odin\crates\odin-protocol)
+    Checking odin-core v0.2.0 (<USERPROFILE>\.codex\worktrees\odin-protocol\odin\crates\odin-core)
+    Checking odin-protocol v0.2.0 (<USERPROFILE>\.codex\worktrees\odin-protocol\odin\crates\odin-protocol)
 error: this `if` statement can be collapsed
    --> crates\odin-protocol\src\dap.rs:247:17
     |

@@ -1,10 +1,10 @@
 # Odin 工具 API 0.2.0 Standalone
 
-此表由 `schemas/tools.json` 生成；來源包含實作分派，不代表已編譯或通過測試。
+此表由 `schemas/tools.json` 生成；實作與實際測試證據見 verification/local-validation.json；本表本身不是測試結果。
 
 所有工具以明確 `project` 範圍執行；CLI 在提供 `--project` 時可注入該欄位。`read` / `state` / `write` / `execute` 是內部策略分類，不是 OS 隔離保證。read 工具仍可能啟動語言伺服器、寫 audit/cache。
 
-`write`：來源 edits 先回 transaction preview，需另 apply；記憶變更則直接經 journal commit。`execute`：要求相應 shell/debug 權限。本版本沒有外部工具橋接。
+`write`：來源 edits 先回 transaction preview，需另 apply；記憶 CRUD 直接經 journal commit，import/move 先回 preview。`execute`：要求相應 shell/debug 權限。本版本沒有外部工具橋接。
 
 LSP position 為 0-based UTF-16；檔案行數為 1-based inclusive。參數細節、範圍與 additionalProperties 規則請讀 JSON schema。此版 schema validator 實作契約需要的有限 JSON Schema 子集，非通用 JSON Schema 驗證器。
 

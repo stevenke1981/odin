@@ -1,0 +1,49 @@
+    Blocking waiting for file lock on package cache
+    Checking tokio v1.48.0
+    Checking anyhow v1.0.104
+    Checking ignore v0.4.24
+    Checking anstyle-query v1.1.5
+    Checking anstyle-wincon v3.0.11
+    Checking nu-ansi-term v0.50.3
+   Compiling odin-agent v0.2.0 (<WORKSPACE>\crates\odin)
+    Checking anstream v0.6.21
+    Checking tracing-subscriber v0.3.20
+    Checking clap_builder v4.5.50
+    Checking clap v4.5.50
+    Checking odin-core v0.2.0 (<WORKSPACE>\crates\odin-core)
+    Checking hyper v1.12.0
+    Checking tokio-util v0.7.16
+    Checking tower v0.5.3
+    Checking tokio-stream v0.1.19
+    Checking rmcp v3.6.0
+    Checking hyper-util v0.1.21
+    Checking axum v0.8.6
+    Checking odin-protocol v0.2.0 (<WORKSPACE>\crates\odin-protocol)
+    Checking odin-engine v0.2.0 (<WORKSPACE>\crates\odin-engine)
+error: this `if` statement can be collapsed
+   --> crates\odin\src\http.rs:216:5
+    |
+216 | /     if let Some(origin) = request.headers().get(header::ORIGIN) {
+217 | |         if !origin
+218 | |             .to_str()
+219 | |             .ok()
+...   |
+224 | |     }
+    | |_____^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#collapsible_if
+    = note: `-D clippy::collapsible-if` implied by `-D warnings`
+    = help: to override `-D warnings` add `#[allow(clippy::collapsible_if)]`
+help: collapse nested if block
+    |
+216 ~     if let Some(origin) = request.headers().get(header::ORIGIN)
+217 ~         && !origin
+218 |             .to_str()
+...
+222 |             return (StatusCode::FORBIDDEN, "Cross-origin access denied").into_response();
+223 ~         }
+    |
+
+error: could not compile `odin-agent` (bin "odin") due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `odin-agent` (bin "odin" test) due to 1 previous error

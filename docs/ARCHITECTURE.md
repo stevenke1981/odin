@@ -1,6 +1,6 @@
 # Odin 0.2.0 Standalone — 完整架構設計
 
-**文件狀態：與這份原始碼對應；編譯與真實整合尚未驗證。**
+**文件狀態：與目前原始碼對應；Windows 實跑證據見 verification/local-validation.json。跨平台與完整 40 項驗收仍分開記錄。**
 
 ## 1. 系統定位
 
@@ -12,7 +12,7 @@ Odin 是讓既有 LLM / Coding Agent 使用的工具服務，不是自行訓練�
 |---|---|---|
 | `odin-core` | host config、路徑規則、檔案搜尋、FTS5、交易日誌、Markdown memories | MCP、LLM 推理、語言解析 |
 | `odin-protocol` | subprocess RPC、LSP / UTF-16、DAP；不含外部 MCP 工具代理 | 策略授權、UI、宣稱 IDE 特例全覆蓋 |
-| `odin-engine` | 58 個契約、授權、project gate、工具分派、flow、結果分塊、命令 profile | 網路 listener、平台 OS 沙箱 |
+| `odin-engine` | 72 個契約、授權、project gate、工具分派、flow、結果分塊、命令 profile | 網路 listener、平台 OS 沙箱 |
 | `odin-agent` / binary `odin` | CLI、官方 rmcp MCP server、Axum HTTP、Dashboard | 直接繞過 engine 寫檔 |
 
 核心沒有 Serena 或 Python runtime 相依。Python 只用於交付檢查／測試 fixture；自行選用的 LSP／DAP 後端仍可能有自己的 runtime 要求。
@@ -46,7 +46,7 @@ flowchart TB
 
 `Config::load` 讀 host TOML，canonicalize 根目錄、檢查 ID、limits、命令與重疊根目錄；若 config/state 在 workspace 內，自動加入原生路徑保護。`Engine::new` 建立 private state、每個專案的 journal/store 及共用 memory service。CLI 選擇 stdio 或 loopback HTTP；沒有背景 daemon 自動安裝，也不修改使用者的全域 MCP 設定。
 
-LSP、DAP 依需求啟動。每個 `(project_id, language_id)` 使用各自 LSP；每個專案使用自己的 DAP adapter。退出時中止讀取 task 並 kill 已持有的子程序；**尚未實作完整 process-group / Windows Job Object 後代程序管理**。
+LSP、DAP 依需求啟動。每個 `(project_id, language_id)` 使用各自 LSP；每個 project 有自己的 DAP session。關閉時先嘗試標準 shutdown/disconnect，再清理 RPC task 與 process tree。Windows Job Objects／Unix groups 管理生命週期；spawn 後指派的窗口與 OS sandbox 缺口仍存在。
 
 所有可改變專案的請求先進入 `Engine::run`。每次指定 project，沒有全程序可變的 active_project。啟動後不允許 Agent 新增任意 root；更改 host config 需重啟。不同 project 的語意範圍分開；此版未提供使用者身分／多租戶 ACL。
 
@@ -103,9 +103,9 @@ transaction journal 儲存完整 before / after；prepare 回 diff，不寫來�
 
 journal 的 committed replay 具有冪等效果；request_id 只可重用相同輸入；rollback 產生反向 journal，不修改歷史記錄。中斷後須明確 recover；不在啟動時靜默逆轉使用者工作。
 
-**限制：沒有跨檔案瞬間原子可見性；外部程式不受 Odin 鎖限制；路徑檢查與檔案開啟之間仍有 TOCTOU 窗口。** Windows rename、reparse points、磁碟故障情境未在此環境驗證。
+**限制：沒有跨檔案瞬間原子可見性，外部程式不受 Odin 鎖限制。** 原生 I/O 改用 pinned directory/no-follow handles，Windows canonical identity、8.3、junction／hardlink 有回歸；最後 CAS 與 rename 間的外部競態、全部磁碟故障仍未被宣稱解決。Snapshots 總量上限 32 MiB。
 
-LSP rename 先取得來源快照，檢查版本，把 WorkspaceEdit 轉成相同 Change 流程。此版只處理文字 edits；CreateFile / RenameFile / DeleteFile resource operations 明確拒絕，不會忽略後假裝重構完成。
+LSP rename／CodeAction 先取得有界來源快照，檢查版本，把有序 text edits／CreateFile／RenameFile／DeleteFile 折疊成一份 CAS Change 流程。只接受 regular UTF-8 files／既有父目錄；拒絕 overwrite、recursive、binary、directory 和需確認 annotation。
 
 ## 7. 記憶、搜尋與資料存放
 
@@ -124,15 +124,15 @@ LSP rename 先取得來源快照，檢查版本，把 WorkspaceEdit 轉成相同
 
 Markdown memories 由名稱及 `mem:` 引用串接。先列名稱、再按需讀內容；沒有自動把全部記憶注入 prompt，也沒有向量資料庫。支援 CAS 寫入、刪除、同 scope 改名與引用更新、搜尋、完整性檢查與 read-only patterns。遇到需要修改唯讀引用的 rename，整個操作拒絕，不留下部分更新。
 
-記憶預設放 host state，而非 `.serena/memories`：這是有意的 storage 差異，避免直接寫入其他工具管理的內容。原生 repo-local memories、跨 scope import/export、ignored patterns 尚未實作，這些缺口不再由外部橋接補足。
+記憶放 host state，提供 versioned create-only import/export 與 reference-safe scope move，預覽 journal 綁定 initiating project。跨 project local 引用不能表達時拒絕。Repo-local 自動搬移與完整 ignored patterns 尚未實作。
 
-程式碼索引使用 SQLite FTS5，屬 **詞彙檢索，不是語意符號／向量 RAG**。`index_build` 建全量快照；query 核對當前內容 hash，忽略過期命中。新增檔案與新詞需重新建索引；未做 filesystem watcher 或增量更新。
+索引是 **詞彙 FTS5，不是向量／語意 RAG**。`index_build` 可重建，query 前以 live hashes 增量 reconcile 新增、修改與刪除。沒有背景 watcher，掃描成本尚未做大型 repo benchmark。
 
 ## 8. 原生批次介面
 
 `flow_run` 為受限 JSON dataflow，step 可呼叫允許的 native read tool、引用先前變數、使用 JSON Pointer 或截取陣列；沒有 import / eval / shell / 寫檔、無任意迴圈。所有步驟仍重新經過 engine policy。變數以 `(project, session)` 隔離，有限 steps / bytes / sessions；整條流程成功才提交 namespace。
 
-這不是 Serena Python REPL 語法相容層。此版 flow session mutex 跨流程共用，會序列化執行中的流程；未宣稱高併行 throughput。本版不提供任意 Python 執行，也不提供上游 REPL 回退。
+每個 `(project,session)` 有自己的 mutex；全域 map 鎖不跨 await。map/filter/reduce、reference expansion、namespace/return 有 byte/node/depth 預算，clone 前檢查。這不是 Python REPL 或完整 DAG scheduler，不提供 eval／上游回退。
 
 ## 9. 除錯與命令執行
 
@@ -140,11 +140,11 @@ DAP 透過標準 Content-Length framing；使用 host 設定的 adapter profile�
 
 支援 breakpoints、threads、stack、scopes、variables、evaluate、continue、step、pause、disconnect 等允許命令。未實作 IDE run configuration 自動探索、GUI 操作或 JetBrains debug REPL 語法轉譯。adapter 的能力與 launch arguments 仍由對應工具定義；其執行權限是特權，不是沙箱。
 
-Shell 工具只接受設定檔 profile 名稱，直接執行固定 program + argv，不把任意 agent 字串丟給 shell。stdout / stderr 有上限，timeout 終止父程序並回傳真實 exit status；後代程序隔離未完成。
+Shell 只接受 host 固定 program/argv profile，輸出有界、環境 allowlist，timeout 清理受管程序樹並回真實 status。程序清理不等於權限隔離。
 
 ## 10. 獨立產品邊界
 
-生產 Rust 原始碼沒有 SerenaBridge / BridgeConfig、上游工具代理或啟動上游的分支。MCP server 只發佈 Odin 自己的 58 個契約。`status` 明確回報 `standalone: true` 與 `external_tool_bridge: false`。CLI doctor 只檢查本版配置的語言伺服器與除錯器。
+生產 Rust 沒有 SerenaBridge／BridgeConfig／上游工具分支。MCP 只發佈自己的 72 個契約。`status` 明列 standalone／external_tool_bridge；doctor 預設 presence-only，`--probe-lsp` 才做真實 initialize，仍不把握手等同全索引完成。
 
 `ProjectConfig` 保留 `deny_unknown_fields`；舊 bridge 設定不是靜默無效，而是載入錯誤。原生工具共用 engine、scope、policy 與 journal；外部 LSP／DAP、Shell 命令依舊需要可信任 host 設定，不是安全沙箱。
 

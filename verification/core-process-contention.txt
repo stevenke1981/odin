@@ -1,0 +1,13 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+   Compiling odin-core v0.2.0 (<WORKSPACE>\crates\odin-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 13.28s
+     Running tests\process_contention.rs (target\debug\deps\process_contention-ac870f1fa7207709.exe)
+
+running 2 tests
+test transaction_process_worker ... ok
+test two_native_processes_cannot_silently_overwrite_each_other ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+

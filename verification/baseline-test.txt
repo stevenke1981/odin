@@ -1,0 +1,114 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.27s
+     Running unittests src\main.rs (target\debug\deps\odin-04b992d3d65d9f09.exe)
+
+running 1 test
+test http::tests::tokens_are_compared_exactly ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (target\debug\deps\odin_core-73bebc3d94afaf76.exe)
+
+running 19 tests
+test memory::tests::memory_name_traversal_is_rejected ... ok
+test config::tests::aliases_cannot_bypass_project_scope ... ok
+test paths::tests::traversal_is_denied ... ok
+test paths::tests::missing_parent_is_not_created ... ok
+test paths::tests::deny_secrets ... ok
+test config::tests::host_configuration_is_protected_inside_workspace ... ok
+test paths::tests::limits_and_utf8 ... ok
+test search::tests::match_limit_is_explicit ... ok
+test search::tests::search_returns_live_hash_and_line ... ok
+test memory::tests::reference_replacement_is_exact ... ok
+test memory::tests::global_writes_require_separate_permission ... ok
+test transaction::tests::conflict_before_commit_has_no_partial_write ... ok
+test transaction::tests::idempotency_key_cannot_change_meaning ... ok
+test transaction::tests::recovery_refuses_to_destroy_an_external_change ... ok
+test transaction::tests::recovery_restores_a_simulated_interrupted_commit ... ok
+test transaction::tests::prepare_does_not_write_and_apply_is_idempotent ... ok
+test transaction::tests::undo_create_and_edit ... ok
+test store::tests::fts_excludes_stale_contents ... ok
+test memory::tests::memory_rename_updates_references ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.19s
+
+     Running unittests src\lib.rs (target\debug\deps\odin_engine-26ee8ceeb21b2808.exe)
+
+running 10 tests
+test flow::tests::source_strings_are_inert ... ok
+test schema::tests::accepts_nullable ... ok
+test flow::tests::missing_reference_is_an_error ... ok
+test flow::tests::refs_select_values_not_code ... ok
+test schema::tests::rejects_missing ... ok
+test schema::tests::rejects_unknown_fields ... ok
+test tests::literal_replacement_count ... ok
+test tests::preserves_crlf_line_edit ... ok
+test tests::inserts_into_empty_document ... ok
+test tests::regex_replacement_captures ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\invariants.rs (target\debug\deps\invariants-69c9e4a13ef5b4ba.exe)
+
+running 12 tests
+test legacy_bridge_configuration_is_rejected ... ok
+test project_override_is_rejected ... ok
+test removed_bridge_tools_are_unknown ... ok
+test malformed_arguments_do_not_fall_back_to_defaults ... ok
+test readonly_rejects_source_creation ... ok
+test flow_cannot_reach_mutating_tools ... ok
+test standalone_status_and_catalog_agree ... ok
+test flow_state_is_scoped_to_project ... ok
+test cross_project_queries_are_read_only ... ok
+test exact_hash_required_after_read ... ok
+test source_edits_are_preview_then_apply ... ok
+test memory_roundtrip_has_hash ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.70s
+
+     Running unittests src\lib.rs (target\debug\deps\odin_protocol-6f28bd7af50025ac.exe)
+
+running 13 tests
+test lsp::tests::nested_symbols_keep_name_paths ... ok
+test text::tests::ascii_offsets ... ok
+test text::tests::crlf ... ok
+test text::tests::disjoint_edits ... ok
+test text::tests::invalid_line ... ok
+test text::tests::overlapping_edits_fail ... ok
+test rpc::tests::oversize_frame_is_rejected ... ok
+test text::tests::trailing_empty_line ... ok
+test rpc::tests::framed_json_roundtrip ... ok
+test rpc::tests::clean_eof ... ok
+test rpc::tests::truncated_frame_is_rejected ... ok
+test rpc::tests::duplicate_length_is_rejected ... ok
+test text::tests::unicode_utf16 ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\fixture_protocols.rs (target\debug\deps\fixture_protocols-d77efb9abea328c5.exe)
+
+running 4 tests
+test real_rust_analyzer_smoke ... ignored, Requires installed rust-analyzer, Rust sysroot, and real fixture project; run explicitly
+test lsp_fixture_lifecycle_and_symbols ... ok
+test dap_launch_does_not_block_configuration_done ... ok
+test backend_timeout_is_reported_not_retried ... ok
+
+test result: ok. 3 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.12s
+
+   Doc-tests odin_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests odin_engine
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests odin_protocol
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

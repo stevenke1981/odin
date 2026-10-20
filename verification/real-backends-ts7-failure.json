@@ -1,0 +1,74 @@
+{
+  "scope": "REAL_ODIN_MCP_AND_INSTALLED_BACKENDS",
+  "platform": "win32",
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "real_mcp_initialize",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "rust:real_document_symbols",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "rust:real_references",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "rust:rename_preview_is_readonly",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "rust:rename_definition_and_reference",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "rust:rename_rollback",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "python:real_document_symbols",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "python:real_references",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "python:rename_preview_is_readonly",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "python:rename_definition_and_reference",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "python:rename_rollback",
+      "status": "PASS",
+      "detail": null
+    }
+  ],
+  "attempt_errors": [
+    "{\"error\": {\"code\": \"BACKEND_ERROR\", \"message\": \"Expected exactly one symbol named greet; found 0\"}}",
+    "{\"error\": {\"code\": \"BACKEND_ERROR\", \"message\": \"Expected exactly one symbol named greet; found 0\"}}"
+  ],
+  "backends": {
+    "rust": "rust-analyzer 1.90.0 (1159e78c 2025-09-14)",
+    "python_lsp": "Version: 1.40.2",
+    "typescript_lsp": "6.0.2",
+    "debugpy": "1.8.22"
+  },
+  "error": "{\"error\": {\"code\": \"BACKEND_ERROR\", \"message\": \"{\\\"code\\\":-32603,\\\"message\\\":\\\"Request initialize failed with message: Could not find a valid TypeScript installation. Please ensure that the \\\\\\\"typescript\\\\\\\" dependency is installed in the workspace or that a valid `tsserver.path` is specified. Exiting.\\\"}\"}}",
+  "binary_sha256": "b5031a7682650d20402ce7124fc85f65a6abe793af9a1e88af1ff62c63076a9f"
+}

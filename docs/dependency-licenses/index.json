@@ -1,0 +1,19 @@
+[
+  {
+    "packages": [
+      "valuable@0.1.1"
+    ],
+    "file": "valuable-0.1.1-MIT.txt",
+    "source": "https://raw.githubusercontent.com/tokio-rs/valuable/9efc29b6e58cef28f6566a47aa7e142a55fead77/LICENSE",
+    "sha256": "ed60d479b8fd1f64e9cbc3de449a16a53ac1b3d1b6aeb9bf9d190a8e93061b44"
+  },
+  {
+    "packages": [
+      "winapi-i686-pc-windows-gnu@0.4.0",
+      "winapi-x86_64-pc-windows-gnu@0.4.0"
+    ],
+    "file": "winapi-0.4.0-MIT.txt",
+    "source": "https://raw.githubusercontent.com/retep998/winapi-rs/796a8e6c2971dc2ff1bcff166e6671284f9b5b6b/LICENSE-MIT",
+    "sha256": "ce7bc3499fee93d5022ef430d5e4201e79a6d9154f3974e42f41349f0569e09b"
+  }
+]

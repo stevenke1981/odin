@@ -1,0 +1,16 @@
+   Compiling odin-core v0.2.0 (<WORKSPACE>\crates\odin-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.36s
+     Running unittests src\lib.rs (target\debug\deps\odin_core-c05b13697ee528b5.exe)
+
+running 1 test
+NTFS short aliases: file=PROTEC~1.TOM, directory=HOST-S~1
+test config::tests::windows_short_aliases_use_canonical_host_policy ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 37 filtered out; finished in 0.31s
+
+     Running tests\process_contention.rs (target\debug\deps\process_contention-5446d8fdc997e20a.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 0.00s
+

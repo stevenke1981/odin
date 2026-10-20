@@ -2,7 +2,7 @@
 
 ## 本次交付
 
-本版是 SOURCE_PREVIEW。`verification/delivery-status.json` 為交付時狀態；`source-check.json` 是檔案與契約靜態檢查；`fixture-selftest.json` 只驗證 Python mock peers 自己能回覆 fixture protocol。它們都不是 Rust 編譯證據。
+本版為 Windows 原生預覽，非完整 40 項／跨平台穩定版。`verification/local-validation.json` 保存真實命令與 exit code；`delivery-status.json` 彙總，`feature-evidence.json` 逐項列未驗收條件。舊 source/fixture reports 是歷史靜態證據，不能代替目前 binary／真實後端紀錄。
 
 禁止以「有 test function」、「有 CI YAML」、「工具名稱已列出」、「fixture 回傳成功」推論產品完成。
 
@@ -10,7 +10,7 @@
 
 在實際主機安裝指定 toolchain、C/C++ linker 與 Python。先 bootstrap 產生 Cargo.lock 並檢視相依，再保留 lock。完成 cargo fmt、cargo test --workspace --locked、cargo clippy --workspace --all-targets --locked -- -D warnings、cargo build --workspace --release --locked。失敗修正後重新執行，保存完整 log、版本與 commit/hash。
 
-此版沒有宣稱 lockfile-ready reproducible build；首次 resolve 前，遞迴相依並未凍結。
+真實 Cargo.lock 已納入 Git，後續所有 build/test/clippy 使用 --locked；依賴更新須明示 diff 並重跑供應鏈檢查。
 
 ## 第二層：可執行整合
 
@@ -22,13 +22,13 @@ Rust fixture tests 只驗證 Odin 的 transport client 與可控制的 peer；�
 
 至少 Rust/rust-analyzer、Python、TypeScript 各自記錄 OS、server version、workspace config、符號、跨檔 references、rename、diagnostics。DAP 需實際啟動 debuggee、斷點、單步、variables、退出。獨立性回歸需在未安裝 Serena 的環境執行，並檢查舊配置與舊工具明確拒絕；不得靠上游轉發通過功能驗收。
 
-Move／Inline／inspection 等進階功能需另外原生實作及逐語言驗證；沒有完成前保持 NOT_IMPLEMENTED。
+Move／Inline／QuickFix 的原生 edit-only CodeAction 入口已有 regression；逐語言實際 action、inspection provider parity 仍要另外驗收，不以 fixture 推論。
 
 ## 第四層：平台與失敗情境
 
 Windows x86_64 MSVC、Linux x86_64、macOS arm64 各自 native build/test。測試 CRLF/Unicode/長路徑、權限、symlink/junction、缺檔、外部並行寫入、磁碟寫失敗、journal 中斷、重啟恢復、backend hang / malformed messages、後代程序清理。
 
-本版尚無 installer；沒有 Inno Setup 或 GUI lifecycle 完成證據。
+Windows 有 portable ZIP／Inno Setup recipe 與隔離 install/reinstall/uninstall smoke；完整乾淨主機、跨版升級、取消／崩潰、Defender/CFA 不由 smoke 推論。產物未簽章。
 
 ## 第五層：性能與完整性比較
 

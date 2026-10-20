@@ -1,0 +1,3144 @@
+{
+  "schema_version": "1.0",
+  "project": "Odin",
+  "version": "0.2.0",
+  "release_class": "WINDOWS_NATIVE_PREVIEW",
+  "observed_date": "2026-10-21",
+  "source_head_sha_at_documentation_review": "83655ac50cb9f2fcc309f95455e196b3836178ba",
+  "scope": "Requirement-level assessment of completed Windows slice reports; this document is not an independent runtime test run.",
+  "tool_contracts": 72,
+  "requirements_total": 40,
+  "status_semantics": {
+    "PASS": "Every acceptance criterion has applicable executed zero-exit evidence.",
+    "PARTIAL": "Executed checks establish the stated subset; listed acceptance remains unverified or unimplemented.",
+    "NOT_RUN": "No applicable acceptance execution for this target/scope; source or scripts are not execution evidence."
+  },
+  "evidence_binding": "Each check references an executed command and the digest/pointer of its source report. Slice reports bind their own source snapshot or binary hash; they do not certify later integrated changes.",
+  "final_integrated_candidate": {
+    "status": "NOT_RUN",
+    "owner": "/root",
+    "expected_report": "verification/local-validation.json",
+    "note": "The integration owner must complete the final runner and bind the final source/binary digest. A prepared or running command is not PASS."
+  },
+  "publication": {
+    "status": "NOT_PUBLISHED_IN_THIS_REPORT",
+    "owner": "/root",
+    "remote_execution_performed_by_documentation_task": false,
+    "note": "Public visibility, remote HEAD and URL must be updated only after actual authorized GitHub publication."
+  },
+  "requirements": [
+    {
+      "id": "ODIN-001",
+      "title": "可重現的 Rust 建置與工具鏈",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "Windows Rust toolchain、真實 Cargo.lock 與具 metadata 的 binary 已有實測；最終整合與跨平台矩陣分開驗收。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "build",
+            "-p",
+            "odin-agent",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/4",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Actual Windows debug binary build; not a final integrated release build."
+        },
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-agent",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Windows CLI/HTTP/setup/hook unit tests on the recorded platform slice."
+        },
+        {
+          "command": [
+            "cargo",
+            "clippy",
+            "-p",
+            "odin-engine",
+            "--all-targets",
+            "--locked",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/3",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Strict Windows package Clippy on the report-bound source snapshot."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-001-A1",
+          "criterion": "在全新工作樹執行 cargo generate-lockfile、cargo build --workspace --locked 成功且 Cargo.lock 納入 Git。",
+          "status": "PARTIAL",
+          "remaining": "全新 checkout 的最終 integrated release build／來源綁定待整合 runner 完成。"
+        },
+        {
+          "id": "ODIN-001-A2",
+          "criterion": "cargo fmt --all -- --check、cargo clippy --workspace --all-targets --locked -- -D warnings、cargo test --workspace --locked 均退出 0。",
+          "status": "PARTIAL",
+          "remaining": "目前引用 package 檢查；本次候選的完整 workspace fmt/test/clippy 結果由 root 的最終報告更新。"
+        },
+        {
+          "id": "ODIN-001-A3",
+          "criterion": "Release binary 的 --version 與 commit metadata 可讀，沒有 false PASS 或預製空 binary。",
+          "status": "PARTIAL",
+          "remaining": "Windows metadata 已 smoke；最終發佈 binary 的 revision/digest 仍需核對。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-001-A1",
+          "criterion": "在全新工作樹執行 cargo generate-lockfile、cargo build --workspace --locked 成功且 Cargo.lock 納入 Git。",
+          "remaining": "全新 checkout 的最終 integrated release build／來源綁定待整合 runner 完成。"
+        },
+        {
+          "id": "ODIN-001-A2",
+          "criterion": "cargo fmt --all -- --check、cargo clippy --workspace --all-targets --locked -- -D warnings、cargo test --workspace --locked 均退出 0。",
+          "remaining": "目前引用 package 檢查；本次候選的完整 workspace fmt/test/clippy 結果由 root 的最終報告更新。"
+        },
+        {
+          "id": "ODIN-001-A3",
+          "criterion": "Release binary 的 --version 與 commit metadata 可讀，沒有 false PASS 或預製空 binary。",
+          "remaining": "Windows metadata 已 smoke；最終發佈 binary 的 revision/digest 仍需核對。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/workspace-tests.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        },
+        {
+          "report": "verification/workspace-clippy.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-002",
+      "title": "標準 MCP stdio 與 Streamable HTTP",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "真 binary 的 MCP stdio、Streamable HTTP、授權負例與取消已有 Windows smoke。",
+      "checks": [
+        {
+          "command": [
+            "python",
+            "scripts/mcp_smoke.py",
+            "--binary",
+            "target/debug/odin.exe",
+            "--output",
+            "verification/platform-mcp-smoke.json"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Real binary MCP stdio initialize/catalog/read/transaction/memory/flow smoke; not official conformance certification."
+        },
+        {
+          "command": [
+            "python",
+            "scripts/http_smoke.py",
+            "--binary",
+            "target/debug/odin.exe",
+            "--output",
+            "verification/platform-http-smoke.json"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/10",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Real loopback HTTP initialize/tools/call, Bearer/Host/Origin negatives, metadata allowlist and JSONL."
+        },
+        {
+          "command": [
+            "python",
+            "scripts/mcp_cancel_smoke.py",
+            "--binary",
+            "target/debug/odin.exe",
+            "--output",
+            "verification/platform-mcp-cancellation.json"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-mcp-cancellation-verification.json",
+          "report_pointer": "/commands/5",
+          "report_sha256": "53dc715620df4010afd045d07eb48b05051ea04933b7bb70c1c62d50a6130b1c",
+          "scope": "Real binary MCP cancellation with a slow protocol peer; no language-semantic guarantee."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-002-A1",
+          "criterion": "官方 MCP 測試客戶端完成初始化、列舉所有宣告工具、成功與拒絕呼叫。",
+          "status": "PARTIAL",
+          "remaining": "使用專案測試 client，尚未完成官方 MCP client/conformance suite。"
+        },
+        {
+          "id": "ODIN-002-A2",
+          "criterion": "stdio 的 cargo/run logging 永不寫入 stdout；stderr logging 不污染 frame。",
+          "status": "PARTIAL",
+          "remaining": "Windows smoke 檢查 frame；完整 disconnect/logging 壓力矩陣未驗收。"
+        },
+        {
+          "id": "ODIN-002-A3",
+          "criterion": "HTTP 無 token、錯誤 token、惡意 Origin/Host 均被拒絕；預設只綁 127.0.0.1。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-002-A1",
+          "criterion": "官方 MCP 測試客戶端完成初始化、列舉所有宣告工具、成功與拒絕呼叫。",
+          "remaining": "使用專案測試 client，尚未完成官方 MCP client/conformance suite。"
+        },
+        {
+          "id": "ODIN-002-A2",
+          "criterion": "stdio 的 cargo/run logging 永不寫入 stdout；stderr logging 不污染 frame。",
+          "remaining": "Windows smoke 檢查 frame；完整 disconnect/logging 壓力矩陣未驗收。"
+        },
+        {
+          "id": "ODIN-002-A3",
+          "criterion": "HTTP 無 token、錯誤 token、惡意 Origin/Host 均被拒絕；預設只綁 127.0.0.1。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-003",
+      "title": "72 個原生工具契約、版本與能力協商",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "擴充為 72 工具，具 schema_version/get_capabilities、catalog 一致性與錯誤／policy 測試。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "command": [
+            "python",
+            "scripts/mcp_smoke.py",
+            "--binary",
+            "target/debug/odin.exe",
+            "--output",
+            "verification/platform-mcp-smoke.json"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Real binary MCP stdio initialize/catalog/read/transaction/memory/flow smoke; not official conformance certification."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-003-A1",
+          "criterion": "原有 58 個工具保留，擴充後 72 個 tools 全數列在 coverage 表，schema/dispatcher 逐項有功能測試。",
+          "status": "PARTIAL",
+          "remaining": "已驗 schema/name 一致及代表功能；尚無 72 個工具每項完整成功／拒絕的獨立功能矩陣。"
+        },
+        {
+          "id": "ODIN-003-A2",
+          "criterion": "錯參數、未知專案、未知工具與後端失聯各得到不同可機械判別 error code。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-003-A3",
+          "criterion": "新版本修改破壞 API 時更新 schema_version 並保留遷移文件。",
+          "status": "PARTIAL",
+          "remaining": "schema version 已提供；破壞式升版及遷移相容矩陣尚未實際升版驗收。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-003-A1",
+          "criterion": "原有 58 個工具保留，擴充後 72 個 tools 全數列在 coverage 表，schema/dispatcher 逐項有功能測試。",
+          "remaining": "已驗 schema/name 一致及代表功能；尚無 72 個工具每項完整成功／拒絕的獨立功能矩陣。"
+        },
+        {
+          "id": "ODIN-003-A2",
+          "criterion": "錯參數、未知專案、未知工具與後端失聯各得到不同可機械判別 error code。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-003-A3",
+          "criterion": "新版本修改破壞 API 時更新 schema_version 並保留遷移文件。",
+          "remaining": "schema version 已提供；破壞式升版及遷移相容矩陣尚未實際升版驗收。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-004",
+      "title": "每次呼叫專案隔離與生命週期",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "每次 project scope、跨 project 唯讀查詢、後端/session 與結果隔離已有定向測試。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "command": "cargo test -p odin-protocol --locked",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-tests-regressions.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/0",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-004-A1",
+          "criterion": "兩個 Agent 同時對 A、B 專案讀寫，不會交換記憶、結果或語言伺服器。",
+          "status": "PARTIAL",
+          "remaining": "已有隔離負例；完整雙 Agent 多 project 同時讀寫壓力矩陣未驗收。"
+        },
+        {
+          "id": "ODIN-004-A2",
+          "criterion": "未知 project_id 和 workspace 外部的任何路徑一律拒絕。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-004-A3",
+          "criterion": "停止 project 能停止其子程序、釋放鎖和資源，其他 project 繼續服務。",
+          "status": "PARTIAL",
+          "remaining": "LSP/DAP 可明確停止；停止整個 project 並驗證其他 project 持續服務的完整生命週期未驗收。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-004-A1",
+          "criterion": "兩個 Agent 同時對 A、B 專案讀寫，不會交換記憶、結果或語言伺服器。",
+          "remaining": "已有隔離負例；完整雙 Agent 多 project 同時讀寫壓力矩陣未驗收。"
+        },
+        {
+          "id": "ODIN-004-A2",
+          "criterion": "未知 project_id 和 workspace 外部的任何路徑一律拒絕。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-004-A3",
+          "criterion": "停止 project 能停止其子程序、釋放鎖和資源，其他 project 繼續服務。",
+          "remaining": "LSP/DAP 可明確停止；停止整個 project 並驗證其他 project 持續服務的完整生命週期未驗收。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-005",
+      "title": "跨平台路徑與檔案安全",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "已使用 no-follow directory capabilities，Windows aliases/reparse/hardlink 有原生回歸紀錄。",
+      "checks": [
+        {
+          "command": "cargo test -p odin-protocol --locked",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-tests-regressions.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/0",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        },
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-005-A1",
+          "criterion": "包含相對 ..、絕對路徑、symlink/junction escape、Unicode NFC/NFD、大小寫差異的測試全部拒絕或按安全策略處理。",
+          "status": "PARTIAL",
+          "remaining": "Unicode NFC/NFD、完整 UNC/long-path 及所有 OS 路徑矩陣尚未驗收。"
+        },
+        {
+          "id": "ODIN-005-A2",
+          "criterion": "攻擊測試在 authorize 與 open 之間交換 symlink，無 workspace 外部檔案被修改。",
+          "status": "PARTIAL",
+          "remaining": "最後 CAS 檢查與替換仍有外部寫入競態；不宣稱 OS 全域原子 CAS。"
+        },
+        {
+          "id": "ODIN-005-A3",
+          "criterion": "Windows 長路徑和 CRLF 的讀取/修改 roundtrip 字節一致。",
+          "status": "PARTIAL",
+          "remaining": "CRLF/UTF-16 有測試；完整 Windows 長路徑 byte-roundtrip 矩陣未驗收。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-005-A1",
+          "criterion": "包含相對 ..、絕對路徑、symlink/junction escape、Unicode NFC/NFD、大小寫差異的測試全部拒絕或按安全策略處理。",
+          "remaining": "Unicode NFC/NFD、完整 UNC/long-path 及所有 OS 路徑矩陣尚未驗收。"
+        },
+        {
+          "id": "ODIN-005-A2",
+          "criterion": "攻擊測試在 authorize 與 open 之間交換 symlink，無 workspace 外部檔案被修改。",
+          "remaining": "最後 CAS 檢查與替換仍有外部寫入競態；不宣稱 OS 全域原子 CAS。"
+        },
+        {
+          "id": "ODIN-005-A3",
+          "criterion": "Windows 長路徑和 CRLF 的讀取/修改 roundtrip 字節一致。",
+          "remaining": "CRLF/UTF-16 有測試；完整 Windows 長路徑 byte-roundtrip 矩陣未驗收。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/core-tests.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        },
+        {
+          "report": "verification/core-alias-regressions.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        },
+        {
+          "report": "verification/windows-short-aliases.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-006",
+      "title": "預覽、提交與 crash-safe 修改交易",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "Transactions 提供 immutable preview、全檔 CAS、journal、recover/rollback；外部衝突拒絕已有回歸紀錄。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "command": "cargo test -p odin-protocol --locked",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-tests-regressions.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/0",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        },
+        {
+          "command": [
+            "python",
+            "scripts/mcp_smoke.py",
+            "--binary",
+            "target/debug/odin.exe",
+            "--output",
+            "verification/platform-mcp-smoke.json"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Real binary MCP stdio initialize/catalog/read/transaction/memory/flow smoke; not official conformance certification."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-006-A1",
+          "criterion": "外部先行修改檔案時，apply 回 CONFLICT，外部修改保持不變。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-006-A2",
+          "criterion": "在每個 journal phase 模擬 kill/crash 後可安全判定完成、恢復或需要人工介入。",
+          "status": "PARTIAL",
+          "remaining": "真 process crash checkpoint 紀錄已存在；磁碟故障／斷電耐久性與全部平台仍未驗收。"
+        },
+        {
+          "id": "ODIN-006-A3",
+          "criterion": "rollback 永不覆蓋未知第三方資料；同 request_id 不同 payload 被拒絕。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-006-A1",
+          "criterion": "外部先行修改檔案時，apply 回 CONFLICT，外部修改保持不變。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-006-A2",
+          "criterion": "在每個 journal phase 模擬 kill/crash 後可安全判定完成、恢復或需要人工介入。",
+          "remaining": "真 process crash checkpoint 紀錄已存在；磁碟故障／斷電耐久性與全部平台仍未驗收。"
+        },
+        {
+          "id": "ODIN-006-A3",
+          "criterion": "rollback 永不覆蓋未知第三方資料；同 request_id 不同 payload 被拒絕。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/core-tests.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        },
+        {
+          "report": "verification/core-process-contention.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-007",
+      "title": "LSP 初始化、同步、關閉及依賴管理",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "LSP sync/capability/readiness/shutdown/restart、版本與 UTF-16/CRLF 回歸已執行。",
+      "checks": [
+        {
+          "command": "cargo test -p odin-protocol --locked",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-tests-regressions.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/0",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        },
+        {
+          "command": "cargo test -p odin-protocol --locked real_rust_analyzer_smoke -- --ignored --nocapture",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-real-rust-analyzer.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/1",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Real rust-analyzer 1.90.0 initialize/documentSymbol only."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-007-A1",
+          "criterion": "rust-analyzer 真實專案能索引兩個跨檔引用，檔案改動後讀到新符號。",
+          "status": "PARTIAL",
+          "remaining": "真三語符號／引用報告另列；完整 edit→新符號及索引準備矩陣未驗收。"
+        },
+        {
+          "id": "ODIN-007-A2",
+          "criterion": "UTF-16 surrogate pair、CRLF、非 ASCII 路徑映射無 off-by-one，版本單調。",
+          "status": "PARTIAL",
+          "remaining": "已涵蓋文字位置測試；非 ASCII 路徑與所有 sync server 的矩陣仍未完成。"
+        },
+        {
+          "id": "ODIN-007-A3",
+          "criterion": "語言伺服器崩潰/掛起後超時明確，重啟並重新同步所有開啟的文件。",
+          "status": "PARTIAL",
+          "remaining": "protocol crash/timeout/restart 有 fixture；各真實 server 的崩潰重同步矩陣未驗收。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-007-A1",
+          "criterion": "rust-analyzer 真實專案能索引兩個跨檔引用，檔案改動後讀到新符號。",
+          "remaining": "真三語符號／引用報告另列；完整 edit→新符號及索引準備矩陣未驗收。"
+        },
+        {
+          "id": "ODIN-007-A2",
+          "criterion": "UTF-16 surrogate pair、CRLF、非 ASCII 路徑映射無 off-by-one，版本單調。",
+          "remaining": "已涵蓋文字位置測試；非 ASCII 路徑與所有 sync server 的矩陣仍未完成。"
+        },
+        {
+          "id": "ODIN-007-A3",
+          "criterion": "語言伺服器崩潰/掛起後超時明確，重啟並重新同步所有開啟的文件。",
+          "remaining": "protocol crash/timeout/restart 有 fixture；各真實 server 的崩潰重同步矩陣未驗收。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/real-backends.json",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-008",
+      "title": "完整符號查找與引用關係",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "已新增 symbol filters/depth/scope/paging/body budget，真實三語 symbols/references 有報告。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "command": "cargo test -p odin-protocol --locked real_rust_analyzer_smoke -- --ignored --nocapture",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-real-rust-analyzer.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/1",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Real rust-analyzer 1.90.0 initialize/documentSymbol only."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-008-A1",
+          "criterion": "跨檔 Rust fixtures 逐項對照 rust-analyzer 輸出定位、kind、range，至少 20 個真實查詢通過。",
+          "status": "PARTIAL",
+          "remaining": "尚未完成至少 20 個真實 rust-analyzer 查詢逐項結果對照。"
+        },
+        {
+          "id": "ODIN-008-A2",
+          "criterion": "同名多符號可消歧；使用符號路徑與範圍，不因檔案中註解包含同字就命中。",
+          "status": "PARTIAL",
+          "remaining": "消歧與 filters 有 protocol fixtures；完整真實同名/註解反例矩陣未驗收。"
+        },
+        {
+          "id": "ODIN-008-A3",
+          "criterion": "不可用功能需回 CAPABILITY_UNAVAILABLE；不默默降級為純文字結果。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-008-A1",
+          "criterion": "跨檔 Rust fixtures 逐項對照 rust-analyzer 輸出定位、kind、range，至少 20 個真實查詢通過。",
+          "remaining": "尚未完成至少 20 個真實 rust-analyzer 查詢逐項結果對照。"
+        },
+        {
+          "id": "ODIN-008-A2",
+          "criterion": "同名多符號可消歧；使用符號路徑與範圍，不因檔案中註解包含同字就命中。",
+          "remaining": "消歧與 filters 有 protocol fixtures；完整真實同名/註解反例矩陣未驗收。"
+        },
+        {
+          "id": "ODIN-008-A3",
+          "criterion": "不可用功能需回 CAPABILITY_UNAVAILABLE；不默默降級為純文字結果。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/real-backends.json",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-009",
+      "title": "WorkspaceEdit 完整支援",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "有序 TextDocumentEdit/Create/Rename/Delete regular UTF-8 file 已轉 CAS 交易；unsupported operations 明確拒絕。",
+      "checks": [
+        {
+          "command": "cargo test -p odin-protocol --locked",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-tests-regressions.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/0",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        },
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-009-A1",
+          "criterion": "跨檔 symbol rename 涵蓋 source edits + RenameFile，一次 preview 顯示全部變更。",
+          "status": "PARTIAL",
+          "remaining": "protocol ordered resource edits 已測；真實 backend source+RenameFile 的重構整合案例未驗收。"
+        },
+        {
+          "id": "ODIN-009-A2",
+          "criterion": "Windows case-only rename、collision、無權限刪除、磁碟中斷在預定語意下安全停止/復原。",
+          "status": "PARTIAL",
+          "remaining": "case-only/collision 有回歸；權限拒絕、跨磁碟、磁碟中斷等矩陣未全驗收。"
+        },
+        {
+          "id": "ODIN-009-A3",
+          "criterion": "遇到不支援 annotation 或檔案版本不符全部拒絕，不遺漏操作後回成功。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-009-A1",
+          "criterion": "跨檔 symbol rename 涵蓋 source edits + RenameFile，一次 preview 顯示全部變更。",
+          "remaining": "protocol ordered resource edits 已測；真實 backend source+RenameFile 的重構整合案例未驗收。"
+        },
+        {
+          "id": "ODIN-009-A2",
+          "criterion": "Windows case-only rename、collision、無權限刪除、磁碟中斷在預定語意下安全停止/復原。",
+          "remaining": "case-only/collision 有回歸；權限拒絕、跨磁碟、磁碟中斷等矩陣未全驗收。"
+        },
+        {
+          "id": "ODIN-009-A3",
+          "criterion": "遇到不支援 annotation 或檔案版本不符全部拒絕，不遺漏操作後回成功。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-010",
+      "title": "真實語言伺服器三語驗收",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "Windows 真 rust-analyzer、basedpyright、TypeScript language-server 的 symbols/references/rename/rollback 已有報告。",
+      "checks": [
+        {
+          "command": "cargo test -p odin-protocol --locked real_rust_analyzer_smoke -- --ignored --nocapture",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-real-rust-analyzer.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/1",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Real rust-analyzer 1.90.0 initialize/documentSymbol only."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-010-A1",
+          "criterion": "每語言至少完成符號、跨檔 references、rename、diagnostics 的成功與失敗案例。",
+          "status": "PARTIAL",
+          "remaining": "三語 diagnostics 成功／失敗與所有反例尚未驗收。"
+        },
+        {
+          "id": "ODIN-010-A2",
+          "criterion": "每個語言都記錄版本、OS、commit、命令行與 stdout/stderr 原始 log。",
+          "status": "PARTIAL",
+          "remaining": "目前 report 有 backend versions/binary digest；完整每語言原始 stdout/stderr 與最終 command exit manifest 待補。"
+        },
+        {
+          "id": "ODIN-010-A3",
+          "criterion": "未驗證語言不能以「40+ 已支援」列為 PASS。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-010-A1",
+          "criterion": "每語言至少完成符號、跨檔 references、rename、diagnostics 的成功與失敗案例。",
+          "remaining": "三語 diagnostics 成功／失敗與所有反例尚未驗收。"
+        },
+        {
+          "id": "ODIN-010-A2",
+          "criterion": "每個語言都記錄版本、OS、commit、命令行與 stdout/stderr 原始 log。",
+          "remaining": "目前 report 有 backend versions/binary digest；完整每語言原始 stdout/stderr 與最終 command exit manifest 待補。"
+        },
+        {
+          "id": "ODIN-010-A3",
+          "criterion": "未驗證語言不能以「40+ 已支援」列為 PASS。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/real-backends.json",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        },
+        {
+          "report": "verification/real-backends-first-run.json",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        },
+        {
+          "report": "verification/real-backends-ts7-failure.json",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-011",
+      "title": "零 Serena 相依的乾淨主機驗證",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "真 binary MCP 顯示 standalone 並拒絕 serena_tools/serena_call；生產路徑沒有 bridge/fallback。",
+      "checks": [
+        {
+          "command": [
+            "python",
+            "scripts/mcp_smoke.py",
+            "--binary",
+            "target/debug/odin.exe",
+            "--output",
+            "verification/platform-mcp-smoke.json"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Real binary MCP stdio initialize/catalog/read/transaction/memory/flow smoke; not official conformance certification."
+        },
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-011-A1",
+          "criterion": "乾淨隔離環境不安裝 Python/Serena 仍能完成核心檔案/MCP 功能。",
+          "status": "PARTIAL",
+          "remaining": "目前主機供開發使用而安裝 Python/Serena；無這些工具的乾淨隔離主機驗收未執行。"
+        },
+        {
+          "id": "ODIN-011-A2",
+          "criterion": "二進位與 lock/dependency tree 不含 Serena/SolidLSP；不存在 serena_tools/serena_call fallback。",
+          "status": "PARTIAL",
+          "remaining": "lock/dependency/原碼掃描已有報告；最終 binary/dependency artifact 的獨立掃描仍待發佈整合。"
+        },
+        {
+          "id": "ODIN-011-A3",
+          "criterion": "缺少 LSP/DAP 時明確提示必要後端，不會執行下載 Serena。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-011-A1",
+          "criterion": "乾淨隔離環境不安裝 Python/Serena 仍能完成核心檔案/MCP 功能。",
+          "remaining": "目前主機供開發使用而安裝 Python/Serena；無這些工具的乾淨隔離主機驗收未執行。"
+        },
+        {
+          "id": "ODIN-011-A2",
+          "criterion": "二進位與 lock/dependency tree 不含 Serena/SolidLSP；不存在 serena_tools/serena_call fallback。",
+          "remaining": "lock/dependency/原碼掃描已有報告；最終 binary/dependency artifact 的獨立掃描仍待發佈整合。"
+        },
+        {
+          "id": "ODIN-011-A3",
+          "criterion": "缺少 LSP/DAP 時明確提示必要後端，不會執行下載 Serena。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/standalone-audit.json",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        },
+        {
+          "report": "verification/sbom.cdx.json",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-012",
+      "title": "實際 OS 隔離、程序樹與權限",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "已加入環境 allowlist、Windows Job Objects／Unix process groups 與受信任固定 argv profiles；這些是程序生命週期控制。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "command": "cargo test -p odin-protocol --locked",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-tests-regressions.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/0",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-012-A1",
+          "criterion": "受測敵意 command/process 不能更改 workspace 外檔案；子孫程序可被完整終止。",
+          "status": "PARTIAL",
+          "remaining": "沒有 AppContainer/restricted token、namespace/seccomp 或 macOS sandbox；不具 workspace 外的 OS 寫入隔離。"
+        },
+        {
+          "id": "ODIN-012-A2",
+          "criterion": "限制模式若該 OS 不支援，必須 fail closed 且明確出錯，不能靜默解除限制。",
+          "status": "PARTIAL",
+          "remaining": "完整 restricted execution mode 與各 OS fail-closed sandbox 尚未實作／驗收。"
+        },
+        {
+          "id": "ODIN-012-A3",
+          "criterion": "Shell、DAP launch、LSP executable 的信任邊界文件及 deny/allow tests 齊備。",
+          "status": "PARTIAL",
+          "remaining": "固定 argv 與 deny/allow 有測試；敵意程序的完整 OS 權限邊界驗收未完成。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-012-A1",
+          "criterion": "受測敵意 command/process 不能更改 workspace 外檔案；子孫程序可被完整終止。",
+          "remaining": "沒有 AppContainer/restricted token、namespace/seccomp 或 macOS sandbox；不具 workspace 外的 OS 寫入隔離。"
+        },
+        {
+          "id": "ODIN-012-A2",
+          "criterion": "限制模式若該 OS 不支援，必須 fail closed 且明確出錯，不能靜默解除限制。",
+          "remaining": "完整 restricted execution mode 與各 OS fail-closed sandbox 尚未實作／驗收。"
+        },
+        {
+          "id": "ODIN-012-A3",
+          "criterion": "Shell、DAP launch、LSP executable 的信任邊界文件及 deny/allow tests 齊備。",
+          "remaining": "固定 argv 與 deny/allow 有測試；敵意程序的完整 OS 權限邊界驗收未完成。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/core-tests.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-013",
+      "title": "通用 DAP 生命週期與除錯行為",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "DAP 狀態、events、capabilities、launch tickets、取消與 session 有 fixtures；Windows debugpy 實際 breakpoint/variables/evaluate/step 有報告。",
+      "checks": [
+        {
+          "command": "cargo test -p odin-protocol --locked",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-tests-regressions.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/0",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        },
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-013-A1",
+          "criterion": "至少 Windows 與 Linux 在真實 debug adapter 啟動測試程式並命中指定 breakpoint。",
+          "status": "PARTIAL",
+          "remaining": "Linux 真實 adapter breakpoint 仍 NOT_RUN。"
+        },
+        {
+          "id": "ODIN-013-A2",
+          "criterion": "continue/step、scopes/variables/evaluate 得到可核對的變數值，退出後無孤兒程序。",
+          "status": "PARTIAL",
+          "remaining": "Windows debugpy 有功能結果；各 adapter/OS 的 debuggee process-tree 清除矩陣尚未完成。"
+        },
+        {
+          "id": "ODIN-013-A3",
+          "criterion": "不支援的 DAP 指令明確回 unsupported，不能把送出 request 當成功完成操作。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-013-A1",
+          "criterion": "至少 Windows 與 Linux 在真實 debug adapter 啟動測試程式並命中指定 breakpoint。",
+          "remaining": "Linux 真實 adapter breakpoint 仍 NOT_RUN。"
+        },
+        {
+          "id": "ODIN-013-A2",
+          "criterion": "continue/step、scopes/variables/evaluate 得到可核對的變數值，退出後無孤兒程序。",
+          "remaining": "Windows debugpy 有功能結果；各 adapter/OS 的 debuggee process-tree 清除矩陣尚未完成。"
+        },
+        {
+          "id": "ODIN-013-A3",
+          "criterion": "不支援的 DAP 指令明確回 unsupported，不能把送出 request 當成功完成操作。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/real-backends.json",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-014",
+      "title": "語意 Move refactoring",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "move_symbol 僅接受後端 refactor.move edit，驗證 source/target 並回 transaction preview；沒有文字搬移 fallback。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-014-A1",
+          "criterion": "跨模組移動公開符號後，所有 consumers 更新且 cargo test 通過。",
+          "status": "PARTIAL",
+          "remaining": "目前成功路徑是 protocol fixture，沒有真語言 backend 跨模組 Move 後 cargo test 的驗收。"
+        },
+        {
+          "id": "ODIN-014-A2",
+          "criterion": "同名、同 module path、符號解析失敗時拒絕修改並輸出 unsupported reason。",
+          "status": "PARTIAL",
+          "remaining": "同名/module/解析失敗有拒絕機制；語言專用 import/visibility/consumer 反例未全驗收。"
+        },
+        {
+          "id": "ODIN-014-A3",
+          "criterion": "受影響的檔案、差異、引用更新及 rollback 全可檢查。",
+          "status": "PARTIAL",
+          "remaining": "preview/交易已有測試；真實語意 Move 的引用更新與 rollback 尚未驗收。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-014-A1",
+          "criterion": "跨模組移動公開符號後，所有 consumers 更新且 cargo test 通過。",
+          "remaining": "目前成功路徑是 protocol fixture，沒有真語言 backend 跨模組 Move 後 cargo test 的驗收。"
+        },
+        {
+          "id": "ODIN-014-A2",
+          "criterion": "同名、同 module path、符號解析失敗時拒絕修改並輸出 unsupported reason。",
+          "remaining": "同名/module/解析失敗有拒絕機制；語言專用 import/visibility/consumer 反例未全驗收。"
+        },
+        {
+          "id": "ODIN-014-A3",
+          "criterion": "受影響的檔案、差異、引用更新及 rollback 全可檢查。",
+          "remaining": "preview/交易已有測試；真實語意 Move 的引用更新與 rollback 尚未驗收。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-015",
+      "title": "語意 Inline refactoring",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "inline_symbol 僅接受具 refactor.inline kind 的後端 edit，拒絕 command-only/mixed/模糊 actions。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-015-A1",
+          "criterion": "對純函式與帶有副作用的 fixtures，替換前後測試結果一致。",
+          "status": "PARTIAL",
+          "remaining": "沒有真實語言純函式與副作用 fixtures 的重構前後測試等價證據。"
+        },
+        {
+          "id": "ODIN-015-A2",
+          "criterion": "有巢狀 scope、名稱衝突、macro/external call 風險時拒絕自動重構。",
+          "status": "PARTIAL",
+          "remaining": "未完成語言專用 scope/macro/泛型/借用與名稱衝突分析矩陣。"
+        },
+        {
+          "id": "ODIN-015-A3",
+          "criterion": "每一個 inline 能 preview 並可撤銷，不會產生編譯不過的 silent success。",
+          "status": "PARTIAL",
+          "remaining": "交易 preview 路徑已測；真實 backend Inline 的編譯與 rollback 尚未驗收。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-015-A1",
+          "criterion": "對純函式與帶有副作用的 fixtures，替換前後測試結果一致。",
+          "remaining": "沒有真實語言純函式與副作用 fixtures 的重構前後測試等價證據。"
+        },
+        {
+          "id": "ODIN-015-A2",
+          "criterion": "有巢狀 scope、名稱衝突、macro/external call 風險時拒絕自動重構。",
+          "remaining": "未完成語言專用 scope/macro/泛型/借用與名稱衝突分析矩陣。"
+        },
+        {
+          "id": "ODIN-015-A3",
+          "criterion": "每一個 inline 能 preview 並可撤銷，不會產生編譯不過的 silent success。",
+          "remaining": "交易 preview 路徑已測；真實 backend Inline 的編譯與 rollback 尚未驗收。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-016",
+      "title": "Safe Delete 與級聯刪除",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "Safe Delete 仍限 LSP 靜態 references 與 guarded transaction，沒有完整 reachability/cascade。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "command": "cargo test -p odin-protocol --locked",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-tests-regressions.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/0",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-016-A1",
+          "criterion": "跨檔仍在引用的 symbol 刪除先拒絕；可安全刪除的 private symbol 可編譯。",
+          "status": "PARTIAL",
+          "remaining": "跨檔引用拒絕有原碼路徑；真實可刪 private symbol 的編譯案例未驗收。"
+        },
+        {
+          "id": "ODIN-016-A2",
+          "criterion": "動態 dispatch/reflection/宏造成不確定時回 NEED_REVIEW，不能聲稱安全。",
+          "status": "PARTIAL",
+          "remaining": "公開 API、反射、macro/動態 dispatch 尚無完整 NEED_REVIEW 語言規則。"
+        },
+        {
+          "id": "ODIN-016-A3",
+          "criterion": "safe delete 造成影響的檔案與 tests 資料可逐項對照。",
+          "status": "PARTIAL",
+          "remaining": "未完成級聯刪除與影響測試對照。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-016-A1",
+          "criterion": "跨檔仍在引用的 symbol 刪除先拒絕；可安全刪除的 private symbol 可編譯。",
+          "remaining": "跨檔引用拒絕有原碼路徑；真實可刪 private symbol 的編譯案例未驗收。"
+        },
+        {
+          "id": "ODIN-016-A2",
+          "criterion": "動態 dispatch/reflection/宏造成不確定時回 NEED_REVIEW，不能聲稱安全。",
+          "remaining": "公開 API、反射、macro/動態 dispatch 尚無完整 NEED_REVIEW 語言規則。"
+        },
+        {
+          "id": "ODIN-016-A3",
+          "criterion": "safe delete 造成影響的檔案與 tests 資料可逐項對照。",
+          "remaining": "未完成級聯刪除與影響測試對照。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-017",
+      "title": "診斷／Linter／IDE inspection 正規化",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "版本化 pull/push diagnostics 與具 diagnostics context 的 QuickFix resolve/preview 路徑已實作及 fixture 測試。",
+      "checks": [
+        {
+          "command": "cargo test -p odin-protocol --locked",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-tests-regressions.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/0",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        },
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-017-A1",
+          "criterion": "同一缺陷從 LSP 與 clippy 匯入可去重但保留來源。",
+          "status": "PARTIAL",
+          "remaining": "沒有完成 LSP+Clippy/Ruff/ESLint providers 匯入與去重。"
+        },
+        {
+          "id": "ODIN-017-A2",
+          "criterion": "不存在的 rule/analysis 或未就緒結果回 PENDING/UNAVAILABLE，不回空 PASS。",
+          "status": "PARTIAL",
+          "remaining": "pending/unavailable 已處理；完整 normalized rule/source/confidence provider schema 尚未完成。"
+        },
+        {
+          "id": "ODIN-017-A3",
+          "criterion": "quick fix 必須先預覽 WorkspaceEdit，再交由交易引擎執行。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-017-A1",
+          "criterion": "同一缺陷從 LSP 與 clippy 匯入可去重但保留來源。",
+          "remaining": "沒有完成 LSP+Clippy/Ruff/ESLint providers 匯入與去重。"
+        },
+        {
+          "id": "ODIN-017-A2",
+          "criterion": "不存在的 rule/analysis 或未就緒結果回 PENDING/UNAVAILABLE，不回空 PASS。",
+          "remaining": "pending/unavailable 已處理；完整 normalized rule/source/confidence provider schema 尚未完成。"
+        },
+        {
+          "id": "ODIN-017-A3",
+          "criterion": "quick fix 必須先預覽 WorkspaceEdit，再交由交易引擎執行。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-018",
+      "title": "Type Hierarchy、外部依賴與跨專案查詢",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "LSP TypeHierarchy primitives、明確兩方 project 的唯讀 query 與 scope deny 有實作。",
+      "checks": [
+        {
+          "command": "cargo test -p odin-protocol --locked",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-tests-regressions.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/0",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        },
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-018-A1",
+          "criterion": "Type Hierarchy 能列出 fixture 的父類、子類，並正確含跨檔。",
+          "status": "PARTIAL",
+          "remaining": "真實後端跨檔父類/子類與依賴 hierarchy 的專項 fixture 未驗收。"
+        },
+        {
+          "id": "ODIN-018-A2",
+          "criterion": "跨專案查詢必須指定兩方 project_id，外部檔案不可被寫入。",
+          "status": "PARTIAL",
+          "remaining": "read-only project query 已測；external workspace activation/Project Server/resolver invalidation 未完整實作。"
+        },
+        {
+          "id": "ODIN-018-A3",
+          "criterion": "不支援 hierarchy 的 LSP 返回 capability unavailable 並標明缺失。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-018-A1",
+          "criterion": "Type Hierarchy 能列出 fixture 的父類、子類，並正確含跨檔。",
+          "remaining": "真實後端跨檔父類/子類與依賴 hierarchy 的專項 fixture 未驗收。"
+        },
+        {
+          "id": "ODIN-018-A2",
+          "criterion": "跨專案查詢必須指定兩方 project_id，外部檔案不可被寫入。",
+          "remaining": "read-only project query 已測；external workspace activation/Project Server/resolver invalidation 未完整實作。"
+        },
+        {
+          "id": "ODIN-018-A3",
+          "criterion": "不支援 hierarchy 的 LSP 返回 capability unavailable 並標明缺失。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-019",
+      "title": "逐語言適配與 40+ 語言宣告策略",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "目前只有三個具真實後端報告的語言；generic LSP 設定不等於所有語言已支援。",
+      "checks": [
+        {
+          "command": "cargo test -p odin-protocol --locked real_rust_analyzer_smoke -- --ignored --nocapture",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-real-rust-analyzer.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/1",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Real rust-analyzer 1.90.0 initialize/documentSymbol only."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-019-A1",
+          "criterion": "首批 6 語言可在本機安裝直接後端並通過核心查詢。",
+          "status": "PARTIAL",
+          "remaining": "六語言核心查詢尚未完成，Go/C#/Java 等仍 NOT_RUN。"
+        },
+        {
+          "id": "ODIN-019-A2",
+          "criterion": "每種新增語言均有 2 個以上實際專案 fixture 與反例；未驗證不得宣稱支援。",
+          "status": "PARTIAL",
+          "remaining": "每語言至少兩個實際專案 fixture 與反例未達成。"
+        },
+        {
+          "id": "ODIN-019-A3",
+          "criterion": "支援矩陣記錄每種語言的 find/reference/rename/diagnostics/refactor 狀態與證據。",
+          "status": "PARTIAL",
+          "remaining": "矩陣已明列分級；diagnostics/refactors 及 40+ 語言證據未完成。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-019-A1",
+          "criterion": "首批 6 語言可在本機安裝直接後端並通過核心查詢。",
+          "remaining": "六語言核心查詢尚未完成，Go/C#/Java 等仍 NOT_RUN。"
+        },
+        {
+          "id": "ODIN-019-A2",
+          "criterion": "每種新增語言均有 2 個以上實際專案 fixture 與反例；未驗證不得宣稱支援。",
+          "remaining": "每語言至少兩個實際專案 fixture 與反例未達成。"
+        },
+        {
+          "id": "ODIN-019-A3",
+          "criterion": "支援矩陣記錄每種語言的 find/reference/rename/diagnostics/refactor 狀態與證據。",
+          "remaining": "矩陣已明列分級；diagnostics/refactors 及 40+ 語言證據未完成。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/real-backends.json",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-020",
+      "title": "Markdown 記憶與引用完整性",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "central Markdown CAS/refs、版本化 bundle 匯入匯出、scope move 與 initiating-project owned journals 已有測試。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "command": [
+            "python",
+            "scripts/mcp_smoke.py",
+            "--binary",
+            "target/debug/odin.exe",
+            "--output",
+            "verification/platform-mcp-smoke.json"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Real binary MCP stdio initialize/catalog/read/transaction/memory/flow smoke; not official conformance certification."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-020-A1",
+          "criterion": "一組具有循環引用、壞連結和 read-only 的記憶可被列出/檢查，rename 不遺失引用。",
+          "status": "PARTIAL",
+          "remaining": "ref/readonly/rename 已測；完整 ignored patterns 與 repo-local layout 未實作。"
+        },
+        {
+          "id": "ODIN-020-A2",
+          "criterion": "跨 session 重啟後內容與 hashes 保持；無權限範圍不得寫入。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-020-A3",
+          "criterion": "從 0.2 central state 可備份遷移至 repo-local，失敗可回復。",
+          "status": "PARTIAL",
+          "remaining": "尚未提供 central→repo-local 的自動備份遷移與回復驗收。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-020-A1",
+          "criterion": "一組具有循環引用、壞連結和 read-only 的記憶可被列出/檢查，rename 不遺失引用。",
+          "remaining": "ref/readonly/rename 已測；完整 ignored patterns 與 repo-local layout 未實作。"
+        },
+        {
+          "id": "ODIN-020-A2",
+          "criterion": "跨 session 重啟後內容與 hashes 保持；無權限範圍不得寫入。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-020-A3",
+          "criterion": "從 0.2 central state 可備份遷移至 repo-local，失敗可回復。",
+          "remaining": "尚未提供 central→repo-local 的自動備份遷移與回復驗收。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/core-tests.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-021",
+      "title": "增量索引與變更監聽",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "index_query 前 live-hash scan 會增量更新新增/修改/刪除 FTS rows；沒有背景 watcher。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-021-A1",
+          "criterion": "新增/修改/刪除檔案後不需手動 index_build 即更新搜尋。",
+          "status": "PARTIAL",
+          "remaining": "查詢前增量更新已測；查詢以外的背景即時更新沒有實作。"
+        },
+        {
+          "id": "ODIN-021-A2",
+          "criterion": "watcher 漏事件、斷線或 inode/rename 變動會觸發可追蹤的 rescan。",
+          "status": "PARTIAL",
+          "remaining": "沒有 watcher event queue、掉事件偵測／斷線 rescan 的驗收。"
+        },
+        {
+          "id": "ODIN-021-A3",
+          "criterion": "冷啟與暖啟結果一致；不把 stale hit 或缺資料回成正常完成。",
+          "status": "PARTIAL",
+          "remaining": "定向一致性已測；大型冷暖啟動及完整漏事件矩陣未完成。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-021-A1",
+          "criterion": "新增/修改/刪除檔案後不需手動 index_build 即更新搜尋。",
+          "remaining": "查詢前增量更新已測；查詢以外的背景即時更新沒有實作。"
+        },
+        {
+          "id": "ODIN-021-A2",
+          "criterion": "watcher 漏事件、斷線或 inode/rename 變動會觸發可追蹤的 rescan。",
+          "remaining": "沒有 watcher event queue、掉事件偵測／斷線 rescan 的驗收。"
+        },
+        {
+          "id": "ODIN-021-A3",
+          "criterion": "冷啟與暖啟結果一致；不把 stale hit 或缺資料回成正常完成。",
+          "remaining": "定向一致性已測；大型冷暖啟動及完整漏事件矩陣未完成。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-022",
+      "title": "安全批次流程與可重用查詢",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "flow 已有 per-session namespace locks、有界 map/filter/reduce、失敗 draft 不提交與 timeout。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "command": [
+            "python",
+            "scripts/mcp_smoke.py",
+            "--binary",
+            "target/debug/odin.exe",
+            "--output",
+            "verification/platform-mcp-smoke.json"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Real binary MCP stdio initialize/catalog/read/transaction/memory/flow smoke; not official conformance certification."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-022-A1",
+          "criterion": "多工具查詢只回投影資料，於指定固定 fixture 比逐步呼叫減少輸出 bytes。",
+          "status": "PARTIAL",
+          "remaining": "輸出投影已測；固定 fixture 的 bytes 對比 benchmark 尚未發布。"
+        },
+        {
+          "id": "ODIN-022-A2",
+          "criterion": "forbid write/execute/unknown call 即使透過 flow 包裹也仍拒絕。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-022-A3",
+          "criterion": "兩個 session 分開併行，單 session 失敗不污染 state；循環 DAG 不可執行。",
+          "status": "PARTIAL",
+          "remaining": "session 隔離已有測試；完整 DAG scheduler、cycle validation 與 bounded DAG concurrency 未實作。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-022-A1",
+          "criterion": "多工具查詢只回投影資料，於指定固定 fixture 比逐步呼叫減少輸出 bytes。",
+          "remaining": "輸出投影已測；固定 fixture 的 bytes 對比 benchmark 尚未發布。"
+        },
+        {
+          "id": "ODIN-022-A2",
+          "criterion": "forbid write/execute/unknown call 即使透過 flow 包裹也仍拒絕。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-022-A3",
+          "criterion": "兩個 session 分開併行，單 session 失敗不污染 state；循環 DAG 不可執行。",
+          "remaining": "session 隔離已有測試；完整 DAG scheduler、cycle validation 與 bounded DAG concurrency 未實作。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-023",
+      "title": "CLI / Client setup / Onboarding",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "setup/validate/onboard/doctor 已實作；三種 generated config 的真 MCP handshake、dry-run/backup/CAS smoke 已執行。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-agent",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Windows CLI/HTTP/setup/hook unit tests on the recorded platform slice."
+        },
+        {
+          "command": [
+            "python",
+            "scripts/cli_smoke.py",
+            "--binary",
+            "target/debug/odin.exe",
+            "--output",
+            "verification/platform-cli-smoke.json"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/8",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Real binary CLI/setup generated argv/backup/conflict/hook smoke; actual Codex/Claude/OpenCode apps not tested."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-023-A1",
+          "criterion": "三個客戶端都可從設定檔啟動並成功 tools/list。",
+          "status": "PARTIAL",
+          "remaining": "尚未在真正 Codex/Claude/OpenCode 應用中各自完成安裝與 tools/list。"
+        },
+        {
+          "id": "ODIN-023-A2",
+          "criterion": "覆寫既有配置要顯式同意，保證原有未關聯設定不變。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-023-A3",
+          "criterion": "doctor 能區分 Rust binary、MCP 啟動、LSP missing、檔案權限與 DAP missing。",
+          "status": "PARTIAL",
+          "remaining": "doctor 的 LSP probe 已實作；MCP transport、檔案權限、DAP health 的全分類矩陣尚未驗收。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-023-A1",
+          "criterion": "三個客戶端都可從設定檔啟動並成功 tools/list。",
+          "remaining": "尚未在真正 Codex/Claude/OpenCode 應用中各自完成安裝與 tools/list。"
+        },
+        {
+          "id": "ODIN-023-A2",
+          "criterion": "覆寫既有配置要顯式同意，保證原有未關聯設定不變。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-023-A3",
+          "criterion": "doctor 能區分 Rust binary、MCP 啟動、LSP missing、檔案權限與 DAP missing。",
+          "remaining": "doctor 的 LSP probe 已實作；MCP transport、檔案權限、DAP health 的全分類矩陣尚未驗收。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-024",
+      "title": "Context／Mode／Project 配置策略",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "host TOML contexts/modes 依序收緊權限，data-only policy 不可授予 host 已拒絕的權限。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-agent",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Windows CLI/HTTP/setup/hook unit tests on the recorded platform slice."
+        },
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-024-A1",
+          "criterion": "相同配置來源優先序有 deterministic tests；無效 key fail closed。",
+          "status": "PARTIAL",
+          "remaining": "目前是 host 宣告 context/mode；完整 repo-local override/versioned precedence/migration 尚未實作。"
+        },
+        {
+          "id": "ODIN-024-A2",
+          "criterion": "readonly mode 不能授予 host policy 拒絕的寫入；任意 mode 不能繞過 OS sandbox。",
+          "status": "PARTIAL",
+          "remaining": "權限相交有測試；OS sandbox 本身未完成，不能宣稱 mode 提供沙箱。"
+        },
+        {
+          "id": "ODIN-024-A3",
+          "criterion": "配置 export redacts tokens/secrets，且升版兼容有 migration。",
+          "status": "PARTIAL",
+          "remaining": "redaction 有定向測試；跨版本 migration 尚未驗收。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-024-A1",
+          "criterion": "相同配置來源優先序有 deterministic tests；無效 key fail closed。",
+          "remaining": "目前是 host 宣告 context/mode；完整 repo-local override/versioned precedence/migration 尚未實作。"
+        },
+        {
+          "id": "ODIN-024-A2",
+          "criterion": "readonly mode 不能授予 host policy 拒絕的寫入；任意 mode 不能繞過 OS sandbox。",
+          "remaining": "權限相交有測試；OS sandbox 本身未完成，不能宣稱 mode 提供沙箱。"
+        },
+        {
+          "id": "ODIN-024-A3",
+          "criterion": "配置 export redacts tokens/secrets，且升版兼容有 migration。",
+          "remaining": "redaction 有定向測試；跨版本 migration 尚未驗收。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/core-tests.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-025",
+      "title": "Dashboard / 操作日誌 / 使用量",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "唯讀 Dashboard/API 提供 trace/elapsed/error metadata、後端 snapshot、JSONL export，未知 token/resource usage 保持 UNKNOWN。",
+      "checks": [
+        {
+          "command": [
+            "python",
+            "scripts/http_smoke.py",
+            "--binary",
+            "target/debug/odin.exe",
+            "--output",
+            "verification/platform-http-smoke.json"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/10",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Real loopback HTTP initialize/tools/call, Bearer/Host/Origin negatives, metadata allowlist and JSONL."
+        },
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-025-A1",
+          "criterion": "能顯示每個工具實際 wall-clock duration、error code 和 trace id。",
+          "status": "PARTIAL",
+          "remaining": "schema 驗證前拒絕尚無 audit trace；index/memory/resource/完整 backend health 指標仍不完整。"
+        },
+        {
+          "id": "ODIN-025-A2",
+          "criterion": "未經授權的 HTTP 請求無法讀到任何專案資料。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-025-A3",
+          "criterion": "token 統計僅在來源有依據時顯示，否則標 UNKNOWN，不能推算使用者模型 token。",
+          "status": "PARTIAL",
+          "remaining": "token UNKNOWN 已驗；RSS/LLM token/完整 OpenTelemetry 沒有來源，未提供數值。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-025-A1",
+          "criterion": "能顯示每個工具實際 wall-clock duration、error code 和 trace id。",
+          "remaining": "schema 驗證前拒絕尚無 audit trace；index/memory/resource/完整 backend health 指標仍不完整。"
+        },
+        {
+          "id": "ODIN-025-A2",
+          "criterion": "未經授權的 HTTP 請求無法讀到任何專案資料。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-025-A3",
+          "criterion": "token 統計僅在來源有依據時顯示，否則標 UNKNOWN，不能推算使用者模型 token。",
+          "remaining": "token UNKNOWN 已驗；RSS/LLM token/完整 OpenTelemetry 沒有來源，未提供數值。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-026",
+      "title": "Hooks / Agent 策略引導",
+      "priority": "P2",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "可選 hook dry-run、CAS backup、managed marker disable/restore 已 smoke；不自動註冊代理。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-agent",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/2",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Windows CLI/HTTP/setup/hook unit tests on the recorded platform slice."
+        },
+        {
+          "command": [
+            "python",
+            "scripts/cli_smoke.py",
+            "--binary",
+            "target/debug/odin.exe",
+            "--output",
+            "verification/platform-cli-smoke.json"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/8",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Real binary CLI/setup generated argv/backup/conflict/hook smoke; actual Codex/Claude/OpenCode apps not tested."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-026-A1",
+          "criterion": "啟用 hooks 前提供 dry-run diff，停用能復原。",
+          "status": "PARTIAL",
+          "remaining": "host file enable/disable 已測；真 client hook registration/lifecycle 未執行。"
+        },
+        {
+          "id": "ODIN-026-A2",
+          "criterion": "長 session 下工具提示不重複灌入全量文件。",
+          "status": "PARTIAL",
+          "remaining": "提示內容有界；長 session 不重複注入的真 client 驗收未執行。"
+        },
+        {
+          "id": "ODIN-026-A3",
+          "criterion": "沒有 MCP 支援的子 agent 不宣稱共享 Odin 工具。",
+          "status": "PARTIAL",
+          "remaining": "文件明示子 agent 需自己的 MCP；實際多 client/子 agent 組合未驗收。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-026-A1",
+          "criterion": "啟用 hooks 前提供 dry-run diff，停用能復原。",
+          "remaining": "host file enable/disable 已測；真 client hook registration/lifecycle 未執行。"
+        },
+        {
+          "id": "ODIN-026-A2",
+          "criterion": "長 session 下工具提示不重複灌入全量文件。",
+          "remaining": "提示內容有界；長 session 不重複注入的真 client 驗收未執行。"
+        },
+        {
+          "id": "ODIN-026-A3",
+          "criterion": "沒有 MCP 支援的子 agent 不宣稱共享 Odin 工具。",
+          "remaining": "文件明示子 agent 需自己的 MCP；實際多 client/子 agent 組合未驗收。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-027",
+      "title": "可重現驗收及 CI 成本限制",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "已有 package command logs、source hashes、binary smoke，workflow 僅 workflow_dispatch/self-hosted。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "build",
+            "-p",
+            "odin-agent",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/4",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Actual Windows debug binary build; not a final integrated release build."
+        },
+        {
+          "command": [
+            "python",
+            "scripts/mcp_smoke.py",
+            "--binary",
+            "target/debug/odin.exe",
+            "--output",
+            "verification/platform-mcp-smoke.json"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/9",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Real binary MCP stdio initialize/catalog/read/transaction/memory/flow smoke; not official conformance certification."
+        },
+        {
+          "command": [
+            "python",
+            "scripts/http_smoke.py",
+            "--binary",
+            "target/debug/odin.exe",
+            "--output",
+            "verification/platform-http-smoke.json"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/10",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Real loopback HTTP initialize/tools/call, Bearer/Host/Origin negatives, metadata allowlist and JSONL."
+        },
+        {
+          "command": [
+            "python",
+            "scripts/check_publish_policy.py"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/7",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Manual self-hosted workflow/publisher policy source checks; no remote publication performed."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-027-A1",
+          "criterion": "從全新 checkout 執行驗收有可審計 logs；失敗 gate 阻止 release。",
+          "status": "PARTIAL",
+          "remaining": "最終整合 source snapshot 的 full local runner/clean checkout 證據仍由 root 完成。"
+        },
+        {
+          "id": "ODIN-027-A2",
+          "criterion": "fixture self-test 與真實 binary/LS/DAP 驗證分開標記。",
+          "status": "PARTIAL",
+          "remaining": "fixture/真 backend 分層已明列；最終 report 的 source/binary digest 綁定待整合。"
+        },
+        {
+          "id": "ODIN-027-A3",
+          "criterion": "Actions 只有 workflow_dispatch，不自動啟動付費或額度計費的工作流程。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-027-A1",
+          "criterion": "從全新 checkout 執行驗收有可審計 logs；失敗 gate 阻止 release。",
+          "remaining": "最終整合 source snapshot 的 full local runner/clean checkout 證據仍由 root 完成。"
+        },
+        {
+          "id": "ODIN-027-A2",
+          "criterion": "fixture self-test 與真實 binary/LS/DAP 驗證分開標記。",
+          "remaining": "fixture/真 backend 分層已明列；最終 report 的 source/binary digest 綁定待整合。"
+        },
+        {
+          "id": "ODIN-027-A3",
+          "criterion": "Actions 只有 workflow_dispatch，不自動啟動付費或額度計費的工作流程。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-028",
+      "title": "Windows x64 MSVC 安裝、升級與卸載",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "portable ZIP 與 Inno Setup recipe 已編譯；該 recipe report 使用較早 revision，未視為最終候選。",
+      "checks": [
+        {
+          "command": [
+            "scripts/package.ps1",
+            "-SkipBuild",
+            "-OutputDirectory",
+            "dist/recipe-test-2"
+          ],
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-packaging-recipe.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "aaab9b5d5e5caec3cfdccccc6e931053ef76cade23a1e317af584a113f41c291",
+          "scope": "Portable ZIP and Inno recipe compilation with an earlier binary; installer lifecycle and final candidate are separate."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-028-A1",
+          "criterion": "乾淨 Windows x64 MSVC 主機完整 install/start/uninstall 後無孤兒 service/目錄。",
+          "status": "PARTIAL",
+          "remaining": "乾淨 Windows 完整 install/start/uninstall lifecycle 未驗收。"
+        },
+        {
+          "id": "ODIN-028-A2",
+          "criterion": "以 v0.2 state 升級資料，遷移遇錯仍保有備份且可復原。",
+          "status": "PARTIAL",
+          "remaining": "跨版本 state 升級/失敗備份/rollback 未驗收。"
+        },
+        {
+          "id": "ODIN-028-A3",
+          "criterion": "Windows Defender/SmartScreen 與 Defender Controlled Folder Access 限制須實測紀錄。",
+          "status": "PARTIAL",
+          "remaining": "Defender/SmartScreen/CFA 及簽章均未驗收或未提供。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-028-A1",
+          "criterion": "乾淨 Windows x64 MSVC 主機完整 install/start/uninstall 後無孤兒 service/目錄。",
+          "remaining": "乾淨 Windows 完整 install/start/uninstall lifecycle 未驗收。"
+        },
+        {
+          "id": "ODIN-028-A2",
+          "criterion": "以 v0.2 state 升級資料，遷移遇錯仍保有備份且可復原。",
+          "remaining": "跨版本 state 升級/失敗備份/rollback 未驗收。"
+        },
+        {
+          "id": "ODIN-028-A3",
+          "criterion": "Windows Defender/SmartScreen 與 Defender Controlled Folder Access 限制須實測紀錄。",
+          "remaining": "Defender/SmartScreen/CFA 及簽章均未驗收或未提供。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-029",
+      "title": "Linux/macOS 原生打包與驗證",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "implementation": "NOT_VERIFIED",
+      "summary": "Linux/macOS 的打包腳本已存在，沒有 native OS runtime/installer 證據。",
+      "checks": [],
+      "acceptance_results": [
+        {
+          "id": "ODIN-029-A1",
+          "criterion": "每 OS 的 binary 在該 OS native test，不以 cross compile check 替代。",
+          "status": "NOT_RUN",
+          "remaining": "Linux x64/macOS arm64 native build/test 尚未執行；cross compile 不替代。"
+        },
+        {
+          "id": "ODIN-029-A2",
+          "criterion": "kill SIGTERM/SIGINT 後 LSP/DAP 子程序被清除，未完成 journal 有可檢查狀態。",
+          "status": "NOT_RUN",
+          "remaining": "SIGTERM/SIGINT 後代清除與未完成 journal 的 native 行為尚未驗收。"
+        },
+        {
+          "id": "ODIN-029-A3",
+          "criterion": "同版本 manifest、source SHA、archive checksum 一致。",
+          "status": "NOT_RUN",
+          "remaining": "Linux/macOS 同版本 archive manifest/checksum 尚未生成及核對。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-029-A1",
+          "criterion": "每 OS 的 binary 在該 OS native test，不以 cross compile check 替代。",
+          "remaining": "Linux x64/macOS arm64 native build/test 尚未執行；cross compile 不替代。"
+        },
+        {
+          "id": "ODIN-029-A2",
+          "criterion": "kill SIGTERM/SIGINT 後 LSP/DAP 子程序被清除，未完成 journal 有可檢查狀態。",
+          "remaining": "SIGTERM/SIGINT 後代清除與未完成 journal 的 native 行為尚未驗收。"
+        },
+        {
+          "id": "ODIN-029-A3",
+          "criterion": "同版本 manifest、source SHA、archive checksum 一致。",
+          "remaining": "Linux/macOS 同版本 archive manifest/checksum 尚未生成及核對。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-030",
+      "title": "效能、Token 與品質基準",
+      "priority": "P1",
+      "status": "NOT_RUN",
+      "implementation": "NOT_VERIFIED",
+      "summary": "沒有性能、CPU/RSS、token 節省、成功率或比 Serena 更快的實測主張。",
+      "checks": [],
+      "acceptance_results": [
+        {
+          "id": "ODIN-030-A1",
+          "criterion": "發布 P50/P95 latency、RSS、CPU、output bytes/tokens、任務成功率與重構後編譯通過率。",
+          "status": "NOT_RUN",
+          "remaining": "P50/P95/RSS/CPU/output bytes/tokens 與品質統計尚未量測。"
+        },
+        {
+          "id": "ODIN-030-A2",
+          "criterion": "至少 3 種規模 repo 及 20 個日常 coding 任務，多次執行且同環境。",
+          "status": "NOT_RUN",
+          "remaining": "三種 repo 規模、20 個 coding 任務、同環境多次執行尚未完成。"
+        },
+        {
+          "id": "ODIN-030-A3",
+          "criterion": "未達預定效能目標需列性能回歸，不能只報成功樣本。",
+          "status": "NOT_RUN",
+          "remaining": "沒有完整失敗／性能回歸 benchmark suite 報告。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-030-A1",
+          "criterion": "發布 P50/P95 latency、RSS、CPU、output bytes/tokens、任務成功率與重構後編譯通過率。",
+          "remaining": "P50/P95/RSS/CPU/output bytes/tokens 與品質統計尚未量測。"
+        },
+        {
+          "id": "ODIN-030-A2",
+          "criterion": "至少 3 種規模 repo 及 20 個日常 coding 任務，多次執行且同環境。",
+          "remaining": "三種 repo 規模、20 個 coding 任務、同環境多次執行尚未完成。"
+        },
+        {
+          "id": "ODIN-030-A3",
+          "criterion": "未達預定效能目標需列性能回歸，不能只報成功樣本。",
+          "remaining": "沒有完整失敗／性能回歸 benchmark suite 報告。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-031",
+      "title": "套件供應鏈、機密與對外發布治理",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "Cargo.lock、SBOM、license inventory、advisory/pattern scan 有已執行報告；非 formal security/legal audit。",
+      "checks": [
+        {
+          "command": [
+            "python",
+            "scripts/check_publish_policy.py"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/7",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Manual self-hosted workflow/publisher policy source checks; no remote publication performed."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-031-A1",
+          "criterion": "公開候選 repo 目錄通過 secret scan、license scanner 與 artifact allowlist。",
+          "status": "PARTIAL",
+          "remaining": "現有報告涵蓋當時 candidate；本次新增／修改文件與最終 artifact allowlist 的完整掃描待 root 整合。"
+        },
+        {
+          "id": "ODIN-031-A2",
+          "criterion": "README 不聲稱尚未執行的 tests 成功；所有 NOT_RUN 有出處。",
+          "status": "PARTIAL",
+          "remaining": "文件已改據實分級；最終命令數與發布狀態仍待 root 實際完成後更新。"
+        },
+        {
+          "id": "ODIN-031-A3",
+          "criterion": "權限最小化；公眾 PR 不在無防護 self-hosted runner 上自動執行。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-031-A1",
+          "criterion": "公開候選 repo 目錄通過 secret scan、license scanner 與 artifact allowlist。",
+          "remaining": "現有報告涵蓋當時 candidate；本次新增／修改文件與最終 artifact allowlist 的完整掃描待 root 整合。"
+        },
+        {
+          "id": "ODIN-031-A2",
+          "criterion": "README 不聲稱尚未執行的 tests 成功；所有 NOT_RUN 有出處。",
+          "remaining": "文件已改據實分級；最終命令數與發布狀態仍待 root 實際完成後更新。"
+        },
+        {
+          "id": "ODIN-031-A3",
+          "criterion": "權限最小化；公眾 PR 不在無防護 self-hosted runner 上自動執行。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/cargo-audit.json",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        },
+        {
+          "report": "verification/license-inventory.json",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        },
+        {
+          "report": "verification/public-candidate-scan.json",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        },
+        {
+          "report": "verification/sbom.cdx.json",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-032",
+      "title": "競態、崩潰與資料完整性驗證",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "core logs 記錄真 process checkpoint crash/recovery、雙程序 contention 與 Windows NTFS aliases；不以 mock FS 代替。",
+      "checks": [
+        {
+          "command": "cargo test -p odin-protocol --locked",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-tests-regressions.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/0",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        },
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-032-A1",
+          "criterion": "對所有 transaction 轉態注入 failpoint，能確定 state 的下一步。",
+          "status": "PARTIAL",
+          "remaining": "有真 process failpoints；partial disk write/permission denied/目錄替換的完整敵意矩陣未完成。"
+        },
+        {
+          "id": "ODIN-032-A2",
+          "criterion": "兩個獨立 process 同時修改同檔，其中一個必須安全拒絕或重新協商，不能靜默覆蓋。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-032-A3",
+          "criterion": "以實際 Windows NTFS 和 Linux ext4 或 equivalent 驗證，不只 mock FS。",
+          "status": "PARTIAL",
+          "remaining": "Windows NTFS 有原生紀錄；Linux ext4 等 native FS 仍 NOT_RUN。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-032-A1",
+          "criterion": "對所有 transaction 轉態注入 failpoint，能確定 state 的下一步。",
+          "remaining": "有真 process failpoints；partial disk write/permission denied/目錄替換的完整敵意矩陣未完成。"
+        },
+        {
+          "id": "ODIN-032-A2",
+          "criterion": "兩個獨立 process 同時修改同檔，其中一個必須安全拒絕或重新協商，不能靜默覆蓋。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-032-A3",
+          "criterion": "以實際 Windows NTFS 和 Linux ext4 或 equivalent 驗證，不只 mock FS。",
+          "remaining": "Windows NTFS 有原生紀錄；Linux ext4 等 native FS 仍 NOT_RUN。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/core-tests.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        },
+        {
+          "report": "verification/core-process-contention.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        },
+        {
+          "report": "verification/core-review-regressions.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        },
+        {
+          "report": "verification/windows-short-aliases.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-033",
+      "title": "完整架構文件、開發契約與產品邊界",
+      "priority": "P0",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "40 需求／53 參考映射保留；新增工具後同步至 72 契約，文件與本次分級證據正在整合。",
+      "checks": [
+        {
+          "command": [
+            "python",
+            "scripts/check_requirements.py"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/6",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Historical documentation traceability only; latest edited requirements must be checked again."
+        },
+        {
+          "command": [
+            "python",
+            "scripts/check_publish_policy.py"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/7",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Manual self-hosted workflow/publisher policy source checks; no remote publication performed."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-033-A1",
+          "criterion": "公開的 53 Serena 功能全部映射至少一項 Odin 原生需求。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-033-A2",
+          "criterion": "原有 58 個工具名稱保留並擴充為 72 個；新增 API 必須含 schema、錯誤碼與測試。",
+          "status": "PARTIAL",
+          "remaining": "72 個工具與 schema 已生成；全部新增 API 功能矩陣尚未全數驗收。"
+        },
+        {
+          "id": "ODIN-033-A3",
+          "criterion": "README 入口、ROADMAP、RELEASE_GATES 與驗收證據一致。",
+          "status": "PARTIAL",
+          "remaining": "候選 final runner、交付狀態、公開發布紀錄須在 root 完成後最後同步。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-033-A1",
+          "criterion": "公開的 53 Serena 功能全部映射至少一項 Odin 原生需求。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-033-A2",
+          "criterion": "原有 58 個工具名稱保留並擴充為 72 個；新增 API 必須含 schema、錯誤碼與測試。",
+          "remaining": "72 個工具與 schema 已生成；全部新增 API 功能矩陣尚未全數驗收。"
+        },
+        {
+          "id": "ODIN-033-A3",
+          "criterion": "README 入口、ROADMAP、RELEASE_GATES 與驗收證據一致。",
+          "remaining": "候選 final runner、交付狀態、公開發布紀錄須在 root 完成後最後同步。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-034",
+      "title": "語言後端安裝與能力健康檢查",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "doctor --probe-lsp 與 get_capabilities 會實際 initialize，缺後端回明確錯誤；不自動執行 repo 內設定。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "command": [
+            "python",
+            "scripts/cli_smoke.py",
+            "--binary",
+            "target/debug/odin.exe",
+            "--output",
+            "verification/platform-cli-smoke.json"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/8",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Real binary CLI/setup generated argv/backup/conflict/hook smoke; actual Codex/Claude/OpenCode apps not tested."
+        },
+        {
+          "command": "cargo test -p odin-protocol --locked real_rust_analyzer_smoke -- --ignored --nocapture",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-real-rust-analyzer.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/1",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Real rust-analyzer 1.90.0 initialize/documentSymbol only."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-034-A1",
+          "criterion": "後端缺失回 MISSING_BACKEND，版本衝突回 BACKEND_UNSUPPORTED。",
+          "status": "PARTIAL",
+          "remaining": "缺 backend 已有測試；完整版本 pin/unsupported-version compatibility registry 未完成。"
+        },
+        {
+          "id": "ODIN-034-A2",
+          "criterion": "使用者明確同意安裝後在隔離目錄且 hash 核對；失敗不留下可執行半成品。",
+          "status": "PARTIAL",
+          "remaining": "沒有可選 hash-pinned backend auto-installer，不能宣稱安裝驗收成功。"
+        },
+        {
+          "id": "ODIN-034-A3",
+          "criterion": "更換 server 版本會觸發必要 index invalidation。",
+          "status": "PARTIAL",
+          "remaining": "server 版本更換所需 index invalidation 尚未完整驗收。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-034-A1",
+          "criterion": "後端缺失回 MISSING_BACKEND，版本衝突回 BACKEND_UNSUPPORTED。",
+          "remaining": "缺 backend 已有測試；完整版本 pin/unsupported-version compatibility registry 未完成。"
+        },
+        {
+          "id": "ODIN-034-A2",
+          "criterion": "使用者明確同意安裝後在隔離目錄且 hash 核對；失敗不留下可執行半成品。",
+          "remaining": "沒有可選 hash-pinned backend auto-installer，不能宣稱安裝驗收成功。"
+        },
+        {
+          "id": "ODIN-034-A3",
+          "criterion": "更換 server 版本會觸發必要 index invalidation。",
+          "remaining": "server 版本更換所需 index invalidation 尚未完整驗收。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-035",
+      "title": "純原生檢查與 Quick Fix 引擎",
+      "priority": "P2",
+      "status": "PARTIAL",
+      "implementation": "NOT_IMPLEMENTED",
+      "summary": "有 LSP QuickFix 的安全 resolve/transaction 入口；尚無獨立 Clippy/Ruff/ESLint inspection provider 引擎。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-035-A1",
+          "criterion": "能在 Rust/Python/TypeScript fixture 取得 rule、location 與可預覽 quick fix。",
+          "status": "PARTIAL",
+          "remaining": "三語 native rule/location/fix providers 尚未實作及真實驗收。"
+        },
+        {
+          "id": "ODIN-035-A2",
+          "criterion": "即使載入 JetBrains IDE 也不依賴 Serena 插件或授權。",
+          "status": "PARTIAL",
+          "remaining": "沒有依賴 Serena/JetBrains；實際 IDE 載入情境尚未驗收。"
+        },
+        {
+          "id": "ODIN-035-A3",
+          "criterion": "規則尚不支援時顯示未實作，不給空結果稱合格。",
+          "status": "PARTIAL",
+          "remaining": "缺能力會明確拒絕；完整 provider support matrix 尚未完成。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-035-A1",
+          "criterion": "能在 Rust/Python/TypeScript fixture 取得 rule、location 與可預覽 quick fix。",
+          "remaining": "三語 native rule/location/fix providers 尚未實作及真實驗收。"
+        },
+        {
+          "id": "ODIN-035-A2",
+          "criterion": "即使載入 JetBrains IDE 也不依賴 Serena 插件或授權。",
+          "remaining": "沒有依賴 Serena/JetBrains；實際 IDE 載入情境尚未驗收。"
+        },
+        {
+          "id": "ODIN-035-A3",
+          "criterion": "規則尚不支援時顯示未實作，不給空結果稱合格。",
+          "remaining": "缺能力會明確拒絕；完整 provider support matrix 尚未完成。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-036",
+      "title": "持久式除錯命令會話（非 Python REPL）",
+      "priority": "P2",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "debug_batch 是 bounded DAP session 命令序列，核對 UUID、每步 request ID/ticket/outcome，沒有 eval/Python REPL。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "command": "cargo test -p odin-protocol --locked",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-tests-regressions.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/0",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-036-A1",
+          "criterion": "一次 session 中連續設置 breakpoint、launch、step、evaluate 成功且每步有證據。",
+          "status": "PARTIAL",
+          "remaining": "連續流程目前有 protocol fixtures；同一 debug_batch 在真 adapter 的 launch→step→evaluate 專項驗收未執行。"
+        },
+        {
+          "id": "ODIN-036-A2",
+          "criterion": "不能從 debug DSL 任意執行 host shell 或跨專案存取。",
+          "status": "PARTIAL",
+          "remaining": "有 scope/host debug deny 測試；debuggee 是 privileged target，沒有 OS sandbox 保證。"
+        },
+        {
+          "id": "ODIN-036-A3",
+          "criterion": "debuggee 結束會回 session closed，持續讀取不會假裝仍在執行。",
+          "status": "PARTIAL",
+          "remaining": "狀態機與 terminated fixtures 已測；真 adapter session 結束/重啟矩陣未全驗收。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-036-A1",
+          "criterion": "一次 session 中連續設置 breakpoint、launch、step、evaluate 成功且每步有證據。",
+          "remaining": "連續流程目前有 protocol fixtures；同一 debug_batch 在真 adapter 的 launch→step→evaluate 專項驗收未執行。"
+        },
+        {
+          "id": "ODIN-036-A2",
+          "criterion": "不能從 debug DSL 任意執行 host shell 或跨專案存取。",
+          "remaining": "有 scope/host debug deny 測試；debuggee 是 privileged target，沒有 OS sandbox 保證。"
+        },
+        {
+          "id": "ODIN-036-A3",
+          "criterion": "debuggee 結束會回 session closed，持續讀取不會假裝仍在執行。",
+          "remaining": "狀態機與 terminated fixtures 已測；真 adapter session 結束/重啟矩陣未全驗收。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/real-backends.json",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-037",
+      "title": "記憶 schema 升級與 import/export",
+      "priority": "P2",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "memory bundle 有 schema/version/digest、create-only import、scope ownership/refs 與 collision 拒絕。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-037-A1",
+          "criterion": "0.2.0 central memory 以 dry-run 顯示 diff，遷移後 refs 完整且可逆。",
+          "status": "PARTIAL",
+          "remaining": "沒有 central→repo-local 自動 migration/dry-run/reverse 流程。"
+        },
+        {
+          "id": "ODIN-037-A2",
+          "criterion": "資料損毀/衝突時不覆蓋現存目標。",
+          "status": "PARTIAL",
+          "remaining": "bundle corruption/collision 有測試；完整跨版本備份/恢復矩陣未驗收。"
+        },
+        {
+          "id": "ODIN-037-A3",
+          "criterion": "不要求安裝 Serena 或讀取 Serena 私有路徑。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-037-A1",
+          "criterion": "0.2.0 central memory 以 dry-run 顯示 diff，遷移後 refs 完整且可逆。",
+          "remaining": "沒有 central→repo-local 自動 migration/dry-run/reverse 流程。"
+        },
+        {
+          "id": "ODIN-037-A2",
+          "criterion": "資料損毀/衝突時不覆蓋現存目標。",
+          "remaining": "bundle corruption/collision 有測試；完整跨版本備份/恢復矩陣未驗收。"
+        },
+        {
+          "id": "ODIN-037-A3",
+          "criterion": "不要求安裝 Serena 或讀取 Serena 私有路徑。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/core-tests.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-038",
+      "title": "精確文字編輯與多命中選擇",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "immutable occurrence IDs、5 選 2、regex capture/CRLF、stale/duplicate/empty-match 拒絕已有 executed engine tests。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-038-A1",
+          "criterion": "同檔 5 命中可只改指定 2 個且衝突拒絕，不多改任何匹配。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-038-A2",
+          "criterion": "Regex 多行與 CRLF 的預覽與實際套用位移一致。",
+          "status": "PARTIAL",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-038-A3",
+          "criterion": "空匹配、重疊替換、數量不符回明確錯誤。",
+          "status": "PARTIAL",
+          "remaining": "已執行空匹配/duplicate/stale 與 count 負例；完整 overlapping replacement selection 的獨立案例清單仍需補齊。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-038-A1",
+          "criterion": "同檔 5 命中可只改指定 2 個且衝突拒絕，不多改任何匹配。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-038-A2",
+          "criterion": "Regex 多行與 CRLF 的預覽與實際套用位移一致。",
+          "remaining": "已執行報告涵蓋 Windows 定向案例；本次未將此原條件作完整逐條驗收，完整矩陣及最終 source/binary 由整合 owner 核對。"
+        },
+        {
+          "id": "ODIN-038-A3",
+          "criterion": "空匹配、重疊替換、數量不符回明確錯誤。",
+          "remaining": "已執行空匹配/duplicate/stale 與 count 負例；完整 overlapping replacement selection 的獨立案例清單仍需補齊。"
+        }
+      ],
+      "supporting_reports": []
+    },
+    {
+      "id": "ODIN-039",
+      "title": "後端 debugger 設定及啟動安全",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "named host profiles、core env allowlist、DAP state/capability guards 與 process-tree cleanup 已接線。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "command": "cargo test -p odin-protocol --locked",
+          "exit_code": 0,
+          "status": "PASS",
+          "log": "verification/protocol-tests-regressions.txt",
+          "report": "verification/protocol-verification.json",
+          "report_pointer": "/checks/0",
+          "report_sha256": "cfb08ebf2b4e91288e59bcc8ba849eec3cd0f32eedff3b0928d419372cac23ac",
+          "scope": "Windows protocol/unit fixtures; unsupported resource operations are deliberately rejected."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-039-A1",
+          "criterion": "launch profiles 對不同 debugger 具有固定 schema 與測試 fixture。",
+          "status": "PARTIAL",
+          "remaining": "各 debug adapter 的固定 launch schema/version discovery registry 尚未完成。"
+        },
+        {
+          "id": "ODIN-039-A2",
+          "criterion": "惡意 launch args/env 不能跳出 host 授權且沒有任意 shell 字串。",
+          "status": "PARTIAL",
+          "remaining": "env 是 allowlist；DAP launch/attach payload 仍授權執行 target，不能宣稱任意 args 受 OS 隔離。"
+        },
+        {
+          "id": "ODIN-039-A3",
+          "criterion": "停止會回收 debuggee 的 process tree。",
+          "status": "PARTIAL",
+          "remaining": "Windows lifecycle 有測試；跨 adapter/OS debuggee 後代清理矩陣未完成。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-039-A1",
+          "criterion": "launch profiles 對不同 debugger 具有固定 schema 與測試 fixture。",
+          "remaining": "各 debug adapter 的固定 launch schema/version discovery registry 尚未完成。"
+        },
+        {
+          "id": "ODIN-039-A2",
+          "criterion": "惡意 launch args/env 不能跳出 host 授權且沒有任意 shell 字串。",
+          "remaining": "env 是 allowlist；DAP launch/attach payload 仍授權執行 target，不能宣稱任意 args 受 OS 隔離。"
+        },
+        {
+          "id": "ODIN-039-A3",
+          "criterion": "停止會回收 debuggee 的 process tree。",
+          "remaining": "Windows lifecycle 有測試；跨 adapter/OS debuggee 後代清理矩陣未完成。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/core-tests.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        },
+        {
+          "report": "verification/real-backends.json",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ]
+    },
+    {
+      "id": "ODIN-040",
+      "title": "工作證據、結果分塊與可追溯執行",
+      "priority": "P1",
+      "status": "PARTIAL",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "trace_id/elapsed/error、result/chunk digests、project scope、24h/128份/128MiB spill 配額與 expiry 測試已執行。",
+      "checks": [
+        {
+          "command": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-engine",
+            "--locked"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/engine-verification.json",
+          "report_pointer": "/commands/1",
+          "report_sha256": "d0f96a219e49bf80dda20a8a6264426579e89a204e2a8affd5b595548dd43b91",
+          "scope": "Windows package suite; semantic Move/Inline, QuickFix and DAP cases use protocol fixtures, not real backend parity."
+        },
+        {
+          "command": [
+            "python",
+            "scripts/http_smoke.py",
+            "--binary",
+            "target/debug/odin.exe",
+            "--output",
+            "verification/platform-http-smoke.json"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "PASS",
+          "report": "verification/platform-verification.json",
+          "report_pointer": "/commands/10",
+          "report_sha256": "c8ba14950e8149f51f4ef338461d506ce81d5fa95edb0a0bfa9085c1b723c9ca",
+          "scope": "Real loopback HTTP initialize/tools/call, Bearer/Host/Origin negatives, metadata allowlist and JSONL."
+        }
+      ],
+      "acceptance_results": [
+        {
+          "id": "ODIN-040-A1",
+          "criterion": "結果在保留期限內用 result_id 分頁取回並驗證 digest。",
+          "status": "PARTIAL",
+          "remaining": "分塊與 digest 有測試；每工具完整 backend version provenance 尚未覆蓋。"
+        },
+        {
+          "id": "ODIN-040-A2",
+          "criterion": "過期或權限錯誤返回明確訊息，沒有跨 project 結果洩漏。",
+          "status": "PARTIAL",
+          "remaining": "TTL/跨 project 有回歸；清理於讀寫時執行，沒有背景 retention service。"
+        },
+        {
+          "id": "ODIN-040-A3",
+          "criterion": "不暴露秘密 token、絕對本機私密路徑或完整原始碼到公共 Dashboard log。",
+          "status": "PARTIAL",
+          "remaining": "Dashboard metadata allowlist 有測試；journal/audit/index 的完整 retention/encryption/backup 未實作。"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-040-A1",
+          "criterion": "結果在保留期限內用 result_id 分頁取回並驗證 digest。",
+          "remaining": "分塊與 digest 有測試；每工具完整 backend version provenance 尚未覆蓋。"
+        },
+        {
+          "id": "ODIN-040-A2",
+          "criterion": "過期或權限錯誤返回明確訊息，沒有跨 project 結果洩漏。",
+          "remaining": "TTL/跨 project 有回歸；清理於讀寫時執行，沒有背景 retention service。"
+        },
+        {
+          "id": "ODIN-040-A3",
+          "criterion": "不暴露秘密 token、絕對本機私密路徑或完整原始碼到公共 Dashboard log。",
+          "remaining": "Dashboard metadata allowlist 有測試；journal/audit/index 的完整 retention/encryption/backup 未實作。"
+        }
+      ],
+      "supporting_reports": []
+    }
+  ],
+  "status_summary": {
+    "PASS": 0,
+    "PARTIAL": 38,
+    "NOT_RUN": 2
+  }
+}

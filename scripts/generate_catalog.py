@@ -104,6 +104,6 @@ add("debug_stop","Disconnect debuggee with termination requested and drop the ad
 add("debug_batch","Run 1..32 allowlisted DAP requests in an explicit project session with per-step request IDs","execute",{"session_id":s(),"commands":arr(obj({"command":s(),"arguments":obj(additional=True)},["command","arguments"]),32),"stop_on_error":b(True)},["session_id","commands"])
 add("result_read","Read a spilled large result by byte chunks; offsets remain UTF-8 aligned","read",{"result_id":s(),"offset":n(0,0,16777216),"max_bytes":n(16384,256,32768)},["result_id"])
 add("audit_log","Read redacted tool audit records without input/output source contents","read",{"limit":n(50,1,1000)})
-(ROOT/'crates/odin-engine/tools.json').write_text(json.dumps(TOOLS,ensure_ascii=False,indent=2)+'\n', encoding='utf-8')
-(ROOT/'schemas/tools.json').write_text(json.dumps(TOOLS,ensure_ascii=False,indent=2)+'\n', encoding='utf-8')
+(ROOT/'crates/odin-engine/tools.json').write_text(json.dumps(TOOLS,ensure_ascii=False,indent=2)+'\n', encoding='utf-8', newline='\n')
+(ROOT/'schemas/tools.json').write_text(json.dumps(TOOLS,ensure_ascii=False,indent=2)+'\n', encoding='utf-8', newline='\n')
 print(f'Generated {len(TOOLS)} tool contracts')

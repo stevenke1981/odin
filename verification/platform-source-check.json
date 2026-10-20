@@ -2000,9 +2000,9 @@
   "rust_compilation": "NOT_PERFORMED_BY_STATIC_CHECK",
   "tool_contracts": 72,
   "compiler_presence": {
-    "rustc": "C:\\Users\\steven\\.cargo\\bin\\rustc.EXE",
-    "cargo": "C:\\Users\\steven\\.cargo\\bin\\cargo.EXE",
-    "rustfmt": "C:\\Users\\steven\\.cargo\\bin\\rustfmt.EXE"
+    "rustc": "<USERPROFILE>\\.cargo\\bin\\rustc.EXE",
+    "cargo": "<USERPROFILE>\\.cargo\\bin\\cargo.EXE",
+    "rustfmt": "<USERPROFILE>\\.cargo\\bin\\rustfmt.EXE"
   },
   "not_proven": [
     "Rust syntax/types/linking",

@@ -11,7 +11,8 @@ required. Serena is a development navigation tool, never an Odin backend.
 | Owner | Scope | Acceptance |
 |---|---|---|
 | root | core transactions, paths, memories, index, process lifecycle, integration, release evidence | CAS conflicts never overwrite; export/import integrity; Windows native gates; honest requirement statuses |
-| requirements_audit | read-only requirements discovery, later independent review | distinguish actual implementation from platform/backend evidence |
+| requirements_audit | read-only requirements discovery, then owned requirement/documentation evidence updates | distinguish actual implementation from platform/backend evidence |
+| independent_review | independent read-only review, no authored product changes | review the integrated runtime, report concrete findings and verify fixes |
 | protocol_implementation | odin-protocol, protocol fixtures and implementation notes | resource WorkspaceEdits normalize into CAS changes; backend lifecycle and bounded RPC |
 | engine_implementation | odin-engine, catalog generators and both tool catalogs, API docs | tool schema/policy/dispatch/tests agree; semantic refactors use backend edits; memory previews cannot cross scope |
 | platform_implementation | CLI/HTTP/dashboard, setup/packaging and acceptance scripts | native binary operation, client setup without implicit writes, portable release and installer recipe |

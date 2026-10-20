@@ -1,0 +1,22 @@
+   Compiling odin-core v0.2.0 (<WORKSPACE>\crates\odin-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.03s
+     Running unittests src\lib.rs (target\debug\deps\odin_core-c05b13697ee528b5.exe)
+
+running 1 test
+test config::tests::windows_case_aliases_cannot_rewrite_host_policy_or_state ... FAILED
+
+failures:
+
+---- config::tests::windows_case_aliases_cannot_rewrite_host_policy_or_state stdout ----
+
+thread 'config::tests::windows_case_aliases_cannot_rewrite_host_policy_or_state' panicked at crates\odin-core\src\config.rs:352:67:
+called `Result::unwrap_err()` on an `Ok` value: "state_dir='host-state-storage'\n[projects.demo]\nroot='.'\nallow_write=true\nallow_shell=false\nallow_debug=false\n"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    config::tests::windows_case_aliases_cannot_rewrite_host_policy_or_state
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 36 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p odin-core --lib`

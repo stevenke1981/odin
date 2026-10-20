@@ -1,6 +1,6 @@
-   Compiling odin-protocol v0.2.0 (C:\Users\steven\.codex\worktrees\odin-protocol\odin\crates\odin-protocol)
+   Compiling odin-protocol v0.2.0 (<USERPROFILE>\.codex\worktrees\odin-protocol\odin\crates\odin-protocol)
     Finished `test` profile [unoptimized + debuginfo] target(s) in 2.82s
-     Running unittests src\lib.rs (E:\odin\target\debug\deps\odin_protocol-632bb9546eea7109.exe)
+     Running unittests src\lib.rs (<WORKSPACE>\target\debug\deps\odin_protocol-632bb9546eea7109.exe)
 
 running 26 tests
 test text::tests::bare_cr_is_a_line_break_and_end_position_uses_utf16 ... ok
@@ -32,7 +32,7 @@ test workspace::tests::ordered_resources_are_one_guarded_core_transaction ... ok
 
 test result: ok. 26 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
 
-     Running tests\fixture_protocols.rs (E:\odin\target\debug\deps\fixture_protocols-ac05f255d13e14f1.exe)
+     Running tests\fixture_protocols.rs (<WORKSPACE>\target\debug\deps\fixture_protocols-ac05f255d13e14f1.exe)
 
 running 14 tests
 test real_rust_analyzer_smoke ... ignored, Requires installed rust-analyzer, Rust sysroot, and real fixture project; run explicitly

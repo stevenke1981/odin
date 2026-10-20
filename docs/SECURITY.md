@@ -10,13 +10,13 @@ CLI 載入設定時拒絕重疊 root。作為 library 使用 `Engine::new(Config
 
 ## 原生防護
 
-原生來源寫入必須 allow_write；所有來源 edits 走 journal / expected SHA-256。原生 paths 拒絕 parent traversal、絕對路徑、符號連結、.git/.odin、可疑 Windows device names 與 deny_globs。CLI 載入時把設定檔本身及 workspace 內的 state directory 加入原生 deny 規則，避免修改自己的設定。命令及 debugger 使用 host 設定的命名 profile。大型輸入、輸出、檔案、RPC frame、flow 步驟與狀態設上限。
+原生來源寫入必須 allow_write；所有來源 edits 走 journal / expected SHA-256。Paths 以 directory capabilities/no-follow 存取，拒絕 traversal、絕對路徑、symlink／reparse points、hardlinks、.git/.odin、device names 與 deny_globs。Windows deny case-insensitive，並重新核對 canonical 長路徑；existing parent／8.3 與 transaction targets 使用相同 identity。CLI 將 host config 與 canonical state 加入 deny，拒絕 case-colliding project IDs。命令／debugger 僅 host profile；context/mode 只能收緊權限。
 
 `read_only` 是 API 層的寫入限制，不是 OS 保證：讀取操作可能啟動 LSP；LSP 可執行 build scripts、plugins、package hooks。即使沒有原生 shell 工具，子程序仍可能有主機帳號權限。
 
 ## 不提供的保證
 
-沒有 Linux namespace / seccomp、macOS sandbox profile、Windows AppContainer / Job Objects。沒有完整後代程序終止、檔案 descriptor-relative 無競態操作，或惡意本機使用者防護。Windows junction、UNC、所有 reparse-point 型態的 native 驗證尚未執行。
+沒有 Linux namespace / seccomp、macOS sandbox profile、Windows AppContainer／restricted-token 隔離。Windows Job Objects 與 Unix process groups 管理生命週期，並清除繼承環境中的非 allowlist 變數；它們不是安全沙箱，spawn→job 指派有窗口。Junction、hardlink、大小寫與真實 NTFS 8.3 有原生回歸；不宣稱全部 reparse／外部 inode 移動競態都已涵蓋。
 
 對不可信任 repository，請在獨立 VM / container / 低權限帳號中執行，僅掛載必要路徑，限制網路與 credentials。設定 deny_globs 不能取代 OS 隔離。
 
@@ -34,12 +34,12 @@ HTTP 僅 loopback，至少 32-byte-visible-character token，拒絕非預期 Hos
 
 ## 資料與稽核
 
-audit 記錄 project、tool、ok、elapsed、輸入 SHA-256、error_code；不記 raw arguments。`ok` 只表示工具 handler 回傳成功。執行測試時仍需看 result.success / exit_code。
+audit 記錄 project、tool、ok、elapsed、輸入 SHA-256、error_code、trace_id，不記 raw arguments。Dashboard/export 另用 metadata allowlist，不輸出 code、args、backend error message。`ok` 只表示 handler 成功；命令仍需看 result.success / exit_code。
 
-journal 包含完整程式碼 before/after；FTS 含程式碼內容；spooled results 與 Markdown memories 也可能敏感。它們未加密。Unix state dir 設 0700；Windows ACL 未自動設置或驗證。沒有自動 retention / 清除策略；自行規劃磁碟與備份。
+journal 包含完整 before/after；FTS、spool、Markdown memories 也可能敏感，未加密。Unix state dir 0700；Windows ACL 未自動強化。Spool 有 TTL/quota 與 lazy cleanup，其他儲存尚無完整 retention。Memory import/move journal 綁定 project，重驗所有 affected scopes；Windows note 政策與 canonical 名稱防別名繞過。交易 snapshots 總量限制 32 MiB，flow／replacement 在展開前檢查配額。
 
 ## 失敗與恢復
 
-timeout 可能代表「外部操作已完成但回覆遺失」，不能對修改型工具自動重試。原生寫入使用 journal 與 idempotency key；外部工具不共享此保證。恢復前若發現第三方編輯，停止並保留 RecoveryRequired，交由操作者處理。
+timeout／取消可能代表「操作已完成但回覆遺失」，不能對修改型工具自動重試。MCP 取消會丟棄仍在等待 gate／backend 的 future；已進入同步 apply 時維持 unknown-outcome，不假裝 rollback。原生寫入使用 journal/idempotency；外部工具不共享此保證。恢復發現第三方修改時保留 RecoveryRequired，不覆寫衝突。
 
 詳見 `KNOWN_LIMITATIONS.md` 及 `RELEASE_GATES.md`。任何安全主張都須在實際目標系統驗證。

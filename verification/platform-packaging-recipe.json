@@ -17,14 +17,14 @@
     "tracked_source_dirty": true,
     "version": "0.2.0"
   },
-  "staging": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin\\dist\\recipe-test-2\\.stage-0e26a4c63fe742f0a066b085c8c3c86e",
+  "staging": "<USERPROFILE>\\.codex\\worktrees\\odin-platform\\odin\\dist\\recipe-test-2\\.stage-0e26a4c63fe742f0a066b085c8c3c86e",
   "artifacts": [
     {
-      "path": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin\\dist\\recipe-test-2\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+      "path": "<USERPROFILE>\\.codex\\worktrees\\odin-platform\\odin\\dist\\recipe-test-2\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
       "sha256": "45f545b8d1be64188cce7e71e5c6800d704197bba9cccb8b9aa1c29caade556d"
     },
     {
-      "path": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin\\dist\\recipe-test-2\\odin-0.2.0-windows-x64-setup.exe",
+      "path": "<USERPROFILE>\\.codex\\worktrees\\odin-platform\\odin\\dist\\recipe-test-2\\odin-0.2.0-windows-x64-setup.exe",
       "sha256": "04bd07ee4b0979266be695c3bbb81d0541618352766697fdf142b646ab4f43e1"
     }
   ],

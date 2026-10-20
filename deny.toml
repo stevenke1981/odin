@@ -1,0 +1,4 @@
+# Development-time supply-chain policy; Odin never loads this as host config.
+[licenses]
+allow = ["MIT", "Apache-2.0", "BSD-3-Clause", "Unicode-3.0", "Zlib", "Apache-2.0 WITH LLVM-exception"]
+confidence-threshold = 0.8

@@ -1,7 +1,7 @@
 {
   "scope": "REAL_ODIN_BINARY_STDIO_SMOKE",
   "status": "PASS",
-  "binary": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin\\target\\debug\\odin.exe",
+  "binary": "<USERPROFILE>\\.codex\\worktrees\\odin-platform\\odin\\target\\debug\\odin.exe",
   "binary_sha256": "e70bae3b3da4519abcfb98ba6d98b98cc94869fef8d0a00d24a236044bac7f2a",
   "platform": "Windows-11-10.0.26300-SP0",
   "checks": [

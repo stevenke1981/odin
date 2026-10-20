@@ -2,16 +2,16 @@
   "schema_version": "1.0",
   "product": "Odin",
   "baseline_version": "0.2.0",
-  "status": "SPECIFICATION_ONLY",
+  "status": "WINDOWS_NATIVE_PREVIEW_PARTIAL",
   "standalone_requirement": "No Serena code, runtime, plugin, or bridge in shipping Odin binaries",
-  "note": "Current/source statuses describe existing repository snapshot only. All functional implementation acceptance tests are NOT_RUN.",
+  "note": "Windows x64 MSVC is built and exercised. Source implementation status is separate from acceptance. Each requirement links to executed slice checks and explicit remaining acceptance; Linux/macOS, OS sandbox, broad language/IDE parity and benchmarks are not complete.",
   "features": [
     {
       "id": "ODIN-001",
       "title": "可重現的 Rust 建置與工具鏈",
       "priority": "P0",
       "phase": "M0",
-      "current": "SOURCE_PREVIEW",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "build",
         "release"
@@ -29,7 +29,8 @@
         "M0-compile-macos"
       ],
       "depends_on": [],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-001",
+      "implementation_summary": "Windows Rust toolchain、真實 Cargo.lock 與具 metadata 的 binary 已有實測；最終整合與跨平台矩陣分開驗收。"
     },
     {
       "id": "ODIN-002",
@@ -56,11 +57,12 @@
       "depends_on": [
         "ODIN-001"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-002",
+      "implementation_summary": "真 binary 的 MCP stdio、Streamable HTTP、授權負例與取消已有 Windows smoke。"
     },
     {
       "id": "ODIN-003",
-      "title": "58 個工具契約、版本與能力協商",
+      "title": "72 個原生工具契約、版本與能力協商",
       "priority": "P0",
       "phase": "M0",
       "current": "NATIVE_SOURCE_PARTIAL",
@@ -71,7 +73,7 @@
       "goal": "避免有 tool 名字但工具不支援、或參數不一致。",
       "design": "單一來源 schema → CLI/MCP/flow；工具包含 required project、輸入限制、read/write/execute 標記；新增 get_capabilities 與 schema_version；不支援回 CAPABILITY_UNAVAILABLE。",
       "acceptance": [
-        "現有 58 個 tools 全數列在 coverage 表，schema/dispatcher 逐項有功能測試。",
+        "原有 58 個工具保留，擴充後 72 個 tools 全數列在 coverage 表，schema/dispatcher 逐項有功能測試。",
         "錯參數、未知專案、未知工具與後端失聯各得到不同可機械判別 error code。",
         "新版本修改破壞 API 時更新 schema_version 並保留遷移文件。"
       ],
@@ -83,7 +85,8 @@
       "depends_on": [
         "ODIN-002"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-003",
+      "implementation_summary": "擴充為 72 工具，具 schema_version/get_capabilities、catalog 一致性與錯誤／policy 測試。"
     },
     {
       "id": "ODIN-004",
@@ -110,7 +113,8 @@
       "depends_on": [
         "ODIN-001"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-004",
+      "implementation_summary": "每次 project scope、跨 project 唯讀查詢、後端/session 與結果隔離已有定向測試。"
     },
     {
       "id": "ODIN-005",
@@ -137,7 +141,8 @@
       "depends_on": [
         "ODIN-004"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-005",
+      "implementation_summary": "已使用 no-follow directory capabilities，Windows aliases/reparse/hardlink 有原生回歸紀錄。"
     },
     {
       "id": "ODIN-006",
@@ -164,7 +169,8 @@
       "depends_on": [
         "ODIN-005"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-006",
+      "implementation_summary": "Transactions 提供 immutable preview、全檔 CAS、journal、recover/rollback；外部衝突拒絕已有回歸紀錄。"
     },
     {
       "id": "ODIN-007",
@@ -191,7 +197,8 @@
       "depends_on": [
         "ODIN-004"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-007",
+      "implementation_summary": "LSP sync/capability/readiness/shutdown/restart、版本與 UTF-16/CRLF 回歸已執行。"
     },
     {
       "id": "ODIN-008",
@@ -218,7 +225,8 @@
       "depends_on": [
         "ODIN-007"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-008",
+      "implementation_summary": "已新增 symbol filters/depth/scope/paging/body budget，真實三語 symbols/references 有報告。"
     },
     {
       "id": "ODIN-009",
@@ -246,14 +254,15 @@
         "ODIN-006",
         "ODIN-007"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-009",
+      "implementation_summary": "有序 TextDocumentEdit/Create/Rename/Delete regular UTF-8 file 已轉 CAS 交易；unsupported operations 明確拒絕。"
     },
     {
       "id": "ODIN-010",
       "title": "真實語言伺服器三語驗收",
       "priority": "P0",
       "phase": "M1",
-      "current": "NOT_VERIFIED",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "test",
         "lsp"
@@ -275,14 +284,15 @@
         "ODIN-008",
         "ODIN-009"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-010",
+      "implementation_summary": "Windows 真 rust-analyzer、basedpyright、TypeScript language-server 的 symbols/references/rename/rollback 已有報告。"
     },
     {
       "id": "ODIN-011",
       "title": "零 Serena 相依的乾淨主機驗證",
       "priority": "P0",
       "phase": "M0",
-      "current": "SOURCE_STATIC_ONLY",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "build",
         "security"
@@ -302,14 +312,15 @@
       "depends_on": [
         "ODIN-001"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-011",
+      "implementation_summary": "真 binary MCP 顯示 standalone 並拒絕 serena_tools/serena_call；生產路徑沒有 bridge/fallback。"
     },
     {
       "id": "ODIN-012",
       "title": "實際 OS 隔離、程序樹與權限",
       "priority": "P0",
       "phase": "M0",
-      "current": "NOT_IMPLEMENTED",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "security",
         "process"
@@ -329,7 +340,8 @@
       "depends_on": [
         "ODIN-005"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-012",
+      "implementation_summary": "已加入環境 allowlist、Windows Job Objects／Unix process groups 與受信任固定 argv profiles；這些是程序生命週期控制。"
     },
     {
       "id": "ODIN-013",
@@ -356,14 +368,15 @@
       "depends_on": [
         "ODIN-012"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-013",
+      "implementation_summary": "DAP 狀態、events、capabilities、launch tickets、取消與 session 有 fixtures；Windows debugpy 實際 breakpoint/variables/evaluate/step 有報告。"
     },
     {
       "id": "ODIN-014",
       "title": "語意 Move refactoring",
       "priority": "P1",
       "phase": "M2",
-      "current": "NOT_IMPLEMENTED",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "refactor",
         "odin-protocol"
@@ -384,14 +397,15 @@
         "ODIN-009",
         "ODIN-008"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-014",
+      "implementation_summary": "move_symbol 僅接受後端 refactor.move edit，驗證 source/target 並回 transaction preview；沒有文字搬移 fallback。"
     },
     {
       "id": "ODIN-015",
       "title": "語意 Inline refactoring",
       "priority": "P1",
       "phase": "M2",
-      "current": "NOT_IMPLEMENTED",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "refactor",
         "odin-protocol"
@@ -411,7 +425,8 @@
       "depends_on": [
         "ODIN-009"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-015",
+      "implementation_summary": "inline_symbol 僅接受具 refactor.inline kind 的後端 edit，拒絕 command-only/mixed/模糊 actions。"
     },
     {
       "id": "ODIN-016",
@@ -438,7 +453,8 @@
         "ODIN-008",
         "ODIN-009"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-016",
+      "implementation_summary": "Safe Delete 仍限 LSP 靜態 references 與 guarded transaction，沒有完整 reachability/cascade。"
     },
     {
       "id": "ODIN-017",
@@ -465,7 +481,8 @@
         "ODIN-007",
         "ODIN-006"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-017",
+      "implementation_summary": "版本化 pull/push diagnostics 與具 diagnostics context 的 QuickFix resolve/preview 路徑已實作及 fixture 測試。"
     },
     {
       "id": "ODIN-018",
@@ -492,14 +509,15 @@
       "depends_on": [
         "ODIN-008"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-018",
+      "implementation_summary": "LSP TypeHierarchy primitives、明確兩方 project 的唯讀 query 與 scope deny 有實作。"
     },
     {
       "id": "ODIN-019",
       "title": "逐語言適配與 40+ 語言宣告策略",
       "priority": "P1",
       "phase": "M3",
-      "current": "NOT_IMPLEMENTED",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "adapters",
         "lsp"
@@ -519,7 +537,8 @@
       "depends_on": [
         "ODIN-010"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-019",
+      "implementation_summary": "目前只有三個具真實後端報告的語言；generic LSP 設定不等於所有語言已支援。"
     },
     {
       "id": "ODIN-020",
@@ -546,7 +565,8 @@
       "depends_on": [
         "ODIN-006"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-020",
+      "implementation_summary": "central Markdown CAS/refs、版本化 bundle 匯入匯出、scope move 與 initiating-project owned journals 已有測試。"
     },
     {
       "id": "ODIN-021",
@@ -573,7 +593,8 @@
       "depends_on": [
         "ODIN-005"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-021",
+      "implementation_summary": "index_query 前 live-hash scan 會增量更新新增/修改/刪除 FTS rows；沒有背景 watcher。"
     },
     {
       "id": "ODIN-022",
@@ -601,7 +622,8 @@
         "ODIN-003",
         "ODIN-004"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-022",
+      "implementation_summary": "flow 已有 per-session namespace locks、有界 map/filter/reduce、失敗 draft 不提交與 timeout。"
     },
     {
       "id": "ODIN-023",
@@ -628,7 +650,8 @@
       "depends_on": [
         "ODIN-002"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-023",
+      "implementation_summary": "setup/validate/onboard/doctor 已實作；三種 generated config 的真 MCP handshake、dry-run/backup/CAS smoke 已執行。"
     },
     {
       "id": "ODIN-024",
@@ -655,7 +678,8 @@
       "depends_on": [
         "ODIN-004"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-024",
+      "implementation_summary": "host TOML contexts/modes 依序收緊權限，data-only policy 不可授予 host 已拒絕的權限。"
     },
     {
       "id": "ODIN-025",
@@ -682,14 +706,15 @@
       "depends_on": [
         "ODIN-002"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-025",
+      "implementation_summary": "唯讀 Dashboard/API 提供 trace/elapsed/error metadata、後端 snapshot、JSONL export，未知 token/resource usage 保持 UNKNOWN。"
     },
     {
       "id": "ODIN-026",
       "title": "Hooks / Agent 策略引導",
       "priority": "P2",
       "phase": "M3",
-      "current": "NOT_IMPLEMENTED",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "integrations"
       ],
@@ -707,14 +732,15 @@
       "depends_on": [
         "ODIN-023"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-026",
+      "implementation_summary": "可選 hook dry-run、CAS backup、managed marker disable/restore 已 smoke；不自動註冊代理。"
     },
     {
       "id": "ODIN-027",
       "title": "可重現驗收及 CI 成本限制",
       "priority": "P0",
       "phase": "M0",
-      "current": "SOURCE_PREVIEW",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "ci",
         "verification"
@@ -734,14 +760,15 @@
       "depends_on": [
         "ODIN-001"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-027",
+      "implementation_summary": "已有 package command logs、source hashes、binary smoke，workflow 僅 workflow_dispatch/self-hosted。"
     },
     {
       "id": "ODIN-028",
       "title": "Windows x64 MSVC 安裝、升級與卸載",
       "priority": "P1",
       "phase": "M3",
-      "current": "NOT_IMPLEMENTED",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "release",
         "windows"
@@ -761,7 +788,8 @@
       "depends_on": [
         "ODIN-001"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-028",
+      "implementation_summary": "portable ZIP 與 Inno Setup recipe 已編譯；該 recipe report 使用較早 revision，未視為最終候選。"
     },
     {
       "id": "ODIN-029",
@@ -788,7 +816,8 @@
       "depends_on": [
         "ODIN-001"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "NOT_RUN; verification/feature-evidence.json#ODIN-029",
+      "implementation_summary": "Linux/macOS 的打包腳本已存在，沒有 native OS runtime/installer 證據。"
     },
     {
       "id": "ODIN-030",
@@ -814,14 +843,15 @@
       "depends_on": [
         "ODIN-010"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "NOT_RUN; verification/feature-evidence.json#ODIN-030",
+      "implementation_summary": "沒有性能、CPU/RSS、token 節省、成功率或比 Serena 更快的實測主張。"
     },
     {
       "id": "ODIN-031",
       "title": "套件供應鏈、機密與對外發布治理",
       "priority": "P0",
       "phase": "M0",
-      "current": "SOURCE_PREVIEW",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "security",
         "release"
@@ -841,14 +871,15 @@
       "depends_on": [
         "ODIN-001"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-031",
+      "implementation_summary": "Cargo.lock、SBOM、license inventory、advisory/pattern scan 有已執行報告；非 formal security/legal audit。"
     },
     {
       "id": "ODIN-032",
       "title": "競態、崩潰與資料完整性驗證",
       "priority": "P0",
       "phase": "M0",
-      "current": "NOT_VERIFIED",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "test",
         "recovery"
@@ -868,14 +899,15 @@
       "depends_on": [
         "ODIN-006"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-032",
+      "implementation_summary": "core logs 記錄真 process checkpoint crash/recovery、雙程序 contention 與 Windows NTFS aliases；不以 mock FS 代替。"
     },
     {
       "id": "ODIN-033",
       "title": "完整架構文件、開發契約與產品邊界",
       "priority": "P0",
       "phase": "M0",
-      "current": "SOURCE_PREVIEW",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "docs"
       ],
@@ -883,7 +915,7 @@
       "design": "中文需求規格、英語 API tags、每項 id/priority/source/status/deps/acceptance/test；修版時更新 machine-readable backlog 與 traceability；文件語義單一來源。",
       "acceptance": [
         "公開的 53 Serena 功能全部映射至少一項 Odin 原生需求。",
-        "現有 58 tools 列表未變更，新增 API 必須含 schema、錯誤碼與測試。",
+        "原有 58 個工具名稱保留並擴充為 72 個；新增 API 必須含 schema、錯誤碼與測試。",
         "README 入口、ROADMAP、RELEASE_GATES 與驗收證據一致。"
       ],
       "tests": [
@@ -894,14 +926,15 @@
       "depends_on": [
         "ODIN-003"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-033",
+      "implementation_summary": "40 需求／53 參考映射保留；新增工具後同步至 72 契約，文件與本次分級證據正在整合。"
     },
     {
       "id": "ODIN-034",
       "title": "語言後端安裝與能力健康檢查",
       "priority": "P1",
       "phase": "M2",
-      "current": "NOT_IMPLEMENTED",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "lsp",
         "cli"
@@ -921,7 +954,8 @@
       "depends_on": [
         "ODIN-007"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-034",
+      "implementation_summary": "doctor --probe-lsp 與 get_capabilities 會實際 initialize，缺後端回明確錯誤；不自動執行 repo 內設定。"
     },
     {
       "id": "ODIN-035",
@@ -948,14 +982,15 @@
       "depends_on": [
         "ODIN-017"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-035",
+      "implementation_summary": "有 LSP QuickFix 的安全 resolve/transaction 入口；尚無獨立 Clippy/Ruff/ESLint inspection provider 引擎。"
     },
     {
       "id": "ODIN-036",
       "title": "持久式除錯命令會話（非 Python REPL）",
       "priority": "P2",
       "phase": "M3",
-      "current": "NOT_IMPLEMENTED",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "dap",
         "flow"
@@ -974,14 +1009,15 @@
       "depends_on": [
         "ODIN-013"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-036",
+      "implementation_summary": "debug_batch 是 bounded DAP session 命令序列，核對 UUID、每步 request ID/ticket/outcome，沒有 eval/Python REPL。"
     },
     {
       "id": "ODIN-037",
       "title": "記憶 schema 升級與 import/export",
       "priority": "P2",
       "phase": "M3",
-      "current": "NOT_IMPLEMENTED",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "memory",
         "migration"
@@ -1000,7 +1036,8 @@
       "depends_on": [
         "ODIN-020"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-037",
+      "implementation_summary": "memory bundle 有 schema/version/digest、create-only import、scope ownership/refs 與 collision 拒絕。"
     },
     {
       "id": "ODIN-038",
@@ -1027,14 +1064,15 @@
       "depends_on": [
         "ODIN-006"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-038",
+      "implementation_summary": "immutable occurrence IDs、5 選 2、regex capture/CRLF、stale/duplicate/empty-match 拒絕已有 executed engine tests。"
     },
     {
       "id": "ODIN-039",
       "title": "後端 debugger 設定及啟動安全",
       "priority": "P1",
       "phase": "M2",
-      "current": "NOT_IMPLEMENTED",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "dap",
         "config"
@@ -1054,7 +1092,8 @@
         "ODIN-012",
         "ODIN-013"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-039",
+      "implementation_summary": "named host profiles、core env allowlist、DAP state/capability guards 與 process-tree cleanup 已接線。"
     },
     {
       "id": "ODIN-040",
@@ -1081,7 +1120,9 @@
       "depends_on": [
         "ODIN-003"
       ],
-      "evidence": "NOT_RUN; requires runtime verification"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-040",
+      "implementation_summary": "trace_id/elapsed/error、result/chunk digests、project scope、24h/128份/128MiB spill 配額與 expiry 測試已執行。"
     }
-  ]
+  ],
+  "tool_contracts": 72
 }

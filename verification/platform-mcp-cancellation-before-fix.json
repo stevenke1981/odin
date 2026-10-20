@@ -1,7 +1,7 @@
 {
   "scope": "REAL_BINARY_MCP_CANCELLATION_WITH_PROTOCOL_FIXTURE",
   "status": "FAIL",
-  "binary": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin\\target\\debug\\odin.exe",
+  "binary": "<USERPROFILE>\\.codex\\worktrees\\odin-platform\\odin\\target\\debug\\odin.exe",
   "binary_sha256": "13e399822281f45029558db792e1f9a60c16143b1f1f4b165afe615e1a1a5975",
   "platform": "Windows-11-10.0.26300-SP0",
   "checks": [

@@ -1,25 +1,29 @@
-# Odin 0.2.0 Standalone — 交付說明
+# Odin 0.2.0 — Windows 原生預覽交付說明
 
-## 本次完成範圍
+本次已由未編譯的原始碼預覽，推進到 **Windows x64 MSVC 已實際建置與測試的預覽**。四個 Rust crates，原有 58 個工具保留並新增 14 個，共 72 個原生工具契約。Cargo.lock 已由真實 Cargo 產生並納入版本控制；產品仍沒有 Serena bridge、自動 fallback 或任意 eval。
 
-這是由先前 0.1.0 原始碼包修改而來的獨立版本。Serena Bridge、BridgeConfig、上游工具分派／程序管理、兩個 serena_* 工具、橋接範例與上游 mock 已移除。四個 Rust crates、58 個原生／直接協議工具保留。完整變更可查 `verification/source-diff.patch`。
+Serena 僅用於開發代理導航；Odin 直接操作自己的 Rust core、LSP/DAP client 與 engine。預設 write/shell/debug 仍停用，只有可信任 host 設定可以開啟。所有原生專案修改經 SHA-256/CAS Transactions，不覆寫衝突。
 
-`status` 新增 standalone=true / external_tool_bridge=false。舊 bridge 設定會被拒絕，舊工具視為未知；沒有缺少原生能力時自動轉發的路徑。原始碼中的相關回歸測試已更新，Rust 測試尚未執行。
+## 已執行的證據範圍
 
-## 不是本次完成項目
+- Windows engine/protocol/platform 的 package tests、嚴格 package Clippy 與 formatting 有命令及 exit code；見 `verification/*-verification.json`。
+- 真 binary CLI、stdio、loopback HTTP、授權負例、generated client config handshake、取消與結果/交易流程已有 smoke。
+- Windows 真 rust-analyzer、basedpyright、TypeScript language-server 完成定向 symbols/references/rename/rollback；debugpy 完成真 breakpoint、variables、evaluate、step。
+- core 日誌記錄 NTFS aliases/reparse/hardlink、交易 crash checkpoint 與雙 process contention。供應鏈另有 SBOM、license inventory、advisory/pattern scan 報告。
+- portable ZIP 與 Inno recipe 已編譯；recipe 報告使用較早 binary，不是最終發佈工件或完整 installer lifecycle 證明。
 
-沒有補齊原先依靠上游提供的語意 Move／Inline、JetBrains inspections、Python REPL 或所有語言適配。沒有新增獨立 JetBrains 外掛。**移除相依不是功能等價；本版仍是 SOURCE_PREVIEW。**
+以上只適用各自 source/binary snapshot。`verification/feature-evidence.json` 逐項引用真實零退出 command，並保留原驗收條件的缺口；本次文件工作沒有執行產品測試。最終整合的 workspace/release/binary/supply-chain runner 在實際執行後由 root 更新 `verification/local-validation.json`、交付狀態與最終數量；準備中的命令不可填 PASS。
 
-Odin 核心不需要 Python 或 Serena；語意功能仍需另外配置語言伺服器，除錯仍需另外配置 DAP adapter。外部後端可能有 Java、Node.js、Python 等自己的環境需求。Python 是交付／開發驗證工具之一。
+## 尚未完成
 
-## 實際驗證
+40 項需求目前為 38 PARTIAL、2 NOT_RUN，沒有宣稱全部完成。真正 OS sandbox、Linux/macOS native matrix、乾淨 Windows/跨版 installer lifecycle、Defender/CFA、六語言與 40+ 語言、完整 IDE inspections/refactor parity、性能/品質 benchmark 均未完成。
 
-本次執行了原始碼／工具契約檢查、Python LSP／DAP fixture 自測、Dashboard JavaScript 語法檢查、Bash 語法檢查、Rust 詞法括號檢查，以及封裝校驗。具體數量與結果以本版 `verification/*.json` 為準，不沿用 0.1.0 數字。
+Move/Inline/QuickFix 是後端 edit 的安全入口；成功 fixture 不代表真實語言重構編譯成功。Safe Delete 仍限靜態 references。記憶仍是 host central storage，沒有自動 repo-local migration；索引是查詢前增量 FTS5，沒有背景 watcher；flow 不是完整 DAG scheduler/Python REPL。Job Objects/process groups 不是 OS 沙箱。
 
-沒有 Rust／Cargo，故依賴解析、Cargo.lock、Rust 編譯、Rust tests、fmt、Clippy、真實 Odin MCP 啟動、真實 LSP／DAP 及平台測試均為 **NOT_RUN**。Rust parser 亦未能安裝；詞法檢查不能替代 Rust 語法／型別／連結驗證。沒有提供執行檔。
+詳細限制見 [KNOWN_LIMITATIONS.md](docs/KNOWN_LIMITATIONS.md)，後端分級見 [LANGUAGE_SUPPORT.md](docs/LANGUAGE_SUPPORT.md)，40 條原規格見 [FEATURE_SPEC.md](docs/FEATURE_SPEC.md)。
 
-未連接或修改 5900X；未建立或推送遠端倉庫；未啟動雲端 CI；未建立背景任務。舊 ZIP 未被覆寫。
+## 本機使用與發布
 
-## 使用入口
+建置／執行入口見 [README.md](README.md)，平台與設定見 [PLATFORM_IMPLEMENTATION.md](docs/PLATFORM_IMPLEMENTATION.md)。一般 Cargo 命令使用 `--locked`；不要自行放寬 host 權限或把 repository 檔案當可執行 host 設定。
 
-先讀 `README.md`、`docs/STANDALONE.md` 與 `docs/KNOWN_LIMITATIONS.md`。在具備指定 Rust／MSVC 等建置環境的主機執行 `scripts/bootstrap.ps1` 與 `scripts/verify.ps1`，以實際退出碼及 log 判斷結果。由 0.1.0 升級先備份，再移除舊 bridge 設定；原生 state 格式未刻意更動，但跨版本遷移尚未驗證。
+本說明的 GitHub 發布狀態仍是 **待 root 實際操作與驗證**，不沿用先前 connector 不足/404 的結論，也不預寫已發布。目標為公開 `stevenke1981/odin`；只有實際 push、public visibility 與 remote HEAD 核對才算完成。沒有啟動雲端 CI。發布流程見 [PUBLISH_GITHUB.md](docs/PUBLISH_GITHUB.md)。

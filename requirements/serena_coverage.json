@@ -12,7 +12,11 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-007",
+        "verification/feature-evidence.json#ODIN-008"
+      ]
     },
     {
       "serena_reference": "find_implementations",
@@ -24,7 +28,11 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-007",
+        "verification/feature-evidence.json#ODIN-008"
+      ]
     },
     {
       "serena_reference": "find_referencing_symbols",
@@ -35,7 +43,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-008"
+      ]
     },
     {
       "serena_reference": "find_symbol",
@@ -46,7 +57,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-008"
+      ]
     },
     {
       "serena_reference": "get_diagnostics_for_file",
@@ -57,7 +71,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-017"
+      ]
     },
     {
       "serena_reference": "get_diagnostics_for_symbol",
@@ -68,7 +85,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-017"
+      ]
     },
     {
       "serena_reference": "get_symbols_overview",
@@ -79,7 +99,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-008"
+      ]
     },
     {
       "serena_reference": "insert_after_symbol",
@@ -91,7 +114,11 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-006",
+        "verification/feature-evidence.json#ODIN-038"
+      ]
     },
     {
       "serena_reference": "insert_before_symbol",
@@ -103,7 +130,11 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-006",
+        "verification/feature-evidence.json#ODIN-038"
+      ]
     },
     {
       "serena_reference": "rename_symbol",
@@ -115,7 +146,11 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-009",
+        "verification/feature-evidence.json#ODIN-006"
+      ]
     },
     {
       "serena_reference": "replace_symbol_body",
@@ -127,7 +162,11 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-006",
+        "verification/feature-evidence.json#ODIN-038"
+      ]
     },
     {
       "serena_reference": "restart_language_server",
@@ -138,7 +177,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-007"
+      ]
     },
     {
       "serena_reference": "safe_delete_symbol",
@@ -149,153 +191,198 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-016"
+      ]
     },
     {
       "serena_reference": "jet_brains_debug",
       "existing_odin": "—",
-      "status": "NOT_IMPLEMENTED",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "odin_spec_ids": [
         "ODIN-013",
         "ODIN-036"
       ],
       "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-013",
+        "verification/feature-evidence.json#ODIN-036"
+      ]
     },
     {
       "serena_reference": "jet_brains_find_declaration",
       "existing_odin": "—",
-      "status": "NOT_IMPLEMENTED",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "odin_spec_ids": [
         "ODIN-008"
       ],
       "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-008"
+      ]
     },
     {
       "serena_reference": "jet_brains_find_implementations",
       "existing_odin": "—",
-      "status": "NOT_IMPLEMENTED",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "odin_spec_ids": [
         "ODIN-008"
       ],
       "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-008"
+      ]
     },
     {
       "serena_reference": "jet_brains_find_referencing_symbols",
       "existing_odin": "—",
-      "status": "NOT_IMPLEMENTED",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "odin_spec_ids": [
         "ODIN-008"
       ],
       "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-008"
+      ]
     },
     {
       "serena_reference": "jet_brains_find_symbol",
       "existing_odin": "—",
-      "status": "NOT_IMPLEMENTED",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "odin_spec_ids": [
         "ODIN-008"
       ],
       "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-008"
+      ]
     },
     {
       "serena_reference": "jet_brains_get_symbols_overview",
       "existing_odin": "—",
-      "status": "NOT_IMPLEMENTED",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "odin_spec_ids": [
         "ODIN-008"
       ],
       "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-008"
+      ]
     },
     {
       "serena_reference": "jet_brains_inline_symbol",
       "existing_odin": "—",
-      "status": "NOT_IMPLEMENTED",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "odin_spec_ids": [
         "ODIN-015"
       ],
       "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-015"
+      ]
     },
     {
       "serena_reference": "jet_brains_list_inspections",
       "existing_odin": "—",
-      "status": "NOT_IMPLEMENTED",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "odin_spec_ids": [
         "ODIN-017",
         "ODIN-035"
       ],
       "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-017",
+        "verification/feature-evidence.json#ODIN-035"
+      ]
     },
     {
       "serena_reference": "jet_brains_move",
       "existing_odin": "—",
-      "status": "NOT_IMPLEMENTED",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "odin_spec_ids": [
         "ODIN-014"
       ],
       "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-014"
+      ]
     },
     {
       "serena_reference": "jet_brains_rename",
       "existing_odin": "—",
-      "status": "NOT_IMPLEMENTED",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "odin_spec_ids": [
         "ODIN-009"
       ],
       "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-009"
+      ]
     },
     {
       "serena_reference": "jet_brains_run_inspections",
       "existing_odin": "—",
-      "status": "NOT_IMPLEMENTED",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "odin_spec_ids": [
         "ODIN-017",
         "ODIN-035"
       ],
       "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-017",
+        "verification/feature-evidence.json#ODIN-035"
+      ]
     },
     {
       "serena_reference": "jet_brains_safe_delete",
       "existing_odin": "—",
-      "status": "NOT_IMPLEMENTED",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "odin_spec_ids": [
         "ODIN-016"
       ],
       "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-016"
+      ]
     },
     {
       "serena_reference": "jet_brains_type_hierarchy",
       "existing_odin": "—",
-      "status": "NOT_IMPLEMENTED",
+      "status": "NATIVE_SOURCE_PARTIAL",
       "odin_spec_ids": [
         "ODIN-018"
       ],
       "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-018"
+      ]
     },
     {
       "serena_reference": "execute_shell_command",
@@ -306,7 +393,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-012"
+      ]
     },
     {
       "serena_reference": "activate_project",
@@ -318,7 +408,11 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-004",
+        "verification/feature-evidence.json#ODIN-023"
+      ]
     },
     {
       "serena_reference": "get_current_config",
@@ -329,7 +423,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-024"
+      ]
     },
     {
       "serena_reference": "open_dashboard",
@@ -340,7 +437,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-025"
+      ]
     },
     {
       "serena_reference": "remove_project",
@@ -352,7 +452,11 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-004",
+        "verification/feature-evidence.json#ODIN-024"
+      ]
     },
     {
       "serena_reference": "create_text_file",
@@ -364,7 +468,11 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-005",
+        "verification/feature-evidence.json#ODIN-006"
+      ]
     },
     {
       "serena_reference": "delete_lines",
@@ -376,7 +484,11 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-006",
+        "verification/feature-evidence.json#ODIN-038"
+      ]
     },
     {
       "serena_reference": "find_file",
@@ -387,7 +499,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-005"
+      ]
     },
     {
       "serena_reference": "insert_at_line",
@@ -398,7 +513,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-006"
+      ]
     },
     {
       "serena_reference": "list_dir",
@@ -409,7 +527,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-005"
+      ]
     },
     {
       "serena_reference": "read_file",
@@ -420,7 +541,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-005"
+      ]
     },
     {
       "serena_reference": "replace_content",
@@ -432,7 +556,11 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-006",
+        "verification/feature-evidence.json#ODIN-038"
+      ]
     },
     {
       "serena_reference": "replace_in_files",
@@ -443,7 +571,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-038"
+      ]
     },
     {
       "serena_reference": "replace_lines",
@@ -455,7 +586,11 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-006",
+        "verification/feature-evidence.json#ODIN-038"
+      ]
     },
     {
       "serena_reference": "search_for_pattern",
@@ -466,7 +601,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-021"
+      ]
     },
     {
       "serena_reference": "delete_memory",
@@ -477,7 +615,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-020"
+      ]
     },
     {
       "serena_reference": "edit_memory",
@@ -488,7 +629,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-020"
+      ]
     },
     {
       "serena_reference": "list_memories",
@@ -499,7 +643,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-020"
+      ]
     },
     {
       "serena_reference": "read_memory",
@@ -510,7 +657,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-020"
+      ]
     },
     {
       "serena_reference": "rename_memory",
@@ -522,7 +672,11 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-020",
+        "verification/feature-evidence.json#ODIN-037"
+      ]
     },
     {
       "serena_reference": "write_memory",
@@ -533,7 +687,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-020"
+      ]
     },
     {
       "serena_reference": "list_queryable_projects",
@@ -545,7 +702,11 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-004",
+        "verification/feature-evidence.json#ODIN-018"
+      ]
     },
     {
       "serena_reference": "query_project",
@@ -557,7 +718,11 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-018",
+        "verification/feature-evidence.json#ODIN-004"
+      ]
     },
     {
       "serena_reference": "serena_repl",
@@ -568,7 +733,10 @@
       ],
       "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-022"
+      ]
     },
     {
       "serena_reference": "initial_instructions",
@@ -579,7 +747,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-023"
+      ]
     },
     {
       "serena_reference": "onboarding",
@@ -590,7 +761,10 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-023"
+      ]
     },
     {
       "serena_reference": "serena_info",
@@ -601,7 +775,13 @@
       ],
       "target_strategy": "NATIVE_EQUIVALENT_TARGET",
       "done": false,
-      "verification": "NOT_RUN"
+      "verification": "PARTIAL",
+      "evidence": [
+        "verification/feature-evidence.json#ODIN-023"
+      ]
     }
-  ]
+  ],
+  "delivery_class": "WINDOWS_NATIVE_PREVIEW",
+  "odin_tool_contracts": 72,
+  "evidence_note": "Reference coverage is not upstream equivalence. done stays false until all linked Odin requirements have full PASS acceptance. Windows subset evidence is linked per requirement."
 }

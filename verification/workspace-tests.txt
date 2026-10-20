@@ -1,0 +1,200 @@
+   Compiling odin-core v0.2.0 (<WORKSPACE>\crates\odin-core)
+   Compiling odin-agent v0.2.0 (<WORKSPACE>\crates\odin)
+   Compiling odin-protocol v0.2.0 (<WORKSPACE>\crates\odin-protocol)
+   Compiling odin-engine v0.2.0 (<WORKSPACE>\crates\odin-engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.47s
+     Running unittests src\main.rs (target\debug\deps\odin-ee6eb30859d9c5bd.exe)
+
+running 6 tests
+test http::tests::tokens_are_compared_exactly ... ok
+test setup::tests::hooks_are_idempotent_and_disable_restores_surroundings ... ok
+test http::tests::audit_export_uses_a_metadata_allowlist ... ok
+test setup::tests::malformed_sections_are_rejected ... ok
+test setup::tests::client_command_preserves_restrictive_policy_selection ... ok
+test setup::tests::preserves_unrelated_json_and_toml_settings ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (target\debug\deps\odin_core-42e323cf5dd03548.exe)
+
+running 36 tests
+test memory::tests::memory_name_traversal_is_rejected ... ok
+test process::tests::environment_is_an_explicit_allowlist ... ok
+test config::tests::context_then_mode_only_reduce_explicit_host_grants ... ok
+test config::tests::unknown_context_fails_closed ... ok
+test config::tests::aliases_cannot_bypass_project_scope ... ok
+test paths::tests::missing_parent_is_not_created ... ok
+test paths::tests::traversal_is_denied ... ok
+test transaction::tests::crash_process_worker ... ok
+test process::tests::closing_job_terminates_a_live_child ... ok
+test paths::tests::limits_and_utf8 ... ok
+test paths::tests::deny_secrets ... ok
+test config::tests::host_configuration_is_protected_inside_workspace ... ok
+test memory::tests::reference_replacement_is_exact ... ok
+test search::tests::match_limit_is_explicit ... ok
+test paths::tests::hardlinked_files_cannot_alias_outside_or_protected_data ... ok
+test search::tests::search_returns_live_hash_and_line ... ok
+test memory::tests::global_writes_require_separate_permission ... ok
+test paths::tests::handle_relative_write_preserves_content_and_cleans_temporary_files ... ok
+test paths::tests::windows_junction_is_denied ... ok
+test transaction::tests::case_aliases_are_duplicate_targets_on_windows ... ok
+test memory::tests::memory_import_rejects_digest_tampering_and_unresolved_refs ... ok
+test transaction::tests::idempotency_key_cannot_change_meaning ... ok
+test transaction::tests::conflict_before_commit_has_no_partial_write ... ok
+test transaction::tests::recovery_refuses_to_destroy_an_external_change ... ok
+test transaction::tests::recovery_restores_a_simulated_interrupted_commit ... ok
+test store::tests::trace_audit_contains_metadata_without_source ... ok
+test transaction::tests::prepare_does_not_write_and_apply_is_idempotent ... ok
+test store::tests::fts_excludes_stale_contents ... ok
+test memory::tests::prepared_import_detects_external_writes ... ok
+test transaction::tests::undo_create_and_edit ... ok
+test memory::tests::scope_move_never_rebinds_cross_project_local_references ... ok
+test store::tests::incremental_refresh_updates_additions_changes_and_deletions ... ok
+test memory::tests::memory_rename_updates_references ... ok
+test memory::tests::scope_move_updates_references_in_one_cas_journal ... ok
+test memory::tests::memory_bundle_roundtrip_is_previewed_and_owned ... ok
+test transaction::tests::real_process_crashes_at_transaction_checkpoints_are_recoverable ... ok
+
+test result: ok. 36 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.45s
+
+     Running tests\process_contention.rs (target\debug\deps\process_contention-c81460d1d0048942.exe)
+
+running 2 tests
+test transaction_process_worker ... ok
+test two_native_processes_cannot_silently_overwrite_each_other ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running unittests src\lib.rs (target\debug\deps\odin_engine-9b6207c7e95d7c19.exe)
+
+running 19 tests
+test flow::tests::source_strings_are_inert ... ok
+test flow::tests::missing_reference_is_an_error ... ok
+test flow::tests::refs_select_values_not_code ... ok
+test refactor::tests::does_not_accept_command_only_or_mixed_action ... ok
+test refactor::tests::enforces_semantic_action_kind_and_unambiguous_title ... ok
+test schema::tests::accepts_nullable ... ok
+test schema::tests::rejects_missing ... ok
+test schema::tests::rejects_unknown_fields ... ok
+test tests::inserts_into_empty_document ... ok
+test tests::preserves_crlf_line_edit ... ok
+test tests::literal_replacement_count ... ok
+test occurrences::tests::occurrence_ids_change_with_content_or_flags ... ok
+test occurrences::tests::empty_regex_matches_are_rejected ... ok
+test symbols::tests::exact_and_case_insensitive_matching ... ok
+test occurrences::tests::regex_expands_only_selected_capture_and_preserves_crlf ... ok
+test tests::regex_replacement_captures ... ok
+test results::tests::expired_results_are_removed_without_evicting_fresh_results ... ok
+test symbols::tests::filters_kind_depth_scope_and_name ... ok
+test flow::tests::a_locked_session_does_not_lock_other_sessions_and_clear_rejects_busy ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests\completion.rs (target\debug\deps\completion-3ac18227ac0e594e.exe)
+
+running 14 tests
+test debug_batch_fails_closed_without_host_debug_permission ... ok
+test trace_digest_and_audit_id_match_without_logging_contents ... ok
+test protocol_fixture_symbol_filters_and_capability_probe_use_actual_backend_messages ... ok
+test occurrence_ids_reject_new_snapshots_and_duplicate_targets ... ok
+test flow_builtins_run_as_data_and_failed_drafts_do_not_commit ... ok
+test five_matches_can_select_exactly_two_and_never_write_before_apply ... ok
+test multiline_regex_selection_preserves_crlf_and_expands_captures ... ok
+test version_schema_capabilities_and_policy_agree ... ok
+test protocol_fixture_debug_batch_is_session_bound_and_reports_each_request ... ok
+test protocol_fixture_quickfix_uses_diagnostics_and_resolve_but_rejects_server_commands ... ok
+test incremental_query_sees_new_content_and_deleted_files ... ok
+test protocol_fixture_move_and_inline_produce_transaction_previews_without_text_fallback ... ok
+test memory_bundle_import_and_scope_move_are_previewed_owned_and_guarded ... ok
+test results_roundtrip_in_utf8_chunks_with_project_scope_digest_and_expiry ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.75s
+
+     Running tests\invariants.rs (target\debug\deps\invariants-537b43f923288b92.exe)
+
+running 12 tests
+test legacy_bridge_configuration_is_rejected ... ok
+test malformed_arguments_do_not_fall_back_to_defaults ... ok
+test project_override_is_rejected ... ok
+test exact_hash_required_after_read ... ok
+test removed_bridge_tools_are_unknown ... ok
+test readonly_rejects_source_creation ... ok
+test cross_project_queries_are_read_only ... ok
+test standalone_status_and_catalog_agree ... ok
+test flow_cannot_reach_mutating_tools ... ok
+test flow_state_is_scoped_to_project ... ok
+test source_edits_are_preview_then_apply ... ok
+test memory_roundtrip_has_hash ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.45s
+
+     Running unittests src\lib.rs (target\debug\deps\odin_protocol-7e00f6e984a174f8.exe)
+
+running 26 tests
+test lsp::tests::nested_symbols_keep_name_paths ... ok
+test text::tests::disjoint_edits ... ok
+test text::tests::same_position_inserts_preserve_the_server_order ... ok
+test text::tests::bare_cr_is_a_line_break_and_end_position_uses_utf16 ... ok
+test text::tests::ascii_offsets ... ok
+test rpc::tests::clean_eof ... ok
+test text::tests::invalid_line ... ok
+test rpc::tests::framed_json_roundtrip ... ok
+test rpc::tests::duplicate_length_is_rejected ... ok
+test text::tests::overlapping_edits_fail ... ok
+test rpc::tests::oversize_frame_is_rejected ... ok
+test rpc::tests::malformed_headers_are_rejected ... ok
+test text::tests::trailing_empty_line ... ok
+test text::tests::unicode_utf16 ... ok
+test rpc::tests::truncated_frame_is_rejected ... ok
+test text::tests::crlf ... ok
+test workspace::tests::annotation_confirmation_and_ambiguous_shapes_fail_closed ... ok
+test workspace::tests::delete_and_recreate_keeps_original_hash ... ok
+test workspace::tests::external_protected_directory_and_missing_parent_paths_are_rejected ... ok
+test workspace::tests::successive_text_document_edits_use_the_prior_result ... ok
+test workspace::tests::snapshot_version_and_external_changes_are_all_checked ... ok
+test workspace::tests::resource_conflicts_never_overwrite_existing_content ... ok
+test workspace::tests::ignored_resource_operations_remain_safe_and_ordered ... ok
+test workspace::tests::unchanged_existing_source_still_has_a_transaction_hash_guard ... ok
+test workspace::tests::target_created_after_preview_conflicts_without_any_project_write ... ok
+test workspace::tests::ordered_resources_are_one_guarded_core_transaction ... ok
+
+test result: ok. 26 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running tests\fixture_protocols.rs (target\debug\deps\fixture_protocols-962908626428e73d.exe)
+
+running 14 tests
+test real_rust_analyzer_smoke ... ignored, Requires installed rust-analyzer, Rust sysroot, and real fixture project; run explicitly
+test dap_cancelled_launch_keeps_an_unknown_outcome_until_disconnect ... ok
+test lsp_fixture_lifecycle_and_symbols ... ok
+test code_action_resolution_preserves_diagnostics_without_executing_edits ... ok
+test backend_timeout_is_reported_not_retried ... ok
+test dropping_request_future_cancels_and_backend_remains_usable ... ok
+test lsp_incremental_sync_uses_utf16_old_document_range ... ok
+test lsp_open_close_only_sync_reopens_changed_document ... ok
+test request_timeout_cancels_once_and_leaves_no_pending_registration ... ok
+test dap_restart_ticket_allows_a_new_configuration_cycle_without_deadlock ... ok
+test stale_push_diagnostics_are_pending_until_current_version_arrives ... ok
+test dap_launch_does_not_block_configuration_done ... ok
+test dap_capabilities_and_state_guard_the_complete_session_lifecycle ... ok
+test backend_progress_and_explicit_restart_are_observable ... ok
+
+test result: ok. 13 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.17s
+
+   Doc-tests odin_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests odin_engine
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests odin_protocol
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

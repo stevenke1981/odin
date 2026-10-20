@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "scope": "Independent static correctness and security review; not a full platform certification",
+  "task_id": "independent_review",
+  "actor_instance": "/root/independent_review",
+  "base_sha": "2ed95d6a89b0415df0f599095e87095c03bcffc7",
+  "reviewed_head_sha": "83655ac50cb9f2fcc309f95455e196b3836178ba",
+  "reviewer_authored_product_changes": false,
+  "reviewer_executed_product_tests": false,
+  "read_only_candidate_checks_exit_code": 0,
+  "remaining_blocking_findings": [],
+  "resolved_findings": [
+    {"priority":"P1","finding":"Flow reference expansion allocated before enforcing budgets","fixes":["cce85aa"]},
+    {"priority":"P1","finding":"Windows case and 8.3 aliases bypassed protected-path checks","fixes":["a29ab4d","7bb184c"]},
+    {"priority":"P1","finding":"Transaction deduplication accepted aliases of one file","fixes":["7bb184c"]},
+    {"priority":"P1","finding":"Memory readonly and new parent alias canonicalization gaps","fixes":["7bb184c","d7a1a9f"]},
+    {"priority":"P1","finding":"Replacement expansion exceeded budgets before validation","fixes":["cce85aa"]},
+    {"priority":"P2","finding":"Queued MCP writes could execute after cancellation","fixes":["26df5a8"]},
+    {"priority":"P2","finding":"Symbol paging cloned bodies before skipping offset","fixes":["cce85aa"]},
+    {"priority":"P2","finding":"Symbol RPC could apply old ranges to changed source","fixes":["83655ac"]}
+  ],
+  "author_evidence_reviewed": [
+    "verification/core-alias-regressions.txt",
+    "verification/engine-verification.json",
+    "verification/platform-mcp-cancellation-verification.json"
+  ],
+  "handoff_to": "/root",
+  "remaining_root_gates": ["final integrated workspace/release verification", "artifact smoke and installer lifecycle", "actual public GitHub publication"],
+  "not_in_review_scope": ["Linux/macOS native execution", "OS sandbox implementation", "full language and IDE equivalence", "formal security audit"]
+}

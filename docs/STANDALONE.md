@@ -2,12 +2,12 @@
 
 ## 結論
 
-可以。Odin 核心、MCP 服務、檔案操作、記憶、修改日誌、LSP client 與 DAP client 可以作為獨立產品。本版已在原始碼中移除 Serena 專用橋接；沒有安裝、啟動或呼叫它的自動流程。尚未編譯或執行 Odin，故此處的完成範圍是原始碼與契約修改。
+可以。Odin 核心、MCP、檔案、記憶、交易、LSP/DAP clients 均獨立實作，沒有 Serena bridge 或自動 fallback。Windows binary、stdio/HTTP、三種真實 LSP 及 debugpy 已另行驗收；最新證據見 verification/delivery-status.json，不把功能對照當逐參數等價。
 
 ## 此次實際變更
 
 - 刪除 `crates/odin-protocol/src/bridge.rs`、其 module export、`BridgeConfig`、engine 的橋接 cache / 啟動 / dispatch / 權限分支。
-- 刪除 `serena_tools`、`serena_call` 及其 JSON schema；保留 58 個 Odin 工具。
+- 刪除 `serena_tools`、`serena_call` 及 schema；58 個基礎 Odin 工具保留，並擴充為 72 個原生契約。
 - 刪除橋接設定、呼叫範例和上游 mock fixture。
 - `status` 回報 standalone / external_tool_bridge；CLI doctor 檢查直接後端。
 - 舊 bridge 設定由 deny_unknown_fields 拒絕；舊工具回未知工具。相關 Rust 回歸測試已寫但 NOT_RUN。

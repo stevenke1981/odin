@@ -1,6 +1,25 @@
 # Changelog
 
-## 0.2.0 — Standalone source preview
+## 0.2.0 — Windows native preview, 2026-10-21
+
+Expanded to 72 native tool contracts. Added bounded symbol filters/paging,
+occurrence selection, backend edit-only refactors, ordered resource WorkspaceEdits,
+scoped memory import/export/move, incremental FTS updates, bounded per-session
+dataflow, DAP sessions/tickets/batches, context/mode restrictions, client setup,
+metadata/doctor, trace digests and expiring result chunks.
+
+Hardened canonical Windows paths, readonly scopes, transaction aliases and
+budgets, subprocess environment/lifetime, protocol cancellation and source
+snapshot conflicts. Independent review findings were fixed and re-reviewed.
+Real lockfile, local Windows Rust gates, actual MCP CLI/stdio/HTTP checks and
+Rust/Python/TypeScript LSP plus debugpy evidence now replace the initial unbuilt
+status. Final executed commands and artifact hashes live in verification reports.
+
+Portable/Inno packaging is provided. OS sandboxing, full IDE/language parity,
+Linux/macOS native execution, clean-machine upgrades and performance comparison
+remain incomplete or unverified. No automatic cloud CI was added.
+
+## 0.2.0 — Initial standalone source delivery (historical)
 
 Breaking configuration/tool change: removes the external Serena bridge rather than just disabling it. Deletes BridgeConfig, SerenaBridge, upstream process management, serena_tools / serena_call, bridge examples and upstream mocks. Removes the two bridge tools from both generated catalogs; 58 Odin tools remain.
 

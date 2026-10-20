@@ -1,24 +1,37 @@
-# Publish Odin as a new **public** GitHub repository
+# Publish the reviewed Odin candidate as a public GitHub repository
 
-## Publishing status of this delivery
+The approved target is `stevenke1981/odin`, with public visibility. **This document does not record a completed publication.** The integration owner must perform the authorized GitHub operation and record the repository URL, pushed commit, public visibility and verified remote HEAD. Earlier connector limitations or a historical 404 are not evidence of current repository state.
 
-At the time of authoring, the connected account is `stevenke1981`, but `stevenke1981/odin` returns HTTP 404 (repository not found). The available ChatGPT GitHub connector has `create_blob`, `create_tree`, `create_commit`, `create_file`, and `update_ref`, but **does not expose a create-repository API**. We cannot infer that a ZIP upload constitutes a GitHub push. Therefore this package is **NOT_PUBLISHED** until a user with the required GitHub permission creates the public repository and pushes the files.
+Odin is a Windows native preview with 72 tool contracts. The 40 requirements remain partially accepted; Linux/macOS, OS sandbox, broad language/IDE parity and benchmarks are incomplete. Publish that scope honestly. The completed local checks, prepared runner, public source repository, binary release and cloud CI are separate outcomes.
 
-Once an empty public repository exists, the connected GitHub integration can perform a tree/commit push. Alternatively, run the included publisher from a GitHub-authenticated local PC.
+## Review before execution
 
-## Windows / PowerShell (preferred on 5900X)
+Use the reviewed branch/worktree and commit only explicit intended paths. Complete the applicable local gates, preserve their command exit codes and source/binary hashes, run the requirement/manifest/publish-policy checks, and review the candidate for secrets and third-party licensing. The publisher does not stage or commit changes.
 
-1. Extract the ZIP and open PowerShell **in the folder containing `Cargo.toml`, `README.md`, `requirements/`**.
-2. Run `gh auth status` first. Only a GitHub account with write access to `stevenke1981` can create/push the repo.
-3. Run: `powershell -ExecutionPolicy Bypass -File .\scripts\publish_public.ps1`
-4. Check [the public repository](https://github.com/stevenke1981/odin) and [the feature specification](https://github.com/stevenke1981/odin/blob/main/docs/FEATURE_SPEC.md) after success.
+The scripts require a clean `main`, the approved GitHub login and matching origin. They refuse private repositories, an unverified existing remote, a mismatched expected SHA and force-push. They create a new public repository only when the scoped target is verified missing; otherwise they push to the matching public repository.
 
-The script will locally verify the 40 requirements/53 tool mappings, run manifest checks, stage, commit, create `stevenke1981/odin` **public** if missing, and push to `main`. If the repository already exists, it refuses to force-push or publish into a private repo. It does not create a release, dispatch CI, install dependencies, or charge for GitHub-hosted runners.
+## Windows / PowerShell
+
+```powershell
+gh auth status
+.\scripts\publish_public.ps1
+$odinReviewedHead = (git rev-parse HEAD).Trim()
+.\scripts\publish_public.ps1 -Execute -ExpectedHead $odinReviewedHead
+```
+
+The first publisher invocation is a dry-run of the publication step; it still performs local checks and reads the authenticated GitHub account. `-Execute` is the explicit mutation switch. The expected SHA must be the independently reviewed clean candidate, not a value obtained to bypass review.
 
 ## Linux/macOS
 
-Run `bash scripts/publish_public.sh` with `git`, `gh`, and `python3` available.
+```bash
+bash scripts/publish_public.sh
+bash scripts/publish_public.sh --execute <reviewed-head-sha>
+```
 
-## Security and honesty
+These commands are publishing procedures, not evidence that Odin has passed native Linux/macOS tests.
 
-No GitHub credentials are included in this archive. Secret scanning and an explicit file review are recommended before public publication. The included `.github/workflows/manual-local.yml` is **manual dispatch + self-hosted only** and cannot run merely because you push the source; do not grant untrusted forks permission to trigger self-hosted runners. Rust compilation and true LSP/DAP integration remain NOT_RUN.
+## Record completion accurately
+
+After a successful operation, verify public visibility and `refs/heads/main` against the reviewed SHA, then update the delivery report with the actual URL and evidence. Do not infer a push from a ZIP, a successful local commit, a queued operation or a repository page alone. No credentials belong in the repository or reports.
+
+The included workflow is `workflow_dispatch` plus trusted self-hosted only. The publisher does not dispatch CI, automatically stage/commit, force-push, merge a PR, create a binary release or alter repository visibility. Public forks must not run automatically on an unprotected self-hosted runner.

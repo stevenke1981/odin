@@ -46,7 +46,7 @@
         "--",
         "--check"
       ],
-      "cwd": "C:/Users/steven/.codex/worktrees/odin-platform/odin",
+      "cwd": "<USERPROFILE>/.codex/worktrees/odin-platform/odin",
       "exit_code": 0,
       "status": "PASS"
     },
@@ -58,7 +58,7 @@
         "odin-agent",
         "--locked"
       ],
-      "cwd": "C:/Users/steven/.codex/worktrees/odin-platform/odin",
+      "cwd": "<USERPROFILE>/.codex/worktrees/odin-platform/odin",
       "exit_code": 0,
       "status": "PASS"
     },
@@ -70,7 +70,7 @@
         "odin-agent",
         "--locked"
       ],
-      "cwd": "C:/Users/steven/.codex/worktrees/odin-platform/odin",
+      "cwd": "<USERPROFILE>/.codex/worktrees/odin-platform/odin",
       "exit_code": 0,
       "status": "PASS"
     },
@@ -87,7 +87,7 @@
         "-D",
         "warnings"
       ],
-      "cwd": "C:/Users/steven/.codex/worktrees/odin-platform/odin",
+      "cwd": "<USERPROFILE>/.codex/worktrees/odin-platform/odin",
       "exit_code": 0,
       "status": "PASS"
     },
@@ -99,7 +99,7 @@
         "odin-agent",
         "--locked"
       ],
-      "cwd": "C:/Users/steven/.codex/worktrees/odin-platform/odin",
+      "cwd": "<USERPROFILE>/.codex/worktrees/odin-platform/odin",
       "exit_code": 0,
       "status": "PASS"
     },
@@ -110,7 +110,7 @@
         "--output",
         "verification/platform-source-check.json"
       ],
-      "cwd": "C:/Users/steven/.codex/worktrees/odin-platform/odin",
+      "cwd": "<USERPROFILE>/.codex/worktrees/odin-platform/odin",
       "exit_code": 0,
       "status": "PASS"
     },
@@ -119,7 +119,7 @@
         "python",
         "scripts/check_requirements.py"
       ],
-      "cwd": "C:/Users/steven/.codex/worktrees/odin-platform/odin",
+      "cwd": "<USERPROFILE>/.codex/worktrees/odin-platform/odin",
       "exit_code": 0,
       "status": "PASS"
     },
@@ -128,7 +128,7 @@
         "python",
         "scripts/check_publish_policy.py"
       ],
-      "cwd": "C:/Users/steven/.codex/worktrees/odin-platform/odin",
+      "cwd": "<USERPROFILE>/.codex/worktrees/odin-platform/odin",
       "exit_code": 0,
       "status": "PASS"
     },
@@ -141,7 +141,7 @@
         "--output",
         "verification/platform-cli-smoke.json"
       ],
-      "cwd": "C:/Users/steven/.codex/worktrees/odin-platform/odin",
+      "cwd": "<USERPROFILE>/.codex/worktrees/odin-platform/odin",
       "exit_code": 0,
       "status": "PASS"
     },
@@ -154,7 +154,7 @@
         "--output",
         "verification/platform-mcp-smoke.json"
       ],
-      "cwd": "C:/Users/steven/.codex/worktrees/odin-platform/odin",
+      "cwd": "<USERPROFILE>/.codex/worktrees/odin-platform/odin",
       "exit_code": 0,
       "status": "PASS"
     },
@@ -167,7 +167,7 @@
         "--output",
         "verification/platform-http-smoke.json"
       ],
-      "cwd": "C:/Users/steven/.codex/worktrees/odin-platform/odin",
+      "cwd": "<USERPROFILE>/.codex/worktrees/odin-platform/odin",
       "exit_code": 0,
       "status": "PASS"
     }

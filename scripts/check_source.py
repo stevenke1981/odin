@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Static artifact/contract checks; explicitly NOT a Rust parser or compiler."""
 from pathlib import Path
-import argparse, ast, hashlib, json, re, shutil, subprocess, sys, tempfile, tomllib
+import argparse, ast, hashlib, json, os, re, shutil, subprocess, sys, tempfile, tomllib
 ROOT=Path(__file__).resolve().parents[1]
 
 def main():
@@ -9,7 +9,10 @@ def main():
     checks=[]
     def record(name,ok,detail=''):
         checks.append({'name':name,'status':'PASS' if ok else 'FAIL','detail':detail})
-    files=[p for p in ROOT.rglob('*') if p.is_file() and not any(v in p.relative_to(ROOT).parts for v in ['target','dist','.git','.odin','__pycache__'])]
+    files=[]
+    for directory, folders, names in os.walk(ROOT):
+        folders[:]=[name for name in folders if name not in {'target','dist','.git','.odin','.serena','__pycache__'}]
+        files.extend(Path(directory)/name for name in names)
     for p in files:
         if p.suffix in ['.rs','.py','.json','.toml','.md','.html','.sh','.ps1','.yml']:
             try:p.read_text(encoding='utf-8');record('utf8:'+str(p.relative_to(ROOT)),True)

@@ -6,7 +6,7 @@
   "date": "2026-10-21",
   "platform": "x86_64-pc-windows-msvc",
   "rustc": "1.90.0 (1159e78c4 2025-09-14)",
-  "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-protocol\\odin",
+  "cwd": "<USERPROFILE>\\.codex\\worktrees\\odin-protocol\\odin",
   "source_binding": "Per-file hashes below identify tested code; head is the commit containing this manifest.",
   "source_sha256": {
     "crates/odin-protocol/src/dap.rs": "6ccfe79aae1e7ad30ec066cdc75234a5f068e66a042ea323706afec400176c7f",
