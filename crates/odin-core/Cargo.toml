@@ -21,6 +21,8 @@ tempfile.workspace = true
 similar.workspace = true
 rusqlite.workspace = true
 tokio.workspace = true
+cap-std = "=4.0.3"
+cap-fs-ext = "=4.0.3"
 [target.'cfg(windows)'.dependencies]
 win32job = "=2.0.3"
 [target.'cfg(unix)'.dependencies]

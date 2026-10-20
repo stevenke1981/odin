@@ -10,9 +10,24 @@ use std::process::Command;
 pub fn configure_child(command: &mut Command) {
     command.env_clear();
     for key in [
-        "PATH", "HOME", "USERPROFILE", "SYSTEMROOT", "SystemRoot", "WINDIR",
-        "COMSPEC", "PATHEXT", "TEMP", "TMP", "APPDATA", "LOCALAPPDATA",
-        "RUSTUP_HOME", "CARGO_HOME", "JAVA_HOME", "DOTNET_ROOT", "LANG", "LC_ALL",
+        "PATH",
+        "HOME",
+        "USERPROFILE",
+        "SYSTEMROOT",
+        "SystemRoot",
+        "WINDIR",
+        "COMSPEC",
+        "PATHEXT",
+        "TEMP",
+        "TMP",
+        "APPDATA",
+        "LOCALAPPDATA",
+        "RUSTUP_HOME",
+        "CARGO_HOME",
+        "JAVA_HOME",
+        "DOTNET_ROOT",
+        "LANG",
+        "LC_ALL",
     ] {
         if let Some(value) = std::env::var_os(key) {
             command.env(key, value);
@@ -41,26 +56,40 @@ impl ProcessTree {
     pub fn attach(child: &tokio::process::Child) -> Result<Self> {
         #[cfg(windows)]
         {
-            let handle = child.raw_handle().ok_or_else(|| Fault::new("PROCESS_ERROR", "Child has no live process handle"))?;
+            let handle = child
+                .raw_handle()
+                .ok_or_else(|| Fault::new("PROCESS_ERROR", "Child has no live process handle"))?;
             let mut limits = win32job::ExtendedLimitInfo::new();
             limits.limit_kill_on_job_close();
-            let job = win32job::Job::create_with_limit_info(&limits)
-                .map_err(|e| Fault::new("PROCESS_ERROR", format!("Cannot create process job: {e}")))?;
-            job.assign_process(handle as isize)
-                .map_err(|e| Fault::new("PROCESS_ERROR", format!("Cannot attach process job: {e}")))?;
+            let job = win32job::Job::create_with_limit_info(&limits).map_err(|e| {
+                Fault::new("PROCESS_ERROR", format!("Cannot create process job: {e}"))
+            })?;
+            job.assign_process(handle as isize).map_err(|e| {
+                Fault::new("PROCESS_ERROR", format!("Cannot attach process job: {e}"))
+            })?;
             Ok(Self { _job: job })
         }
         #[cfg(unix)]
         {
-            let id = child.id().ok_or_else(|| Fault::new("PROCESS_ERROR", "Child has already exited"))?;
-            let id = i32::try_from(id).map_err(|_| Fault::new("PROCESS_ERROR", "Invalid child process group"))?;
-            if id <= 1 { return Err(Fault::new("PROCESS_ERROR", "Invalid child process group")); }
-            Ok(Self { group: nix::unistd::Pid::from_raw(id) })
+            let id = child
+                .id()
+                .ok_or_else(|| Fault::new("PROCESS_ERROR", "Child has already exited"))?;
+            let id = i32::try_from(id)
+                .map_err(|_| Fault::new("PROCESS_ERROR", "Invalid child process group"))?;
+            if id <= 1 {
+                return Err(Fault::new("PROCESS_ERROR", "Invalid child process group"));
+            }
+            Ok(Self {
+                group: nix::unistd::Pid::from_raw(id),
+            })
         }
         #[cfg(not(any(windows, unix)))]
         {
             let _ = child;
-            Err(Fault::new("CAPABILITY_UNAVAILABLE", "Process tree management is unavailable on this OS"))
+            Err(Fault::new(
+                "CAPABILITY_UNAVAILABLE",
+                "Process tree management is unavailable on this OS",
+            ))
         }
     }
 }
@@ -80,13 +109,21 @@ mod tests {
         command.env("ODIN_TEST_SECRET", "private");
         configure_child(&mut command);
         assert!(!command.get_envs().any(|(key, _)| key == "ODIN_TEST_SECRET"));
-        assert!(!command.get_envs().any(|(key, _)| key == "ODIN_TOKEN" || key == "GITHUB_TOKEN"));
+        assert!(
+            !command
+                .get_envs()
+                .any(|(key, _)| key == "ODIN_TOKEN" || key == "GITHUB_TOKEN")
+        );
     }
     #[cfg(windows)]
     #[tokio::test]
     async fn closing_job_terminates_a_live_child() {
         let mut command = tokio::process::Command::new("ping.exe");
-        command.args(["-n", "60", "127.0.0.1"]).stdout(std::process::Stdio::null()).stderr(std::process::Stdio::null()).kill_on_drop(true);
+        command
+            .args(["-n", "60", "127.0.0.1"])
+            .stdout(std::process::Stdio::null())
+            .stderr(std::process::Stdio::null())
+            .kill_on_drop(true);
         configure_child(command.as_std_mut());
         let mut child = command.spawn().unwrap();
         let tree = ProcessTree::attach(&child).unwrap();
@@ -94,6 +131,9 @@ mod tests {
         drop(tree);
         // KILL_ON_JOB_CLOSE may use exit code zero. Completion before the
         // 60-second command duration, not its exit code, proves termination.
-        tokio::time::timeout(std::time::Duration::from_secs(5), child.wait()).await.unwrap().unwrap();
+        tokio::time::timeout(std::time::Duration::from_secs(5), child.wait())
+            .await
+            .unwrap()
+            .unwrap();
     }
 }
