@@ -285,11 +285,12 @@ impl Transactions {
         self.save(&journal)?;
         #[cfg(test)]
         crash_checkpoint("prepared", 0);
-        for (_index, file) in journal.files.iter().enumerate() {
+        for (index, file) in journal.files.iter().enumerate() {
             let result = (|| -> Result<()> {
                 if self.current(&file.path)? != file.before {
                     return Err(Fault::conflict(format!(
-                        "Concurrent external modification: {}",
+                        "Concurrent external modification at change {}: {}",
+                        index + 1,
                         file.path
                     )));
                 }
@@ -309,7 +310,7 @@ impl Transactions {
                 ));
             }
             #[cfg(test)]
-            crash_checkpoint("write", _index);
+            crash_checkpoint("write", index);
         }
         journal.phase = Phase::Committed;
         self.save(&journal)?;
