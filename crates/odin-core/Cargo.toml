@@ -20,5 +20,10 @@ fs2.workspace = true
 tempfile.workspace = true
 similar.workspace = true
 rusqlite.workspace = true
+tokio.workspace = true
+[target.'cfg(windows)'.dependencies]
+win32job = "=2.0.3"
+[target.'cfg(unix)'.dependencies]
+nix = { version = "=0.30.1", default-features = false, features = ["signal", "process"] }
 [dev-dependencies]
 tempfile.workspace = true
