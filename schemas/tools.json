@@ -24,6 +24,88 @@
     }
   },
   {
+    "name": "get_version",
+    "description": "Return Odin version and native schema format version",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "get_schemas",
+    "description": "Return tool contracts or one named tool schema",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "tool": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "get_capabilities",
+    "description": "Report effective tool policy and optionally initialize configured language servers to probe capabilities",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "language": {
+          "type": "string"
+        },
+        "probe": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
     "name": "list_projects",
     "description": "List operator-registered projects without changing a global active project",
     "policy": "read",
@@ -271,7 +353,7 @@
   },
   {
     "name": "index_query",
-    "description": "Query FTS5; stale file hits are omitted; new files require reindexing",
+    "description": "Refresh changed/new/deleted files then query local FTS5 lexical search",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -305,7 +387,7 @@
   },
   {
     "name": "get_symbols_overview",
-    "description": "Hierarchical file symbols from a configured LSP",
+    "description": "File symbols from a configured LSP with kind, scope and hierarchy depth filters",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -316,6 +398,47 @@
         },
         "relative_path": {
           "type": "string"
+        },
+        "depth": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "include_kinds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 26
+          },
+          "maxItems": 26
+        },
+        "exclude_kinds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 26
+          },
+          "maxItems": 26
+        },
+        "scope": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000,
+          "default": 0
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        },
+        "group_by_file": {
+          "type": "boolean",
+          "default": false
         }
       },
       "additionalProperties": false,
@@ -333,7 +456,7 @@
   },
   {
     "name": "find_symbol",
-    "description": "Find matching LSP name paths; never report regex results as semantic symbols",
+    "description": "Find real LSP name paths with exact/substring/glob/regex matching, filters and pagination",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -349,6 +472,60 @@
           "type": "string"
         },
         "include_body": {
+          "type": "boolean",
+          "default": false
+        },
+        "match_mode": {
+          "type": "string",
+          "enum": [
+            "substring",
+            "exact",
+            "glob",
+            "regex"
+          ]
+        },
+        "case_sensitive": {
+          "type": "boolean",
+          "default": true
+        },
+        "depth": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "include_kinds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 26
+          },
+          "maxItems": 26
+        },
+        "exclude_kinds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 26
+          },
+          "maxItems": 26
+        },
+        "scope": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000,
+          "default": 0
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        },
+        "group_by_file": {
           "type": "boolean",
           "default": false
         }
@@ -663,6 +840,279 @@
     }
   },
   {
+    "name": "prepare_code_action",
+    "description": "Prepare exactly one edit-only LSP code action as a CAS transaction; reject commands and ambiguous titles",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "range": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "object",
+              "properties": {
+                "line": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                },
+                "character": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "line",
+                "character"
+              ]
+            },
+            "end": {
+              "type": "object",
+              "properties": {
+                "line": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                },
+                "character": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "line",
+                "character"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "start",
+            "end"
+          ]
+        },
+        "action_title": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": "string"
+        },
+        "request_id": {
+          "type": "string"
+        },
+        "action_kind": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "range",
+        "action_title",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "apply_quick_fix",
+    "description": "Preview one real LSP quickfix WorkspaceEdit; transaction_apply is still required",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "range": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "object",
+              "properties": {
+                "line": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                },
+                "character": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "line",
+                "character"
+              ]
+            },
+            "end": {
+              "type": "object",
+              "properties": {
+                "line": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                },
+                "character": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "line",
+                "character"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "start",
+            "end"
+          ]
+        },
+        "action_title": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": "string"
+        },
+        "request_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "range",
+        "action_title",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "move_symbol",
+    "description": "Preview backend-provided refactor.move edit-only code action; no text fallback or server command execution",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "name_path": {
+          "type": "string"
+        },
+        "action_title": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": "string"
+        },
+        "request_id": {
+          "type": "string"
+        },
+        "target_path": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "name_path",
+        "action_title",
+        "expected_sha256",
+        "target_path"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "inline_symbol",
+    "description": "Preview backend-provided refactor.inline edit-only code action; no text fallback or server command execution",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "name_path": {
+          "type": "string"
+        },
+        "action_title": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": "string"
+        },
+        "request_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "name_path",
+        "action_title",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
     "name": "restart_language_server",
     "description": "Drop project LSP processes; lazily start clean instances on the next query",
     "policy": "state",
@@ -969,8 +1419,96 @@
     }
   },
   {
+    "name": "replacement_preview",
+    "description": "List source-hash-bound occurrence IDs and before/after text without changing source",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "relative_path": {
+                "type": "string"
+              },
+              "expected_sha256": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "relative_path",
+              "expected_sha256"
+            ]
+          },
+          "maxItems": 256
+        },
+        "needle": {
+          "type": "string"
+        },
+        "replacement": {
+          "type": "string"
+        },
+        "regex": {
+          "type": "boolean",
+          "default": false
+        },
+        "case_sensitive": {
+          "type": "boolean",
+          "default": true
+        },
+        "multiline": {
+          "type": "boolean",
+          "default": false
+        },
+        "dot_matches_new_line": {
+          "type": "boolean",
+          "default": false
+        },
+        "allow_multiple": {
+          "type": "boolean",
+          "default": true
+        },
+        "expected_total_matches": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        },
+        "selected_occurrence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10000
+        },
+        "request_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "files",
+        "needle",
+        "replacement"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
     "name": "replace_in_files",
-    "description": "Prepare a single guarded cross-file replacement journal; expected_total_matches is mandatory",
+    "description": "Prepare selected immutable occurrence IDs or all matches with exact source hashes and total count",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -1009,10 +1547,36 @@
           "type": "boolean",
           "default": false
         },
+        "case_sensitive": {
+          "type": "boolean",
+          "default": true
+        },
+        "multiline": {
+          "type": "boolean",
+          "default": false
+        },
+        "dot_matches_new_line": {
+          "type": "boolean",
+          "default": false
+        },
+        "allow_multiple": {
+          "type": "boolean",
+          "default": true
+        },
         "expected_total_matches": {
           "type": "integer",
           "minimum": 1,
           "maximum": 10000
+        },
+        "selected_occurrence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10000
+        },
+        "request_id": {
+          "type": "string"
         }
       },
       "additionalProperties": false,
@@ -1563,6 +2127,201 @@
     }
   },
   {
+    "name": "memory_export",
+    "description": "Export versioned Markdown notes with SHA-256 without writing repository files",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "memory_import",
+    "description": "Prepare create-only import of a checked versioned memory bundle; apply separately",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "bundle": {
+          "type": "object",
+          "properties": {
+            "format": {
+              "type": "string",
+              "enum": [
+                "odin-memory-bundle"
+              ]
+            },
+            "schema_version": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1
+            },
+            "project": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  },
+                  "sha256": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "content",
+                  "sha256"
+                ]
+              },
+              "maxItems": 1024
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "format",
+            "schema_version",
+            "project",
+            "notes"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "bundle"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "memory_move_scope",
+    "description": "Prepare permission-checked memory move to a configured project or global scope; reject dangling references",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "name": {
+          "type": "string"
+        },
+        "destination_project": {
+          "type": "string"
+        },
+        "destination_name": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "name",
+        "destination_project",
+        "destination_name",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "memory_transaction_preview",
+    "description": "Preview a memory transaction owned by this initiating project",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "transaction_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "transaction_id"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "memory_transaction_apply",
+    "description": "Apply a memory transaction after rechecking initiating project, affected scopes and source hashes",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "transaction_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "transaction_id"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
     "name": "check_memories",
     "description": "Validate explicit mem: reference integrity",
     "policy": "read",
@@ -1678,7 +2437,7 @@
   },
   {
     "name": "flow_run",
-    "description": "Run a bounded JSON dataflow; no eval, imports, arbitrary Python, shell, or external tool forwarding",
+    "description": "Run session-isolated bounded JSON dataflow with pointer/map/filter/count/sum; no eval, imports or arbitrary Python",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -1714,6 +2473,30 @@
               },
               "pointer": {
                 "type": "string"
+              },
+              "map": {
+                "type": "string"
+              },
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "pointer": {
+                    "type": "string"
+                  },
+                  "equals": {}
+                },
+                "additionalProperties": false,
+                "required": [
+                  "pointer",
+                  "equals"
+                ]
+              },
+              "reduce": {
+                "type": "string",
+                "enum": [
+                  "count",
+                  "sum"
+                ]
               }
             },
             "additionalProperties": false,
@@ -1869,6 +2652,9 @@
           "type": "object",
           "properties": {},
           "additionalProperties": true
+        },
+        "session_id": {
+          "type": "string"
         }
       },
       "additionalProperties": false,
@@ -1895,6 +2681,9 @@
         "project": {
           "type": "string",
           "description": "Configured project ID; never an arbitrary root path"
+        },
+        "session_id": {
+          "type": "string"
         }
       },
       "additionalProperties": false,
@@ -1919,11 +2708,69 @@
         "project": {
           "type": "string",
           "description": "Configured project ID; never an arbitrary root path"
+        },
+        "session_id": {
+          "type": "string"
         }
       },
       "additionalProperties": false,
       "required": [
         "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": true
+    }
+  },
+  {
+    "name": "debug_batch",
+    "description": "Run 1..32 allowlisted DAP requests in an explicit project session with per-step request IDs",
+    "policy": "execute",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "command": {
+                "type": "string"
+              },
+              "arguments": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "command",
+              "arguments"
+            ]
+          },
+          "maxItems": 32
+        },
+        "stop_on_error": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "session_id",
+        "commands"
       ]
     },
     "annotations": {
