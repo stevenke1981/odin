@@ -22,7 +22,7 @@ Flow 展開引用前會以借用走訪計算 escaped JSON bytes 和節點數，�
 
 文字替換先計 matches 與 host max_matches，再以 checked arithmetic 檢查結果不超過 max_file_bytes；regex replacement template 解析為借用片段，先計 capture 展開長度才配置輸出，沒有先呼叫無界 replace_all。template 最多 65,536 個片段。Occurrence preview 不建立修改後的檔案；每筆 metadata、escaped before/after 總量在展開前保守限制於 host max_output_bytes 與 16 MiB 較小值，超限請縮小檔案／匹配／replacement。多檔案的原始及目標文字合計另限 16 MiB，衝突與超限均不修改來源。
 
-find_symbol 先跳過 offset，才讀取和複製該頁的 body，最多只保留 limit 筆及下一頁旗標；metadata 和 escaped body 在複製前累計限制 16 MiB，分組輸出會預留重複資料的預算。rename/CodeAction 的來源快照維持 64 MiB 上限，先檢查才加入 map。
+include_body 查詢於每檔 symbols RPC 前保留單一來源快照，回覆後核對現檔內容一致；RPC 期間有外部改寫便回 CONFLICT，不能把舊 range 套用到新 body。find_symbol 先跳過 offset，才擷取和複製該頁的 body，最多只保留 limit 筆及下一頁旗標；metadata 和 escaped body 在複製前累計限制 16 MiB，分組輸出會預留重複資料的預算。rename/CodeAction 的來源快照維持 64 MiB 上限，先檢查才加入 map。
 
 debug_start 回 project-scoped session UUID。debug_batch 最多 32 個 allowlisted DAP requests，核對 session ID、每步回 request ID、pending ticket 或真實錯誤；全批次有 host RPC deadline，逾時明確標示 adapter-side outcome unknown。這不是 Python REPL。host 的 allow_debug 代表授權除錯器執行 target；adapter 繼承的環境採 allowlist，launch payload 仍是具執行權限的除錯輸入，沒有 OS 沙箱保證。
 

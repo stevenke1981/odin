@@ -1080,9 +1080,23 @@ impl Engine {
                     continue;
                 }
             };
-            let mut body_snapshot = None;
+            // Retain one source snapshot per RPC, not one clone per symbol.
+            // Old backend ranges must never be applied to a newer file body.
+            let body_snapshot = if boolean(a, "include_body", false) {
+                Some(p.root.read(&path)?)
+            } else {
+                None
+            };
             match client.symbols(&path).await {
                 Ok(found) => {
+                    if body_snapshot
+                        .as_ref()
+                        .is_some_and(|before| p.root.read(&path).as_ref().ok() != Some(before))
+                    {
+                        return Err(Fault::conflict(
+                            "Source changed while resolving symbol bodies",
+                        ));
+                    }
                     successful_documents += 1;
                     for symbol in found {
                         if !query_filter.accepts(&symbol) {
@@ -1095,9 +1109,6 @@ impl Engine {
                         if symbols.len() >= query_filter.limit {
                             has_next = true;
                             break;
-                        }
-                        if boolean(a, "include_body", false) && body_snapshot.is_none() {
-                            body_snapshot = Some(p.root.read(&path)?);
                         }
                         let mut selected_body = None;
                         if let Some(body) = &body_snapshot {

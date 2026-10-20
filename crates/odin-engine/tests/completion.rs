@@ -679,3 +679,52 @@ async fn symbol_offset_skips_body_resolution_before_copying() {
     assert_eq!(result["symbols"].as_array().unwrap().len(), 1);
     assert_eq!(result["symbols"][0]["body"], "fn bar() {}");
 }
+
+#[tokio::test]
+async fn symbol_body_rejects_external_write_while_backend_response_is_pending() {
+    let (root, state, old_engine) = setup_lsp();
+    let mut config = old_engine.config.clone();
+    let marker = state.path().join("symbol-request-marker");
+    let release = state.path().join("symbol-response-release");
+    config.projects.get_mut("one").unwrap().languages[0]
+        .args
+        .extend([
+            "--pause-symbols".into(),
+            "--request-marker".into(),
+            marker.to_string_lossy().into_owned(),
+            "--release-marker".into(),
+            release.to_string_lossy().into_owned(),
+        ]);
+    drop(old_engine);
+    let engine = Engine::new(config).unwrap();
+    let task_engine = engine.clone();
+    let query = tokio::spawn(async move {
+        task_engine
+            .call(
+                "one".into(),
+                "find_symbol".into(),
+                json!({"query":"module/*","match_mode":"glob","include_body":true}),
+            )
+            .await
+    });
+    tokio::time::timeout(std::time::Duration::from_secs(3), async {
+        while !marker.exists() {
+            tokio::time::sleep(std::time::Duration::from_millis(10)).await;
+        }
+    })
+    .await
+    .expect("fixture must confirm symbol request before external write");
+    let changed = "fn BAD() {}\nfn bar() {}\n";
+    std::fs::write(root.path().join("source.rs"), changed).unwrap();
+    std::fs::write(&release, "continue").unwrap();
+    let error = tokio::time::timeout(std::time::Duration::from_secs(3), query)
+        .await
+        .unwrap()
+        .unwrap()
+        .unwrap_err();
+    assert_eq!(error.code, "CONFLICT");
+    assert_eq!(
+        std::fs::read_to_string(root.path().join("source.rs")).unwrap(),
+        changed
+    );
+}

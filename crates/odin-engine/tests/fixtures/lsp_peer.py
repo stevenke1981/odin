@@ -1,6 +1,8 @@
 """Protocol fixture for engine routing; not evidence of real language semantics."""
 import json
 import sys
+import time
+from pathlib import Path
 
 def read_message():
     headers = {}
@@ -33,6 +35,15 @@ while (message := read_message()) is not None:
         result = {'capabilities': {'documentSymbolProvider': True, 'definitionProvider': True, 'referencesProvider': True, 'implementationProvider': True,
                                    'codeActionProvider': {'resolveProvider': True}, 'diagnosticProvider': {'interFileDependencies': False, 'workspaceDiagnostics': False}}}
     elif method == 'textDocument/documentSymbol':
+        if '--pause-symbols' in sys.argv:
+            marker = Path(sys.argv[sys.argv.index('--request-marker') + 1])
+            release = Path(sys.argv[sys.argv.index('--release-marker') + 1])
+            marker.write_text('request received', encoding='utf-8')
+            deadline = time.monotonic() + 5
+            while not release.exists():
+                if time.monotonic() > deadline:
+                    raise RuntimeError('Test did not release paused symbol response')
+                time.sleep(0.01)
         result = [{'name': 'module', 'kind': 2, 'range': {'start': {'line': 0, 'character': 0}, 'end': {'line': 2, 'character': 0}}, 'selectionRange': INSERT,
                    'children': [{'name': name, 'kind': 12, 'range': {'start': {'line': line, 'character': 0}, 'end': {'line': line, 'character': 11}},
                                  'selectionRange': {'start': {'line': line, 'character': 3}, 'end': {'line': line, 'character': 6}}} for line, name in enumerate(['foo', 'bar'])]}]
