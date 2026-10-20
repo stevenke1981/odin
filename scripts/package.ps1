@@ -2,6 +2,7 @@
 param([switch]$SkipBuild, [switch]$SkipInstaller, [string]$Binary = '', [string]$Iscc = '', [string]$OutputDirectory = '')
 $ErrorActionPreference = 'Stop'
 $Root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+function Write-Utf8([string]$Path, [string]$Text) { [IO.File]::WriteAllText($Path, $Text, [Text.UTF8Encoding]::new($false)) }
 Push-Location $Root
 try {
     if (-not (Test-Path -LiteralPath 'Cargo.lock')) { throw 'A reviewed Cargo.lock is required.' }
@@ -26,11 +27,19 @@ try {
     Copy-Item -LiteralPath (Join-Path $Root 'docs') -Destination $Stage -Recurse
     Copy-Item -LiteralPath (Join-Path $Root 'schemas') -Destination $Stage -Recurse
     Copy-Item -LiteralPath (Join-Path $Root 'examples/odin.native.toml') -Destination (Join-Path $Stage 'odin.example.toml')
-    $Metadata | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath (Join-Path $Stage 'build-metadata.json') -Encoding utf8NoBOM
+    Write-Utf8 (Join-Path $Stage 'build-metadata.json') ($Metadata | ConvertTo-Json -Depth 20)
+    foreach ($Optional in @('docs/THIRD_PARTY_LICENSES.txt','verification/sbom.cdx.json')) {
+        $Source = Join-Path $Root $Optional
+        if (Test-Path -LiteralPath $Source -PathType Leaf) {
+            $Target = Join-Path $Stage $Optional
+            New-Item -ItemType Directory -Path (Split-Path $Target -Parent) -Force | Out-Null
+            Copy-Item -LiteralPath $Source -Destination $Target -Force
+        }
+    }
     $Inventory = @(Get-ChildItem -LiteralPath $Stage -File -Recurse | Sort-Object FullName | ForEach-Object {
-        [ordered]@{path = [IO.Path]::GetRelativePath($Stage, $_.FullName).Replace('\','/'); sha256 = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant()}
+        [ordered]@{path = $_.FullName.Substring($Stage.Length + 1).Replace('\','/'); sha256 = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant()}
     })
-    ConvertTo-Json -InputObject $Inventory -Depth 5 | Set-Content -LiteralPath (Join-Path $Stage 'SHA256SUMS.json') -Encoding utf8NoBOM
+    Write-Utf8 (Join-Path $Stage 'SHA256SUMS.json') (ConvertTo-Json -InputObject $Inventory -Depth 5)
     $Archive = Join-Path $OutputDirectory "$PackageName.zip"
     if (Test-Path -LiteralPath $Archive) { throw "Refusing to replace existing package: $Archive. Select a fresh output directory." }
     Compress-Archive -LiteralPath (Get-ChildItem -LiteralPath $Stage | ForEach-Object FullName) -DestinationPath $Archive -CompressionLevel Optimal
@@ -57,6 +66,6 @@ try {
     if ($Installer) { $Artifacts += $Installer }
     $Checksums = @($Artifacts | ForEach-Object { [ordered]@{path = $_; sha256 = (Get-FileHash -LiteralPath $_ -Algorithm SHA256).Hash.ToLowerInvariant()} })
     $Report = [ordered]@{scope = 'WINDOWS_NATIVE_PACKAGE'; portable = 'PASS'; installer_compile = $InstallerStatus; installer_lifecycle = 'NOT_RUN'; binary_sha256 = (Get-FileHash -LiteralPath $Binary -Algorithm SHA256).Hash.ToLowerInvariant(); build = $Metadata; staging = $Stage; artifacts = $Checksums; signed = $false; linux_macos_native = 'NOT_RUN'}
-    $Report | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath (Join-Path $OutputDirectory 'package-report.json') -Encoding utf8NoBOM
+    Write-Utf8 (Join-Path $OutputDirectory 'package-report.json') ($Report | ConvertTo-Json -Depth 20)
     $Report | ConvertTo-Json -Depth 20
 } finally { Pop-Location }

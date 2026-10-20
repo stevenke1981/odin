@@ -38,6 +38,6 @@ try {
     Assert-Check 'uninstall_preserves_user_file' ((Get-Content -LiteralPath $UserData -Raw) -eq 'retain user data')
 } catch { $Failure = $_.Exception.Message }
 $Report = [ordered]@{scope='ISOLATED_WINDOWS_INSTALL_REINSTALL_UNINSTALL'; status=$(if($Failure){'FAIL'}else{'PASS'}); checks=$Checks; error=$Failure; installer_sha256=(Get-FileHash -LiteralPath $Installer -Algorithm SHA256).Hash.ToLowerInvariant(); qa_directory=$QaRoot; interruption_rollback='NOT_RUN'; cross_version_upgrade='NOT_RUN'; native_binary_expected_sha256=$ExpectedBinarySha256.ToLowerInvariant()}
-$Report | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath (Join-Path $QaRoot 'installer-report.json') -Encoding utf8NoBOM
+[IO.File]::WriteAllText((Join-Path $QaRoot 'installer-report.json'), ($Report | ConvertTo-Json -Depth 12), [Text.UTF8Encoding]::new($false))
 $Report | ConvertTo-Json -Depth 12
 if ($Failure) { throw $Failure }

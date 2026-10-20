@@ -2,7 +2,7 @@
   "scope": "REAL_ODIN_BINARY_LOOPBACK_HTTP_AND_MCP_SMOKE",
   "status": "PASS",
   "binary": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin\\target\\debug\\odin.exe",
-  "binary_sha256": "4fd70925d8c047317c1fa32c6ab2d817c1b0a2204c2cce392d79ed1df1907fa2",
+  "binary_sha256": "e70bae3b3da4519abcfb98ba6d98b98cc94869fef8d0a00d24a236044bac7f2a",
   "platform": "Windows-11-10.0.26300-SP0",
   "checks": [
     {
@@ -152,5 +152,5 @@
   ],
   "error": null,
   "full_mcp_http_conformance": false,
-  "timestamp_unix": 1792537812.2082052
+  "timestamp_unix": 1792538393.4862726
 }

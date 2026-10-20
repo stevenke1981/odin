@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Package the binary that actually ran metadata, with a per-file SHA-256 inventory."""
-import argparse, hashlib, io, json, platform, re, subprocess, tarfile, time
+import argparse, gzip, hashlib, io, json, platform, re, subprocess, tarfile, time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,13 +24,16 @@ def main():
         sources[name] = ROOT/name
     for directory in ['docs', 'schemas']:
         sources.update({path.relative_to(ROOT).as_posix(): path for path in (ROOT/directory).rglob('*') if path.is_file()})
+    sbom = ROOT/'verification/sbom.cdx.json'
+    if sbom.is_file():
+        sources['verification/sbom.cdx.json'] = sbom
     contents = {name: path.read_bytes() for name, path in sources.items()}
     contents['build-metadata.json'] = (json.dumps(metadata, indent=2)+'\n').encode()
     contents['SHA256SUMS.json'] = (json.dumps([{'path': name, 'sha256': hashlib.sha256(data).hexdigest()} for name, data in sorted(contents.items())], indent=2)+'\n').encode()
     args.output.mkdir(parents=True, exist_ok=True)
     archive = args.output/(package+'.tar.gz')
     # Exclusive creation never overwrites an existing artifact.
-    with archive.open('xb') as handle, tarfile.open(fileobj=handle, mode='w:gz') as bundle:
+    with archive.open('xb') as handle, gzip.GzipFile(filename='', mode='wb', fileobj=handle, mtime=0) as compressed, tarfile.open(fileobj=compressed, mode='w') as bundle:
         for name, data in sorted(contents.items()):
             info = tarfile.TarInfo(package+'/'+name)
             info.size, info.mode, info.mtime = len(data), 0o755 if name == 'odin' else 0o644, 0

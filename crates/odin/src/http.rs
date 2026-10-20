@@ -213,14 +213,13 @@ async fn authorize(State(auth): State<Auth>, request: Request, next: Next) -> Re
     if !auth.hosts.iter().any(|h| h == host) {
         return (StatusCode::FORBIDDEN, "Unexpected Host").into_response();
     }
-    if let Some(origin) = request.headers().get(header::ORIGIN) {
-        if !origin
+    if let Some(origin) = request.headers().get(header::ORIGIN)
+        && !origin
             .to_str()
             .ok()
             .is_some_and(|o| auth.origins.iter().any(|a| a == o))
-        {
-            return (StatusCode::FORBIDDEN, "Cross-origin access denied").into_response();
-        }
+    {
+        return (StatusCode::FORBIDDEN, "Cross-origin access denied").into_response();
     }
     let supplied = request
         .headers()

@@ -1,0 +1,197 @@
+{
+  "task_id": "ODIN-PLATFORM-COMPLETION",
+  "actor_instance": "platform_implementation",
+  "base_sha": "2ed95d6",
+  "source_head_sha": "7b482b6732dd4351c33d380402b58d8593e7c9ee",
+  "source_sha256": {
+    "crates/odin/build.rs": "c901d4e9601890336248e1e5c20d600c2c837390e54d8dc5c7bb7704b5c2dabe",
+    "crates/odin/Cargo.toml": "d2ddaeb92e112540734b2b56c5ffe608a150677aa21b378ff8e81ec74b929993",
+    "crates/odin/src/http.rs": "72746cbb15551b4a6b865e2a583ac3fdadb478fcd6041b5696c7b79069f0f275",
+    "crates/odin/src/main.rs": "812695e43e8883666d58171f80d3a586a92ef8309f94173fbb6bcb03fb60f198",
+    "crates/odin/src/mcp.rs": "e5b9c8c2ad208f22e4c64a9d05aa92a924c270347a0322d5069f9cd5323c6005",
+    "crates/odin/src/metadata.rs": "6010f496c4af39edc2523362ddcb9b3398cfe8ae996ac916e19aaf833d4d4063",
+    "crates/odin/src/setup.rs": "350cbcfabe792f342d4aebb8170a6265b9d6cfa70f3cea9fe341411fdadb40e4",
+    "dashboard/index.html": "e91681e116eaf07ffa3365d59b0664398e360f0544b7cc19f0ffb6416b0c8aa3",
+    "packaging/odin.iss": "26e330224cd1ba3cefe6e303072e036f1dbf69010a5fdd48964dfa37de613973",
+    "scripts/bootstrap.ps1": "5374eaaf0a6489fcec364e8d144a888961a61999108c51af71522d9eab643f54",
+    "scripts/bootstrap.sh": "c23a87dad90426148972cc36e7527840c3049efdfcde1f3b339d89dfa932fcf3",
+    "scripts/check_publish_policy.py": "2f8fd704d96e7a4ed6d191a5f7af7aa8c077a3fd7d17e8bc86f4709b5a522024",
+    "scripts/check_requirements.py": "682c0807f3b2f76a639a7ee5f37d7dac04f48beb8c036b2a53255b5e1654b042",
+    "scripts/check_rust_structure.py": "99e3ad248ee4291336933aabb433ee62332d4f5df1c6d609eedc8bfdcc22eca1",
+    "scripts/check_source.py": "52879611933a3add6ad168f2738424b3d2f87e2906b499674575317ef97b620b",
+    "scripts/cli_smoke.py": "4d48d1f8955be10464a24588530cb98d8b03a5c7d03d4acc6dfe0d672e1518c1",
+    "scripts/fixture_selftest.py": "51c260dc308fbaf2c3456293cbba628ebe4d104961527e20ce3a93336a581ba8",
+    "scripts/generate_catalog.py": "9d3756f6efd61a5ca75854de0c948f42b17c47d6aed4345ff209c10395ed9fec",
+    "scripts/generate_docs.py": "16ca7796039202b6d8ca63e511a6126982afcd1c12c18b4e601b8828ac8c1fe5",
+    "scripts/http_smoke.py": "dcff3f862fa0eaf4785917cee78be183bd33ce8b5a378c92aa94f1923f1a770f",
+    "scripts/mcp_smoke.py": "99712fd1d3a74ce3a0860d6b5f389dc7aae3af4c37b95c5b39b4147f02263ed7",
+    "scripts/package.ps1": "a99f3279f28a6a84e31178eaf5fda3a4070ef5c8dd64e34df80db3af57a66d3d",
+    "scripts/package.sh": "1370ca5abe98501bc4cc675b3bb31ed37be03ae2d0692661b6803e4acd7a1288",
+    "scripts/package_tar.py": "f9d7679df0a3119f1d824a8b111d113a9fbae0d63478ae5e94a11abd2a061b10",
+    "scripts/platform_verify.py": "d5ac4c582784c8405b3572eabf65b259cfd683cf411562fc58a564fc3776c647",
+    "scripts/publish_public.ps1": "2628f2ceb1df62911d56157b68d712a693329c95fec4883eec5089ef41320506",
+    "scripts/publish_public.sh": "0c43170726f33662e4ae9af7b88201df7f2352b3d7b6fab1d19bee2cae46b92b",
+    "scripts/verify.ps1": "d2e590b9545179e99a36d0ade1e96b3ff28389cce6a38d9d8db0664059c68ead",
+    "scripts/verify.sh": "c62a123807482fb130e3c2bbf2da1766ffa4afca9bb44e457e1b237b1dec4308",
+    "scripts/verify_installer.ps1": "5c09536ec89a49981defa9e4b0310a14aa80ac55d1702560033972f96b6ea3bc",
+    "scripts/verify_manifest.py": "f3728851165592d5c0fe95a5869ac77ab2a23cbccd006c494b6b8699f07c89df",
+    "Cargo.lock": "46828f5fd249cad58666882ce628421ffe1775e1c3f1fb76ecc155d83fee4c3f",
+    "schemas/tools.json": "6218ae4b618f09c8d2ecbe25175c93341e8c7b4df6416fef3c784109af246477",
+    "docs/PLATFORM_IMPLEMENTATION.md": "bbf3ff6eea70433812d9f42648c90127160c30423b1f3c11eb7c407c8c3f62b1"
+  },
+  "source_snapshot_note": "Working source hashes, not later commit SHA, bind this execution.",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "executed_at_utc": "2026-10-20T23:19:28.415697+00:00",
+  "commands": [
+    {
+      "command": [
+        "cargo",
+        "fmt",
+        "-p",
+        "odin-agent",
+        "--",
+        "--check"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": [
+        "cargo",
+        "check",
+        "-p",
+        "odin-agent",
+        "--locked"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "    Checking odin-core v0.2.0 (<WORKTREE>\\crates\\odin-core)\n   Compiling odin-agent v0.2.0 (<WORKTREE>\\crates\\odin)\n    Checking odin-protocol v0.2.0 (<WORKTREE>\\crates\\odin-protocol)\n    Checking odin-engine v0.2.0 (<WORKTREE>\\crates\\odin-engine)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.97s\n"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "odin-agent",
+        "--locked"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "\nrunning 6 tests\ntest http::tests::tokens_are_compared_exactly ... ok\ntest setup::tests::hooks_are_idempotent_and_disable_restores_surroundings ... ok\ntest http::tests::audit_export_uses_a_metadata_allowlist ... ok\ntest setup::tests::malformed_sections_are_rejected ... ok\ntest setup::tests::client_command_preserves_restrictive_policy_selection ... ok\ntest setup::tests::preserves_unrelated_json_and_toml_settings ... ok\n\ntest result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n   Compiling odin-protocol v0.2.0 (<WORKTREE>\\crates\\odin-protocol)\n   Compiling odin-engine v0.2.0 (<WORKTREE>\\crates\\odin-engine)\n   Compiling odin-agent v0.2.0 (<WORKTREE>\\crates\\odin)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.62s\n     Running unittests src\\main.rs (target\\debug\\deps\\odin-91ac4312a3cdc82b.exe)\n"
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "-p",
+        "odin-agent",
+        "--all-targets",
+        "--locked",
+        "--no-deps",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "    Checking odin-core v0.2.0 (<WORKTREE>\\crates\\odin-core)\n   Compiling odin-agent v0.2.0 (<WORKTREE>\\crates\\odin)\n    Checking odin-protocol v0.2.0 (<WORKTREE>\\crates\\odin-protocol)\n    Checking odin-engine v0.2.0 (<WORKTREE>\\crates\\odin-engine)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.66s\n"
+    },
+    {
+      "command": [
+        "cargo",
+        "build",
+        "-p",
+        "odin-agent",
+        "--locked"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "   Compiling odin-agent v0.2.0 (<WORKTREE>\\crates\\odin)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 8.37s\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/check_source.py",
+        "--output",
+        "verification/platform-source-check.json"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"scope\": \"ARTIFACT_AND_CONTRACT_STATIC_CHECKS_ONLY\", \"status\": \"PASS\", \"rust_files\": 33, \"rust_lines\": 9575, \"rust_test_declarations\": 117, \"rust_compilation\": \"NOT_PERFORMED_BY_STATIC_CHECK\"}\nChecks: 398 Fail: 0\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/check_requirements.py"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\n  \"kind\": \"DOCUMENTATION_TRACEABILITY_ONLY\",\n  \"features\": 40,\n  \"serena_reference_tools\": 53,\n  \"runtime_checks_executed_by_this_script\": false,\n  \"errors\": [],\n  \"status\": \"PASS\"\n}\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/check_publish_policy.py"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"scope\": \"WORKFLOW_SOURCE_POLICY_ONLY\", \"status\": \"PASS\", \"errors\": []}\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/cli_smoke.py",
+        "--binary",
+        "target/debug/odin.exe",
+        "--output",
+        "verification/platform-cli-smoke.json"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"scope\": \"REAL_ODIN_BINARY_CLI_AND_GENERATED_MCP_CONFIG\", \"status\": \"PASS\", \"binary\": \"C:\\\\Users\\\\steven\\\\.codex\\\\worktrees\\\\odin-platform\\\\odin\\\\target\\\\debug\\\\odin.exe\", \"binary_sha256\": \"e70bae3b3da4519abcfb98ba6d98b98cc94869fef8d0a00d24a236044bac7f2a\", \"platform\": \"Windows-11-10.0.26300-SP0\", \"checks\": [{\"name\": \"exit:metadata\", \"status\": \"PASS\"}, {\"name\": \"build_identity\", \"status\": \"PASS\"}, {\"name\": \"tools_without_config\", \"status\": \"PASS\"}, {\"name\": \"exit:validate\", \"status\": \"PASS\"}, {\"name\": \"validate_does_not_create_state\", \"status\": \"PASS\"}, {\"name\": \"exit:setup\", \"status\": \"PASS\"}, {\"name\": \"setup_dry_run:codex\", \"status\": \"PASS\"}, {\"name\": \"preview_omits_unrelated_values:codex\", \"status\": \"PASS\"}, {\"name\": \"exit:setup\", \"status\": \"PASS\"}, {\"name\": \"exit:setup\", \"status\": \"PASS\"}, {\"name\": \"conflict_preserves_original:codex\", \"status\": \"PASS\"}, {\"name\": \"exit:setup\", \"status\": \"PASS\"}, {\"name\": \"setup_backup:codex\", \"status\": \"PASS\"}, {\"name\": \"codex_preserves_unrelated\", \"status\": \"PASS\"}, {\"name\": \"generated_config_initialize:codex\", \"status\": \"PASS\"}, {\"name\": \"generated_config_tools_list:codex\", \"status\": \"PASS\"}, {\"name\": \"exit:setup\", \"status\": \"PASS\"}, {\"name\": \"setup_idempotent:codex\", \"status\": \"PASS\"}, {\"name\": \"exit:setup\", \"status\": \"PASS\"}, {\"name\": \"setup_dry_run:claude\", \"status\": \"PASS\"}, {\"name\": \"preview_omits_unrelated_values:claude\", \"status\": \"PASS\"}, {\"name\": \"exit:setup\", \"status\": \"PASS\"}, {\"name\": \"exit:setup\", \"status\": \"PASS\"}, {\"name\": \"conflict_preserves_original:claude\", \"status\": \"PASS\"}, {\"name\": \"exit:setup\", \"status\": \"PASS\"}, {\"name\": \"setup_backup:claude\", \"status\": \"PASS\"}, {\"name\": \"claude_preserves_unrelated\", \"status\": \"PASS\"}, {\"name\": \"generated_config_initialize:claude\", \"status\": \"PASS\"}, {\"name\": \"generated_config_tools_list:claude\", \"status\": \"PASS\"}, {\"name\": \"exit:setup\", \"status\": \"PASS\"}, {\"name\": \"setup_idempotent:claude\", \"status\": \"PASS\"}, {\"name\": \"exit:setup\", \"status\": \"PASS\"}, {\"name\": \"setup_dry_run:opencode\", \"status\": \"PASS\"}, {\"name\": \"preview_omits_unrelated_values:opencode\", \"status\": \"PASS\"}, {\"name\": \"exit:setup\", \"status\": \"PASS\"}, {\"name\": \"exit:setup\", \"status\": \"PASS\"}, {\"name\": \"conflict_preserves_original:opencode\", \"status\": \"PASS\"}, {\"name\": \"exit:setup\", \"status\": \"PASS\"}, {\"name\": \"setup_backup:opencode\", \"status\": \"PASS\"}, {\"name\": \"opencode_preserves_unrelated\", \"status\": \"PASS\"}, {\"name\": \"generated_config_initialize:opencode\", \"status\": \"PASS\"}, {\"name\": \"generated_config_tools_list:opencode\", \"status\": \"PASS\"}, {\"name\": \"exit:setup\", \"status\": \"PASS\"}, {\"name\": \"setup_idempotent:opencode\", \"status\": \"PASS\"}, {\"name\": \"setup_lock_cleanup\", \"status\": \"PASS\"}, {\"name\": \"exit:hook\", \"status\": \"PASS\"}, {\"name\": \"hook_dry_run\", \"status\": \"PASS\"}, {\"name\": \"exit:hook\", \"status\": \"PASS\"}, {\"name\": \"hook_backup\", \"status\": \"PASS\"}, {\"name\": \"exit:hook\", \"status\": \"PASS\"}, {\"name\": \"hook_disable_restores_original\", \"status\": \"PASS\"}, {\"name\": \"exit:hook\", \"status\": \"PASS\"}, {\"name\": \"workspace_mutations_require_transactions\", \"status\": \"PASS\"}, {\"name\": \"exit:onboard\", \"status\": \"PASS\"}, {\"name\": \"onboarding_evidence\", \"status\": \"PASS\"}, {\"name\": \"exit:doctor\", \"status\": \"PASS\"}, {\"name\": \"doctor_missing_backend_not_pass\", \"status\": \"PASS\"}], \"error\": null, \"actual_codex_claude_opencode_applications_tested\": false, \"timestamp_unix\": 1792538392.0616436}\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/mcp_smoke.py",
+        "--binary",
+        "target/debug/odin.exe",
+        "--output",
+        "verification/platform-mcp-smoke.json"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"scope\": \"REAL_ODIN_BINARY_STDIO_SMOKE\", \"status\": \"PASS\", \"binary\": \"C:\\\\Users\\\\steven\\\\.codex\\\\worktrees\\\\odin-platform\\\\odin\\\\target\\\\debug\\\\odin.exe\", \"binary_sha256\": \"e70bae3b3da4519abcfb98ba6d98b98cc94869fef8d0a00d24a236044bac7f2a\", \"platform\": \"Windows-11-10.0.26300-SP0\", \"checks\": [{\"name\": \"initialize\", \"status\": \"PASS\"}, {\"name\": \"catalog_copies_equal\", \"status\": \"PASS\"}, {\"name\": \"catalog_names_match\", \"status\": \"PASS\"}, {\"name\": \"catalog_contracts_match\", \"status\": \"PASS\"}, {\"name\": \"no_upstream_bridge_tools\", \"status\": \"PASS\"}, {\"name\": \"tool_result:read_file\", \"status\": \"PASS\"}, {\"name\": \"tool_result:read_file\", \"status\": \"PASS\"}, {\"name\": \"read_sha\", \"status\": \"PASS\"}, {\"name\": \"tool_result:create_text_file\", \"status\": \"PASS\"}, {\"name\": \"tool_result:replace_content\", \"status\": \"PASS\"}, {\"name\": \"preview_does_not_mutate\", \"status\": \"PASS\"}, {\"name\": \"tool_result:transaction_apply\", \"status\": \"PASS\"}, {\"name\": \"apply_changes_file\", \"status\": \"PASS\"}, {\"name\": \"tool_result:transaction_rollback\", \"status\": \"PASS\"}, {\"name\": \"rollback_restores_file\", \"status\": \"PASS\"}, {\"name\": \"tool_result:write_memory\", \"status\": \"PASS\"}, {\"name\": \"tool_result:read_memory\", \"status\": \"PASS\"}, {\"name\": \"memory_content\", \"status\": \"PASS\"}, {\"name\": \"tool_result:flow_run\", \"status\": \"PASS\"}, {\"name\": \"flow_result\", \"status\": \"PASS\"}, {\"name\": \"tool_result:status\", \"status\": \"PASS\"}, {\"name\": \"standalone_status\", \"status\": \"PASS\"}, {\"name\": \"removed_tool:serena_tools\", \"status\": \"PASS\"}, {\"name\": \"removed_tool:serena_call\", \"status\": \"PASS\"}], \"error\": null, \"real_lsp_dap_tested\": false, \"timestamp_unix\": 1792538392.5559464}\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/http_smoke.py",
+        "--binary",
+        "target/debug/odin.exe",
+        "--output",
+        "verification/platform-http-smoke.json"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"scope\": \"REAL_ODIN_BINARY_LOOPBACK_HTTP_AND_MCP_SMOKE\", \"status\": \"PASS\", \"binary\": \"C:\\\\Users\\\\steven\\\\.codex\\\\worktrees\\\\odin-platform\\\\odin\\\\target\\\\debug\\\\odin.exe\", \"binary_sha256\": \"e70bae3b3da4519abcfb98ba6d98b98cc94869fef8d0a00d24a236044bac7f2a\", \"platform\": \"Windows-11-10.0.26300-SP0\", \"checks\": [{\"name\": \"server_starts\", \"status\": \"PASS\"}, {\"name\": \"unauthenticated_rejected:/api/projects\", \"status\": \"PASS\"}, {\"name\": \"unauthenticated_rejected:/api/status\", \"status\": \"PASS\"}, {\"name\": \"unauthenticated_rejected:/api/metadata\", \"status\": \"PASS\"}, {\"name\": \"unauthenticated_rejected:/api/audit/demo\", \"status\": \"PASS\"}, {\"name\": \"unauthenticated_rejected:/api/audit/demo/export\", \"status\": \"PASS\"}, {\"name\": \"unauthenticated_rejected:/mcp\", \"status\": \"PASS\"}, {\"name\": \"authenticated_projects\", \"status\": \"PASS\"}, {\"name\": \"no_store_api\", \"status\": \"PASS\"}, {\"name\": \"host_header_rejected\", \"status\": \"PASS\"}, {\"name\": \"cross_origin_rejected\", \"status\": \"PASS\"}, {\"name\": \"wrong_token_rejected\", \"status\": \"PASS\"}, {\"name\": \"dashboard_csp\", \"status\": \"PASS\"}, {\"name\": \"build_metadata\", \"status\": \"PASS\"}, {\"name\": \"readonly_status\", \"status\": \"PASS\"}, {\"name\": \"api_methods_readonly\", \"status\": \"PASS\"}, {\"name\": \"mcp_http_status:initialize\", \"status\": \"PASS\"}, {\"name\": \"mcp_response:initialize\", \"status\": \"PASS\"}, {\"name\": \"mcp_initialize\", \"status\": \"PASS\"}, {\"name\": \"mcp_notification_accepted\", \"status\": \"PASS\"}, {\"name\": \"mcp_http_status:tools/list\", \"status\": \"PASS\"}, {\"name\": \"mcp_response:tools/list\", \"status\": \"PASS\"}, {\"name\": \"mcp_catalog_names\", \"status\": \"PASS\"}, {\"name\": \"mcp_catalog_schemas\", \"status\": \"PASS\"}, {\"name\": \"mcp_http_status:tools/call\", \"status\": \"PASS\"}, {\"name\": \"mcp_response:tools/call\", \"status\": \"PASS\"}, {\"name\": \"mcp_real_tool_call\", \"status\": \"PASS\"}, {\"name\": \"api_no_raw_content_or_token:/api/projects\", \"status\": \"PASS\"}, {\"name\": \"api_no_raw_content_or_token:/api/status\", \"status\": \"PASS\"}, {\"name\": \"api_no_raw_content_or_token:/api/metadata\", \"status\": \"PASS\"}, {\"name\": \"api_no_raw_content_or_token:/api/audit/demo\", \"status\": \"PASS\"}, {\"name\": \"api_no_raw_content_or_token:/api/audit/demo/export\", \"status\": \"PASS\"}, {\"name\": \"audit_records_real_tool\", \"status\": \"PASS\"}, {\"name\": \"audit_metadata_allowlist\", \"status\": \"PASS\"}, {\"name\": \"audit_jsonl_export\", \"status\": \"PASS\"}, {\"name\": \"no_token_in_server_log\", \"status\": \"PASS\"}], \"error\": null, \"full_mcp_http_conformance\": false, \"timestamp_unix\": 1792538393.4862726}\n"
+    }
+  ],
+  "full_workspace_dependency_clippy": "NOT_RUN_BY_THIS_SCOPED_SCRIPT",
+  "linux_macos_runtime": "NOT_RUN",
+  "actual_client_applications": "NOT_RUN",
+  "source_unchanged_during_commands": true,
+  "status": "PASS"
+}

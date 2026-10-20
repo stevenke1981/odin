@@ -1,0 +1,58 @@
+{
+  "scope": "PACKAGING_RECIPE_TEST_ONLY",
+  "portable": "PASS",
+  "installer_compile": "PASS",
+  "installer_lifecycle": "NOT_RUN",
+  "binary_sha256": "5c1ce1a65c81857d88d62286ceaeda29873f7493c255024af468906f89c763e6",
+  "build": {
+    "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "external_tool_bridge": false,
+    "model_token_usage": "UNKNOWN",
+    "name": "Odin",
+    "profile": "release",
+    "revision": "4f270059d83c5fd3fcb4fba06248aa06a0df269c",
+    "schema_version": 1,
+    "standalone": true,
+    "target": "x86_64-pc-windows-msvc",
+    "tracked_source_dirty": true,
+    "version": "0.2.0"
+  },
+  "staging": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin\\dist\\recipe-test-2\\.stage-0e26a4c63fe742f0a066b085c8c3c86e",
+  "artifacts": [
+    {
+      "path": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin\\dist\\recipe-test-2\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+      "sha256": "45f545b8d1be64188cce7e71e5c6800d704197bba9cccb8b9aa1c29caade556d"
+    },
+    {
+      "path": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin\\dist\\recipe-test-2\\odin-0.2.0-windows-x64-setup.exe",
+      "sha256": "04bd07ee4b0979266be695c3bbb81d0541618352766697fdf142b646ab4f43e1"
+    }
+  ],
+  "signed": false,
+  "linux_macos_native": "NOT_RUN",
+  "delivery_candidate": false,
+  "commands": [
+    {
+      "command": [
+        "scripts/package.ps1",
+        "-SkipBuild",
+        "-OutputDirectory",
+        "dist/recipe-test"
+      ],
+      "exit_code": 1,
+      "status": "FAIL",
+      "reason": "Inno compiler exit 2: UsePreviousLanguage must be no when AppId includes constants"
+    },
+    {
+      "command": [
+        "scripts/package.ps1",
+        "-SkipBuild",
+        "-OutputDirectory",
+        "dist/recipe-test-2"
+      ],
+      "exit_code": 0,
+      "status": "PASS"
+    }
+  ],
+  "note": "Recipe compilation only, with an earlier revision binary. Final integrated candidate must be repackaged and installer-tested with its own binary hash."
+}

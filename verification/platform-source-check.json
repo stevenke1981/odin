@@ -73,6 +73,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:docs\\ENGINE_IMPLEMENTATION.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:docs\\FEATURE_SPEC.md",
       "status": "PASS",
       "detail": ""
@@ -89,6 +94,11 @@
     },
     {
       "name": "utf8:docs\\PLATFORM_IMPLEMENTATION.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs\\PROTOCOL_IMPLEMENTATION.md",
       "status": "PASS",
       "detail": ""
     },
@@ -263,6 +273,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:scripts\\platform_verify.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:scripts\\publish_public.ps1",
       "status": "PASS",
       "detail": ""
@@ -313,6 +328,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:verification\\engine-verify.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:verification\\fixture-selftest.json",
       "status": "PASS",
       "detail": ""
@@ -359,6 +379,11 @@
     },
     {
       "name": "utf8:verification\\platform-mcp-smoke.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\platform-source-check.json",
       "status": "PASS",
       "detail": ""
     },
@@ -478,6 +503,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:crates\\odin-protocol\\src\\workspace.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:crates\\odin-protocol\\tests\\fixture_protocols.rs",
       "status": "PASS",
       "detail": ""
@@ -493,6 +523,21 @@
       "detail": ""
     },
     {
+      "name": "utf8:crates\\odin-engine\\src\\occurrences.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\src\\refactor.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\src\\results.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:crates\\odin-engine\\src\\schema.rs",
       "status": "PASS",
       "detail": ""
@@ -503,7 +548,27 @@
       "detail": ""
     },
     {
+      "name": "utf8:crates\\odin-engine\\src\\symbols.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\tests\\completion.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:crates\\odin-engine\\tests\\invariants.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\tests\\fixtures\\dap_peer.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\tests\\fixtures\\lsp_peer.py",
       "status": "PASS",
       "detail": ""
     },
@@ -743,6 +808,11 @@
       "detail": ""
     },
     {
+      "name": "python_ast:scripts\\platform_verify.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "python_ast:scripts\\verify_manifest.py",
       "status": "PASS",
       "detail": ""
@@ -753,7 +823,22 @@
       "detail": ""
     },
     {
+      "name": "python_ast:verification\\engine-verify.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "python_ast:tests\\fixtures\\protocol_peer.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:crates\\odin-engine\\tests\\fixtures\\dap_peer.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:crates\\odin-engine\\tests\\fixtures\\lsp_peer.py",
       "status": "PASS",
       "detail": ""
     },
@@ -913,12 +998,32 @@
       "detail": ""
     },
     {
+      "name": "standalone_production_source:crates\\odin-engine\\src\\occurrences.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates\\odin-engine\\src\\refactor.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates\\odin-engine\\src\\results.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "standalone_production_source:crates\\odin-engine\\src\\schema.rs",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "standalone_production_source:crates\\odin-engine\\src\\shell.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates\\odin-engine\\src\\symbols.rs",
       "status": "PASS",
       "detail": ""
     },
@@ -944,6 +1049,11 @@
     },
     {
       "name": "standalone_production_source:crates\\odin-protocol\\src\\text.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates\\odin-protocol\\src\\workspace.rs",
       "status": "PASS",
       "detail": ""
     },
@@ -979,6 +1089,36 @@
     },
     {
       "name": "dispatcher_marker:status",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:get_version",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:get_version",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:get_schemas",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:get_schemas",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:get_capabilities",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:get_capabilities",
       "status": "PASS",
       "detail": ""
     },
@@ -1173,6 +1313,46 @@
       "detail": ""
     },
     {
+      "name": "scoped_contract:prepare_code_action",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:prepare_code_action",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:apply_quick_fix",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:apply_quick_fix",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:move_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:move_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:inline_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:inline_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "scoped_contract:restart_language_server",
       "status": "PASS",
       "detail": ""
@@ -1259,6 +1439,16 @@
     },
     {
       "name": "dispatcher_marker:replace_content",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:replacement_preview",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:replacement_preview",
       "status": "PASS",
       "detail": ""
     },
@@ -1413,6 +1603,56 @@
       "detail": ""
     },
     {
+      "name": "scoped_contract:memory_export",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:memory_export",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:memory_import",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:memory_import",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:memory_move_scope",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:memory_move_scope",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:memory_transaction_preview",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:memory_transaction_preview",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:memory_transaction_apply",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:memory_transaction_apply",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "scoped_contract:check_memories",
       "status": "PASS",
       "detail": ""
@@ -1533,6 +1773,16 @@
       "detail": ""
     },
     {
+      "name": "scoped_contract:debug_batch",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:debug_batch",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "scoped_contract:result_read",
       "status": "PASS",
       "detail": ""
@@ -1583,6 +1833,11 @@
       "detail": ""
     },
     {
+      "name": "no_stub_macro:crates\\odin-protocol\\src\\workspace.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "no_stub_macro:crates\\odin-protocol\\tests\\fixture_protocols.rs",
       "status": "PASS",
       "detail": ""
@@ -1603,12 +1858,37 @@
       "detail": ""
     },
     {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\occurrences.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\refactor.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\results.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "no_stub_macro:crates\\odin-engine\\src\\schema.rs",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "no_stub_macro:crates\\odin-engine\\src\\shell.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\symbols.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\tests\\completion.rs",
       "status": "PASS",
       "detail": ""
     },
@@ -1713,12 +1993,12 @@
       "detail": ""
     }
   ],
-  "rust_files": 27,
-  "rust_lines": 5222,
-  "rust_test_declarations": 84,
+  "rust_files": 33,
+  "rust_lines": 9575,
+  "rust_test_declarations": 117,
   "rust_tests_executed_by_this_check": 0,
   "rust_compilation": "NOT_PERFORMED_BY_STATIC_CHECK",
-  "tool_contracts": 58,
+  "tool_contracts": 72,
   "compiler_presence": {
     "rustc": "C:\\Users\\steven\\.cargo\\bin\\rustc.EXE",
     "cargo": "C:\\Users\\steven\\.cargo\\bin\\cargo.EXE",
