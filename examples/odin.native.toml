@@ -1,0 +1,16 @@
+# A writable fixture project for LOCAL acceptance only.
+state_dir = '../.odin/native-example-state'
+[projects.demo]
+root = 'rust-fixture'
+allow_write = true
+allow_shell = false
+allow_debug = false
+[[projects.demo.languages]]
+id = 'rust'
+extensions = ['rs']
+program = 'rust-analyzer'
+args = []
+[projects.demo.commands.test]
+program = 'cargo'
+args = ['test']
+timeout_secs = 120

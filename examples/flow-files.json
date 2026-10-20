@@ -1,0 +1,24 @@
+{
+  "project": "demo",
+  "session": "review",
+  "steps": [
+    {
+      "as": "listing",
+      "tool": "list_dir",
+      "arguments": {
+        "relative_path": ".",
+        "recursive": true
+      }
+    },
+    {
+      "as": "files",
+      "select": {
+        "$ref": "listing#/files"
+      },
+      "take": 10
+    }
+  ],
+  "return": {
+    "$ref": "files"
+  }
+}

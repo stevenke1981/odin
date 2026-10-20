@@ -1,0 +1,24 @@
+{
+  "project": "demo",
+  "session": "semantic-review",
+  "steps": [
+    {
+      "as": "matches",
+      "tool": "find_symbol",
+      "arguments": {
+        "query": "greet",
+        "include_body": false
+      }
+    },
+    {
+      "as": "symbols",
+      "select": {
+        "$ref": "matches#/symbols"
+      },
+      "take": 5
+    }
+  ],
+  "return": {
+    "$ref": "symbols"
+  }
+}

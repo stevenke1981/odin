@@ -1,0 +1,1087 @@
+{
+  "schema_version": "1.0",
+  "product": "Odin",
+  "baseline_version": "0.2.0",
+  "status": "SPECIFICATION_ONLY",
+  "standalone_requirement": "No Serena code, runtime, plugin, or bridge in shipping Odin binaries",
+  "note": "Current/source statuses describe existing repository snapshot only. All functional implementation acceptance tests are NOT_RUN.",
+  "features": [
+    {
+      "id": "ODIN-001",
+      "title": "可重現的 Rust 建置與工具鏈",
+      "priority": "P0",
+      "phase": "M0",
+      "current": "SOURCE_PREVIEW",
+      "modules": [
+        "build",
+        "release"
+      ],
+      "goal": "從只有靜態檢查的 0.2.0 到可執行產品。",
+      "design": "固定 rust-toolchain 與 Cargo.lock；解決 rmcp SDK 的實際型別/feature 相容；所有 crate 必須能獨立及 workspace 編譯；建置工件標記 Git SHA。",
+      "acceptance": [
+        "在全新工作樹執行 cargo generate-lockfile、cargo build --workspace --locked 成功且 Cargo.lock 納入 Git。",
+        "cargo fmt --all -- --check、cargo clippy --workspace --all-targets --locked -- -D warnings、cargo test --workspace --locked 均退出 0。",
+        "Release binary 的 --version 與 commit metadata 可讀，沒有 false PASS 或預製空 binary。"
+      ],
+      "tests": [
+        "M0-compile-linux",
+        "M0-compile-win-msvc",
+        "M0-compile-macos"
+      ],
+      "depends_on": [],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-002",
+      "title": "標準 MCP stdio 與 Streamable HTTP",
+      "priority": "P0",
+      "phase": "M0",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-agent",
+        "mcp"
+      ],
+      "goal": "讓現有 Coding Agent 不使用 Serena 即能連線。",
+      "design": "使用官方 Rust MCP SDK；JSON-RPC Initialize / initialized / tools/list / tools/call；stdio 僅允許 JSON-RPC stdout；HTTP loopback + Bearer + Host/Origin；失敗使用明確 tool error。",
+      "acceptance": [
+        "官方 MCP 測試客戶端完成初始化、列舉所有宣告工具、成功與拒絕呼叫。",
+        "stdio 的 cargo/run logging 永不寫入 stdout；stderr logging 不污染 frame。",
+        "HTTP 無 token、錯誤 token、惡意 Origin/Host 均被拒絕；預設只綁 127.0.0.1。"
+      ],
+      "tests": [
+        "M0-mcp-smoke",
+        "M0-http-auth-negative",
+        "M0-mcp-disconnect"
+      ],
+      "depends_on": [
+        "ODIN-001"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-003",
+      "title": "58 個工具契約、版本與能力協商",
+      "priority": "P0",
+      "phase": "M0",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-engine",
+        "schemas"
+      ],
+      "goal": "避免有 tool 名字但工具不支援、或參數不一致。",
+      "design": "單一來源 schema → CLI/MCP/flow；工具包含 required project、輸入限制、read/write/execute 標記；新增 get_capabilities 與 schema_version；不支援回 CAPABILITY_UNAVAILABLE。",
+      "acceptance": [
+        "現有 58 個 tools 全數列在 coverage 表，schema/dispatcher 逐項有功能測試。",
+        "錯參數、未知專案、未知工具與後端失聯各得到不同可機械判別 error code。",
+        "新版本修改破壞 API 時更新 schema_version 並保留遷移文件。"
+      ],
+      "tests": [
+        "M0-contract-schema",
+        "M0-error-mapping",
+        "M0-capabilities"
+      ],
+      "depends_on": [
+        "ODIN-002"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-004",
+      "title": "每次呼叫專案隔離與生命週期",
+      "priority": "P0",
+      "phase": "M0",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-core",
+        "odin-engine"
+      ],
+      "goal": "杜絕不同 Agent 的 active project 互相踩踏。",
+      "design": "請求明確 project_id；路徑正規化、重疊 root 拒絕；每個專案獨立 LSP/DAP/SQLite/journal 與結果儲存；熱切換須顯式受控。",
+      "acceptance": [
+        "兩個 Agent 同時對 A、B 專案讀寫，不會交換記憶、結果或語言伺服器。",
+        "未知 project_id 和 workspace 外部的任何路徑一律拒絕。",
+        "停止 project 能停止其子程序、釋放鎖和資源，其他 project 繼續服務。"
+      ],
+      "tests": [
+        "M0-project-concurrency",
+        "M0-cross-scope-negative",
+        "M0-process-shutdown"
+      ],
+      "depends_on": [
+        "ODIN-001"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-005",
+      "title": "跨平台路徑與檔案安全",
+      "priority": "P0",
+      "phase": "M0",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-core",
+        "paths"
+      ],
+      "goal": "解決 symlink/junction、目錄競態與非法路徑造成的越權。",
+      "design": "canonicalize 與 handle-relative open；Windows reparse point/junction、UNC、drive prefix、UTF-16；Linux/macOS symlink、hardlink；已寫入檔案不可被替換成不可信目標。",
+      "acceptance": [
+        "包含相對 ..、絕對路徑、symlink/junction escape、Unicode NFC/NFD、大小寫差異的測試全部拒絕或按安全策略處理。",
+        "攻擊測試在 authorize 與 open 之間交換 symlink，無 workspace 外部檔案被修改。",
+        "Windows 長路徑和 CRLF 的讀取/修改 roundtrip 字節一致。"
+      ],
+      "tests": [
+        "M0-path-traversal",
+        "M0-toctou-race",
+        "M0-windows-reparse"
+      ],
+      "depends_on": [
+        "ODIN-004"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-006",
+      "title": "預覽、提交與 crash-safe 修改交易",
+      "priority": "P0",
+      "phase": "M0",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-core",
+        "odin-engine"
+      ],
+      "goal": "讓 Agent 修改可以審核、不中途破壞原檔。",
+      "design": "read hash → immutable draft → preview → CAS preflight → apply/journal fsync；單檔 atomic replace；中斷 explicit recover；對於多檔無瞬間原子性寫清楚。",
+      "acceptance": [
+        "外部先行修改檔案時，apply 回 CONFLICT，外部修改保持不變。",
+        "在每個 journal phase 模擬 kill/crash 後可安全判定完成、恢復或需要人工介入。",
+        "rollback 永不覆蓋未知第三方資料；同 request_id 不同 payload 被拒絕。"
+      ],
+      "tests": [
+        "M0-transaction-crash-matrix",
+        "M0-cas-race",
+        "M0-rollback-conflict"
+      ],
+      "depends_on": [
+        "ODIN-005"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-007",
+      "title": "LSP 初始化、同步、關閉及依賴管理",
+      "priority": "P0",
+      "phase": "M1",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-protocol",
+        "lsp"
+      ],
+      "goal": "直接對接語言伺服器，無須 Serena LSP。",
+      "design": "初始化 initialize/initialized、capabilities negotiation、document didOpen/didChange/didClose、WorkspaceFolder；單調版本、UTF-16 索引、超時/取消/重啟、子程序 stderr 分離、按語言設定 stdout framing。",
+      "acceptance": [
+        "rust-analyzer 真實專案能索引兩個跨檔引用，檔案改動後讀到新符號。",
+        "UTF-16 surrogate pair、CRLF、非 ASCII 路徑映射無 off-by-one，版本單調。",
+        "語言伺服器崩潰/掛起後超時明確，重啟並重新同步所有開啟的文件。"
+      ],
+      "tests": [
+        "M1-rust-analyzer-live",
+        "M1-utf16-cases",
+        "M1-lsp-restart"
+      ],
+      "depends_on": [
+        "ODIN-004"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-008",
+      "title": "完整符號查找與引用關係",
+      "priority": "P0",
+      "phase": "M1",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-protocol",
+        "odin-engine"
+      ],
+      "goal": "符號查詢不能被 grep 冒充。",
+      "design": "實作 documentSymbol/workspaceSymbol/definition/declaration/references/implementation；符號 name_path、kind、scope、depth、include_body、include/exclude kind、matches 分頁；限定只讀必要檔案。",
+      "acceptance": [
+        "跨檔 Rust fixtures 逐項對照 rust-analyzer 輸出定位、kind、range，至少 20 個真實查詢通過。",
+        "同名多符號可消歧；使用符號路徑與範圍，不因檔案中註解包含同字就命中。",
+        "不可用功能需回 CAPABILITY_UNAVAILABLE；不默默降級為純文字結果。"
+      ],
+      "tests": [
+        "M1-symbol-20-cases",
+        "M1-symbol-collision",
+        "M1-capability-negative"
+      ],
+      "depends_on": [
+        "ODIN-007"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-009",
+      "title": "WorkspaceEdit 完整支援",
+      "priority": "P0",
+      "phase": "M1",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-core",
+        "odin-protocol"
+      ],
+      "goal": "rename/refactoring 遇到 LSP resource operations 時不可失敗或誤成功。",
+      "design": "完整處理 TextDocumentEdit、CreateFile、RenameFile、DeleteFile、版本限制與 changeAnnotations；對操作順序建 DAG；跨磁碟與 case-only rename 特別路徑；prepare/apply 共用 journal。",
+      "acceptance": [
+        "跨檔 symbol rename 涵蓋 source edits + RenameFile，一次 preview 顯示全部變更。",
+        "Windows case-only rename、collision、無權限刪除、磁碟中斷在預定語意下安全停止/復原。",
+        "遇到不支援 annotation 或檔案版本不符全部拒絕，不遺漏操作後回成功。"
+      ],
+      "tests": [
+        "M1-resource-ops-fixture",
+        "M1-win-case-rename",
+        "M1-journal-fileop-crash"
+      ],
+      "depends_on": [
+        "ODIN-006",
+        "ODIN-007"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-010",
+      "title": "真實語言伺服器三語驗收",
+      "priority": "P0",
+      "phase": "M1",
+      "current": "NOT_VERIFIED",
+      "modules": [
+        "test",
+        "lsp"
+      ],
+      "goal": "驗證 Odin 功能是真正可用而不是 mock-only。",
+      "design": "首批 Rust rust-analyzer、Python basedpyright/Pyright、TypeScript typescript-language-server；固定 fixtures、backend version、安裝指令、工作區設定；公開能力矩陣。",
+      "acceptance": [
+        "每語言至少完成符號、跨檔 references、rename、diagnostics 的成功與失敗案例。",
+        "每個語言都記錄版本、OS、commit、命令行與 stdout/stderr 原始 log。",
+        "未驗證語言不能以「40+ 已支援」列為 PASS。"
+      ],
+      "tests": [
+        "M1-rust-language",
+        "M1-python-language",
+        "M1-typescript-language"
+      ],
+      "depends_on": [
+        "ODIN-007",
+        "ODIN-008",
+        "ODIN-009"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-011",
+      "title": "零 Serena 相依的乾淨主機驗證",
+      "priority": "P0",
+      "phase": "M0",
+      "current": "SOURCE_STATIC_ONLY",
+      "modules": [
+        "build",
+        "security"
+      ],
+      "goal": "產品必須真正獨立，不是偷偷代理 Serena。",
+      "design": "CI/fixture 禁止 Serena / SolidLSP package、程式自動 fallback、子程序工具轉送；安裝套件與 Cargo dependency graph 也要檢查。",
+      "acceptance": [
+        "乾淨隔離環境不安裝 Python/Serena 仍能完成核心檔案/MCP 功能。",
+        "二進位與 lock/dependency tree 不含 Serena/SolidLSP；不存在 serena_tools/serena_call fallback。",
+        "缺少 LSP/DAP 時明確提示必要後端，不會執行下載 Serena。"
+      ],
+      "tests": [
+        "M0-standalone-no-serena",
+        "M0-sbom-audit",
+        "M0-backend-missing"
+      ],
+      "depends_on": [
+        "ODIN-001"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-012",
+      "title": "實際 OS 隔離、程序樹與權限",
+      "priority": "P0",
+      "phase": "M0",
+      "current": "NOT_IMPLEMENTED",
+      "modules": [
+        "security",
+        "process"
+      ],
+      "goal": "拒絕把 read_only flag 當作沙箱。",
+      "design": "預設最小權限執行；Windows Job Objects/restricted token 視 profile；Linux seccomp/namespace or container；macOS sandbox profile；限制子程序後代、resource/time/cpu/memory；執行命令僅 allowlisted profile。",
+      "acceptance": [
+        "受測敵意 command/process 不能更改 workspace 外檔案；子孫程序可被完整終止。",
+        "限制模式若該 OS 不支援，必須 fail closed 且明確出錯，不能靜默解除限制。",
+        "Shell、DAP launch、LSP executable 的信任邊界文件及 deny/allow tests 齊備。"
+      ],
+      "tests": [
+        "M0-windows-job-objects",
+        "M0-linux-sandbox",
+        "M0-macos-sandbox"
+      ],
+      "depends_on": [
+        "ODIN-005"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-013",
+      "title": "通用 DAP 生命週期與除錯行為",
+      "priority": "P1",
+      "phase": "M2",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-protocol",
+        "dap"
+      ],
+      "goal": "讓除錯不用 JetBrains 特定 plugin。",
+      "design": "完整 initialize/launch/attach/configurationDone、setBreakpoints、stack/scopes/variables/evaluate、step/continue/disconnect；支持 capability negotiation、events、cancel、timeouts。",
+      "acceptance": [
+        "至少 Windows 與 Linux 在真實 debug adapter 啟動測試程式並命中指定 breakpoint。",
+        "continue/step、scopes/variables/evaluate 得到可核對的變數值，退出後無孤兒程序。",
+        "不支援的 DAP 指令明確回 unsupported，不能把送出 request 當成功完成操作。"
+      ],
+      "tests": [
+        "M2-dap-real-debuggee-win",
+        "M2-dap-real-debuggee-linux",
+        "M2-dap-timeout"
+      ],
+      "depends_on": [
+        "ODIN-012"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-014",
+      "title": "語意 Move refactoring",
+      "priority": "P1",
+      "phase": "M2",
+      "current": "NOT_IMPLEMENTED",
+      "modules": [
+        "refactor",
+        "odin-protocol"
+      ],
+      "goal": "搬移 symbol/file/dir 後關聯檔案仍可編譯。",
+      "design": "優先使用 LSP willRenameFiles / CodeAction + WorkspaceEdit；不足則實作受語言限定 adapter（例如 rust-analyzer）；禁用 regex 字串搬移冒充；保留 import/visibility/namespace。",
+      "acceptance": [
+        "跨模組移動公開符號後，所有 consumers 更新且 cargo test 通過。",
+        "同名、同 module path、符號解析失敗時拒絕修改並輸出 unsupported reason。",
+        "受影響的檔案、差異、引用更新及 rollback 全可檢查。"
+      ],
+      "tests": [
+        "M2-rust-cross-module-move",
+        "M2-unsupported-language-move",
+        "M2-move-rollback"
+      ],
+      "depends_on": [
+        "ODIN-009",
+        "ODIN-008"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-015",
+      "title": "語意 Inline refactoring",
+      "priority": "P1",
+      "phase": "M2",
+      "current": "NOT_IMPLEMENTED",
+      "modules": [
+        "refactor",
+        "odin-protocol"
+      ],
+      "goal": "將函式、變數 inline，不改變語義。",
+      "design": "優先使用被支援的 LSP Code Action/rename；adapter 管理作用域、副作用、泛型與借用；不做任意字串展開；先提供 Rust/TypeScript 支援矩陣。",
+      "acceptance": [
+        "對純函式與帶有副作用的 fixtures，替換前後測試結果一致。",
+        "有巢狀 scope、名稱衝突、macro/external call 風險時拒絕自動重構。",
+        "每一個 inline 能 preview 並可撤銷，不會產生編譯不過的 silent success。"
+      ],
+      "tests": [
+        "M2-inline-pure",
+        "M2-inline-sideeffect",
+        "M2-inline-negative"
+      ],
+      "depends_on": [
+        "ODIN-009"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-016",
+      "title": "Safe Delete 與級聯刪除",
+      "priority": "P1",
+      "phase": "M2",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "refactor"
+      ],
+      "goal": "不讓只找不到靜態 refs 的刪除毀壞動態使用者。",
+      "design": "LSP static refs + workspace-wide dependency reachability，公開 API/反射/macro 風險拒絕或要求人工批准；遞迴移除確定不用的引用；關連刪除一同 preview。",
+      "acceptance": [
+        "跨檔仍在引用的 symbol 刪除先拒絕；可安全刪除的 private symbol 可編譯。",
+        "動態 dispatch/reflection/宏造成不確定時回 NEED_REVIEW，不能聲稱安全。",
+        "safe delete 造成影響的檔案與 tests 資料可逐項對照。"
+      ],
+      "tests": [
+        "M2-safe-delete-references",
+        "M2-safe-delete-dynamic",
+        "M2-cascade-delete"
+      ],
+      "depends_on": [
+        "ODIN-008",
+        "ODIN-009"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-017",
+      "title": "診斷／Linter／IDE inspection 正規化",
+      "priority": "P1",
+      "phase": "M2",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "diagnostics"
+      ],
+      "goal": "不把 LSP diagnostics、Build failure 與 IDE inspection 混成一件事。",
+      "design": "統一 diagnostics schema: source、severity、range、rule、fix、observed_at、document_version、confidence；LSP pull/push，Cargo clippy/rustfmt，ESLint/TypeScript，Python Ruff；變成獨立 plugin provider。",
+      "acceptance": [
+        "同一缺陷從 LSP 與 clippy 匯入可去重但保留來源。",
+        "不存在的 rule/analysis 或未就緒結果回 PENDING/UNAVAILABLE，不回空 PASS。",
+        "quick fix 必須先預覽 WorkspaceEdit，再交由交易引擎執行。"
+      ],
+      "tests": [
+        "M2-diagnostic-dedup",
+        "M2-inspection-cargo-clippy",
+        "M2-diagnostic-pending"
+      ],
+      "depends_on": [
+        "ODIN-007",
+        "ODIN-006"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-018",
+      "title": "Type Hierarchy、外部依賴與跨專案查詢",
+      "priority": "P1",
+      "phase": "M2",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-protocol",
+        "index"
+      ],
+      "goal": "完整理解跨 module/class 的繼承與依賴。",
+      "design": "TypeHierarchy prepare/supertypes/subtypes；reference in dependencies；受控外部 workspace activation 與 read-only Project Server；支持 resolver 快取失效。",
+      "acceptance": [
+        "Type Hierarchy 能列出 fixture 的父類、子類，並正確含跨檔。",
+        "跨專案查詢必須指定兩方 project_id，外部檔案不可被寫入。",
+        "不支援 hierarchy 的 LSP 返回 capability unavailable 並標明缺失。"
+      ],
+      "tests": [
+        "M2-hierarchy",
+        "M2-external-project",
+        "M2-scope-negative"
+      ],
+      "depends_on": [
+        "ODIN-008"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-019",
+      "title": "逐語言適配與 40+ 語言宣告策略",
+      "priority": "P1",
+      "phase": "M3",
+      "current": "NOT_IMPLEMENTED",
+      "modules": [
+        "adapters",
+        "lsp"
+      ],
+      "goal": "跨語言能力必須可測、可擴展、可宣告。",
+      "design": "語言適配介面：detect、resolve_server、environment、workspace_root、index_trigger、symbol_capabilities、healthcheck；先 Rust/Python/TypeScript，再 Go/C#/Java/JavaScript；剩餘依需求逐語言完成；將 installed/configured/verified 分級。",
+      "acceptance": [
+        "首批 6 語言可在本機安裝直接後端並通過核心查詢。",
+        "每種新增語言均有 2 個以上實際專案 fixture 與反例；未驗證不得宣稱支援。",
+        "支援矩陣記錄每種語言的 find/reference/rename/diagnostics/refactor 狀態與證據。"
+      ],
+      "tests": [
+        "M3-six-language-smoke",
+        "M3-language-matrix",
+        "M3-server-discovery"
+      ],
+      "depends_on": [
+        "ODIN-010"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-020",
+      "title": "Markdown 記憶與引用完整性",
+      "priority": "P1",
+      "phase": "M2",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-core",
+        "memory"
+      ],
+      "goal": "持久知識可版本控制、跨 session，無須向量資料庫。",
+      "design": "project-local + global 兩範圍；topics / mem: references、CAS、rename propagation、readonly/ignored patterns、integrity check、import/export；read minimal context rather than auto injecting all memories。",
+      "acceptance": [
+        "一組具有循環引用、壞連結和 read-only 的記憶可被列出/檢查，rename 不遺失引用。",
+        "跨 session 重啟後內容與 hashes 保持；無權限範圍不得寫入。",
+        "從 0.2 central state 可備份遷移至 repo-local，失敗可回復。"
+      ],
+      "tests": [
+        "M2-memory-rename",
+        "M2-memory-migration",
+        "M2-readonly-integrity"
+      ],
+      "depends_on": [
+        "ODIN-006"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-021",
+      "title": "增量索引與變更監聽",
+      "priority": "P1",
+      "phase": "M2",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-core",
+        "index"
+      ],
+      "goal": "大型 repo 不能每次重建 SQLite FTS5。",
+      "design": "watcher（notify）+ full rescan fallback；持久 hash、ignore/glob、rename/delete/update；快取一致性和索引狀態查詢；全文索引與 LSP symbol cache 明確區分。",
+      "acceptance": [
+        "新增/修改/刪除檔案後不需手動 index_build 即更新搜尋。",
+        "watcher 漏事件、斷線或 inode/rename 變動會觸發可追蹤的 rescan。",
+        "冷啟與暖啟結果一致；不把 stale hit 或缺資料回成正常完成。"
+      ],
+      "tests": [
+        "M2-watcher-events",
+        "M2-index-rebuild",
+        "M2-index-consistency"
+      ],
+      "depends_on": [
+        "ODIN-005"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-022",
+      "title": "安全批次流程與可重用查詢",
+      "priority": "P1",
+      "phase": "M2",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-engine",
+        "flow"
+      ],
+      "goal": "提供比多次工具往返更可控的組合介面，不依賴 Python。",
+      "design": "受限 JSON DAG + variables + filters + map/reduce builtins + JSON Pointer + bounded concurrency per session；無任意程式執行；trace 所有工具；超時/取消。",
+      "acceptance": [
+        "多工具查詢只回投影資料，於指定固定 fixture 比逐步呼叫減少輸出 bytes。",
+        "forbid write/execute/unknown call 即使透過 flow 包裹也仍拒絕。",
+        "兩個 session 分開併行，單 session 失敗不污染 state；循環 DAG 不可執行。"
+      ],
+      "tests": [
+        "M2-flow-projection",
+        "M2-flow-isolation",
+        "M2-flow-deny"
+      ],
+      "depends_on": [
+        "ODIN-003",
+        "ODIN-004"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-023",
+      "title": "CLI / Client setup / Onboarding",
+      "priority": "P1",
+      "phase": "M2",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-agent",
+        "cli"
+      ],
+      "goal": "可一個指令安裝 Odin MCP 於 Codex、Claude Code、OpenCode 等客戶端。",
+      "design": "setup 子命令可輸出/寫入受控 MCP client config，先備份並 diff；init/doctor/index/validate；提示詞描述 Odin 支援範圍，不偽稱 Serena API。",
+      "acceptance": [
+        "三個客戶端都可從設定檔啟動並成功 tools/list。",
+        "覆寫既有配置要顯式同意，保證原有未關聯設定不變。",
+        "doctor 能區分 Rust binary、MCP 啟動、LSP missing、檔案權限與 DAP missing。"
+      ],
+      "tests": [
+        "M2-codex-setup",
+        "M2-claude-setup",
+        "M2-opencode-setup"
+      ],
+      "depends_on": [
+        "ODIN-002"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-024",
+      "title": "Context／Mode／Project 配置策略",
+      "priority": "P1",
+      "phase": "M2",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-core",
+        "config"
+      ],
+      "goal": "讓不同 Agent 用不同工具集與風險策略。",
+      "design": "層級 host → project → per-client context → per-task mode，覆蓋優先序可預期；版控 TOML、local overrides、驗證 schema、秘密只走 env 或 OS keychain；不追求 Serena YAML/Jinja 語法。",
+      "acceptance": [
+        "相同配置來源優先序有 deterministic tests；無效 key fail closed。",
+        "readonly mode 不能授予 host policy 拒絕的寫入；任意 mode 不能繞過 OS sandbox。",
+        "配置 export redacts tokens/secrets，且升版兼容有 migration。"
+      ],
+      "tests": [
+        "M2-config-precedence",
+        "M2-config-readonly",
+        "M2-config-redaction"
+      ],
+      "depends_on": [
+        "ODIN-004"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-025",
+      "title": "Dashboard / 操作日誌 / 使用量",
+      "priority": "P1",
+      "phase": "M3",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-agent",
+        "dashboard"
+      ],
+      "goal": "提供可檢查工作實況，而不等於假定任務完成。",
+      "design": "本機唯讀 dashboard：project/LS/DAP status、tool traces、latency、errors、index health、memory stats、resource usage；可匯出 JSONL/OpenTelemetry traces；禁止洩漏 code/secrets。",
+      "acceptance": [
+        "能顯示每個工具實際 wall-clock duration、error code 和 trace id。",
+        "未經授權的 HTTP 請求無法讀到任何專案資料。",
+        "token 統計僅在來源有依據時顯示，否則標 UNKNOWN，不能推算使用者模型 token。"
+      ],
+      "tests": [
+        "M3-dashboard-auth",
+        "M3-tracing-metadata",
+        "M3-log-redaction"
+      ],
+      "depends_on": [
+        "ODIN-002"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-026",
+      "title": "Hooks / Agent 策略引導",
+      "priority": "P2",
+      "phase": "M3",
+      "current": "NOT_IMPLEMENTED",
+      "modules": [
+        "integrations"
+      ],
+      "goal": "避免 Agent 只使用文字工具而忽略語意分析。",
+      "design": "可選 CLI hook、client prompts、對常見任務最佳操作建議；不自動更動使用者代理設定。",
+      "acceptance": [
+        "啟用 hooks 前提供 dry-run diff，停用能復原。",
+        "長 session 下工具提示不重複灌入全量文件。",
+        "沒有 MCP 支援的子 agent 不宣稱共享 Odin 工具。"
+      ],
+      "tests": [
+        "M3-hook-dry-run",
+        "M3-hook-disable"
+      ],
+      "depends_on": [
+        "ODIN-023"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-027",
+      "title": "可重現驗收及 CI 成本限制",
+      "priority": "P0",
+      "phase": "M0",
+      "current": "SOURCE_PREVIEW",
+      "modules": [
+        "ci",
+        "verification"
+      ],
+      "goal": "所有 PASS 必須來自實際 command exit code 和 artifacts。",
+      "design": "手動 self-hosted first；fmt、clippy、unit、integration、security、platform workflow；上傳 test log、toolchain、commit SHA、coverage；GitHub-hosted minutes 預設不啟用。",
+      "acceptance": [
+        "從全新 checkout 執行驗收有可審計 logs；失敗 gate 阻止 release。",
+        "fixture self-test 與真實 binary/LS/DAP 驗證分開標記。",
+        "Actions 只有 workflow_dispatch，不自動啟動付費或額度計費的工作流程。"
+      ],
+      "tests": [
+        "M0-ci-selfhosted-manual",
+        "M0-evidence-manifest",
+        "M0-failure-blocks-release"
+      ],
+      "depends_on": [
+        "ODIN-001"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-028",
+      "title": "Windows x64 MSVC 安裝、升級與卸載",
+      "priority": "P1",
+      "phase": "M3",
+      "current": "NOT_IMPLEMENTED",
+      "modules": [
+        "release",
+        "windows"
+      ],
+      "goal": "在 Windows 用戶主機安裝並能回退。",
+      "design": "Inno Setup 安裝版與 portable ZIP；PATH/MCP 設定 opt-in；installer lifecycle 包含 silent install/uninstall/upgrade/rollback，版本一致；簽章 optional 而不假裝已簽。",
+      "acceptance": [
+        "乾淨 Windows x64 MSVC 主機完整 install/start/uninstall 後無孤兒 service/目錄。",
+        "以 v0.2 state 升級資料，遷移遇錯仍保有備份且可復原。",
+        "Windows Defender/SmartScreen 與 Defender Controlled Folder Access 限制須實測紀錄。"
+      ],
+      "tests": [
+        "M3-inno-lifecycle-14",
+        "M3-win-upgrade",
+        "M3-win-uninstall"
+      ],
+      "depends_on": [
+        "ODIN-001"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-029",
+      "title": "Linux/macOS 原生打包與驗證",
+      "priority": "P1",
+      "phase": "M3",
+      "current": "NOT_VERIFIED",
+      "modules": [
+        "release",
+        "platform"
+      ],
+      "goal": "沒有跨平台真機不能發 1.0。",
+      "design": "native CI/build on Linux x86_64 and macOS arm64；提供 tar.gz、install script checksum、卸載；路徑、信號與行程清理採各 OS 原生能力。",
+      "acceptance": [
+        "每 OS 的 binary 在該 OS native test，不以 cross compile check 替代。",
+        "kill SIGTERM/SIGINT 後 LSP/DAP 子程序被清除，未完成 journal 有可檢查狀態。",
+        "同版本 manifest、source SHA、archive checksum 一致。"
+      ],
+      "tests": [
+        "M3-linux-native",
+        "M3-macos-native",
+        "M3-clean-shutdown"
+      ],
+      "depends_on": [
+        "ODIN-001"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-030",
+      "title": "效能、Token 與品質基準",
+      "priority": "P1",
+      "phase": "M3",
+      "current": "NOT_VERIFIED",
+      "modules": [
+        "benchmark"
+      ],
+      "goal": "證明快和省，而不是因 Rust 推論效能。",
+      "design": "固定 repo/commit、backend/version、模型/prompt、cold/warm cache、成功條件、task suite；對比 Serena v2.1 只是性能 benchmark，產品本身不能依賴 Serena。",
+      "acceptance": [
+        "發布 P50/P95 latency、RSS、CPU、output bytes/tokens、任務成功率與重構後編譯通過率。",
+        "至少 3 種規模 repo 及 20 個日常 coding 任務，多次執行且同環境。",
+        "未達預定效能目標需列性能回歸，不能只報成功樣本。"
+      ],
+      "tests": [
+        "M3-benchmark-repro",
+        "M3-metrics-dashboard",
+        "M3-regression-suite"
+      ],
+      "depends_on": [
+        "ODIN-010"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-031",
+      "title": "套件供應鏈、機密與對外發布治理",
+      "priority": "P0",
+      "phase": "M0",
+      "current": "SOURCE_PREVIEW",
+      "modules": [
+        "security",
+        "release"
+      ],
+      "goal": "公開 GitHub 不可包含私密憑證、個人資料或誤導授權。",
+      "design": "Cargo.lock、SBOM、licenses、advisories；依賴 pinning/checksum；secret scanning、路徑 allowlist；沒有 GitHub token、API keys、機器絕對路徑與私有專案碼。",
+      "acceptance": [
+        "公開候選 repo 目錄通過 secret scan、license scanner 與 artifact allowlist。",
+        "README 不聲稱尚未執行的 tests 成功；所有 NOT_RUN 有出處。",
+        "權限最小化；公眾 PR 不在無防護 self-hosted runner 上自動執行。"
+      ],
+      "tests": [
+        "M0-no-secret-scan",
+        "M0-sbom-license",
+        "M0-security-policy"
+      ],
+      "depends_on": [
+        "ODIN-001"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-032",
+      "title": "競態、崩潰與資料完整性驗證",
+      "priority": "P0",
+      "phase": "M0",
+      "current": "NOT_VERIFIED",
+      "modules": [
+        "test",
+        "recovery"
+      ],
+      "goal": "以敵意條件驗證真實寫入安全。",
+      "design": "Crash injection/multi-agent writer contention/partial disk write/permission denied/renamed dirs/symlink race/long path/malicious MCP input；模型不可越權。",
+      "acceptance": [
+        "對所有 transaction 轉態注入 failpoint，能確定 state 的下一步。",
+        "兩個獨立 process 同時修改同檔，其中一個必須安全拒絕或重新協商，不能靜默覆蓋。",
+        "以實際 Windows NTFS 和 Linux ext4 或 equivalent 驗證，不只 mock FS。"
+      ],
+      "tests": [
+        "M0-crash-failpoints",
+        "M0-two-process-race",
+        "M0-permission-denied"
+      ],
+      "depends_on": [
+        "ODIN-006"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-033",
+      "title": "完整架構文件、開發契約與產品邊界",
+      "priority": "P0",
+      "phase": "M0",
+      "current": "SOURCE_PREVIEW",
+      "modules": [
+        "docs"
+      ],
+      "goal": "讓後續 Agent 可依文件實作而非猜測。",
+      "design": "中文需求規格、英語 API tags、每項 id/priority/source/status/deps/acceptance/test；修版時更新 machine-readable backlog 與 traceability；文件語義單一來源。",
+      "acceptance": [
+        "公開的 53 Serena 功能全部映射至少一項 Odin 原生需求。",
+        "現有 58 tools 列表未變更，新增 API 必須含 schema、錯誤碼與測試。",
+        "README 入口、ROADMAP、RELEASE_GATES 與驗收證據一致。"
+      ],
+      "tests": [
+        "M0-spec-coverage",
+        "M0-spec-validator",
+        "M0-doc-links"
+      ],
+      "depends_on": [
+        "ODIN-003"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-034",
+      "title": "語言後端安裝與能力健康檢查",
+      "priority": "P1",
+      "phase": "M2",
+      "current": "NOT_IMPLEMENTED",
+      "modules": [
+        "lsp",
+        "cli"
+      ],
+      "goal": "避免把 command 存在當成語意後端可用。",
+      "design": "清楚安裝指引/可選受控 auto-install；版本 pin + hash；capability probe、workspace readiness、錯誤修復指引；不自動執行專案內不可信可執行檔。",
+      "acceptance": [
+        "後端缺失回 MISSING_BACKEND，版本衝突回 BACKEND_UNSUPPORTED。",
+        "使用者明確同意安裝後在隔離目錄且 hash 核對；失敗不留下可執行半成品。",
+        "更換 server 版本會觸發必要 index invalidation。"
+      ],
+      "tests": [
+        "M2-backend-discovery",
+        "M2-installer-consent",
+        "M2-backend-readiness"
+      ],
+      "depends_on": [
+        "ODIN-007"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-035",
+      "title": "純原生檢查與 Quick Fix 引擎",
+      "priority": "P2",
+      "phase": "M3",
+      "current": "NOT_IMPLEMENTED",
+      "modules": [
+        "diagnostics",
+        "adapters"
+      ],
+      "goal": "取代 JetBrains inspections 的用例，而非聲稱 JetBrains 內部 API 等價。",
+      "design": "檢查供應者 trait、靜態規則與 linter 解析、fix-to-WorkspaceEdit、批次規則選擇；依語言/檔案 scope 明確顯示 support。",
+      "acceptance": [
+        "能在 Rust/Python/TypeScript fixture 取得 rule、location 與可預覽 quick fix。",
+        "即使載入 JetBrains IDE 也不依賴 Serena 插件或授權。",
+        "規則尚不支援時顯示未實作，不給空結果稱合格。"
+      ],
+      "tests": [
+        "M3-rules-rust",
+        "M3-rules-python",
+        "M3-quickfix-safe"
+      ],
+      "depends_on": [
+        "ODIN-017"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-036",
+      "title": "持久式除錯命令會話（非 Python REPL）",
+      "priority": "P2",
+      "phase": "M3",
+      "current": "NOT_IMPLEMENTED",
+      "modules": [
+        "dap",
+        "flow"
+      ],
+      "goal": "提供連續 evaluate、breakpoint 和 step 的批次交互。",
+      "design": "Rust 的 bounded debugger DSL / explicit session；透過 DAP 而不是 eval 任意 Python；命令結果有 request ID、timeout、取消，作用範圍為 session。",
+      "acceptance": [
+        "一次 session 中連續設置 breakpoint、launch、step、evaluate 成功且每步有證據。",
+        "不能從 debug DSL 任意執行 host shell 或跨專案存取。",
+        "debuggee 結束會回 session closed，持續讀取不會假裝仍在執行。"
+      ],
+      "tests": [
+        "M3-debug-command-session",
+        "M3-debug-scope-deny"
+      ],
+      "depends_on": [
+        "ODIN-013"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-037",
+      "title": "記憶 schema 升級與 import/export",
+      "priority": "P2",
+      "phase": "M3",
+      "current": "NOT_IMPLEMENTED",
+      "modules": [
+        "memory",
+        "migration"
+      ],
+      "goal": "長期保存的記憶不因版本升級損毀。",
+      "design": "versioned manifest、repo-local export/import、global migrations、乾跑、備份、校驗、衝突標示；避免寫入外部 Serena 格式。",
+      "acceptance": [
+        "0.2.0 central memory 以 dry-run 顯示 diff，遷移後 refs 完整且可逆。",
+        "資料損毀/衝突時不覆蓋現存目標。",
+        "不要求安裝 Serena 或讀取 Serena 私有路徑。"
+      ],
+      "tests": [
+        "M3-memory-roundtrip",
+        "M3-memory-conflicts"
+      ],
+      "depends_on": [
+        "ODIN-020"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-038",
+      "title": "精確文字編輯與多命中選擇",
+      "priority": "P1",
+      "phase": "M2",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-core",
+        "edit"
+      ],
+      "goal": "補齊目前 replace_in_files 不能選指定 occurrence 的限制。",
+      "design": "預覽每個匹配獲 immutable occurrence ID，明確 allow_multiple/count/regex flags，依文件 hash 選取，preview 套用同一交易機制。",
+      "acceptance": [
+        "同檔 5 命中可只改指定 2 個且衝突拒絕，不多改任何匹配。",
+        "Regex 多行與 CRLF 的預覽與實際套用位移一致。",
+        "空匹配、重疊替換、數量不符回明確錯誤。"
+      ],
+      "tests": [
+        "M2-occurrence-select",
+        "M2-regex-multiline",
+        "M2-conflicting-replacements"
+      ],
+      "depends_on": [
+        "ODIN-006"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-039",
+      "title": "後端 debugger 設定及啟動安全",
+      "priority": "P1",
+      "phase": "M2",
+      "current": "NOT_IMPLEMENTED",
+      "modules": [
+        "dap",
+        "config"
+      ],
+      "goal": "不同語言 Debug adapter 可複製設定並安全啟動。",
+      "design": "named profiles、發現可執行檔與版本、launch config schema、stdin/stderr 管理、timeout、明確列出允許的 env，不繼承機密。",
+      "acceptance": [
+        "launch profiles 對不同 debugger 具有固定 schema 與測試 fixture。",
+        "惡意 launch args/env 不能跳出 host 授權且沒有任意 shell 字串。",
+        "停止會回收 debuggee 的 process tree。"
+      ],
+      "tests": [
+        "M2-profile-schema",
+        "M2-dap-process-tree"
+      ],
+      "depends_on": [
+        "ODIN-012",
+        "ODIN-013"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    },
+    {
+      "id": "ODIN-040",
+      "title": "工作證據、結果分塊與可追溯執行",
+      "priority": "P1",
+      "phase": "M2",
+      "current": "NATIVE_SOURCE_PARTIAL",
+      "modules": [
+        "odin-engine",
+        "observability"
+      ],
+      "goal": "大型輸出保留證據而不是以 prompt 截斷造成失真。",
+      "design": "每工具含 trace_id、result_id、sha256、truncated flag、後端版本、error code；大資料可分頁；log redaction、TTL/配額/清理。",
+      "acceptance": [
+        "結果在保留期限內用 result_id 分頁取回並驗證 digest。",
+        "過期或權限錯誤返回明確訊息，沒有跨 project 結果洩漏。",
+        "不暴露秘密 token、絕對本機私密路徑或完整原始碼到公共 Dashboard log。"
+      ],
+      "tests": [
+        "M2-result-chunks",
+        "M2-results-ttl",
+        "M2-trace-audit"
+      ],
+      "depends_on": [
+        "ODIN-003"
+      ],
+      "evidence": "NOT_RUN; requires runtime verification"
+    }
+  ]
+}

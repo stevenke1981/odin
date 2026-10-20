@@ -1,0 +1,18 @@
+{
+  "scope": "DOCUMENTATION_TRACEABILITY_ONLY",
+  "date": "2026-10-21",
+  "spec_version": "1.0",
+  "reference_version": "Odin 0.2.0 Standalone",
+  "features_count": 40,
+  "p0": 16,
+  "p1": 20,
+  "p2": 4,
+  "upstream_reference_features": 53,
+  "mapped_reference_features": 53,
+  "done_claims": 0,
+  "check_script": "python scripts/check_requirements.py",
+  "check_result": "PASS",
+  "rust_compilation": "NOT_RUN",
+  "github_publication": "NOT_PUBLISHED",
+  "reason": "Repository stevenke1981/odin does not exist and connected GitHub tools cannot create repositories."
+}

@@ -1,0 +1,34 @@
+name: Odin feature implementation
+description: Implement a documented ODIN-* requirement
+labels: [enhancement]
+body:
+  - type: input
+    id: requirement
+    attributes:
+      label: Requirement ID
+      description: e.g. ODIN-009; see docs/FEATURE_SPEC.md
+      placeholder: ODIN-009
+    validations: {required: true}
+  - type: textarea
+    id: scope
+    attributes:
+      label: Implementation scope and design
+      description: Reference existing crate and public tool contract.
+    validations: {required: true}
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance tests and evidence
+      description: Tests must run on the actual binary and target OS/backend where relevant.
+    validations: {required: true}
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Release discipline
+      options:
+        - label: Do not mark NOT_RUN as PASS.
+          required: true
+        - label: Do not add a Serena or SolidLSP runtime dependency.
+          required: true
+        - label: Do not start GitHub-hosted CI automatically.
+          required: true

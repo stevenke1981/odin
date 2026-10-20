@@ -1,0 +1,2057 @@
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -4,12 +4,12 @@
+ - No fake test results. A test written is not a test executed. Preserve NOT_RUN until there is a real command log.
+ - Route all native project mutations through odin-core Transactions. Require expected hashes; never overwrite a conflict to obtain a green result.
+ - Every tool needs catalog/schema, policy, dispatch, tests and docs. Regenerate both tools.json copies together.
+-- Never label external Serena calls as Rust-native. Never label regex as semantic symbol analysis.
+-- Do not enable shell, debug, bridge or write permissions without an explicit host configuration decision.
++- Keep Odin independent: do not add a Serena bridge or automatic upstream fallback. Never label regex as semantic symbol analysis.
++- Do not enable shell, debug or write permissions without an explicit host configuration decision.
+ - Do not introduce arbitrary eval into native flow. Do not parse repository-supplied files as executable host configuration.
+ - Worktree / branch per change; plan, implement, tests, review and evidence before release. No invented agent-team participation.
+ - No cloud CI execution by default; manual self-hosted only. Do not create or push a remote repository merely to run checks.
+ - Initial source delivery has no Cargo.lock because Cargo was unavailable. Generate and review a real lockfile on first build; thereafter use --locked.
+ - Run cargo fmt, cargo test --workspace --locked, cargo clippy --workspace --all-targets --locked -- -D warnings, and binary smoke tests on the target platform.
+-- Backend mocks are protocol fixtures, not real language support / debugging / Serena parity evidence.
++- Backend mocks are protocol fixtures, not real language support / debugging / full-feature parity evidence.
+ - Document security boundaries and incomplete features in the same change as code.
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -1,7 +1,15 @@
+ # Changelog
+ 
+-## 0.1.0 — Source preview
++## 0.2.0 — Standalone source preview
+ 
+-Initial independent Odin source implementation: Rust core, project-scoped tools, file/search APIs, CAS/journal edits, Markdown memories, lexical FTS5, LSP client, DAP client, constrained JSON flow, optional external Serena MCP bridge, official rmcp server, authenticated loopback HTTP and read-only dashboard.
++Breaking configuration/tool change: removes the external Serena bridge rather than just disabling it. Deletes BridgeConfig, SerenaBridge, upstream process management, serena_tools / serena_call, bridge examples and upstream mocks. Removes the two bridge tools from both generated catalogs; 58 Odin tools remain.
+ 
+-Includes test source, deterministic protocol fixtures, local verification scripts, architecture and parity documentation. Rust compilation and real backend / platform verification were not available in the delivery environment. No performance or full native parity claim.
++Status reports standalone=true and external_tool_bridge=false. Unknown legacy project configuration is rejected. CLI doctor reports only direct language-server / debugger profiles. Regression tests cover absence of bridge contracts, unknown old tool calls and rejected old configuration. Catalog/docs generation no longer reintroduces the dependency.
++
++Documentation now separates independence from feature completeness: semantic Move/Inline, JetBrains inspections, arbitrary Python REPL and complete per-language compatibility remain missing. No hidden fallback was added. This version does not change native state formats intentionally; migration/runtime behavior has not been exercised.
++
++Rust compilation, unit/integration tests and real backend/platform execution remain NOT_RUN. Static artifact checks and Python mock-peer selftests are recorded separately.
++
++## 0.1.0 — Historical baseline
++
++Initial source preview included the Rust core and an optional external Serena bridge. That bridge is absent from 0.2.0. Original delivery is retained separately; this package does not overwrite it.
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -3,7 +3,7 @@
+ resolver = "3"
+ 
+ [workspace.package]
+-version = "0.1.0"
++version = "0.2.0"
+ edition = "2024"
+ rust-version = "1.90"
+ license = "MIT"
+--- a/DELIVERY.zh-TW.md
++++ b/DELIVERY.zh-TW.md
+@@ -1,29 +1,25 @@
+-# Odin 0.1.0 原始碼交付
++# Odin 0.2.0 Standalone — 交付說明
+ 
+-本包提供 Rust 核心、完整架構文件、工具契約、Serena 動態橋接、測試原始碼與本機驗收腳本。**不是已編譯的安裝包；不是完全脫離 Serena 的 100% 原生替代品。**
++## 本次完成範圍
+ 
+-## 範圍
++這是由先前 0.1.0 原始碼包修改而來的獨立版本。Serena Bridge、BridgeConfig、上游工具分派／程序管理、兩個 serena_* 工具、橋接範例與上游 mock 已移除。四個 Rust crates、58 個原生／直接協議工具保留。完整變更可查 `verification/source-diff.patch`。
+ 
+-4 個 crates、60 個工具契約、53 項 Serena 工具對照。原生包含 LSP 查詢、SHA-256 修改前置條件、preview/apply/recovery、Markdown memories、FTS5、read-only JSON flow、DAP、MCP stdio/HTTP 與本機唯讀 Dashboard。
++`status` 新增 standalone=true / external_tool_bridge=false。舊 bridge 設定會被拒絕，舊工具視為未知；沒有缺少原生能力時自動轉發的路徑。原始碼中的相關回歸測試已更新，Rust 測試尚未執行。
+ 
+-上游 Move / Inline / IDE inspections / 完整 Python REPL 等走可選 Serena bridge，必須另外安裝並設定相容後端／授權。橋接不受原生 journal 或 read-only 限制保護。
++## 不是本次完成項目
+ 
+-## 真正完成的檢查
++沒有補齊原先依靠上游提供的語意 Move／Inline、JetBrains inspections、Python REPL 或所有語言適配。沒有新增獨立 JetBrains 外掛。**移除相依不是功能等價；本版仍是 SOURCE_PREVIEW。**
+ 
+-檔案與契約靜態檢查通過；9 項 Python mock-peer 自測通過；Dashboard JavaScript 與 Bash 腳本語法檢查通過。Rust lexical/bracket 檢查僅屬詞法檢視，不是編譯。
++Odin 核心不需要 Python 或 Serena；語意功能仍需另外配置語言伺服器，除錯仍需另外配置 DAP adapter。外部後端可能有 Java、Node.js、Python 等自己的環境需求。Python 是交付／開發驗證工具之一。
+ 
+-## 尚未執行
++## 實際驗證
+ 
+-交付環境沒有 Rust/Cargo。Rust 編譯、Rust 測試、rustfmt、Clippy、真實 MCP/LSP/DAP/Serena/JetBrains 與 Windows/macOS/Linux native 驗證均為 NOT_RUN。沒有可執行檔與 Cargo.lock，也未取得任何「比 Serena 更快」的比較證據。可能仍有需在首次編譯／整合中修正的問題。
++本次執行了原始碼／工具契約檢查、Python LSP／DAP fixture 自測、Dashboard JavaScript 語法檢查、Bash 語法檢查、Rust 詞法括號檢查，以及封裝校驗。具體數量與結果以本版 `verification/*.json` 為準，不沿用 0.1.0 數字。
+ 
+-## 開始閱讀
++沒有 Rust／Cargo，故依賴解析、Cargo.lock、Rust 編譯、Rust tests、fmt、Clippy、真實 Odin MCP 啟動、真實 LSP／DAP 及平台測試均為 **NOT_RUN**。Rust parser 亦未能安裝；詞法檢查不能替代 Rust 語法／型別／連結驗證。沒有提供執行檔。
+ 
+-- README.md：建置、執行與交付邊界。
+-- docs/ARCHITECTURE.md：模組、流程、狀態與信任邊界。
+-- docs/SERENA_PARITY.md：逐項原生差異與上游依賴。
+-- docs/KNOWN_LIMITATIONS.md：未實作與未驗收項。
+-- verification/delivery-status.json：完整驗收狀態。
++未連接或修改 5900X；未建立或推送遠端倉庫；未啟動雲端 CI；未建立背景任務。舊 ZIP 未被覆寫。
+ 
+-首次在真正的建置主機執行 scripts/bootstrap.ps1 或 bootstrap.sh，取得並審查真實 Cargo.lock，再執行 verify。任何失敗必須保留 log 與修正，不能把 source check 或 fixture 回覆當作編譯通過。
++## 使用入口
+ 
+-沒有建立遠端倉庫、執行雲端 CI、操作使用者工作站或變更 Crew。
++先讀 `README.md`、`docs/STANDALONE.md` 與 `docs/KNOWN_LIMITATIONS.md`。在具備指定 Rust／MSVC 等建置環境的主機執行 `scripts/bootstrap.ps1` 與 `scripts/verify.ps1`，以實際退出碼及 log 判斷結果。由 0.1.0 升級先備份，再移除舊 bridge 設定；原生 state 格式未刻意更動，但跨版本遷移尚未驗證。
+--- a/README.md
++++ b/README.md
+@@ -1,26 +1,30 @@
+ # Odin
+-## Rust Code Intelligence · Source Preview 0.1.0
++## Rust Code Intelligence · Standalone Source Preview 0.2.0
+ 
+-Odin 是以 Rust 編寫、供程式代理使用的本機工具服務。交付包含 **4 個 Rust crates、60 個工具契約、交易式修改、LSP、DAP、Markdown 記憶、MCP、唯讀 Dashboard，以及可選的外部 Serena 工具橋接**。
++Odin 是以 Rust 編寫、供程式代理使用的本機工具服務。交付包含 **4 個 Rust crates、58 個工具契約、交易式修改、直接 LSP、直接 DAP、Markdown 記憶、MCP 與唯讀 Dashboard。程式沒有 Serena 橋接與自動回退**。
+ 
+ > **交付狀態：原始碼預覽，不是已驗收的正式軟體。**
+-> 本次交付環境沒有 `rustc` / `cargo`，因此 Rust 編譯、Rust 測試、真實 MCP / LSP / DAP / Serena / JetBrains 整合及 Windows 執行均為 **NOT_RUN**。沒有提供執行檔，也沒有虛構 `Cargo.lock`。實際執行的檔案／契約檢查與 Python fixture 自測在 `verification/`；它們不能代替 Rust 編譯或產品驗收。
++> 本次交付環境沒有 `rustc` / `cargo`，因此 Rust 編譯、Rust 測試、真實 MCP / LSP / DAP 整合及 Windows 執行均為 **NOT_RUN**。沒有提供執行檔，也沒有虛構 `Cargo.lock`。實際執行的檔案／契約檢查與 Python fixture 自測在 `verification/`；它們不能代替 Rust 編譯或產品驗收。
+ 
+-### 「Serena 所有功能」在這個版本的意思
++### 不依賴 Serena，與全功能等價是兩件事
+ 
+-原生功能與外部橋接是兩條不同路徑。Odin 原生核心不需要 Python；`serena_tools` 取得外部 Serena **實際啟用**的工具及參數 schema，`serena_call` 原樣轉送它們。這個機制不寫死工具名稱，可以接上上游的 Python REPL 與 JetBrains 工具，但仍需要自行安裝、設定及授權相應後端。
++這份版本不需要安裝、啟動或呼叫 Serena，也不需要它的 JetBrains 外掛。`bridge.rs`、`BridgeConfig`、`serena_tools`、`serena_call`、橋接程序管理與範例已移除；舊的 `[projects.<id>.serena]` 設定會因未知欄位而被拒絕，沒有隱藏轉發。
+ 
+-**不能把這個交付說成「Serena 已 100% 用 Rust 重寫」或「全功能已通過驗收」。** Move、Inline、JetBrains inspections、完整 Python REPL、各語言特例及上游 context/mode 行為，仍由 Serena 路徑提供；Rust 原生功能的具體差異列於 `docs/SERENA_PARITY.md`。
++語意功能由 Odin 自己的 Rust LSP client 直接連接語言伺服器；除錯由 Rust DAP client 直接連接除錯配接器。檔案、記憶與詞彙搜尋不需這兩種後端。Odin 核心不需 Python runtime；Python 僅用於交付檢查／測試，外部語言伺服器或除錯器可能有自己的 runtime 要求。
++
++**本次移除了相依，沒有把原先 bridge-only 的功能全部補寫完成。** 語意 Move／Inline、JetBrains inspections、任意 Python REPL、跨語言專用適配與完整設定相容仍有缺口。沒有用一般文字替換冒充進階重構；也沒有宣稱已編譯、已通過整合或比 Serena 更快。
++
++變更與遷移詳見 `docs/STANDALONE.md`；完整差異在 `docs/SERENA_PARITY.md`。
+ 
+ ## 目錄導讀
+ 
+ | 內容 | 位置 |
+ |---|---|
+ | 架構、資料流、模組界線 | `docs/ARCHITECTURE.md` |
+-| 60 個工具與參數契約 | `docs/API.md`、`schemas/tools.json` |
++| 58 個工具與參數契約 | `docs/API.md`、`schemas/tools.json` |
+ | Serena 逐項覆蓋與差異 | `docs/SERENA_PARITY.md`、`docs/serena-parity.csv` |
+ | 安全邊界與已知限制 | `docs/SECURITY.md`、`docs/KNOWN_LIMITATIONS.md` |
+-| 原生／橋接使用範例 | `examples/`、`docs/USAGE.md` |
++| 獨立原生使用範例 | `examples/`、`docs/USAGE.md` |
+ | 建置與驗收腳本 | `scripts/bootstrap.*`、`scripts/verify.*` |
+ | 證據與待完成門檻 | `verification/`、`docs/RELEASE_GATES.md` |
+ 
+@@ -90,15 +94,11 @@
+ 
+ 瀏覽 `http://127.0.0.1:9280/`。Dashboard 的 token 只存在頁面記憶體；MCP 與資料 API 需要 Bearer。HTTP 僅綁 loopback，檢查 Host / Origin；沒有 OAuth、多租戶或公網部署支援。
+ 
+-## 外部 Serena 相容路徑
++## 從 0.1.0 遷移
+ 
+-`examples/odin.bridge.toml` 是**特權範例**，不是預設模式。確認 host 設定後：
++保留舊設定與資料備份，再移除 host 設定中的 `[projects.<id>.serena]` 區塊；客戶端移除 `serena_tools` / `serena_call` 呼叫。不要把舊工具直接改名當作同等能力。原生 MCP 入口與其餘工具名稱保持不變；舊 state 格式沒有刻意更動，但跨版本資料遷移仍未做執行驗證。
+ 
+-```powershell
+-.\target\release\odin.exe --config examples\odin.bridge.toml call serena_tools --args-file examples\serena-tools.json
+-```
+-
+-取得工具清單後，使用清單中的實際名稱、參數及 session 規則呼叫 `serena_call`。不要猜測可選工具已啟用。此橋接只代理工具列舉／呼叫，不是所有 MCP resources、prompts、sampling、tasks 的透明代理。Serena 需另外安裝；JetBrains 功能還需相容 IDE、外掛與有效授權。
++同名 `serena_*` 呼叫在本版應回 UNKNOWN_TOOL／MCP method-not-found；缺少 LSP capability 仍回明確錯誤，不重新啟動上游。
+ 
+ ## 已採取的設計方向
+ 
+@@ -108,4 +108,4 @@
+ 
+ ## 授權
+ 
+-此交付新增的 Odin 原始碼採 MIT，未內嵌 Serena 應用程式原始碼。外部 Serena 及其他相依遵守各自授權；參考 `THIRD_PARTY_NOTICES.md`。這不是正式法律審查或商用散布合規認證。
++此交付新增的 Odin 原始碼採 MIT，未內嵌 Serena 應用程式原始碼。Rust crates 與自行安裝的語言伺服器／除錯器遵守各自授權；參考 `THIRD_PARTY_NOTICES.md`。這不是正式法律審查或商用散布合規認證。
+--- a/THIRD_PARTY_NOTICES.md
++++ b/THIRD_PARTY_NOTICES.md
+@@ -1,11 +1,9 @@
+-# Third-party notices and provenance
++# Third-party notices
+ 
+-Odin's newly authored source in this distribution is offered under the included MIT license. It was designed after reviewing public Serena functionality, documentation, and protocol/SDK interfaces. This is not a claim of a formal clean-room process or a legal compliance certification.
++Odin's newly authored source is offered under the included MIT license. The design references public Serena functionality and standard protocol/SDK interfaces. This is not a formal clean-room claim or a legal compliance certification.
+ 
+-No Serena application source or SolidLSP source is copied/vendored into this package. The optional Serena connection launches a separately installed process through MCP. Serena application code uses GPL-3.0-or-later in the reviewed v2 baseline; SolidLSP has its own MIT license. Consult upstream LICENSE before distributing any combined package. External JetBrains plugins and IDEs have separate installation/license requirements. A generic bridge does not grant a license or remove those requirements.
++Odin 0.2.0 does not vendor Serena or SolidLSP source, does not depend on their packages, and removes the external Serena MCP bridge. Public references and the comparison matrix remain documentation only. No Serena or JetBrains plugin is included or required by Odin's native runtime.
+ 
+-The main MCP server uses the official `modelcontextprotocol/rust-sdk` crate rmcp. Rust dependencies are obtained by Cargo from their original publishers under their own terms, not relicensed by this file. The workspace manifests show direct dependency versions. There is no vendored dependency tree, compiled binary or generated dependency SBOM in this source preview. Review the actual resolved lockfile and dependency licenses before distributing binaries.
++Rust dependencies and external language servers / debug adapters retain their respective licenses. Cargo.toml lists direct dependencies; a resolved transitive inventory, lockfile and license audit have not been generated in this environment. Do not describe this package as a certified distribution of any third-party backend.
+ 
+-Protocol names, tool names and command signatures are interoperability identifiers. Documentation references are listed in docs/SOURCES.md. The test fixture is newly written mock behavior, explicitly not an implementation of Serena, a real language server or a debugger.
+-
+-No font files, private account credentials, or machine-specific user data are included.
++The Python test fixtures are newly authored protocol mocks, not actual language servers or debuggers. Python is test/verification tooling, not a dependency of the Odin Rust runtime; a separately selected backend may have its own runtime requirements.
+--- a/crates/odin-core/src/config.rs
++++ b/crates/odin-core/src/config.rs
+@@ -56,8 +56,6 @@
+     pub commands: BTreeMap<String, CommandConfig>,
+     #[serde(default)]
+     pub debuggers: BTreeMap<String, CommandConfig>,
+-    #[serde(default, skip_serializing_if = "Option::is_none")]
+-    pub serena: Option<BridgeConfig>,
+ }
+ fn default_deny() -> Vec<String> {
+     ["**/.env", "**/.env.*", "**/*.pem", "**/*.key", "**/id_rsa", "**/id_ed25519"].map(String::from).to_vec()
+@@ -84,15 +82,6 @@
+     pub initialization_options: serde_json::Value,
+     #[serde(default, skip_serializing_if = "serde_json::Value::is_null")]
+     pub settings: serde_json::Value,
+-}
+-#[derive(Debug, Clone, Serialize, Deserialize)]
+-#[serde(deny_unknown_fields)]
+-pub struct BridgeConfig {
+-    pub program: String,
+-    pub args: Vec<String>,
+-    /// Must be explicitly set by the human operator in the trusted host config.
+-    #[serde(default)]
+-    pub trusted_execution: bool,
+ }
+ impl Config {
+     pub fn load(path: &Path) -> Result<Self> {
+@@ -142,7 +131,6 @@
+                 validate_program(&command.program)?;
+                 if !(1..=600).contains(&command.timeout_secs) { return Err(Fault::invalid("Command timeout must be 1..600")); }
+             }
+-            if let Some(bridge) = &project.serena { validate_program(&bridge.program)?; }
+         }
+         // An overlapping root under another ID could bypass the same-file gate
+         // or present a writable alias for a read-only project. Reject at startup.
+--- a/crates/odin-engine/src/lib.rs
++++ b/crates/odin-engine/src/lib.rs
+@@ -6,7 +6,7 @@
+ 
+ use odin_core::{Fault,Result,config::{Config,ProjectConfig,LanguageConfig},paths::{SafeRoot,private_dir,atomic_write},
+     memory::Memories,transaction::{Transactions,Change},store::Store,search,sha256};
+-use odin_protocol::{lsp::LspClient,bridge::SerenaBridge,dap::DebugAdapter,text::{Position,Range,TextEdit,offset,edit}};
++use odin_protocol::{lsp::LspClient,dap::DebugAdapter,text::{Position,Range,TextEdit,offset,edit}};
+ use serde_json::{Value,json};
+ use std::{collections::{BTreeMap,BTreeSet},future::Future,pin::Pin,path::PathBuf,sync::Arc,time::{Duration,Instant}};
+ use tokio::sync::Mutex;
+@@ -26,7 +26,6 @@
+     pub memories:Memories,
+     catalog:Vec<Value>,
+     lsp:Mutex<BTreeMap<(String,String),Arc<LspClient>>>,
+-    bridges:Mutex<BTreeMap<String,Arc<SerenaBridge>>>,
+     debuggers:Mutex<BTreeMap<String,Arc<DebugAdapter>>>,
+     pub(crate) flows:Mutex<BTreeMap<(String,String),BTreeMap<String,Value>>>,
+ }
+@@ -46,7 +45,7 @@
+         let memories=Memories::new(&config.state_dir,ids,writable,config.allow_global_memory_write,&config.memory_read_only_patterns,
+             config.limits.max_file_bytes,config.limits.max_changes)?;
+         let catalog:Vec<Value>=serde_json::from_str(include_str!("../tools.json"))?;
+-        Ok(Arc::new(Self{config,projects,memories,catalog,lsp:Mutex::new(BTreeMap::new()),bridges:Mutex::new(BTreeMap::new()),
++        Ok(Arc::new(Self{config,projects,memories,catalog,lsp:Mutex::new(BTreeMap::new()),
+             debuggers:Mutex::new(BTreeMap::new()),flows:Mutex::new(BTreeMap::new())}))
+     }
+     pub fn tools(&self)->Vec<Value>{self.catalog.clone()}
+@@ -81,7 +80,6 @@
+             if project.config.excluded_tools.iter().any(|n|n==tool){return Err(Fault::denied("Tool disabled by host policy"));}
+             match spec["policy"].as_str().unwrap_or(""){
+                 "write" if !project.config.allow_write=>return Err(Fault::denied("Project writes are disabled")),
+-                "bridge" if !project.config.allow_write||!project.config.allow_shell=>return Err(Fault::denied("Bridge is privileged: enable project write and shell permissions explicitly")),
+                 "execute" if tool.starts_with("debug_")&&!project.config.allow_debug=>return Err(Fault::denied("Debug execution disabled")),
+                 "execute" if tool=="execute_shell_command"&&!project.config.allow_shell=>return Err(Fault::denied("Command execution disabled")),
+                 _=>{},
+@@ -107,7 +105,7 @@
+     }
+     pub fn project_summaries(&self)->Value{
+         json!({"projects":self.projects.iter().map(|(id,p)|json!({"id":id,"root":p.root.root(),"allow_write":p.config.allow_write,
+-            "allow_shell":p.config.allow_shell,"allow_debug":p.config.allow_debug,"serena_configured":p.config.serena.is_some(),
++            "allow_shell":p.config.allow_shell,"allow_debug":p.config.allow_debug,
+             "languages":p.config.languages.iter().map(|l|&l.id).collect::<Vec<_>>()})).collect::<Vec<_>>()})
+     }
+     fn language_for(&self,project:&Project,path:&str)->Result<LanguageConfig>{
+@@ -120,12 +118,6 @@
+         if let Some(client)=self.lsp.lock().await.get(&key).cloned(){return Ok(client);}
+         let client=LspClient::start(project.root.clone(),language,Duration::from_secs(self.config.limits.rpc_timeout_secs)).await.map_err(backend_error)?;
+         self.lsp.lock().await.insert(key,client.clone());Ok(client)
+-    }
+-    async fn bridge_for(&self,project:&Project)->Result<Arc<SerenaBridge>>{
+-        if let Some(client)=self.bridges.lock().await.get(&project.id).cloned(){return Ok(client);}
+-        let config=project.config.serena.as_ref().ok_or_else(||Fault::new("CAPABILITY_UNAVAILABLE","Serena bridge is not configured"))?;
+-        let client=SerenaBridge::start(config,&project.root,Duration::from_secs(self.config.limits.rpc_timeout_secs)).await.map_err(backend_error)?;
+-        self.bridges.lock().await.insert(project.id.clone(),client.clone());Ok(client)
+     }
+     async fn refresh_backends(&self,project:&Project,result:&mut Value)->Result<()> {
+         let id=result["transaction_id"].as_str().ok_or_else(||Fault::new("CORRUPT_STATE","Missing applied transaction id"))?;
+@@ -139,7 +131,7 @@
+         let limit=&self.config.limits;
+         match tool{
+             "status"=>Ok(json!({"name":"Odin","version":env!("CARGO_PKG_VERSION"),"project":p.id,
+-                "native_language":"Rust","serena_required_for_native_tools":false,"tool_count":self.catalog.len(),"native_or_protocol_tools":self.catalog.iter().filter(|t|t["policy"]!="bridge").count(),
++                "native_language":"Rust","standalone":true,"external_tool_bridge":false,"tool_count":self.catalog.len(),"native_or_protocol_tools":self.catalog.len(),
+                 "capabilities_are_backend_dependent":true,"native_read_only":!p.config.allow_write,
+                 "transaction_visibility":"per-file atomic, journaled multi-file recovery","sandbox":false})),
+             "list_projects"=>Ok(self.project_summaries()),
+@@ -147,8 +139,7 @@
+                 "allow_shell":p.config.allow_shell,"allow_debug":p.config.allow_debug,"limits":limit,
+                 "excluded_tools":p.config.excluded_tools,"deny_globs":p.config.deny_globs,
+                 "languages":p.config.languages.iter().map(|l|json!({"id":l.id,"extensions":l.extensions})).collect::<Vec<_>>(),
+-                "command_profiles":p.config.commands.keys().collect::<Vec<_>>(),"debug_profiles":p.config.debuggers.keys().collect::<Vec<_>>(),
+-                "serena_configured":p.config.serena.is_some()})),
++                "command_profiles":p.config.commands.keys().collect::<Vec<_>>(),"debug_profiles":p.config.debuggers.keys().collect::<Vec<_>>()})),
+             "initial_instructions"=>Ok(json!({"instructions":INSTRUCTIONS})),
+             "onboarding"=>{
+                 let files=search::files(&p.root,limit.max_files)?;
+@@ -325,16 +316,6 @@
+                     Ok(json!({"adapter_dropped":true,"disconnect_succeeded":response.is_ok(),"warning":response.err().map(|e|e.to_string())}))
+                 }else if tool=="debug_events"{adapter.poll().await.map_err(backend_error)}
+                 else{adapter.request(string(a,"command")?,a["arguments"].clone()).await.map_err(backend_error)}
+-            },
+-            "serena_tools"=>{
+-                let bridge=self.bridge_for(p).await?;if boolean(a,"refresh",false){bridge.refresh_tools().await.map_err(backend_error)?;}
+-                Ok(bridge.info().await)
+-            },
+-            "serena_call"=>{
+-                let bridge=self.bridge_for(p).await?;
+-                let result=bridge.call(string(a,"name")?,a["arguments"].clone()).await.map_err(backend_error)?;
+-                if result["isError"]==true{return Err(Fault::new("UPSTREAM_TOOL_ERROR",serde_json::to_string(&result)?));}
+-                Ok(json!({"backend":"external_serena","native_transaction_protection":false,"result":result}))
+             },
+             "result_read"=>self.read_result(p,a),
+             "audit_log"=>p.store.recent(number(a,"limit",50) as usize),
+@@ -429,7 +410,7 @@
+     let finish=if insert{begin}else{lines.iter().take(end).map(|s|s.len()).sum()};
+     let mut result=text.to_string();result.replace_range(begin..finish,content);Ok(result)
+ }
+-pub const INSTRUCTIONS:&str="Odin is a local Rust code-intelligence service. Every call is scoped to a configured project ID; there is no process-global active project. Start with get_symbols_overview/find_symbol; read bodies only when needed. LSP positions use zero-based lines and UTF-16 columns; read_file/line edits use one-based inclusive lines. Read the SHA-256 first. All native source edits return an immutable transaction preview; use transaction_apply only after reviewing it. Successful application is NOT a passing build: run an authorized build/test profile and inspect its actual exit status. Native JSON flow is a bounded dataflow, not Python eval. Serena bridge calls are explicitly external and privileged; native path restrictions, write journals and read-only guarantees do not wrap the upstream process. Missing capabilities are errors, never fabricated successful results.";
++pub const INSTRUCTIONS:&str="Odin is a local Rust code-intelligence service. Every call is scoped to a configured project ID; there is no process-global active project. Start with get_symbols_overview/find_symbol; read bodies only when needed. LSP positions use zero-based lines and UTF-16 columns; read_file/line edits use one-based inclusive lines. Read the SHA-256 first. All native source edits return an immutable transaction preview; use transaction_apply only after reviewing it. Successful application is NOT a passing build: run an authorized build/test profile and inspect its actual exit status. Native JSON flow is a bounded dataflow, not Python eval. This standalone build has no external tool bridge. Semantic operations connect directly to configured language servers; debugging connects directly to configured DAP adapters. Missing features have no hidden fallback. Missing capabilities are errors, never fabricated successful results.";
+ 
+ #[cfg(test)]mod tests{
+     use super::*;
+--- a/crates/odin-engine/tests/invariants.rs
++++ b/crates/odin-engine/tests/invariants.rs
+@@ -41,8 +41,27 @@
+     let(_r,_s,e)=setup(true);let err=e.call("one".into(),"query_project".into(),json!({"target_project":"one","tool":"transaction_apply","arguments":{"transaction_id":"ignored"}})).await.unwrap_err();
+     assert_eq!(err.code,"PERMISSION_DENIED");
+ }
+-#[tokio::test]async fn bridge_cannot_bypass_write_policy(){
+-    let(_r,_s,e)=setup(false);let err=e.call("one".into(),"serena_tools".into(),json!({})).await.unwrap_err();assert_eq!(err.code,"PERMISSION_DENIED");
++#[tokio::test]async fn removed_bridge_tools_are_unknown(){
++    let(_r,_s,e)=setup(true);
++    for name in ["serena_tools", "serena_call"] {
++        assert!(e.tool(name).is_none());
++        let err=e.call("one".into(),name.into(),json!({})).await.unwrap_err();
++        assert_eq!(err.code,"UNKNOWN_TOOL");
++    }
++}
++#[tokio::test]async fn standalone_status_and_catalog_agree(){
++    let(_r,_s,e)=setup(false);
++    let status=e.call("one".into(),"status".into(),json!({})).await.unwrap();
++    assert_eq!(status["standalone"],true);
++    assert_eq!(status["external_tool_bridge"],false);
++    assert_eq!(status["tool_count"],58);
++    assert!(e.tools().iter().all(|tool| tool["policy"]!="bridge"));
++}
++#[test]fn legacy_bridge_configuration_is_rejected(){
++    let config=serde_json::from_value::<Config>(json!({"projects":{
++        "one":{"root":".","serena":{"program":"serena","args":[],"trusted_execution":true}}
++    }}));
++    assert!(config.is_err(),"Removed privileged configuration must not be silently ignored");
+ }
+ #[tokio::test]async fn malformed_arguments_do_not_fall_back_to_defaults(){
+     let(_r,_s,e)=setup(true);let err=e.call("one".into(),"read_file".into(),json!({"relative_path":"x","start_line":"1"})).await.unwrap_err();assert_eq!(err.code,"INVALID_ARGUMENT");
+--- a/crates/odin-engine/tools.json
++++ b/crates/odin-engine/tools.json
+@@ -1,7 +1,7 @@
+ [
+   {
+     "name": "status",
+-    "description": "Effective project status and native/bridge boundaries",
++    "description": "Effective standalone project status and backend boundaries",
+     "policy": "read",
+     "inputSchema": {
+       "type": "object",
+@@ -1678,7 +1678,7 @@
+   },
+   {
+     "name": "flow_run",
+-    "description": "Run a bounded JSON dataflow; no eval, imports, arbitrary Python, shell, or bridge calls",
++    "description": "Run a bounded JSON dataflow; no eval, imports, arbitrary Python, shell, or external tool forwarding",
+     "policy": "read",
+     "inputSchema": {
+       "type": "object",
+@@ -1934,68 +1934,6 @@
+     }
+   },
+   {
+-    "name": "serena_tools",
+-    "description": "Discover all enabled upstream Serena tools and schemas",
+-    "policy": "bridge",
+-    "inputSchema": {
+-      "type": "object",
+-      "properties": {
+-        "project": {
+-          "type": "string",
+-          "description": "Configured project ID; never an arbitrary root path"
+-        },
+-        "refresh": {
+-          "type": "boolean",
+-          "default": false
+-        }
+-      },
+-      "additionalProperties": false,
+-      "required": [
+-        "project"
+-      ]
+-    },
+-    "annotations": {
+-      "readOnlyHint": false,
+-      "destructiveHint": true,
+-      "idempotentHint": false,
+-      "openWorldHint": true
+-    }
+-  },
+-  {
+-    "name": "serena_call",
+-    "description": "Forward any exposed Serena tool, including Python REPL and JetBrains tools; not Rust-native execution",
+-    "policy": "bridge",
+-    "inputSchema": {
+-      "type": "object",
+-      "properties": {
+-        "project": {
+-          "type": "string",
+-          "description": "Configured project ID; never an arbitrary root path"
+-        },
+-        "name": {
+-          "type": "string"
+-        },
+-        "arguments": {
+-          "type": "object",
+-          "properties": {},
+-          "additionalProperties": true
+-        }
+-      },
+-      "additionalProperties": false,
+-      "required": [
+-        "project",
+-        "name",
+-        "arguments"
+-      ]
+-    },
+-    "annotations": {
+-      "readOnlyHint": false,
+-      "destructiveHint": true,
+-      "idempotentHint": false,
+-      "openWorldHint": true
+-    }
+-  },
+-  {
+     "name": "result_read",
+     "description": "Read a spilled large result by byte chunks; offsets remain UTF-8 aligned",
+     "policy": "read",
+--- a/crates/odin-protocol/src/bridge.rs
++++ /dev/null
+@@ -1,55 +0,0 @@
+-//! Protocol-level interoperability, not vendoring or translating Serena code.
+-//! All exposed upstream tools can be discovered and called without a hard-coded
+-//! name list. Native policy and transaction guarantees do not extend upstream.
+-use crate::rpc::{RpcProcess,Framing,Dialect};
+-use anyhow::{Result,anyhow,bail};
+-use odin_core::{config::BridgeConfig,paths::SafeRoot};
+-use serde_json::{Value,json};
+-use std::{sync::Arc,time::Duration};
+-use tokio::sync::Mutex;
+-
+-pub struct SerenaBridge {
+-    rpc:Arc<RpcProcess>,
+-    pub initialization:Value,
+-    tools:Mutex<Vec<Value>>,
+-}
+-impl SerenaBridge {
+-    pub async fn start(config:&BridgeConfig,root:&SafeRoot,timeout:Duration)->Result<Arc<Self>> {
+-        if !config.trusted_execution{bail!("Serena bridge requires trusted_execution=true in host configuration");}
+-        let root_text=root.root().to_str().ok_or_else(||anyhow!("Project root must be UTF-8"))?;
+-        let args=config.args.iter().map(|arg|arg.replace("${root}",root_text)).collect::<Vec<_>>();
+-        let rpc=RpcProcess::spawn(&config.program,&args,root.root(),Framing::Newline,Dialect::JsonRpc,
+-            timeout,json!([]),Value::Null)?;
+-        let initialization=rpc.request("initialize",json!({"protocolVersion":"2025-11-25","capabilities":{},
+-            "clientInfo":{"name":"odin-serena-bridge","version":env!("CARGO_PKG_VERSION")}})).await?;
+-        // Serena v2's stdio API still uses the initialize/initialized handshake.
+-        let protocol=initialization["protocolVersion"].as_str().unwrap_or("");
+-        if !["2024-11-05","2025-03-26","2025-06-18","2025-11-25"].contains(&protocol){
+-            bail!("Upstream selected unimplemented bridge protocol revision: {protocol}");
+-        }
+-        rpc.notify("notifications/initialized",json!({})).await?;
+-        let this=Arc::new(Self{rpc,initialization,tools:Mutex::new(Vec::new())});
+-        this.refresh_tools().await?;Ok(this)
+-    }
+-    pub async fn refresh_tools(&self)->Result<Vec<Value>> {
+-        let mut tools=Vec::new();let mut cursor:Option<String>=None;let mut seen=std::collections::BTreeSet::new();
+-        loop{
+-            let params=cursor.as_ref().map(|s|json!({"cursor":s})).unwrap_or_else(||json!({}));
+-            let page=self.rpc.request("tools/list",params).await?;
+-            tools.extend(page["tools"].as_array().ok_or_else(||anyhow!("Upstream returned invalid tool list"))?.iter().cloned());
+-            if tools.len()>1000{bail!("Upstream exposed too many tools");}
+-            cursor=page["nextCursor"].as_str().map(str::to_string);
+-            if let Some(cursor)=&cursor{if !seen.insert(cursor.clone()){bail!("Upstream pagination cursor loop");}}else{break;}
+-        }
+-        *self.tools.lock().await=tools.clone();Ok(tools)
+-    }
+-    pub async fn call(&self,name:&str,arguments:Value)->Result<Value> {
+-        if !arguments.is_object(){bail!("Tool arguments must be an object");}
+-        if !self.tools.lock().await.iter().any(|t|t["name"]==name){bail!("Tool is not exposed by this Serena instance; configure/refresh the upstream first");}
+-        self.rpc.request("tools/call",json!({"name":name,"arguments":arguments})).await
+-    }
+-    pub async fn info(&self)->Value{
+-        json!({"backend":"external_serena","initialization":self.initialization,"tools":self.tools.lock().await.clone(),
+-            "native_journal_applies":false,"native_read_only_isolation_applies":false,"python_dependency":true})
+-    }
+-}
+--- a/crates/odin-protocol/src/lib.rs
++++ b/crates/odin-protocol/src/lib.rs
+@@ -1,7 +1,6 @@
+ #![forbid(unsafe_code)]
+ //! Subprocess protocol adapters. The process configuration is operator-owned;
+ //! requests cannot supply executable names or command-line arguments.
+-pub mod bridge;
+ pub mod dap;
+ pub mod lsp;
+ pub mod rpc;
+--- a/crates/odin-protocol/src/lsp.rs
++++ b/crates/odin-protocol/src/lsp.rs
+@@ -187,7 +187,7 @@
+         }
+         if let Some(changes)=workspace_edit.get("documentChanges").and_then(Value::as_array){
+             for change in changes{
+-                if change.get("kind").is_some(){bail!("CAPABILITY_UNAVAILABLE: WorkspaceEdit resource operations require the Serena bridge");}
++                if change.get("kind").is_some(){bail!("CAPABILITY_UNAVAILABLE: WorkspaceEdit CreateFile/RenameFile/DeleteFile operations are not implemented in this standalone version");}
+                 let uri=change["textDocument"]["uri"].as_str().ok_or_else(||anyhow!("Missing document URI"))?;
+                 let path=self.relative_uri(uri)?;
+                 if let Some(version)=change["textDocument"]["version"].as_i64(){
+--- a/crates/odin-protocol/tests/fixture_protocols.rs
++++ b/crates/odin-protocol/tests/fixture_protocols.rs
+@@ -1,6 +1,6 @@
+ //! These tests verify protocol handling against a fixture, NOT real backend parity.
+-use odin_core::{config::{LanguageConfig,BridgeConfig,CommandConfig},paths::SafeRoot};
+-use odin_protocol::{rpc::{RpcProcess,Framing,Dialect},lsp::LspClient,bridge::SerenaBridge,dap::DebugAdapter};
++use odin_core::{config::{LanguageConfig,CommandConfig},paths::SafeRoot};
++use odin_protocol::{rpc::{RpcProcess,Framing,Dialect},lsp::LspClient,dap::DebugAdapter};
+ use serde_json::json;
+ use std::{path::PathBuf,time::Duration};
+ fn python()->String{std::env::var("ODIN_PYTHON").unwrap_or_else(|_|if cfg!(windows){"python".into()}else{"python3".into()})}
+@@ -11,17 +11,6 @@
+     let client=LspClient::start(SafeRoot::new(d.path(),&[],10000).unwrap(),language,Duration::from_secs(3)).await.unwrap();
+     assert_eq!(client.symbols("lib.rs").await.unwrap()[0].name,"foo");
+     assert_eq!(client.diagnostics("lib.rs").await.unwrap()["available"],true);
+-}
+-#[tokio::test]async fn serena_fixture_discovers_and_forwards_optional_tools(){
+-    let d=tempfile::tempdir().unwrap();let config=BridgeConfig{program:python(),args:args("mcp"),trusted_execution:true};
+-    let bridge=SerenaBridge::start(&config,&SafeRoot::new(d.path(),&[],1000).unwrap(),Duration::from_secs(3)).await.unwrap();
+-    let tools=bridge.refresh_tools().await.unwrap();assert!(tools.iter().any(|t|t["name"]=="jet_brains_move"));
+-    let result=bridge.call("serena_repl",json!({"code":"1+1"})).await.unwrap();assert_eq!(result["isError"],false);
+-    assert!(result.to_string().contains("fixture"));
+-}
+-#[tokio::test]async fn bridge_requires_explicit_trust(){
+-    let d=tempfile::tempdir().unwrap();let config=BridgeConfig{program:python(),args:args("mcp"),trusted_execution:false};
+-    assert!(SerenaBridge::start(&config,&SafeRoot::new(d.path(),&[],1000).unwrap(),Duration::from_secs(3)).await.is_err());
+ }
+ #[tokio::test]async fn dap_launch_does_not_block_configuration_done(){
+     let d=tempfile::tempdir().unwrap();let config=CommandConfig{program:python(),args:args("dap"),timeout_secs:3};
+--- a/crates/odin/src/main.rs
++++ b/crates/odin/src/main.rs
+@@ -10,7 +10,7 @@
+ use std::{io::Write,path::{Path,PathBuf},net::SocketAddr};
+ 
+ #[derive(Parser)]
+-#[command(name="odin",version,about="Rust code intelligence, journaled editing, and optional Serena compatibility")]
++#[command(name="odin",version,about="Standalone Rust code intelligence and journaled editing")]
+ struct Cli{
+     #[arg(long,global=true,default_value="odin.toml")]
+     config:PathBuf,
+@@ -47,7 +47,7 @@
+         Commands::Doctor=>{
+             let checks=engine.projects.iter().map(|(id,p)|json!({"project":id,"root_exists":p.root.root().is_dir(),
+                 "languages":p.config.languages.iter().map(|l|json!({"language":l.id,"program":l.program,"found_on_path":exists_program(&l.program),"integration":"NOT_RUN"})).collect::<Vec<_>>(),
+-                "serena":p.config.serena.as_ref().map(|b|json!({"program":b.program,"found_on_path":exists_program(&b.program),"integration":"NOT_RUN"}))})).collect::<Vec<_>>();
++                "debuggers":p.config.debuggers.iter().map(|(name,b)|json!({"profile":name,"program":b.program,"found_on_path":exists_program(&b.program),"integration":"NOT_RUN"})).collect::<Vec<_>>(),"standalone":true})).collect::<Vec<_>>();
+             println!("{}",serde_json::to_string_pretty(&json!({"checks":checks,"note":"Presence checks are not protocol or build validation"}))?);
+         },
+         Commands::Call{tool,project,args,args_file}=>{
+@@ -89,7 +89,7 @@
+     let text=toml::to_string_pretty(&config)?;
+     let mut file=std::fs::OpenOptions::new().create_new(true).write(true).open(path).context("Will not overwrite an existing config")?;
+     file.write_all(text.as_bytes())?;file.sync_all()?;
+-    eprintln!("Created {}. Native writes: {writable}; shell/debug/bridge remain disabled.",path.display());Ok(())
++    eprintln!("Created {}. Native writes: {writable}; shell/debug remain disabled; no external tool bridge exists.",path.display());Ok(())
+ }
+ fn exists_program(program:&str)->bool{
+     let path=Path::new(program);if path.is_absolute()||path.components().count()>1{return path.is_file();}
+--- a/crates/odin/src/mcp.rs
++++ b/crates/odin/src/mcp.rs
+@@ -42,7 +42,7 @@
+         let(value,is_error)=match result{
+             Ok(value)=>(value,false),
+             Err(mut error)=>{
+-                // Errors may contain upstream tool output: bound it too.
++                // Errors may contain language-server or debugger output: bound it too.
+                 if error.message.len()>8192{error.message=error.message.chars().take(4096).collect::<String>()+" [truncated]";}
+                 (json!({"error":error}),true)
+             },
+--- a/dashboard/index.html
++++ b/dashboard/index.html
+@@ -6,7 +6,7 @@
+ <section><h2>連線</h2><label for="token">本機 Bearer Token</label><div class="row"><input type="password" id="token" autocomplete="off" placeholder="啟動 HTTP 時設定的 ODIN_TOKEN"><button id="connect">讀取狀態</button></div><p class="note">Token 僅保留在此頁記憶體，不寫入網址、Cookie 或 localStorage。此介面只讀；不提供改檔或命令執行按鈕。</p><div id="message" role="status"></div></section>
+ <section><h2>專案邊界</h2><div class="scroll"><table><thead><tr><th>專案</th><th>Root</th><th>寫入</th><th>Shell</th><th>Debug</th><th>語言後端</th></tr></thead><tbody id="projects"></tbody></table></div></section>
+ <section><div class="row"><h2>工具操作紀錄</h2><select id="project" aria-label="選擇專案"></select><button id="refresh">重新讀取</button></div><p class="note">紀錄只含工具名稱、狀態與時間，不保存原始程式碼輸入輸出。</p><div class="scroll"><table><thead><tr><th>時間</th><th>工具</th><th>結果</th><th>耗時</th><th>錯誤碼</th></tr></thead><tbody id="audit"></tbody></table></div></section>
+-<footer>Odin 0.1.0 · Source delivery · 語言伺服器、Debugger 與 Serena 相容性須分別驗收。原生路徑政策不等於作業系統沙箱。</footer></main>
++<footer>Odin 0.2.0 · Standalone source preview · 無 Serena 橋接；語言伺服器與 Debugger 須分別驗收。原生路徑政策不等於作業系統沙箱。</footer></main>
+ <script>
+ 'use strict';
+ const $=id=>document.getElementById(id);let token='';
+--- a/docs/API.md
++++ b/docs/API.md
+@@ -1,16 +1,16 @@
+-# Odin 工具 API 0.1.0
++# Odin 工具 API 0.2.0 Standalone
+ 
+ 此表由 `schemas/tools.json` 生成；來源包含實作分派，不代表已編譯或通過測試。
+ 
+-所有工具以明確 `project` 範圍執行；CLI 在提供 `--project` 時可注入該欄位。`read` / `state` / `write` / `execute` / `bridge` 是內部策略分類，不是 OS 隔離保證。read 工具仍可能啟動語言伺服器、寫 audit/cache。
++所有工具以明確 `project` 範圍執行；CLI 在提供 `--project` 時可注入該欄位。`read` / `state` / `write` / `execute` 是內部策略分類，不是 OS 隔離保證。read 工具仍可能啟動語言伺服器、寫 audit/cache。
+ 
+-`write`：來源 edits 先回 transaction preview，需另 apply；記憶變更則直接經 journal commit。`execute`：要求相應 shell/debug 權限。`bridge`：要求明確允許外部執行，原生 journal 不涵蓋上游。
++`write`：來源 edits 先回 transaction preview，需另 apply；記憶變更則直接經 journal commit。`execute`：要求相應 shell/debug 權限。本版本沒有外部工具橋接。
+ 
+ LSP position 為 0-based UTF-16；檔案行數為 1-based inclusive。參數細節、範圍與 additionalProperties 規則請讀 JSON schema。此版 schema validator 實作契約需要的有限 JSON Schema 子集，非通用 JSON Schema 驗證器。
+ 
+ | Tool | Policy | 必填參數 | 作用 |
+ |---|---|---|---|
+-| `status` | read | `project` | Effective project status and native/bridge boundaries |
++| `status` | read | `project` | Effective standalone project status and backend boundaries |
+ | `list_projects` | read | `project` | List operator-registered projects without changing a global active project |
+ | `get_current_config` | read | `project` | Redacted effective host configuration |
+ | `initial_instructions` | read | `project` | Return Odin's project and transaction usage instructions |
+@@ -58,7 +58,7 @@
+ | `search_memories` | read | `project`, `pattern` | Search names/body by regex without returning every memory body |
+ | `recover_memories` | write | `project` | Recover an interrupted memory journal; shared across configured projects |
+ | `query_project` | read | `project`, `target_project`, `tool`, `arguments` | Call a read-only native tool against another configured project |
+-| `flow_run` | read | `project`, `session`, `steps` | Run a bounded JSON dataflow; no eval, imports, arbitrary Python, shell, or bridge calls |
++| `flow_run` | read | `project`, `session`, `steps` | Run a bounded JSON dataflow; no eval, imports, arbitrary Python, shell, or external tool forwarding |
+ | `flow_vars` | read | `project`, `session` | List retained per-project flow variable names and sizes |
+ | `flow_clear` | state | `project`, `session` | Clear this per-project flow session |
+ | `execute_shell_command` | execute | `project`, `profile` | Run a fixed operator-defined argv profile; no caller-supplied shell string |
+@@ -66,14 +66,12 @@
+ | `debug_request` | execute | `project`, `command`, `arguments` | Send an allowlisted DAP request; launch/attach return asynchronous tickets |
+ | `debug_events` | execute | `project` | Drain DAP events and completed launch tickets |
+ | `debug_stop` | execute | `project` | Disconnect debuggee with termination requested and drop the adapter |
+-| `serena_tools` | bridge | `project` | Discover all enabled upstream Serena tools and schemas |
+-| `serena_call` | bridge | `project`, `name`, `arguments` | Forward any exposed Serena tool, including Python REPL and JetBrains tools; not Rust-native execution |
+ | `result_read` | read | `project`, `result_id` | Read a spilled large result by byte chunks; offsets remain UTF-8 aligned |
+ | `audit_log` | read | `project` | Read redacted tool audit records without input/output source contents |
+ 
+ ## 結果／錯誤
+ 
+-成功不強制單一業務 envelope；MCP 回 content + structuredContent。業務錯誤使用 isError 與 `{error:{code,message}}`。常見 code：INVALID_ARGUMENT、PERMISSION_DENIED、CONFLICT、CAPABILITY_UNAVAILABLE、BACKEND_ERROR、RECOVERY_REQUIRED、LIMIT_EXCEEDED、UPSTREAM_TOOL_ERROR。
++成功不強制單一業務 envelope；MCP 回 content + structuredContent。業務錯誤使用 isError 與 `{error:{code,message}}`。常見 code：INVALID_ARGUMENT、PERMISSION_DENIED、CONFLICT、CAPABILITY_UNAVAILABLE、BACKEND_ERROR、RECOVERY_REQUIRED、LIMIT_EXCEEDED。
+ 
+ 大型結果回 result_id、bytes、SHA-256；以 result_read 分塊讀取。輸出 chunk 為 UTF-8 byte offsets，不是字數。原生限制避免把巨大完整結果直接塞給模型，但沒有實測 token 節省比例。
+ 
+--- a/docs/ARCHITECTURE.md
++++ b/docs/ARCHITECTURE.md
+@@ -1,4 +1,4 @@
+-# Odin 0.1.0 — 完整架構設計
++# Odin 0.2.0 Standalone — 完整架構設計
+ 
+ **文件狀態：與這份原始碼對應；編譯與真實整合尚未驗證。**
+ 
+@@ -11,11 +11,11 @@
+ | crate | 實作責任 | 不負責 |
+ |---|---|---|
+ | `odin-core` | host config、路徑規則、檔案搜尋、FTS5、交易日誌、Markdown memories | MCP、LLM 推理、語言解析 |
+-| `odin-protocol` | subprocess RPC、LSP / UTF-16、DAP、Serena MCP 工具橋接 | 策略授權、UI、宣稱 IDE 特例全覆蓋 |
+-| `odin-engine` | 60 個契約、授權、project gate、工具分派、flow、結果分塊、命令 profile | 網路 listener、平台 OS 沙箱 |
++| `odin-protocol` | subprocess RPC、LSP / UTF-16、DAP；不含外部 MCP 工具代理 | 策略授權、UI、宣稱 IDE 特例全覆蓋 |
++| `odin-engine` | 58 個契約、授權、project gate、工具分派、flow、結果分塊、命令 profile | 網路 listener、平台 OS 沙箱 |
+ | `odin-agent` / binary `odin` | CLI、官方 rmcp MCP server、Axum HTTP、Dashboard | 直接繞過 engine 寫檔 |
+ 
+-原生核心沒有 Python runtime 相依。Python 只用於交付檢查／測試 fixture；選用 Serena bridge 後才需要外部 Serena 的 Python 環境。
++核心沒有 Serena 或 Python runtime 相依。Python 只用於交付檢查／測試 fixture；自行選用的 LSP／DAP 後端仍可能有自己的 runtime 要求。
+ 
+ ## 2. 元件圖
+ 
+@@ -32,24 +32,21 @@
+   G --> X[Transactions / SHA-256 / Journal]
+   G --> L[LSP Client]
+   G --> D[DAP Client]
+-  G --> B[External Serena bridge]
+   L --> LS[rust-analyzer / configured language server]
+   D --> DA[Configured debug adapter]
+-  B --> S[Separately installed Serena]
+-  S --> J[JetBrains plugin / Python REPL / LSP backends]
+   E --> Q[Bounded read-only JSON dataflow]
+   E --> DB[Per-project SQLite FTS5 + audit]
+   E --> R[Local large-result spool]
+   H --> UI[Read-only dashboard]
+ ```
+ 
+-外部 Serena 分支是明確的信任邊界：橋接前只檢查是否允許啟動與呼叫外部工具；不宣稱能檢查上游 Python 程式裡的每次檔案操作。
++沒有 Serena 分支或執行失敗後的上游 fallback。LSP／DAP 是直接後端；它們仍是具備主機程序權限的外部程式，Rust API 的路徑政策不等於作業系統沙箱。
+ 
+ ## 3. 啟動與生命週期
+ 
+ `Config::load` 讀 host TOML，canonicalize 根目錄、檢查 ID、limits、命令與重疊根目錄；若 config/state 在 workspace 內，自動加入原生路徑保護。`Engine::new` 建立 private state、每個專案的 journal/store 及共用 memory service。CLI 選擇 stdio 或 loopback HTTP；沒有背景 daemon 自動安裝，也不修改使用者的全域 MCP 設定。
+ 
+-LSP、Serena bridge、DAP 依需求啟動。每個 `(project_id, language_id)` 使用各自 LSP；每個專案使用自己的 Serena process / DAP adapter。退出時中止讀取 task 並 kill 已持有的子程序；**尚未實作完整 process-group / Windows Job Object 後代程序管理**。
++LSP、DAP 依需求啟動。每個 `(project_id, language_id)` 使用各自 LSP；每個專案使用自己的 DAP adapter。退出時中止讀取 task 並 kill 已持有的子程序；**尚未實作完整 process-group / Windows Job Object 後代程序管理**。
+ 
+ 所有可改變專案的請求先進入 `Engine::run`。每次指定 project，沒有全程序可變的 active_project。啟動後不允許 Agent 新增任意 root；更改 host config 需重啟。不同 project 的語意範圍分開；此版未提供使用者身分／多租戶 ACL。
+ 
+@@ -127,15 +124,15 @@
+ 
+ Markdown memories 由名稱及 `mem:` 引用串接。先列名稱、再按需讀內容；沒有自動把全部記憶注入 prompt，也沒有向量資料庫。支援 CAS 寫入、刪除、同 scope 改名與引用更新、搜尋、完整性檢查與 read-only patterns。遇到需要修改唯讀引用的 rename，整個操作拒絕，不留下部分更新。
+ 
+-記憶預設放 host state，而非 `.serena/memories`：這是有意的 storage 差異，避免直接寫入其他工具管理的內容。原生 repo-local memories、跨 scope import/export、ignored patterns 尚未實作，完整 Serena 行為需走橋接。
++記憶預設放 host state，而非 `.serena/memories`：這是有意的 storage 差異，避免直接寫入其他工具管理的內容。原生 repo-local memories、跨 scope import/export、ignored patterns 尚未實作，這些缺口不再由外部橋接補足。
+ 
+ 程式碼索引使用 SQLite FTS5，屬 **詞彙檢索，不是語意符號／向量 RAG**。`index_build` 建全量快照；query 核對當前內容 hash，忽略過期命中。新增檔案與新詞需重新建索引；未做 filesystem watcher 或增量更新。
+ 
+ ## 8. 原生批次介面
+ 
+-`flow_run` 為受限 JSON dataflow，step 可呼叫允許的 native read tool、引用先前變數、使用 JSON Pointer 或截取陣列；沒有 import / eval / shell / bridge / 寫檔、無任意迴圈。所有步驟仍重新經過 engine policy。變數以 `(project, session)` 隔離，有限 steps / bytes / sessions；整條流程成功才提交 namespace。
++`flow_run` 為受限 JSON dataflow，step 可呼叫允許的 native read tool、引用先前變數、使用 JSON Pointer 或截取陣列；沒有 import / eval / shell / 寫檔、無任意迴圈。所有步驟仍重新經過 engine policy。變數以 `(project, session)` 隔離，有限 steps / bytes / sessions；整條流程成功才提交 namespace。
+ 
+-這不是 Serena Python REPL 語法相容層。此版 flow session mutex 跨流程共用，會序列化執行中的流程；未宣稱高併行 throughput。依賴任意 Python 控制流程時，選用外部 Serena REPL。
++這不是 Serena Python REPL 語法相容層。此版 flow session mutex 跨流程共用，會序列化執行中的流程；未宣稱高併行 throughput。本版不提供任意 Python 執行，也不提供上游 REPL 回退。
+ 
+ ## 9. 除錯與命令執行
+ 
+@@ -145,13 +142,13 @@
+ 
+ Shell 工具只接受設定檔 profile 名稱，直接執行固定 program + argv，不把任意 agent 字串丟給 shell。stdout / stderr 有上限，timeout 終止父程序並回傳真實 exit status；後代程序隔離未完成。
+ 
+-## 10. Serena 相容策略
++## 10. 獨立產品邊界
+ 
+-橋接使用獨立外部程序及 stdio MCP，執行 initialize / initialized / tools/list 分頁 / tools/call。會保留上游工具 schema、結果及錯誤。可選工具、語言後端、JetBrains / Python REPL 仍由上游設定決定。
++生產 Rust 原始碼沒有 SerenaBridge / BridgeConfig、上游工具代理或啟動上游的分支。MCP server 只發佈 Odin 自己的 58 個契約。`status` 明確回報 `standalone: true` 與 `external_tool_bridge: false`。CLI doctor 只檢查本版配置的語言伺服器與除錯器。
+ 
+-原生 policy 無法分析上游 arbitrary code；所以啟用橋接要求 host 中的 allow_write、allow_shell 與 trusted_execution 三重明確設定。上游的 active_project、session、mode 及其他內部狀態不做隱藏改寫；使用者必須自行理解其邊界。
++`ProjectConfig` 保留 `deny_unknown_fields`；舊 bridge 設定不是靜默無效，而是載入錯誤。原生工具共用 engine、scope、policy 與 journal；外部 LSP／DAP、Shell 命令依舊需要可信任 host 設定，不是安全沙箱。
+ 
+-非目標：無痛替換所有 Serena CLI flags、模擬 JetBrains 引擎、繞過外掛授權、打包上游所有 language servers、代理完整 MCP 雙向訊息能力。完整矩陣在 `SERENA_PARITY.md`。
++這是「去除 Serena 相依」的版本，不是「所有 Serena 功能已原生實作」的版本。JetBrains 專用工具沒有原生相容介面，Move／Inline、inspection parity 與 Python REPL 缺口明列於 `SERENA_PARITY.md`。一般 LSP references／rename／diagnostics 與 DAP primitives 提供部分同類用途，但不能視為 JetBrains backend 等價。
+ 
+ ## 11. 「更好」如何驗證
+ 
+--- a/docs/DEPENDENCIES.md
++++ b/docs/DEPENDENCIES.md
+@@ -28,4 +28,4 @@
+ | `tracing` | `=0.1.41` |
+ | `tracing-subscriber` | `=0.3.20` |
+ 
+-原生核心的語意後端不是內嵌 compiler：language server / debug adapter 是另外安裝的程式。SQLite 使用 bundled feature，建置仍需原生 C toolchain。外部 Serena / JetBrains 不隨 ZIP 散布。
++原生核心的語意後端不是內嵌 compiler：language server / debug adapter 是另外安裝的程式。SQLite 使用 bundled feature，建置仍需原生 C toolchain。Odin 不連接 Serena 或其 JetBrains 外掛；語言伺服器與除錯器有各自執行環境。
+--- a/docs/KNOWN_LIMITATIONS.md
++++ b/docs/KNOWN_LIMITATIONS.md
+@@ -1,7 +1,7 @@
+ # 已知限制 — 不是隱藏的完成項目
+ 
+ 1. **整個 Rust 程式尚未在交付環境編譯。** 型別、相依解析、SDK 對接及平台差異可能仍需修正。Rust tests / clippy / fmt / binary smoke 均不可標 PASS。
+-2. 原生不是 Serena 的逐參數替代品；完整上游能力依賴 bridge、上游配置、安裝與授權。沒有把付費 IDE 功能變成免費原生實作。
++2. 本版不依賴 Serena，但不是它的逐參數替代品。移除橋接並沒有新增 JetBrains 專用能力，也沒有把未實作的進階功能變成原生實作。
+ 3. native `list_dir` 回檔案清單，不包含獨立空目錄項；`find_symbol` 為 name_path substring，沒有完全重現上游所有 kind/depth/grouping/filter options。
+ 4. native diagnostics 不等同 JetBrains inspections。symbols/reference 結果由語言伺服器決定，動態載入、反射、宏與未納入 workspace 的檔案可能不完整。
+ 5. `safe_delete_symbol` 只檢查 LSP 靜態 references，不保證動態 consumers 不受影響；原生 Move / Inline / cascading delete 未實作。
+@@ -9,12 +9,12 @@
+ 7. memory 預設 central host storage；沒有 repo-local layout 自動遷移、跨 scope move/import/export、ignored patterns 與完整 YAML/Jinja context/mode 層。
+ 8. FTS5 是全量 snapshot lexical index；沒有 file watcher、增量索引、向量 embeddings。查詢移除過期命中，但新內容須 reindex。
+ 9. flow 是 read-only JSON dataflow，不是 Python REPL；同時流程會被共用 namespace mutex 序列化，沒有最佳化併行流引擎。
+-10. bridge 支援 stdio MCP legacy handshake + tools/list/call，非完整 resources/prompts/sampling/tasks proxy；部分需要其他雙向 MCP 能力的上游工具可能無法正常工作。
++10. 不再提供外部 MCP tools/list/call 代理；舊 serena_tools／serena_call 與橋接設定會失效。需要進階 Move／Inline／Inspections 的工作不能把這版當作功能等價替代品。
+ 11. journal 是逐檔原子替換＋恢復，非多檔原子可見交易。外部寫入競態仍需 OS/工作流控制。
+ 12. Windows 原生路徑、installer lifecycle、Unix process group、macOS 沙箱、後代程序清理均未驗證或未實作。此包沒有 Windows 安裝程式。
+ 13. HTTP 是本機單操作者服務，非公網或多租戶產品。Dashboard 只顯示專案和稽核，不是完整 Serena UI / logs / analytics / model token 統計。
+-14. 不自動安裝 LSP / debug adapter，不把 CLI presence check 當成功整合。真實 LSP / DAP / Serena / JetBrains 測試皆 NOT_RUN。
++14. 不自動安裝 LSP / debug adapter，不把 CLI presence check 當成功整合。真實 LSP／DAP 測試皆 NOT_RUN；Serena／其 JetBrains 外掛已不屬於本版後端。
+ 15. 稽核、index、journal、spool 未提供 retention / encryption / backup automation。大型 repository 的 RSS / latency / disk growth 尚未量測。
+ 16. Cargo.lock 尚未生成；直接依賴已精確指定，遞迴依賴、完整 SBOM、license audit、漏洞掃描仍待實際 Cargo resolve/build。
+ 
+-這些限制讓 0.1.0 適合作為接續實作與驗收的原始碼基礎，而不是無人值守的 production 替代品。
++這些限制讓 0.2.0 適合作為接續實作與驗收的原始碼基礎，而不是無人值守的 production 替代品。
+--- a/docs/RELEASE_GATES.md
++++ b/docs/RELEASE_GATES.md
+@@ -20,9 +20,9 @@
+ 
+ ## 第三層：真實後端矩陣
+ 
+-至少 Rust/rust-analyzer、Python、TypeScript 各自記錄 OS、server version、workspace config、符號、跨檔 references、rename、diagnostics。DAP 需實際啟動 debuggee、斷點、單步、variables、退出。Serena bridge 需測試 tools/classic 與 REPL，JetBrains 需合法外掛環境測 Move / Inline / inspections / debug。
++至少 Rust/rust-analyzer、Python、TypeScript 各自記錄 OS、server version、workspace config、符號、跨檔 references、rename、diagnostics。DAP 需實際啟動 debuggee、斷點、單步、variables、退出。獨立性回歸需在未安裝 Serena 的環境執行，並檢查舊配置與舊工具明確拒絕；不得靠上游轉發通過功能驗收。
+ 
+-確認 native / bridge 的差異與錯誤，不能把 generic tools/call forwarding 宣稱為上游整套功能已驗證。
++Move／Inline／inspection 等進階功能需另外原生實作及逐語言驗證；沒有完成前保持 NOT_IMPLEMENTED。
+ 
+ ## 第四層：平台與失敗情境
+ 
+--- a/docs/ROADMAP.md
++++ b/docs/ROADMAP.md
+@@ -1,25 +1,25 @@
+-# 路線圖：以證據升版，不把待辦畫成完成
++# 獨立產品路線圖：不以橋接代替原生完成
+ 
+-## 0.1.x — 建置與原生路徑驗收
++## 0.2.0 — 已修改的來源範圍
+ 
+-首先在 Rust toolchain 實際 resolve/build，修正編譯、Clippy 與 integration failures，產生並提交 Cargo.lock。Windows/Linux 各一輪 native tests、實際 rmcp client 與 HTTP 安全測試，取得 rust-analyzer / real Serena 連線證據。完成前維持 source-preview。
++移除 Serena Bridge、設定、程序管理與兩個工具；保留 58 個原生／標準協議工具。新增拒絕舊設定與舊工具的回歸測試原始碼。此項是源碼變更，不是編譯或執行驗收證據。
+ 
+-## 0.2 — 語意層強化
++## 下一個門檻 — 真實建置與直接後端
+ 
+-跨檔 symbol index 與增量 invalidation、語言伺服器 capability registry、backend state / restart / readiness、受驗證的語言 adapter presets、顯示未覆蓋檔案／診斷版本、native WorkspaceEdit resource operations。Slint 需獨立 LSP 設定與測試，不把 Rust 能力推算到 .slint。
++在具備 Rust toolchain 的環境解析依賴，產生 Cargo.lock，修復編譯／Clippy／tests。於未安裝 Serena 的乾淨環境測試 MCP、rust-analyzer、DAP 與 Windows 原生執行。完成前維持 SOURCE_PREVIEW。
+ 
+-## 0.3 — 重構與模型友善工作流
++## 語意層與重構
+ 
+-原生 per-occurrence replace selection、rename preview UX、經語言後端 code actions 的 Move / Inline 能力協商、保存比較 benchmark、JSON flow per-session locks 與有界並行查詢。無後端能力時繼續回明確 unavailable，不以文字取代冒充安全重構。
++補齊 WorkspaceEdit resource operations、能力與 readiness registry、file watcher / 增量失效、語言專用設定。Move／Inline 先定義各語言語意正確性與 fixture，再透過後端 Code Actions 或自建語言適配器實作；不可拿字串搬移充當語意重構。
+ 
+-## 0.4 — 程序與部署邊界
++## 批次、IDE、診斷
+ 
+-Windows Job Objects、Unix process-group termination、可選 container/OS sandbox runner、平台 path/reparse hardening、state retention / backup、secret-aware audit review。遠端身分與 OAuth 為獨立設計，不直接開放既有 loopback endpoint。
++改良原生 JSON flow 的 per-session locks、有界併行與資料篩選；不重新依賴 Python／Serena REPL。區分 compiler diagnostics、linter 和 IDE inspection；有需要的 IDE integration 採獨立協議與自行實作的 adapter，不使用 Serena 外掛。
+ 
+-## 0.5 — 逐步降低橋接依賴
++## 程序與部署
+ 
+-原生化目前 bridge-only 功能前先建立功能契約與真實對照測試。JetBrains 特有能力不可用 shell/text patch 偽裝；保留合法外掛後端選項。完全移除 Serena/Python 是另外的完成門檻，不是目前版本已達成狀態。
++Windows Job Objects、Unix process groups、實際 OS sandbox runner、路徑 hardening、state retention / backup、檔案與結果的配額。全部列為待驗收，不因採 Rust 就視為安全。
+ 
+-## 1.0 — 發行條件
++## 1.0 條件
+ 
+-固定依賴、全部平台 native tests、明確支援語言矩陣、完整失敗復原／安全審查、可用安裝與卸載流程、真實模型端使用報告，並以測量支持所有「更好」主張。沒有預設完成日期或背景排程。
++原生 Windows/Linux/macOS 驗收、支援語言矩陣、故障復原、安全審查、安裝／卸載、真實使用報告與對照量測。沒有預設完成日期、背景排程或未執行的 CI 成功宣告。
+--- a/docs/SECURITY.md
++++ b/docs/SECURITY.md
+@@ -20,11 +20,11 @@
+ 
+ 對不可信任 repository，請在獨立 VM / container / 低權限帳號中執行，僅掛載必要路徑，限制網路與 credentials。設定 deny_globs 不能取代 OS 隔離。
+ 
+-## 外部橋接
++## 直接後端
+ 
+-Serena bridge 要求 allow_write + allow_shell + trusted_execution；這是特權路徑。它能透過上游 Python REPL / shell / IDE 任意操作上游可存取的資源。Odin 的 path policy、原生 transaction journal 與 native write restrictions **不包覆上游內部執行**。
++Serena 橋接已移除，也沒有由工具名稱觸發的上游 fallback。這縮小了一條任意上游工具執行路徑，**不代表 Odin 已被沙箱化**。
+ 
+-不要把 upstream tool 的 readOnlyHint 當安全決策；不要把 tools/list 全部轉成自動批准。上游 activate_project 可改變上游範圍；Odin 的 project ID 不限制其 OS 存取。
++LSP／DAP 與允許執行的命令仍是外部程式；它們的內部檔案操作不經 Odin journal。可信任操作者也可能把任意程式填進 host profile，Odin 不對任意子程序提供 OS 權限隔離。不得因移除 Serena 就把外部後端視為安全。
+ 
+ ## 網路
+ 
+--- a/docs/SERENA_PARITY.md
++++ b/docs/SERENA_PARITY.md
+@@ -3,8 +3,8 @@
+ 基準：Serena tools catalog / v2 時期 main commit `abb0a0f01b94bc8050086f0fb860077d17730324`。本表是設計與原始碼映射，不是實測相容認證。
+ 
+ - NATIVE_SOURCE_PARTIAL：有原生對應或刻意改變的工作流；不表示逐參數等價、已編譯或已測試。
+-- BRIDGE_ONLY：沒有原生重寫，需外部 Serena。
+-- YES_IF_ENABLED_UPSTREAM：橋接機制可列舉／呼叫上游已開啟的工具；實際可用性取決於上游、session、語言／IDE／授權與協議相容。
++- NOT_IMPLEMENTED：本版缺少相對應實作，沒有橋接補足。
++- NONE_ON_SERENA：程式不啟動、載入或呼叫 Serena；不是全部功能等價的宣告。
+ - 所有本表真實後端驗證均為 **NOT_RUN**。
+ 
+ | Serena tool | Odin 原生對應 | 實作分類 | 差異／依賴 |
+@@ -22,19 +22,19 @@
+ | `replace_symbol_body` | `replace_symbol_body` | NATIVE_SOURCE_PARTIAL | 有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。 |
+ | `restart_language_server` | `restart_language_server` | NATIVE_SOURCE_PARTIAL | 有原生對應原始碼；參數／輸出不保證與 Serena 同形。 |
+ | `safe_delete_symbol` | `safe_delete_symbol` | NATIVE_SOURCE_PARTIAL | 原生只檢查 LSP 靜態引用；不含動態使用或 cascading delete。 |
+-| `jet_brains_debug` | `—` | BRIDGE_ONLY | 外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。 |
+-| `jet_brains_find_declaration` | `—` | BRIDGE_ONLY | 外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。 |
+-| `jet_brains_find_implementations` | `—` | BRIDGE_ONLY | 外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。 |
+-| `jet_brains_find_referencing_symbols` | `—` | BRIDGE_ONLY | 外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。 |
+-| `jet_brains_find_symbol` | `—` | BRIDGE_ONLY | 外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。 |
+-| `jet_brains_get_symbols_overview` | `—` | BRIDGE_ONLY | 外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。 |
+-| `jet_brains_inline_symbol` | `—` | BRIDGE_ONLY | 外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。 |
+-| `jet_brains_list_inspections` | `—` | BRIDGE_ONLY | 外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。 |
+-| `jet_brains_move` | `—` | BRIDGE_ONLY | 外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。 |
+-| `jet_brains_rename` | `—` | BRIDGE_ONLY | 外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。 |
+-| `jet_brains_run_inspections` | `—` | BRIDGE_ONLY | 外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。 |
+-| `jet_brains_safe_delete` | `—` | BRIDGE_ONLY | 外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。 |
+-| `jet_brains_type_hierarchy` | `—` | BRIDGE_ONLY | 外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。 |
++| `jet_brains_debug` | `—` | NOT_IMPLEMENTED | 未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。 |
++| `jet_brains_find_declaration` | `—` | NOT_IMPLEMENTED | 未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。 |
++| `jet_brains_find_implementations` | `—` | NOT_IMPLEMENTED | 未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。 |
++| `jet_brains_find_referencing_symbols` | `—` | NOT_IMPLEMENTED | 未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。 |
++| `jet_brains_find_symbol` | `—` | NOT_IMPLEMENTED | 未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。 |
++| `jet_brains_get_symbols_overview` | `—` | NOT_IMPLEMENTED | 未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。 |
++| `jet_brains_inline_symbol` | `—` | NOT_IMPLEMENTED | 未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。 |
++| `jet_brains_list_inspections` | `—` | NOT_IMPLEMENTED | 未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。 |
++| `jet_brains_move` | `—` | NOT_IMPLEMENTED | 未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。 |
++| `jet_brains_rename` | `—` | NOT_IMPLEMENTED | 未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。 |
++| `jet_brains_run_inspections` | `—` | NOT_IMPLEMENTED | 未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。 |
++| `jet_brains_safe_delete` | `—` | NOT_IMPLEMENTED | 未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。 |
++| `jet_brains_type_hierarchy` | `—` | NOT_IMPLEMENTED | 未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。 |
+ | `execute_shell_command` | `execute_shell_command` | NATIVE_SOURCE_PARTIAL | 原生僅固定 host argv profile；不接受上游任意 shell 字串。 |
+ | `activate_project` | `explicit project argument` | NATIVE_SOURCE_PARTIAL | 原生每次指定 project ID；不允許任意 root 動態註冊。 |
+ | `get_current_config` | `get_current_config` | NATIVE_SOURCE_PARTIAL | 原生 host TOML 與 flags；不含上游 YAML/Jinja contexts/modes。 |
+@@ -58,24 +58,24 @@
+ | `write_memory` | `write_memory` | NATIVE_SOURCE_PARTIAL | 有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。 |
+ | `list_queryable_projects` | `list_projects` | NATIVE_SOURCE_PARTIAL | 原生 list_projects；只有 host 已配置的範圍。 |
+ | `query_project` | `query_project` | NATIVE_SOURCE_PARTIAL | 原生只接受 nonrecursive native read tools；不啟動 Serena Project Server。 |
+-| `serena_repl` | `flow_run (not Python)` | NATIVE_SOURCE_PARTIAL | 原生 flow_run 是受限 JSON，不是 Python REPL；完整上游 REPL 走橋接。 |
++| `serena_repl` | `flow_run (not Python)` | NATIVE_SOURCE_PARTIAL | 原生 flow_run 是受限 JSON，不是 Python REPL；沒有任意 Python REPL；此差異不會以橋接補足。 |
+ | `initial_instructions` | `initial_instructions` | NATIVE_SOURCE_PARTIAL | 有原生對應原始碼；參數／輸出不保證與 Serena 同形。 |
+ | `onboarding` | `onboarding` | NATIVE_SOURCE_PARTIAL | 原生收集結構與證據；讓 Agent 決定記憶，不宣稱自動理解／測試。 |
+-| `serena_info` | `initial_instructions + docs` | NATIVE_SOURCE_PARTIAL | 原生文件及 initial_instructions；完整上游主題資訊走橋接。 |
++| `serena_info` | `initial_instructions + docs` | NATIVE_SOURCE_PARTIAL | 原生文件及 initial_instructions；提供 Odin 自己的工具說明，不提供上游主題 API。 |
+ 
+ ## 不只工具名稱的功能
+ 
+-| 領域 | 原生現況 | 上游完整行為 |
++| 領域 | 原生現況 | 尚未對齊／依賴界線 |
+ |---|---|---|
+-| 40+ 語言與專用適配 | Generic LSP transport / 可配置伺服器；未驗證所有語言 | 依賴 Serena 本身 adapters、安裝與各語言環境 |
+-| REPL facade `lsp / jb / ide / fs / edit / mem / cfg / ext / shell` | 同領域部分 native tools；不模擬 Python objects/facades | 透過上游實際 exposed REPL 工具，不硬編碼 facade 別名 |
+-| YAML、Jinja、contexts、modes | host TOML、每 project flags / excluded_tools | 原生無完全相同設定語意；bridge 使用上游配置 |
++| 40+ 語言與專用適配 | Generic LSP transport / 可配置伺服器；未驗證所有語言 | 必須逐語言原生適配與驗收；不包含上游 adapters |
++| REPL facade `lsp / jb / ide / fs / edit / mem / cfg / ext / shell` | 同領域部分 native tools；不模擬 Python objects/facades | 沒有 Python / JetBrains REPL；待獨立設計，不回退上游 |
++| YAML、Jinja、contexts、modes | host TOML、每 project flags / excluded_tools | 原生無完全相同設定語意，沒有上游配置入口 |
+ | 記憶 topic / ref / rename | Markdown + mem: + CAS + read-only patterns | 原生沒有上游全部 ignore / cross-scope / repo-local 行為 |
+ | index | SQLite snapshot lexical + LSP 自有語意索引 | 不把兩者說成 Serena 相同的 symbol cache |
+-| 多專案 | explicit scope，禁止重疊 roots | bridge 一專案一 process；上游 active_project 仍屬其內部狀態 |
++| 多專案 | explicit scope，禁止重疊 roots | 直接按專案管理 LSP / DAP process，沒有上游 active_project |
+ | Dashboard / logs / analytics | 唯讀專案與 metadata audit | 不含上游完整設定 UI、日誌串流與 token analytics |
+-| DAP vs IDE debug | 原生 generic DAP primitives | JetBrains persistent debug REPL 仍是上游功能 |
+-| stdio / Streamable HTTP | 原生 official rmcp server + loopback Bearer | bridge 只支援 stdio tools discovery/call；不是完整協議代理 |
++| DAP vs IDE debug | 原生 generic DAP primitives | 不提供 JetBrains persistent debug REPL 語法 |
++| stdio / Streamable HTTP | 原生 official rmcp server + loopback Bearer | Odin 自己提供 tools；沒有外部工具轉發 |
+ | 安裝／更新／clients hooks | 本地建置腳本、手動 MCP config | 沒有原生重寫 Serena setup/hook/marketplace 流程 |
+ 
+-**整體結論：提供全上游工具的動態連接路徑，而不是聲稱全部功能已脫離 Serena / Python / IDE 以 Rust 原生完成。**
++**整體結論：Odin 0.2.0 不依賴 Serena；功能缺口仍存在。獨立運作與全功能等價是不同的驗收條件。**
+--- a/docs/SOURCES.md
++++ b/docs/SOURCES.md
+@@ -18,4 +18,4 @@
+ - LSP 3.17: https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/
+ - DAP: https://microsoft.github.io/debug-adapter-protocol/specification
+ 
+-Serena 支援的是整個後端、語言適配、工具與工作流生態；Odin 以原生實作加工具橋接對應，不能僅憑工具名稱相同宣稱完全相容。SDK 支援更新版本 MCP 也不表示本應用已實作全部更新特性。
++Serena 支援的是整個後端、語言適配、工具與工作流生態；Odin 0.2.0 只用獨立原生實作及直接 LSP／DAP，移除工具橋接，不能僅憑工具名稱相同宣稱完全相容。SDK 支援更新版本 MCP 也不表示本應用已實作全部更新特性。
+--- /dev/null
++++ b/docs/STANDALONE.md
+@@ -0,0 +1,43 @@
++# Odin 0.2.0 — 不依賴 Serena
++
++## 結論
++
++可以。Odin 核心、MCP 服務、檔案操作、記憶、修改日誌、LSP client 與 DAP client 可以作為獨立產品。本版已在原始碼中移除 Serena 專用橋接；沒有安裝、啟動或呼叫它的自動流程。尚未編譯或執行 Odin，故此處的完成範圍是原始碼與契約修改。
++
++## 此次實際變更
++
++- 刪除 `crates/odin-protocol/src/bridge.rs`、其 module export、`BridgeConfig`、engine 的橋接 cache / 啟動 / dispatch / 權限分支。
++- 刪除 `serena_tools`、`serena_call` 及其 JSON schema；保留 58 個 Odin 工具。
++- 刪除橋接設定、呼叫範例和上游 mock fixture。
++- `status` 回報 standalone / external_tool_bridge；CLI doctor 檢查直接後端。
++- 舊 bridge 設定由 deny_unknown_fields 拒絕；舊工具回未知工具。相關 Rust 回歸測試已寫但 NOT_RUN。
++- 重新生成 API、53 項功能對照與契約；加入生產原始碼／Cargo 設定的去相依靜態檢查。
++
++## 執行期依賴邊界
++
++| 能力 | 執行期需求 | 是否需要 Serena |
++|---|---|---|
++| 檔案、詞彙搜尋、Markdown 記憶、修改日誌 | Odin 可執行檔及其系統需求 | 不需要 |
++| MCP stdio / 本機 HTTP / Dashboard | Odin；HTTP 模式需 host token | 不需要 |
++| 符號、引用、診斷、Rename | 另裝並配置相應 LSP 語言伺服器 | 不需要 |
++| 除錯 | 另裝並配置 DAP debug adapter、debuggee 與授權 | 不需要 |
++| Rust 核心 | 不需 Python runtime | 不需要 |
++| 開發驗證腳本／fixture | Python；Rust tests 另需 Cargo | 不需要 |
++
++外部後端可以是 Rust、Java、Node.js、Python 等實作；「Rust 核心」不等於每個外部語言後端都用 Rust。安裝了某個後端也不代表其所有能力都已驗證。
++
++## 這次沒有補齊的功能
++
++獨立性並不等於 Serena 全功能等價。Move／Inline 語意重構、JetBrains inspections、其 persistent debug REPL、完整 Python REPL、40+ 語言專用適配、上游所有 YAML/Jinja/context/mode 語意仍未重寫。普通 LSP diagnostics 不等於 IDE inspections；DAP primitives 不等於 JetBrains REPL；JSON flow 不等於 Python。
++
++缺少上述能力時，本版不能保證完成對應任務，也不會偷偷呼叫 Serena。功能矩陣保留 NOT_IMPLEMENTED 和 NATIVE_SOURCE_PARTIAL，不以刪除橋接把缺口改標完成。
++
++## 從 0.1.0 遷移
++
++保留舊資料與設定備份，刪除 `[projects.<id>.serena]` 區塊及其子欄位；客戶端不再呼叫 `serena_tools` / `serena_call`。其他原生工具名稱保留；本次沒有刻意變更 journal / memory state 格式，但未做真實跨版本遷移測試。
++
++完成 Rust 建置後，使用 `odin --config odin.toml doctor`、`call status`、MCP 工具列表以及 scripts/mcp_smoke.py 驗證。應在未安裝 Serena 的乾淨環境驗證符號與除錯工作；現在尚無此類執行證據。
++
++## 驗證證據
++
++`verification/source-check.json` 是原始碼／契約靜態檢查；`fixture-selftest.json` 只驗證 Python 模擬服務；`delivery-status.json` 記錄本版實際完成與 NOT_RUN。沒有 Rust／Cargo 就不能宣稱編譯、Rust 測試或效能通過。
+--- a/docs/USAGE.md
++++ b/docs/USAGE.md
+@@ -65,17 +65,11 @@
+ 
+ launch / attach 回 ticket；等待 initialize event / adapter-specific 規範，不要把 pending 當完成。Odin 不代填未知 adapter 的 launch arguments。真實 adapter 測試未執行。
+ 
+-## Serena
++## 無上游依賴
+ 
+-先確保 Serena 自身可以在該工作區使用。bridge 範例只有 LSP backend 的一般啟動命令；JetBrains backend、agent_interface 與可選工具要在上游設定。
++本版不安裝或啟動 Serena。由 0.1.0 升級時移除 `[projects.<id>.serena]` 設定與兩個 `serena_*` 工具呼叫。舊設定會被拒絕，舊工具不會轉發。
+ 
+-先執行 serena_tools 取得工具清單，不猜名稱。再把工具名稱及其 schema 對應的 arguments 包在：
+-
+-```json
+-{"project":"demo","name":"<serena_tools 實際回傳的工具名稱>","arguments":{}}
+-```
+-
+-有 session 參數時保留上游要求。refresh 可重新讀取工具清單。timeout 時不要自動重送修改；需檢查上游或檔案狀態。橋接不替你繞過 IDE 外掛授權，也不把外部 Python 執行限制為 native read-only。
++無 language server 時可用檔案／記憶／FTS5；有 language server 才能執行相應語意能力；有 DAP adapter 且明確授權才提供除錯。無後端能力時會回錯誤，不做猜測式替代。詳見 `STANDALONE.md`。
+ 
+ ## HTTP
+ 
+--- a/docs/serena-parity.csv
++++ b/docs/serena-parity.csv
+@@ -1,54 +1,54 @@
+-﻿serena_tool,group,odin_native,status,bridge,verification,notes
+-find_declaration,symbol_tools,find_declaration,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生接受 LSP position；沒有上游 regex-occurrence 完全同形 API。
+-find_implementations,symbol_tools,find_implementations,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。
+-find_referencing_symbols,symbol_tools,find_referencing_symbols,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生位置＋可取得的 enclosing symbol；結果受 LSP / workspace 影響。
+-find_symbol,symbol_tools,find_symbol,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生 name_path substring；未重現全部 kind/depth/grouping 選項。
+-get_diagnostics_for_file,symbol_tools,get_diagnostics_for_file,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生 pull/push report；不等同 IDE inspection 或已完成 build。
+-get_diagnostics_for_symbol,symbol_tools,get_diagnostics_for_symbol,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生 range 篩選；未遞迴檢查全部 referencing symbols。
+-get_symbols_overview,symbol_tools,get_symbols_overview,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生 DocumentSymbol flatten；不重現全部上游輸出格式。
+-insert_after_symbol,symbol_tools,insert_after_symbol,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+-insert_before_symbol,symbol_tools,insert_before_symbol,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+-rename_symbol,symbol_tools,rename_symbol,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生文字 WorkspaceEdit → journal；resource operations 明確拒絕。
+-replace_symbol_body,symbol_tools,replace_symbol_body,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+-restart_language_server,symbol_tools,restart_language_server,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。
+-safe_delete_symbol,symbol_tools,safe_delete_symbol,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生只檢查 LSP 靜態引用；不含動態使用或 cascading delete。
+-jet_brains_debug,jetbrains_tools,—,BRIDGE_ONLY,YES_IF_ENABLED_UPSTREAM,NOT_RUN,外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。
+-jet_brains_find_declaration,jetbrains_tools,—,BRIDGE_ONLY,YES_IF_ENABLED_UPSTREAM,NOT_RUN,外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。
+-jet_brains_find_implementations,jetbrains_tools,—,BRIDGE_ONLY,YES_IF_ENABLED_UPSTREAM,NOT_RUN,外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。
+-jet_brains_find_referencing_symbols,jetbrains_tools,—,BRIDGE_ONLY,YES_IF_ENABLED_UPSTREAM,NOT_RUN,外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。
+-jet_brains_find_symbol,jetbrains_tools,—,BRIDGE_ONLY,YES_IF_ENABLED_UPSTREAM,NOT_RUN,外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。
+-jet_brains_get_symbols_overview,jetbrains_tools,—,BRIDGE_ONLY,YES_IF_ENABLED_UPSTREAM,NOT_RUN,外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。
+-jet_brains_inline_symbol,jetbrains_tools,—,BRIDGE_ONLY,YES_IF_ENABLED_UPSTREAM,NOT_RUN,外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。
+-jet_brains_list_inspections,jetbrains_tools,—,BRIDGE_ONLY,YES_IF_ENABLED_UPSTREAM,NOT_RUN,外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。
+-jet_brains_move,jetbrains_tools,—,BRIDGE_ONLY,YES_IF_ENABLED_UPSTREAM,NOT_RUN,外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。
+-jet_brains_rename,jetbrains_tools,—,BRIDGE_ONLY,YES_IF_ENABLED_UPSTREAM,NOT_RUN,外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。
+-jet_brains_run_inspections,jetbrains_tools,—,BRIDGE_ONLY,YES_IF_ENABLED_UPSTREAM,NOT_RUN,外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。
+-jet_brains_safe_delete,jetbrains_tools,—,BRIDGE_ONLY,YES_IF_ENABLED_UPSTREAM,NOT_RUN,外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。
+-jet_brains_type_hierarchy,jetbrains_tools,—,BRIDGE_ONLY,YES_IF_ENABLED_UPSTREAM,NOT_RUN,外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。
+-execute_shell_command,cmd_tools,execute_shell_command,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生僅固定 host argv profile；不接受上游任意 shell 字串。
+-activate_project,config_tools,explicit project argument,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生每次指定 project ID；不允許任意 root 動態註冊。
+-get_current_config,config_tools,get_current_config,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生 host TOML 與 flags；不含上游 YAML/Jinja contexts/modes。
+-open_dashboard,config_tools,HTTP /,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生手動開 loopback / 唯讀頁；沒有完整上游 UI 或自動 browser-open API。
+-remove_project,config_tools,host configuration only,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生編輯 host config 後重啟；沒有 Agent 動態刪配置。
+-create_text_file,file_tools,create_text_file,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+-delete_lines,file_tools,delete_lines,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+-find_file,file_tools,find_file,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生 glob 對專案相對路徑；參數與上游不完全相同。
+-insert_at_line,file_tools,insert_at_line,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+-list_dir,file_tools,list_dir,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生 files_only；不列獨立空目錄。
+-read_file,file_tools,read_file,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。
+-replace_content,file_tools,replace_content,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+-replace_in_files,file_tools,replace_in_files,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生全檔 hash＋match count＋preview；無逐 occurrence selection。
+-replace_lines,file_tools,replace_lines,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+-search_for_pattern,file_tools,search_for_pattern,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。
+-delete_memory,memory_tools,delete_memory,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。
+-edit_memory,memory_tools,edit_memory,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生 literal replace＋CAS；非上游全部 regex 選項。 原生使用 central Markdown storage。
+-list_memories,memory_tools,list_memories,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。
+-read_memory,memory_tools,read_memory,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。
+-rename_memory,memory_tools,rename_memory,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生同 scope 改名及引用更新；無跨 scope move。 原生使用 central Markdown storage。
+-write_memory,memory_tools,write_memory,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。
+-list_queryable_projects,query_project_tools,list_projects,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生 list_projects；只有 host 已配置的範圍。
+-query_project,query_project_tools,query_project,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生只接受 nonrecursive native read tools；不啟動 Serena Project Server。
+-serena_repl,repl_tools,flow_run (not Python),NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生 flow_run 是受限 JSON，不是 Python REPL；完整上游 REPL 走橋接。
+-initial_instructions,workflow_tools,initial_instructions,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。
+-onboarding,workflow_tools,onboarding,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生收集結構與證據；讓 Agent 決定記憶，不宣稱自動理解／測試。
+-serena_info,workflow_tools,initial_instructions + docs,NATIVE_SOURCE_PARTIAL,YES_IF_ENABLED_UPSTREAM,NOT_RUN,原生文件及 initial_instructions；完整上游主題資訊走橋接。
++﻿serena_tool,group,odin_native,status,runtime_dependency,verification,notes
++find_declaration,symbol_tools,find_declaration,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生接受 LSP position；沒有上游 regex-occurrence 完全同形 API。
++find_implementations,symbol_tools,find_implementations,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。
++find_referencing_symbols,symbol_tools,find_referencing_symbols,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生位置＋可取得的 enclosing symbol；結果受 LSP / workspace 影響。
++find_symbol,symbol_tools,find_symbol,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 name_path substring；未重現全部 kind/depth/grouping 選項。
++get_diagnostics_for_file,symbol_tools,get_diagnostics_for_file,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 pull/push report；不等同 IDE inspection 或已完成 build。
++get_diagnostics_for_symbol,symbol_tools,get_diagnostics_for_symbol,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 range 篩選；未遞迴檢查全部 referencing symbols。
++get_symbols_overview,symbol_tools,get_symbols_overview,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 DocumentSymbol flatten；不重現全部上游輸出格式。
++insert_after_symbol,symbol_tools,insert_after_symbol,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
++insert_before_symbol,symbol_tools,insert_before_symbol,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
++rename_symbol,symbol_tools,rename_symbol,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生文字 WorkspaceEdit → journal；resource operations 明確拒絕。
++replace_symbol_body,symbol_tools,replace_symbol_body,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
++restart_language_server,symbol_tools,restart_language_server,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。
++safe_delete_symbol,symbol_tools,safe_delete_symbol,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生只檢查 LSP 靜態引用；不含動態使用或 cascading delete。
++jet_brains_debug,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
++jet_brains_find_declaration,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
++jet_brains_find_implementations,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
++jet_brains_find_referencing_symbols,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
++jet_brains_find_symbol,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
++jet_brains_get_symbols_overview,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
++jet_brains_inline_symbol,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
++jet_brains_list_inspections,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
++jet_brains_move,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
++jet_brains_rename,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
++jet_brains_run_inspections,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
++jet_brains_safe_delete,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
++jet_brains_type_hierarchy,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
++execute_shell_command,cmd_tools,execute_shell_command,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生僅固定 host argv profile；不接受上游任意 shell 字串。
++activate_project,config_tools,explicit project argument,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生每次指定 project ID；不允許任意 root 動態註冊。
++get_current_config,config_tools,get_current_config,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 host TOML 與 flags；不含上游 YAML/Jinja contexts/modes。
++open_dashboard,config_tools,HTTP /,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生手動開 loopback / 唯讀頁；沒有完整上游 UI 或自動 browser-open API。
++remove_project,config_tools,host configuration only,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生編輯 host config 後重啟；沒有 Agent 動態刪配置。
++create_text_file,file_tools,create_text_file,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
++delete_lines,file_tools,delete_lines,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
++find_file,file_tools,find_file,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 glob 對專案相對路徑；參數與上游不完全相同。
++insert_at_line,file_tools,insert_at_line,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
++list_dir,file_tools,list_dir,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 files_only；不列獨立空目錄。
++read_file,file_tools,read_file,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。
++replace_content,file_tools,replace_content,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
++replace_in_files,file_tools,replace_in_files,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生全檔 hash＋match count＋preview；無逐 occurrence selection。
++replace_lines,file_tools,replace_lines,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
++search_for_pattern,file_tools,search_for_pattern,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。
++delete_memory,memory_tools,delete_memory,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。
++edit_memory,memory_tools,edit_memory,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 literal replace＋CAS；非上游全部 regex 選項。 原生使用 central Markdown storage。
++list_memories,memory_tools,list_memories,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。
++read_memory,memory_tools,read_memory,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。
++rename_memory,memory_tools,rename_memory,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生同 scope 改名及引用更新；無跨 scope move。 原生使用 central Markdown storage。
++write_memory,memory_tools,write_memory,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。
++list_queryable_projects,query_project_tools,list_projects,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 list_projects；只有 host 已配置的範圍。
++query_project,query_project_tools,query_project,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生只接受 nonrecursive native read tools；不啟動 Serena Project Server。
++serena_repl,repl_tools,flow_run (not Python),NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 flow_run 是受限 JSON，不是 Python REPL；沒有任意 Python REPL；此差異不會以橋接補足。
++initial_instructions,workflow_tools,initial_instructions,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。
++onboarding,workflow_tools,onboarding,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生收集結構與證據；讓 Agent 決定記憶，不宣稱自動理解／測試。
++serena_info,workflow_tools,initial_instructions + docs,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生文件及 initial_instructions；提供 Odin 自己的工具說明，不提供上游主題 API。
+--- a/docs/serena-parity.json
++++ b/docs/serena-parity.json
+@@ -6,7 +6,7 @@
+       "group": "symbol_tools",
+       "odin_native": "find_declaration",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生接受 LSP position；沒有上游 regex-occurrence 完全同形 API。"
+     },
+@@ -15,7 +15,7 @@
+       "group": "symbol_tools",
+       "odin_native": "find_implementations",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。"
+     },
+@@ -24,7 +24,7 @@
+       "group": "symbol_tools",
+       "odin_native": "find_referencing_symbols",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生位置＋可取得的 enclosing symbol；結果受 LSP / workspace 影響。"
+     },
+@@ -33,7 +33,7 @@
+       "group": "symbol_tools",
+       "odin_native": "find_symbol",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生 name_path substring；未重現全部 kind/depth/grouping 選項。"
+     },
+@@ -42,7 +42,7 @@
+       "group": "symbol_tools",
+       "odin_native": "get_diagnostics_for_file",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生 pull/push report；不等同 IDE inspection 或已完成 build。"
+     },
+@@ -51,7 +51,7 @@
+       "group": "symbol_tools",
+       "odin_native": "get_diagnostics_for_symbol",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生 range 篩選；未遞迴檢查全部 referencing symbols。"
+     },
+@@ -60,7 +60,7 @@
+       "group": "symbol_tools",
+       "odin_native": "get_symbols_overview",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生 DocumentSymbol flatten；不重現全部上游輸出格式。"
+     },
+@@ -69,7 +69,7 @@
+       "group": "symbol_tools",
+       "odin_native": "insert_after_symbol",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
+     },
+@@ -78,7 +78,7 @@
+       "group": "symbol_tools",
+       "odin_native": "insert_before_symbol",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
+     },
+@@ -87,7 +87,7 @@
+       "group": "symbol_tools",
+       "odin_native": "rename_symbol",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生文字 WorkspaceEdit → journal；resource operations 明確拒絕。"
+     },
+@@ -96,7 +96,7 @@
+       "group": "symbol_tools",
+       "odin_native": "replace_symbol_body",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
+     },
+@@ -105,7 +105,7 @@
+       "group": "symbol_tools",
+       "odin_native": "restart_language_server",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。"
+     },
+@@ -114,7 +114,7 @@
+       "group": "symbol_tools",
+       "odin_native": "safe_delete_symbol",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生只檢查 LSP 靜態引用；不含動態使用或 cascading delete。"
+     },
+@@ -122,125 +122,125 @@
+       "serena_tool": "jet_brains_debug",
+       "group": "jetbrains_tools",
+       "odin_native": "—",
+-      "status": "BRIDGE_ONLY",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
+-      "verification": "NOT_RUN",
+-      "notes": "外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。"
++      "status": "NOT_IMPLEMENTED",
++      "runtime_dependency": "NONE_ON_SERENA",
++      "verification": "NOT_RUN",
++      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+     },
+     {
+       "serena_tool": "jet_brains_find_declaration",
+       "group": "jetbrains_tools",
+       "odin_native": "—",
+-      "status": "BRIDGE_ONLY",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
+-      "verification": "NOT_RUN",
+-      "notes": "外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。"
++      "status": "NOT_IMPLEMENTED",
++      "runtime_dependency": "NONE_ON_SERENA",
++      "verification": "NOT_RUN",
++      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+     },
+     {
+       "serena_tool": "jet_brains_find_implementations",
+       "group": "jetbrains_tools",
+       "odin_native": "—",
+-      "status": "BRIDGE_ONLY",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
+-      "verification": "NOT_RUN",
+-      "notes": "外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。"
++      "status": "NOT_IMPLEMENTED",
++      "runtime_dependency": "NONE_ON_SERENA",
++      "verification": "NOT_RUN",
++      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+     },
+     {
+       "serena_tool": "jet_brains_find_referencing_symbols",
+       "group": "jetbrains_tools",
+       "odin_native": "—",
+-      "status": "BRIDGE_ONLY",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
+-      "verification": "NOT_RUN",
+-      "notes": "外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。"
++      "status": "NOT_IMPLEMENTED",
++      "runtime_dependency": "NONE_ON_SERENA",
++      "verification": "NOT_RUN",
++      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+     },
+     {
+       "serena_tool": "jet_brains_find_symbol",
+       "group": "jetbrains_tools",
+       "odin_native": "—",
+-      "status": "BRIDGE_ONLY",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
+-      "verification": "NOT_RUN",
+-      "notes": "外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。"
++      "status": "NOT_IMPLEMENTED",
++      "runtime_dependency": "NONE_ON_SERENA",
++      "verification": "NOT_RUN",
++      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+     },
+     {
+       "serena_tool": "jet_brains_get_symbols_overview",
+       "group": "jetbrains_tools",
+       "odin_native": "—",
+-      "status": "BRIDGE_ONLY",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
+-      "verification": "NOT_RUN",
+-      "notes": "外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。"
++      "status": "NOT_IMPLEMENTED",
++      "runtime_dependency": "NONE_ON_SERENA",
++      "verification": "NOT_RUN",
++      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+     },
+     {
+       "serena_tool": "jet_brains_inline_symbol",
+       "group": "jetbrains_tools",
+       "odin_native": "—",
+-      "status": "BRIDGE_ONLY",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
+-      "verification": "NOT_RUN",
+-      "notes": "外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。"
++      "status": "NOT_IMPLEMENTED",
++      "runtime_dependency": "NONE_ON_SERENA",
++      "verification": "NOT_RUN",
++      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+     },
+     {
+       "serena_tool": "jet_brains_list_inspections",
+       "group": "jetbrains_tools",
+       "odin_native": "—",
+-      "status": "BRIDGE_ONLY",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
+-      "verification": "NOT_RUN",
+-      "notes": "外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。"
++      "status": "NOT_IMPLEMENTED",
++      "runtime_dependency": "NONE_ON_SERENA",
++      "verification": "NOT_RUN",
++      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+     },
+     {
+       "serena_tool": "jet_brains_move",
+       "group": "jetbrains_tools",
+       "odin_native": "—",
+-      "status": "BRIDGE_ONLY",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
+-      "verification": "NOT_RUN",
+-      "notes": "外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。"
++      "status": "NOT_IMPLEMENTED",
++      "runtime_dependency": "NONE_ON_SERENA",
++      "verification": "NOT_RUN",
++      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+     },
+     {
+       "serena_tool": "jet_brains_rename",
+       "group": "jetbrains_tools",
+       "odin_native": "—",
+-      "status": "BRIDGE_ONLY",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
+-      "verification": "NOT_RUN",
+-      "notes": "外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。"
++      "status": "NOT_IMPLEMENTED",
++      "runtime_dependency": "NONE_ON_SERENA",
++      "verification": "NOT_RUN",
++      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+     },
+     {
+       "serena_tool": "jet_brains_run_inspections",
+       "group": "jetbrains_tools",
+       "odin_native": "—",
+-      "status": "BRIDGE_ONLY",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
+-      "verification": "NOT_RUN",
+-      "notes": "外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。"
++      "status": "NOT_IMPLEMENTED",
++      "runtime_dependency": "NONE_ON_SERENA",
++      "verification": "NOT_RUN",
++      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+     },
+     {
+       "serena_tool": "jet_brains_safe_delete",
+       "group": "jetbrains_tools",
+       "odin_native": "—",
+-      "status": "BRIDGE_ONLY",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
+-      "verification": "NOT_RUN",
+-      "notes": "外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。"
++      "status": "NOT_IMPLEMENTED",
++      "runtime_dependency": "NONE_ON_SERENA",
++      "verification": "NOT_RUN",
++      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+     },
+     {
+       "serena_tool": "jet_brains_type_hierarchy",
+       "group": "jetbrains_tools",
+       "odin_native": "—",
+-      "status": "BRIDGE_ONLY",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
+-      "verification": "NOT_RUN",
+-      "notes": "外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。"
++      "status": "NOT_IMPLEMENTED",
++      "runtime_dependency": "NONE_ON_SERENA",
++      "verification": "NOT_RUN",
++      "notes": "未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。"
+     },
+     {
+       "serena_tool": "execute_shell_command",
+       "group": "cmd_tools",
+       "odin_native": "execute_shell_command",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生僅固定 host argv profile；不接受上游任意 shell 字串。"
+     },
+@@ -249,7 +249,7 @@
+       "group": "config_tools",
+       "odin_native": "explicit project argument",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生每次指定 project ID；不允許任意 root 動態註冊。"
+     },
+@@ -258,7 +258,7 @@
+       "group": "config_tools",
+       "odin_native": "get_current_config",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生 host TOML 與 flags；不含上游 YAML/Jinja contexts/modes。"
+     },
+@@ -267,7 +267,7 @@
+       "group": "config_tools",
+       "odin_native": "HTTP /",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生手動開 loopback / 唯讀頁；沒有完整上游 UI 或自動 browser-open API。"
+     },
+@@ -276,7 +276,7 @@
+       "group": "config_tools",
+       "odin_native": "host configuration only",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生編輯 host config 後重啟；沒有 Agent 動態刪配置。"
+     },
+@@ -285,7 +285,7 @@
+       "group": "file_tools",
+       "odin_native": "create_text_file",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
+     },
+@@ -294,7 +294,7 @@
+       "group": "file_tools",
+       "odin_native": "delete_lines",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
+     },
+@@ -303,7 +303,7 @@
+       "group": "file_tools",
+       "odin_native": "find_file",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生 glob 對專案相對路徑；參數與上游不完全相同。"
+     },
+@@ -312,7 +312,7 @@
+       "group": "file_tools",
+       "odin_native": "insert_at_line",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
+     },
+@@ -321,7 +321,7 @@
+       "group": "file_tools",
+       "odin_native": "list_dir",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生 files_only；不列獨立空目錄。"
+     },
+@@ -330,7 +330,7 @@
+       "group": "file_tools",
+       "odin_native": "read_file",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。"
+     },
+@@ -339,7 +339,7 @@
+       "group": "file_tools",
+       "odin_native": "replace_content",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
+     },
+@@ -348,7 +348,7 @@
+       "group": "file_tools",
+       "odin_native": "replace_in_files",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生全檔 hash＋match count＋preview；無逐 occurrence selection。"
+     },
+@@ -357,7 +357,7 @@
+       "group": "file_tools",
+       "odin_native": "replace_lines",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。"
+     },
+@@ -366,7 +366,7 @@
+       "group": "file_tools",
+       "odin_native": "search_for_pattern",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。"
+     },
+@@ -375,7 +375,7 @@
+       "group": "memory_tools",
+       "odin_native": "delete_memory",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。"
+     },
+@@ -384,7 +384,7 @@
+       "group": "memory_tools",
+       "odin_native": "edit_memory",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生 literal replace＋CAS；非上游全部 regex 選項。 原生使用 central Markdown storage。"
+     },
+@@ -393,7 +393,7 @@
+       "group": "memory_tools",
+       "odin_native": "list_memories",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。"
+     },
+@@ -402,7 +402,7 @@
+       "group": "memory_tools",
+       "odin_native": "read_memory",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。"
+     },
+@@ -411,7 +411,7 @@
+       "group": "memory_tools",
+       "odin_native": "rename_memory",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生同 scope 改名及引用更新；無跨 scope move。 原生使用 central Markdown storage。"
+     },
+@@ -420,7 +420,7 @@
+       "group": "memory_tools",
+       "odin_native": "write_memory",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。"
+     },
+@@ -429,7 +429,7 @@
+       "group": "query_project_tools",
+       "odin_native": "list_projects",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生 list_projects；只有 host 已配置的範圍。"
+     },
+@@ -438,7 +438,7 @@
+       "group": "query_project_tools",
+       "odin_native": "query_project",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生只接受 nonrecursive native read tools；不啟動 Serena Project Server。"
+     },
+@@ -447,16 +447,16 @@
+       "group": "repl_tools",
+       "odin_native": "flow_run (not Python)",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
+-      "verification": "NOT_RUN",
+-      "notes": "原生 flow_run 是受限 JSON，不是 Python REPL；完整上游 REPL 走橋接。"
++      "runtime_dependency": "NONE_ON_SERENA",
++      "verification": "NOT_RUN",
++      "notes": "原生 flow_run 是受限 JSON，不是 Python REPL；沒有任意 Python REPL；此差異不會以橋接補足。"
+     },
+     {
+       "serena_tool": "initial_instructions",
+       "group": "workflow_tools",
+       "odin_native": "initial_instructions",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "有原生對應原始碼；參數／輸出不保證與 Serena 同形。"
+     },
+@@ -465,7 +465,7 @@
+       "group": "workflow_tools",
+       "odin_native": "onboarding",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
++      "runtime_dependency": "NONE_ON_SERENA",
+       "verification": "NOT_RUN",
+       "notes": "原生收集結構與證據；讓 Agent 決定記憶，不宣稱自動理解／測試。"
+     },
+@@ -474,9 +474,9 @@
+       "group": "workflow_tools",
+       "odin_native": "initial_instructions + docs",
+       "status": "NATIVE_SOURCE_PARTIAL",
+-      "bridge": "YES_IF_ENABLED_UPSTREAM",
+-      "verification": "NOT_RUN",
+-      "notes": "原生文件及 initial_instructions；完整上游主題資訊走橋接。"
++      "runtime_dependency": "NONE_ON_SERENA",
++      "verification": "NOT_RUN",
++      "notes": "原生文件及 initial_instructions；提供 Odin 自己的工具說明，不提供上游主題 API。"
+     }
+   ]
+ }
+--- a/examples/odin.bridge.toml
++++ /dev/null
+@@ -1,22 +0,0 @@
+-# PRIVILEGED EXAMPLE. This enables an external Serena process.
+-# Its tools are not contained by Odin's native path/policy/transaction layer.
+-# This file resolves relative paths from examples/, not your current directory.
+-state_dir = '../.odin/bridge-state'
+-allow_global_memory_write = false
+-
+-[projects.demo]
+-root = 'rust-fixture'
+-allow_write = true
+-allow_shell = true
+-allow_debug = false
+-
+-[[projects.demo.languages]]
+-id = 'rust'
+-extensions = ['rs']
+-program = 'rust-analyzer'
+-args = []
+-
+-[projects.demo.serena]
+-program = 'serena'
+-args = ['start-mcp-server', '--project', '${root}', '--open-web-dashboard', 'false']
+-trusted_execution = true
+--- a/examples/serena-tools.json
++++ /dev/null
+@@ -1,4 +0,0 @@
+-{
+-  "project": "demo",
+-  "refresh": true
+-}
+--- a/odin.example.toml
++++ b/odin.example.toml
+@@ -1,4 +1,4 @@
+-# Odin 0.1.0 — host-owned configuration; do not let an untrusted repo replace it.
++# Odin 0.2.0 Standalone — host-owned configuration; do not let an untrusted repo replace it.
+ state_dir = '.odin/state'
+ allow_global_memory_write = false
+ memory_read_only_patterns = ['^global/policy$']
+--- a/schemas/tools.json
++++ b/schemas/tools.json
+@@ -1,7 +1,7 @@
+ [
+   {
+     "name": "status",
+-    "description": "Effective project status and native/bridge boundaries",
++    "description": "Effective standalone project status and backend boundaries",
+     "policy": "read",
+     "inputSchema": {
+       "type": "object",
+@@ -1678,7 +1678,7 @@
+   },
+   {
+     "name": "flow_run",
+-    "description": "Run a bounded JSON dataflow; no eval, imports, arbitrary Python, shell, or bridge calls",
++    "description": "Run a bounded JSON dataflow; no eval, imports, arbitrary Python, shell, or external tool forwarding",
+     "policy": "read",
+     "inputSchema": {
+       "type": "object",
+@@ -1934,68 +1934,6 @@
+     }
+   },
+   {
+-    "name": "serena_tools",
+-    "description": "Discover all enabled upstream Serena tools and schemas",
+-    "policy": "bridge",
+-    "inputSchema": {
+-      "type": "object",
+-      "properties": {
+-        "project": {
+-          "type": "string",
+-          "description": "Configured project ID; never an arbitrary root path"
+-        },
+-        "refresh": {
+-          "type": "boolean",
+-          "default": false
+-        }
+-      },
+-      "additionalProperties": false,
+-      "required": [
+-        "project"
+-      ]
+-    },
+-    "annotations": {
+-      "readOnlyHint": false,
+-      "destructiveHint": true,
+-      "idempotentHint": false,
+-      "openWorldHint": true
+-    }
+-  },
+-  {
+-    "name": "serena_call",
+-    "description": "Forward any exposed Serena tool, including Python REPL and JetBrains tools; not Rust-native execution",
+-    "policy": "bridge",
+-    "inputSchema": {
+-      "type": "object",
+-      "properties": {
+-        "project": {
+-          "type": "string",
+-          "description": "Configured project ID; never an arbitrary root path"
+-        },
+-        "name": {
+-          "type": "string"
+-        },
+-        "arguments": {
+-          "type": "object",
+-          "properties": {},
+-          "additionalProperties": true
+-        }
+-      },
+-      "additionalProperties": false,
+-      "required": [
+-        "project",
+-        "name",
+-        "arguments"
+-      ]
+-    },
+-    "annotations": {
+-      "readOnlyHint": false,
+-      "destructiveHint": true,
+-      "idempotentHint": false,
+-      "openWorldHint": true
+-    }
+-  },
+-  {
+     "name": "result_read",
+     "description": "Read a spilled large result by byte chunks; offsets remain UTF-8 aligned",
+     "policy": "read",
+--- /dev/null
++++ b/scripts/check_rust_structure.py
+@@ -0,0 +1,38 @@
++#!/usr/bin/env python3
++"""Optional lexical delimiter inspection. NOT a Rust parser, compiler or type check."""
++from pathlib import Path
++import json
++ROOT = Path(__file__).resolve().parents[1]
++def main():
++    report = {'scope': 'RUST_LEXICAL_DELIMITERS_ONLY', 'rust_compilation': 'NOT_RUN', 'checks': []}
++    try:
++        from pygments import lex
++        from pygments.lexers import RustLexer
++        from pygments.token import Punctuation, Error
++    except ImportError:
++        report.update(status='NOT_RUN', reason='Optional Pygments package unavailable')
++    else:
++        for path in sorted((ROOT / 'crates').rglob('*.rs')):
++            stack = []
++            errors = []
++            for kind, value in lex(path.read_text(encoding='utf-8'), RustLexer()):
++                if kind in Error:
++                    errors.append('lexer token: ' + repr(value))
++                if kind in Punctuation:
++                    for char in value:
++                        if char in '([{':
++                            stack.append(char)
++                        elif char in ')]}':
++                            if not stack or stack.pop() != {')': '(', ']': '[', '}': '{'}[char]:
++                                errors.append('mismatched delimiter: ' + char)
++            if stack:
++                errors.append('unclosed delimiters: ' + ''.join(stack))
++            report['checks'].append({'path': str(path.relative_to(ROOT)), 'status': 'FAIL' if errors else 'PASS', 'errors': errors})
++        report['status'] = 'FAIL' if any(c['status'] == 'FAIL' for c in report['checks']) else 'PASS'
++    output = ROOT / 'verification/lexical-check.json'
++    output.parent.mkdir(parents=True, exist_ok=True)
++    output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
++    print(json.dumps({'scope': report['scope'], 'status': report['status'], 'files': len(report['checks'])}))
++    return 1 if report['status'] == 'FAIL' else 0
++if __name__ == '__main__':
++    raise SystemExit(main())
+--- a/scripts/check_source.py
++++ b/scripts/check_source.py
+@@ -36,8 +36,21 @@
+     tools=json.loads((ROOT/'schemas/tools.json').read_text(encoding='utf-8'))
+     mirror=json.loads((ROOT/'crates/odin-engine/tools.json').read_text(encoding='utf-8'))
+     record('catalog_mirror',tools==mirror)
+-    names=[t['name'] for t in tools];record('unique_60_contracts',len(names)==len(set(names))==60)
++    names=[t['name'] for t in tools];record('unique_58_contracts',len(names)==len(set(names))==58)
+     engine=(ROOT/'crates/odin-engine/src/lib.rs').read_text(encoding='utf-8')
++    record('no_bridge_tools',not any(name.startswith('serena_') for name in names))
++    record('no_bridge_policy',all(t['policy'] in ['read','state','write','execute'] for t in tools))
++    record('no_bridge_module',not (ROOT/'crates/odin-protocol/src/bridge.rs').exists())
++    record('no_bridge_examples',not (ROOT/'examples/odin.bridge.toml').exists())
++    for source in (ROOT/'crates').glob('*/src/*.rs'):
++        # Config tests using retired identifiers live under tests/, not src/.
++        text=source.read_text(encoding='utf-8')
++        record('standalone_production_source:'+str(source.relative_to(ROOT)),
++               not re.search(r'serena|BridgeConfig|SerenaBridge',text,re.I))
++    for source in (ROOT/'crates').glob('*/Cargo.toml'):
++        record('no_upstream_cargo_dependency:'+str(source.relative_to(ROOT)),
++               not re.search(r'serena|solidlsp',source.read_text(encoding='utf-8'),re.I))
++
+     try:
+         from jsonschema import Draft202012Validator
+     except ImportError:
+@@ -51,7 +64,7 @@
+             try:Draft202012Validator.check_schema(schema);record('schema_valid:'+name,True)
+             except Exception as error:record('schema_valid:'+name,False,str(error))
+     if Draft202012Validator:
+-        cases={'flow-files.json':'flow_run','flow-symbols.json':'flow_run','prepare-create.json':'transaction_prepare','write-memory.json':'write_memory','serena-tools.json':'serena_tools'}
++        cases={'flow-files.json':'flow_run','flow-symbols.json':'flow_run','prepare-create.json':'transaction_prepare','write-memory.json':'write_memory'}
+         catalog={t['name']:t for t in tools}
+         for filename,name in cases.items():
+             try:Draft202012Validator(catalog[name]['inputSchema']).validate(json.loads((ROOT/'examples'/filename).read_text(encoding='utf-8')));record('example_contract:'+filename,True)
+--- a/scripts/fixture_selftest.py
++++ b/scripts/fixture_selftest.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Tests MOCK PEERS THEMSELVES, not Rust, Serena, LSP or DAP implementations."""
++"""Tests MOCK PEERS THEMSELVES, not Rust or real LSP/DAP implementations."""
+ from pathlib import Path
+ import argparse, json, sys, time
+ ROOT=Path(__file__).resolve().parents[1]
+@@ -21,12 +21,6 @@
+             result=peer.request('textDocument/documentSymbol',{'textDocument':{'uri':uri}})['result']
+             check('mock_lsp_symbol_reply',result[0]['name']=='foo')
+             check('mock_lsp_diagnostic_reply',peer.request('textDocument/diagnostic',{'textDocument':{'uri':uri}})['result']['items']==[])
+-        with Peer([sys.executable,fixture,'mcp']) as peer:
+-            check('mock_mcp_identifies_itself',peer.request('initialize')['result']['serverInfo']['name']=='SERENA-FIXTURE-NOT-REAL')
+-            tools=peer.request('tools/list')['result']['tools']
+-            check('mock_mcp_three_tools',len(tools)==3)
+-            body=peer.request('tools/call',{'name':'serena_repl','arguments':{'code':'not executed'}})['result']
+-            check('mock_mcp_does_not_eval',json.loads(body['content'][0]['text'])['fixture'] is True)
+         with Peer([sys.executable,fixture,'dap'],'content-length') as peer:
+             peer.send({'seq':1,'type':'request','command':'initialize','arguments':{}})
+             check('mock_dap_initialize',peer.receive(1,dap=True)['body']['supportsConfigurationDoneRequest'])
+--- a/scripts/generate_catalog.py
++++ b/scripts/generate_catalog.py
+@@ -24,8 +24,8 @@
+ def add(name,description,policy,props=None,required=None):
+     props={"project":s("Configured project ID; never an arbitrary root path"),**(props or {})}
+     TOOLS.append({"name":name,"description":description,"policy":policy,"inputSchema":obj(props,["project"]+(required or [])),
+-                  "annotations":{"readOnlyHint":policy == "read","destructiveHint":policy in ("write","execute","bridge"),"idempotentHint":policy=="read","openWorldHint":policy in ("execute","bridge")}})
+-add("status","Effective project status and native/bridge boundaries","read")
++                  "annotations":{"readOnlyHint":policy == "read","destructiveHint":policy in ("write","execute"),"idempotentHint":policy=="read","openWorldHint":policy in ("execute",)}})
++add("status","Effective standalone project status and backend boundaries","read")
+ add("list_projects","List operator-registered projects without changing a global active project","read")
+ add("get_current_config","Redacted effective host configuration","read")
+ add("initial_instructions","Return Odin's project and transaction usage instructions","read")
+@@ -74,7 +74,7 @@
+ add("search_memories","Search names/body by regex without returning every memory body","read",{"pattern":s()},["pattern"])
+ add("recover_memories","Recover an interrupted memory journal; shared across configured projects","write")
+ add("query_project","Call a read-only native tool against another configured project","read",{"target_project":s(),"tool":s(),"arguments":obj(additional=True)},["target_project","tool","arguments"])
+-add("flow_run","Run a bounded JSON dataflow; no eval, imports, arbitrary Python, shell, or bridge calls","read",{"session":s(),"steps":arr(obj({"as":s(),"tool":s(),"arguments":obj(additional=True),"select":{},"take":n(None,0,10000),"pointer":s()},["as"]),128),"return":{}},["session","steps"])
++add("flow_run","Run a bounded JSON dataflow; no eval, imports, arbitrary Python, shell, or external tool forwarding","read",{"session":s(),"steps":arr(obj({"as":s(),"tool":s(),"arguments":obj(additional=True),"select":{},"take":n(None,0,10000),"pointer":s()},["as"]),128),"return":{}},["session","steps"])
+ add("flow_vars","List retained per-project flow variable names and sizes","read",{"session":s()},["session"])
+ add("flow_clear","Clear this per-project flow session","state",{"session":s()},["session"])
+ add("execute_shell_command","Run a fixed operator-defined argv profile; no caller-supplied shell string","execute",{"profile":s()},["profile"])
+@@ -82,8 +82,6 @@
+ add("debug_request","Send an allowlisted DAP request; launch/attach return asynchronous tickets","execute",{"command":s(),"arguments":obj(additional=True)},["command","arguments"])
+ add("debug_events","Drain DAP events and completed launch tickets","execute")
+ add("debug_stop","Disconnect debuggee with termination requested and drop the adapter","execute")
+-add("serena_tools","Discover all enabled upstream Serena tools and schemas","bridge",{"refresh":b()})
+-add("serena_call","Forward any exposed Serena tool, including Python REPL and JetBrains tools; not Rust-native execution","bridge",{"name":s(),"arguments":obj(additional=True)},["name","arguments"])
+ add("result_read","Read a spilled large result by byte chunks; offsets remain UTF-8 aligned","read",{"result_id":s(),"offset":n(0,0,16777216),"max_bytes":n(16384,256,32768)},["result_id"])
+ add("audit_log","Read redacted tool audit records without input/output source contents","read",{"limit":n(50,1,1000)})
+ (ROOT/'crates/odin-engine/tools.json').write_text(json.dumps(TOOLS,ensure_ascii=False,indent=2)+'\n', encoding='utf-8')
+--- a/scripts/generate_docs.py
++++ b/scripts/generate_docs.py
+@@ -4,12 +4,12 @@
+ import csv, io, json, tomllib
+ ROOT=Path(__file__).resolve().parents[1]
+ T=json.loads((ROOT/'schemas/tools.json').read_text(encoding='utf-8'))
+-header='''# Odin 工具 API 0.1.0\n\n此表由 `schemas/tools.json` 生成；來源包含實作分派，不代表已編譯或通過測試。\n\n所有工具以明確 `project` 範圍執行；CLI 在提供 `--project` 時可注入該欄位。`read` / `state` / `write` / `execute` / `bridge` 是內部策略分類，不是 OS 隔離保證。read 工具仍可能啟動語言伺服器、寫 audit/cache。\n\n`write`：來源 edits 先回 transaction preview，需另 apply；記憶變更則直接經 journal commit。`execute`：要求相應 shell/debug 權限。`bridge`：要求明確允許外部執行，原生 journal 不涵蓋上游。\n\nLSP position 為 0-based UTF-16；檔案行數為 1-based inclusive。參數細節、範圍與 additionalProperties 規則請讀 JSON schema。此版 schema validator 實作契約需要的有限 JSON Schema 子集，非通用 JSON Schema 驗證器。\n\n| Tool | Policy | 必填參數 | 作用 |\n|---|---|---|---|\n'''
++header='''# Odin 工具 API 0.2.0 Standalone\n\n此表由 `schemas/tools.json` 生成；來源包含實作分派，不代表已編譯或通過測試。\n\n所有工具以明確 `project` 範圍執行；CLI 在提供 `--project` 時可注入該欄位。`read` / `state` / `write` / `execute` 是內部策略分類，不是 OS 隔離保證。read 工具仍可能啟動語言伺服器、寫 audit/cache。\n\n`write`：來源 edits 先回 transaction preview，需另 apply；記憶變更則直接經 journal commit。`execute`：要求相應 shell/debug 權限。本版本沒有外部工具橋接。\n\nLSP position 為 0-based UTF-16；檔案行數為 1-based inclusive。參數細節、範圍與 additionalProperties 規則請讀 JSON schema。此版 schema validator 實作契約需要的有限 JSON Schema 子集，非通用 JSON Schema 驗證器。\n\n| Tool | Policy | 必填參數 | 作用 |\n|---|---|---|---|\n'''
+ rows=[]
+ for t in T:
+  req=', '.join('`'+k+'`' for k in t['inputSchema'].get('required',[]))
+  rows.append(f"| `{t['name']}` | {t['policy']} | {req} | {t['description'].replace('|','/')} |")
+-(ROOT/'docs/API.md').write_text(header+'\n'.join(rows)+'''\n\n## 結果／錯誤\n\n成功不強制單一業務 envelope；MCP 回 content + structuredContent。業務錯誤使用 isError 與 `{error:{code,message}}`。常見 code：INVALID_ARGUMENT、PERMISSION_DENIED、CONFLICT、CAPABILITY_UNAVAILABLE、BACKEND_ERROR、RECOVERY_REQUIRED、LIMIT_EXCEEDED、UPSTREAM_TOOL_ERROR。\n\n大型結果回 result_id、bytes、SHA-256；以 result_read 分塊讀取。輸出 chunk 為 UTF-8 byte offsets，不是字數。原生限制避免把巨大完整結果直接塞給模型，但沒有實測 token 節省比例。\n\n索引與 source edits 是不同資料流；原生 edits 後 LSP 會 refresh，但 FTS5 需要明確重建快照。\n''',encoding='utf-8')
++(ROOT/'docs/API.md').write_text(header+'\n'.join(rows)+'''\n\n## 結果／錯誤\n\n成功不強制單一業務 envelope；MCP 回 content + structuredContent。業務錯誤使用 isError 與 `{error:{code,message}}`。常見 code：INVALID_ARGUMENT、PERMISSION_DENIED、CONFLICT、CAPABILITY_UNAVAILABLE、BACKEND_ERROR、RECOVERY_REQUIRED、LIMIT_EXCEEDED。\n\n大型結果回 result_id、bytes、SHA-256；以 result_read 分塊讀取。輸出 chunk 為 UTF-8 byte offsets，不是字數。原生限制避免把巨大完整結果直接塞給模型，但沒有實測 token 節省比例。\n\n索引與 source edits 是不同資料流；原生 edits 後 LSP 會 refresh，但 FTS5 需要明確重建快照。\n''',encoding='utf-8')
+ N={t['name'] for t in T}
+ serena_groups={
+ 'symbol_tools': 'find_declaration find_implementations find_referencing_symbols find_symbol get_diagnostics_for_file get_diagnostics_for_symbol get_symbols_overview insert_after_symbol insert_before_symbol rename_symbol replace_symbol_body restart_language_server safe_delete_symbol',
+@@ -43,30 +43,30 @@
+ 'rename_memory':'原生同 scope 改名及引用更新；無跨 scope move。',
+ 'list_queryable_projects':'原生 list_projects；只有 host 已配置的範圍。',
+ 'query_project':'原生只接受 nonrecursive native read tools；不啟動 Serena Project Server。',
+-'serena_repl':'原生 flow_run 是受限 JSON，不是 Python REPL；完整上游 REPL 走橋接。',
++'serena_repl':'原生 flow_run 是受限 JSON，不是 Python REPL；沒有任意 Python REPL；此差異不會以橋接補足。',
+ 'onboarding':'原生收集結構與證據；讓 Agent 決定記憶，不宣稱自動理解／測試。',
+-'serena_info':'原生文件及 initial_instructions；完整上游主題資訊走橋接。',
++'serena_info':'原生文件及 initial_instructions；提供 Odin 自己的工具說明，不提供上游主題 API。',
+ }
+ parity=[]
+ for group,names in serena_groups.items():
+  for name in names.split():
+   native=name if name in N else {'list_queryable_projects':'list_projects','serena_repl':'flow_run (not Python)','activate_project':'explicit project argument','open_dashboard':'HTTP /','remove_project':'host configuration only','serena_info':'initial_instructions + docs'}.get(name,'—')
+-  status='NATIVE_SOURCE_PARTIAL' if name in N or native!='—' else 'BRIDGE_ONLY'
+-  note=notes.get(name,'外部 Serena + 相容 JetBrains IDE/外掛；未原生重寫。' if name.startswith('jet_brains_') else '有原生對應原始碼；參數／輸出不保證與 Serena 同形。')
++  status='NATIVE_SOURCE_PARTIAL' if name in N or native!='—' else 'NOT_IMPLEMENTED'
++  note=notes.get(name,'未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。' if name.startswith('jet_brains_') else '有原生對應原始碼；參數／輸出不保證與 Serena 同形。')
+   if name in ['create_text_file','delete_lines','insert_at_line','replace_content','replace_lines','insert_after_symbol','insert_before_symbol','replace_symbol_body']:
+    note+=' 原生來源修改先 preview 再 apply。'
+   if group=='memory_tools':note+=' 原生使用 central Markdown storage。'
+-  parity.append({'serena_tool':name,'group':group,'odin_native':native,'status':status,'bridge':'YES_IF_ENABLED_UPSTREAM','verification':'NOT_RUN','notes':note})
++  parity.append({'serena_tool':name,'group':group,'odin_native':native,'status':status,'runtime_dependency':'NONE_ON_SERENA','verification':'NOT_RUN','notes':note})
+ with (ROOT/'docs/serena-parity.csv').open('w',encoding='utf-8-sig',newline='') as f:
+  w=csv.DictWriter(f,fieldnames=list(parity[0]));w.writeheader();w.writerows(parity)
+ (ROOT/'docs/serena-parity.json').write_text(json.dumps({'baseline_commit':'abb0a0f01b94bc8050086f0fb860077d17730324','rows':parity},ensure_ascii=False,indent=2)+'\n', encoding='utf-8')
+-preamble='''# Serena → Odin 功能對照\n\n基準：Serena tools catalog / v2 時期 main commit `abb0a0f01b94bc8050086f0fb860077d17730324`。本表是設計與原始碼映射，不是實測相容認證。\n\n- NATIVE_SOURCE_PARTIAL：有原生對應或刻意改變的工作流；不表示逐參數等價、已編譯或已測試。\n- BRIDGE_ONLY：沒有原生重寫，需外部 Serena。\n- YES_IF_ENABLED_UPSTREAM：橋接機制可列舉／呼叫上游已開啟的工具；實際可用性取決於上游、session、語言／IDE／授權與協議相容。\n- 所有本表真實後端驗證均為 **NOT_RUN**。\n\n| Serena tool | Odin 原生對應 | 實作分類 | 差異／依賴 |\n|---|---|---|---|\n'''
+-(ROOT/'docs/SERENA_PARITY.md').write_text(preamble+'\n'.join(f"| `{r['serena_tool']}` | `{r['odin_native']}` | {r['status']} | {r['notes']} |" for r in parity)+'''\n\n## 不只工具名稱的功能\n\n| 領域 | 原生現況 | 上游完整行為 |\n|---|---|---|\n| 40+ 語言與專用適配 | Generic LSP transport / 可配置伺服器；未驗證所有語言 | 依賴 Serena 本身 adapters、安裝與各語言環境 |\n| REPL facade `lsp / jb / ide / fs / edit / mem / cfg / ext / shell` | 同領域部分 native tools；不模擬 Python objects/facades | 透過上游實際 exposed REPL 工具，不硬編碼 facade 別名 |\n| YAML、Jinja、contexts、modes | host TOML、每 project flags / excluded_tools | 原生無完全相同設定語意；bridge 使用上游配置 |\n| 記憶 topic / ref / rename | Markdown + mem: + CAS + read-only patterns | 原生沒有上游全部 ignore / cross-scope / repo-local 行為 |\n| index | SQLite snapshot lexical + LSP 自有語意索引 | 不把兩者說成 Serena 相同的 symbol cache |\n| 多專案 | explicit scope，禁止重疊 roots | bridge 一專案一 process；上游 active_project 仍屬其內部狀態 |\n| Dashboard / logs / analytics | 唯讀專案與 metadata audit | 不含上游完整設定 UI、日誌串流與 token analytics |\n| DAP vs IDE debug | 原生 generic DAP primitives | JetBrains persistent debug REPL 仍是上游功能 |\n| stdio / Streamable HTTP | 原生 official rmcp server + loopback Bearer | bridge 只支援 stdio tools discovery/call；不是完整協議代理 |\n| 安裝／更新／clients hooks | 本地建置腳本、手動 MCP config | 沒有原生重寫 Serena setup/hook/marketplace 流程 |\n\n**整體結論：提供全上游工具的動態連接路徑，而不是聲稱全部功能已脫離 Serena / Python / IDE 以 Rust 原生完成。**\n''',encoding='utf-8')
++preamble='''# Serena → Odin 功能對照\n\n基準：Serena tools catalog / v2 時期 main commit `abb0a0f01b94bc8050086f0fb860077d17730324`。本表是設計與原始碼映射，不是實測相容認證。\n\n- NATIVE_SOURCE_PARTIAL：有原生對應或刻意改變的工作流；不表示逐參數等價、已編譯或已測試。\n- NOT_IMPLEMENTED：本版缺少相對應實作，沒有橋接補足。\n- NONE_ON_SERENA：程式不啟動、載入或呼叫 Serena；不是全部功能等價的宣告。\n- 所有本表真實後端驗證均為 **NOT_RUN**。\n\n| Serena tool | Odin 原生對應 | 實作分類 | 差異／依賴 |\n|---|---|---|---|\n'''
++(ROOT/'docs/SERENA_PARITY.md').write_text(preamble+'\n'.join(f"| `{r['serena_tool']}` | `{r['odin_native']}` | {r['status']} | {r['notes']} |" for r in parity)+'''\n\n## 不只工具名稱的功能\n\n| 領域 | 原生現況 | 尚未對齊／依賴界線 |\n|---|---|---|\n| 40+ 語言與專用適配 | Generic LSP transport / 可配置伺服器；未驗證所有語言 | 必須逐語言原生適配與驗收；不包含上游 adapters |\n| REPL facade `lsp / jb / ide / fs / edit / mem / cfg / ext / shell` | 同領域部分 native tools；不模擬 Python objects/facades | 沒有 Python / JetBrains REPL；待獨立設計，不回退上游 |\n| YAML、Jinja、contexts、modes | host TOML、每 project flags / excluded_tools | 原生無完全相同設定語意，沒有上游配置入口 |\n| 記憶 topic / ref / rename | Markdown + mem: + CAS + read-only patterns | 原生沒有上游全部 ignore / cross-scope / repo-local 行為 |\n| index | SQLite snapshot lexical + LSP 自有語意索引 | 不把兩者說成 Serena 相同的 symbol cache |\n| 多專案 | explicit scope，禁止重疊 roots | 直接按專案管理 LSP / DAP process，沒有上游 active_project |\n| Dashboard / logs / analytics | 唯讀專案與 metadata audit | 不含上游完整設定 UI、日誌串流與 token analytics |\n| DAP vs IDE debug | 原生 generic DAP primitives | 不提供 JetBrains persistent debug REPL 語法 |\n| stdio / Streamable HTTP | 原生 official rmcp server + loopback Bearer | Odin 自己提供 tools；沒有外部工具轉發 |\n| 安裝／更新／clients hooks | 本地建置腳本、手動 MCP config | 沒有原生重寫 Serena setup/hook/marketplace 流程 |\n\n**整體結論：Odin 0.2.0 不依賴 Serena；功能缺口仍存在。獨立運作與全功能等價是不同的驗收條件。**\n''',encoding='utf-8')
+ manifest=tomllib.loads((ROOT/'Cargo.toml').read_text(encoding='utf-8'))
+ deps=manifest['workspace']['dependencies']
+ text='# 依賴與建置狀態\n\n直接 dependencies 已指定精確版本。Cargo 未能在交付環境執行，故 **沒有 Cargo.lock、完整 transitive inventory、dependency audit 或 reproducible build 證據**。首次 bootstrap 會解析後產生真實 lock；審查並提交後再用 --locked。\n\n| Dependency | Manifest requirement |\n|---|---|\n'
+ for name,value in deps.items():
+  text+=f"| `{name}` | `{value if isinstance(value,str) else value.get('version','workspace')}` |\n"
+-text+='\n原生核心的語意後端不是內嵌 compiler：language server / debug adapter 是另外安裝的程式。SQLite 使用 bundled feature，建置仍需原生 C toolchain。外部 Serena / JetBrains 不隨 ZIP 散布。\n'
++text+='\n原生核心的語意後端不是內嵌 compiler：language server / debug adapter 是另外安裝的程式。SQLite 使用 bundled feature，建置仍需原生 C toolchain。Odin 不連接 Serena 或其 JetBrains 外掛；語言伺服器與除錯器有各自執行環境。\n'
+ (ROOT/'docs/DEPENDENCIES.md').write_text(text,encoding='utf-8')
+ print(f'Generated API for {len(T)} Odin tools and parity for {len(parity)} Serena tools.')
+--- a/scripts/mcp_smoke.py
++++ b/scripts/mcp_smoke.py
+@@ -24,7 +24,9 @@
+                 response=peer.request('initialize',{'protocolVersion':'2025-11-25','capabilities':{},'clientInfo':{'name':'odin-smoke','version':'0.1'}})
+                 check('initialize',response.get('result',{}).get('serverInfo',{}).get('name')=='odin')
+                 peer.notify('notifications/initialized')
+-                check('sixty_tools',len(peer.request('tools/list')['result']['tools'])==60)
++                tools=peer.request('tools/list')['result']['tools']
++                check('fifty_eight_tools',len(tools)==58)
++                check('no_upstream_bridge_tools',not any(t['name'].startswith('serena_') for t in tools))
+                 def call(name,args,expect_error=False):
+                     response=peer.request('tools/call',{'name':name,'arguments':args})
+                     if 'error' in response:raise AssertionError(response)
+@@ -46,10 +48,14 @@
+                 check('memory_content',memory['content']=='Architecture')
+                 flow=call('flow_run',{'project':'rw','session':'test','steps':[{'as':'x','tool':'list_dir','arguments':{}},{'as':'y','select':{'$ref':'x#/files'}}],'return':{'$ref':'y'}})
+                 check('flow_result','a.txt' in flow['result'])
+-                call('serena_tools',{'project':'rw'},True)
++                status_body=call('status',{'project':'rw'})
++                check('standalone_status',status_body['standalone'] and not status_body['external_tool_bridge'])
++                for removed_name in ['serena_tools','serena_call']:
++                    removed=peer.request('tools/call',{'name':removed_name,'arguments':{'project':'rw'}})
++                    check('removed_tool:'+removed_name,removed.get('error',{}).get('code')==-32601)
+         status='PASS'
+     except Exception as exc:error=str(exc)
+-    report={'scope':'REAL_ODIN_BINARY_STDIO_SMOKE','status':status,'binary':str(args.binary),'checks':results,'error':error,'real_lsp_dap_serena_tested':False,'timestamp_unix':time.time()}
++    report={'scope':'REAL_ODIN_BINARY_STDIO_SMOKE','status':status,'binary':str(args.binary),'checks':results,'error':error,'real_lsp_dap_tested':False,'timestamp_unix':time.time()}
+     args.output.parent.mkdir(parents=True,exist_ok=True);args.output.write_text(json.dumps(report,indent=2)+'\n', encoding='utf-8')
+     print(json.dumps(report));return 0 if status=='PASS' else 1
+ if __name__=='__main__':raise SystemExit(main())
+--- a/scripts/verify.ps1
++++ b/scripts/verify.ps1
+@@ -24,5 +24,5 @@
+     Invoke-Checked cargo @('build','--workspace','--release','--locked')
+     Invoke-Checked python @('scripts/mcp_smoke.py','--binary','target/release/odin.exe')
+     Invoke-Checked python @('scripts/http_smoke.py','--binary','target/release/odin.exe')
+-    Write-Host 'Local gates passed. Real Serena, IDE and additional language gates remain separate.'
++    Write-Host 'Local gates passed. Real LSP, DAP and additional language gates remain separate.'
+ } finally { Stop-Transcript | Out-Null }
+--- a/scripts/verify.sh
++++ b/scripts/verify.sh
+@@ -17,4 +17,4 @@
+ run cargo build --workspace --release --locked
+ run python3 scripts/mcp_smoke.py --binary target/release/odin
+ run python3 scripts/http_smoke.py --binary target/release/odin
+-printf '\nLocal gates passed. This does NOT prove real Serena / IDE / all-language parity.\n' | tee -a "$log"
++printf '\nLocal gates passed. This does NOT prove real LSP / DAP / all-language parity.\n' | tee -a "$log"
+--- a/tests/fixtures/protocol_peer.py
++++ b/tests/fixtures/protocol_peer.py
+@@ -1,15 +1,12 @@
+ #!/usr/bin/env python3
+-"""DETERMINISTIC PROTOCOL FIXTURE, NOT SERENA / A COMPILER / A DEBUGGER.
++"""DETERMINISTIC PROTOCOL FIXTURE, NOT A COMPILER / A DEBUGGER.
+ Used only to test framing, request dispatch, lifecycle, and timeout behavior.
+ """
+ import argparse, json, re, sys, time
+ from pathlib import Path
+-P=argparse.ArgumentParser();P.add_argument('mode',choices=['lsp','mcp','dap']);A=P.parse_args()
++P=argparse.ArgumentParser();P.add_argument('mode',choices=['lsp','dap']);A=P.parse_args()
+ DOCS={}; LAUNCHES=[]
+ def read():
+-    if A.mode=='mcp':
+-        raw=sys.stdin.buffer.readline()
+-        return json.loads(raw) if raw else None
+     length=None
+     while True:
+         line=sys.stdin.buffer.readline()
+@@ -23,8 +20,7 @@
+     return json.loads(raw)
+ def send(value):
+     data=json.dumps(value,ensure_ascii=False,separators=(',',':')).encode()
+-    if A.mode=='mcp':sys.stdout.buffer.write(data+b'\n')
+-    else:sys.stdout.buffer.write(f'Content-Length: {len(data)}\r\n\r\n'.encode()+data)
++    sys.stdout.buffer.write(f'Content-Length: {len(data)}\r\n\r\n'.encode()+data)
+     sys.stdout.buffer.flush()
+ def respond(request,result):
+     if A.mode=='dap':send({'seq':100,'type':'response','request_seq':request['seq'],'command':request['command'],'success':True,'body':result})
+@@ -49,12 +45,6 @@
+     elif method=='textDocument/rename':respond(request,{'changes':{params['textDocument']['uri']:[{'range':rng(0,3,6),'newText':params['newName']}]}})
+     elif method=='fixture/hang':time.sleep(30)
+     elif 'id' in request:send({'jsonrpc':'2.0','id':request['id'],'error':{'code':-32601,'message':'Fixture method unsupported'}})
+-def mcp(request):
+-    method=request.get('method');params=request.get('params',{})
+-    if method=='initialize':respond(request,{'protocolVersion':'2025-11-25','serverInfo':{'name':'SERENA-FIXTURE-NOT-REAL','version':'0'},'capabilities':{'tools':{}},'instructions':'This is a protocol fixture, not real Serena.'})
+-    elif method=='tools/list':respond(request,{'tools':[{'name':n,'description':'Fixture only','inputSchema':{'type':'object','properties':{},'additionalProperties':True}} for n in ['find_symbol','serena_repl','jet_brains_move']]})
+-    elif method=='tools/call':respond(request,{'content':[{'type':'text','text':json.dumps({'fixture':True,'tool':params['name'],'arguments':params.get('arguments',{})})}],'isError':False})
+-    elif 'id' in request:send({'jsonrpc':'2.0','id':request['id'],'error':{'code':-32601,'message':'Fixture method unsupported'}})
+ def dap(request):
+     cmd=request['command']
+     if cmd=='initialize':respond(request,{'supportsConfigurationDoneRequest':True});send({'seq':101,'type':'event','event':'initialized'})
+@@ -68,4 +58,4 @@
+ while True:
+     request=read()
+     if request is None:break
+-    {'lsp':lsp,'mcp':mcp,'dap':dap}[A.mode](request)
++    {'lsp':lsp,'dap':dap}[A.mode](request)

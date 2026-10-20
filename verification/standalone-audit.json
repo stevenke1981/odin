@@ -1,0 +1,19 @@
+{
+  "scope": "SOURCE_DEPENDENCY_REMOVAL_ONLY",
+  "status": "PASS",
+  "production_files_checked": 20,
+  "serena_or_solidlsp_cargo_dependency": false,
+  "serena_production_references": [],
+  "removed_paths": [
+    "crates/odin-protocol/src/bridge.rs",
+    "examples/odin.bridge.toml",
+    "examples/serena-tools.json"
+  ],
+  "absent_tools": [
+    "serena_tools",
+    "serena_call"
+  ],
+  "remaining_contracts": 58,
+  "runtime_verification": "NOT_RUN",
+  "note": "References in design comparisons, migration docs and rejection tests are not runtime dependencies."
+}

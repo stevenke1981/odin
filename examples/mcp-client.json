@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "odin": {
+      "command": "C:/Tools/Odin/odin.exe",
+      "args": [
+        "--config",
+        "C:/Tools/Odin/odin.toml",
+        "serve",
+        "--transport",
+        "stdio"
+      ]
+    }
+  }
+}

@@ -1,0 +1,39 @@
+use odin_core::{Fault,Result,config::CommandConfig};
+use serde_json::{Value,json};
+use std::{path::Path,process::Stdio,time::Duration};
+use tokio::{io::{AsyncRead,AsyncReadExt},process::Command,task::JoinHandle};
+
+pub async fn run(config:&CommandConfig,root:&Path,max_output:usize)->Result<Value>{
+    let mut command=Command::new(&config.program);
+    command.args(&config.args).current_dir(root).stdin(Stdio::null()).stdout(Stdio::piped()).stderr(Stdio::piped()).kill_on_drop(true).env_clear();
+    // Explicit small environment, not a full inherited process-secret bundle.
+    for key in ["PATH","HOME","USERPROFILE","SYSTEMROOT","SystemRoot","WINDIR","TEMP","TMP","PATHEXT","RUSTUP_HOME","CARGO_HOME","JAVA_HOME","DOTNET_ROOT"]{
+        if let Some(value)=std::env::var_os(key){command.env(key,value);}
+    }
+    let mut child=command.spawn()?;
+    let stdout=child.stdout.take().ok_or_else(||Fault::new("PROCESS_ERROR","Missing stdout"))?;
+    let stderr=child.stderr.take().ok_or_else(||Fault::new("PROCESS_ERROR","Missing stderr"))?;
+    let out=tokio::spawn(capture(stdout,max_output/2));let err=tokio::spawn(capture(stderr,max_output/2));
+    let(status,timed_out)=match tokio::time::timeout(Duration::from_secs(config.timeout_secs),child.wait()).await{
+        Ok(status)=>(Some(status?),false),
+        Err(_)=>{let _=child.kill().await;(None,true)},
+    };
+    let stdout=collect(out).await?;let stderr=collect(err).await?;
+    Ok(json!({"program":config.program,"args":config.args,"exit_code":status.as_ref().and_then(|s|s.code()),
+        "success":status.as_ref().is_some_and(|s|s.success())&&!timed_out,
+        "timed_out":timed_out,"stdout":stdout.0,"stderr":stderr.0,"output_truncated":stdout.1||stderr.1,
+        "descendant_process_isolation":false,"sandbox":false}))
+}
+async fn capture<R:AsyncRead+Unpin>(mut reader:R,cap:usize)->std::io::Result<(String,bool)>{
+    let mut collected=Vec::new();let mut buffer=[0u8;8192];let mut truncated=false;
+    loop{let n=reader.read(&mut buffer).await?;if n==0{break;}let keep=n.min(cap.saturating_sub(collected.len()));
+        collected.extend_from_slice(&buffer[..keep]);if keep<n{truncated=true;}}
+    Ok((String::from_utf8_lossy(&collected).into_owned(),truncated))
+}
+async fn collect(mut task:JoinHandle<std::io::Result<(String,bool)>>)->Result<(String,bool)>{
+    match tokio::time::timeout(Duration::from_secs(2),&mut task).await{
+        Ok(Ok(result))=>Ok(result?),
+        Ok(Err(error))=>Err(Fault::new("PROCESS_ERROR",error.to_string())),
+        Err(_)=>{task.abort();Ok(("Output pipe remained open after parent exit; descendant processes may still exist".into(),true))},
+    }
+}

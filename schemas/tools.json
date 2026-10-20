@@ -1,0 +1,2006 @@
+[
+  {
+    "name": "status",
+    "description": "Effective standalone project status and backend boundaries",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "list_projects",
+    "description": "List operator-registered projects without changing a global active project",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "get_current_config",
+    "description": "Redacted effective host configuration",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "initial_instructions",
+    "description": "Return Odin's project and transaction usage instructions",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "onboarding",
+    "description": "Inspect project files and return evidence and memory guidance; never invent build results",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "list_dir",
+    "description": "List project files respecting ignore rules and path policy",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "recursive": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "find_file",
+    "description": "Find paths using a glob, respecting ignore rules",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "file_mask": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "file_mask"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "read_file",
+    "description": "Read bounded UTF-8 text; start/end lines are 1-based and inclusive",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "start_line": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000,
+          "default": 1
+        },
+        "end_line": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "search_for_pattern",
+    "description": "Live regex search; returned line numbers are 1-based",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "pattern": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "pattern"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "index_build",
+    "description": "Rebuild a local SQLite FTS5 lexical snapshot (not vector semantic search)",
+    "policy": "state",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "index_query",
+    "description": "Query FTS5; stale file hits are omitted; new files require reindexing",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "query": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 200,
+          "default": 20
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "query"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "get_symbols_overview",
+    "description": "Hierarchical file symbols from a configured LSP",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "find_symbol",
+    "description": "Find matching LSP name paths; never report regex results as semantic symbols",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "query": {
+          "type": "string"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "include_body": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "query"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "find_referencing_symbols",
+    "description": "Find LSP references and enclosing project symbols",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "name_path": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "name_path"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "find_implementations",
+    "description": "Find implementations using server capability negotiation",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "name_path": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "name_path"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "find_declaration",
+    "description": "Find definition/declaration at a zero-based UTF-16 position",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object",
+          "properties": {
+            "line": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            "character": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "line",
+            "character"
+          ]
+        },
+        "declaration_only": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "position"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "get_type_hierarchy",
+    "description": "Query LSP type hierarchy if the server advertises support",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "name_path": {
+          "type": "string"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "super",
+            "sub"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "name_path",
+        "direction"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "get_diagnostics_for_file",
+    "description": "Get pull/push diagnostics; pending or unversioned is not a clean-build proof",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "get_diagnostics_for_symbol",
+    "description": "Filter file diagnostics to a symbol range",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "name_path": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "name_path"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "code_actions",
+    "description": "List LSP code actions only; never auto-execute a server command",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "range": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "object",
+              "properties": {
+                "line": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                },
+                "character": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "line",
+                "character"
+              ]
+            },
+            "end": {
+              "type": "object",
+              "properties": {
+                "line": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                },
+                "character": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "line",
+                "character"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "start",
+            "end"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "range"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "restart_language_server",
+    "description": "Drop project LSP processes; lazily start clean instances on the next query",
+    "policy": "state",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "transaction_prepare",
+    "description": "Stage full-file changes guarded by expected SHA-256; null means create-only",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "changes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "expected_sha256": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "content": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "expected_sha256",
+              "content"
+            ]
+          },
+          "maxItems": 256
+        },
+        "request_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "changes"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "transaction_preview",
+    "description": "Read a durable transaction preview",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "transaction_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "transaction_id"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "transaction_apply",
+    "description": "Apply a staged transaction with revalidation and recovery journal",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "transaction_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "transaction_id"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "transaction_rollback",
+    "description": "Undo a committed transaction using a new conflict-checked transaction",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "transaction_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "transaction_id"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "transaction_list",
+    "description": "List journal phases",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "transaction_recover",
+    "description": "Restore interrupted transactions without overwriting external modifications",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "create_text_file",
+    "description": "Prepare a file create/overwrite; explicit transaction_apply is required",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "request_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "content",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "replace_content",
+    "description": "Prepare guarded literal/regex replacement, preserving full-file hash precondition",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "needle": {
+          "type": "string"
+        },
+        "replacement": {
+          "type": "string"
+        },
+        "regex": {
+          "type": "boolean",
+          "default": false
+        },
+        "expected_sha256": {
+          "type": "string"
+        },
+        "expected_matches": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000,
+          "default": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "needle",
+        "replacement",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "replace_in_files",
+    "description": "Prepare a single guarded cross-file replacement journal; expected_total_matches is mandatory",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "relative_path": {
+                "type": "string"
+              },
+              "expected_sha256": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "relative_path",
+              "expected_sha256"
+            ]
+          },
+          "maxItems": 256
+        },
+        "needle": {
+          "type": "string"
+        },
+        "replacement": {
+          "type": "string"
+        },
+        "regex": {
+          "type": "boolean",
+          "default": false
+        },
+        "expected_total_matches": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "files",
+        "needle",
+        "replacement",
+        "expected_total_matches"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "replace_lines",
+    "description": "Prepare line edit; line indices are 1-based and end is inclusive",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "start_line": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        },
+        "expected_sha256": {
+          "type": "string"
+        },
+        "end_line": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "start_line",
+        "expected_sha256",
+        "end_line",
+        "content"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "delete_lines",
+    "description": "Prepare line edit; line indices are 1-based and end is inclusive",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "start_line": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        },
+        "expected_sha256": {
+          "type": "string"
+        },
+        "end_line": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "start_line",
+        "expected_sha256",
+        "end_line"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "insert_at_line",
+    "description": "Prepare line edit; line indices are 1-based and end is inclusive",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "start_line": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        },
+        "expected_sha256": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "start_line",
+        "expected_sha256",
+        "content"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "replace_symbol_body",
+    "description": "Prepare a symbol-bound edit using UTF-16 ranges and an exact content hash",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "name_path": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "name_path",
+        "body",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "insert_before_symbol",
+    "description": "Prepare a symbol-bound edit using UTF-16 ranges and an exact content hash",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "name_path": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "name_path",
+        "body",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "insert_after_symbol",
+    "description": "Prepare a symbol-bound edit using UTF-16 ranges and an exact content hash",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "name_path": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "name_path",
+        "body",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "rename_symbol",
+    "description": "Ask LSP for a workspace rename, validate all text edits, return a transaction preview",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "name_path": {
+          "type": "string"
+        },
+        "new_name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "name_path",
+        "new_name"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "safe_delete_symbol",
+    "description": "Prepare deletion only when LSP reports no static references; dynamic uses remain outside the guarantee",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "name_path": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "name_path",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "list_memories",
+    "description": "List Markdown memory names without loading content",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "read_memory",
+    "description": "Read Markdown memory and its current hash",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "name"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "write_memory",
+    "description": "Write a Markdown memory with compare-and-swap; null hash is create-only",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "name": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "name",
+        "content",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "edit_memory",
+    "description": "Guarded literal replacement in an existing Markdown memory",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "name": {
+          "type": "string"
+        },
+        "needle": {
+          "type": "string"
+        },
+        "replacement": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": "string"
+        },
+        "expected_matches": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000,
+          "default": 1
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "name",
+        "needle",
+        "replacement",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "delete_memory",
+    "description": "Delete a Markdown memory guarded by hash; use check_memories to inspect dangling references",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "name": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "name",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "rename_memory",
+    "description": "Rename Markdown and exact mem: references with a shared recovery journal",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "old_name": {
+          "type": "string"
+        },
+        "new_name": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "old_name",
+        "new_name",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "check_memories",
+    "description": "Validate explicit mem: reference integrity",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "search_memories",
+    "description": "Search names/body by regex without returning every memory body",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "pattern": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "pattern"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "recover_memories",
+    "description": "Recover an interrupted memory journal; shared across configured projects",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "query_project",
+    "description": "Call a read-only native tool against another configured project",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "target_project": {
+          "type": "string"
+        },
+        "tool": {
+          "type": "string"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "target_project",
+        "tool",
+        "arguments"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "flow_run",
+    "description": "Run a bounded JSON dataflow; no eval, imports, arbitrary Python, shell, or external tool forwarding",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "session": {
+          "type": "string"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "as": {
+                "type": "string"
+              },
+              "tool": {
+                "type": "string"
+              },
+              "arguments": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              "select": {},
+              "take": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10000
+              },
+              "pointer": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "as"
+            ]
+          },
+          "maxItems": 128
+        },
+        "return": {}
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "session",
+        "steps"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "flow_vars",
+    "description": "List retained per-project flow variable names and sizes",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "session": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "session"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "flow_clear",
+    "description": "Clear this per-project flow session",
+    "policy": "state",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "session": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "session"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": false,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "execute_shell_command",
+    "description": "Run a fixed operator-defined argv profile; no caller-supplied shell string",
+    "policy": "execute",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "profile": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "profile"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": true
+    }
+  },
+  {
+    "name": "debug_start",
+    "description": "Start a configured DAP adapter; requires allow_debug",
+    "policy": "execute",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "profile": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "profile"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": true
+    }
+  },
+  {
+    "name": "debug_request",
+    "description": "Send an allowlisted DAP request; launch/attach return asynchronous tickets",
+    "policy": "execute",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "command": {
+          "type": "string"
+        },
+        "arguments": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "command",
+        "arguments"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": true
+    }
+  },
+  {
+    "name": "debug_events",
+    "description": "Drain DAP events and completed launch tickets",
+    "policy": "execute",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": true
+    }
+  },
+  {
+    "name": "debug_stop",
+    "description": "Disconnect debuggee with termination requested and drop the adapter",
+    "policy": "execute",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": true
+    }
+  },
+  {
+    "name": "result_read",
+    "description": "Read a spilled large result by byte chunks; offsets remain UTF-8 aligned",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "result_id": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16777216,
+          "default": 0
+        },
+        "max_bytes": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 32768,
+          "default": 16384
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "result_id"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "audit_log",
+    "description": "Read redacted tool audit records without input/output source contents",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000,
+          "default": 50
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  }
+]

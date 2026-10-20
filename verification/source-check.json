@@ -1,0 +1,1882 @@
+{
+  "scope": "ARTIFACT_AND_CONTRACT_STATIC_CHECKS_ONLY",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "utf8:rust-toolchain.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:README.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:AGENTS.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:odin.example.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:CHANGELOG.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:THIRD_PARTY_NOTICES.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:DELIVERY.zh-TW.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification/README.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification/build-environment.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification/lexical-check.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification/http-smoke-status.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification/fixture-selftest.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification/delivery-status.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification/mcp-smoke-status.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification/change-inventory.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification/source-check.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification/standalone-audit.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification/generator-regression.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification/rust-syntax-check.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:examples/flow-symbols.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:examples/flow-files.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:examples/mcp-client.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:examples/prepare-create.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:examples/write-memory.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:examples/odin.native.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/KNOWN_LIMITATIONS.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/serena-parity.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/SOURCES.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/STANDALONE.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/USAGE.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/SERENA_COVERAGE_PLAN.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/ROADMAP.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/FEATURE_SPEC.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/SERENA_PARITY.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/API.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/PUBLISH_GITHUB.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/RELEASE_GATES.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/DEPENDENCIES.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/ARCHITECTURE.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/IMPLEMENTATION_BACKLOG.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/SECURITY.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:dashboard/index.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:tests/protocol_harness.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:scripts/check_requirements.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:scripts/verify.ps1",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:scripts/bootstrap.ps1",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:scripts/fixture_selftest.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:scripts/check_source.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:scripts/mcp_smoke.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:scripts/check_rust_structure.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:scripts/publish_public.sh",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:scripts/verify.sh",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:scripts/verify_manifest.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:scripts/http_smoke.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:scripts/bootstrap.sh",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:scripts/generate_docs.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:scripts/publish_public.ps1",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:scripts/generate_catalog.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:schemas/tools.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:requirements/features.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:requirements/serena_coverage.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:tests/fixtures/protocol_peer.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/specs/LANGUAGE_DEBUG_INSPECTIONS.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/specs/OPERATIONS_RELEASE.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/specs/CORE_PROTOCOL.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs/specs/REFACTOR_TRANSACTION.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:examples/rust-fixture/Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:examples/rust-fixture/src/lib.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-engine/tools.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-engine/Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin/Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-core/Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-protocol/Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-protocol/src/dap.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-protocol/src/text.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-protocol/src/rpc.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-protocol/src/lib.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-protocol/src/lsp.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-protocol/tests/fixture_protocols.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-core/src/memory.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-core/src/error.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-core/src/search.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-core/src/lib.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-core/src/config.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-core/src/store.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-core/src/paths.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-core/src/transaction.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin/src/http.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin/src/main.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin/src/mcp.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-engine/src/lib.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-engine/src/shell.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-engine/src/flow.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-engine/src/schema.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates/odin-engine/tests/invariants.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:.github/workflows/manual-local.yml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:.github/ISSUE_TEMPLATE/odin_feature.yml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "toml:rust-toolchain.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "toml:odin.example.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "toml:Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "toml:examples/odin.native.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "toml:examples/rust-fixture/Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "toml:crates/odin-engine/Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "toml:crates/odin/Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "toml:crates/odin-core/Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "toml:crates/odin-protocol/Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "json:examples/flow-symbols.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "json:examples/flow-files.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "json:examples/mcp-client.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "json:examples/prepare-create.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "json:examples/write-memory.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "json:docs/serena-parity.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "json:schemas/tools.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "json:requirements/features.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "json:requirements/serena_coverage.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "json:crates/odin-engine/tools.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:tests/protocol_harness.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:scripts/check_requirements.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:scripts/fixture_selftest.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:scripts/check_source.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:scripts/mcp_smoke.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:scripts/check_rust_structure.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:scripts/verify_manifest.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:scripts/http_smoke.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:scripts/generate_docs.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:scripts/generate_catalog.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:tests/fixtures/protocol_peer.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "workspace_member:crates/odin-core",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "workspace_member:crates/odin-protocol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "path_dependency:crates/odin-protocol:odin-core",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "workspace_member:crates/odin-engine",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "path_dependency:crates/odin-engine:odin-core",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "path_dependency:crates/odin-engine:odin-protocol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "workspace_member:crates/odin",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "path_dependency:crates/odin:odin-core",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "path_dependency:crates/odin:odin-engine",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "catalog_mirror",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "unique_58_contracts",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_bridge_tools",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_bridge_policy",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_bridge_module",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_bridge_examples",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-engine/src/lib.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-engine/src/shell.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-engine/src/flow.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-engine/src/schema.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin/src/http.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin/src/main.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin/src/mcp.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-core/src/memory.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-core/src/error.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-core/src/search.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-core/src/lib.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-core/src/config.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-core/src/store.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-core/src/paths.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-core/src/transaction.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-protocol/src/dap.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-protocol/src/text.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-protocol/src/rpc.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-protocol/src/lib.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates/odin-protocol/src/lsp.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_upstream_cargo_dependency:crates/odin-engine/Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_upstream_cargo_dependency:crates/odin/Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_upstream_cargo_dependency:crates/odin-core/Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_upstream_cargo_dependency:crates/odin-protocol/Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:status",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:status",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:status",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:list_projects",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:list_projects",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:list_projects",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:get_current_config",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:get_current_config",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:get_current_config",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:initial_instructions",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:initial_instructions",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:initial_instructions",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:onboarding",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:onboarding",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:onboarding",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:list_dir",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:list_dir",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:list_dir",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:find_file",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:find_file",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:find_file",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:read_file",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:read_file",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:read_file",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:search_for_pattern",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:search_for_pattern",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:search_for_pattern",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:index_build",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:index_build",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:index_build",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:index_query",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:index_query",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:index_query",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:get_symbols_overview",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:get_symbols_overview",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:get_symbols_overview",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:find_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:find_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:find_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:find_referencing_symbols",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:find_referencing_symbols",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:find_referencing_symbols",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:find_implementations",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:find_implementations",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:find_implementations",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:find_declaration",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:find_declaration",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:find_declaration",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:get_type_hierarchy",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:get_type_hierarchy",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:get_type_hierarchy",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:get_diagnostics_for_file",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:get_diagnostics_for_file",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:get_diagnostics_for_file",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:get_diagnostics_for_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:get_diagnostics_for_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:get_diagnostics_for_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:code_actions",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:code_actions",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:code_actions",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:restart_language_server",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:restart_language_server",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:restart_language_server",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:transaction_prepare",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:transaction_prepare",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:transaction_prepare",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:transaction_preview",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:transaction_preview",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:transaction_preview",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:transaction_apply",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:transaction_apply",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:transaction_apply",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:transaction_rollback",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:transaction_rollback",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:transaction_rollback",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:transaction_list",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:transaction_list",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:transaction_list",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:transaction_recover",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:transaction_recover",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:transaction_recover",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:create_text_file",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:create_text_file",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:create_text_file",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:replace_content",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:replace_content",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:replace_content",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:replace_in_files",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:replace_in_files",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:replace_in_files",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:replace_lines",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:replace_lines",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:replace_lines",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:delete_lines",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:delete_lines",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:delete_lines",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:insert_at_line",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:insert_at_line",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:insert_at_line",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:replace_symbol_body",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:replace_symbol_body",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:replace_symbol_body",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:insert_before_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:insert_before_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:insert_before_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:insert_after_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:insert_after_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:insert_after_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:rename_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:rename_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:rename_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:safe_delete_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:safe_delete_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:safe_delete_symbol",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:list_memories",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:list_memories",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:list_memories",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:read_memory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:read_memory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:read_memory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:write_memory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:write_memory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:write_memory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:edit_memory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:edit_memory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:edit_memory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:delete_memory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:delete_memory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:delete_memory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:rename_memory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:rename_memory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:rename_memory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:check_memories",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:check_memories",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:check_memories",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:search_memories",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:search_memories",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:search_memories",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:recover_memories",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:recover_memories",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:recover_memories",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:query_project",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:query_project",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:query_project",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:flow_run",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:flow_run",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:flow_run",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:flow_vars",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:flow_vars",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:flow_vars",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:flow_clear",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:flow_clear",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:flow_clear",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:execute_shell_command",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:execute_shell_command",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:execute_shell_command",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:debug_start",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:debug_start",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:debug_start",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:debug_request",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:debug_request",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:debug_request",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:debug_events",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:debug_events",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:debug_events",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:debug_stop",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:debug_stop",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:debug_stop",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:result_read",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:result_read",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:result_read",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:audit_log",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:audit_log",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:audit_log",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "example_contract:flow-files.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "example_contract:flow-symbols.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "example_contract:prepare-create.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "example_contract:write-memory.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-protocol/src/dap.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-protocol/src/text.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-protocol/src/rpc.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-protocol/src/lib.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-protocol/src/lsp.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-protocol/tests/fixture_protocols.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-core/src/memory.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-core/src/error.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-core/src/search.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-core/src/lib.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-core/src/config.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-core/src/store.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-core/src/paths.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-core/src/transaction.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin/src/http.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "included_file:crates/odin/src/http.rs:../../../dashboard/index.html",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin/src/main.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin/src/mcp.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-engine/src/lib.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "included_file:crates/odin-engine/src/lib.rs:../tools.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-engine/src/shell.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-engine/src/flow.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-engine/src/schema.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates/odin-engine/tests/invariants.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dashboard_no_remote_scripts",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dashboard_no_localstorage",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dashboard_js_syntax:0",
+      "status": "PASS",
+      "detail": ""
+    }
+  ],
+  "rust_files": 22,
+  "rust_lines": 2395,
+  "rust_test_declarations": 60,
+  "rust_tests_executed": 0,
+  "rust_compilation": "NOT_RUN",
+  "compiler_presence": {
+    "rustc": null,
+    "cargo": null,
+    "rustfmt": null
+  },
+  "not_proven": [
+    "Rust syntax/types/linking",
+    "real backend compatibility",
+    "security correctness",
+    "runtime performance"
+  ]
+}

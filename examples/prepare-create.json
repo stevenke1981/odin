@@ -1,0 +1,11 @@
+{
+  "project": "demo",
+  "request_id": "example-add-notes-v1",
+  "changes": [
+    {
+      "path": "notes.md",
+      "expected_sha256": null,
+      "content": "# Odin acceptance\nThis file is created only after transaction_apply.\n"
+    }
+  ]
+}

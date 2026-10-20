@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "scope": "GENERATED_SOURCE_IDEMPOTENCE",
+  "files": [
+    "schemas/tools.json",
+    "crates/odin-engine/tools.json",
+    "docs/API.md",
+    "docs/SERENA_PARITY.md",
+    "docs/serena-parity.json",
+    "docs/serena-parity.csv",
+    "docs/DEPENDENCIES.md"
+  ],
+  "before": {
+    "schemas/tools.json": "27bec767063cbdf761c331e63449aa9fbaeadd729dccb0affa1019034e7a6c84",
+    "crates/odin-engine/tools.json": "27bec767063cbdf761c331e63449aa9fbaeadd729dccb0affa1019034e7a6c84",
+    "docs/API.md": "67343f2093a629d6bde8ed3aaff5da5c5fb866345153fb29352ca219309b3c65",
+    "docs/SERENA_PARITY.md": "dc4f2f928bc9fba34f39bd84a4d3eb9d0c1b559f49be182de0a37c56ea2f1190",
+    "docs/serena-parity.json": "cc2b3e0e528d181774fa355d84ef5776248535db4ca60fb012ac7b2c0caee793",
+    "docs/serena-parity.csv": "be8d9c95aeb0593ab99410952c47fec2193e3ab587d5c76ff44ea043c972c217",
+    "docs/DEPENDENCIES.md": "2bb3ae3bb74f950fa32c37e84fa4c231efb1a5a0126487d9f1013e0a953d0cf4"
+  },
+  "after": {
+    "schemas/tools.json": "27bec767063cbdf761c331e63449aa9fbaeadd729dccb0affa1019034e7a6c84",
+    "crates/odin-engine/tools.json": "27bec767063cbdf761c331e63449aa9fbaeadd729dccb0affa1019034e7a6c84",
+    "docs/API.md": "67343f2093a629d6bde8ed3aaff5da5c5fb866345153fb29352ca219309b3c65",
+    "docs/SERENA_PARITY.md": "dc4f2f928bc9fba34f39bd84a4d3eb9d0c1b559f49be182de0a37c56ea2f1190",
+    "docs/serena-parity.json": "cc2b3e0e528d181774fa355d84ef5776248535db4ca60fb012ac7b2c0caee793",
+    "docs/serena-parity.csv": "be8d9c95aeb0593ab99410952c47fec2193e3ab587d5c76ff44ea043c972c217",
+    "docs/DEPENDENCIES.md": "2bb3ae3bb74f950fa32c37e84fa4c231efb1a5a0126487d9f1013e0a953d0cf4"
+  }
+}

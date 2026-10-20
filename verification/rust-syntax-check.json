@@ -1,0 +1,5 @@
+{
+  "status": "NOT_RUN",
+  "scope": "RUST_PARSER",
+  "reason": "No Rust parser/toolchain installed; optional parser package could not be fetched. lexical-check.json is not syntactic/type validation."
+}

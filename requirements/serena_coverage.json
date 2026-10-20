@@ -1,0 +1,607 @@
+{
+  "baseline_commit": "abb0a0f01b94bc8050086f0fb860077d17730324",
+  "reference_purpose": "Feature-comparison checklist only; runtime never depends on Serena",
+  "rows": [
+    {
+      "serena_reference": "find_declaration",
+      "existing_odin": "find_declaration",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-007",
+        "ODIN-008"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "find_implementations",
+      "existing_odin": "find_implementations",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-007",
+        "ODIN-008"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "find_referencing_symbols",
+      "existing_odin": "find_referencing_symbols",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-008"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "find_symbol",
+      "existing_odin": "find_symbol",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-008"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "get_diagnostics_for_file",
+      "existing_odin": "get_diagnostics_for_file",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-017"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "get_diagnostics_for_symbol",
+      "existing_odin": "get_diagnostics_for_symbol",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-017"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "get_symbols_overview",
+      "existing_odin": "get_symbols_overview",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-008"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "insert_after_symbol",
+      "existing_odin": "insert_after_symbol",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-006",
+        "ODIN-038"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "insert_before_symbol",
+      "existing_odin": "insert_before_symbol",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-006",
+        "ODIN-038"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "rename_symbol",
+      "existing_odin": "rename_symbol",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-009",
+        "ODIN-006"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "replace_symbol_body",
+      "existing_odin": "replace_symbol_body",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-006",
+        "ODIN-038"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "restart_language_server",
+      "existing_odin": "restart_language_server",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-007"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "safe_delete_symbol",
+      "existing_odin": "safe_delete_symbol",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-016"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "jet_brains_debug",
+      "existing_odin": "—",
+      "status": "NOT_IMPLEMENTED",
+      "odin_spec_ids": [
+        "ODIN-013",
+        "ODIN-036"
+      ],
+      "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "jet_brains_find_declaration",
+      "existing_odin": "—",
+      "status": "NOT_IMPLEMENTED",
+      "odin_spec_ids": [
+        "ODIN-008"
+      ],
+      "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "jet_brains_find_implementations",
+      "existing_odin": "—",
+      "status": "NOT_IMPLEMENTED",
+      "odin_spec_ids": [
+        "ODIN-008"
+      ],
+      "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "jet_brains_find_referencing_symbols",
+      "existing_odin": "—",
+      "status": "NOT_IMPLEMENTED",
+      "odin_spec_ids": [
+        "ODIN-008"
+      ],
+      "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "jet_brains_find_symbol",
+      "existing_odin": "—",
+      "status": "NOT_IMPLEMENTED",
+      "odin_spec_ids": [
+        "ODIN-008"
+      ],
+      "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "jet_brains_get_symbols_overview",
+      "existing_odin": "—",
+      "status": "NOT_IMPLEMENTED",
+      "odin_spec_ids": [
+        "ODIN-008"
+      ],
+      "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "jet_brains_inline_symbol",
+      "existing_odin": "—",
+      "status": "NOT_IMPLEMENTED",
+      "odin_spec_ids": [
+        "ODIN-015"
+      ],
+      "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "jet_brains_list_inspections",
+      "existing_odin": "—",
+      "status": "NOT_IMPLEMENTED",
+      "odin_spec_ids": [
+        "ODIN-017",
+        "ODIN-035"
+      ],
+      "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "jet_brains_move",
+      "existing_odin": "—",
+      "status": "NOT_IMPLEMENTED",
+      "odin_spec_ids": [
+        "ODIN-014"
+      ],
+      "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "jet_brains_rename",
+      "existing_odin": "—",
+      "status": "NOT_IMPLEMENTED",
+      "odin_spec_ids": [
+        "ODIN-009"
+      ],
+      "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "jet_brains_run_inspections",
+      "existing_odin": "—",
+      "status": "NOT_IMPLEMENTED",
+      "odin_spec_ids": [
+        "ODIN-017",
+        "ODIN-035"
+      ],
+      "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "jet_brains_safe_delete",
+      "existing_odin": "—",
+      "status": "NOT_IMPLEMENTED",
+      "odin_spec_ids": [
+        "ODIN-016"
+      ],
+      "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "jet_brains_type_hierarchy",
+      "existing_odin": "—",
+      "status": "NOT_IMPLEMENTED",
+      "odin_spec_ids": [
+        "ODIN-018"
+      ],
+      "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "execute_shell_command",
+      "existing_odin": "execute_shell_command",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-012"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "activate_project",
+      "existing_odin": "explicit project argument",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-004",
+        "ODIN-023"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "get_current_config",
+      "existing_odin": "get_current_config",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-024"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "open_dashboard",
+      "existing_odin": "HTTP /",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-025"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "remove_project",
+      "existing_odin": "host configuration only",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-004",
+        "ODIN-024"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "create_text_file",
+      "existing_odin": "create_text_file",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-005",
+        "ODIN-006"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "delete_lines",
+      "existing_odin": "delete_lines",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-006",
+        "ODIN-038"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "find_file",
+      "existing_odin": "find_file",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-005"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "insert_at_line",
+      "existing_odin": "insert_at_line",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-006"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "list_dir",
+      "existing_odin": "list_dir",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-005"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "read_file",
+      "existing_odin": "read_file",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-005"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "replace_content",
+      "existing_odin": "replace_content",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-006",
+        "ODIN-038"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "replace_in_files",
+      "existing_odin": "replace_in_files",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-038"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "replace_lines",
+      "existing_odin": "replace_lines",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-006",
+        "ODIN-038"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "search_for_pattern",
+      "existing_odin": "search_for_pattern",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-021"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "delete_memory",
+      "existing_odin": "delete_memory",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-020"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "edit_memory",
+      "existing_odin": "edit_memory",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-020"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "list_memories",
+      "existing_odin": "list_memories",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-020"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "read_memory",
+      "existing_odin": "read_memory",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-020"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "rename_memory",
+      "existing_odin": "rename_memory",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-020",
+        "ODIN-037"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "write_memory",
+      "existing_odin": "write_memory",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-020"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "list_queryable_projects",
+      "existing_odin": "list_projects",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-004",
+        "ODIN-018"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "query_project",
+      "existing_odin": "query_project",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-018",
+        "ODIN-004"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "serena_repl",
+      "existing_odin": "flow_run (not Python)",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-022"
+      ],
+      "target_strategy": "ODIN_NATIVE_REPLACEMENT_NOT_UPSTREAM_PLUGIN",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "initial_instructions",
+      "existing_odin": "initial_instructions",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-023"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "onboarding",
+      "existing_odin": "onboarding",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-023"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    },
+    {
+      "serena_reference": "serena_info",
+      "existing_odin": "initial_instructions + docs",
+      "status": "NATIVE_SOURCE_PARTIAL",
+      "odin_spec_ids": [
+        "ODIN-023"
+      ],
+      "target_strategy": "NATIVE_EQUIVALENT_TARGET",
+      "done": false,
+      "verification": "NOT_RUN"
+    }
+  ]
+}

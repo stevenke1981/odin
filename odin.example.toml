@@ -1,0 +1,27 @@
+# Odin 0.2.0 Standalone — host-owned configuration; do not let an untrusted repo replace it.
+state_dir = '.odin/state'
+allow_global_memory_write = false
+memory_read_only_patterns = ['^global/policy$']
+
+[projects.workspace]
+root = '.'
+allow_write = false
+allow_shell = false
+allow_debug = false
+excluded_tools = []
+
+[[projects.workspace.languages]]
+id = 'rust'
+extensions = ['rs']
+program = 'rust-analyzer'
+args = []
+
+[projects.workspace.commands.test]
+program = 'cargo'
+args = ['test', '--workspace']
+timeout_secs = 120
+
+[projects.workspace.commands.check]
+program = 'cargo'
+args = ['check', '--workspace']
+timeout_secs = 120

@@ -1,0 +1,5 @@
+{
+  "status": "NOT_RUN",
+  "scope": "REAL_ODIN_BINARY_STDIO",
+  "reason": "No compiled Odin binary; updated smoke tests are source only."
+}

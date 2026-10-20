@@ -1,0 +1,9 @@
+/target/
+/state/
+/.odin/
+/odin.local.toml
+*.log
+__pycache__/
+/dist/
+
+*.local.json

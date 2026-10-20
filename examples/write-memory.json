@@ -1,0 +1,6 @@
+{
+  "project": "demo",
+  "name": "core",
+  "content": "# Fixture architecture\nRead src/lib.rs; use cargo test after editing. No test result is implied by this note.\n",
+  "expected_sha256": null
+}

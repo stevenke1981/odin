@@ -1,0 +1,20 @@
+{
+  "scope": "CURRENT_DELIVERY_ENVIRONMENT",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.41",
+  "tools": {
+    "rustc": null,
+    "cargo": null,
+    "rustfmt": null,
+    "node": "/opt/nvm/versions/node/v22.16.0/bin/node",
+    "python": "/opt/pyvenv/bin/python",
+    "bash": "/usr/bin/bash"
+  },
+  "rust_build": "NOT_RUN",
+  "cargo_lock": "NOT_GENERATED",
+  "rust_tests": "NOT_RUN",
+  "rust_parser_install": {
+    "status": "FAILED",
+    "reason": "tree-sitter package install failed because container package registry DNS resolution was unavailable"
+  },
+  "rust_type_check": "NOT_RUN"
+}

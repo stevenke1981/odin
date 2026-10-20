@@ -1,0 +1,179 @@
+{
+  "baseline_zip_sha256": "30a653c2b299dac6d81c8a0be35b8e5e810a7d20a17b0d26be7c52ca1629a489",
+  "version_from": "0.1.0",
+  "version_to": "0.2.0",
+  "changes": [
+    {
+      "path": "AGENTS.md",
+      "change": "modified"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "change": "modified"
+    },
+    {
+      "path": "Cargo.toml",
+      "change": "modified"
+    },
+    {
+      "path": "DELIVERY.zh-TW.md",
+      "change": "modified"
+    },
+    {
+      "path": "README.md",
+      "change": "modified"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "change": "modified"
+    },
+    {
+      "path": "crates/odin-core/src/config.rs",
+      "change": "modified"
+    },
+    {
+      "path": "crates/odin-engine/src/lib.rs",
+      "change": "modified"
+    },
+    {
+      "path": "crates/odin-engine/tests/invariants.rs",
+      "change": "modified"
+    },
+    {
+      "path": "crates/odin-engine/tools.json",
+      "change": "modified"
+    },
+    {
+      "path": "crates/odin-protocol/src/bridge.rs",
+      "change": "removed"
+    },
+    {
+      "path": "crates/odin-protocol/src/lib.rs",
+      "change": "modified"
+    },
+    {
+      "path": "crates/odin-protocol/src/lsp.rs",
+      "change": "modified"
+    },
+    {
+      "path": "crates/odin-protocol/tests/fixture_protocols.rs",
+      "change": "modified"
+    },
+    {
+      "path": "crates/odin/src/main.rs",
+      "change": "modified"
+    },
+    {
+      "path": "crates/odin/src/mcp.rs",
+      "change": "modified"
+    },
+    {
+      "path": "dashboard/index.html",
+      "change": "modified"
+    },
+    {
+      "path": "docs/API.md",
+      "change": "modified"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "change": "modified"
+    },
+    {
+      "path": "docs/DEPENDENCIES.md",
+      "change": "modified"
+    },
+    {
+      "path": "docs/KNOWN_LIMITATIONS.md",
+      "change": "modified"
+    },
+    {
+      "path": "docs/RELEASE_GATES.md",
+      "change": "modified"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "change": "modified"
+    },
+    {
+      "path": "docs/SECURITY.md",
+      "change": "modified"
+    },
+    {
+      "path": "docs/SERENA_PARITY.md",
+      "change": "modified"
+    },
+    {
+      "path": "docs/SOURCES.md",
+      "change": "modified"
+    },
+    {
+      "path": "docs/STANDALONE.md",
+      "change": "added"
+    },
+    {
+      "path": "docs/USAGE.md",
+      "change": "modified"
+    },
+    {
+      "path": "docs/serena-parity.csv",
+      "change": "modified"
+    },
+    {
+      "path": "docs/serena-parity.json",
+      "change": "modified"
+    },
+    {
+      "path": "examples/odin.bridge.toml",
+      "change": "removed"
+    },
+    {
+      "path": "examples/serena-tools.json",
+      "change": "removed"
+    },
+    {
+      "path": "odin.example.toml",
+      "change": "modified"
+    },
+    {
+      "path": "schemas/tools.json",
+      "change": "modified"
+    },
+    {
+      "path": "scripts/check_rust_structure.py",
+      "change": "added"
+    },
+    {
+      "path": "scripts/check_source.py",
+      "change": "modified"
+    },
+    {
+      "path": "scripts/fixture_selftest.py",
+      "change": "modified"
+    },
+    {
+      "path": "scripts/generate_catalog.py",
+      "change": "modified"
+    },
+    {
+      "path": "scripts/generate_docs.py",
+      "change": "modified"
+    },
+    {
+      "path": "scripts/mcp_smoke.py",
+      "change": "modified"
+    },
+    {
+      "path": "scripts/verify.ps1",
+      "change": "modified"
+    },
+    {
+      "path": "scripts/verify.sh",
+      "change": "modified"
+    },
+    {
+      "path": "tests/fixtures/protocol_peer.py",
+      "change": "modified"
+    }
+  ]
+}

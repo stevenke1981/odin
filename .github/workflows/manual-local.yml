@@ -1,0 +1,25 @@
+name: Manual self-hosted verification
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    # No hosted CI consumption or untrusted-PR execution is configured.
+    # Register a trusted self-hosted runner yourself before dispatching.
+    runs-on: self-hosted
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Linux or macOS local gates
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          bash scripts/bootstrap.sh
+          bash scripts/verify.sh
+      - name: Windows native gates
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          .\scripts\bootstrap.ps1
+          .\scripts\verify.ps1

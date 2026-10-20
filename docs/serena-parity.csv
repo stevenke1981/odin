@@ -1,0 +1,54 @@
+﻿serena_tool,group,odin_native,status,runtime_dependency,verification,notes
+find_declaration,symbol_tools,find_declaration,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生接受 LSP position；沒有上游 regex-occurrence 完全同形 API。
+find_implementations,symbol_tools,find_implementations,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。
+find_referencing_symbols,symbol_tools,find_referencing_symbols,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生位置＋可取得的 enclosing symbol；結果受 LSP / workspace 影響。
+find_symbol,symbol_tools,find_symbol,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 name_path substring；未重現全部 kind/depth/grouping 選項。
+get_diagnostics_for_file,symbol_tools,get_diagnostics_for_file,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 pull/push report；不等同 IDE inspection 或已完成 build。
+get_diagnostics_for_symbol,symbol_tools,get_diagnostics_for_symbol,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 range 篩選；未遞迴檢查全部 referencing symbols。
+get_symbols_overview,symbol_tools,get_symbols_overview,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 DocumentSymbol flatten；不重現全部上游輸出格式。
+insert_after_symbol,symbol_tools,insert_after_symbol,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+insert_before_symbol,symbol_tools,insert_before_symbol,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+rename_symbol,symbol_tools,rename_symbol,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生文字 WorkspaceEdit → journal；resource operations 明確拒絕。
+replace_symbol_body,symbol_tools,replace_symbol_body,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+restart_language_server,symbol_tools,restart_language_server,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。
+safe_delete_symbol,symbol_tools,safe_delete_symbol,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生只檢查 LSP 靜態引用；不含動態使用或 cascading delete。
+jet_brains_debug,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
+jet_brains_find_declaration,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
+jet_brains_find_implementations,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
+jet_brains_find_referencing_symbols,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
+jet_brains_find_symbol,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
+jet_brains_get_symbols_overview,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
+jet_brains_inline_symbol,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
+jet_brains_list_inspections,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
+jet_brains_move,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
+jet_brains_rename,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
+jet_brains_run_inspections,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
+jet_brains_safe_delete,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
+jet_brains_type_hierarchy,jetbrains_tools,—,NOT_IMPLEMENTED,NONE_ON_SERENA,NOT_RUN,未提供 JetBrains 專用功能；不再透過 Serena 補足。一般語意／除錯可使用 Odin 原生 LSP／DAP，但不等價。
+execute_shell_command,cmd_tools,execute_shell_command,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生僅固定 host argv profile；不接受上游任意 shell 字串。
+activate_project,config_tools,explicit project argument,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生每次指定 project ID；不允許任意 root 動態註冊。
+get_current_config,config_tools,get_current_config,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 host TOML 與 flags；不含上游 YAML/Jinja contexts/modes。
+open_dashboard,config_tools,HTTP /,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生手動開 loopback / 唯讀頁；沒有完整上游 UI 或自動 browser-open API。
+remove_project,config_tools,host configuration only,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生編輯 host config 後重啟；沒有 Agent 動態刪配置。
+create_text_file,file_tools,create_text_file,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+delete_lines,file_tools,delete_lines,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+find_file,file_tools,find_file,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 glob 對專案相對路徑；參數與上游不完全相同。
+insert_at_line,file_tools,insert_at_line,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+list_dir,file_tools,list_dir,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 files_only；不列獨立空目錄。
+read_file,file_tools,read_file,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。
+replace_content,file_tools,replace_content,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+replace_in_files,file_tools,replace_in_files,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生全檔 hash＋match count＋preview；無逐 occurrence selection。
+replace_lines,file_tools,replace_lines,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生來源修改先 preview 再 apply。
+search_for_pattern,file_tools,search_for_pattern,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。
+delete_memory,memory_tools,delete_memory,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。
+edit_memory,memory_tools,edit_memory,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 literal replace＋CAS；非上游全部 regex 選項。 原生使用 central Markdown storage。
+list_memories,memory_tools,list_memories,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。
+read_memory,memory_tools,read_memory,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。
+rename_memory,memory_tools,rename_memory,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生同 scope 改名及引用更新；無跨 scope move。 原生使用 central Markdown storage。
+write_memory,memory_tools,write_memory,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。 原生使用 central Markdown storage。
+list_queryable_projects,query_project_tools,list_projects,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 list_projects；只有 host 已配置的範圍。
+query_project,query_project_tools,query_project,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生只接受 nonrecursive native read tools；不啟動 Serena Project Server。
+serena_repl,repl_tools,flow_run (not Python),NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生 flow_run 是受限 JSON，不是 Python REPL；沒有任意 Python REPL；此差異不會以橋接補足。
+initial_instructions,workflow_tools,initial_instructions,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,有原生對應原始碼；參數／輸出不保證與 Serena 同形。
+onboarding,workflow_tools,onboarding,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生收集結構與證據；讓 Agent 決定記憶，不宣稱自動理解／測試。
+serena_info,workflow_tools,initial_instructions + docs,NATIVE_SOURCE_PARTIAL,NONE_ON_SERENA,NOT_RUN,原生文件及 initial_instructions；提供 Odin 自己的工具說明，不提供上游主題 API。
