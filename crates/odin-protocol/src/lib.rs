@@ -5,3 +5,4 @@ pub mod dap;
 pub mod lsp;
 pub mod rpc;
 pub mod text;
+mod workspace;
