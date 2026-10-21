@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "scope": "LF normalization only; all original check results preserved",
+  "logical_checks_sha256_before": "935561a9387c67bb55c55bc82d13ca7d17c2339e52fed34bb4d1dae6acfe7c55",
+  "logical_checks_sha256_after": "935561a9387c67bb55c55bc82d13ca7d17c2339e52fed34bb4d1dae6acfe7c55",
+  "actual_driver_exit_code": 0,
+  "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+  "harness_sha256": "a99efaf59e6ae83dbf20158b8b0b3f39180255192771b60d44801ae333790477",
+  "artifacts": [
+    {
+      "path": "C:/Users/steven/.codex/worktrees/odin-platform/odin/verification/language-sandbox-v3-go-native-02.json",
+      "sha256": "7d3c59058a8ef68837b48e7246d5b20b14af6b558a08fc7763c2fee9d18835af"
+    },
+    {
+      "path": "C:/Users/steven/.codex/worktrees/odin-platform/odin/verification/language-sandbox-v3-go-native-02.requests.jsonl",
+      "sha256": "33b52aaad4a888df41f2d36c6c52f670fc30dadad12d419fd0f10bd098859e51"
+    },
+    {
+      "path": "C:/Users/steven/.codex/worktrees/odin-platform/odin/verification/language-sandbox-v3-go-native-02.txt",
+      "sha256": "6c33f9b95d29a5fbfa98339feccd34c1ac131853064bfae719b90fafd4700bd2"
+    },
+    {
+      "path": "C:/Users/steven/.codex/worktrees/odin-platform/odin/verification/language-sandbox-v3-go-native-02.command.json",
+      "sha256": "1a5bf035f0f652585d5436bdd148dce71d3efad7fad33456c22f7b635e0c2a91"
+    }
+  ]
+}

@@ -1,0 +1,5072 @@
+{
+  "scope": "REAL_ODIN_MCP_SIX_LANGUAGE_IDE",
+  "mode": "sandbox",
+  "status": "PASS",
+  "platform": "win32",
+  "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+  "harness_sha256": "a99efaf59e6ae83dbf20158b8b0b3f39180255192771b60d44801ae333790477",
+  "started_utc": "2026-10-21T03:29:38Z",
+  "projects": [
+    {
+      "language": "go",
+      "project": "go_a",
+      "checks": [
+        {
+          "name": "mcp_initialize",
+          "status": "PASS"
+        },
+        {
+          "name": "actual_lsp_initialize",
+          "status": "PASS",
+          "detail": {
+            "capabilities": {
+              "callHierarchyProvider": true,
+              "codeActionProvider": true,
+              "codeLensProvider": {},
+              "completionProvider": {
+                "triggerCharacters": [
+                  "."
+                ]
+              },
+              "definitionProvider": true,
+              "documentFormattingProvider": true,
+              "documentHighlightProvider": true,
+              "documentLinkProvider": {},
+              "documentSymbolProvider": true,
+              "executeCommandProvider": {
+                "commands": [
+                  "gopls.add_dependency",
+                  "gopls.add_import",
+                  "gopls.add_telemetry_counters",
+                  "gopls.add_test",
+                  "gopls.apply_fix",
+                  "gopls.assembly",
+                  "gopls.change_signature",
+                  "gopls.check_upgrades",
+                  "gopls.client_open_url",
+                  "gopls.diagnose_files",
+                  "gopls.doc",
+                  "gopls.dragon_slayer",
+                  "gopls.edit_go_directive",
+                  "gopls.extract_to_new_file",
+                  "gopls.fetch_vulncheck_result",
+                  "gopls.free_symbols",
+                  "gopls.gc_details",
+                  "gopls.generate",
+                  "gopls.go_get_package",
+                  "gopls.implement_interface",
+                  "gopls.list_imports",
+                  "gopls.list_known_packages",
+                  "gopls.lsp",
+                  "gopls.maybe_prompt_for_telemetry",
+                  "gopls.mem_stats",
+                  "gopls.modify_tags",
+                  "gopls.modules",
+                  "gopls.move_declaration",
+                  "gopls.move_type",
+                  "gopls.package_symbols",
+                  "gopls.packages",
+                  "gopls.regenerate_cgo",
+                  "gopls.remove_dependency",
+                  "gopls.reset_go_mod_diagnostics",
+                  "gopls.resolve_target",
+                  "gopls.run_go_work_command",
+                  "gopls.run_govulncheck",
+                  "gopls.run_tests",
+                  "gopls.scan_imports",
+                  "gopls.split_package",
+                  "gopls.start_debugging",
+                  "gopls.start_profile",
+                  "gopls.stop_profile",
+                  "gopls.tidy",
+                  "gopls.update_go_sum",
+                  "gopls.upgrade_dependency",
+                  "gopls.vendor",
+                  "gopls.views",
+                  "gopls.vulncheck",
+                  "gopls.workspace_stats"
+                ]
+              },
+              "experimental": {
+                "interactiveResolveProvider": {
+                  "kinds": [
+                    "command"
+                  ]
+                }
+              },
+              "foldingRangeProvider": true,
+              "hoverProvider": true,
+              "implementationProvider": true,
+              "inlayHintProvider": {},
+              "referencesProvider": true,
+              "renameProvider": true,
+              "selectionRangeProvider": true,
+              "semanticTokensProvider": {
+                "full": true,
+                "legend": {
+                  "tokenModifiers": [
+                    "definition",
+                    "readonly",
+                    "defaultLibrary",
+                    "static",
+                    "array",
+                    "bool",
+                    "chan",
+                    "format",
+                    "interface",
+                    "map",
+                    "number",
+                    "pointer",
+                    "signature",
+                    "slice",
+                    "string",
+                    "struct",
+                    "shadowing"
+                  ],
+                  "tokenTypes": [
+                    "namespace",
+                    "type",
+                    "typeParameter",
+                    "parameter",
+                    "property",
+                    "variable",
+                    "function",
+                    "method",
+                    "macro",
+                    "keyword",
+                    "comment",
+                    "string",
+                    "number",
+                    "operator",
+                    "label"
+                  ]
+                },
+                "range": true
+              },
+              "signatureHelpProvider": {
+                "retriggerCharacters": [
+                  ")"
+                ],
+                "triggerCharacters": [
+                  "(",
+                  ","
+                ]
+              },
+              "textDocumentSync": {
+                "change": 2,
+                "openClose": true,
+                "save": {}
+              },
+              "typeDefinitionProvider": true,
+              "typeHierarchyProvider": true,
+              "workspace": {
+                "fileOperations": {
+                  "didCreate": {
+                    "filters": [
+                      {
+                        "pattern": {
+                          "glob": "**/*.go"
+                        },
+                        "scheme": "file"
+                      }
+                    ]
+                  }
+                },
+                "workspaceFolders": {
+                  "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                  "supported": true
+                }
+              },
+              "workspaceSymbolProvider": true
+            },
+            "configured": true,
+            "extensions": [
+              "go"
+            ],
+            "id": "go",
+            "probed": true,
+            "ready": true,
+            "status": {
+              "capabilities": {
+                "callHierarchyProvider": true,
+                "codeActionProvider": true,
+                "codeLensProvider": {},
+                "completionProvider": {
+                  "triggerCharacters": [
+                    "."
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentLinkProvider": {},
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "gopls.add_dependency",
+                    "gopls.add_import",
+                    "gopls.add_telemetry_counters",
+                    "gopls.add_test",
+                    "gopls.apply_fix",
+                    "gopls.assembly",
+                    "gopls.change_signature",
+                    "gopls.check_upgrades",
+                    "gopls.client_open_url",
+                    "gopls.diagnose_files",
+                    "gopls.doc",
+                    "gopls.dragon_slayer",
+                    "gopls.edit_go_directive",
+                    "gopls.extract_to_new_file",
+                    "gopls.fetch_vulncheck_result",
+                    "gopls.free_symbols",
+                    "gopls.gc_details",
+                    "gopls.generate",
+                    "gopls.go_get_package",
+                    "gopls.implement_interface",
+                    "gopls.list_imports",
+                    "gopls.list_known_packages",
+                    "gopls.lsp",
+                    "gopls.maybe_prompt_for_telemetry",
+                    "gopls.mem_stats",
+                    "gopls.modify_tags",
+                    "gopls.modules",
+                    "gopls.move_declaration",
+                    "gopls.move_type",
+                    "gopls.package_symbols",
+                    "gopls.packages",
+                    "gopls.regenerate_cgo",
+                    "gopls.remove_dependency",
+                    "gopls.reset_go_mod_diagnostics",
+                    "gopls.resolve_target",
+                    "gopls.run_go_work_command",
+                    "gopls.run_govulncheck",
+                    "gopls.run_tests",
+                    "gopls.scan_imports",
+                    "gopls.split_package",
+                    "gopls.start_debugging",
+                    "gopls.start_profile",
+                    "gopls.stop_profile",
+                    "gopls.tidy",
+                    "gopls.update_go_sum",
+                    "gopls.upgrade_dependency",
+                    "gopls.vendor",
+                    "gopls.views",
+                    "gopls.vulncheck",
+                    "gopls.workspace_stats"
+                  ]
+                },
+                "experimental": {
+                  "interactiveResolveProvider": {
+                    "kinds": [
+                      "command"
+                    ]
+                  }
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": {},
+                "referencesProvider": true,
+                "renameProvider": true,
+                "selectionRangeProvider": true,
+                "semanticTokensProvider": {
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "definition",
+                      "readonly",
+                      "defaultLibrary",
+                      "static",
+                      "array",
+                      "bool",
+                      "chan",
+                      "format",
+                      "interface",
+                      "map",
+                      "number",
+                      "pointer",
+                      "signature",
+                      "slice",
+                      "string",
+                      "struct",
+                      "shadowing"
+                    ],
+                    "tokenTypes": [
+                      "namespace",
+                      "type",
+                      "typeParameter",
+                      "parameter",
+                      "property",
+                      "variable",
+                      "function",
+                      "method",
+                      "macro",
+                      "keyword",
+                      "comment",
+                      "string",
+                      "number",
+                      "operator",
+                      "label"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "retriggerCharacters": [
+                    ")"
+                  ],
+                  "triggerCharacters": [
+                    "(",
+                    ","
+                  ]
+                },
+                "textDocumentSync": {
+                  "change": 2,
+                  "openClose": true,
+                  "save": {}
+                },
+                "typeDefinitionProvider": true,
+                "typeHierarchyProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "didCreate": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "**/*.go"
+                          },
+                          "scheme": "file"
+                        }
+                      ]
+                    }
+                  },
+                  "workspaceFolders": {
+                    "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                    "supported": true
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+                  "hash_verified": true,
+                  "launch_route": "mxc_process_container",
+                  "os_boundary_verified": false,
+                  "requested": true
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          }
+        },
+        {
+          "name": "actual_native_sandbox_route",
+          "status": "PASS",
+          "detail": [
+            {
+              "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+              "hash_verified": true,
+              "launch_route": "mxc_process_container",
+              "os_boundary_verified": false,
+              "requested": true
+            }
+          ]
+        },
+        {
+          "name": "document_symbols",
+          "status": "PASS",
+          "detail": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 49,
+                  "line": 1
+                },
+                "start": {
+                  "character": 0,
+                  "line": 1
+                }
+              },
+              "relative_path": "sample.go",
+              "selection_range": {
+                "end": {
+                  "character": 10,
+                  "line": 1
+                },
+                "start": {
+                  "character": 5,
+                  "line": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "cross_file_references",
+          "status": "PASS",
+          "detail": {
+            "locations": [
+              {
+                "enclosing_symbol": {
+                  "kind": 12,
+                  "name": "consume",
+                  "name_path": "consume",
+                  "range": {
+                    "end": {
+                      "character": 45,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 0,
+                      "line": 1
+                    }
+                  },
+                  "relative_path": "consumer.go",
+                  "selection_range": {
+                    "end": {
+                      "character": 12,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 5,
+                      "line": 1
+                    }
+                  }
+                },
+                "external": false,
+                "location": {
+                  "range": {
+                    "end": {
+                      "character": 34,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 29,
+                      "line": 1
+                    }
+                  },
+                  "uri": "file:///<fixture>/projects/go_a/consumer.go"
+                },
+                "relative_path": "consumer.go"
+              },
+              {
+                "enclosing_symbol": {
+                  "kind": 12,
+                  "name": "run",
+                  "name_path": "run",
+                  "range": {
+                    "end": {
+                      "character": 56,
+                      "line": 2
+                    },
+                    "start": {
+                      "character": 0,
+                      "line": 2
+                    }
+                  },
+                  "relative_path": "sample.go",
+                  "selection_range": {
+                    "end": {
+                      "character": 8,
+                      "line": 2
+                    },
+                    "start": {
+                      "character": 5,
+                      "line": 2
+                    }
+                  }
+                },
+                "external": false,
+                "location": {
+                  "range": {
+                    "end": {
+                      "character": 32,
+                      "line": 2
+                    },
+                    "start": {
+                      "character": 27,
+                      "line": 2
+                    }
+                  },
+                  "uri": "file:///<fixture>/projects/go_a/sample.go"
+                },
+                "relative_path": "sample.go"
+              }
+            ],
+            "trace": {
+              "elapsed_ms": 5,
+              "id": "3358fbf8-7a6c-4492-b94a-73edf3e4251e",
+              "result_bytes": 1022,
+              "result_sha256": "e152d0ddd501c39325a7301e282a01653074d8a74c07b672d799a6af2eb5354d"
+            },
+            "truncated": false
+          }
+        },
+        {
+          "name": "completion",
+          "status": "PASS",
+          "detail": {
+            "provider": "go",
+            "source": "lsp",
+            "result_count": 2
+          }
+        },
+        {
+          "name": "hover",
+          "status": "PASS",
+          "detail": {
+            "provider": "go",
+            "source": "lsp",
+            "result_count": 2
+          }
+        },
+        {
+          "name": "signature_help",
+          "status": "PASS",
+          "detail": {
+            "provider": "go",
+            "source": "lsp",
+            "result_count": 3
+          }
+        },
+        {
+          "name": "workspace_symbols",
+          "status": "PASS",
+          "detail": {
+            "provider": "go",
+            "source": "lsp",
+            "result_count": 1
+          }
+        },
+        {
+          "name": "inlay_hints",
+          "status": "PASS",
+          "detail": {
+            "provider": "go",
+            "source": "lsp",
+            "result_count": 2
+          }
+        },
+        {
+          "name": "semantic_tokens",
+          "status": "PASS",
+          "detail": {
+            "provider": "go",
+            "source": "lsp",
+            "result_count": 2
+          }
+        },
+        {
+          "name": "call_hierarchy",
+          "status": "PASS",
+          "detail": {
+            "provider": "go",
+            "source": "lsp",
+            "result_count": 1
+          }
+        },
+        {
+          "name": "completion_resolve",
+          "status": "UNAVAILABLE",
+          "detail": "completionProvider.resolveProvider"
+        },
+        {
+          "name": "inlay_hint_resolve",
+          "status": "UNAVAILABLE",
+          "detail": "inlayHintProvider.resolveProvider"
+        },
+        {
+          "name": "diagnostics_valid",
+          "status": "PASS",
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 1,
+            "document": {
+              "path": "sample.go",
+              "sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+              "uri": "file:///<fixture>/projects/go_a/sample.go",
+              "version": 1
+            },
+            "findings": [],
+            "freshness": "current",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "go",
+            "reason": null,
+            "report": {
+              "diagnostics": [],
+              "uri": "file:///<fixture>/projects/go_a/sample.go",
+              "version": 1
+            },
+            "reported_version": 1,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "clean",
+            "summary": {
+              "complete": true,
+              "errors": 0,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 0,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "c155013d-7996-42af-acf0-3d940ace4de2",
+              "result_bytes": 755,
+              "result_sha256": "c0270c7e927326f5e02e1c86860e7ceebd9af8a3582f8d27366ef3c666fc153d"
+            },
+            "version_verified": true
+          }
+        },
+        {
+          "name": "rename_preview_readonly",
+          "status": "PASS"
+        },
+        {
+          "name": "rename_definition_and_consumer",
+          "status": "PASS"
+        },
+        {
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS"
+        },
+        {
+          "name": "rename_rollback",
+          "status": "PASS"
+        },
+        {
+          "name": "format_preview_readonly",
+          "status": "PASS"
+        },
+        {
+          "name": "format_transaction",
+          "status": "PASS"
+        },
+        {
+          "name": "format_rollback",
+          "status": "PASS"
+        },
+        {
+          "name": "diagnostics_error",
+          "status": "PASS",
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 9,
+            "document": {
+              "path": "sample.go",
+              "sha256": "9844e5dd837e5fc4e81f0933e251c04b8191a3838a2393ce5e212ea7f92ef29a",
+              "uri": "file:///<fixture>/projects/go_a/sample.go",
+              "version": 9
+            },
+            "findings": [
+              {
+                "document_version": 9,
+                "lsp_severity": 1,
+                "message": "expected ')', found '{'",
+                "provider": "go",
+                "range": {
+                  "end": {
+                    "character": 18,
+                    "line": 4
+                  },
+                  "start": {
+                    "character": 18,
+                    "line": 4
+                  }
+                },
+                "relative_path": "sample.go",
+                "rule_id": null,
+                "severity": "error",
+                "source": "syntax",
+                "source_sha256": "9844e5dd837e5fc4e81f0933e251c04b8191a3838a2393ce5e212ea7f92ef29a",
+                "status": "current"
+              }
+            ],
+            "freshness": "current",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "go",
+            "reason": null,
+            "report": {
+              "diagnostics": [
+                {
+                  "message": "expected ')', found '{'",
+                  "range": {
+                    "end": {
+                      "character": 18,
+                      "line": 4
+                    },
+                    "start": {
+                      "character": 18,
+                      "line": 4
+                    }
+                  },
+                  "severity": 1,
+                  "source": "syntax"
+                }
+              ],
+              "uri": "file:///<fixture>/projects/go_a/sample.go",
+              "version": 9
+            },
+            "reported_version": 9,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "errors",
+            "summary": {
+              "complete": true,
+              "errors": 1,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 1,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "171032fd-cb07-4d85-8977-c6cc97da1f59",
+              "result_bytes": 1249,
+              "result_sha256": "0dca173a8483667cc4853dbf93f56a46f7bd881091e34389911b16282533531c"
+            },
+            "version_verified": true
+          }
+        },
+        {
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS"
+        },
+        {
+          "name": "diagnostics_recovered",
+          "status": "PASS",
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 10,
+            "document": {
+              "path": "sample.go",
+              "sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+              "uri": "file:///<fixture>/projects/go_a/sample.go",
+              "version": 10
+            },
+            "findings": [],
+            "freshness": "current",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "go",
+            "reason": null,
+            "report": {
+              "diagnostics": [],
+              "uri": "file:///<fixture>/projects/go_a/sample.go",
+              "version": 10
+            },
+            "reported_version": 10,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "clean",
+            "summary": {
+              "complete": true,
+              "errors": 0,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 0,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "2855ef78-a86f-4059-818a-707abb58d2f5",
+              "result_bytes": 759,
+              "result_sha256": "6448f427838a75c08e1183984540a5e9f9e5432a123454d9964e2176993213cc"
+            },
+            "version_verified": true
+          }
+        }
+      ],
+      "source_sha256": {
+        "sample.go": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+        "consumer.go": "2bb4de9c5c3927bfa3d87c359fd4553761391fe35d7ae310be1456a23e727041"
+      },
+      "isolation": "sandbox",
+      "binary_version": {
+        "name": "Odin",
+        "schema_version": 1,
+        "standalone": true,
+        "trace": {
+          "elapsed_ms": 0,
+          "id": "cddbeb4d-a159-4237-9572-4ae48719084b",
+          "result_bytes": 70,
+          "result_sha256": "56962aba324858cc3f3306c0c5e6854072861e96a2c79ef23586e0d3de4e050b"
+        },
+        "version": "0.2.0"
+      },
+      "capabilities": {
+        "debug_allowed": false,
+        "external_tool_bridge": false,
+        "formatter_profiles": [],
+        "formatters_allowed": false,
+        "inspection_profiles": [],
+        "inspections_allowed": false,
+        "languages": [
+          {
+            "capabilities": {
+              "callHierarchyProvider": true,
+              "codeActionProvider": true,
+              "codeLensProvider": {},
+              "completionProvider": {
+                "triggerCharacters": [
+                  "."
+                ]
+              },
+              "definitionProvider": true,
+              "documentFormattingProvider": true,
+              "documentHighlightProvider": true,
+              "documentLinkProvider": {},
+              "documentSymbolProvider": true,
+              "executeCommandProvider": {
+                "commands": [
+                  "gopls.add_dependency",
+                  "gopls.add_import",
+                  "gopls.add_telemetry_counters",
+                  "gopls.add_test",
+                  "gopls.apply_fix",
+                  "gopls.assembly",
+                  "gopls.change_signature",
+                  "gopls.check_upgrades",
+                  "gopls.client_open_url",
+                  "gopls.diagnose_files",
+                  "gopls.doc",
+                  "gopls.dragon_slayer",
+                  "gopls.edit_go_directive",
+                  "gopls.extract_to_new_file",
+                  "gopls.fetch_vulncheck_result",
+                  "gopls.free_symbols",
+                  "gopls.gc_details",
+                  "gopls.generate",
+                  "gopls.go_get_package",
+                  "gopls.implement_interface",
+                  "gopls.list_imports",
+                  "gopls.list_known_packages",
+                  "gopls.lsp",
+                  "gopls.maybe_prompt_for_telemetry",
+                  "gopls.mem_stats",
+                  "gopls.modify_tags",
+                  "gopls.modules",
+                  "gopls.move_declaration",
+                  "gopls.move_type",
+                  "gopls.package_symbols",
+                  "gopls.packages",
+                  "gopls.regenerate_cgo",
+                  "gopls.remove_dependency",
+                  "gopls.reset_go_mod_diagnostics",
+                  "gopls.resolve_target",
+                  "gopls.run_go_work_command",
+                  "gopls.run_govulncheck",
+                  "gopls.run_tests",
+                  "gopls.scan_imports",
+                  "gopls.split_package",
+                  "gopls.start_debugging",
+                  "gopls.start_profile",
+                  "gopls.stop_profile",
+                  "gopls.tidy",
+                  "gopls.update_go_sum",
+                  "gopls.upgrade_dependency",
+                  "gopls.vendor",
+                  "gopls.views",
+                  "gopls.vulncheck",
+                  "gopls.workspace_stats"
+                ]
+              },
+              "experimental": {
+                "interactiveResolveProvider": {
+                  "kinds": [
+                    "command"
+                  ]
+                }
+              },
+              "foldingRangeProvider": true,
+              "hoverProvider": true,
+              "implementationProvider": true,
+              "inlayHintProvider": {},
+              "referencesProvider": true,
+              "renameProvider": true,
+              "selectionRangeProvider": true,
+              "semanticTokensProvider": {
+                "full": true,
+                "legend": {
+                  "tokenModifiers": [
+                    "definition",
+                    "readonly",
+                    "defaultLibrary",
+                    "static",
+                    "array",
+                    "bool",
+                    "chan",
+                    "format",
+                    "interface",
+                    "map",
+                    "number",
+                    "pointer",
+                    "signature",
+                    "slice",
+                    "string",
+                    "struct",
+                    "shadowing"
+                  ],
+                  "tokenTypes": [
+                    "namespace",
+                    "type",
+                    "typeParameter",
+                    "parameter",
+                    "property",
+                    "variable",
+                    "function",
+                    "method",
+                    "macro",
+                    "keyword",
+                    "comment",
+                    "string",
+                    "number",
+                    "operator",
+                    "label"
+                  ]
+                },
+                "range": true
+              },
+              "signatureHelpProvider": {
+                "retriggerCharacters": [
+                  ")"
+                ],
+                "triggerCharacters": [
+                  "(",
+                  ","
+                ]
+              },
+              "textDocumentSync": {
+                "change": 2,
+                "openClose": true,
+                "save": {}
+              },
+              "typeDefinitionProvider": true,
+              "typeHierarchyProvider": true,
+              "workspace": {
+                "fileOperations": {
+                  "didCreate": {
+                    "filters": [
+                      {
+                        "pattern": {
+                          "glob": "**/*.go"
+                        },
+                        "scheme": "file"
+                      }
+                    ]
+                  }
+                },
+                "workspaceFolders": {
+                  "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                  "supported": true
+                }
+              },
+              "workspaceSymbolProvider": true
+            },
+            "configured": true,
+            "extensions": [
+              "go"
+            ],
+            "id": "go",
+            "probed": true,
+            "ready": true,
+            "status": {
+              "capabilities": {
+                "callHierarchyProvider": true,
+                "codeActionProvider": true,
+                "codeLensProvider": {},
+                "completionProvider": {
+                  "triggerCharacters": [
+                    "."
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentLinkProvider": {},
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "gopls.add_dependency",
+                    "gopls.add_import",
+                    "gopls.add_telemetry_counters",
+                    "gopls.add_test",
+                    "gopls.apply_fix",
+                    "gopls.assembly",
+                    "gopls.change_signature",
+                    "gopls.check_upgrades",
+                    "gopls.client_open_url",
+                    "gopls.diagnose_files",
+                    "gopls.doc",
+                    "gopls.dragon_slayer",
+                    "gopls.edit_go_directive",
+                    "gopls.extract_to_new_file",
+                    "gopls.fetch_vulncheck_result",
+                    "gopls.free_symbols",
+                    "gopls.gc_details",
+                    "gopls.generate",
+                    "gopls.go_get_package",
+                    "gopls.implement_interface",
+                    "gopls.list_imports",
+                    "gopls.list_known_packages",
+                    "gopls.lsp",
+                    "gopls.maybe_prompt_for_telemetry",
+                    "gopls.mem_stats",
+                    "gopls.modify_tags",
+                    "gopls.modules",
+                    "gopls.move_declaration",
+                    "gopls.move_type",
+                    "gopls.package_symbols",
+                    "gopls.packages",
+                    "gopls.regenerate_cgo",
+                    "gopls.remove_dependency",
+                    "gopls.reset_go_mod_diagnostics",
+                    "gopls.resolve_target",
+                    "gopls.run_go_work_command",
+                    "gopls.run_govulncheck",
+                    "gopls.run_tests",
+                    "gopls.scan_imports",
+                    "gopls.split_package",
+                    "gopls.start_debugging",
+                    "gopls.start_profile",
+                    "gopls.stop_profile",
+                    "gopls.tidy",
+                    "gopls.update_go_sum",
+                    "gopls.upgrade_dependency",
+                    "gopls.vendor",
+                    "gopls.views",
+                    "gopls.vulncheck",
+                    "gopls.workspace_stats"
+                  ]
+                },
+                "experimental": {
+                  "interactiveResolveProvider": {
+                    "kinds": [
+                      "command"
+                    ]
+                  }
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": {},
+                "referencesProvider": true,
+                "renameProvider": true,
+                "selectionRangeProvider": true,
+                "semanticTokensProvider": {
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "definition",
+                      "readonly",
+                      "defaultLibrary",
+                      "static",
+                      "array",
+                      "bool",
+                      "chan",
+                      "format",
+                      "interface",
+                      "map",
+                      "number",
+                      "pointer",
+                      "signature",
+                      "slice",
+                      "string",
+                      "struct",
+                      "shadowing"
+                    ],
+                    "tokenTypes": [
+                      "namespace",
+                      "type",
+                      "typeParameter",
+                      "parameter",
+                      "property",
+                      "variable",
+                      "function",
+                      "method",
+                      "macro",
+                      "keyword",
+                      "comment",
+                      "string",
+                      "number",
+                      "operator",
+                      "label"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "retriggerCharacters": [
+                    ")"
+                  ],
+                  "triggerCharacters": [
+                    "(",
+                    ","
+                  ]
+                },
+                "textDocumentSync": {
+                  "change": 2,
+                  "openClose": true,
+                  "save": {}
+                },
+                "typeDefinitionProvider": true,
+                "typeHierarchyProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "didCreate": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "**/*.go"
+                          },
+                          "scheme": "file"
+                        }
+                      ]
+                    }
+                  },
+                  "workspaceFolders": {
+                    "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                    "supported": true
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+                  "hash_verified": true,
+                  "launch_route": "mxc_process_container",
+                  "os_boundary_verified": false,
+                  "requested": true
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          }
+        ],
+        "project": "go_a",
+        "result_retention": {
+          "max_bytes": 134217728,
+          "max_results": 128,
+          "ttl_ms": 86400000
+        },
+        "semantic_available": true,
+        "shell_allowed": false,
+        "standalone": true,
+        "tools": [
+          {
+            "enabled": true,
+            "name": "status",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_version",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_schemas",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_capabilities",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_projects",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_current_config",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "initial_instructions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "onboarding",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_dir",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_for_pattern",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "index_build",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "index_query",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_symbols_overview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_referencing_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_implementations",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_declaration",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_type_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "code_actions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "hover",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "signature_help",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "workspace_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "call_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "format_document",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hints",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hint_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "semantic_tokens",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_inspection_providers",
+            "policy": "read"
+          },
+          {
+            "enabled": false,
+            "name": "run_inspections",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "prepare_inspection_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "prepare_code_action",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "apply_quick_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "move_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inline_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "restart_language_server",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_prepare",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_rollback",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_list",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_recover",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "create_text_file",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_content",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replacement_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "replace_in_files",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_at_line",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_symbol_body",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_before_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_after_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "safe_delete_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "list_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_memory",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "write_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "edit_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_export",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_import",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_move_scope",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "check_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "recover_memories",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "query_project",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_run",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_vars",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_clear",
+            "policy": "state"
+          },
+          {
+            "enabled": false,
+            "name": "execute_shell_command",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_start",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_request",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_events",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_stop",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_batch",
+            "policy": "execute"
+          },
+          {
+            "enabled": true,
+            "name": "result_read",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "audit_log",
+            "policy": "read"
+          }
+        ],
+        "trace": {
+          "elapsed_ms": 490,
+          "id": "f44a461c-9d9c-4d52-8b77-59e9e45e5b67",
+          "result_bytes": 10880,
+          "result_sha256": "6c02b03f83dc3766014f39a1569129db41e26e2ef7cb3ef9a563541f8518e941"
+        },
+        "write_allowed": true
+      },
+      "final_lsp_status": {
+        "debug_allowed": false,
+        "external_tool_bridge": false,
+        "formatter_profiles": [],
+        "formatters_allowed": false,
+        "inspection_profiles": [],
+        "inspections_allowed": false,
+        "languages": [
+          {
+            "capabilities": {
+              "callHierarchyProvider": true,
+              "codeActionProvider": true,
+              "codeLensProvider": {},
+              "completionProvider": {
+                "triggerCharacters": [
+                  "."
+                ]
+              },
+              "definitionProvider": true,
+              "documentFormattingProvider": true,
+              "documentHighlightProvider": true,
+              "documentLinkProvider": {},
+              "documentSymbolProvider": true,
+              "executeCommandProvider": {
+                "commands": [
+                  "gopls.add_dependency",
+                  "gopls.add_import",
+                  "gopls.add_telemetry_counters",
+                  "gopls.add_test",
+                  "gopls.apply_fix",
+                  "gopls.assembly",
+                  "gopls.change_signature",
+                  "gopls.check_upgrades",
+                  "gopls.client_open_url",
+                  "gopls.diagnose_files",
+                  "gopls.doc",
+                  "gopls.dragon_slayer",
+                  "gopls.edit_go_directive",
+                  "gopls.extract_to_new_file",
+                  "gopls.fetch_vulncheck_result",
+                  "gopls.free_symbols",
+                  "gopls.gc_details",
+                  "gopls.generate",
+                  "gopls.go_get_package",
+                  "gopls.implement_interface",
+                  "gopls.list_imports",
+                  "gopls.list_known_packages",
+                  "gopls.lsp",
+                  "gopls.maybe_prompt_for_telemetry",
+                  "gopls.mem_stats",
+                  "gopls.modify_tags",
+                  "gopls.modules",
+                  "gopls.move_declaration",
+                  "gopls.move_type",
+                  "gopls.package_symbols",
+                  "gopls.packages",
+                  "gopls.regenerate_cgo",
+                  "gopls.remove_dependency",
+                  "gopls.reset_go_mod_diagnostics",
+                  "gopls.resolve_target",
+                  "gopls.run_go_work_command",
+                  "gopls.run_govulncheck",
+                  "gopls.run_tests",
+                  "gopls.scan_imports",
+                  "gopls.split_package",
+                  "gopls.start_debugging",
+                  "gopls.start_profile",
+                  "gopls.stop_profile",
+                  "gopls.tidy",
+                  "gopls.update_go_sum",
+                  "gopls.upgrade_dependency",
+                  "gopls.vendor",
+                  "gopls.views",
+                  "gopls.vulncheck",
+                  "gopls.workspace_stats"
+                ]
+              },
+              "experimental": {
+                "interactiveResolveProvider": {
+                  "kinds": [
+                    "command"
+                  ]
+                }
+              },
+              "foldingRangeProvider": true,
+              "hoverProvider": true,
+              "implementationProvider": true,
+              "inlayHintProvider": {},
+              "referencesProvider": true,
+              "renameProvider": true,
+              "selectionRangeProvider": true,
+              "semanticTokensProvider": {
+                "full": true,
+                "legend": {
+                  "tokenModifiers": [
+                    "definition",
+                    "readonly",
+                    "defaultLibrary",
+                    "static",
+                    "array",
+                    "bool",
+                    "chan",
+                    "format",
+                    "interface",
+                    "map",
+                    "number",
+                    "pointer",
+                    "signature",
+                    "slice",
+                    "string",
+                    "struct",
+                    "shadowing"
+                  ],
+                  "tokenTypes": [
+                    "namespace",
+                    "type",
+                    "typeParameter",
+                    "parameter",
+                    "property",
+                    "variable",
+                    "function",
+                    "method",
+                    "macro",
+                    "keyword",
+                    "comment",
+                    "string",
+                    "number",
+                    "operator",
+                    "label"
+                  ]
+                },
+                "range": true
+              },
+              "signatureHelpProvider": {
+                "retriggerCharacters": [
+                  ")"
+                ],
+                "triggerCharacters": [
+                  "(",
+                  ","
+                ]
+              },
+              "textDocumentSync": {
+                "change": 2,
+                "openClose": true,
+                "save": {}
+              },
+              "typeDefinitionProvider": true,
+              "typeHierarchyProvider": true,
+              "workspace": {
+                "fileOperations": {
+                  "didCreate": {
+                    "filters": [
+                      {
+                        "pattern": {
+                          "glob": "**/*.go"
+                        },
+                        "scheme": "file"
+                      }
+                    ]
+                  }
+                },
+                "workspaceFolders": {
+                  "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                  "supported": true
+                }
+              },
+              "workspaceSymbolProvider": true
+            },
+            "configured": true,
+            "extensions": [
+              "go"
+            ],
+            "id": "go",
+            "probed": true,
+            "ready": true,
+            "status": {
+              "capabilities": {
+                "callHierarchyProvider": true,
+                "codeActionProvider": true,
+                "codeLensProvider": {},
+                "completionProvider": {
+                  "triggerCharacters": [
+                    "."
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentLinkProvider": {},
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "gopls.add_dependency",
+                    "gopls.add_import",
+                    "gopls.add_telemetry_counters",
+                    "gopls.add_test",
+                    "gopls.apply_fix",
+                    "gopls.assembly",
+                    "gopls.change_signature",
+                    "gopls.check_upgrades",
+                    "gopls.client_open_url",
+                    "gopls.diagnose_files",
+                    "gopls.doc",
+                    "gopls.dragon_slayer",
+                    "gopls.edit_go_directive",
+                    "gopls.extract_to_new_file",
+                    "gopls.fetch_vulncheck_result",
+                    "gopls.free_symbols",
+                    "gopls.gc_details",
+                    "gopls.generate",
+                    "gopls.go_get_package",
+                    "gopls.implement_interface",
+                    "gopls.list_imports",
+                    "gopls.list_known_packages",
+                    "gopls.lsp",
+                    "gopls.maybe_prompt_for_telemetry",
+                    "gopls.mem_stats",
+                    "gopls.modify_tags",
+                    "gopls.modules",
+                    "gopls.move_declaration",
+                    "gopls.move_type",
+                    "gopls.package_symbols",
+                    "gopls.packages",
+                    "gopls.regenerate_cgo",
+                    "gopls.remove_dependency",
+                    "gopls.reset_go_mod_diagnostics",
+                    "gopls.resolve_target",
+                    "gopls.run_go_work_command",
+                    "gopls.run_govulncheck",
+                    "gopls.run_tests",
+                    "gopls.scan_imports",
+                    "gopls.split_package",
+                    "gopls.start_debugging",
+                    "gopls.start_profile",
+                    "gopls.stop_profile",
+                    "gopls.tidy",
+                    "gopls.update_go_sum",
+                    "gopls.upgrade_dependency",
+                    "gopls.vendor",
+                    "gopls.views",
+                    "gopls.vulncheck",
+                    "gopls.workspace_stats"
+                  ]
+                },
+                "experimental": {
+                  "interactiveResolveProvider": {
+                    "kinds": [
+                      "command"
+                    ]
+                  }
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": {},
+                "referencesProvider": true,
+                "renameProvider": true,
+                "selectionRangeProvider": true,
+                "semanticTokensProvider": {
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "definition",
+                      "readonly",
+                      "defaultLibrary",
+                      "static",
+                      "array",
+                      "bool",
+                      "chan",
+                      "format",
+                      "interface",
+                      "map",
+                      "number",
+                      "pointer",
+                      "signature",
+                      "slice",
+                      "string",
+                      "struct",
+                      "shadowing"
+                    ],
+                    "tokenTypes": [
+                      "namespace",
+                      "type",
+                      "typeParameter",
+                      "parameter",
+                      "property",
+                      "variable",
+                      "function",
+                      "method",
+                      "macro",
+                      "keyword",
+                      "comment",
+                      "string",
+                      "number",
+                      "operator",
+                      "label"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "retriggerCharacters": [
+                    ")"
+                  ],
+                  "triggerCharacters": [
+                    "(",
+                    ","
+                  ]
+                },
+                "textDocumentSync": {
+                  "change": 2,
+                  "openClose": true,
+                  "save": {}
+                },
+                "typeDefinitionProvider": true,
+                "typeHierarchyProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "didCreate": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "**/*.go"
+                          },
+                          "scheme": "file"
+                        }
+                      ]
+                    }
+                  },
+                  "workspaceFolders": {
+                    "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                    "supported": true
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+                  "hash_verified": true,
+                  "launch_route": "mxc_process_container",
+                  "os_boundary_verified": false,
+                  "requested": true
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          }
+        ],
+        "project": "go_a",
+        "result_retention": {
+          "max_bytes": 134217728,
+          "max_results": 128,
+          "ttl_ms": 86400000
+        },
+        "semantic_available": true,
+        "shell_allowed": false,
+        "standalone": true,
+        "tools": [
+          {
+            "enabled": true,
+            "name": "status",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_version",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_schemas",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_capabilities",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_projects",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_current_config",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "initial_instructions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "onboarding",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_dir",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_for_pattern",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "index_build",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "index_query",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_symbols_overview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_referencing_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_implementations",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_declaration",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_type_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "code_actions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "hover",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "signature_help",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "workspace_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "call_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "format_document",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hints",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hint_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "semantic_tokens",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_inspection_providers",
+            "policy": "read"
+          },
+          {
+            "enabled": false,
+            "name": "run_inspections",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "prepare_inspection_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "prepare_code_action",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "apply_quick_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "move_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inline_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "restart_language_server",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_prepare",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_rollback",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_list",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_recover",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "create_text_file",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_content",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replacement_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "replace_in_files",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_at_line",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_symbol_body",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_before_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_after_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "safe_delete_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "list_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_memory",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "write_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "edit_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_export",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_import",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_move_scope",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "check_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "recover_memories",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "query_project",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_run",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_vars",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_clear",
+            "policy": "state"
+          },
+          {
+            "enabled": false,
+            "name": "execute_shell_command",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_start",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_request",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_events",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_stop",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_batch",
+            "policy": "execute"
+          },
+          {
+            "enabled": true,
+            "name": "result_read",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "audit_log",
+            "policy": "read"
+          }
+        ],
+        "trace": {
+          "elapsed_ms": 0,
+          "id": "a0bbeaef-898c-467b-adbd-11cd33376ec6",
+          "result_bytes": 10880,
+          "result_sha256": "6c02b03f83dc3766014f39a1569129db41e26e2ef7cb3ef9a563541f8518e941"
+        },
+        "write_allowed": true
+      },
+      "stderr": [],
+      "backend_logs": {},
+      "status": "PASS"
+    },
+    {
+      "language": "go",
+      "project": "go_b",
+      "checks": [
+        {
+          "name": "mcp_initialize",
+          "status": "PASS"
+        },
+        {
+          "name": "actual_lsp_initialize",
+          "status": "PASS",
+          "detail": {
+            "capabilities": {
+              "callHierarchyProvider": true,
+              "codeActionProvider": true,
+              "codeLensProvider": {},
+              "completionProvider": {
+                "triggerCharacters": [
+                  "."
+                ]
+              },
+              "definitionProvider": true,
+              "documentFormattingProvider": true,
+              "documentHighlightProvider": true,
+              "documentLinkProvider": {},
+              "documentSymbolProvider": true,
+              "executeCommandProvider": {
+                "commands": [
+                  "gopls.add_dependency",
+                  "gopls.add_import",
+                  "gopls.add_telemetry_counters",
+                  "gopls.add_test",
+                  "gopls.apply_fix",
+                  "gopls.assembly",
+                  "gopls.change_signature",
+                  "gopls.check_upgrades",
+                  "gopls.client_open_url",
+                  "gopls.diagnose_files",
+                  "gopls.doc",
+                  "gopls.dragon_slayer",
+                  "gopls.edit_go_directive",
+                  "gopls.extract_to_new_file",
+                  "gopls.fetch_vulncheck_result",
+                  "gopls.free_symbols",
+                  "gopls.gc_details",
+                  "gopls.generate",
+                  "gopls.go_get_package",
+                  "gopls.implement_interface",
+                  "gopls.list_imports",
+                  "gopls.list_known_packages",
+                  "gopls.lsp",
+                  "gopls.maybe_prompt_for_telemetry",
+                  "gopls.mem_stats",
+                  "gopls.modify_tags",
+                  "gopls.modules",
+                  "gopls.move_declaration",
+                  "gopls.move_type",
+                  "gopls.package_symbols",
+                  "gopls.packages",
+                  "gopls.regenerate_cgo",
+                  "gopls.remove_dependency",
+                  "gopls.reset_go_mod_diagnostics",
+                  "gopls.resolve_target",
+                  "gopls.run_go_work_command",
+                  "gopls.run_govulncheck",
+                  "gopls.run_tests",
+                  "gopls.scan_imports",
+                  "gopls.split_package",
+                  "gopls.start_debugging",
+                  "gopls.start_profile",
+                  "gopls.stop_profile",
+                  "gopls.tidy",
+                  "gopls.update_go_sum",
+                  "gopls.upgrade_dependency",
+                  "gopls.vendor",
+                  "gopls.views",
+                  "gopls.vulncheck",
+                  "gopls.workspace_stats"
+                ]
+              },
+              "experimental": {
+                "interactiveResolveProvider": {
+                  "kinds": [
+                    "command"
+                  ]
+                }
+              },
+              "foldingRangeProvider": true,
+              "hoverProvider": true,
+              "implementationProvider": true,
+              "inlayHintProvider": {},
+              "referencesProvider": true,
+              "renameProvider": true,
+              "selectionRangeProvider": true,
+              "semanticTokensProvider": {
+                "full": true,
+                "legend": {
+                  "tokenModifiers": [
+                    "definition",
+                    "readonly",
+                    "defaultLibrary",
+                    "static",
+                    "array",
+                    "bool",
+                    "chan",
+                    "format",
+                    "interface",
+                    "map",
+                    "number",
+                    "pointer",
+                    "signature",
+                    "slice",
+                    "string",
+                    "struct",
+                    "shadowing"
+                  ],
+                  "tokenTypes": [
+                    "namespace",
+                    "type",
+                    "typeParameter",
+                    "parameter",
+                    "property",
+                    "variable",
+                    "function",
+                    "method",
+                    "macro",
+                    "keyword",
+                    "comment",
+                    "string",
+                    "number",
+                    "operator",
+                    "label"
+                  ]
+                },
+                "range": true
+              },
+              "signatureHelpProvider": {
+                "retriggerCharacters": [
+                  ")"
+                ],
+                "triggerCharacters": [
+                  "(",
+                  ","
+                ]
+              },
+              "textDocumentSync": {
+                "change": 2,
+                "openClose": true,
+                "save": {}
+              },
+              "typeDefinitionProvider": true,
+              "typeHierarchyProvider": true,
+              "workspace": {
+                "fileOperations": {
+                  "didCreate": {
+                    "filters": [
+                      {
+                        "pattern": {
+                          "glob": "**/*.go"
+                        },
+                        "scheme": "file"
+                      }
+                    ]
+                  }
+                },
+                "workspaceFolders": {
+                  "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                  "supported": true
+                }
+              },
+              "workspaceSymbolProvider": true
+            },
+            "configured": true,
+            "extensions": [
+              "go"
+            ],
+            "id": "go",
+            "probed": true,
+            "ready": true,
+            "status": {
+              "capabilities": {
+                "callHierarchyProvider": true,
+                "codeActionProvider": true,
+                "codeLensProvider": {},
+                "completionProvider": {
+                  "triggerCharacters": [
+                    "."
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentLinkProvider": {},
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "gopls.add_dependency",
+                    "gopls.add_import",
+                    "gopls.add_telemetry_counters",
+                    "gopls.add_test",
+                    "gopls.apply_fix",
+                    "gopls.assembly",
+                    "gopls.change_signature",
+                    "gopls.check_upgrades",
+                    "gopls.client_open_url",
+                    "gopls.diagnose_files",
+                    "gopls.doc",
+                    "gopls.dragon_slayer",
+                    "gopls.edit_go_directive",
+                    "gopls.extract_to_new_file",
+                    "gopls.fetch_vulncheck_result",
+                    "gopls.free_symbols",
+                    "gopls.gc_details",
+                    "gopls.generate",
+                    "gopls.go_get_package",
+                    "gopls.implement_interface",
+                    "gopls.list_imports",
+                    "gopls.list_known_packages",
+                    "gopls.lsp",
+                    "gopls.maybe_prompt_for_telemetry",
+                    "gopls.mem_stats",
+                    "gopls.modify_tags",
+                    "gopls.modules",
+                    "gopls.move_declaration",
+                    "gopls.move_type",
+                    "gopls.package_symbols",
+                    "gopls.packages",
+                    "gopls.regenerate_cgo",
+                    "gopls.remove_dependency",
+                    "gopls.reset_go_mod_diagnostics",
+                    "gopls.resolve_target",
+                    "gopls.run_go_work_command",
+                    "gopls.run_govulncheck",
+                    "gopls.run_tests",
+                    "gopls.scan_imports",
+                    "gopls.split_package",
+                    "gopls.start_debugging",
+                    "gopls.start_profile",
+                    "gopls.stop_profile",
+                    "gopls.tidy",
+                    "gopls.update_go_sum",
+                    "gopls.upgrade_dependency",
+                    "gopls.vendor",
+                    "gopls.views",
+                    "gopls.vulncheck",
+                    "gopls.workspace_stats"
+                  ]
+                },
+                "experimental": {
+                  "interactiveResolveProvider": {
+                    "kinds": [
+                      "command"
+                    ]
+                  }
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": {},
+                "referencesProvider": true,
+                "renameProvider": true,
+                "selectionRangeProvider": true,
+                "semanticTokensProvider": {
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "definition",
+                      "readonly",
+                      "defaultLibrary",
+                      "static",
+                      "array",
+                      "bool",
+                      "chan",
+                      "format",
+                      "interface",
+                      "map",
+                      "number",
+                      "pointer",
+                      "signature",
+                      "slice",
+                      "string",
+                      "struct",
+                      "shadowing"
+                    ],
+                    "tokenTypes": [
+                      "namespace",
+                      "type",
+                      "typeParameter",
+                      "parameter",
+                      "property",
+                      "variable",
+                      "function",
+                      "method",
+                      "macro",
+                      "keyword",
+                      "comment",
+                      "string",
+                      "number",
+                      "operator",
+                      "label"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "retriggerCharacters": [
+                    ")"
+                  ],
+                  "triggerCharacters": [
+                    "(",
+                    ","
+                  ]
+                },
+                "textDocumentSync": {
+                  "change": 2,
+                  "openClose": true,
+                  "save": {}
+                },
+                "typeDefinitionProvider": true,
+                "typeHierarchyProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "didCreate": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "**/*.go"
+                          },
+                          "scheme": "file"
+                        }
+                      ]
+                    }
+                  },
+                  "workspaceFolders": {
+                    "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                    "supported": true
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+                  "hash_verified": true,
+                  "launch_route": "mxc_process_container",
+                  "os_boundary_verified": false,
+                  "requested": true
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          }
+        },
+        {
+          "name": "actual_native_sandbox_route",
+          "status": "PASS",
+          "detail": [
+            {
+              "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+              "hash_verified": true,
+              "launch_route": "mxc_process_container",
+              "os_boundary_verified": false,
+              "requested": true
+            }
+          ]
+        },
+        {
+          "name": "document_symbols",
+          "status": "PASS",
+          "detail": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 49,
+                  "line": 1
+                },
+                "start": {
+                  "character": 0,
+                  "line": 1
+                }
+              },
+              "relative_path": "sample.go",
+              "selection_range": {
+                "end": {
+                  "character": 10,
+                  "line": 1
+                },
+                "start": {
+                  "character": 5,
+                  "line": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "cross_file_references",
+          "status": "PASS",
+          "detail": {
+            "locations": [
+              {
+                "enclosing_symbol": {
+                  "kind": 12,
+                  "name": "consume",
+                  "name_path": "consume",
+                  "range": {
+                    "end": {
+                      "character": 45,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 0,
+                      "line": 1
+                    }
+                  },
+                  "relative_path": "consumer.go",
+                  "selection_range": {
+                    "end": {
+                      "character": 12,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 5,
+                      "line": 1
+                    }
+                  }
+                },
+                "external": false,
+                "location": {
+                  "range": {
+                    "end": {
+                      "character": 34,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 29,
+                      "line": 1
+                    }
+                  },
+                  "uri": "file:///<fixture>/projects/go_b/consumer.go"
+                },
+                "relative_path": "consumer.go"
+              },
+              {
+                "enclosing_symbol": {
+                  "kind": 12,
+                  "name": "run",
+                  "name_path": "run",
+                  "range": {
+                    "end": {
+                      "character": 56,
+                      "line": 2
+                    },
+                    "start": {
+                      "character": 0,
+                      "line": 2
+                    }
+                  },
+                  "relative_path": "sample.go",
+                  "selection_range": {
+                    "end": {
+                      "character": 8,
+                      "line": 2
+                    },
+                    "start": {
+                      "character": 5,
+                      "line": 2
+                    }
+                  }
+                },
+                "external": false,
+                "location": {
+                  "range": {
+                    "end": {
+                      "character": 32,
+                      "line": 2
+                    },
+                    "start": {
+                      "character": 27,
+                      "line": 2
+                    }
+                  },
+                  "uri": "file:///<fixture>/projects/go_b/sample.go"
+                },
+                "relative_path": "sample.go"
+              }
+            ],
+            "trace": {
+              "elapsed_ms": 6,
+              "id": "d5e2ebf9-352d-4256-8426-5de5afa12af5",
+              "result_bytes": 1022,
+              "result_sha256": "2583c4664f3707b00d3e054fa60b77f11b753f4134352eb8431596d7b875a76f"
+            },
+            "truncated": false
+          }
+        },
+        {
+          "name": "completion",
+          "status": "PASS",
+          "detail": {
+            "provider": "go",
+            "source": "lsp",
+            "result_count": 2
+          }
+        },
+        {
+          "name": "hover",
+          "status": "PASS",
+          "detail": {
+            "provider": "go",
+            "source": "lsp",
+            "result_count": 2
+          }
+        },
+        {
+          "name": "signature_help",
+          "status": "PASS",
+          "detail": {
+            "provider": "go",
+            "source": "lsp",
+            "result_count": 3
+          }
+        },
+        {
+          "name": "workspace_symbols",
+          "status": "PASS",
+          "detail": {
+            "provider": "go",
+            "source": "lsp",
+            "result_count": 1
+          }
+        },
+        {
+          "name": "inlay_hints",
+          "status": "PASS",
+          "detail": {
+            "provider": "go",
+            "source": "lsp",
+            "result_count": 2
+          }
+        },
+        {
+          "name": "semantic_tokens",
+          "status": "PASS",
+          "detail": {
+            "provider": "go",
+            "source": "lsp",
+            "result_count": 2
+          }
+        },
+        {
+          "name": "call_hierarchy",
+          "status": "PASS",
+          "detail": {
+            "provider": "go",
+            "source": "lsp",
+            "result_count": 1
+          }
+        },
+        {
+          "name": "completion_resolve",
+          "status": "UNAVAILABLE",
+          "detail": "completionProvider.resolveProvider"
+        },
+        {
+          "name": "inlay_hint_resolve",
+          "status": "UNAVAILABLE",
+          "detail": "inlayHintProvider.resolveProvider"
+        },
+        {
+          "name": "diagnostics_valid",
+          "status": "PASS",
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 1,
+            "document": {
+              "path": "sample.go",
+              "sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+              "uri": "file:///<fixture>/projects/go_b/sample.go",
+              "version": 1
+            },
+            "findings": [],
+            "freshness": "current",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "go",
+            "reason": null,
+            "report": {
+              "diagnostics": [],
+              "uri": "file:///<fixture>/projects/go_b/sample.go",
+              "version": 1
+            },
+            "reported_version": 1,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "clean",
+            "summary": {
+              "complete": true,
+              "errors": 0,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 0,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "9adb82dd-37c0-414f-9aeb-a6c17121b6f1",
+              "result_bytes": 755,
+              "result_sha256": "2378a1fcf70793df21989ece1d5da236780e25b770c9b9d8c9f77d7b518de3fb"
+            },
+            "version_verified": true
+          }
+        },
+        {
+          "name": "rename_preview_readonly",
+          "status": "PASS"
+        },
+        {
+          "name": "rename_definition_and_consumer",
+          "status": "PASS"
+        },
+        {
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS"
+        },
+        {
+          "name": "rename_rollback",
+          "status": "PASS"
+        },
+        {
+          "name": "format_preview_readonly",
+          "status": "PASS"
+        },
+        {
+          "name": "format_transaction",
+          "status": "PASS"
+        },
+        {
+          "name": "format_rollback",
+          "status": "PASS"
+        },
+        {
+          "name": "diagnostics_error",
+          "status": "PASS",
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 9,
+            "document": {
+              "path": "sample.go",
+              "sha256": "9844e5dd837e5fc4e81f0933e251c04b8191a3838a2393ce5e212ea7f92ef29a",
+              "uri": "file:///<fixture>/projects/go_b/sample.go",
+              "version": 9
+            },
+            "findings": [
+              {
+                "document_version": 9,
+                "lsp_severity": 1,
+                "message": "expected ')', found '{'",
+                "provider": "go",
+                "range": {
+                  "end": {
+                    "character": 18,
+                    "line": 4
+                  },
+                  "start": {
+                    "character": 18,
+                    "line": 4
+                  }
+                },
+                "relative_path": "sample.go",
+                "rule_id": null,
+                "severity": "error",
+                "source": "syntax",
+                "source_sha256": "9844e5dd837e5fc4e81f0933e251c04b8191a3838a2393ce5e212ea7f92ef29a",
+                "status": "current"
+              }
+            ],
+            "freshness": "current",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "go",
+            "reason": null,
+            "report": {
+              "diagnostics": [
+                {
+                  "message": "expected ')', found '{'",
+                  "range": {
+                    "end": {
+                      "character": 18,
+                      "line": 4
+                    },
+                    "start": {
+                      "character": 18,
+                      "line": 4
+                    }
+                  },
+                  "severity": 1,
+                  "source": "syntax"
+                }
+              ],
+              "uri": "file:///<fixture>/projects/go_b/sample.go",
+              "version": 9
+            },
+            "reported_version": 9,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "errors",
+            "summary": {
+              "complete": true,
+              "errors": 1,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 1,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 0,
+              "id": "cfd843fa-49cf-42bf-9065-5b3fe79c935a",
+              "result_bytes": 1249,
+              "result_sha256": "d12e380d3ebda37b645f77330f0660ff919bd089001573a8e82d4c4e91eb9b9f"
+            },
+            "version_verified": true
+          }
+        },
+        {
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS"
+        },
+        {
+          "name": "diagnostics_recovered",
+          "status": "PASS",
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 10,
+            "document": {
+              "path": "sample.go",
+              "sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+              "uri": "file:///<fixture>/projects/go_b/sample.go",
+              "version": 10
+            },
+            "findings": [],
+            "freshness": "current",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "go",
+            "reason": null,
+            "report": {
+              "diagnostics": [],
+              "uri": "file:///<fixture>/projects/go_b/sample.go",
+              "version": 10
+            },
+            "reported_version": 10,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "clean",
+            "summary": {
+              "complete": true,
+              "errors": 0,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 0,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 0,
+              "id": "6f65a4b9-4e5d-4547-ae4d-e63628196e38",
+              "result_bytes": 759,
+              "result_sha256": "88c4aa097bd852f554c926a4796b40c88b32c9f826169afa5e17e8cee66a9a29"
+            },
+            "version_verified": true
+          }
+        }
+      ],
+      "source_sha256": {
+        "sample.go": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+        "consumer.go": "2bb4de9c5c3927bfa3d87c359fd4553761391fe35d7ae310be1456a23e727041"
+      },
+      "isolation": "sandbox",
+      "binary_version": {
+        "name": "Odin",
+        "schema_version": 1,
+        "standalone": true,
+        "trace": {
+          "elapsed_ms": 0,
+          "id": "8bd9364a-b5b1-436b-bc86-2e8217a1f8df",
+          "result_bytes": 70,
+          "result_sha256": "56962aba324858cc3f3306c0c5e6854072861e96a2c79ef23586e0d3de4e050b"
+        },
+        "version": "0.2.0"
+      },
+      "capabilities": {
+        "debug_allowed": false,
+        "external_tool_bridge": false,
+        "formatter_profiles": [],
+        "formatters_allowed": false,
+        "inspection_profiles": [],
+        "inspections_allowed": false,
+        "languages": [
+          {
+            "capabilities": {
+              "callHierarchyProvider": true,
+              "codeActionProvider": true,
+              "codeLensProvider": {},
+              "completionProvider": {
+                "triggerCharacters": [
+                  "."
+                ]
+              },
+              "definitionProvider": true,
+              "documentFormattingProvider": true,
+              "documentHighlightProvider": true,
+              "documentLinkProvider": {},
+              "documentSymbolProvider": true,
+              "executeCommandProvider": {
+                "commands": [
+                  "gopls.add_dependency",
+                  "gopls.add_import",
+                  "gopls.add_telemetry_counters",
+                  "gopls.add_test",
+                  "gopls.apply_fix",
+                  "gopls.assembly",
+                  "gopls.change_signature",
+                  "gopls.check_upgrades",
+                  "gopls.client_open_url",
+                  "gopls.diagnose_files",
+                  "gopls.doc",
+                  "gopls.dragon_slayer",
+                  "gopls.edit_go_directive",
+                  "gopls.extract_to_new_file",
+                  "gopls.fetch_vulncheck_result",
+                  "gopls.free_symbols",
+                  "gopls.gc_details",
+                  "gopls.generate",
+                  "gopls.go_get_package",
+                  "gopls.implement_interface",
+                  "gopls.list_imports",
+                  "gopls.list_known_packages",
+                  "gopls.lsp",
+                  "gopls.maybe_prompt_for_telemetry",
+                  "gopls.mem_stats",
+                  "gopls.modify_tags",
+                  "gopls.modules",
+                  "gopls.move_declaration",
+                  "gopls.move_type",
+                  "gopls.package_symbols",
+                  "gopls.packages",
+                  "gopls.regenerate_cgo",
+                  "gopls.remove_dependency",
+                  "gopls.reset_go_mod_diagnostics",
+                  "gopls.resolve_target",
+                  "gopls.run_go_work_command",
+                  "gopls.run_govulncheck",
+                  "gopls.run_tests",
+                  "gopls.scan_imports",
+                  "gopls.split_package",
+                  "gopls.start_debugging",
+                  "gopls.start_profile",
+                  "gopls.stop_profile",
+                  "gopls.tidy",
+                  "gopls.update_go_sum",
+                  "gopls.upgrade_dependency",
+                  "gopls.vendor",
+                  "gopls.views",
+                  "gopls.vulncheck",
+                  "gopls.workspace_stats"
+                ]
+              },
+              "experimental": {
+                "interactiveResolveProvider": {
+                  "kinds": [
+                    "command"
+                  ]
+                }
+              },
+              "foldingRangeProvider": true,
+              "hoverProvider": true,
+              "implementationProvider": true,
+              "inlayHintProvider": {},
+              "referencesProvider": true,
+              "renameProvider": true,
+              "selectionRangeProvider": true,
+              "semanticTokensProvider": {
+                "full": true,
+                "legend": {
+                  "tokenModifiers": [
+                    "definition",
+                    "readonly",
+                    "defaultLibrary",
+                    "static",
+                    "array",
+                    "bool",
+                    "chan",
+                    "format",
+                    "interface",
+                    "map",
+                    "number",
+                    "pointer",
+                    "signature",
+                    "slice",
+                    "string",
+                    "struct",
+                    "shadowing"
+                  ],
+                  "tokenTypes": [
+                    "namespace",
+                    "type",
+                    "typeParameter",
+                    "parameter",
+                    "property",
+                    "variable",
+                    "function",
+                    "method",
+                    "macro",
+                    "keyword",
+                    "comment",
+                    "string",
+                    "number",
+                    "operator",
+                    "label"
+                  ]
+                },
+                "range": true
+              },
+              "signatureHelpProvider": {
+                "retriggerCharacters": [
+                  ")"
+                ],
+                "triggerCharacters": [
+                  "(",
+                  ","
+                ]
+              },
+              "textDocumentSync": {
+                "change": 2,
+                "openClose": true,
+                "save": {}
+              },
+              "typeDefinitionProvider": true,
+              "typeHierarchyProvider": true,
+              "workspace": {
+                "fileOperations": {
+                  "didCreate": {
+                    "filters": [
+                      {
+                        "pattern": {
+                          "glob": "**/*.go"
+                        },
+                        "scheme": "file"
+                      }
+                    ]
+                  }
+                },
+                "workspaceFolders": {
+                  "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                  "supported": true
+                }
+              },
+              "workspaceSymbolProvider": true
+            },
+            "configured": true,
+            "extensions": [
+              "go"
+            ],
+            "id": "go",
+            "probed": true,
+            "ready": true,
+            "status": {
+              "capabilities": {
+                "callHierarchyProvider": true,
+                "codeActionProvider": true,
+                "codeLensProvider": {},
+                "completionProvider": {
+                  "triggerCharacters": [
+                    "."
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentLinkProvider": {},
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "gopls.add_dependency",
+                    "gopls.add_import",
+                    "gopls.add_telemetry_counters",
+                    "gopls.add_test",
+                    "gopls.apply_fix",
+                    "gopls.assembly",
+                    "gopls.change_signature",
+                    "gopls.check_upgrades",
+                    "gopls.client_open_url",
+                    "gopls.diagnose_files",
+                    "gopls.doc",
+                    "gopls.dragon_slayer",
+                    "gopls.edit_go_directive",
+                    "gopls.extract_to_new_file",
+                    "gopls.fetch_vulncheck_result",
+                    "gopls.free_symbols",
+                    "gopls.gc_details",
+                    "gopls.generate",
+                    "gopls.go_get_package",
+                    "gopls.implement_interface",
+                    "gopls.list_imports",
+                    "gopls.list_known_packages",
+                    "gopls.lsp",
+                    "gopls.maybe_prompt_for_telemetry",
+                    "gopls.mem_stats",
+                    "gopls.modify_tags",
+                    "gopls.modules",
+                    "gopls.move_declaration",
+                    "gopls.move_type",
+                    "gopls.package_symbols",
+                    "gopls.packages",
+                    "gopls.regenerate_cgo",
+                    "gopls.remove_dependency",
+                    "gopls.reset_go_mod_diagnostics",
+                    "gopls.resolve_target",
+                    "gopls.run_go_work_command",
+                    "gopls.run_govulncheck",
+                    "gopls.run_tests",
+                    "gopls.scan_imports",
+                    "gopls.split_package",
+                    "gopls.start_debugging",
+                    "gopls.start_profile",
+                    "gopls.stop_profile",
+                    "gopls.tidy",
+                    "gopls.update_go_sum",
+                    "gopls.upgrade_dependency",
+                    "gopls.vendor",
+                    "gopls.views",
+                    "gopls.vulncheck",
+                    "gopls.workspace_stats"
+                  ]
+                },
+                "experimental": {
+                  "interactiveResolveProvider": {
+                    "kinds": [
+                      "command"
+                    ]
+                  }
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": {},
+                "referencesProvider": true,
+                "renameProvider": true,
+                "selectionRangeProvider": true,
+                "semanticTokensProvider": {
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "definition",
+                      "readonly",
+                      "defaultLibrary",
+                      "static",
+                      "array",
+                      "bool",
+                      "chan",
+                      "format",
+                      "interface",
+                      "map",
+                      "number",
+                      "pointer",
+                      "signature",
+                      "slice",
+                      "string",
+                      "struct",
+                      "shadowing"
+                    ],
+                    "tokenTypes": [
+                      "namespace",
+                      "type",
+                      "typeParameter",
+                      "parameter",
+                      "property",
+                      "variable",
+                      "function",
+                      "method",
+                      "macro",
+                      "keyword",
+                      "comment",
+                      "string",
+                      "number",
+                      "operator",
+                      "label"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "retriggerCharacters": [
+                    ")"
+                  ],
+                  "triggerCharacters": [
+                    "(",
+                    ","
+                  ]
+                },
+                "textDocumentSync": {
+                  "change": 2,
+                  "openClose": true,
+                  "save": {}
+                },
+                "typeDefinitionProvider": true,
+                "typeHierarchyProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "didCreate": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "**/*.go"
+                          },
+                          "scheme": "file"
+                        }
+                      ]
+                    }
+                  },
+                  "workspaceFolders": {
+                    "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                    "supported": true
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+                  "hash_verified": true,
+                  "launch_route": "mxc_process_container",
+                  "os_boundary_verified": false,
+                  "requested": true
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          }
+        ],
+        "project": "go_b",
+        "result_retention": {
+          "max_bytes": 134217728,
+          "max_results": 128,
+          "ttl_ms": 86400000
+        },
+        "semantic_available": true,
+        "shell_allowed": false,
+        "standalone": true,
+        "tools": [
+          {
+            "enabled": true,
+            "name": "status",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_version",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_schemas",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_capabilities",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_projects",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_current_config",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "initial_instructions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "onboarding",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_dir",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_for_pattern",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "index_build",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "index_query",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_symbols_overview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_referencing_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_implementations",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_declaration",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_type_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "code_actions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "hover",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "signature_help",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "workspace_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "call_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "format_document",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hints",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hint_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "semantic_tokens",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_inspection_providers",
+            "policy": "read"
+          },
+          {
+            "enabled": false,
+            "name": "run_inspections",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "prepare_inspection_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "prepare_code_action",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "apply_quick_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "move_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inline_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "restart_language_server",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_prepare",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_rollback",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_list",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_recover",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "create_text_file",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_content",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replacement_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "replace_in_files",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_at_line",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_symbol_body",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_before_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_after_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "safe_delete_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "list_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_memory",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "write_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "edit_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_export",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_import",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_move_scope",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "check_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "recover_memories",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "query_project",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_run",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_vars",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_clear",
+            "policy": "state"
+          },
+          {
+            "enabled": false,
+            "name": "execute_shell_command",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_start",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_request",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_events",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_stop",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_batch",
+            "policy": "execute"
+          },
+          {
+            "enabled": true,
+            "name": "result_read",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "audit_log",
+            "policy": "read"
+          }
+        ],
+        "trace": {
+          "elapsed_ms": 479,
+          "id": "45f06a92-4acb-4af2-92cd-790f19f4da6f",
+          "result_bytes": 10880,
+          "result_sha256": "e39603939c64f6f3037c8e774bdae25b26090e24bdd2ed7876111854276a0fad"
+        },
+        "write_allowed": true
+      },
+      "final_lsp_status": {
+        "debug_allowed": false,
+        "external_tool_bridge": false,
+        "formatter_profiles": [],
+        "formatters_allowed": false,
+        "inspection_profiles": [],
+        "inspections_allowed": false,
+        "languages": [
+          {
+            "capabilities": {
+              "callHierarchyProvider": true,
+              "codeActionProvider": true,
+              "codeLensProvider": {},
+              "completionProvider": {
+                "triggerCharacters": [
+                  "."
+                ]
+              },
+              "definitionProvider": true,
+              "documentFormattingProvider": true,
+              "documentHighlightProvider": true,
+              "documentLinkProvider": {},
+              "documentSymbolProvider": true,
+              "executeCommandProvider": {
+                "commands": [
+                  "gopls.add_dependency",
+                  "gopls.add_import",
+                  "gopls.add_telemetry_counters",
+                  "gopls.add_test",
+                  "gopls.apply_fix",
+                  "gopls.assembly",
+                  "gopls.change_signature",
+                  "gopls.check_upgrades",
+                  "gopls.client_open_url",
+                  "gopls.diagnose_files",
+                  "gopls.doc",
+                  "gopls.dragon_slayer",
+                  "gopls.edit_go_directive",
+                  "gopls.extract_to_new_file",
+                  "gopls.fetch_vulncheck_result",
+                  "gopls.free_symbols",
+                  "gopls.gc_details",
+                  "gopls.generate",
+                  "gopls.go_get_package",
+                  "gopls.implement_interface",
+                  "gopls.list_imports",
+                  "gopls.list_known_packages",
+                  "gopls.lsp",
+                  "gopls.maybe_prompt_for_telemetry",
+                  "gopls.mem_stats",
+                  "gopls.modify_tags",
+                  "gopls.modules",
+                  "gopls.move_declaration",
+                  "gopls.move_type",
+                  "gopls.package_symbols",
+                  "gopls.packages",
+                  "gopls.regenerate_cgo",
+                  "gopls.remove_dependency",
+                  "gopls.reset_go_mod_diagnostics",
+                  "gopls.resolve_target",
+                  "gopls.run_go_work_command",
+                  "gopls.run_govulncheck",
+                  "gopls.run_tests",
+                  "gopls.scan_imports",
+                  "gopls.split_package",
+                  "gopls.start_debugging",
+                  "gopls.start_profile",
+                  "gopls.stop_profile",
+                  "gopls.tidy",
+                  "gopls.update_go_sum",
+                  "gopls.upgrade_dependency",
+                  "gopls.vendor",
+                  "gopls.views",
+                  "gopls.vulncheck",
+                  "gopls.workspace_stats"
+                ]
+              },
+              "experimental": {
+                "interactiveResolveProvider": {
+                  "kinds": [
+                    "command"
+                  ]
+                }
+              },
+              "foldingRangeProvider": true,
+              "hoverProvider": true,
+              "implementationProvider": true,
+              "inlayHintProvider": {},
+              "referencesProvider": true,
+              "renameProvider": true,
+              "selectionRangeProvider": true,
+              "semanticTokensProvider": {
+                "full": true,
+                "legend": {
+                  "tokenModifiers": [
+                    "definition",
+                    "readonly",
+                    "defaultLibrary",
+                    "static",
+                    "array",
+                    "bool",
+                    "chan",
+                    "format",
+                    "interface",
+                    "map",
+                    "number",
+                    "pointer",
+                    "signature",
+                    "slice",
+                    "string",
+                    "struct",
+                    "shadowing"
+                  ],
+                  "tokenTypes": [
+                    "namespace",
+                    "type",
+                    "typeParameter",
+                    "parameter",
+                    "property",
+                    "variable",
+                    "function",
+                    "method",
+                    "macro",
+                    "keyword",
+                    "comment",
+                    "string",
+                    "number",
+                    "operator",
+                    "label"
+                  ]
+                },
+                "range": true
+              },
+              "signatureHelpProvider": {
+                "retriggerCharacters": [
+                  ")"
+                ],
+                "triggerCharacters": [
+                  "(",
+                  ","
+                ]
+              },
+              "textDocumentSync": {
+                "change": 2,
+                "openClose": true,
+                "save": {}
+              },
+              "typeDefinitionProvider": true,
+              "typeHierarchyProvider": true,
+              "workspace": {
+                "fileOperations": {
+                  "didCreate": {
+                    "filters": [
+                      {
+                        "pattern": {
+                          "glob": "**/*.go"
+                        },
+                        "scheme": "file"
+                      }
+                    ]
+                  }
+                },
+                "workspaceFolders": {
+                  "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                  "supported": true
+                }
+              },
+              "workspaceSymbolProvider": true
+            },
+            "configured": true,
+            "extensions": [
+              "go"
+            ],
+            "id": "go",
+            "probed": true,
+            "ready": true,
+            "status": {
+              "capabilities": {
+                "callHierarchyProvider": true,
+                "codeActionProvider": true,
+                "codeLensProvider": {},
+                "completionProvider": {
+                  "triggerCharacters": [
+                    "."
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentLinkProvider": {},
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "gopls.add_dependency",
+                    "gopls.add_import",
+                    "gopls.add_telemetry_counters",
+                    "gopls.add_test",
+                    "gopls.apply_fix",
+                    "gopls.assembly",
+                    "gopls.change_signature",
+                    "gopls.check_upgrades",
+                    "gopls.client_open_url",
+                    "gopls.diagnose_files",
+                    "gopls.doc",
+                    "gopls.dragon_slayer",
+                    "gopls.edit_go_directive",
+                    "gopls.extract_to_new_file",
+                    "gopls.fetch_vulncheck_result",
+                    "gopls.free_symbols",
+                    "gopls.gc_details",
+                    "gopls.generate",
+                    "gopls.go_get_package",
+                    "gopls.implement_interface",
+                    "gopls.list_imports",
+                    "gopls.list_known_packages",
+                    "gopls.lsp",
+                    "gopls.maybe_prompt_for_telemetry",
+                    "gopls.mem_stats",
+                    "gopls.modify_tags",
+                    "gopls.modules",
+                    "gopls.move_declaration",
+                    "gopls.move_type",
+                    "gopls.package_symbols",
+                    "gopls.packages",
+                    "gopls.regenerate_cgo",
+                    "gopls.remove_dependency",
+                    "gopls.reset_go_mod_diagnostics",
+                    "gopls.resolve_target",
+                    "gopls.run_go_work_command",
+                    "gopls.run_govulncheck",
+                    "gopls.run_tests",
+                    "gopls.scan_imports",
+                    "gopls.split_package",
+                    "gopls.start_debugging",
+                    "gopls.start_profile",
+                    "gopls.stop_profile",
+                    "gopls.tidy",
+                    "gopls.update_go_sum",
+                    "gopls.upgrade_dependency",
+                    "gopls.vendor",
+                    "gopls.views",
+                    "gopls.vulncheck",
+                    "gopls.workspace_stats"
+                  ]
+                },
+                "experimental": {
+                  "interactiveResolveProvider": {
+                    "kinds": [
+                      "command"
+                    ]
+                  }
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": {},
+                "referencesProvider": true,
+                "renameProvider": true,
+                "selectionRangeProvider": true,
+                "semanticTokensProvider": {
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "definition",
+                      "readonly",
+                      "defaultLibrary",
+                      "static",
+                      "array",
+                      "bool",
+                      "chan",
+                      "format",
+                      "interface",
+                      "map",
+                      "number",
+                      "pointer",
+                      "signature",
+                      "slice",
+                      "string",
+                      "struct",
+                      "shadowing"
+                    ],
+                    "tokenTypes": [
+                      "namespace",
+                      "type",
+                      "typeParameter",
+                      "parameter",
+                      "property",
+                      "variable",
+                      "function",
+                      "method",
+                      "macro",
+                      "keyword",
+                      "comment",
+                      "string",
+                      "number",
+                      "operator",
+                      "label"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "retriggerCharacters": [
+                    ")"
+                  ],
+                  "triggerCharacters": [
+                    "(",
+                    ","
+                  ]
+                },
+                "textDocumentSync": {
+                  "change": 2,
+                  "openClose": true,
+                  "save": {}
+                },
+                "typeDefinitionProvider": true,
+                "typeHierarchyProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "didCreate": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "**/*.go"
+                          },
+                          "scheme": "file"
+                        }
+                      ]
+                    }
+                  },
+                  "workspaceFolders": {
+                    "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                    "supported": true
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+                  "hash_verified": true,
+                  "launch_route": "mxc_process_container",
+                  "os_boundary_verified": false,
+                  "requested": true
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          }
+        ],
+        "project": "go_b",
+        "result_retention": {
+          "max_bytes": 134217728,
+          "max_results": 128,
+          "ttl_ms": 86400000
+        },
+        "semantic_available": true,
+        "shell_allowed": false,
+        "standalone": true,
+        "tools": [
+          {
+            "enabled": true,
+            "name": "status",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_version",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_schemas",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_capabilities",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_projects",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_current_config",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "initial_instructions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "onboarding",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_dir",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_for_pattern",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "index_build",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "index_query",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_symbols_overview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_referencing_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_implementations",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_declaration",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_type_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "code_actions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "hover",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "signature_help",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "workspace_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "call_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "format_document",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hints",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hint_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "semantic_tokens",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_inspection_providers",
+            "policy": "read"
+          },
+          {
+            "enabled": false,
+            "name": "run_inspections",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "prepare_inspection_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "prepare_code_action",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "apply_quick_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "move_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inline_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "restart_language_server",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_prepare",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_rollback",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_list",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_recover",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "create_text_file",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_content",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replacement_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "replace_in_files",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_at_line",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_symbol_body",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_before_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_after_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "safe_delete_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "list_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_memory",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "write_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "edit_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_export",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_import",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_move_scope",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "check_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "recover_memories",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "query_project",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_run",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_vars",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_clear",
+            "policy": "state"
+          },
+          {
+            "enabled": false,
+            "name": "execute_shell_command",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_start",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_request",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_events",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_stop",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_batch",
+            "policy": "execute"
+          },
+          {
+            "enabled": true,
+            "name": "result_read",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "audit_log",
+            "policy": "read"
+          }
+        ],
+        "trace": {
+          "elapsed_ms": 0,
+          "id": "c52a9c57-c523-41a5-b90b-a4d9d66cf7be",
+          "result_bytes": 10880,
+          "result_sha256": "e39603939c64f6f3037c8e774bdae25b26090e24bdd2ed7876111854276a0fad"
+        },
+        "write_allowed": true
+      },
+      "stderr": [],
+      "backend_logs": {},
+      "status": "PASS"
+    }
+  ],
+  "setup_errors": [],
+  "boundary": "Explicit MXC profile; actual LSP results and runtime route recorded, not full OS/UI parity",
+  "sandbox_profiles": [
+    {
+      "project": "go_a",
+      "program": "E:\\odin\\.odin\\validation-tools\\go-work\\bin\\gopls.exe",
+      "argv": [],
+      "readonly_paths": [
+        "<fixture>\\projects\\go_a",
+        "E:\\odin\\.odin\\validation-tools\\go-work\\bin",
+        "E:\\odin\\.odin\\validation-tools\\go\\go"
+      ],
+      "readwrite_paths": [
+        "<fixture>\\backend-cache\\go_a"
+      ],
+      "enumerate_paths": [
+        "C:\\",
+        "C:\\Users",
+        "C:\\Users\\steven",
+        "C:\\Users\\steven\\AppData",
+        "C:\\Users\\steven\\AppData\\Local",
+        "C:\\Users\\steven\\AppData\\Local\\Temp",
+        "<fixture>",
+        "<fixture>\\projects",
+        "E:\\",
+        "E:\\odin",
+        "E:\\odin\\.odin",
+        "E:\\odin\\.odin\\validation-tools",
+        "E:\\odin\\.odin\\validation-tools\\go",
+        "E:\\odin\\.odin\\validation-tools\\go-work"
+      ],
+      "enumerate_paths_do_not_grant_file_contents": true,
+      "environment_overrides": {
+        "GOROOT": "E:\\odin\\.odin\\validation-tools\\go\\go",
+        "GOPATH": "<fixture>\\backend-cache\\go_a\\go-path",
+        "GOCACHE": "<fixture>\\backend-cache\\go_a\\go-cache",
+        "GOMODCACHE": "<fixture>\\backend-cache\\go_a\\go-modules",
+        "GOTOOLCHAIN": "local",
+        "GOTELEMETRY": "off"
+      },
+      "profile_details": {
+        "fixed_go_subprocess_temp": "<fixture>\\backend-cache\\go_a\\go-temp",
+        "readonly_paths": [
+          "<fixture>\\projects\\go_a",
+          "E:\\odin\\.odin\\validation-tools\\go-work\\bin",
+          "E:\\odin\\.odin\\validation-tools\\go\\go"
+        ],
+        "readwrite_paths": [
+          "<fixture>\\backend-cache\\go_a"
+        ]
+      },
+      "initialization_options": {
+        "semanticTokens": true,
+        "hints": {
+          "assignVariableTypes": true,
+          "parameterNames": true,
+          "constantValues": true
+        },
+        "env": {
+          "GOROOT": "E:\\odin\\.odin\\validation-tools\\go\\go",
+          "GOPATH": "<fixture>\\backend-cache\\go_a\\go-path",
+          "GOCACHE": "<fixture>\\backend-cache\\go_a\\go-cache",
+          "GOMODCACHE": "<fixture>\\backend-cache\\go_a\\go-modules",
+          "GOTOOLCHAIN": "local",
+          "GOTELEMETRY": "off",
+          "GOPROXY": "off",
+          "GOSUMDB": "off",
+          "TEMP": "<fixture>\\backend-cache\\go_a\\go-temp",
+          "TMP": "<fixture>\\backend-cache\\go_a\\go-temp",
+          "GOTMPDIR": "<fixture>\\backend-cache\\go_a\\go-temp"
+        }
+      },
+      "settings": {
+        "gopls": {
+          "semanticTokens": true,
+          "hints": {
+            "assignVariableTypes": true,
+            "parameterNames": true,
+            "constantValues": true
+          },
+          "env": {
+            "GOROOT": "E:\\odin\\.odin\\validation-tools\\go\\go",
+            "GOPATH": "<fixture>\\backend-cache\\go_a\\go-path",
+            "GOCACHE": "<fixture>\\backend-cache\\go_a\\go-cache",
+            "GOMODCACHE": "<fixture>\\backend-cache\\go_a\\go-modules",
+            "GOTOOLCHAIN": "local",
+            "GOTELEMETRY": "off",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "TEMP": "<fixture>\\backend-cache\\go_a\\go-temp",
+            "TMP": "<fixture>\\backend-cache\\go_a\\go-temp",
+            "GOTMPDIR": "<fixture>\\backend-cache\\go_a\\go-temp"
+          }
+        }
+      },
+      "private_scratch": "scratch\\go_a",
+      "allow_ui": true,
+      "clipboard": "none",
+      "injection": false,
+      "requested_network_policy": "deny_all",
+      "bootstrap_is_readonly_file": false,
+      "fixed_descendant_node_options": null
+    },
+    {
+      "project": "go_b",
+      "program": "E:\\odin\\.odin\\validation-tools\\go-work\\bin\\gopls.exe",
+      "argv": [],
+      "readonly_paths": [
+        "<fixture>\\projects\\go_b",
+        "E:\\odin\\.odin\\validation-tools\\go-work\\bin",
+        "E:\\odin\\.odin\\validation-tools\\go\\go"
+      ],
+      "readwrite_paths": [
+        "<fixture>\\backend-cache\\go_b"
+      ],
+      "enumerate_paths": [
+        "C:\\",
+        "C:\\Users",
+        "C:\\Users\\steven",
+        "C:\\Users\\steven\\AppData",
+        "C:\\Users\\steven\\AppData\\Local",
+        "C:\\Users\\steven\\AppData\\Local\\Temp",
+        "<fixture>",
+        "<fixture>\\projects",
+        "E:\\",
+        "E:\\odin",
+        "E:\\odin\\.odin",
+        "E:\\odin\\.odin\\validation-tools",
+        "E:\\odin\\.odin\\validation-tools\\go",
+        "E:\\odin\\.odin\\validation-tools\\go-work"
+      ],
+      "enumerate_paths_do_not_grant_file_contents": true,
+      "environment_overrides": {
+        "GOROOT": "E:\\odin\\.odin\\validation-tools\\go\\go",
+        "GOPATH": "<fixture>\\backend-cache\\go_b\\go-path",
+        "GOCACHE": "<fixture>\\backend-cache\\go_b\\go-cache",
+        "GOMODCACHE": "<fixture>\\backend-cache\\go_b\\go-modules",
+        "GOTOOLCHAIN": "local",
+        "GOTELEMETRY": "off"
+      },
+      "profile_details": {
+        "fixed_go_subprocess_temp": "<fixture>\\backend-cache\\go_b\\go-temp",
+        "readonly_paths": [
+          "<fixture>\\projects\\go_b",
+          "E:\\odin\\.odin\\validation-tools\\go-work\\bin",
+          "E:\\odin\\.odin\\validation-tools\\go\\go"
+        ],
+        "readwrite_paths": [
+          "<fixture>\\backend-cache\\go_b"
+        ]
+      },
+      "initialization_options": {
+        "semanticTokens": true,
+        "hints": {
+          "assignVariableTypes": true,
+          "parameterNames": true,
+          "constantValues": true
+        },
+        "env": {
+          "GOROOT": "E:\\odin\\.odin\\validation-tools\\go\\go",
+          "GOPATH": "<fixture>\\backend-cache\\go_b\\go-path",
+          "GOCACHE": "<fixture>\\backend-cache\\go_b\\go-cache",
+          "GOMODCACHE": "<fixture>\\backend-cache\\go_b\\go-modules",
+          "GOTOOLCHAIN": "local",
+          "GOTELEMETRY": "off",
+          "GOPROXY": "off",
+          "GOSUMDB": "off",
+          "TEMP": "<fixture>\\backend-cache\\go_b\\go-temp",
+          "TMP": "<fixture>\\backend-cache\\go_b\\go-temp",
+          "GOTMPDIR": "<fixture>\\backend-cache\\go_b\\go-temp"
+        }
+      },
+      "settings": {
+        "gopls": {
+          "semanticTokens": true,
+          "hints": {
+            "assignVariableTypes": true,
+            "parameterNames": true,
+            "constantValues": true
+          },
+          "env": {
+            "GOROOT": "E:\\odin\\.odin\\validation-tools\\go\\go",
+            "GOPATH": "<fixture>\\backend-cache\\go_b\\go-path",
+            "GOCACHE": "<fixture>\\backend-cache\\go_b\\go-cache",
+            "GOMODCACHE": "<fixture>\\backend-cache\\go_b\\go-modules",
+            "GOTOOLCHAIN": "local",
+            "GOTELEMETRY": "off",
+            "GOPROXY": "off",
+            "GOSUMDB": "off",
+            "TEMP": "<fixture>\\backend-cache\\go_b\\go-temp",
+            "TMP": "<fixture>\\backend-cache\\go_b\\go-temp",
+            "GOTMPDIR": "<fixture>\\backend-cache\\go_b\\go-temp"
+          }
+        }
+      },
+      "private_scratch": "scratch\\go_b",
+      "allow_ui": true,
+      "clipboard": "none",
+      "injection": false,
+      "requested_network_policy": "deny_all",
+      "bootstrap_is_readonly_file": false,
+      "fixed_descendant_node_options": null
+    }
+  ],
+  "host_config_sha256": "821fc80d8538a2dee8d1b9f72fc8333dc2eacc17ca559bc209df65fd1f529207",
+  "binary_launch": {
+    "status": "PASS",
+    "exit_code": 0,
+    "stdout": "odin 0.2.0\n",
+    "stderr": ""
+  },
+  "backends": {
+    "go": {
+      "program_sha256": "73d07cc17551502d9df4c64d981e2e30239dffb74596c3338305338b3b7e3340",
+      "version_argv": [
+        "<tools_root>\\go-work\\bin\\gopls.exe",
+        "version"
+      ],
+      "version_exit_code": 0,
+      "version_stdout": "golang.org/x/tools/gopls v0.24.0\n",
+      "version_stderr": ""
+    }
+  },
+  "counts": {
+    "PASS": 46,
+    "UNAVAILABLE": 4
+  },
+  "matrix": {
+    "go": {
+      "go_a": "PASS",
+      "go_b": "PASS"
+    }
+  },
+  "actual_lsp_projects_initialized": 2,
+  "transcript_sha256": "33b52aaad4a888df41f2d36c6c52f670fc30dadad12d419fd0f10bd098859e51",
+  "line_endings_normalized_before_hash_binding": true,
+  "odin_trace_hashes_describe_original_unredacted_payloads": true
+}

@@ -1,0 +1,25 @@
+{
+  "command": [
+    "C:\\Python314\\python.exe",
+    "-u",
+    "verification/language-sandbox-v3-direct-diagnostic.py",
+    "--probe",
+    "csharp-lsp",
+    "--enumerate-runtime-ancestors",
+    "--csharp-backend",
+    "omnisharp",
+    "--null-client-process-id",
+    "--output",
+    "verification/language-sandbox-v3-direct-csharp-nullpid-07.json"
+  ],
+  "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin",
+  "started_utc": "2026-10-21T03:29:37.9053464Z",
+  "finished_utc": "2026-10-21T03:29:45.1229805Z",
+  "exit_code": 1,
+  "scope": "DIRECT_NATIVE_BACKEND_DIAGNOSTIC_ONLY",
+  "driver_sha256": "d7a77bc7633b85a945c9b4d98eee52f84efe32dbd92c8201590257f79e7550b9",
+  "harness_sha256": "a99efaf59e6ae83dbf20158b8b0b3f39180255192771b60d44801ae333790477",
+  "report_sha256": "71453c3cc916b8c5642d2a2ccd056e969625c02278af719bce450bef513acdef",
+  "stdout_sha256": "425eca94ce23f3aedecb88dc7d8d7f83a95fb07f0c864382d2594ab2b92a1b27",
+  "line_endings_normalized_before_hash_binding": true
+}

@@ -368,6 +368,20 @@ global environment change. A separate fixed direct OmniSharp probe can send a
 null `initialize.processId` to test its host-PID monitor hypothesis without
 granting access to host processes.
 
+The [Go private-temp retest](../verification/language-sandbox-v3-go-native-02.json)
+used the unchanged `780c6ad` binary and returned actual exit **0**, **46 PASS /
+4 UNAVAILABLE / 0 FAIL** across two projects. It passed cross-file references,
+rename CAS/apply/rollback, formatting and all three versioned diagnostic cases.
+The original failed matrix remains preserved.
+
+The direct `csharp-nullpid-07` comparison returned real nested `greet`/`run`
+document symbols and a successful LSP shutdown with `processId: null`; the
+native backend exited zero. This supports the host-PID-monitor explanation but
+does not yet establish full Odin C# IDE acceptance. Its direct driver still
+returned exit 1 during shadow-copy-directory cleanup, recorded independently
+from the server's successful response and exit. A product LSP PID correction
+requires a new binary and complete MCP retest.
+
 `verification/language-sandbox-v3-runner.ps1` records the exact driver argv,
 binary/harness/runner hashes, actual exit code, raw stdout and transcript. It
 requires fresh output names, normalizes text to LF before final hash binding,
