@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "scope": "LF normalization only; all original check results preserved",
+  "logical_checks_sha256_before": "30d70befcd43c214ac9d58da3fe6d69fbc162906cecdf33c3137ff72035c4f03",
+  "logical_checks_sha256_after": "30d70befcd43c214ac9d58da3fe6d69fbc162906cecdf33c3137ff72035c4f03",
+  "actual_driver_exit_code": 0,
+  "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+  "harness_sha256": "db10f4a6cc50fc6ec80553d499c4644a999338214b5a34c69c1758ec6848e0cf",
+  "artifacts": [
+    {
+      "path": "C:/Users/steven/.codex/worktrees/odin-platform/odin/verification/language-sandbox-v3-python-native-02.json",
+      "sha256": "eed0a5689d4a158a3d2b4ca505ccebbebdee22ad348c16a77dfa0298f3404139"
+    },
+    {
+      "path": "C:/Users/steven/.codex/worktrees/odin-platform/odin/verification/language-sandbox-v3-python-native-02.requests.jsonl",
+      "sha256": "27e0169c4304e16248def735115fc33f2993f1dbc04cb0308df63df42faf9986"
+    },
+    {
+      "path": "C:/Users/steven/.codex/worktrees/odin-platform/odin/verification/language-sandbox-v3-python-native-02.txt",
+      "sha256": "c95f702668964c71e4b9920551d5c7e3f94804d85f8545c42f0f2e454e14accb"
+    },
+    {
+      "path": "C:/Users/steven/.codex/worktrees/odin-platform/odin/verification/language-sandbox-v3-python-native-02.command.json",
+      "sha256": "737fe99dceb14d9298c36961ab0604cef51c332691ee00276e33a2d10eef33cd"
+    }
+  ]
+}

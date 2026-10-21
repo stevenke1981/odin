@@ -238,10 +238,10 @@ after an isolation failure or proof of full UI isolation.
 | Profile | Read-only runtime grants | Explicit writable cache |
 |---|---|---|
 | Rust | actual selected Rust toolchain, avoiding the Rustup proxy | private Cargo home and analyzer target directory |
-| Python | installed venv, bundled Node and base Python installation | none beyond private scratch |
+| Python | installed venv, bundled Node and base Python installation | explicit QA profile: fresh per-project pinned backend copy plus private scratch |
 | Go | gopls and Go SDK | per-project GOPATH, GOCACHE and GOMODCACHE |
 | Java | JDK and JDT LS installation | fresh Equinox configuration, workspace, home and JVM temporary directory |
-| C# | csharp-ls and .NET SDK | separate CLI home, NuGet cache and MSBuild obj/bin directories |
+| C# | explicit csharp-ls or pinned OmniSharp, and .NET SDK | separate CLI home, NuGet cache and MSBuild obj/bin directories |
 
 Rust's host-authored settings request `--locked --offline` for Cargo, disable
 build scripts/proc macros and select the external target directory, using the
@@ -299,8 +299,8 @@ ancestors as well as E: runtime ancestors. All 36 boundary checks passed,
 including independent outside-content/write denials on both volumes and zero
 loopback connections. Go then loaded its package and returned real `greet` and
 `run` document symbols. Java's security probe again exited zero. Python still
-failed the same runtime `chdir`, so that hypothesis is exhausted; its semantic
-acceptance remains incomplete. These direct observations justify a separate
+failed the same runtime `chdir`, so that hypothesis was exhausted; its semantic
+acceptance was incomplete at that stage. These direct observations justify a separate
 typed host profile, not a claim that all IDE cases passed.
 
 The v3 harness accepts `--sandbox-enumerate-ancestors` only as an explicit host
@@ -335,7 +335,7 @@ projects. Each project verified a stale-hash conflict, non-mutating preview,
 the enforced native route, nonempty CAS apply, unaffected other projects,
 formatting no-op and exact rollback. The run initialized **zero Python language
 servers**. This establishes the explicit native formatting workflow, while the
-separate Python LSP runtime failure remains unresolved.
+separate Python LSP runtime failure was unresolved at that stage.
 
 The [first typed-profile five-language matrix](../verification/language-sandbox-v3-five-native-01.json)
 used that same frozen binary and returned actual exit **1**:
@@ -397,8 +397,18 @@ or a language-server semantic patch. The backend can modify its own private
 runtime assets: never execute or reuse the copy outside the sandbox, or publish
 it as a trusted SDK. Recreate it from the pinned installation for every run.
 The original read-only-runtime failures remain preserved. Native boundary
-diagnostics establish the path behavior; full LSP semantics still require a new
-Odin/MCP report using this profile.
+diagnostics establish the path behavior; language semantics are established
+separately by the Odin/MCP report below.
+
+The [Python private-assets retest](../verification/language-sandbox-v3-python-native-02.json)
+used the same frozen `780c6ad` binary and returned actual exit **0**, **60 PASS /
+4 UNAVAILABLE / 0 FAIL** across two projects. Live symbols, cross-file
+references, rename CAS/apply/rollback, completion, hover, signature help, call
+hierarchy, hints/tokens and versioned diagnostics all passed. Explicit native
+Ruff conflict/no-op/CAS/rollback also passed. Both 5,427-file runtime copies
+remained byte-identical after sandbox execution. The backend's LSP formatting
+and hint-resolve capabilities remain `UNAVAILABLE`; the separate Ruff path does
+not change those capability results.
 
 `verification/language-sandbox-v3-runner.ps1` records the exact driver argv,
 binary/harness/runner hashes, actual exit code, raw stdout and transcript. It
