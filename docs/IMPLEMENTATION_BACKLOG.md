@@ -8,7 +8,7 @@
 
 語言實跑已超過「其餘五語NOT_RUN」的舊狀態：[source-bound evidence index](../verification/language-sandbox-v3-evidence-index-01.json) 核對18份收據與原始失敗，該index本身只是離線完整性驗證。歷史780 native MCP結果包括 [Go46 PASS／4 UNAVAILABLE](../verification/language-sandbox-v3-go-native-02.json)、[Python60 PASS／4 UNAVAILABLE](../verification/language-sandbox-v3-python-native-02.json) 與 [Ruff formatter18 PASS](../verification/language-sandbox-v3-ruff-native-01.json)。Python使用明確選取、逐檔hash核對的新私有backend副本，原runtime與來源仍RO；可寫副本不能在沙箱外執行或重用為可信SDK。Java與TypeScript已有native語意與CAS實跑，但未附document version的診斷仍為NOT_VERIFIED；[混合五語首輪](../verification/language-sandbox-v3-five-native-01.json) 的150 PASS／4 FAIL／4 UNAVAILABLE／12 NOT_VERIFIED原樣保留。C# [OmniSharp direct null-PID觀察](../verification/language-sandbox-v3-direct-csharp-nullpid-07.json) 僅證明限定初始化／symbols／shutdown路徑；不是Odin MCP雙專案IDE或rename/apply/rollback驗收，最終矩陣仍受上述host block阻擋。
 
-Linux最終69e769b來源正在本機VM建置（**IN_PROGRESS**），尚無本輪完成的原生測試與installer收據，不能升PASS；macOS仍未驗收。ODIN-029整項狀態由root依Linux最終結果再更新。歷史c5084f4、72工具及早期失敗保留原scope；28個registry entries、初始化或通用gate都不代表完整語言／IDE等價。最終source與review binding由root及獨立reviewer管理。
+Linux 保留 [69 原生 fsync 失敗](../verification/package-v3-linux-69-diagnostic.json) 及 [d3 完整測試失敗](../verification/package-v3-linux-d3-diagnostic.json)，不把它們轉成新版通過。整合候選來源為 `0fe03ba30da9600c25588d506d7e094df89cf56f`；本機 VM 已實跑核心39項及協定35項定向回歸全數通過，完整 workspace、release 與 installer 仍 **IN_PROGRESS**。測試環境已補齊 Python 3 的 `python` 命令；quota 單元測試分離 CPU 速度因素，production 的 byte／deadline 限制未變。ODIN-029 依最終實際報告再更新；macOS仍未驗收。歷史c5084f4、72工具及早期失敗保留原scope；28個registry entries、初始化或通用gate都不代表完整語言／IDE等價。最終source與review binding由root及獨立reviewer管理。
 
 ## M0 · 12 個需求
 

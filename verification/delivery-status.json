@@ -2,7 +2,7 @@
   "project": "Odin",
   "version": "0.2.0",
   "release_class": "NATIVE_PREVIEW_WITH_WINDOWS_HOST_BLOCK",
-  "generated_at_utc": "2026-10-21T04:22:00.281301+00:00",
+  "generated_at_utc": "2026-10-21T04:46:37.653383+00:00",
   "architecture": "Independent Rust toolkit with direct LSP/DAP; no Serena bridge",
   "workspace_crates": 4,
   "tool_contracts": 85,
@@ -15,7 +15,7 @@
   "current_extension": {
     "scope": "FIVE_ADDITIONAL_NATIVE_SANDBOX_LANGUAGES_AND_WINDOWS_LINUX_INSTALLERS",
     "status": "PARTIAL",
-    "current_product_source_head_sha": "d3e550594783ee9881c6aba251403ff1add0af86",
+    "current_product_source_head_sha": "0fe03ba30da9600c25588d506d7e094df89cf56f",
     "product_source_hashes_match_selected_linux_revision": true,
     "current_product_sha256": {
       "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34",
@@ -65,8 +65,8 @@
       "crates/odin-protocol/Cargo.toml": "b89d0deb8c21224da781ccfa7549fe34f536c3561115750d9eb230accbef81fc",
       "crates/odin-protocol/src/dap.rs": "23236ae9bd7476136ec17793cb1b4c2a7cc8404e7c17d5e36b124221ee82b05c",
       "crates/odin-protocol/src/lib.rs": "99a75cf5cf2f0f42c91bb5d4344fa56ca54aab6d2c0c8bc498da1a1f9b98e68c",
-      "crates/odin-protocol/src/lsp.rs": "dc5d6d730c210d3c9d51fe6b05740b89f48fe425afea6bfe062bfc308429b5d8",
-      "crates/odin-protocol/src/rpc.rs": "3b8a1278025dc0a4ce5fbd13be6409b164745043e51992571bd2430ebddc99e4",
+      "crates/odin-protocol/src/lsp.rs": "6f3272bef7d3455bec13e4c2e7657756e9255dbc41e739495bdc7437fccab12b",
+      "crates/odin-protocol/src/rpc.rs": "286f820bffcb014f8e7ac169c2d591ccfc622a1de6c794ef60a315cc6b313b12",
       "crates/odin-protocol/src/text.rs": "047329493570b965a79f93a4dd3b2f62a05147d9610547eee5ae4d38619055c2",
       "crates/odin-protocol/src/workspace.rs": "259f5936b90cd502b20b1eaee20977031f973fe76febed86c03b5bf3f380db6e",
       "crates/odin-protocol/tests/fixture_protocols.rs": "ab32f1520a3db1cc4b80861ee61b638d898712e7cec766fecb1370a27a35f0dc",
@@ -85,7 +85,7 @@
       "status": "BLOCKED",
       "binary_path": "E:/odin/target/release/odin.exe",
       "compiled_source_head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
-      "source_relation": "Retained Windows69 candidate. Current source additionally fixes two Unix-only directory sync branches; no current-source Windows rebuild or runtime acceptance is inferred.",
+      "source_relation": "Retained Windows69 candidate. Current source additionally fixes Unix-only directory sync and rejects raw UNC URI prefixes before normalization; no current-source Windows rebuild or runtime acceptance is inferred.",
       "binary_sha256": "83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44",
       "build_exit_code": 0,
       "metadata_executed": false,
@@ -110,13 +110,12 @@
     "linux": {
       "status": "IN_PROGRESS",
       "acceptance_status": "NOT_RUN",
-      "selected_source_head_sha": "d3e550594783ee9881c6aba251403ff1add0af86",
+      "selected_source_head_sha": "0fe03ba30da9600c25588d506d7e094df89cf56f",
       "scope": "Fixed-source candidate in disposable Debian 12 QEMU guest. Prior69 native suite failed Unix fsync; replacement gates/build/packaging are not inferred PASS."
     },
     "independent_review": {
-      "report": "verification/language-installers-v3-review-phase2.json",
-      "report_sha256": "74703dc78ae1e0d6531f22357b3a0652c110f717c9569db1187a1d91d22ea80c",
-      "scope": "Incremental independent code review and real read-only static/evidence checks. Final Windows execution blocked; final Linux target acceptance pending.",
+      "report": "verification/language-installers-v3-review-phase3.json",
+      "report_sha256": "2d4bac2d9f625cf9b5c1aee8e16f14f29641543c7369539682808ad0695bb480",
       "status": "BLOCKED"
     },
     "reports": {
@@ -135,7 +134,14 @@
         "scope": "CURRENT_WINDOWS_TARGET_FMT_AND_CLIPPY_NOT_BLOCKED_APP_EXECUTION",
         "status": "PASS",
         "source_head_sha": "bb1042c6f153ad4f3597743b3a3980aac4968ef2",
-        "note": "Current Windows-target fmt and all-target strict Clippy exit 0; blocked release app hash unchanged and never executed."
+        "note": "Earlier69 Windows-target fmt and all-target strict Clippy exit 0; blocked release app hash unchanged and never executed."
+      },
+      "windows_protocol_final_02": {
+        "report": "verification/language-installers-v3-windows-protocol-final-02.json",
+        "report_sha256": "0f08ca0dfaba6c32d75ca64d31e540338f90fabf6e3a5b1eb00ac14e8799e4bd",
+        "scope": "CURRENT_WINDOWS_PROTOCOL_LIB_AND_STATIC_GATES_NOT_BLOCKED_APP_EXECUTION",
+        "status": "PASS",
+        "note": "Current combined source: fmt, protocol library tests and all-target strict Clippy exit 0; retained release candidate never executed or rebuilt."
       },
       "windows_host_block": {
         "report": "verification/language-installers-v3-final-host-block.json",
@@ -282,6 +288,21 @@
         "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
         "note": "22 install/reinstall/uninstall checks passed for older 780c6ad; final 69 Windows packaging remains blocked."
       },
+      "linux_retired_69_failure": {
+        "report": "verification/package-v3-linux-69-diagnostic.json",
+        "report_sha256": "ff74fd7bda634fb7eef684cd500726df8d7dc5ff74e099ece9ddf11bf1002317",
+        "scope": "PRESERVED_LINUX_69_NATIVE_FIRST_FAILURE_AND_INDEPENDENT_CONTINUATION",
+        "status": "FAIL",
+        "binary_sha256": "5b1f352840074325f384743a06d9fffc64f7c191df1ffb448711b1852cbcbb1d",
+        "note": "Actual older Linux build/metadata passed, but workspace39PASS/6FAIL and MCP15PASS/1FAIL exposed Unix fsync. No installer was released for that broken candidate."
+      },
+      "linux_retired_d3_failure": {
+        "report": "verification/package-v3-linux-d3-diagnostic.json",
+        "report_sha256": "a4a389598b7c709afcfe2aae45ea9da73679c11a8e33b11fa2cd53e441f12965",
+        "scope": "PRESERVED_LINUX_D3_FULL_SUITE_FAILURE_AND_OWNER_CANCELLED_RELEASE",
+        "status": "FAIL",
+        "note": "Core39PASS after Unix fix; full suite192PASS/19FAIL/3ignored exposed fixture Python dependency and two protocol assertions. Release was stopped with -15, no ELF/installer acceptance inferred."
+      },
       "evidence_integrity": {
         "report": "verification/language-sandbox-v3-evidence-index-01.json",
         "report_sha256": "c040e08b822db8270182df1d7113a67be547e1819523294639b2488c46a5d8b8",
@@ -325,7 +346,14 @@
       "scope": "CURRENT_WINDOWS_TARGET_FMT_AND_CLIPPY_NOT_BLOCKED_APP_EXECUTION",
       "status": "PASS",
       "source_head_sha": "bb1042c6f153ad4f3597743b3a3980aac4968ef2",
-      "note": "Current Windows-target fmt and all-target strict Clippy exit 0; blocked release app hash unchanged and never executed."
+      "note": "Earlier69 Windows-target fmt and all-target strict Clippy exit 0; blocked release app hash unchanged and never executed."
+    },
+    "windows_protocol_final_02": {
+      "report": "verification/language-installers-v3-windows-protocol-final-02.json",
+      "report_sha256": "0f08ca0dfaba6c32d75ca64d31e540338f90fabf6e3a5b1eb00ac14e8799e4bd",
+      "scope": "CURRENT_WINDOWS_PROTOCOL_LIB_AND_STATIC_GATES_NOT_BLOCKED_APP_EXECUTION",
+      "status": "PASS",
+      "note": "Current combined source: fmt, protocol library tests and all-target strict Clippy exit 0; retained release candidate never executed or rebuilt."
     },
     "windows_host_block": {
       "report": "verification/language-installers-v3-final-host-block.json",
@@ -471,6 +499,21 @@
       "status": "PASS",
       "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
       "note": "22 install/reinstall/uninstall checks passed for older 780c6ad; final 69 Windows packaging remains blocked."
+    },
+    "linux_retired_69_failure": {
+      "report": "verification/package-v3-linux-69-diagnostic.json",
+      "report_sha256": "ff74fd7bda634fb7eef684cd500726df8d7dc5ff74e099ece9ddf11bf1002317",
+      "scope": "PRESERVED_LINUX_69_NATIVE_FIRST_FAILURE_AND_INDEPENDENT_CONTINUATION",
+      "status": "FAIL",
+      "binary_sha256": "5b1f352840074325f384743a06d9fffc64f7c191df1ffb448711b1852cbcbb1d",
+      "note": "Actual older Linux build/metadata passed, but workspace39PASS/6FAIL and MCP15PASS/1FAIL exposed Unix fsync. No installer was released for that broken candidate."
+    },
+    "linux_retired_d3_failure": {
+      "report": "verification/package-v3-linux-d3-diagnostic.json",
+      "report_sha256": "a4a389598b7c709afcfe2aae45ea9da73679c11a8e33b11fa2cd53e441f12965",
+      "scope": "PRESERVED_LINUX_D3_FULL_SUITE_FAILURE_AND_OWNER_CANCELLED_RELEASE",
+      "status": "FAIL",
+      "note": "Core39PASS after Unix fix; full suite192PASS/19FAIL/3ignored exposed fixture Python dependency and two protocol assertions. Release was stopped with -15, no ELF/installer acceptance inferred."
     },
     "evidence_integrity": {
       "report": "verification/language-sandbox-v3-evidence-index-01.json",

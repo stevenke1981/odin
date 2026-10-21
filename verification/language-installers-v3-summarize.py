@@ -167,7 +167,7 @@ def main():
     continuation = load('verification/language-installers-v3-continuation-01.json')
     reports = {
         'windows_build': binding('verification/language-installers-v3-windows-build-final.json', 'Compile exit 0; metadata execution blocked, no runtime acceptance.'),
-        'windows_target_fmt_clippy': binding('verification/language-installers-v3-windows-static-final-01.json', 'Current Windows-target fmt and all-target strict Clippy exit 0; blocked release app hash unchanged and never executed.'),
+        'windows_target_fmt_clippy': binding('verification/language-installers-v3-windows-static-final-01.json', 'Earlier69 Windows-target fmt and all-target strict Clippy exit 0; blocked release app hash unchanged and never executed.'),
         'windows_protocol_final_02': binding('verification/language-installers-v3-windows-protocol-final-02.json', 'Current combined source: fmt, protocol library tests and all-target strict Clippy exit 0; retained release candidate never executed or rebuilt.'),
         'windows_host_block': binding('verification/language-installers-v3-final-host-block.json'),
         'windows_workspace_attempt': binding('verification/language-installers-v3-workspace-all-targets-01.json', 'Older source: 214 passed / 5 failed / 6 ignored; five stdin workload starts blocked by host policy. Not replaced by independent continuation.'),
@@ -180,6 +180,7 @@ def main():
         'csharp_direct': binding('verification/language-sandbox-v3-direct-csharp-nullpid-07.command.json', 'Real semantic symbols and server exit 0; diagnostic driver cleanup exit 1. No full MCP or final-binary PASS.'),
         'windows_installer_780': binding('verification/package-v3-windows-candidate.json', '22 install/reinstall/uninstall checks passed for older 780c6ad; final 69 Windows packaging remains blocked.'),
         'linux_retired_69_failure': binding('verification/package-v3-linux-69-diagnostic.json', 'Actual older Linux build/metadata passed, but workspace39PASS/6FAIL and MCP15PASS/1FAIL exposed Unix fsync. No installer was released for that broken candidate.'),
+        'linux_retired_d3_failure': binding('verification/package-v3-linux-d3-diagnostic.json', 'Core39PASS after Unix fix; full suite192PASS/19FAIL/3ignored exposed fixture Python dependency and two protocol assertions. Release was stopped with -15, no ELF/installer acceptance inferred.'),
         'evidence_integrity': binding('verification/language-sandbox-v3-evidence-index-01.json', 'Offline 18-receipt/source/transcript integrity only, no backend execution.'),
         'prepared_final_matrix': binding('verification/language-sandbox-v3-finalrun-plan.json', 'Plan only; 0 final-candidate LSP projects executed.'),
         'qa_report_preflight': binding('verification/language-installers-v3-continuation-preflight-01.json', 'Five inert overwrite-protection checks; zero native process calls.'),
