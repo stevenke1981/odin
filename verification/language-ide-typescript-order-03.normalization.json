@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "scope": "LF normalization preserves all executed check results, including unversioned diagnostics",
+  "line_endings_normalized_before_hash_binding": true,
+  "logical_checks_sha256_before": "b2283fd20cc00225467e926c2a9fc055195135e8f267ddb4607241953ebb1598",
+  "logical_checks_sha256_after": "b2283fd20cc00225467e926c2a9fc055195135e8f267ddb4607241953ebb1598",
+  "actual_driver_exit_code": 2,
+  "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+  "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+  "artifacts": [
+    {
+      "path": "verification/language-ide-typescript-order-03.json",
+      "sha256": "67acae30184867f4c4ffb5272898a29697d12fb27d19a73cf39e317859f3a85d"
+    },
+    {
+      "path": "verification/language-ide-typescript-order-03.requests.jsonl",
+      "sha256": "07335039c4847bdb4e8295ddb164d618ac6d1224735aa66b405d43fc1c5967b6"
+    },
+    {
+      "path": "verification/language-ide-typescript-order-03.txt",
+      "sha256": "955b9f7d91edb3c72004e2dc13d32aaf0be864f0186927406edd51acd25bbe9d"
+    },
+    {
+      "path": "verification/language-ide-typescript-order-03.command.json",
+      "sha256": "884789175d85ec71359926cf584c6a54c45d62480c3ecd181ce7d479130fbad3"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "command": [
+    "python",
+    "-u",
+    "tests/real_ide_backends.py",
+    "--binary",
+    "E:/odin/target/release/odin.exe",
+    "--languages",
+    "typescript",
+    "--output",
+    "verification/language-ide-typescript-order-03.json"
+  ],
+  "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin",
+  "started_utc": "2026-10-21T01:48:30.5046645Z",
+  "finished_utc": "2026-10-21T01:48:36.4770670Z",
+  "exit_code": 2,
+  "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+  "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+  "raw_stdout_log": "verification/language-ide-typescript-order-03.txt",
+  "log_sha256": "955b9f7d91edb3c72004e2dc13d32aaf0be864f0186927406edd51acd25bbe9d",
+  "report_sha256": "67acae30184867f4c4ffb5272898a29697d12fb27d19a73cf39e317859f3a85d",
+  "line_endings_normalized_before_hash_binding": true
+}

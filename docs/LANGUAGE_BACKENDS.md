@@ -71,11 +71,23 @@ apply, and restore exact bytes on rollback. A no-op format is not evidence that
 a formatting transaction happened.
 
 Diagnostics cover valid source, deliberately broken source, and recovery. The
+initial valid-source query runs before the first source mutation. The
 broken-source edit and restoration go through Odin Transactions. Only a current,
 version-verified report with `summary.complete=true` can pass. Unversioned push
 diagnostics remain `NOT_VERIFIED`, even when they contain the expected error or
 an empty list. None of these results is represented as a successful build or
 proof that every project file was analyzed.
+
+The installed TypeScript language server 6.0.2 suppresses consecutive empty
+diagnostic notifications and publishes diagnostics without a document version.
+An apply/rollback can therefore invalidate a cached clean report without a new
+empty notification. The preserved `language-ide-final-baseline-02` attempt
+returned `FAIL` for both initial-clean checks after rename/format mutations.
+The subsequent driver observes initial diagnostics before those mutations;
+broken-source and recovery checks retain the same strict assertions. A pending
+report is still a failure, and an observed unversioned report remains
+`NOT_VERIFIED`. Changing the order does not establish current clean diagnostics
+after every transaction.
 
 | Per-check status | Meaning |
 |---|---|

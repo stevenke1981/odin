@@ -1,0 +1,4245 @@
+{
+  "scope": "REAL_ODIN_MCP_SIX_LANGUAGE_IDE",
+  "mode": "baseline",
+  "status": "PARTIAL",
+  "platform": "win32",
+  "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+  "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+  "started_utc": "2026-10-21T01:48:30Z",
+  "projects": [
+    {
+      "language": "typescript",
+      "project": "typescript_a",
+      "checks": [
+        {
+          "name": "mcp_initialize",
+          "status": "PASS"
+        },
+        {
+          "name": "actual_lsp_initialize",
+          "status": "PASS",
+          "detail": {
+            "capabilities": {
+              "callHierarchyProvider": true,
+              "codeActionProvider": {
+                "resolveProvider": true
+              },
+              "codeLensProvider": {
+                "resolveProvider": true
+              },
+              "completionProvider": {
+                "resolveProvider": true,
+                "triggerCharacters": [
+                  ".",
+                  "\"",
+                  "'",
+                  "/",
+                  "@",
+                  "<"
+                ]
+              },
+              "definitionProvider": true,
+              "documentFormattingProvider": true,
+              "documentHighlightProvider": true,
+              "documentRangeFormattingProvider": true,
+              "documentSymbolProvider": true,
+              "executeCommandProvider": {
+                "commands": [
+                  "_typescript.applyRefactoring",
+                  "_typescript.configurePlugin",
+                  "_typescript.organizeImports",
+                  "_typescript.applyRenameFile",
+                  "_typescript.goToSourceDefinition",
+                  "_typescript.applyCodeActionCommand",
+                  "_typescript.applyFixAllCodeAction",
+                  "typescript.tsserverRequest"
+                ]
+              },
+              "foldingRangeProvider": true,
+              "hoverProvider": true,
+              "implementationProvider": true,
+              "inlayHintProvider": true,
+              "linkedEditingRangeProvider": false,
+              "referencesProvider": true,
+              "renameProvider": true,
+              "selectionRangeProvider": true,
+              "semanticTokensProvider": {
+                "documentSelector": null,
+                "full": true,
+                "legend": {
+                  "tokenModifiers": [
+                    "declaration",
+                    "static",
+                    "async",
+                    "readonly",
+                    "defaultLibrary",
+                    "local"
+                  ],
+                  "tokenTypes": [
+                    "class",
+                    "enum",
+                    "interface",
+                    "namespace",
+                    "typeParameter",
+                    "type",
+                    "parameter",
+                    "variable",
+                    "enumMember",
+                    "property",
+                    "function",
+                    "member"
+                  ]
+                },
+                "range": true
+              },
+              "signatureHelpProvider": {
+                "retriggerCharacters": [
+                  ")"
+                ],
+                "triggerCharacters": [
+                  "(",
+                  ",",
+                  "<"
+                ]
+              },
+              "textDocumentSync": 2,
+              "typeDefinitionProvider": true,
+              "workspace": {
+                "fileOperations": {
+                  "willRename": {
+                    "filters": [
+                      {
+                        "pattern": {
+                          "glob": "**/*.{ts,js,jsx,tsx,mjs,mts,cjs,cts}",
+                          "matches": "file"
+                        },
+                        "scheme": "file"
+                      },
+                      {
+                        "pattern": {
+                          "glob": "**",
+                          "matches": "folder"
+                        },
+                        "scheme": "file"
+                      }
+                    ]
+                  }
+                }
+              },
+              "workspaceSymbolProvider": true
+            },
+            "configured": true,
+            "extensions": [
+              "ts"
+            ],
+            "id": "typescript",
+            "probed": true,
+            "ready": true,
+            "status": {
+              "capabilities": {
+                "callHierarchyProvider": true,
+                "codeActionProvider": {
+                  "resolveProvider": true
+                },
+                "codeLensProvider": {
+                  "resolveProvider": true
+                },
+                "completionProvider": {
+                  "resolveProvider": true,
+                  "triggerCharacters": [
+                    ".",
+                    "\"",
+                    "'",
+                    "/",
+                    "@",
+                    "<"
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentRangeFormattingProvider": true,
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "_typescript.applyRefactoring",
+                    "_typescript.configurePlugin",
+                    "_typescript.organizeImports",
+                    "_typescript.applyRenameFile",
+                    "_typescript.goToSourceDefinition",
+                    "_typescript.applyCodeActionCommand",
+                    "_typescript.applyFixAllCodeAction",
+                    "typescript.tsserverRequest"
+                  ]
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": true,
+                "linkedEditingRangeProvider": false,
+                "referencesProvider": true,
+                "renameProvider": true,
+                "selectionRangeProvider": true,
+                "semanticTokensProvider": {
+                  "documentSelector": null,
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "declaration",
+                      "static",
+                      "async",
+                      "readonly",
+                      "defaultLibrary",
+                      "local"
+                    ],
+                    "tokenTypes": [
+                      "class",
+                      "enum",
+                      "interface",
+                      "namespace",
+                      "typeParameter",
+                      "type",
+                      "parameter",
+                      "variable",
+                      "enumMember",
+                      "property",
+                      "function",
+                      "member"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "retriggerCharacters": [
+                    ")"
+                  ],
+                  "triggerCharacters": [
+                    "(",
+                    ",",
+                    "<"
+                  ]
+                },
+                "textDocumentSync": 2,
+                "typeDefinitionProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "willRename": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "**/*.{ts,js,jsx,tsx,mjs,mts,cjs,cts}",
+                            "matches": "file"
+                          },
+                          "scheme": "file"
+                        },
+                        {
+                          "pattern": {
+                            "glob": "**",
+                            "matches": "folder"
+                          },
+                          "scheme": "file"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "launch_route": "host_process",
+                  "os_boundary_verified": false,
+                  "requested": false
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          }
+        },
+        {
+          "name": "document_symbols",
+          "status": "PASS",
+          "detail": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 63,
+                  "line": 0
+                },
+                "start": {
+                  "character": 0,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.ts",
+              "selection_range": {
+                "end": {
+                  "character": 21,
+                  "line": 0
+                },
+                "start": {
+                  "character": 16,
+                  "line": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "cross_file_references",
+          "status": "PASS",
+          "detail": {
+            "locations": [
+              {
+                "enclosing_symbol": {
+                  "kind": 14,
+                  "name": "message",
+                  "name_path": "run/message",
+                  "range": {
+                    "end": {
+                      "character": 56,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 35,
+                      "line": 1
+                    }
+                  },
+                  "relative_path": "sample.ts",
+                  "selection_range": {
+                    "end": {
+                      "character": 42,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 35,
+                      "line": 1
+                    }
+                  }
+                },
+                "external": false,
+                "location": {
+                  "range": {
+                    "end": {
+                      "character": 48,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 43,
+                      "line": 1
+                    }
+                  },
+                  "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-language-ide-qgb23s3n/projects/typescript_a/sample.ts"
+                },
+                "relative_path": "sample.ts"
+              },
+              {
+                "enclosing_symbol": null,
+                "external": false,
+                "location": {
+                  "range": {
+                    "end": {
+                      "character": 14,
+                      "line": 0
+                    },
+                    "start": {
+                      "character": 9,
+                      "line": 0
+                    }
+                  },
+                  "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-language-ide-qgb23s3n/projects/typescript_a/consumer.ts"
+                },
+                "relative_path": "consumer.ts"
+              },
+              {
+                "enclosing_symbol": {
+                  "kind": 14,
+                  "name": "message",
+                  "name_path": "message",
+                  "range": {
+                    "end": {
+                      "character": 36,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 13,
+                      "line": 1
+                    }
+                  },
+                  "relative_path": "consumer.ts",
+                  "selection_range": {
+                    "end": {
+                      "character": 20,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 13,
+                      "line": 1
+                    }
+                  }
+                },
+                "external": false,
+                "location": {
+                  "range": {
+                    "end": {
+                      "character": 26,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 21,
+                      "line": 1
+                    }
+                  },
+                  "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-language-ide-qgb23s3n/projects/typescript_a/consumer.ts"
+                },
+                "relative_path": "consumer.ts"
+              }
+            ],
+            "trace": {
+              "elapsed_ms": 26,
+              "id": "ecd9b751-196d-49d2-8b26-990b6fd339ad",
+              "result_bytes": 1334,
+              "result_sha256": "0537fe4049b7ae9de1c6875c647d431b041bbd35d577221df84c6b59bf865228"
+            },
+            "truncated": false
+          }
+        },
+        {
+          "name": "completion",
+          "status": "PASS",
+          "detail": {
+            "provider": "typescript",
+            "source": "lsp",
+            "result_count": 2
+          }
+        },
+        {
+          "name": "hover",
+          "status": "PASS",
+          "detail": {
+            "provider": "typescript",
+            "source": "lsp",
+            "result_count": 2
+          }
+        },
+        {
+          "name": "signature_help",
+          "status": "PASS",
+          "detail": {
+            "provider": "typescript",
+            "source": "lsp",
+            "result_count": 3
+          }
+        },
+        {
+          "name": "workspace_symbols",
+          "status": "PASS",
+          "detail": {
+            "provider": "typescript",
+            "source": "lsp",
+            "result_count": 1
+          }
+        },
+        {
+          "name": "inlay_hints",
+          "status": "PASS",
+          "detail": {
+            "provider": "typescript",
+            "source": "lsp",
+            "result_count": 2
+          }
+        },
+        {
+          "name": "semantic_tokens",
+          "status": "PASS",
+          "detail": {
+            "provider": "typescript",
+            "source": "lsp",
+            "result_count": 1
+          }
+        },
+        {
+          "name": "call_hierarchy",
+          "status": "PASS",
+          "detail": {
+            "provider": "typescript",
+            "source": "lsp",
+            "result_count": 1
+          }
+        },
+        {
+          "name": "completion_resolve",
+          "status": "PASS"
+        },
+        {
+          "name": "inlay_hint_resolve",
+          "status": "UNAVAILABLE",
+          "detail": "inlayHintProvider.resolveProvider"
+        },
+        {
+          "name": "diagnostics_valid",
+          "status": "NOT_VERIFIED",
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 1,
+            "document": {
+              "path": "sample.ts",
+              "sha256": "d189338ba51ef8e6c3ceb37dbbb5772b7bf271e23a859b67f5aad5b6babeb18d",
+              "uri": "file:///<fixture>/projects/typescript_a/sample.ts",
+              "version": 1
+            },
+            "findings": [],
+            "freshness": "unverified",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "typescript",
+            "reason": null,
+            "report": {
+              "diagnostics": [],
+              "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-language-ide-qgb23s3n/projects/typescript_a/sample.ts"
+            },
+            "reported_version": null,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "unverified",
+            "summary": {
+              "complete": false,
+              "errors": 0,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 0,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "a433f77f-eca4-4b0f-979d-af7e230e1a71",
+              "result_bytes": 782,
+              "result_sha256": "1ba69b71949cdafaae619494040d84dd954095cf741567ba5db8b349c7bf9965"
+            },
+            "version_verified": false
+          }
+        },
+        {
+          "name": "rename_preview_readonly",
+          "status": "PASS"
+        },
+        {
+          "name": "rename_definition_and_consumer",
+          "status": "PASS"
+        },
+        {
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS"
+        },
+        {
+          "name": "rename_rollback",
+          "status": "PASS"
+        },
+        {
+          "name": "format_preview_readonly",
+          "status": "PASS"
+        },
+        {
+          "name": "format_transaction",
+          "status": "PASS"
+        },
+        {
+          "name": "format_rollback",
+          "status": "PASS"
+        },
+        {
+          "name": "diagnostics_error",
+          "status": "NOT_VERIFIED",
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 9,
+            "document": {
+              "path": "sample.ts",
+              "sha256": "679d5af00a514323fe672e453c88c3710419e900d470117e51ccd1f7fe181242",
+              "uri": "file:///<fixture>/projects/typescript_a/sample.ts",
+              "version": 9
+            },
+            "findings": [
+              {
+                "document_version": null,
+                "lsp_severity": 1,
+                "message": "Type 'string' is not assignable to type 'number'.",
+                "provider": "typescript",
+                "range": {
+                  "end": {
+                    "character": 24,
+                    "line": 3
+                  },
+                  "start": {
+                    "character": 13,
+                    "line": 3
+                  }
+                },
+                "relative_path": "sample.ts",
+                "rule_id": 2322,
+                "severity": "error",
+                "source": "typescript",
+                "source_sha256": null,
+                "status": "unverified"
+              }
+            ],
+            "freshness": "unverified",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "typescript",
+            "reason": null,
+            "report": {
+              "diagnostics": [
+                {
+                  "code": 2322,
+                  "message": "Type 'string' is not assignable to type 'number'.",
+                  "range": {
+                    "end": {
+                      "character": 24,
+                      "line": 3
+                    },
+                    "start": {
+                      "character": 13,
+                      "line": 3
+                    }
+                  },
+                  "severity": 1,
+                  "source": "typescript"
+                }
+              ],
+              "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-language-ide-qgb23s3n/projects/typescript_a/sample.ts"
+            },
+            "reported_version": null,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "unverified",
+            "summary": {
+              "complete": false,
+              "errors": 1,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 1,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "b4600d91-9d2b-4f4a-a4c4-3ac60a4131e5",
+              "result_bytes": 1299,
+              "result_sha256": "34bc4f9025450b0f97e98dfc79ac62cde3013609b667c5e7d18b3a4ac818d840"
+            },
+            "version_verified": false
+          }
+        },
+        {
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS"
+        },
+        {
+          "name": "diagnostics_recovered",
+          "status": "NOT_VERIFIED",
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 10,
+            "document": {
+              "path": "sample.ts",
+              "sha256": "d189338ba51ef8e6c3ceb37dbbb5772b7bf271e23a859b67f5aad5b6babeb18d",
+              "uri": "file:///<fixture>/projects/typescript_a/sample.ts",
+              "version": 10
+            },
+            "findings": [],
+            "freshness": "unverified",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "typescript",
+            "reason": null,
+            "report": {
+              "diagnostics": [],
+              "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-language-ide-qgb23s3n/projects/typescript_a/sample.ts"
+            },
+            "reported_version": null,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "unverified",
+            "summary": {
+              "complete": false,
+              "errors": 0,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 0,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "67c7ddd4-8ee9-493b-bffb-0d72366adc1a",
+              "result_bytes": 784,
+              "result_sha256": "03fa84498094359f7b948226c19bbc5fa8c0ccf77fbbc84338c12504171f1179"
+            },
+            "version_verified": false
+          }
+        }
+      ],
+      "source_sha256": {
+        "sample.ts": "d189338ba51ef8e6c3ceb37dbbb5772b7bf271e23a859b67f5aad5b6babeb18d",
+        "consumer.ts": "29f9bb3c0b618e2ba4ff3d9876d66456774971f064df855cd2bbf361b6cb2ef7"
+      },
+      "isolation": "baseline",
+      "binary_version": {
+        "name": "Odin",
+        "schema_version": 1,
+        "standalone": true,
+        "trace": {
+          "elapsed_ms": 0,
+          "id": "f3b99c7f-20ab-4b9e-a9bd-919d96c9a501",
+          "result_bytes": 70,
+          "result_sha256": "56962aba324858cc3f3306c0c5e6854072861e96a2c79ef23586e0d3de4e050b"
+        },
+        "version": "0.2.0"
+      },
+      "capabilities": {
+        "debug_allowed": false,
+        "external_tool_bridge": false,
+        "inspection_profiles": [],
+        "inspections_allowed": false,
+        "languages": [
+          {
+            "capabilities": {
+              "callHierarchyProvider": true,
+              "codeActionProvider": {
+                "resolveProvider": true
+              },
+              "codeLensProvider": {
+                "resolveProvider": true
+              },
+              "completionProvider": {
+                "resolveProvider": true,
+                "triggerCharacters": [
+                  ".",
+                  "\"",
+                  "'",
+                  "/",
+                  "@",
+                  "<"
+                ]
+              },
+              "definitionProvider": true,
+              "documentFormattingProvider": true,
+              "documentHighlightProvider": true,
+              "documentRangeFormattingProvider": true,
+              "documentSymbolProvider": true,
+              "executeCommandProvider": {
+                "commands": [
+                  "_typescript.applyRefactoring",
+                  "_typescript.configurePlugin",
+                  "_typescript.organizeImports",
+                  "_typescript.applyRenameFile",
+                  "_typescript.goToSourceDefinition",
+                  "_typescript.applyCodeActionCommand",
+                  "_typescript.applyFixAllCodeAction",
+                  "typescript.tsserverRequest"
+                ]
+              },
+              "foldingRangeProvider": true,
+              "hoverProvider": true,
+              "implementationProvider": true,
+              "inlayHintProvider": true,
+              "linkedEditingRangeProvider": false,
+              "referencesProvider": true,
+              "renameProvider": true,
+              "selectionRangeProvider": true,
+              "semanticTokensProvider": {
+                "documentSelector": null,
+                "full": true,
+                "legend": {
+                  "tokenModifiers": [
+                    "declaration",
+                    "static",
+                    "async",
+                    "readonly",
+                    "defaultLibrary",
+                    "local"
+                  ],
+                  "tokenTypes": [
+                    "class",
+                    "enum",
+                    "interface",
+                    "namespace",
+                    "typeParameter",
+                    "type",
+                    "parameter",
+                    "variable",
+                    "enumMember",
+                    "property",
+                    "function",
+                    "member"
+                  ]
+                },
+                "range": true
+              },
+              "signatureHelpProvider": {
+                "retriggerCharacters": [
+                  ")"
+                ],
+                "triggerCharacters": [
+                  "(",
+                  ",",
+                  "<"
+                ]
+              },
+              "textDocumentSync": 2,
+              "typeDefinitionProvider": true,
+              "workspace": {
+                "fileOperations": {
+                  "willRename": {
+                    "filters": [
+                      {
+                        "pattern": {
+                          "glob": "**/*.{ts,js,jsx,tsx,mjs,mts,cjs,cts}",
+                          "matches": "file"
+                        },
+                        "scheme": "file"
+                      },
+                      {
+                        "pattern": {
+                          "glob": "**",
+                          "matches": "folder"
+                        },
+                        "scheme": "file"
+                      }
+                    ]
+                  }
+                }
+              },
+              "workspaceSymbolProvider": true
+            },
+            "configured": true,
+            "extensions": [
+              "ts"
+            ],
+            "id": "typescript",
+            "probed": true,
+            "ready": true,
+            "status": {
+              "capabilities": {
+                "callHierarchyProvider": true,
+                "codeActionProvider": {
+                  "resolveProvider": true
+                },
+                "codeLensProvider": {
+                  "resolveProvider": true
+                },
+                "completionProvider": {
+                  "resolveProvider": true,
+                  "triggerCharacters": [
+                    ".",
+                    "\"",
+                    "'",
+                    "/",
+                    "@",
+                    "<"
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentRangeFormattingProvider": true,
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "_typescript.applyRefactoring",
+                    "_typescript.configurePlugin",
+                    "_typescript.organizeImports",
+                    "_typescript.applyRenameFile",
+                    "_typescript.goToSourceDefinition",
+                    "_typescript.applyCodeActionCommand",
+                    "_typescript.applyFixAllCodeAction",
+                    "typescript.tsserverRequest"
+                  ]
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": true,
+                "linkedEditingRangeProvider": false,
+                "referencesProvider": true,
+                "renameProvider": true,
+                "selectionRangeProvider": true,
+                "semanticTokensProvider": {
+                  "documentSelector": null,
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "declaration",
+                      "static",
+                      "async",
+                      "readonly",
+                      "defaultLibrary",
+                      "local"
+                    ],
+                    "tokenTypes": [
+                      "class",
+                      "enum",
+                      "interface",
+                      "namespace",
+                      "typeParameter",
+                      "type",
+                      "parameter",
+                      "variable",
+                      "enumMember",
+                      "property",
+                      "function",
+                      "member"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "retriggerCharacters": [
+                    ")"
+                  ],
+                  "triggerCharacters": [
+                    "(",
+                    ",",
+                    "<"
+                  ]
+                },
+                "textDocumentSync": 2,
+                "typeDefinitionProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "willRename": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "**/*.{ts,js,jsx,tsx,mjs,mts,cjs,cts}",
+                            "matches": "file"
+                          },
+                          "scheme": "file"
+                        },
+                        {
+                          "pattern": {
+                            "glob": "**",
+                            "matches": "folder"
+                          },
+                          "scheme": "file"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "launch_route": "host_process",
+                  "os_boundary_verified": false,
+                  "requested": false
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          }
+        ],
+        "project": "typescript_a",
+        "result_retention": {
+          "max_bytes": 134217728,
+          "max_results": 128,
+          "ttl_ms": 86400000
+        },
+        "semantic_available": true,
+        "shell_allowed": false,
+        "standalone": true,
+        "tools": [
+          {
+            "enabled": true,
+            "name": "status",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_version",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_schemas",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_capabilities",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_projects",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_current_config",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "initial_instructions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "onboarding",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_dir",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_for_pattern",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "index_build",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "index_query",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_symbols_overview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_referencing_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_implementations",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_declaration",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_type_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "code_actions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "hover",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "signature_help",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "workspace_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "call_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "format_document",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hints",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hint_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "semantic_tokens",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_inspection_providers",
+            "policy": "read"
+          },
+          {
+            "enabled": false,
+            "name": "run_inspections",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "prepare_inspection_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "prepare_code_action",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "apply_quick_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "move_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inline_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "restart_language_server",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_prepare",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_rollback",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_list",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_recover",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "create_text_file",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_content",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replacement_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "replace_in_files",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_at_line",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_symbol_body",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_before_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_after_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "safe_delete_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "list_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_memory",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "write_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "edit_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_export",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_import",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_move_scope",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "check_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "recover_memories",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "query_project",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_run",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_vars",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_clear",
+            "policy": "state"
+          },
+          {
+            "enabled": false,
+            "name": "execute_shell_command",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_start",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_request",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_events",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_stop",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_batch",
+            "policy": "execute"
+          },
+          {
+            "enabled": true,
+            "name": "result_read",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "audit_log",
+            "policy": "read"
+          }
+        ],
+        "trace": {
+          "elapsed_ms": 100,
+          "id": "23f066a0-344f-4535-9018-f2ad450f8968",
+          "result_bytes": 8875,
+          "result_sha256": "a00e28596c37475fa15df2babab915d961d6ddbab77d75ec57a91cb84c8d4226"
+        },
+        "write_allowed": true
+      },
+      "final_lsp_status": {
+        "debug_allowed": false,
+        "external_tool_bridge": false,
+        "inspection_profiles": [],
+        "inspections_allowed": false,
+        "languages": [
+          {
+            "capabilities": {
+              "callHierarchyProvider": true,
+              "codeActionProvider": {
+                "resolveProvider": true
+              },
+              "codeLensProvider": {
+                "resolveProvider": true
+              },
+              "completionProvider": {
+                "resolveProvider": true,
+                "triggerCharacters": [
+                  ".",
+                  "\"",
+                  "'",
+                  "/",
+                  "@",
+                  "<"
+                ]
+              },
+              "definitionProvider": true,
+              "documentFormattingProvider": true,
+              "documentHighlightProvider": true,
+              "documentRangeFormattingProvider": true,
+              "documentSymbolProvider": true,
+              "executeCommandProvider": {
+                "commands": [
+                  "_typescript.applyRefactoring",
+                  "_typescript.configurePlugin",
+                  "_typescript.organizeImports",
+                  "_typescript.applyRenameFile",
+                  "_typescript.goToSourceDefinition",
+                  "_typescript.applyCodeActionCommand",
+                  "_typescript.applyFixAllCodeAction",
+                  "typescript.tsserverRequest"
+                ]
+              },
+              "foldingRangeProvider": true,
+              "hoverProvider": true,
+              "implementationProvider": true,
+              "inlayHintProvider": true,
+              "linkedEditingRangeProvider": false,
+              "referencesProvider": true,
+              "renameProvider": true,
+              "selectionRangeProvider": true,
+              "semanticTokensProvider": {
+                "documentSelector": null,
+                "full": true,
+                "legend": {
+                  "tokenModifiers": [
+                    "declaration",
+                    "static",
+                    "async",
+                    "readonly",
+                    "defaultLibrary",
+                    "local"
+                  ],
+                  "tokenTypes": [
+                    "class",
+                    "enum",
+                    "interface",
+                    "namespace",
+                    "typeParameter",
+                    "type",
+                    "parameter",
+                    "variable",
+                    "enumMember",
+                    "property",
+                    "function",
+                    "member"
+                  ]
+                },
+                "range": true
+              },
+              "signatureHelpProvider": {
+                "retriggerCharacters": [
+                  ")"
+                ],
+                "triggerCharacters": [
+                  "(",
+                  ",",
+                  "<"
+                ]
+              },
+              "textDocumentSync": 2,
+              "typeDefinitionProvider": true,
+              "workspace": {
+                "fileOperations": {
+                  "willRename": {
+                    "filters": [
+                      {
+                        "pattern": {
+                          "glob": "**/*.{ts,js,jsx,tsx,mjs,mts,cjs,cts}",
+                          "matches": "file"
+                        },
+                        "scheme": "file"
+                      },
+                      {
+                        "pattern": {
+                          "glob": "**",
+                          "matches": "folder"
+                        },
+                        "scheme": "file"
+                      }
+                    ]
+                  }
+                }
+              },
+              "workspaceSymbolProvider": true
+            },
+            "configured": true,
+            "extensions": [
+              "ts"
+            ],
+            "id": "typescript",
+            "probed": true,
+            "ready": true,
+            "status": {
+              "capabilities": {
+                "callHierarchyProvider": true,
+                "codeActionProvider": {
+                  "resolveProvider": true
+                },
+                "codeLensProvider": {
+                  "resolveProvider": true
+                },
+                "completionProvider": {
+                  "resolveProvider": true,
+                  "triggerCharacters": [
+                    ".",
+                    "\"",
+                    "'",
+                    "/",
+                    "@",
+                    "<"
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentRangeFormattingProvider": true,
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "_typescript.applyRefactoring",
+                    "_typescript.configurePlugin",
+                    "_typescript.organizeImports",
+                    "_typescript.applyRenameFile",
+                    "_typescript.goToSourceDefinition",
+                    "_typescript.applyCodeActionCommand",
+                    "_typescript.applyFixAllCodeAction",
+                    "typescript.tsserverRequest"
+                  ]
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": true,
+                "linkedEditingRangeProvider": false,
+                "referencesProvider": true,
+                "renameProvider": true,
+                "selectionRangeProvider": true,
+                "semanticTokensProvider": {
+                  "documentSelector": null,
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "declaration",
+                      "static",
+                      "async",
+                      "readonly",
+                      "defaultLibrary",
+                      "local"
+                    ],
+                    "tokenTypes": [
+                      "class",
+                      "enum",
+                      "interface",
+                      "namespace",
+                      "typeParameter",
+                      "type",
+                      "parameter",
+                      "variable",
+                      "enumMember",
+                      "property",
+                      "function",
+                      "member"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "retriggerCharacters": [
+                    ")"
+                  ],
+                  "triggerCharacters": [
+                    "(",
+                    ",",
+                    "<"
+                  ]
+                },
+                "textDocumentSync": 2,
+                "typeDefinitionProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "willRename": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "**/*.{ts,js,jsx,tsx,mjs,mts,cjs,cts}",
+                            "matches": "file"
+                          },
+                          "scheme": "file"
+                        },
+                        {
+                          "pattern": {
+                            "glob": "**",
+                            "matches": "folder"
+                          },
+                          "scheme": "file"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "launch_route": "host_process",
+                  "os_boundary_verified": false,
+                  "requested": false
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          }
+        ],
+        "project": "typescript_a",
+        "result_retention": {
+          "max_bytes": 134217728,
+          "max_results": 128,
+          "ttl_ms": 86400000
+        },
+        "semantic_available": true,
+        "shell_allowed": false,
+        "standalone": true,
+        "tools": [
+          {
+            "enabled": true,
+            "name": "status",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_version",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_schemas",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_capabilities",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_projects",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_current_config",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "initial_instructions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "onboarding",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_dir",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_for_pattern",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "index_build",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "index_query",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_symbols_overview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_referencing_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_implementations",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_declaration",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_type_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "code_actions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "hover",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "signature_help",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "workspace_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "call_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "format_document",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hints",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hint_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "semantic_tokens",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_inspection_providers",
+            "policy": "read"
+          },
+          {
+            "enabled": false,
+            "name": "run_inspections",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "prepare_inspection_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "prepare_code_action",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "apply_quick_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "move_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inline_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "restart_language_server",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_prepare",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_rollback",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_list",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_recover",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "create_text_file",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_content",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replacement_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "replace_in_files",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_at_line",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_symbol_body",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_before_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_after_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "safe_delete_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "list_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_memory",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "write_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "edit_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_export",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_import",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_move_scope",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "check_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "recover_memories",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "query_project",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_run",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_vars",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_clear",
+            "policy": "state"
+          },
+          {
+            "enabled": false,
+            "name": "execute_shell_command",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_start",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_request",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_events",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_stop",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_batch",
+            "policy": "execute"
+          },
+          {
+            "enabled": true,
+            "name": "result_read",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "audit_log",
+            "policy": "read"
+          }
+        ],
+        "trace": {
+          "elapsed_ms": 0,
+          "id": "3dccadf0-3985-4475-ac73-20e23ef5d2e5",
+          "result_bytes": 8875,
+          "result_sha256": "a00e28596c37475fa15df2babab915d961d6ddbab77d75ec57a91cb84c8d4226"
+        },
+        "write_allowed": true
+      },
+      "stderr": [],
+      "status": "PARTIAL"
+    },
+    {
+      "language": "typescript",
+      "project": "typescript_b",
+      "checks": [
+        {
+          "name": "mcp_initialize",
+          "status": "PASS"
+        },
+        {
+          "name": "actual_lsp_initialize",
+          "status": "PASS",
+          "detail": {
+            "capabilities": {
+              "callHierarchyProvider": true,
+              "codeActionProvider": {
+                "resolveProvider": true
+              },
+              "codeLensProvider": {
+                "resolveProvider": true
+              },
+              "completionProvider": {
+                "resolveProvider": true,
+                "triggerCharacters": [
+                  ".",
+                  "\"",
+                  "'",
+                  "/",
+                  "@",
+                  "<"
+                ]
+              },
+              "definitionProvider": true,
+              "documentFormattingProvider": true,
+              "documentHighlightProvider": true,
+              "documentRangeFormattingProvider": true,
+              "documentSymbolProvider": true,
+              "executeCommandProvider": {
+                "commands": [
+                  "_typescript.applyRefactoring",
+                  "_typescript.configurePlugin",
+                  "_typescript.organizeImports",
+                  "_typescript.applyRenameFile",
+                  "_typescript.goToSourceDefinition",
+                  "_typescript.applyCodeActionCommand",
+                  "_typescript.applyFixAllCodeAction",
+                  "typescript.tsserverRequest"
+                ]
+              },
+              "foldingRangeProvider": true,
+              "hoverProvider": true,
+              "implementationProvider": true,
+              "inlayHintProvider": true,
+              "linkedEditingRangeProvider": false,
+              "referencesProvider": true,
+              "renameProvider": true,
+              "selectionRangeProvider": true,
+              "semanticTokensProvider": {
+                "documentSelector": null,
+                "full": true,
+                "legend": {
+                  "tokenModifiers": [
+                    "declaration",
+                    "static",
+                    "async",
+                    "readonly",
+                    "defaultLibrary",
+                    "local"
+                  ],
+                  "tokenTypes": [
+                    "class",
+                    "enum",
+                    "interface",
+                    "namespace",
+                    "typeParameter",
+                    "type",
+                    "parameter",
+                    "variable",
+                    "enumMember",
+                    "property",
+                    "function",
+                    "member"
+                  ]
+                },
+                "range": true
+              },
+              "signatureHelpProvider": {
+                "retriggerCharacters": [
+                  ")"
+                ],
+                "triggerCharacters": [
+                  "(",
+                  ",",
+                  "<"
+                ]
+              },
+              "textDocumentSync": 2,
+              "typeDefinitionProvider": true,
+              "workspace": {
+                "fileOperations": {
+                  "willRename": {
+                    "filters": [
+                      {
+                        "pattern": {
+                          "glob": "**/*.{ts,js,jsx,tsx,mjs,mts,cjs,cts}",
+                          "matches": "file"
+                        },
+                        "scheme": "file"
+                      },
+                      {
+                        "pattern": {
+                          "glob": "**",
+                          "matches": "folder"
+                        },
+                        "scheme": "file"
+                      }
+                    ]
+                  }
+                }
+              },
+              "workspaceSymbolProvider": true
+            },
+            "configured": true,
+            "extensions": [
+              "ts"
+            ],
+            "id": "typescript",
+            "probed": true,
+            "ready": true,
+            "status": {
+              "capabilities": {
+                "callHierarchyProvider": true,
+                "codeActionProvider": {
+                  "resolveProvider": true
+                },
+                "codeLensProvider": {
+                  "resolveProvider": true
+                },
+                "completionProvider": {
+                  "resolveProvider": true,
+                  "triggerCharacters": [
+                    ".",
+                    "\"",
+                    "'",
+                    "/",
+                    "@",
+                    "<"
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentRangeFormattingProvider": true,
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "_typescript.applyRefactoring",
+                    "_typescript.configurePlugin",
+                    "_typescript.organizeImports",
+                    "_typescript.applyRenameFile",
+                    "_typescript.goToSourceDefinition",
+                    "_typescript.applyCodeActionCommand",
+                    "_typescript.applyFixAllCodeAction",
+                    "typescript.tsserverRequest"
+                  ]
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": true,
+                "linkedEditingRangeProvider": false,
+                "referencesProvider": true,
+                "renameProvider": true,
+                "selectionRangeProvider": true,
+                "semanticTokensProvider": {
+                  "documentSelector": null,
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "declaration",
+                      "static",
+                      "async",
+                      "readonly",
+                      "defaultLibrary",
+                      "local"
+                    ],
+                    "tokenTypes": [
+                      "class",
+                      "enum",
+                      "interface",
+                      "namespace",
+                      "typeParameter",
+                      "type",
+                      "parameter",
+                      "variable",
+                      "enumMember",
+                      "property",
+                      "function",
+                      "member"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "retriggerCharacters": [
+                    ")"
+                  ],
+                  "triggerCharacters": [
+                    "(",
+                    ",",
+                    "<"
+                  ]
+                },
+                "textDocumentSync": 2,
+                "typeDefinitionProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "willRename": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "**/*.{ts,js,jsx,tsx,mjs,mts,cjs,cts}",
+                            "matches": "file"
+                          },
+                          "scheme": "file"
+                        },
+                        {
+                          "pattern": {
+                            "glob": "**",
+                            "matches": "folder"
+                          },
+                          "scheme": "file"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "launch_route": "host_process",
+                  "os_boundary_verified": false,
+                  "requested": false
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          }
+        },
+        {
+          "name": "document_symbols",
+          "status": "PASS",
+          "detail": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 63,
+                  "line": 0
+                },
+                "start": {
+                  "character": 0,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.ts",
+              "selection_range": {
+                "end": {
+                  "character": 21,
+                  "line": 0
+                },
+                "start": {
+                  "character": 16,
+                  "line": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "cross_file_references",
+          "status": "PASS",
+          "detail": {
+            "locations": [
+              {
+                "enclosing_symbol": {
+                  "kind": 14,
+                  "name": "message",
+                  "name_path": "run/message",
+                  "range": {
+                    "end": {
+                      "character": 56,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 35,
+                      "line": 1
+                    }
+                  },
+                  "relative_path": "sample.ts",
+                  "selection_range": {
+                    "end": {
+                      "character": 42,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 35,
+                      "line": 1
+                    }
+                  }
+                },
+                "external": false,
+                "location": {
+                  "range": {
+                    "end": {
+                      "character": 48,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 43,
+                      "line": 1
+                    }
+                  },
+                  "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-language-ide-qgb23s3n/projects/typescript_b/sample.ts"
+                },
+                "relative_path": "sample.ts"
+              },
+              {
+                "enclosing_symbol": null,
+                "external": false,
+                "location": {
+                  "range": {
+                    "end": {
+                      "character": 14,
+                      "line": 0
+                    },
+                    "start": {
+                      "character": 9,
+                      "line": 0
+                    }
+                  },
+                  "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-language-ide-qgb23s3n/projects/typescript_b/consumer.ts"
+                },
+                "relative_path": "consumer.ts"
+              },
+              {
+                "enclosing_symbol": {
+                  "kind": 14,
+                  "name": "message",
+                  "name_path": "message",
+                  "range": {
+                    "end": {
+                      "character": 36,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 13,
+                      "line": 1
+                    }
+                  },
+                  "relative_path": "consumer.ts",
+                  "selection_range": {
+                    "end": {
+                      "character": 20,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 13,
+                      "line": 1
+                    }
+                  }
+                },
+                "external": false,
+                "location": {
+                  "range": {
+                    "end": {
+                      "character": 26,
+                      "line": 1
+                    },
+                    "start": {
+                      "character": 21,
+                      "line": 1
+                    }
+                  },
+                  "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-language-ide-qgb23s3n/projects/typescript_b/consumer.ts"
+                },
+                "relative_path": "consumer.ts"
+              }
+            ],
+            "trace": {
+              "elapsed_ms": 28,
+              "id": "d9d63f23-2d4d-479f-9fe3-9689ea4b638f",
+              "result_bytes": 1334,
+              "result_sha256": "d581c1561454e2cfd6ef9356490bc7a38cbd8baa1aa6be78c112563f010fef2f"
+            },
+            "truncated": false
+          }
+        },
+        {
+          "name": "completion",
+          "status": "PASS",
+          "detail": {
+            "provider": "typescript",
+            "source": "lsp",
+            "result_count": 2
+          }
+        },
+        {
+          "name": "hover",
+          "status": "PASS",
+          "detail": {
+            "provider": "typescript",
+            "source": "lsp",
+            "result_count": 2
+          }
+        },
+        {
+          "name": "signature_help",
+          "status": "PASS",
+          "detail": {
+            "provider": "typescript",
+            "source": "lsp",
+            "result_count": 3
+          }
+        },
+        {
+          "name": "workspace_symbols",
+          "status": "PASS",
+          "detail": {
+            "provider": "typescript",
+            "source": "lsp",
+            "result_count": 1
+          }
+        },
+        {
+          "name": "inlay_hints",
+          "status": "PASS",
+          "detail": {
+            "provider": "typescript",
+            "source": "lsp",
+            "result_count": 2
+          }
+        },
+        {
+          "name": "semantic_tokens",
+          "status": "PASS",
+          "detail": {
+            "provider": "typescript",
+            "source": "lsp",
+            "result_count": 1
+          }
+        },
+        {
+          "name": "call_hierarchy",
+          "status": "PASS",
+          "detail": {
+            "provider": "typescript",
+            "source": "lsp",
+            "result_count": 1
+          }
+        },
+        {
+          "name": "completion_resolve",
+          "status": "PASS"
+        },
+        {
+          "name": "inlay_hint_resolve",
+          "status": "UNAVAILABLE",
+          "detail": "inlayHintProvider.resolveProvider"
+        },
+        {
+          "name": "diagnostics_valid",
+          "status": "NOT_VERIFIED",
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 1,
+            "document": {
+              "path": "sample.ts",
+              "sha256": "d189338ba51ef8e6c3ceb37dbbb5772b7bf271e23a859b67f5aad5b6babeb18d",
+              "uri": "file:///<fixture>/projects/typescript_b/sample.ts",
+              "version": 1
+            },
+            "findings": [],
+            "freshness": "unverified",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "typescript",
+            "reason": null,
+            "report": {
+              "diagnostics": [],
+              "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-language-ide-qgb23s3n/projects/typescript_b/sample.ts"
+            },
+            "reported_version": null,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "unverified",
+            "summary": {
+              "complete": false,
+              "errors": 0,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 0,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 0,
+              "id": "5e42a547-805d-4acf-a032-a4c3a1782308",
+              "result_bytes": 782,
+              "result_sha256": "f46a42587c0a3918c438bdbb5e3a84790ed492175aee8a517a300223a9da4298"
+            },
+            "version_verified": false
+          }
+        },
+        {
+          "name": "rename_preview_readonly",
+          "status": "PASS"
+        },
+        {
+          "name": "rename_definition_and_consumer",
+          "status": "PASS"
+        },
+        {
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS"
+        },
+        {
+          "name": "rename_rollback",
+          "status": "PASS"
+        },
+        {
+          "name": "format_preview_readonly",
+          "status": "PASS"
+        },
+        {
+          "name": "format_transaction",
+          "status": "PASS"
+        },
+        {
+          "name": "format_rollback",
+          "status": "PASS"
+        },
+        {
+          "name": "diagnostics_error",
+          "status": "NOT_VERIFIED",
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 9,
+            "document": {
+              "path": "sample.ts",
+              "sha256": "679d5af00a514323fe672e453c88c3710419e900d470117e51ccd1f7fe181242",
+              "uri": "file:///<fixture>/projects/typescript_b/sample.ts",
+              "version": 9
+            },
+            "findings": [
+              {
+                "document_version": null,
+                "lsp_severity": 1,
+                "message": "Type 'string' is not assignable to type 'number'.",
+                "provider": "typescript",
+                "range": {
+                  "end": {
+                    "character": 24,
+                    "line": 3
+                  },
+                  "start": {
+                    "character": 13,
+                    "line": 3
+                  }
+                },
+                "relative_path": "sample.ts",
+                "rule_id": 2322,
+                "severity": "error",
+                "source": "typescript",
+                "source_sha256": null,
+                "status": "unverified"
+              }
+            ],
+            "freshness": "unverified",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "typescript",
+            "reason": null,
+            "report": {
+              "diagnostics": [
+                {
+                  "code": 2322,
+                  "message": "Type 'string' is not assignable to type 'number'.",
+                  "range": {
+                    "end": {
+                      "character": 24,
+                      "line": 3
+                    },
+                    "start": {
+                      "character": 13,
+                      "line": 3
+                    }
+                  },
+                  "severity": 1,
+                  "source": "typescript"
+                }
+              ],
+              "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-language-ide-qgb23s3n/projects/typescript_b/sample.ts"
+            },
+            "reported_version": null,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "unverified",
+            "summary": {
+              "complete": false,
+              "errors": 1,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 1,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "8c426dde-d5f9-4049-8ca7-583b6d20d8b9",
+              "result_bytes": 1299,
+              "result_sha256": "737dba06b5d73f0c904882b1e70aa7ae1d585040af9ebd9d8f73f51be00542f5"
+            },
+            "version_verified": false
+          }
+        },
+        {
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS"
+        },
+        {
+          "name": "diagnostics_recovered",
+          "status": "NOT_VERIFIED",
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 10,
+            "document": {
+              "path": "sample.ts",
+              "sha256": "d189338ba51ef8e6c3ceb37dbbb5772b7bf271e23a859b67f5aad5b6babeb18d",
+              "uri": "file:///<fixture>/projects/typescript_b/sample.ts",
+              "version": 10
+            },
+            "findings": [],
+            "freshness": "unverified",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "typescript",
+            "reason": null,
+            "report": {
+              "diagnostics": [],
+              "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-language-ide-qgb23s3n/projects/typescript_b/sample.ts"
+            },
+            "reported_version": null,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "unverified",
+            "summary": {
+              "complete": false,
+              "errors": 0,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 0,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "f190d2b3-86b9-4714-a5dd-dbcc3383ed44",
+              "result_bytes": 784,
+              "result_sha256": "147fe968a97742f119e54f0ec340182d94507e7e51559f70f217ed8c0a4be325"
+            },
+            "version_verified": false
+          }
+        }
+      ],
+      "source_sha256": {
+        "sample.ts": "d189338ba51ef8e6c3ceb37dbbb5772b7bf271e23a859b67f5aad5b6babeb18d",
+        "consumer.ts": "29f9bb3c0b618e2ba4ff3d9876d66456774971f064df855cd2bbf361b6cb2ef7"
+      },
+      "isolation": "baseline",
+      "binary_version": {
+        "name": "Odin",
+        "schema_version": 1,
+        "standalone": true,
+        "trace": {
+          "elapsed_ms": 0,
+          "id": "9001224a-eae0-432e-84cf-f44ea36755fc",
+          "result_bytes": 70,
+          "result_sha256": "56962aba324858cc3f3306c0c5e6854072861e96a2c79ef23586e0d3de4e050b"
+        },
+        "version": "0.2.0"
+      },
+      "capabilities": {
+        "debug_allowed": false,
+        "external_tool_bridge": false,
+        "inspection_profiles": [],
+        "inspections_allowed": false,
+        "languages": [
+          {
+            "capabilities": {
+              "callHierarchyProvider": true,
+              "codeActionProvider": {
+                "resolveProvider": true
+              },
+              "codeLensProvider": {
+                "resolveProvider": true
+              },
+              "completionProvider": {
+                "resolveProvider": true,
+                "triggerCharacters": [
+                  ".",
+                  "\"",
+                  "'",
+                  "/",
+                  "@",
+                  "<"
+                ]
+              },
+              "definitionProvider": true,
+              "documentFormattingProvider": true,
+              "documentHighlightProvider": true,
+              "documentRangeFormattingProvider": true,
+              "documentSymbolProvider": true,
+              "executeCommandProvider": {
+                "commands": [
+                  "_typescript.applyRefactoring",
+                  "_typescript.configurePlugin",
+                  "_typescript.organizeImports",
+                  "_typescript.applyRenameFile",
+                  "_typescript.goToSourceDefinition",
+                  "_typescript.applyCodeActionCommand",
+                  "_typescript.applyFixAllCodeAction",
+                  "typescript.tsserverRequest"
+                ]
+              },
+              "foldingRangeProvider": true,
+              "hoverProvider": true,
+              "implementationProvider": true,
+              "inlayHintProvider": true,
+              "linkedEditingRangeProvider": false,
+              "referencesProvider": true,
+              "renameProvider": true,
+              "selectionRangeProvider": true,
+              "semanticTokensProvider": {
+                "documentSelector": null,
+                "full": true,
+                "legend": {
+                  "tokenModifiers": [
+                    "declaration",
+                    "static",
+                    "async",
+                    "readonly",
+                    "defaultLibrary",
+                    "local"
+                  ],
+                  "tokenTypes": [
+                    "class",
+                    "enum",
+                    "interface",
+                    "namespace",
+                    "typeParameter",
+                    "type",
+                    "parameter",
+                    "variable",
+                    "enumMember",
+                    "property",
+                    "function",
+                    "member"
+                  ]
+                },
+                "range": true
+              },
+              "signatureHelpProvider": {
+                "retriggerCharacters": [
+                  ")"
+                ],
+                "triggerCharacters": [
+                  "(",
+                  ",",
+                  "<"
+                ]
+              },
+              "textDocumentSync": 2,
+              "typeDefinitionProvider": true,
+              "workspace": {
+                "fileOperations": {
+                  "willRename": {
+                    "filters": [
+                      {
+                        "pattern": {
+                          "glob": "**/*.{ts,js,jsx,tsx,mjs,mts,cjs,cts}",
+                          "matches": "file"
+                        },
+                        "scheme": "file"
+                      },
+                      {
+                        "pattern": {
+                          "glob": "**",
+                          "matches": "folder"
+                        },
+                        "scheme": "file"
+                      }
+                    ]
+                  }
+                }
+              },
+              "workspaceSymbolProvider": true
+            },
+            "configured": true,
+            "extensions": [
+              "ts"
+            ],
+            "id": "typescript",
+            "probed": true,
+            "ready": true,
+            "status": {
+              "capabilities": {
+                "callHierarchyProvider": true,
+                "codeActionProvider": {
+                  "resolveProvider": true
+                },
+                "codeLensProvider": {
+                  "resolveProvider": true
+                },
+                "completionProvider": {
+                  "resolveProvider": true,
+                  "triggerCharacters": [
+                    ".",
+                    "\"",
+                    "'",
+                    "/",
+                    "@",
+                    "<"
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentRangeFormattingProvider": true,
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "_typescript.applyRefactoring",
+                    "_typescript.configurePlugin",
+                    "_typescript.organizeImports",
+                    "_typescript.applyRenameFile",
+                    "_typescript.goToSourceDefinition",
+                    "_typescript.applyCodeActionCommand",
+                    "_typescript.applyFixAllCodeAction",
+                    "typescript.tsserverRequest"
+                  ]
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": true,
+                "linkedEditingRangeProvider": false,
+                "referencesProvider": true,
+                "renameProvider": true,
+                "selectionRangeProvider": true,
+                "semanticTokensProvider": {
+                  "documentSelector": null,
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "declaration",
+                      "static",
+                      "async",
+                      "readonly",
+                      "defaultLibrary",
+                      "local"
+                    ],
+                    "tokenTypes": [
+                      "class",
+                      "enum",
+                      "interface",
+                      "namespace",
+                      "typeParameter",
+                      "type",
+                      "parameter",
+                      "variable",
+                      "enumMember",
+                      "property",
+                      "function",
+                      "member"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "retriggerCharacters": [
+                    ")"
+                  ],
+                  "triggerCharacters": [
+                    "(",
+                    ",",
+                    "<"
+                  ]
+                },
+                "textDocumentSync": 2,
+                "typeDefinitionProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "willRename": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "**/*.{ts,js,jsx,tsx,mjs,mts,cjs,cts}",
+                            "matches": "file"
+                          },
+                          "scheme": "file"
+                        },
+                        {
+                          "pattern": {
+                            "glob": "**",
+                            "matches": "folder"
+                          },
+                          "scheme": "file"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "launch_route": "host_process",
+                  "os_boundary_verified": false,
+                  "requested": false
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          }
+        ],
+        "project": "typescript_b",
+        "result_retention": {
+          "max_bytes": 134217728,
+          "max_results": 128,
+          "ttl_ms": 86400000
+        },
+        "semantic_available": true,
+        "shell_allowed": false,
+        "standalone": true,
+        "tools": [
+          {
+            "enabled": true,
+            "name": "status",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_version",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_schemas",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_capabilities",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_projects",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_current_config",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "initial_instructions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "onboarding",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_dir",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_for_pattern",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "index_build",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "index_query",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_symbols_overview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_referencing_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_implementations",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_declaration",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_type_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "code_actions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "hover",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "signature_help",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "workspace_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "call_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "format_document",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hints",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hint_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "semantic_tokens",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_inspection_providers",
+            "policy": "read"
+          },
+          {
+            "enabled": false,
+            "name": "run_inspections",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "prepare_inspection_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "prepare_code_action",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "apply_quick_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "move_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inline_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "restart_language_server",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_prepare",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_rollback",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_list",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_recover",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "create_text_file",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_content",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replacement_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "replace_in_files",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_at_line",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_symbol_body",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_before_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_after_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "safe_delete_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "list_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_memory",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "write_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "edit_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_export",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_import",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_move_scope",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "check_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "recover_memories",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "query_project",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_run",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_vars",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_clear",
+            "policy": "state"
+          },
+          {
+            "enabled": false,
+            "name": "execute_shell_command",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_start",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_request",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_events",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_stop",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_batch",
+            "policy": "execute"
+          },
+          {
+            "enabled": true,
+            "name": "result_read",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "audit_log",
+            "policy": "read"
+          }
+        ],
+        "trace": {
+          "elapsed_ms": 99,
+          "id": "c5936a9c-a046-4fc8-811c-1a224700e685",
+          "result_bytes": 8875,
+          "result_sha256": "14eec7b99cc7417a7c1c867048fcaedd0ba08a3fca5582bf1971817ce6885620"
+        },
+        "write_allowed": true
+      },
+      "final_lsp_status": {
+        "debug_allowed": false,
+        "external_tool_bridge": false,
+        "inspection_profiles": [],
+        "inspections_allowed": false,
+        "languages": [
+          {
+            "capabilities": {
+              "callHierarchyProvider": true,
+              "codeActionProvider": {
+                "resolveProvider": true
+              },
+              "codeLensProvider": {
+                "resolveProvider": true
+              },
+              "completionProvider": {
+                "resolveProvider": true,
+                "triggerCharacters": [
+                  ".",
+                  "\"",
+                  "'",
+                  "/",
+                  "@",
+                  "<"
+                ]
+              },
+              "definitionProvider": true,
+              "documentFormattingProvider": true,
+              "documentHighlightProvider": true,
+              "documentRangeFormattingProvider": true,
+              "documentSymbolProvider": true,
+              "executeCommandProvider": {
+                "commands": [
+                  "_typescript.applyRefactoring",
+                  "_typescript.configurePlugin",
+                  "_typescript.organizeImports",
+                  "_typescript.applyRenameFile",
+                  "_typescript.goToSourceDefinition",
+                  "_typescript.applyCodeActionCommand",
+                  "_typescript.applyFixAllCodeAction",
+                  "typescript.tsserverRequest"
+                ]
+              },
+              "foldingRangeProvider": true,
+              "hoverProvider": true,
+              "implementationProvider": true,
+              "inlayHintProvider": true,
+              "linkedEditingRangeProvider": false,
+              "referencesProvider": true,
+              "renameProvider": true,
+              "selectionRangeProvider": true,
+              "semanticTokensProvider": {
+                "documentSelector": null,
+                "full": true,
+                "legend": {
+                  "tokenModifiers": [
+                    "declaration",
+                    "static",
+                    "async",
+                    "readonly",
+                    "defaultLibrary",
+                    "local"
+                  ],
+                  "tokenTypes": [
+                    "class",
+                    "enum",
+                    "interface",
+                    "namespace",
+                    "typeParameter",
+                    "type",
+                    "parameter",
+                    "variable",
+                    "enumMember",
+                    "property",
+                    "function",
+                    "member"
+                  ]
+                },
+                "range": true
+              },
+              "signatureHelpProvider": {
+                "retriggerCharacters": [
+                  ")"
+                ],
+                "triggerCharacters": [
+                  "(",
+                  ",",
+                  "<"
+                ]
+              },
+              "textDocumentSync": 2,
+              "typeDefinitionProvider": true,
+              "workspace": {
+                "fileOperations": {
+                  "willRename": {
+                    "filters": [
+                      {
+                        "pattern": {
+                          "glob": "**/*.{ts,js,jsx,tsx,mjs,mts,cjs,cts}",
+                          "matches": "file"
+                        },
+                        "scheme": "file"
+                      },
+                      {
+                        "pattern": {
+                          "glob": "**",
+                          "matches": "folder"
+                        },
+                        "scheme": "file"
+                      }
+                    ]
+                  }
+                }
+              },
+              "workspaceSymbolProvider": true
+            },
+            "configured": true,
+            "extensions": [
+              "ts"
+            ],
+            "id": "typescript",
+            "probed": true,
+            "ready": true,
+            "status": {
+              "capabilities": {
+                "callHierarchyProvider": true,
+                "codeActionProvider": {
+                  "resolveProvider": true
+                },
+                "codeLensProvider": {
+                  "resolveProvider": true
+                },
+                "completionProvider": {
+                  "resolveProvider": true,
+                  "triggerCharacters": [
+                    ".",
+                    "\"",
+                    "'",
+                    "/",
+                    "@",
+                    "<"
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentRangeFormattingProvider": true,
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "_typescript.applyRefactoring",
+                    "_typescript.configurePlugin",
+                    "_typescript.organizeImports",
+                    "_typescript.applyRenameFile",
+                    "_typescript.goToSourceDefinition",
+                    "_typescript.applyCodeActionCommand",
+                    "_typescript.applyFixAllCodeAction",
+                    "typescript.tsserverRequest"
+                  ]
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": true,
+                "linkedEditingRangeProvider": false,
+                "referencesProvider": true,
+                "renameProvider": true,
+                "selectionRangeProvider": true,
+                "semanticTokensProvider": {
+                  "documentSelector": null,
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "declaration",
+                      "static",
+                      "async",
+                      "readonly",
+                      "defaultLibrary",
+                      "local"
+                    ],
+                    "tokenTypes": [
+                      "class",
+                      "enum",
+                      "interface",
+                      "namespace",
+                      "typeParameter",
+                      "type",
+                      "parameter",
+                      "variable",
+                      "enumMember",
+                      "property",
+                      "function",
+                      "member"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "retriggerCharacters": [
+                    ")"
+                  ],
+                  "triggerCharacters": [
+                    "(",
+                    ",",
+                    "<"
+                  ]
+                },
+                "textDocumentSync": 2,
+                "typeDefinitionProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "willRename": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "**/*.{ts,js,jsx,tsx,mjs,mts,cjs,cts}",
+                            "matches": "file"
+                          },
+                          "scheme": "file"
+                        },
+                        {
+                          "pattern": {
+                            "glob": "**",
+                            "matches": "folder"
+                          },
+                          "scheme": "file"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "launch_route": "host_process",
+                  "os_boundary_verified": false,
+                  "requested": false
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          }
+        ],
+        "project": "typescript_b",
+        "result_retention": {
+          "max_bytes": 134217728,
+          "max_results": 128,
+          "ttl_ms": 86400000
+        },
+        "semantic_available": true,
+        "shell_allowed": false,
+        "standalone": true,
+        "tools": [
+          {
+            "enabled": true,
+            "name": "status",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_version",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_schemas",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_capabilities",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_projects",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_current_config",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "initial_instructions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "onboarding",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_dir",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_for_pattern",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "index_build",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "index_query",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_symbols_overview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_referencing_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_implementations",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_declaration",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_type_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "code_actions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "hover",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "signature_help",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "workspace_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "call_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "format_document",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hints",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hint_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "semantic_tokens",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_inspection_providers",
+            "policy": "read"
+          },
+          {
+            "enabled": false,
+            "name": "run_inspections",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "prepare_inspection_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "prepare_code_action",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "apply_quick_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "move_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inline_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "restart_language_server",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_prepare",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_rollback",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_list",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_recover",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "create_text_file",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_content",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replacement_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "replace_in_files",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_at_line",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_symbol_body",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_before_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_after_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "safe_delete_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "list_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_memory",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "write_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "edit_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_export",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_import",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_move_scope",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "check_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "recover_memories",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "query_project",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_run",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_vars",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_clear",
+            "policy": "state"
+          },
+          {
+            "enabled": false,
+            "name": "execute_shell_command",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_start",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_request",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_events",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_stop",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_batch",
+            "policy": "execute"
+          },
+          {
+            "enabled": true,
+            "name": "result_read",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "audit_log",
+            "policy": "read"
+          }
+        ],
+        "trace": {
+          "elapsed_ms": 0,
+          "id": "d7c68f2e-2236-4bcb-9e4b-e5a5888b5826",
+          "result_bytes": 8875,
+          "result_sha256": "14eec7b99cc7417a7c1c867048fcaedd0ba08a3fca5582bf1971817ce6885620"
+        },
+        "write_allowed": true
+      },
+      "stderr": [],
+      "status": "PARTIAL"
+    }
+  ],
+  "setup_errors": [],
+  "boundary": "Baseline profiles explicitly run on the host without OS isolation",
+  "host_config_sha256": "df1545f854a6ef8037dd68d645e230a87ad1ffbf22379fc9686875c55fff2ed7",
+  "binary_launch": {
+    "status": "PASS",
+    "exit_code": 0,
+    "stdout": "odin 0.2.0\n",
+    "stderr": ""
+  },
+  "backends": {
+    "typescript": {
+      "program_sha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
+      "version_argv": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--preserve-symlinks",
+        "--preserve-symlinks-main",
+        "<tools_root>\\typescript\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+        "--version"
+      ],
+      "version_exit_code": 0,
+      "version_stdout": "6.0.2\n",
+      "version_stderr": "",
+      "typescript_version": "6.0.3"
+    }
+  },
+  "counts": {
+    "PASS": 40,
+    "UNAVAILABLE": 2,
+    "NOT_VERIFIED": 6
+  },
+  "matrix": {
+    "typescript": {
+      "typescript_a": "PARTIAL",
+      "typescript_b": "PARTIAL"
+    }
+  },
+  "actual_lsp_projects_initialized": 2,
+  "transcript_sha256": "07335039c4847bdb4e8295ddb164d618ac6d1224735aa66b405d43fc1c5967b6",
+  "line_endings_normalized_before_hash_binding": true,
+  "odin_trace_hashes_describe_original_unredacted_payloads": true
+}

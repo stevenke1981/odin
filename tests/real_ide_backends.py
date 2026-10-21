@@ -371,9 +371,11 @@ class Run:
                         self.record(tool, "PASS" if self.envelope(resolved, fixture) and fixture.hashes() == before_resolve else "FAIL")
                     except Exception as error:
                         self.record(tool, "FAIL", str(error))
+                # Observe the initial clean push before mutations invalidate it.
+                # TSLS can suppress repeated empty pushes after apply/rollback.
+                self.diagnostics(fixture, "diagnostics_valid", False)
                 self.rename(fixture, fixtures, name_path)
                 self.format(fixture, capabilities)
-                self.diagnostics(fixture, "diagnostics_valid", False)
                 original = (fixture.root / fixture.source).read_text(encoding="utf-8")
                 transaction = self.prepare_edit(fixture, original + fixture.broken)
                 try:
