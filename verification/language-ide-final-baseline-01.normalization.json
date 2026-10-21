@@ -1,0 +1,37 @@
+{
+  "scope": "POST_RUN_LINE_ENDINGS_AND_DIGEST_BINDING_ONLY",
+  "exit_code": 0,
+  "logical_check_results_unchanged": true,
+  "check_results_before_sha256": "f1ee7ea841cf984ba6cc2e3b8255f746d6de32d91f1b72d9c6bd2cfaac03edae",
+  "check_results_after_sha256": "f1ee7ea841cf984ba6cc2e3b8255f746d6de32d91f1b72d9c6bd2cfaac03edae",
+  "line_endings_normalized_before_hash_binding": true,
+  "original_harness_sha256": "2d99b90e586f8bc72047de2de04bba64d4ded6a35fbcb08e738cabfd2cc78340",
+  "candidate_binary_sha256": "c4f558615ec1930d991963c282acdcfe5df804e109c04cf2fb398fd78c650122",
+  "preserved_result": {
+    "status": "FAIL",
+    "counts": {
+      "PASS": 240,
+      "UNAVAILABLE": 14,
+      "FAIL": 20,
+      "NOT_VERIFIED": 6
+    }
+  },
+  "artifacts": [
+    {
+      "path": "verification/language-ide-final-baseline-01.json",
+      "sha256": "d8e1a4bc1134ad064d76e4cae51067bce0ac7afaf222936895efc1212260a040"
+    },
+    {
+      "path": "verification/language-ide-final-baseline-01.requests.jsonl",
+      "sha256": "78edd2091d6c52e703c57c860a33df16a12d222f6f6c238861fb754e91f2d7c7"
+    },
+    {
+      "path": "verification/language-ide-final-baseline-01.txt",
+      "sha256": "a4869ec484cf85e414cb35468457d6db518ed45b76f0f8db5a946b0173b11044"
+    },
+    {
+      "path": "verification/language-ide-final-baseline-01.command.json",
+      "sha256": "d923b32b53ab37cee37b153b732f65a63e0a899a3692a146f28eac57c1f30409"
+    }
+  ]
+}
