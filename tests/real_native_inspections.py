@@ -75,7 +75,7 @@ def main():
             profiles = {
                 'rust':('clippy',str(cargo),['clippy','--locked','--offline','--message-format=json','--target-dir',str(base/'clippy-cache')],['clippy','--version']),
                 'python':('ruff',str(ruff),['check','--no-fix','--no-cache','--output-format=json','.'],['--version']),
-                'typescript':('eslint',str(args.node.resolve()),['--preserve-symlinks','--preserve-symlinks-main',str(eslint),'--no-config-lookup','--format=json','--config',str(host_eslint),'.'],[str(eslint),'--version']),
+                'typescript':('eslint',str(args.node.resolve()),['--preserve-symlinks','--preserve-symlinks-main',str(eslint),'--no-config-lookup','--format=json','--config',str(host_eslint),'.'],['--preserve-symlinks','--preserve-symlinks-main',str(eslint),'--version']),
             }
             lines = ['state_dir = '+json.dumps(str(base/'state')), '[limits]', 'rpc_timeout_secs = 60', 'max_output_bytes = 1048576']
             for project,(provider,program,argv,version_args) in profiles.items():
