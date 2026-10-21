@@ -121,7 +121,7 @@
       "exit_code": 0,
       "elapsed_seconds": 0.164,
       "log": "verification/sandbox-ide-logs/generated_artifacts.txt",
-      "log_sha256": "5598031b41f8cb954727f46de5c3e6af5f4e768a3cfe1eda4c30bc0b9f56c204"
+      "log_sha256": "a6ec063d424daf109c8806ed7c53ecb3aac46f11ea001b462f6d94d0777b282a"
     },
     {
       "name": "fmt",
@@ -363,7 +363,7 @@
       "exit_code": 0,
       "elapsed_seconds": 0.264,
       "log": "verification/sandbox-ide-logs/static_source.txt",
-      "log_sha256": "3564bef62647d72bfc320c2897da14e1ea0b395a7a7d5d9d61aca1592c411181"
+      "log_sha256": "17af5e918a07389db60b627702fdb6be2739388191238996ae7b8b3879e5a456"
     },
     {
       "name": "requirements",
@@ -376,7 +376,7 @@
       "exit_code": 0,
       "elapsed_seconds": 0.105,
       "log": "verification/sandbox-ide-logs/requirements.txt",
-      "log_sha256": "2dbe10df21500c7ad3cf92009d5477aeb449be2ce90c3a92af2f663eda9b3a8d"
+      "log_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2"
     },
     {
       "name": "publish_policy",
@@ -409,5 +409,6 @@
     "version": "0.2.0"
   },
   "source_changed_during_validation": [],
-  "completed_at_utc": "2026-10-21T01:15:20.950394+00:00"
+  "completed_at_utc": "2026-10-21T01:15:20.950394+00:00",
+  "line_endings_normalized_before_hash_binding": true
 }

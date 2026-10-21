@@ -74,10 +74,10 @@ def main():
         start = time.monotonic()
         try:
             process = subprocess.run(command, cwd=ROOT, env=environment, capture_output=True, timeout=1800)
-            output = (process.stdout+process.stderr).decode('utf-8', errors='replace')
+            output = (process.stdout+process.stderr).decode('utf-8', errors='replace').replace('\r\n', '\n')
             code = process.returncode
         except subprocess.TimeoutExpired as error:
-            output = ((error.stdout or b'')+(error.stderr or b'')).decode('utf-8', errors='replace')+'\nVerifier command deadline exceeded.'
+            output = ((error.stdout or b'')+(error.stderr or b'')).decode('utf-8', errors='replace').replace('\r\n', '\n')+'\nVerifier command deadline exceeded.'
             code = -1
         for path, label in [(str(ROOT), '<WORKSPACE>'), (str(Path.home()), '<USERPROFILE>')]:
             output = output.replace(path, label).replace(path.replace('\\','/'), label)
@@ -95,6 +95,10 @@ def main():
             report['binary_metadata'] = json.loads(subprocess.check_output([str(ROOT/native_binary),'metadata'], cwd=ROOT))
         if name == 'dependency_audit' and code == 0:
             (ROOT/'verification/cargo-audit.json').write_bytes(process.stdout)
+        if '--output' in command:
+            artifact_path = ROOT/command[command.index('--output')+1]
+            if artifact_path.is_file():
+                artifact_path.write_bytes(artifact_path.read_bytes().replace(b'\r\n', b'\n'))
         save()
         if code:
             report['status'] = 'FAIL'

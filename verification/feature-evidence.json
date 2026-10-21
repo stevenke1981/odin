@@ -5180,7 +5180,7 @@
       "status": "PASS",
       "owner": "/root",
       "report": "verification/sandbox-ide-local-validation.json",
-      "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+      "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
       "availability": "ROOT_OWNER_REPORT_AFTER_DOCUMENTATION_BASE",
       "source_head_sha": "fe5996dc5793b64cb68a5f2d1139fb696cff32cf",
       "binary_sha256": "c4f558615ec1930d991963c282acdcfe5df804e109c04cf2fb398fd78c650122",
@@ -5218,7 +5218,7 @@
           "log": "verification/sandbox-ide-logs/generated_artifacts.txt",
           "log_sha256": "5598031b41f8cb954727f46de5c3e6af5f4e768a3cfe1eda4c30bc0b9f56c204",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/0",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5237,7 +5237,7 @@
           "log": "verification/sandbox-ide-logs/fmt.txt",
           "log_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/1",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5255,7 +5255,7 @@
           "log": "verification/sandbox-ide-logs/workspace_tests.txt",
           "log_sha256": "730b81ffd35fedf6f6ff5a5a3b8249f480ef7bb5002c6d6b070e04ff878dafc7",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/2",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5277,7 +5277,7 @@
           "log": "verification/sandbox-ide-logs/clippy.txt",
           "log_sha256": "5af82ac7d20683edb7b8226855fea1cc0d1918c7562304467fe6fd5e1d97bfef",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/3",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5302,7 +5302,7 @@
           "log": "verification/sandbox-ide-logs/native_sandbox.txt",
           "log_sha256": "c14351901da025793a3f3d226d79dd8bf7b1cb4e9bf948bac982e30f679dbe83",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/4",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5321,7 +5321,7 @@
           "log": "verification/sandbox-ide-logs/release_build.txt",
           "log_sha256": "7e27650bc038ef717464efecb3328fd3b19ea84de6437d83a7b4778016c5e9f3",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/5",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5341,7 +5341,7 @@
           "log": "verification/sandbox-ide-logs/cli.txt",
           "log_sha256": "d01bcdf43fadaff2d809b94a0e78df4111879842b11d9c230a49ad78aa824f88",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/6",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5361,7 +5361,7 @@
           "log": "verification/sandbox-ide-logs/mcp_stdio.txt",
           "log_sha256": "1ce056e5cd0c004488da090e9ead7b883933f5e1ac6aadef2f54626778830e6f",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/7",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5381,7 +5381,7 @@
           "log": "verification/sandbox-ide-logs/mcp_http.txt",
           "log_sha256": "ffc4b603b228fce5a5fa7473dc5753b24dde7fca6729bbf22a768f64b4ac0b56",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/8",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5401,7 +5401,7 @@
           "log": "verification/sandbox-ide-logs/mcp_cancellation.txt",
           "log_sha256": "8373f0053f7f756e0b1fb289ca68274fe68de4af15d0414c47de2299bc1967f5",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/9",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5429,7 +5429,7 @@
           "log": "verification/sandbox-ide-logs/real_backends.txt",
           "log_sha256": "613bece8d99a2f6a1cdf215389e96c400aeb150e54104f4338816ad733b8b4e7",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/10",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5448,7 +5448,7 @@
           "log": "verification/sandbox-ide-logs/dependency_audit.txt",
           "log_sha256": "9254d5c1ca8495ae225f2289fdc4394683abe266961f0dbfa231771c6eb2658f",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/11",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5468,7 +5468,7 @@
           "log": "verification/sandbox-ide-logs/licenses.txt",
           "log_sha256": "b87ff50d7cc1bf36ebb4295f2e6f418c52149ab1d889a4a9cfddcffae397ad39",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/12",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5484,7 +5484,7 @@
           "log": "verification/sandbox-ide-logs/supply_chain.txt",
           "log_sha256": "657ba85e6169c53404de3707e9bad9e37ca44a35b3765ac90fecdaa446eff413",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/13",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5502,7 +5502,7 @@
           "log": "verification/sandbox-ide-logs/static_source.txt",
           "log_sha256": "3564bef62647d72bfc320c2897da14e1ea0b395a7a7d5d9d61aca1592c411181",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/14",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5518,7 +5518,7 @@
           "log": "verification/sandbox-ide-logs/requirements.txt",
           "log_sha256": "2dbe10df21500c7ad3cf92009d5477aeb449be2ce90c3a92af2f663eda9b3a8d",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/15",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         },
@@ -5534,7 +5534,7 @@
           "log": "verification/sandbox-ide-logs/publish_policy.txt",
           "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983",
           "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
           "report_pointer": "/commands/16",
           "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
         }
@@ -5663,7 +5663,7 @@
         "status": "PASS",
         "report": "verification/sandbox-ide-local-validation.json",
         "report_pointer": "/commands/4",
-        "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+        "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
         "exit_code": 0,
         "log": "verification/sandbox-ide-logs/native_sandbox.txt",
         "log_sha256": "c14351901da025793a3f3d226d79dd8bf7b1cb4e9bf948bac982e30f679dbe83",
