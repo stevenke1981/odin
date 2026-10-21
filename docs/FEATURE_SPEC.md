@@ -1,8 +1,10 @@
 # Odin 0.2.0 功能規格與逐項驗收
 
-**現行85工具契約；40需求維持38 PARTIAL、2 NOT_RUN。** 原58工具保留，前版72再新增13個IDE/inspection契約。原DoD不降低，也不因通用gate成功改成全需求接受。
+**現行85工具契約；40需求為39 PARTIAL、1 NOT_RUN。** 原58工具保留，前版72再新增13個IDE/inspection契約。原DoD不降低，也不因通用gate成功改成全需求接受。
 
-本輪clean product revision `c5084f4947fc4a07c9ab381fa9998ba1a1e2246d` 已執行 **17/17 gates exit0、200 workspace tests PASS/6 ignored**；其中3個native測試另外opt-in實跑PASS，其餘3個真LS probe仍ignored。source_changed=[]、tracked_source_dirty=false。Release binary SHA-256為 `f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875`。
+本輪產品來源為 `0fe03ba30da9600c25588d506d7e094df89cf56f`。Linux 本機 Debian 12 VM 的完整 workspace 為211 PASS／0 FAIL／3 ignored，fmt、嚴格 Clippy、release 與 CLI／MCP／HTTP／取消檢查通過；同一 ELF 的 `.deb`／tar 已實跑安裝、重裝、移除。封裝文件另綁 `a8399993d7c528ad4858b2e4e246e5994eab4bb8`，不重新編譯。Windows 保留69來源的83a81d候選，metadata遭AppControl4551阻擋，最終六語矩陣仍NOT_RUN。這些結果不代表Linux OS沙箱、macOS或完整IDE等價。下列c5084f4與extension_evidence記錄維持其歷史scope；最新逐條件狀態見language_installers_v3及 [Linux實跑報告](../verification/package-v3-linux-final.json)。
+
+歷史clean product revision `c5084f4947fc4a07c9ab381fa9998ba1a1e2246d` 已執行 **17/17 gates exit0、200 workspace tests PASS/6 ignored**；其中3個native測試另外opt-in實跑PASS，其餘3個真LS probe仍ignored。source_changed=[]、tracked_source_dirty=false。Release binary SHA-256為 `f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875`。
 
 同一binary的原三LS/debugpy29 checks及真MCP→nativeMXC→Clippy/Ruff/ESLint30 checks均PASS；analyzer完整command另有exit0/log/digest。六語各兩專案的host-mode baseline已實際執行：**PARTIAL、exit 2，260 PASS／14 UNAVAILABLE／12 NOT_VERIFIED／0 FAIL，12/12 initialized**。TypeScript與Java診斷缺document version；TypeScript native MXC profile04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL，exit2）。28 registry entries只是設定指引，不能推論28或40+語言通過。
 
@@ -22,7 +24,7 @@
 
 **設計目標：** 固定 rust-toolchain 與 Cargo.lock；解決 rmcp SDK 的實際型別/feature 相容；所有 crate 必須能獨立及 workspace 編譯；建置工件標記 Git SHA。
 
-**已觀察範圍：** 當輪c5084f4 clean release候選17/17 gates exit0、workspace200 passed/6 ignored，另native opt-in3 PASS；其餘3真LS probe仍ignored，跨平台與完整40需求未驗收。
+**已觀察範圍：** Linux0fe03ba已實跑locked workspace211 PASS／0 FAIL／3 ignored、fmt、嚴格Clippy與clean release metadata。Windows69編譯exit0但metadata被4551阻擋；歷史c5084f4的17/17 gates與200 tests保留原scope，不能轉移為Windows最終驗收。
 
 **原驗收條件：**
 
@@ -32,11 +34,11 @@
 
 **尚未驗收／完成：**
 
-- A1：c5084f4 locked build/clean metadata已驗；全新checkout重建與Linux/macOS native matrix未完成。
+- A1：Linux0fe03ba已在核對來源的VM checkout實跑locked build/metadata；完整平台矩陣、macOS及最終Windows runtime仍未完成。
 
 **測試案例 ID：** M0-compile-linux, M0-compile-win-msvc, M0-compile-macos。 **前置需求：** 無。
 
-**證據：** `verification/feature-evidence.json#ODIN-001`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-001`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-002"></a>
 
@@ -66,7 +68,7 @@
 
 **測試案例 ID：** M0-mcp-smoke, M0-http-auth-negative, M0-mcp-disconnect。 **前置需求：** ODIN-001。
 
-**證據：** `verification/feature-evidence.json#ODIN-002`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-002`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-003"></a>
 
@@ -96,7 +98,7 @@
 
 **測試案例 ID：** M0-contract-schema, M0-error-mapping, M0-capabilities。 **前置需求：** ODIN-002。
 
-**證據：** `verification/feature-evidence.json#ODIN-003`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-003`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-004"></a>
 
@@ -126,7 +128,7 @@
 
 **測試案例 ID：** M0-project-concurrency, M0-cross-scope-negative, M0-process-shutdown。 **前置需求：** ODIN-001。
 
-**證據：** `verification/feature-evidence.json#ODIN-004`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-004`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-005"></a>
 
@@ -156,7 +158,7 @@
 
 **測試案例 ID：** M0-path-traversal, M0-toctou-race, M0-windows-reparse。 **前置需求：** ODIN-004。
 
-**證據：** `verification/feature-evidence.json#ODIN-005`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-005`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-006"></a>
 
@@ -186,7 +188,7 @@
 
 **測試案例 ID：** M0-transaction-crash-matrix, M0-cas-race, M0-rollback-conflict。 **前置需求：** ODIN-005。
 
-**證據：** `verification/feature-evidence.json#ODIN-006`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-006`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-007"></a>
 
@@ -216,7 +218,7 @@
 
 **測試案例 ID：** M1-rust-analyzer-live, M1-utf16-cases, M1-lsp-restart。 **前置需求：** ODIN-004。
 
-**證據：** `verification/feature-evidence.json#ODIN-007`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-007`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-008"></a>
 
@@ -246,7 +248,7 @@
 
 **測試案例 ID：** M1-symbol-20-cases, M1-symbol-collision, M1-capability-negative。 **前置需求：** ODIN-007。
 
-**證據：** `verification/feature-evidence.json#ODIN-008`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-008`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-009"></a>
 
@@ -276,7 +278,7 @@
 
 **測試案例 ID：** M1-resource-ops-fixture, M1-win-case-rename, M1-journal-fileop-crash。 **前置需求：** ODIN-006, ODIN-007。
 
-**證據：** `verification/feature-evidence.json#ODIN-009`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-009`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-010"></a>
 
@@ -306,7 +308,7 @@
 
 **測試案例 ID：** M1-rust-language, M1-python-language, M1-typescript-language。 **前置需求：** ODIN-007, ODIN-008, ODIN-009。
 
-**證據：** `verification/feature-evidence.json#ODIN-010`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-010`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-011"></a>
 
@@ -336,7 +338,7 @@
 
 **測試案例 ID：** M0-standalone-no-serena, M0-sbom-audit, M0-backend-missing。 **前置需求：** ODIN-001。
 
-**證據：** `verification/feature-evidence.json#ODIN-011`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-011`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-012"></a>
 
@@ -366,7 +368,7 @@
 
 **測試案例 ID：** M0-windows-job-objects, M0-linux-sandbox, M0-macos-sandbox。 **前置需求：** ODIN-005。
 
-**證據：** `verification/feature-evidence.json#ODIN-012`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-012`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-013"></a>
 
@@ -396,7 +398,7 @@
 
 **測試案例 ID：** M2-dap-real-debuggee-win, M2-dap-real-debuggee-linux, M2-dap-timeout。 **前置需求：** ODIN-012。
 
-**證據：** `verification/feature-evidence.json#ODIN-013`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-013`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-014"></a>
 
@@ -426,7 +428,7 @@
 
 **測試案例 ID：** M2-rust-cross-module-move, M2-unsupported-language-move, M2-move-rollback。 **前置需求：** ODIN-009, ODIN-008。
 
-**證據：** `verification/feature-evidence.json#ODIN-014`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-014`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-015"></a>
 
@@ -456,7 +458,7 @@
 
 **測試案例 ID：** M2-inline-pure, M2-inline-sideeffect, M2-inline-negative。 **前置需求：** ODIN-009。
 
-**證據：** `verification/feature-evidence.json#ODIN-015`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-015`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-016"></a>
 
@@ -486,7 +488,7 @@
 
 **測試案例 ID：** M2-safe-delete-references, M2-safe-delete-dynamic, M2-cascade-delete。 **前置需求：** ODIN-008, ODIN-009。
 
-**證據：** `verification/feature-evidence.json#ODIN-016`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-016`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-017"></a>
 
@@ -516,7 +518,7 @@
 
 **測試案例 ID：** M2-diagnostic-dedup, M2-inspection-cargo-clippy, M2-diagnostic-pending。 **前置需求：** ODIN-007, ODIN-006。
 
-**證據：** `verification/feature-evidence.json#ODIN-017`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-017`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-018"></a>
 
@@ -546,7 +548,7 @@
 
 **測試案例 ID：** M2-hierarchy, M2-external-project, M2-scope-negative。 **前置需求：** ODIN-008。
 
-**證據：** `verification/feature-evidence.json#ODIN-018`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-018`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-019"></a>
 
@@ -576,7 +578,7 @@
 
 **測試案例 ID：** M3-six-language-smoke, M3-language-matrix, M3-server-discovery。 **前置需求：** ODIN-010。
 
-**證據：** `verification/feature-evidence.json#ODIN-019`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-019`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-020"></a>
 
@@ -606,7 +608,7 @@
 
 **測試案例 ID：** M2-memory-rename, M2-memory-migration, M2-readonly-integrity。 **前置需求：** ODIN-006。
 
-**證據：** `verification/feature-evidence.json#ODIN-020`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-020`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-021"></a>
 
@@ -636,7 +638,7 @@
 
 **測試案例 ID：** M2-watcher-events, M2-index-rebuild, M2-index-consistency。 **前置需求：** ODIN-005。
 
-**證據：** `verification/feature-evidence.json#ODIN-021`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-021`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-022"></a>
 
@@ -666,7 +668,7 @@
 
 **測試案例 ID：** M2-flow-projection, M2-flow-isolation, M2-flow-deny。 **前置需求：** ODIN-003, ODIN-004。
 
-**證據：** `verification/feature-evidence.json#ODIN-022`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-022`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-023"></a>
 
@@ -696,7 +698,7 @@
 
 **測試案例 ID：** M2-codex-setup, M2-claude-setup, M2-opencode-setup。 **前置需求：** ODIN-002。
 
-**證據：** `verification/feature-evidence.json#ODIN-023`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-023`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-024"></a>
 
@@ -726,7 +728,7 @@
 
 **測試案例 ID：** M2-config-precedence, M2-config-readonly, M2-config-redaction。 **前置需求：** ODIN-004。
 
-**證據：** `verification/feature-evidence.json#ODIN-024`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-024`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-025"></a>
 
@@ -756,7 +758,7 @@
 
 **測試案例 ID：** M3-dashboard-auth, M3-tracing-metadata, M3-log-redaction。 **前置需求：** ODIN-002。
 
-**證據：** `verification/feature-evidence.json#ODIN-025`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-025`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-026"></a>
 
@@ -786,7 +788,7 @@
 
 **測試案例 ID：** M3-hook-dry-run, M3-hook-disable。 **前置需求：** ODIN-023。
 
-**證據：** `verification/feature-evidence.json#ODIN-026`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-026`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-027"></a>
 
@@ -814,7 +816,7 @@
 
 **測試案例 ID：** M0-ci-selfhosted-manual, M0-evidence-manifest, M0-failure-blocks-release。 **前置需求：** ODIN-001。
 
-**證據：** `verification/feature-evidence.json#ODIN-027`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-027`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-028"></a>
 
@@ -844,13 +846,13 @@
 
 **測試案例 ID：** M3-inno-lifecycle-14, M3-win-upgrade, M3-win-uninstall。 **前置需求：** ODIN-001。
 
-**證據：** `verification/feature-evidence.json#ODIN-028`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-028`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-029"></a>
 
 ## ODIN-029 — Linux/macOS 原生打包與驗證
 
-**Priority:** P1 · **Milestone:** M3 · **Source:** `NOT_VERIFIED` · **Acceptance:** `NOT_RUN`
+**Priority:** P1 · **Milestone:** M3 · **Source:** `NATIVE_SOURCE_PARTIAL` · **Acceptance:** `PARTIAL`
 
 **Modules:** release, platform
 
@@ -858,7 +860,7 @@
 
 **設計目標：** native CI/build on Linux x86_64 and macOS arm64；提供 tar.gz、install script checksum、卸載；路徑、信號與行程清理採各 OS 原生能力。
 
-**已觀察範圍：** Linux/macOS 的打包腳本已存在，沒有 native OS runtime/installer 證據。
+**已觀察範圍：** Linux0fe03ba在本機Debian 12 VM原生編譯／執行，workspace211 PASS／0 FAIL／3 ignored、fmt、嚴格Clippy及四類smokes通過。a839文件的deb／tar使用同一ELF，實跑安裝／重裝／移除並核對來源、payload及產物hash；macOS及專用signal/journal驗收未執行。
 
 **原驗收條件：**
 
@@ -868,13 +870,13 @@
 
 **尚未驗收／完成：**
 
-- A1：Linux x64/macOS arm64 native build/test 尚未執行；cross compile 不替代。
+- A1（PARTIAL）：Linux x64 VM native build/test與metadata已有適用證據；macOS arm64及完整平台矩陣仍未驗收，cross compile不替代。
 - A2：SIGTERM/SIGINT 後代清除與未完成 journal 的 native 行為尚未驗收。
-- A3：Linux/macOS 同版本 archive manifest/checksum 尚未生成及核對。
+- A3（PARTIAL）：Linux同版本source／package manifest、payload inventory與deb／tar checksum已核對；macOS產物仍未生成／核對。
 
 **測試案例 ID：** M3-linux-native, M3-macos-native, M3-clean-shutdown。 **前置需求：** ODIN-001。
 
-**證據：** `verification/feature-evidence.json#ODIN-029`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-029`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-030"></a>
 
@@ -904,7 +906,7 @@
 
 **測試案例 ID：** M3-benchmark-repro, M3-metrics-dashboard, M3-regression-suite。 **前置需求：** ODIN-010。
 
-**證據：** `verification/feature-evidence.json#ODIN-030`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-030`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-031"></a>
 
@@ -934,7 +936,7 @@
 
 **測試案例 ID：** M0-no-secret-scan, M0-sbom-license, M0-security-policy。 **前置需求：** ODIN-001。
 
-**證據：** `verification/feature-evidence.json#ODIN-031`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-031`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-032"></a>
 
@@ -964,7 +966,7 @@
 
 **測試案例 ID：** M0-crash-failpoints, M0-two-process-race, M0-permission-denied。 **前置需求：** ODIN-006。
 
-**證據：** `verification/feature-evidence.json#ODIN-032`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-032`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-033"></a>
 
@@ -994,7 +996,7 @@
 
 **測試案例 ID：** M0-spec-coverage, M0-spec-validator, M0-doc-links。 **前置需求：** ODIN-003。
 
-**證據：** `verification/feature-evidence.json#ODIN-033`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-033`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-034"></a>
 
@@ -1024,7 +1026,7 @@
 
 **測試案例 ID：** M2-backend-discovery, M2-installer-consent, M2-backend-readiness。 **前置需求：** ODIN-007。
 
-**證據：** `verification/feature-evidence.json#ODIN-034`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-034`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-035"></a>
 
@@ -1054,7 +1056,7 @@
 
 **測試案例 ID：** M3-rules-rust, M3-rules-python, M3-quickfix-safe。 **前置需求：** ODIN-017。
 
-**證據：** `verification/feature-evidence.json#ODIN-035`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-035`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-036"></a>
 
@@ -1084,7 +1086,7 @@
 
 **測試案例 ID：** M3-debug-command-session, M3-debug-scope-deny。 **前置需求：** ODIN-013。
 
-**證據：** `verification/feature-evidence.json#ODIN-036`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-036`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-037"></a>
 
@@ -1114,7 +1116,7 @@
 
 **測試案例 ID：** M3-memory-roundtrip, M3-memory-conflicts。 **前置需求：** ODIN-020。
 
-**證據：** `verification/feature-evidence.json#ODIN-037`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-037`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-038"></a>
 
@@ -1144,7 +1146,7 @@
 
 **測試案例 ID：** M2-occurrence-select, M2-regex-multiline, M2-conflicting-replacements。 **前置需求：** ODIN-006。
 
-**證據：** `verification/feature-evidence.json#ODIN-038`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-038`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-039"></a>
 
@@ -1174,7 +1176,7 @@
 
 **測試案例 ID：** M2-profile-schema, M2-dap-process-tree。 **前置需求：** ODIN-012, ODIN-013。
 
-**證據：** `verification/feature-evidence.json#ODIN-039`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-039`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 <a id="odin-040"></a>
 
@@ -1204,6 +1206,6 @@
 
 **測試案例 ID：** M2-result-chunks, M2-results-ttl, M2-trace-audit。 **前置需求：** ODIN-003。
 
-**證據：** `verification/feature-evidence.json#ODIN-040`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+**證據：** `verification/feature-evidence.json#ODIN-040`；歷史checks/digests原樣保留，本輪另看language_installers_v3；extension_evidence保留歷史scope。
 
 本輪 TypeScript native sandbox 最終證據：`verification/language-ide-final-sandbox-typescript-04.json` 及其 command／transcript，actual exit2／PARTIAL、42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL。固定 host bootstrap 與 child flags 的明確 profile 成功；不是自動 fallback，沒有直接 child EPERM 證據。其他五語的實際 sandbox LSP 仍 NOT_RUN，kernel deny／程序清理由獨立 native opt-in tests 證明。

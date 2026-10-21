@@ -2,7 +2,7 @@
   "project": "Odin",
   "version": "0.2.0",
   "release_class": "NATIVE_PREVIEW_WITH_WINDOWS_HOST_BLOCK",
-  "generated_at_utc": "2026-10-21T04:46:37.653383+00:00",
+  "generated_at_utc": "2026-10-21T05:18:16.625445+00:00",
   "architecture": "Independent Rust toolkit with direct LSP/DAP; no Serena bridge",
   "workspace_crates": 4,
   "tool_contracts": 85,
@@ -108,15 +108,36 @@
       "all_six_final_candidate_accepted": false
     },
     "linux": {
-      "status": "IN_PROGRESS",
-      "acceptance_status": "NOT_RUN",
-      "selected_source_head_sha": "0fe03ba30da9600c25588d506d7e094df89cf56f",
-      "scope": "Fixed-source candidate in disposable Debian 12 QEMU guest. Prior69 native suite failed Unix fsync; replacement gates/build/packaging are not inferred PASS."
+      "report": "verification/package-v3-linux-final.json",
+      "report_sha256": "c1a9f4a750660873c55be1294a431c048fa3f0094c6f1a314d46f448cb62af93",
+      "scope": "ACTUAL_LINUX_VM_BUILD_WORKSPACE_GATES_SMOKES_AND_INSTALLERS",
+      "status": "PASS",
+      "binary_sha256": "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+      "acceptance_results": {
+        "ODIN-029-A1": {
+          "status": "PARTIAL",
+          "remaining": "Source-bound Linux native build and actual metadata execution only; macOS and the complete platform matrix remain unverified."
+        },
+        "ODIN-029-A2": {
+          "status": "NOT_RUN",
+          "remaining": "Dedicated SIGTERM/SIGINT LSP/DAP descendant cleanup and journal acceptance was not run. General MCP cancellation is not this criterion."
+        },
+        "ODIN-029-A3": {
+          "status": "PARTIAL",
+          "remaining": "Linux source/package manifests, payload inventory and archive hashes were checked; macOS artifacts remain unverified."
+        }
+      },
+      "app_build_revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+      "packaging_revision": "a8399993d7c528ad4858b2e4e246e5994eab4bb8",
+      "bundled_docs_revision": "a8399993d7c528ad4858b2e4e246e5994eab4bb8"
     },
     "independent_review": {
       "report": "verification/language-installers-v3-review-phase3.json",
       "report_sha256": "2d4bac2d9f625cf9b5c1aee8e16f14f29641543c7369539682808ad0695bb480",
-      "status": "BLOCKED"
+      "status": "BLOCKED",
+      "source_review": "PASS",
+      "documentation_evidence_review": "PASS_FOR_PRESENT_RECEIPTS",
+      "release_approval": "BLOCKED"
     },
     "reports": {
       "windows_build": {
@@ -324,6 +345,21 @@
         "status": "PASS",
         "exit_code": 0,
         "note": "Five inert overwrite-protection checks; zero native process calls."
+      },
+      "qa_failed_runner_rejection": {
+        "report": "verification/package-v3-evidence-outcomes-01.json",
+        "report_sha256": "5aea6cff2f1e07946b0da412479ed25c39b471a76347cf1b53a93ba6aee43c97",
+        "scope": "QA_EVIDENCE_CLASSIFICATION_REPAIR_AND_INERT_REGRESSION",
+        "status": "PASS",
+        "note": "Six inert failure-classification checks and independently reviewed exact helper hashes; no product or backend process calls."
+      },
+      "qa_linux_criteria_classification": {
+        "report": "verification/language-installers-v3-linux-classification-02.json",
+        "report_sha256": "0ec5790a93ea73eb8b247f0eaa0d8f4bd8f1a62a515235618c7623b966fd309a",
+        "scope": "QA_DOCUMENTATION_CLASSIFICATION_REGRESSION_NOT_NATIVE_ACCEPTANCE",
+        "status": "PASS",
+        "exit_code": 0,
+        "note": "Twelve inert criterion-classification checks against the final assembler source; not native Linux execution."
       }
     },
     "all_40_requirements_accepted": false,
@@ -536,6 +572,21 @@
       "status": "PASS",
       "exit_code": 0,
       "note": "Five inert overwrite-protection checks; zero native process calls."
+    },
+    "qa_failed_runner_rejection": {
+      "report": "verification/package-v3-evidence-outcomes-01.json",
+      "report_sha256": "5aea6cff2f1e07946b0da412479ed25c39b471a76347cf1b53a93ba6aee43c97",
+      "scope": "QA_EVIDENCE_CLASSIFICATION_REPAIR_AND_INERT_REGRESSION",
+      "status": "PASS",
+      "note": "Six inert failure-classification checks and independently reviewed exact helper hashes; no product or backend process calls."
+    },
+    "qa_linux_criteria_classification": {
+      "report": "verification/language-installers-v3-linux-classification-02.json",
+      "report_sha256": "0ec5790a93ea73eb8b247f0eaa0d8f4bd8f1a62a515235618c7623b966fd309a",
+      "scope": "QA_DOCUMENTATION_CLASSIFICATION_REGRESSION_NOT_NATIVE_ACCEPTANCE",
+      "status": "PASS",
+      "exit_code": 0,
+      "note": "Twelve inert criterion-classification checks against the final assembler source; not native Linux execution."
     }
   },
   "historical_delivery": {

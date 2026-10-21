@@ -1,16 +1,18 @@
 # Odin
 
-## 獨立 Rust 程式碼工具服務 · Windows 原生預覽 0.2.0
+## 獨立 Rust 程式碼工具服務 · 原生預覽 0.2.0
 
 Odin 提供 **85 個原生工具契約**，以 MCP stdio、本機 HTTP 或 CLI 供 Coding
 Agent 使用。四個 Rust crates 共用專案政策、SHA-256 交易、直接 LSP／DAP、
 Markdown 記憶與受限 JSON 流程。產品沒有 Serena bridge、Python REPL、
 任意 eval 或自動上游 fallback。
 
-這次已從未編譯的原始碼預覽，推進到 Windows x64 MSVC 的實際建置、測試與
-二進位後端驗收。**40 項規格尚未全數驗收；目前不是跨平台穩定版。** 最新命令、
+Linux x86-64 已完成本機 VM 的正式編譯、完整 workspace 測試，以及 `.deb`／tar
+的安裝、重裝與移除。Windows 最終候選受主機 AppControl 阻擋，六語最終矩陣
+仍待驗收。**40 項規格尚未全數驗收；目前不是跨平台穩定版。** 最新命令、
 exit code、來源／binary hash 以 [交付狀態](verification/delivery-status.json)、
-[本機驗收](verification/sandbox-ide-release-validation.json) 與
+[Linux 本機驗收](verification/package-v3-linux-final.json)、
+[歷史 Windows 驗收](verification/sandbox-ide-release-validation.json) 與
 [逐需求證據](verification/feature-evidence.json) 為準。舊紀錄保留為歷史，
 不能覆蓋最新結果，也不能把 protocol fixture 當真實語言支援。
 
@@ -34,7 +36,8 @@ Move／Inline 是真正 LSP edit 的安全入口；後端未提供對應 action 
 
 ### 建置與執行
 
-需要 Rust **1.90.0**、rustfmt、Clippy 與 Windows MSVC C/C++ linker。
+需要 Rust **1.90.0**、rustfmt 與 Clippy；Windows 另需 MSVC C/C++ linker，
+Linux musl 工具見 [封裝文件](docs/PACKAGING_WINDOWS_LINUX.md)。
 `Cargo.lock` 已由真實 Cargo 產生並納入版本控制，一般建置使用 `--locked`。
 Python 僅用於開發驗收；Odin 的檔案／記憶功能不需要 Python 或 Serena。
 Linux 開發驗收也需讓 `python` 指向 Python 3；Debian 12 可安裝

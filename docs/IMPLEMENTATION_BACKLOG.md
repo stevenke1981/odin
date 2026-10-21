@@ -8,7 +8,7 @@
 
 語言實跑已超過「其餘五語NOT_RUN」的舊狀態：[source-bound evidence index](../verification/language-sandbox-v3-evidence-index-01.json) 核對18份收據與原始失敗，該index本身只是離線完整性驗證。歷史780 native MCP結果包括 [Go46 PASS／4 UNAVAILABLE](../verification/language-sandbox-v3-go-native-02.json)、[Python60 PASS／4 UNAVAILABLE](../verification/language-sandbox-v3-python-native-02.json) 與 [Ruff formatter18 PASS](../verification/language-sandbox-v3-ruff-native-01.json)。Python使用明確選取、逐檔hash核對的新私有backend副本，原runtime與來源仍RO；可寫副本不能在沙箱外執行或重用為可信SDK。Java與TypeScript已有native語意與CAS實跑，但未附document version的診斷仍為NOT_VERIFIED；[混合五語首輪](../verification/language-sandbox-v3-five-native-01.json) 的150 PASS／4 FAIL／4 UNAVAILABLE／12 NOT_VERIFIED原樣保留。C# [OmniSharp direct null-PID觀察](../verification/language-sandbox-v3-direct-csharp-nullpid-07.json) 僅證明限定初始化／symbols／shutdown路徑；不是Odin MCP雙專案IDE或rename/apply/rollback驗收，最終矩陣仍受上述host block阻擋。
 
-Linux 保留 [69 原生 fsync 失敗](../verification/package-v3-linux-69-diagnostic.json) 及 [d3 完整測試失敗](../verification/package-v3-linux-d3-diagnostic.json)，不把它們轉成新版通過。整合候選來源為 `0fe03ba30da9600c25588d506d7e094df89cf56f`；本機 VM 已實跑核心39項及協定35項定向回歸全數通過，完整 workspace、release 與 installer 仍 **IN_PROGRESS**。測試環境已補齊 Python 3 的 `python` 命令；quota 單元測試分離 CPU 速度因素，production 的 byte／deadline 限制未變。ODIN-029 依最終實際報告再更新；macOS仍未驗收。歷史c5084f4、72工具及早期失敗保留原scope；28個registry entries、初始化或通用gate都不代表完整語言／IDE等價。最終source與review binding由root及獨立reviewer管理。
+Linux 保留 [69 原生 fsync 失敗](../verification/package-v3-linux-69-diagnostic.json) 及 [d3 完整測試失敗](../verification/package-v3-linux-d3-diagnostic.json)，不把它們轉成新版通過。整合候選來源為 `0fe03ba30da9600c25588d506d7e094df89cf56f`；本機 VM 的完整 workspace **211 PASS／0 FAIL／3 ignored**，fmt、嚴格Clippy、release及CLI64／MCP24／HTTP36／取消8項smokes均通過。同一ELF SHA-256 `e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42` 以a839999文件製作deb／tar，實際安裝、重裝、移除通過；最終 [Linux報告](../verification/package-v3-linux-final.json) 綁定逐命令、原始失敗與hash。定向核心39／協定35是獨立回歸，不加總至211。測試環境已補齊 Python 3 的 `python` 命令；quota 單元測試分離 CPU 速度因素，production 的 byte／deadline 限制未變。ODIN-029 為PARTIAL：A1／A3僅Linux範圍有實證，A2專用SIGTERM／SIGINT後代清除與journal維持NOT_RUN；macOS仍未驗收。歷史c5084f4、72工具及早期失敗保留原scope；28個registry entries、初始化或通用gate都不代表完整語言／IDE等價。最終source與review binding由root及獨立reviewer管理。
 
 ## M0 · 12 個需求
 
@@ -64,7 +64,7 @@ Linux 保留 [69 原生 fsync 失敗](../verification/package-v3-linux-69-diagno
 | [ODIN-025](FEATURE_SPEC.md#odin-025) | P1 | Dashboard / 操作日誌 / 使用量 | `PARTIAL` | ODIN-002 |
 | [ODIN-026](FEATURE_SPEC.md#odin-026) | P2 | Hooks / Agent 策略引導 | `PARTIAL` | ODIN-023 |
 | [ODIN-028](FEATURE_SPEC.md#odin-028) | P1 | Windows x64 MSVC 安裝、升級與卸載 | `PARTIAL` | ODIN-001 |
-| [ODIN-029](FEATURE_SPEC.md#odin-029) | P1 | Linux/macOS 原生打包與驗證 | `NOT_RUN` | ODIN-001 |
+| [ODIN-029](FEATURE_SPEC.md#odin-029) | P1 | Linux/macOS 原生打包與驗證 | `PARTIAL` | ODIN-001 |
 | [ODIN-030](FEATURE_SPEC.md#odin-030) | P1 | 效能、Token 與品質基準 | `NOT_RUN` | ODIN-010 |
 | [ODIN-035](FEATURE_SPEC.md#odin-035) | P2 | 純原生檢查與 Quick Fix 引擎 | `PARTIAL` | ODIN-017 |
 | [ODIN-036](FEATURE_SPEC.md#odin-036) | P2 | 持久式除錯命令會話（非 Python REPL） | `PARTIAL` | ODIN-013 |
@@ -77,7 +77,7 @@ Linux 保留 [69 原生 fsync 失敗](../verification/package-v3-linux-69-diagno
 | root integration | shared整合、最終build/runtime report與delivery／feature evidence | Windows69e769b編譯PASS與83a81d執行前4551分開；workspace exit101與continuation PASS都保留。只有相同path／SHA獲管理員正式允許並完成source/hash preflight後，才依原計畫重跑適用Windows驗收，不搬移或改造候選繞過政策 |
 | platform author | 六語各兩專案native MCP harness、明確host profiles與專屬證據 | 保留Go46／Python60／Ruff18及混合首輪失敗；最終十二專案矩陣目前BLOCKED。C#仍需完整MCP symbols／refs／rename CAS／rollback驗收；未廣告capability保留UNAVAILABLE，Java／TS未版本診斷不升current；私有Python副本每次從可信來源新建並核對hash |
 | independent reviewer | immutable source/diff與review證據 | 最終combined source、native profile與來源／binary hash須正確綁定；歷史finding與更正保留，作者不自我核准，不用舊候選PASS取代新候選審查 |
-| packaging author | 當輪Windows／Linux打包腳本、installer／runtime收據 | Windows780的22項PASS保留原binary綁定，最終Windows installer維持BLOCKED。Linux app來源0fe03ba，封裝文件另綁packaging revision；原69／d3失敗保留，當前完整驗收IN_PROGRESS。完成後交root更新ODIN-029，macOS及未測矩陣不升PASS |
+| packaging author | 當輪Windows／Linux打包腳本、installer／runtime收據 | Windows780的22項PASS保留原binary綁定，最終Windows installer維持BLOCKED。Linux app來源0fe03ba，封裝文件另綁packaging revision；原69／d3與installer QA首次帳號preflight失敗保留；當前Linux native build／workspace／smokes與安裝生命週期已通過。ODIN-029仍PARTIAL，macOS／專用signals與未測矩陣不升PASS |
 | root release | 最終artifact manifest、公開revision與發布紀錄 | 區分歷史公開版本、780 installer與本輪最終binary；依適用review、runtime及平台收據決定發布範圍，明示BLOCKED／NOT_RUN與未簽章等限制 |
 
 每切片唯一owner、明確write scope；共有檔案序列整合，不覆寫衝突取得綠燈。歷史報告、command／transcript／normalization與原始driver快照不改寫，離線index PASS也不增加任何backend執行次數。Linux／macOS完整原生驗收、全語言／IDE私有等價、完整installer升級／故障矩陣及benchmark仍未完成；只有全部原acceptance具適用實證才升整項PASS。

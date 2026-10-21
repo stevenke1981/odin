@@ -30,7 +30,7 @@
       ],
       "depends_on": [],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-001",
-      "implementation_summary": "當輪c5084f4 clean release候選17/17 gates exit0、workspace200 passed/6 ignored，另native opt-in3 PASS；其餘3真LS probe仍ignored，跨平台與完整40需求未驗收。",
+      "implementation_summary": "69e769b Windows release build exit0；metadata被AppControl4551阻擋。歷史780 suite214PASS/5FAIL/6ignored，13獨立命令PASS不能替代失敗gate。Linux native狀態見language_installers_v3.linux；macOS未驗收。",
       "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
@@ -201,7 +201,7 @@
         "ODIN-004"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-007",
-      "implementation_summary": "新增IDE RPC/URI/JDTLS安全處理已實作；六語12/12真初始化、260PASS，14capability UNAVAILABLE及12診斷NOT_VERIFIED仍明列，TS沙箱profile04另有兩專案42 PASS的PARTIAL證據。",
+      "implementation_summary": "新增沙箱LSP processId=null；31 protocol fixtures PASS。780上的Rust/Go/Python已實跑兩專案，TS/Java保留未版本診斷，C#全MCP及final69六語矩陣受主機控管阻擋。",
       "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
@@ -230,7 +230,7 @@
         "ODIN-007"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-008",
-      "implementation_summary": "真六語兩專案baseline涵蓋symbols/references/IDE與rename流程並有transcript；整體PARTIAL/exit2，不將unsupported或未version診斷當全語等價。",
+      "implementation_summary": "780 native真實語意查詢已取得Rust/Go/Python及TS/Java限定證據；C#nullPID direct取得真symbols但driver cleanup exit1，不能視為最終MCP PASS。",
       "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
@@ -260,7 +260,7 @@
         "ODIN-007"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-009",
-      "implementation_summary": "format_document/range formatting 的後端 edit 轉 expected-hash Transactions preview；有序 WorkspaceEdit/CAS 保留且不隱含 apply。",
+      "implementation_summary": "新增明確host Ruff stdin formatter與CAS preview/apply/exact rollback；780 native formatter18 checks PASS、Python雙專案60 PASS/4 UNAVAILABLE。final69尚不能啟動。",
       "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
@@ -291,7 +291,7 @@
         "ODIN-009"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-010",
-      "implementation_summary": "同f7e57a5 binary六語各兩專案已實跑：260PASS/14UNAVAILABLE/12NOT_VERIFIED/0FAIL，12初始化；TS/Java診斷缺document version，完整原驗收仍PARTIAL。",
+      "implementation_summary": "真實後端驗收分來源快照與binary hash；780有Go46/Python60及Rust/TS/Java證據，C#與final69全矩陣仍不完整，未用mock替代。",
       "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
@@ -348,7 +348,7 @@
         "ODIN-005"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-012",
-      "implementation_summary": "Windows native3與same-binaryanalyzer30checks PASS；六語baseline為host mode，TS MXC profile01缺私有TEMP失敗、explicit固定bootstrap profile04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL），跨平台未完成。",
+      "implementation_summary": "新增明確host enumerate-only grants與唯讀來源多語profile；780五語首輪150PASS/4FAIL/12NOT_VERIFIED/4UNAVAILABLE保留，Go/Python後續獨立實測PASS。final69全矩陣BLOCKED；Linux native包不代表Linux sandbox。",
       "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
@@ -491,7 +491,7 @@
         "ODIN-006"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-017",
-      "implementation_summary": "Clippy/Ruff/ESLint provider與safe CAS已實作；c5084f4同binary30 checks/實際harness exit0，normalized rule/range/hash/version、readonly、preview/apply/rollback與scratch清理通過，完整去重/規則矩陣未完成。",
+      "implementation_summary": "780真Clippy/Ruff/ESLint30 checks與native Ruff formatter18 checks有實跑證據；TS/Java未版本診斷仍NOT_VERIFIED，全規則去重矩陣未完成。",
       "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
@@ -549,7 +549,7 @@
         "ODIN-010"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-019",
-      "implementation_summary": "28是registry指引；六語兩專案已實跑PARTIAL/exit2、12初始化與260PASS，14UNAVAILABLE/12NOT_VERIFIED仍保留，不稱六語全功能或28/40+已支援。",
+      "implementation_summary": "28 registry entries是宣告指引。新增五語native workload保留逐binary證據；Go/Python通過限定雙專案，C#全MCP和final69六語仍待驗收。",
       "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
@@ -775,7 +775,7 @@
         "ODIN-001"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-027",
-      "implementation_summary": "17gates原始driver snapshot與200tests/6ignored+native3保留；六語新harness d47fa6…有actualexit2/PARTIAL並綁samebinary/一致productioncratehashes，不重寫舊gate。",
+      "implementation_summary": "手動self-hosted CI政策未變，未啟動cloud CI。Windows workspace exit101及AppControl4551明確保留，13獨立PASS不取代全suite；Linux native結果另綁來源。",
       "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
@@ -804,14 +804,14 @@
         "ODIN-001"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-028",
-      "implementation_summary": "portable ZIP 與 Inno Setup recipe 已編譯；該 recipe report 使用較早 revision，未視為最終候選。"
+      "implementation_summary": "780c6ad portable/Inno7.1實際install/reinstall/uninstall22 checks PASS。69e769b已編譯但4551阻擋，最終Windows安裝包未實跑；未驗跨版/乾淨機/簽章。"
     },
     {
       "id": "ODIN-029",
       "title": "Linux/macOS 原生打包與驗證",
       "priority": "P1",
       "phase": "M3",
-      "current": "NOT_VERIFIED",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "release",
         "platform"
@@ -831,8 +831,8 @@
       "depends_on": [
         "ODIN-001"
       ],
-      "evidence": "NOT_RUN; verification/feature-evidence.json#ODIN-029",
-      "implementation_summary": "Linux/macOS 的打包腳本已存在，沒有 native OS runtime/installer 證據。"
+      "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-029",
+      "implementation_summary": "Linux69發現Unix fsync失敗，d3核心39PASS後全suite另揭露fixture依賴及兩項protocol測試；整合修正0fe03ba的native build/gates/deb與tar以language_installers_v3.linux實際報告為準，不轉移舊結果。macOS仍NOT_RUN，Linux sandbox未實作。"
     },
     {
       "id": "ODIN-030",
@@ -1002,7 +1002,7 @@
         "ODIN-017"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-035",
-      "implementation_summary": "c5084f4同binary真Clippy/Ruff/ESLint經nativeMXC的30 checks/commandexit0，涵蓋findings、readonly、safeCASpreview/apply/rollback與scratch清理；全規則/私有IDE等價未驗收。",
+      "implementation_summary": "780真native analyzer30 checks與Ruff stdin formatter18 checks PASS，新增輸出完整性/權限/expected-hash拒絕路徑；final69與所有IDE規則等價未驗收。",
       "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
@@ -1143,7 +1143,7 @@
         "ODIN-003"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-040",
-      "implementation_summary": "c5084f4標準binary/三LS/analyzer與200tests已具source/hash綁定；全面backend provenance、retention/encryption/backup仍未完成。",
+      "implementation_summary": "本輪來源/命令/binary/逐語言transcript與18 receipt離線索引已綁定；保留原失敗、初次觀察更正與blocked final69，不讓歷史PASS流入新版。",
       "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     }
   ],
