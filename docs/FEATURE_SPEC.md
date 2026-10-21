@@ -2,7 +2,7 @@
 
 **現行85工具契約；40需求為39 PARTIAL、1 NOT_RUN。** 原58工具保留，前版72再新增13個IDE/inspection契約。原DoD不降低，也不因通用gate成功改成全需求接受。
 
-本輪產品來源為 `0fe03ba30da9600c25588d506d7e094df89cf56f`。Linux 本機 Debian 12 VM 的完整 workspace 為211 PASS／0 FAIL／3 ignored，fmt、嚴格 Clippy、release 與 CLI／MCP／HTTP／取消檢查通過；同一 ELF 的 `.deb`／tar 已實跑安裝、重裝、移除。封裝文件另綁 `a8399993d7c528ad4858b2e4e246e5994eab4bb8`，不重新編譯。Windows 保留69來源的83a81d候選，metadata遭AppControl4551阻擋，最終六語矩陣仍NOT_RUN。這些結果不代表Linux OS沙箱、macOS或完整IDE等價。下列c5084f4與extension_evidence記錄維持其歷史scope；最新逐條件狀態見language_installers_v3及 [Linux實跑報告](../verification/package-v3-linux-final.json)。
+本輪產品來源為 `0fe03ba30da9600c25588d506d7e094df89cf56f`。Linux 本機 Debian 12 VM 的完整 workspace 為211 PASS／0 FAIL／3 ignored，fmt、嚴格 Clippy、release 與 CLI／MCP／HTTP／取消檢查通過；同一 ELF 的 `.deb`／tar 已實跑安裝、重裝、移除。首輪文件來源a839999的功能驗證保留；補入Rust標準庫／native CRT notices的新版另綁當輪報告的packaging_revision，同一ELF不重新編譯。Windows 保留69來源的83a81d候選，metadata遭AppControl4551阻擋，最終六語矩陣仍NOT_RUN。這些結果不代表Linux OS沙箱、macOS或完整IDE等價。下列c5084f4與extension_evidence記錄維持其歷史scope；最新逐條件狀態見language_installers_v3及 [Linux實跑報告](../verification/package-v3-linux-notices-final.json)。
 
 歷史clean product revision `c5084f4947fc4a07c9ab381fa9998ba1a1e2246d` 已執行 **17/17 gates exit0、200 workspace tests PASS/6 ignored**；其中3個native測試另外opt-in實跑PASS，其餘3個真LS probe仍ignored。source_changed=[]、tracked_source_dirty=false。Release binary SHA-256為 `f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875`。
 

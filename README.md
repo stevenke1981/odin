@@ -11,7 +11,7 @@ Linux x86-64 已完成本機 VM 的正式編譯、完整 workspace 測試，以�
 的安裝、重裝與移除。Windows 最終候選受主機 AppControl 阻擋，六語最終矩陣
 仍待驗收。**40 項規格尚未全數驗收；目前不是跨平台穩定版。** 最新命令、
 exit code、來源／binary hash 以 [交付狀態](verification/delivery-status.json)、
-[Linux 本機驗收](verification/package-v3-linux-final.json)、
+[Linux 本機驗收](verification/package-v3-linux-notices-final.json)、
 [歷史 Windows 驗收](verification/sandbox-ide-release-validation.json) 與
 [逐需求證據](verification/feature-evidence.json) 為準。舊紀錄保留為歷史，
 不能覆蓋最新結果，也不能把 protocol fixture 當真實語言支援。
