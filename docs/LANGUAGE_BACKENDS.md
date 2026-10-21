@@ -45,6 +45,13 @@ The per-process environment retains existing `ProgramFiles`, `ProgramFiles(x86)`
 `ProgramW6432`, `ProgramData` and `ALLUSERSPROFILE` values required by the .NET/NuGet
 runtime. This adds no filesystem grants. The initial missing-environment restore
 failure and successful isolated correction are preserved separately from LSP tests.
+The Go profile explicitly enables
+[gopls semantic tokens](https://go.dev/gopls/settings#semanticTokens), whose default
+is disabled. The Java profile explicitly enables signature help, also disabled
+by default in [JDT LS preferences](https://github.com/eclipse-jdtls/eclipse.jdt.ls/blob/main/org.eclipse.jdt.ls.core/src/org/eclipse/jdt/ls/core/internal/preferences/Preferences.java).
+Signature queries test the call's opening argument boundary and the end of the
+first argument: a backend may suppress signature UI inside a string token.
+Actual query positions are retained in the transcript.
 
 ## Checks and result meanings
 

@@ -148,7 +148,8 @@ def fixture(base, tools, language, tag):
         broken = "\nfunc odin_broken( {\n"
         program, argv = installed(tools, "go-work/bin/gopls.exe"), []
         extra["go.mod"] = f"module odin.local/ide-{tag}\n\ngo 1.27.0\n"
-        settings = {"gopls": {"hints": {"assignVariableTypes": True, "parameterNames": True, "constantValues": True}}}
+        settings = {"gopls": {"semanticTokens": True, "hints": {"assignVariableTypes": True, "parameterNames": True, "constantValues": True}}}
+        initialization = dict(settings["gopls"])
     elif language == "java":
         source, consumer = "src/fixture/Greeter.java", "src/fixture/Consumer.java"
         text = 'package fixture;\npublic class Greeter {\npublic static String greet(String name){return "Hi "+name;}\npublic static String run(){String message=greet("Odin");return message;}\n}\n'
@@ -165,7 +166,7 @@ def fixture(base, tools, language, tag):
                 "-configuration", str(tools / "jdtls/config_win"), "-data", str(cache)]
         extra[".project"] = f'<?xml version="1.0"?><projectDescription><name>{project}</name><comment/><projects/><buildSpec><buildCommand><name>org.eclipse.jdt.core.javabuilder</name><arguments/></buildCommand></buildSpec><natures><nature>org.eclipse.jdt.core.javanature</nature></natures></projectDescription>'
         extra[".classpath"] = '<?xml version="1.0"?><classpath><classpathentry kind="src" path="src"/><classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/><classpathentry kind="output" path="bin"/></classpath>'
-        settings = {"java": {"import": {"maven": {"enabled": False}, "gradle": {"enabled": False}},
+        settings = {"java": {"signatureHelp": {"enabled": True}, "import": {"maven": {"enabled": False}, "gradle": {"enabled": False}},
                              "inlayHints": {"parameterNames": {"enabled": "all"}}}}
         initialization = {"settings": settings}
     else:
@@ -186,7 +187,7 @@ def fixture(base, tools, language, tag):
 class Run:
     def __init__(self, args, base, report):
         self.args, self.base, self.report = args, base, report
-        self.transcript = args.output.with_suffix(".requests.jsonl").open("x", encoding="utf-8")
+        self.transcript = args.output.with_suffix(".requests.jsonl").open("x", encoding="utf-8", newline="\n")
         self.peer = None
         self.current = None
         self.catalog = {}
@@ -236,7 +237,7 @@ class Run:
                     return last
             except BackendError as error:
                 errors.append(error.response)
-                if "CAPABILITY_UNAVAILABLE" in str(error):
+                if any(marker in str(error) for marker in ("CAPABILITY_UNAVAILABLE", "WorkspaceEdit must", "INVALID_ARGUMENT", "PERMISSION_DENIED", "Unknown tool")):
                     raise
             if time.monotonic() >= deadline:
                 raise TimeoutError(json.dumps({"last_result": last, "attempt_errors": errors[-4:]}))
@@ -247,7 +248,7 @@ class Run:
                 and value.get("position_encoding") == "utf-16"
                 and value.get("document", {}).get("sha256") == digest((fixture.root / fixture.source).read_bytes()))
 
-    def optional(self, fixture, capabilities, tool, arguments, meaningful):
+    def optional(self, fixture, capabilities, tool, arguments, meaningful, alternatives=()):
         if tool not in self.catalog:
             self.record(tool, "FAIL", "Odin tool missing from live catalog")
             return None
@@ -258,7 +259,10 @@ class Run:
         before, observed = fixture.hashes(), None
         def query():
             nonlocal observed
-            observed = self.call(fixture.project, tool, arguments)
+            for parameters in (arguments, *alternatives):
+                observed = self.call(fixture.project, tool, parameters)
+                if meaningful(observed):
+                    break
             return observed
         try:
             value = self.retry(query, meaningful, seconds=min(12, self.args.timeout))
@@ -338,7 +342,8 @@ class Run:
                 self.optional(fixture, capabilities, "hover", {"relative_path": fixture.source, "position": at_call},
                               lambda v: bool(payload(v)) and "greet" in json.dumps(payload(v)).lower())
                 self.optional(fixture, capabilities, "signature_help", {"relative_path": fixture.source, "position": signature_at},
-                              lambda v: isinstance(payload(v), dict) and bool(payload(v).get("signatures")))
+                              lambda v: isinstance(payload(v), dict) and bool(payload(v).get("signatures")),
+                              alternatives=({"relative_path": fixture.source, "position": position(content, 'greet("Odin")', len('greet("Odin")') - 1)},))
                 self.optional(fixture, capabilities, "workspace_symbols", {"language": fixture.language, "query": "greet", "limit": 100},
                               lambda v: "greet" in json.dumps(payload(v)).lower())
                 hints = self.optional(fixture, capabilities, "inlay_hints", {"relative_path": fixture.source}, lambda v: bool(payload(v)))
@@ -474,6 +479,7 @@ def main():
                             "GOPATH": str(args.tools_root / "go-work"), "GOCACHE": str(args.tools_root / "go-cache"),
                             "GOMODCACHE": str(args.tools_root / "go-modules"), "GOROOT": str(args.tools_root / "go/go")})
         environment["DOTNET_SKIP_FIRST_TIME_EXPERIENCE"] = "1"
+        environment["DOTNET_CLI_UI_LANGUAGE"] = "en-US"
         if args.mode == "sandbox" and "rust" in args.languages:
             environment.setdefault("RUSTUP_HOME", str(Path.home() / ".rustup"))
             environment.setdefault("CARGO_HOME", str(Path.home() / ".cargo"))
@@ -511,7 +517,7 @@ def main():
                           f"executor_sha256 = {toml(args.sandbox_sha256)}", f"readonly_paths = {toml(unique_grants)}",
                           "readwrite_paths = []", "denied_paths = []", f"temp_root = {toml(str(scratch))}", f"allow_ui = {toml(args.sandbox_allow_ui)}"]
         config = base / "host.toml"
-        config.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        config.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
         report["host_config_sha256"] = digest(config.read_bytes())
         run = Run(args, base, report)
         try:
@@ -566,7 +572,9 @@ def main():
         report["actual_lsp_projects_initialized"] = sum(check["name"] == "actual_lsp_initialize" and check["status"] == "PASS"
                                                        for project in report["projects"] for check in project["checks"])
         report["transcript_sha256"] = digest(args.output.with_suffix(".requests.jsonl").read_bytes())
-        args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        report["line_endings_normalized_before_hash_binding"] = True
+        report["odin_trace_hashes_describe_original_unredacted_payloads"] = True
+        args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({"status": report["status"], "counts": report["counts"], "matrix": report["matrix"]}), flush=True)
     return {"PASS": 0, "PARTIAL": 2, "BLOCKED": 3}.get(report["status"], 1)
 
