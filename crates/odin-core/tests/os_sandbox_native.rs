@@ -136,6 +136,10 @@ impl Fixture {
 #[ignore = "Requires explicit trusted native MXC path/hash and a supported Windows host"]
 fn filesystem_network_stdio_and_descendant_isolation() {
     let fixture = Fixture::new();
+    let health = odin_core::sandbox::health(&fixture.config).unwrap();
+    assert_eq!(health["backend"], "mxc_processcontainer");
+    assert_eq!(health["workload_acceptance"], "NOT_RUN");
+    assert_eq!(health["fallback"], false);
     let payload = b"Content-Length: 12\r\n\r\n{\"id\":1}\n\x00\xe6\xb8\xac";
     let SandboxLaunch { mut command, guard } =
         fixture.launch(&["echo".into()], Some(Duration::from_secs(10)));
