@@ -1,0 +1,83 @@
+{
+  "task_id": "protocol-unc-uri-linux-v3",
+  "base_sha": "0b9045712502a85f4832c61b49290199ecef6f71",
+  "source": "crates/odin-protocol/src/rpc.rs",
+  "source_sha256": "286f820bffcb014f8e7ac169c2d591ccfc622a1de6c794ef60a315cc6b313b12",
+  "platform": "Windows x64 MSVC",
+  "scope": "Protocol URI lib tests only; no blocked release candidate execution",
+  "commands": [
+    {
+      "command": [
+        "rustfmt",
+        "--edition",
+        "2024",
+        "--check",
+        "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin\\crates\\odin-protocol\\src\\rpc.rs"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.143,
+      "log": "uri-linux-v3-gate-1.txt",
+      "sha256": "6d821326f596593f29f19acbb309ada3bce6e6873ea8336245e3063410382856"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "odin-protocol",
+        "--lib",
+        "rpc::tests::diagnostic_uri_keys",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 9.89,
+      "log": "uri-linux-v3-gate-2.txt",
+      "sha256": "59d2e8b7ebd907160281a94751dd8bbac80583820d5ea234dec66acd751892ad"
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "-p",
+        "odin-protocol",
+        "--lib",
+        "--locked",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 3.145,
+      "log": "uri-linux-v3-gate-3.txt",
+      "sha256": "5f60d33aacfef0e09fc9f006c7ca29314189ce2fa1fe7ba1b85722c2533444b0"
+    }
+  ],
+  "linux_runtime": "NOT_RUN: Linux owner runs combined source revision",
+  "status": "PASS",
+  "source_sha256_after": "286f820bffcb014f8e7ac169c2d591ccfc622a1de6c794ef60a315cc6b313b12",
+  "source_unchanged_during_gates": true,
+  "source_commit": "da09697480839b3ebcd93c2f1c949833229c1938",
+  "delta": "Reject raw fourth slash after case-insensitive file:/// prefix before url2.5.7 collapses leading empty path segments; preserve all existing encoding/case/authority checks and assertions. Add five-slash and uppercase-scheme UNC negatives.",
+  "primary_sources": [
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc8089.html#appendix-E.3.2",
+      "supports": "Four/five leading slash file URIs encode UNC path variants."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/servo/rust-url/v2.5.7/url/src/parser.rs",
+      "supports": "parse_path trims initial slashes for file scheme, so post-parse prefix inspection cannot detect original UNC syntax."
+    }
+  ],
+  "linux_next_owner": "root/packaging: on the common integrated source revision run rpc::tests::diagnostic_uri_keys and full locked workspace gates. Windows results do not prove Unix cfg behavior.",
+  "negative_boundaries": [
+    "No ambient canonicalization or file I/O added to URI key normalization",
+    "No root/path authorization or version/schema/dependency changes",
+    "No Windows release83 execution, copying or rebuild",
+    "Existing Linux failure receipt and assertions retained"
+  ]
+}

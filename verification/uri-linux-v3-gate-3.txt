@@ -1,0 +1,6 @@
+Command: cargo clippy -p odin-protocol --lib --locked --offline -- -D warnings
+    Checking odin-core v0.2.0 (C:\Users\steven\.codex\worktrees\odin-engine\odin\crates\odin-core)
+    Checking odin-protocol v0.2.0 (C:\Users\steven\.codex\worktrees\odin-engine\odin\crates\odin-protocol)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.99s
+
+Exit code: 0

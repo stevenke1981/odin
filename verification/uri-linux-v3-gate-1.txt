@@ -1,0 +1,3 @@
+Command: rustfmt --edition 2024 --check C:\Users\steven\.codex\worktrees\odin-engine\odin\crates\odin-protocol\src\rpc.rs
+
+Exit code: 0
