@@ -1,0 +1,16 @@
+{
+  "name": "static-source",
+  "argv": [
+    "python3",
+    "scripts/check_source.py",
+    "--output",
+    "/opt/odin-delivery/v3-d3e5505/static-source-report.json"
+  ],
+  "cwd": "/opt/odin-linux-d3e5505",
+  "uid": 1000,
+  "status": "PASS",
+  "exit_code": 0,
+  "log": "static-source.log",
+  "elapsed_seconds": 2.244,
+  "log_sha256": "904a3160d1e415bc113b973f7bc0317607c368cf8ea748223b0d9ec72447b933"
+}

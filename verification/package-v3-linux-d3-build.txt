@@ -1,0 +1,4 @@
+   Compiling odin-core v0.2.0 (/opt/odin-linux-d3e5505/crates/odin-core)
+   Compiling odin-agent v0.2.0 (/opt/odin-linux-d3e5505/crates/odin)
+   Compiling odin-protocol v0.2.0 (/opt/odin-linux-d3e5505/crates/odin-protocol)
+   Compiling odin-engine v0.2.0 (/opt/odin-linux-d3e5505/crates/odin-engine)

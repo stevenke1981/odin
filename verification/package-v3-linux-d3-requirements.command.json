@@ -1,0 +1,14 @@
+{
+  "name": "requirements",
+  "argv": [
+    "python3",
+    "scripts/check_requirements.py"
+  ],
+  "cwd": "/opt/odin-linux-d3e5505",
+  "uid": 1000,
+  "status": "PASS",
+  "exit_code": 0,
+  "log": "requirements.log",
+  "elapsed_seconds": 1.677,
+  "log_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2"
+}

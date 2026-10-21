@@ -1,0 +1,21 @@
+{
+  "name": "build",
+  "argv": [
+    "cargo",
+    "build",
+    "-p",
+    "odin-agent",
+    "--release",
+    "--target",
+    "x86_64-unknown-linux-musl",
+    "--locked",
+    "--offline"
+  ],
+  "cwd": "/opt/odin-linux-d3e5505",
+  "uid": 1000,
+  "status": "FAIL",
+  "exit_code": -15,
+  "log": "build.log",
+  "elapsed_seconds": 143.957,
+  "log_sha256": "8a1e1a67ca4261b9a506d50e771f3e7239cc6f3990f1daae77070725d7fbb3e9"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "tests",
+  "argv": [
+    "cargo",
+    "test",
+    "--workspace",
+    "--no-fail-fast",
+    "--target",
+    "x86_64-unknown-linux-musl",
+    "--locked",
+    "--offline",
+    "--",
+    "--test-threads=1"
+  ],
+  "cwd": "/opt/odin-linux-d3e5505",
+  "uid": 1000,
+  "status": "FAIL",
+  "exit_code": 101,
+  "log": "tests.log",
+  "elapsed_seconds": 351.762,
+  "log_sha256": "5b1d20cfbb039631bcca2bfca090c5440881bb4af9e4649f62fd7a8ecff5d98d"
+}

@@ -1,0 +1,59 @@
+> > > > > > > > > > > > Package: python-is-python3
+Source: what-is-python (13+deb12u1)
+Version: 3.11.2-1+deb12u1
+Installed-Size: 16
+Maintainer: Matthias Klose  <doko@debian.org>
+Architecture: all
+Replaces: python, python-dev-is-python2, python-dev-is-python3 (<< 3.11.1-2), python-is-python2, python-is-python2-but-deprecated, python-minimal
+Depends: python3
+Breaks: python, python-dev-is-python2, python-dev-is-python3 (<< 3.11.1-2), python-is-python2, python-is-python2-but-deprecated, python-minimal
+Description-en: symlinks /usr/bin/python to python3
+ Starting with the Debian 11 (bullseye) and Ubuntu 20.04 LTS (focal)
+ releases, all python packages use explicit python3 or python2
+ interpreter and do not use unversioned /usr/bin/python at all. Some
+ third-party code is now predominantly python3 based, yet may use
+ /usr/bin/python.
+ .
+ This is a convenience package which ships a symlink to point
+ the /usr/bin/python interpreter at the current default python3. It may
+ improve compatibility with other modern systems, whilst breaking some
+ obsolete or 3rd-party software.
+ .
+ No packages may declare dependencies on this package.
+Description-md5: 918753566204aa881433fa0567164c59
+Multi-Arch: allowed
+Cnf-Ignore-Commands: python
+Section: python
+Priority: optional
+Filename: pool/main/w/what-is-python/python-is-python3_3.11.2-1+deb12u1_all.deb
+Size: 3216
+MD5sum: 7c29fd9a52e72ea82f93643864daa5da
+SHA256: 59d30aef23b238b719dddaf38d53857fda2bbc29358ba83d1164b47ca967ada9
+
+0% [Working]            Get:1 file:/etc/apt/mirrors/debian.list Mirrorlist [30 B]
+0% [1 Mirrorlist 0 B/30 B 0%]                             11% [Working]11% [Working]11% [Waiting for headers]                         Get:2 https://deb.debian.org/debian bookworm/main amd64 python-is-python3 all 3.11.2-1+deb12u1 [3216 B]
+11% [2 python-is-python3 0 B/3216 B 0%]                                       100% [Working]              Fetched 3216 B in 1s (3907 B/s)
+W: Download is performed unsandboxed as root as file '/opt/odin-build-tools/packages/python-is-python3_3.11.2-1+deb12u1_all.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+59d30aef23b238b719dddaf38d53857fda2bbc29358ba83d1164b47ca967ada9  python-is-python3_3.11.2-1+deb12u1_all.deb
+Reading package lists... 0%Reading package lists... 100%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree... 66%Building dependency tree... 89%Building dependency tree... Done
+Reading state information... 0% Reading state information... 0%Reading state information... Done
+The following NEW packages will be installed:
+  python-is-python3
+0 upgraded, 1 newly installed, 0 to remove and 5 not upgraded.
+Need to get 3216 B of archives.
+After this operation, 16.4 kB of additional disk space will be used.
+0% [Working]            Get:1 file:/etc/apt/mirrors/debian.list Mirrorlist [30 B]
+0% [1 Mirrorlist 0 B/30 B 0%]                             11% [Working]11% [Working]             Get:2 https://deb.debian.org/debian bookworm/main amd64 python-is-python3 all 3.11.2-1+deb12u1 [3216 B]
+90% [2 python-is-python3 3216 B/3216 B 100%]                                            100% [Working]              Fetched 3216 B in 1s (5168 B/s)
+Selecting previously unselected package python-is-python3.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 29478 files and directories currently installed.)
+Preparing to unpack .../python-is-python3_3.11.2-1+deb12u1_all.deb ...
+Unpacking python-is-python3 (3.11.2-1+deb12u1) ...
+Setting up python-is-python3 (3.11.2-1+deb12u1) ...
+Processing triggers for man-db (2.11.2-2) ...
+python-is-python3 3.11.2-1+deb12u1
+/usr/bin/python3.11
+Python 3.11.2
+
+ODIN_VM_73106674e6264f29beb6e685ad3ea833:0

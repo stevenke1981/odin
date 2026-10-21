@@ -1,0 +1,23 @@
+{
+  "name": "clippy",
+  "argv": [
+    "cargo",
+    "clippy",
+    "--workspace",
+    "--all-targets",
+    "--target",
+    "x86_64-unknown-linux-musl",
+    "--locked",
+    "--offline",
+    "--",
+    "-D",
+    "warnings"
+  ],
+  "cwd": "/opt/odin-linux-d3e5505",
+  "uid": 1000,
+  "status": "PASS",
+  "exit_code": 0,
+  "log": "clippy.log",
+  "elapsed_seconds": 64.735,
+  "log_sha256": "c4d93beb11c46a9104d587dc1ee046718dcf3540916729b779ac807144b37787"
+}

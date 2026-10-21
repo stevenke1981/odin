@@ -1,0 +1,7 @@
+{
+  "command": "set -eu\ninstall -d /opt/odin-build-tools/packages\ncd /opt/odin-build-tools/packages\napt-cache show python-is-python3=3.11.2-1+deb12u1\napt-get download python-is-python3=3.11.2-1+deb12u1\nsha256sum python-is-python3_3.11.2-1+deb12u1_all.deb\nDEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install python-is-python3=3.11.2-1+deb12u1\ndpkg-query -W -f='${Package} ${Version}\\n' python-is-python3\nreadlink -f /usr/bin/python\nrunuser -u odin-qa -- python --version\n",
+  "exit_code": 0,
+  "timed_out": false,
+  "serial": "127.0.0.1:47651",
+  "output": "native-python-alias-setup.txt"
+}

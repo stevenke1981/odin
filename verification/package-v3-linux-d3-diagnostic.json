@@ -1,0 +1,294 @@
+{
+  "scope": "PRESERVED_LINUX_D3_FULL_SUITE_FAILURE_AND_OWNER_CANCELLED_RELEASE",
+  "status": "FAIL",
+  "source_revision": "d3e550594783ee9881c6aba251403ff1add0af86",
+  "source_manifest": {
+    "path": "verification/package-v3-linux-d3-source-sha256.json",
+    "sha256": "d05eaf07a640023f3b16ee4842be0f92e8712093a38cb47ddd496cd68ad9a08e"
+  },
+  "focused_core": {
+    "status": "PASS",
+    "passed": 39,
+    "failed": 0,
+    "ignored": 0,
+    "command": {
+      "name": "focused-core",
+      "argv": [
+        "cargo",
+        "test",
+        "-p",
+        "odin-core",
+        "--lib",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/opt/odin-linux-d3e5505",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "focused-core.log",
+      "elapsed_seconds": 205.947,
+      "log_sha256": "463e01d6be212cc3d7f92dfcd35df66ee017b8b0822fef2a8f82a223710c942c"
+    }
+  },
+  "workspace_tests": {
+    "status": "FAIL",
+    "exit_code": 101,
+    "passed": 192,
+    "failed": 19,
+    "ignored": 3,
+    "suites": 17,
+    "execution": "COMPLETE_NO_FAIL_FAST",
+    "missing_python_fixture_failures": 17,
+    "other_failures": [
+      "lsp::tests::hierarchy_budget_counts_escaped_utf8_and_all_retained_fields",
+      "rpc::tests::diagnostic_uri_keys_are_lexical_and_preserve_path_case"
+    ]
+  },
+  "strict_clippy": {
+    "name": "clippy",
+    "argv": [
+      "cargo",
+      "clippy",
+      "--workspace",
+      "--all-targets",
+      "--target",
+      "x86_64-unknown-linux-musl",
+      "--locked",
+      "--offline",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "cwd": "/opt/odin-linux-d3e5505",
+    "uid": 1000,
+    "status": "PASS",
+    "exit_code": 0,
+    "log": "clippy.log",
+    "elapsed_seconds": 64.735,
+    "log_sha256": "c4d93beb11c46a9104d587dc1ee046718dcf3540916729b779ac807144b37787"
+  },
+  "release_build": {
+    "status": "CANCELLED_BY_OWNER_AFTER_SUITE_FAILURE",
+    "actual_command": {
+      "name": "build",
+      "argv": [
+        "cargo",
+        "build",
+        "-p",
+        "odin-agent",
+        "--release",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline"
+      ],
+      "cwd": "/opt/odin-linux-d3e5505",
+      "uid": 1000,
+      "status": "FAIL",
+      "exit_code": -15,
+      "log": "build.log",
+      "elapsed_seconds": 143.957,
+      "log_sha256": "8a1e1a67ca4261b9a506d50e771f3e7239cc6f3990f1daae77070725d7fbb3e9"
+    },
+    "candidate_binary_copied": false,
+    "reason": "Root requested stopping release because two protocol issues required a successor source. Suite and Clippy were not interrupted."
+  },
+  "metadata_smokes_installer": "NOT_RUN_FOR_RETIRED_D3_CANDIDATE",
+  "python_test_dependency_repair": {
+    "status": "PASS",
+    "package": "python-is-python3",
+    "version": "3.11.2-1+deb12u1",
+    "deb_sha256": "59d30aef23b238b719dddaf38d53857fda2bbc29358ba83d1164b47ca967ada9",
+    "command_exit_code": 0,
+    "ordinary_qa_python_version": "3.11.2",
+    "evidence": {
+      "native-python-alias-setup.json": {
+        "path": "verification/package-v3-linux-python-alias-json.json",
+        "sha256": "c45dc71c78a62496236175f84eba16891858c7bcc474d684aa589eb758ac4d02",
+        "original_host_sha256": "c45dc71c78a62496236175f84eba16891858c7bcc474d684aa589eb758ac4d02"
+      },
+      "native-python-alias-setup.txt": {
+        "path": "verification/package-v3-linux-python-alias-txt.txt",
+        "sha256": "4fbdbeffe836451d63b4b36e690543e9248d8b0d479d532fa03b102d8dde0b2d",
+        "original_host_sha256": "cd01d21387d3c72cd8ba0b54efe8ab5d71f2865707fdbc6e4c77ec4ce1fb03d1"
+      }
+    }
+  },
+  "successor_source_revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+  "successor_validation": "SEPARATE_EVIDENCE_REQUIRED",
+  "hierarchy_error_detail": "Original assert did not print the Fault value. TIMEOUT is an inferred possible mechanism, not an observed error value.",
+  "signal_shutdown_acceptance": {
+    "requirement": "ODIN-029-A2",
+    "status": "NOT_RUN",
+    "reason": "Cancellation of build tools is not Odin LSP/DAP signal/descendant/journal acceptance."
+  },
+  "evidence": {
+    "build-environment.json": {
+      "path": "verification/package-v3-linux-d3-build-environment.json",
+      "sha256": "d6c5469b2992d440192d9516adb546e0d79b198c679178a86523ebf179ddbfc6",
+      "original_guest_sha256": "d6c5469b2992d440192d9516adb546e0d79b198c679178a86523ebf179ddbfc6"
+    },
+    "build.command.json": {
+      "path": "verification/package-v3-linux-d3-build.command.json",
+      "sha256": "6c58deba6ec5ef3c33b746a15b7353a2c66d81d371f1af49bd3a1a948e1cc0df",
+      "original_guest_sha256": "6c58deba6ec5ef3c33b746a15b7353a2c66d81d371f1af49bd3a1a948e1cc0df"
+    },
+    "build.log": {
+      "path": "verification/package-v3-linux-d3-build.txt",
+      "sha256": "8a1e1a67ca4261b9a506d50e771f3e7239cc6f3990f1daae77070725d7fbb3e9",
+      "original_guest_sha256": "8a1e1a67ca4261b9a506d50e771f3e7239cc6f3990f1daae77070725d7fbb3e9"
+    },
+    "clippy.command.json": {
+      "path": "verification/package-v3-linux-d3-clippy.command.json",
+      "sha256": "def399ffffce4b0277ef276ce5566f7cad1c62cca3516a8e6dcd828b4f6425d5",
+      "original_guest_sha256": "def399ffffce4b0277ef276ce5566f7cad1c62cca3516a8e6dcd828b4f6425d5"
+    },
+    "clippy.log": {
+      "path": "verification/package-v3-linux-d3-clippy.txt",
+      "sha256": "c4d93beb11c46a9104d587dc1ee046718dcf3540916729b779ac807144b37787",
+      "original_guest_sha256": "c4d93beb11c46a9104d587dc1ee046718dcf3540916729b779ac807144b37787"
+    },
+    "fixture-report.json": {
+      "path": "verification/package-v3-linux-d3-fixture-report.json",
+      "sha256": "93fdf6b4432a5f14db6a979f5adb75689b2feaf9575a99f0b7505c2295862f2c",
+      "original_guest_sha256": "93fdf6b4432a5f14db6a979f5adb75689b2feaf9575a99f0b7505c2295862f2c"
+    },
+    "fixture.command.json": {
+      "path": "verification/package-v3-linux-d3-fixture.command.json",
+      "sha256": "403ba0a13a906fbd5a787073f2a0debd062a8b91c46c5aa0e86f85f402a520d1",
+      "original_guest_sha256": "403ba0a13a906fbd5a787073f2a0debd062a8b91c46c5aa0e86f85f402a520d1"
+    },
+    "fixture.log": {
+      "path": "verification/package-v3-linux-d3-fixture.txt",
+      "sha256": "c2a21db936c942535df1de9f87a8832081058bcc3636c2a903e77b4867391dc8",
+      "original_guest_sha256": "c2a21db936c942535df1de9f87a8832081058bcc3636c2a903e77b4867391dc8"
+    },
+    "fmt.command.json": {
+      "path": "verification/package-v3-linux-d3-fmt.command.json",
+      "sha256": "c5fd2888bfd5cb074a279569bd59efe3d8bccb0b0ec9d354b8cb3feaf478969c",
+      "original_guest_sha256": "c5fd2888bfd5cb074a279569bd59efe3d8bccb0b0ec9d354b8cb3feaf478969c"
+    },
+    "fmt.log": {
+      "path": "verification/package-v3-linux-d3-fmt.txt",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "original_guest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "focused-core.command.json": {
+      "path": "verification/package-v3-linux-d3-focused-core.command.json",
+      "sha256": "78d7bdbf153b1cadf37d5fb76d6f83892e85cafb75d510b1f6008a4e4b68bbe6",
+      "original_guest_sha256": "78d7bdbf153b1cadf37d5fb76d6f83892e85cafb75d510b1f6008a4e4b68bbe6"
+    },
+    "focused-core.log": {
+      "path": "verification/package-v3-linux-d3-focused-core.txt",
+      "sha256": "a6313ada847aed5c3b2b2f5fb2d8f44702d0152badb7ed2d125dd16a31a73574",
+      "original_guest_sha256": "463e01d6be212cc3d7f92dfcd35df66ee017b8b0822fef2a8f82a223710c942c"
+    },
+    "generated.command.json": {
+      "path": "verification/package-v3-linux-d3-generated.command.json",
+      "sha256": "d3fdd41f75f4ac7565b13af19a1fc3ed8bf838d0aa660ab1393a6d40b6742894",
+      "original_guest_sha256": "d3fdd41f75f4ac7565b13af19a1fc3ed8bf838d0aa660ab1393a6d40b6742894"
+    },
+    "generated.log": {
+      "path": "verification/package-v3-linux-d3-generated.txt",
+      "sha256": "0bcc5c510237297d634065069ed630e38871d94d920bdeda00c939ef36100698",
+      "original_guest_sha256": "0bcc5c510237297d634065069ed630e38871d94d920bdeda00c939ef36100698"
+    },
+    "job.exit": {
+      "path": "verification/package-v3-linux-d3-job.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "original_guest_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "job.log": {
+      "path": "verification/package-v3-linux-d3-job.txt",
+      "sha256": "cf3f34ce568a6b4116a4c54dfb45c187e3930bf8bd84b9db15103d0132607cfb",
+      "original_guest_sha256": "cf3f34ce568a6b4116a4c54dfb45c187e3930bf8bd84b9db15103d0132607cfb"
+    },
+    "publish-policy.command.json": {
+      "path": "verification/package-v3-linux-d3-publish-policy.command.json",
+      "sha256": "fc9c54f004fed84d5bd89b9ce99fa8be6179ea087a99115b41aa894110f5cdd2",
+      "original_guest_sha256": "fc9c54f004fed84d5bd89b9ce99fa8be6179ea087a99115b41aa894110f5cdd2"
+    },
+    "publish-policy.log": {
+      "path": "verification/package-v3-linux-d3-publish-policy.txt",
+      "sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983",
+      "original_guest_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983"
+    },
+    "release-cancellation.json": {
+      "path": "verification/package-v3-linux-d3-release-cancellation.json",
+      "sha256": "a50696297bb79f0b5842aab0490e7caf2537d2a688d0ac112041e5ceb00f3497",
+      "original_guest_sha256": "a50696297bb79f0b5842aab0490e7caf2537d2a688d0ac112041e5ceb00f3497"
+    },
+    "release-stop-guard.log": {
+      "path": "verification/package-v3-linux-d3-release-stop-guard.txt",
+      "sha256": "9784dfb9393383af3652b8a5bd3c69888d1834b9eff2a944dea50e210d77418d",
+      "original_guest_sha256": "9784dfb9393383af3652b8a5bd3c69888d1834b9eff2a944dea50e210d77418d"
+    },
+    "requirements.command.json": {
+      "path": "verification/package-v3-linux-d3-requirements.command.json",
+      "sha256": "2fa8c2bd8218849818d95c590f0c585265a945c755112060cd0e267460521d40",
+      "original_guest_sha256": "2fa8c2bd8218849818d95c590f0c585265a945c755112060cd0e267460521d40"
+    },
+    "requirements.log": {
+      "path": "verification/package-v3-linux-d3-requirements.txt",
+      "sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2",
+      "original_guest_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2"
+    },
+    "runner-summary.json": {
+      "path": "verification/package-v3-linux-d3-runner-summary.json",
+      "sha256": "158e84c3719fd02159e3f5ef721940662e00b0df8640b9ce994eea6103015327",
+      "original_guest_sha256": "158e84c3719fd02159e3f5ef721940662e00b0df8640b9ce994eea6103015327"
+    },
+    "source-after-generators.json": {
+      "path": "verification/package-v3-linux-d3-source-after-generators.json",
+      "sha256": "ed135381d030dd72b070c0fe012b5a3e3dd39a75a8c840358be810633e9f643d",
+      "original_guest_sha256": "ed135381d030dd72b070c0fe012b5a3e3dd39a75a8c840358be810633e9f643d"
+    },
+    "source-preflight.json": {
+      "path": "verification/package-v3-linux-d3-source-preflight.json",
+      "sha256": "ed135381d030dd72b070c0fe012b5a3e3dd39a75a8c840358be810633e9f643d",
+      "original_guest_sha256": "ed135381d030dd72b070c0fe012b5a3e3dd39a75a8c840358be810633e9f643d"
+    },
+    "static-source-report.json": {
+      "path": "verification/package-v3-linux-d3-static-source-report.json",
+      "sha256": "0eead4d058f767838f261afbf4a739074b37f451c6b82aa2dc080e112f5a371b",
+      "original_guest_sha256": "0eead4d058f767838f261afbf4a739074b37f451c6b82aa2dc080e112f5a371b"
+    },
+    "static-source.command.json": {
+      "path": "verification/package-v3-linux-d3-static-source.command.json",
+      "sha256": "c99173fc96bedd9880080298fdd10d4e58bd0ff3b82ead1ec1e1962663012b60",
+      "original_guest_sha256": "c99173fc96bedd9880080298fdd10d4e58bd0ff3b82ead1ec1e1962663012b60"
+    },
+    "static-source.log": {
+      "path": "verification/package-v3-linux-d3-static-source.txt",
+      "sha256": "904a3160d1e415bc113b973f7bc0317607c368cf8ea748223b0d9ec72447b933",
+      "original_guest_sha256": "904a3160d1e415bc113b973f7bc0317607c368cf8ea748223b0d9ec72447b933"
+    },
+    "tests.command.json": {
+      "path": "verification/package-v3-linux-d3-tests.command.json",
+      "sha256": "03603218b4f9ad54bec74c5ee0ab1c285e18555a28b3733e4974a5c5c2396a3e",
+      "original_guest_sha256": "03603218b4f9ad54bec74c5ee0ab1c285e18555a28b3733e4974a5c5c2396a3e"
+    },
+    "tests.log": {
+      "path": "verification/package-v3-linux-d3-tests.txt",
+      "sha256": "5b1d20cfbb039631bcca2bfca090c5440881bb4af9e4649f62fd7a8ecff5d98d",
+      "original_guest_sha256": "5b1d20cfbb039631bcca2bfca090c5440881bb4af9e4649f62fd7a8ecff5d98d"
+    },
+    "run-linux-candidate-v3.py": {
+      "path": "verification/package-v3-linux-d3-run-linux-candidate-v3.py",
+      "sha256": "62acc5fc7bd10341c6dd0f7e51326f3665a96b5b7abf348a01c0b70c98d514bf",
+      "original_guest_sha256": "62acc5fc7bd10341c6dd0f7e51326f3665a96b5b7abf348a01c0b70c98d514bf"
+    },
+    "stop-retired-d3-release.py": {
+      "path": "verification/package-v3-linux-d3-stop-retired-d3-release.py",
+      "sha256": "278fc4732c659bea40416e2dc324f5d3f562c5be1250cd824938b974afe9ac5c",
+      "original_guest_sha256": "278fc4732c659bea40416e2dc324f5d3f562c5be1250cd824938b974afe9ac5c"
+    }
+  },
+  "transport_console_interleaving": [],
+  "normalization": "Public UTF-8 LF text removes serial CR and trailing whitespace; original guest SHA256 is retained. Base64 transport gzip CRC and every original file digest were verified. No actual argv, exit or outcome was rewritten."
+}
