@@ -1,0 +1,153 @@
+{
+  "scope": "EXECUTED_REAL_ODIN_MCP_LANGUAGE_AND_IDE_ACCEPTANCE",
+  "status": "PARTIAL",
+  "created_utc": "2026-10-21T02:03:23Z",
+  "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+  "runs": [
+    {
+      "mode": "baseline",
+      "status": "PARTIAL",
+      "actual_driver_exit_code": 2,
+      "counts": {
+        "PASS": 260,
+        "UNAVAILABLE": 14,
+        "NOT_VERIFIED": 12
+      },
+      "matrix": {
+        "rust": {
+          "rust_a": "PASS",
+          "rust_b": "PASS"
+        },
+        "python": {
+          "python_a": "PASS",
+          "python_b": "PASS"
+        },
+        "typescript": {
+          "typescript_a": "PARTIAL",
+          "typescript_b": "PARTIAL"
+        },
+        "go": {
+          "go_a": "PASS",
+          "go_b": "PASS"
+        },
+        "java": {
+          "java_a": "PARTIAL",
+          "java_b": "PARTIAL"
+        },
+        "csharp": {
+          "csharp_a": "PASS",
+          "csharp_b": "PASS"
+        }
+      },
+      "actual_lsp_projects_initialized": 12,
+      "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+      "report": "verification/language-ide-final-baseline-03.json",
+      "report_sha256": "74607775a28d75d91d5a4e045e319963fcf3e4469923b4233d97ca26b27a6847",
+      "transcript": "verification/language-ide-final-baseline-03.requests.jsonl",
+      "transcript_sha256": "5089119c1e9b490bd71bc7dc7c371890606694271b26ab6d16d369c7ccc22641",
+      "stdout_log": "verification/language-ide-final-baseline-03.txt",
+      "stdout_sha256": "3caf84a17d5d700f9f629c625f7f7fd0840823b4c40798efe7234e13692b580d",
+      "command_receipt": "verification/language-ide-final-baseline-03.command.json",
+      "command_receipt_sha256": "e97a533711ca0a8d5e5dbaa8ca44169496badfc3e76c4c05529ab7eadc1c9548",
+      "normalization_receipt": "verification/language-ide-final-baseline-03.normalization.json",
+      "normalization_receipt_sha256": "540d79f53cd4ce27abcf8896588e84830a20f6ed53d045fdcb6af515a0aed872",
+      "bootstrap_sources": []
+    },
+    {
+      "mode": "sandbox",
+      "status": "PARTIAL",
+      "actual_driver_exit_code": 2,
+      "counts": {
+        "PASS": 42,
+        "UNAVAILABLE": 2,
+        "NOT_VERIFIED": 6
+      },
+      "matrix": {
+        "typescript": {
+          "typescript_a": "PARTIAL",
+          "typescript_b": "PARTIAL"
+        }
+      },
+      "actual_lsp_projects_initialized": 2,
+      "harness_sha256": "1160258157d2790782e9060be0556af874397daf741196ef32297435c6c0dbf6",
+      "report": "verification/language-ide-final-sandbox-typescript-04.json",
+      "report_sha256": "0a87a2b1aac45136bf2d948de1711a997abe33991c4747990dab5d3f0edd420a",
+      "transcript": "verification/language-ide-final-sandbox-typescript-04.requests.jsonl",
+      "transcript_sha256": "acbe80f60f410453e773d45abc35e731d45e277e1ba496ff3778e45a9cc57576",
+      "stdout_log": "verification/language-ide-final-sandbox-typescript-04.txt",
+      "stdout_sha256": "f76683d20361fc11856305d0ece2127aebefbf1919b4ec2ef99eafbed51c696d",
+      "command_receipt": "verification/language-ide-final-sandbox-typescript-04.command.json",
+      "command_receipt_sha256": "a61cdb686562b98bb2f75b5dab933e55f15b47fa63985a037f96fc70f8fc571f",
+      "normalization_receipt": "verification/language-ide-final-sandbox-typescript-04.normalization.json",
+      "normalization_receipt_sha256": "ae586d700cfc0e1c8030359bb02996c23e08586d8c3e346893beaff526a50a64",
+      "bootstrap_sources": [
+        {
+          "project": "typescript_a",
+          "relative_path": "host-support/typescript_a/typescript-bootstrap.mjs",
+          "source_sha256": "95f82f490f6eb2487b25335edcc8321517ce5a0be118cf04579ed709a0131ce6",
+          "server_module_sha256": "192638f1fa62c907fd54c0b55b12dd3dff01325a1a0ed5973907efca1c57b5eb"
+        },
+        {
+          "project": "typescript_b",
+          "relative_path": "host-support/typescript_b/typescript-bootstrap.mjs",
+          "source_sha256": "95f82f490f6eb2487b25335edcc8321517ce5a0be118cf04579ed709a0131ce6",
+          "server_module_sha256": "192638f1fa62c907fd54c0b55b12dd3dff01325a1a0ed5973907efca1c57b5eb"
+        }
+      ]
+    }
+  ],
+  "evidence_integrity": {
+    "status": "PASS",
+    "lf_artifact_digests_verified": true,
+    "logical_check_digests_preserved": true,
+    "baseline_source_snapshot": "5fc4c99:tests/real_ide_backends.py",
+    "current_harness_sha256": "1160258157d2790782e9060be0556af874397daf741196ef32297435c6c0dbf6",
+    "unchanged_assertion_methods_verified_by_ast": [
+      "project",
+      "diagnostics",
+      "rename",
+      "format",
+      "envelope",
+      "optional",
+      "prepare_edit",
+      "call",
+      "record"
+    ],
+    "baseline_not_reclassified_or_rerun_after_sandbox_profile_changes": true
+  },
+  "documentation": {
+    "path": "docs/LANGUAGE_BACKENDS.md",
+    "sha256": "1035dc33f2892ad30742dd70b6a7d42eb0a4e8646baf1f53d4596249399f0581"
+  },
+  "remaining": [
+    {
+      "status": "NOT_VERIFIED",
+      "scope": "TypeScript and Java versionless diagnostics",
+      "baseline_checks": 12,
+      "typescript_sandbox_checks": 6
+    },
+    {
+      "status": "UNAVAILABLE",
+      "scope": "Actual backend optional capabilities absent",
+      "baseline_checks": 14,
+      "typescript_sandbox_checks": 2
+    },
+    {
+      "status": "NOT_RUN",
+      "scope": "Actual sandboxed LSP workloads for Rust/Python/Go/Java/C#"
+    },
+    {
+      "status": "NOT_VERIFIED",
+      "scope": "Complete indexing, all-project diagnostics, full IDE/backend parity and full UI isolation"
+    }
+  ],
+  "historical_attempts_preserved": [
+    "language-ide-final-baseline-01",
+    "language-ide-final-baseline-02",
+    "language-ide-typescript-order-03",
+    "language-ide-final-sandbox-typescript-01",
+    "language-ide-final-sandbox-typescript-02",
+    "language-ide-final-sandbox-typescript-03"
+  ],
+  "sandbox_compatibility_boundary": "Explicit host-owned bootstrap creates private temp, pins the installed module and sets only fixed descendant path flags; direct child EPERM was not observed. No runtime env-allowlist, server semantics or OS grant relaxation."
+}

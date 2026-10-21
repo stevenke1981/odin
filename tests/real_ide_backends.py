@@ -455,6 +455,8 @@ def main():
     parser.add_argument("--sandbox-allow-ui", action="store_true")
     parser.add_argument("--sandbox-typescript-init-temp", action="store_true",
                         help="Use a fixed host-owned bootstrap to initialize MXC's private temp before the pinned TSLS module")
+    parser.add_argument("--sandbox-typescript-child-path-flags", action="store_true",
+                        help="Set only fixed preserve-symlinks NODE_OPTIONS for the sandboxed TSLS descendant processes")
     parser.add_argument("--timeout", type=float, default=60)
     args = parser.parse_args()
     args.binary, args.output, args.tools_root = args.binary.resolve(), args.output.resolve(), args.tools_root.resolve()
@@ -470,6 +472,8 @@ def main():
         parser.error("Select an explicitly tested sandbox language with --languages rust/python/typescript")
     if args.sandbox_typescript_init_temp and (args.mode != "sandbox" or args.languages != ["typescript"]):
         parser.error("The fixed TypeScript temp bootstrap requires --mode sandbox --languages typescript")
+    if args.sandbox_typescript_child_path_flags and not args.sandbox_typescript_init_temp:
+        parser.error("Fixed TypeScript child path flags require --sandbox-typescript-init-temp")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     report = {"scope": "REAL_ODIN_MCP_SIX_LANGUAGE_IDE", "mode": args.mode, "status": "NOT_RUN", "platform": sys.platform,
               "binary_sha256": digest(args.binary.read_bytes()), "harness_sha256": digest(Path(__file__).read_bytes()),
@@ -521,9 +525,11 @@ def main():
                     "if (createHash('sha256').update(readFileSync(server)).digest('hex') !== expectedSha256) {\n"
                     "  throw new Error('Trusted TypeScript server module hash mismatch');\n"
                     "}\n"
-                    "process.argv = [process.execPath, server, '--stdio'];\n"
-                    "await import(pathToFileURL(server).href);\n"
                 )
+                fixed_node_options = "--preserve-symlinks --preserve-symlinks-main" if args.sandbox_typescript_child_path_flags else None
+                if fixed_node_options:
+                    bootstrap_source += f"process.env.NODE_OPTIONS = {json.dumps(fixed_node_options)};\n"
+                bootstrap_source += "process.argv = [process.execPath, server, '--stdio'];\nawait import(pathToFileURL(server).href);\n"
                 bootstrap.write_text(bootstrap_source, encoding="utf-8", newline="\n")
                 item.argv = ["--preserve-symlinks", "--preserve-symlinks-main", str(bootstrap)]
                 report.setdefault("host_support", []).append({
@@ -531,6 +537,7 @@ def main():
                     "relative_path": bootstrap.relative_to(base).as_posix(), "source": bootstrap_source,
                     "source_sha256": digest(bootstrap.read_bytes()), "server_module": str(entry),
                     "server_module_sha256": entry_sha256, "server_argv": [str(item.program), str(entry), "--stdio"],
+                    "fixed_descendant_node_options": fixed_node_options,
                     "caller_or_repository_target": False, "fallback": False,
                 })
             lines += [f"[projects.{item.project}]", f"root = {toml(str(item.root))}", "allow_write = true", "allow_debug = false", "allow_shell = false",
@@ -557,6 +564,7 @@ def main():
                     "readwrite_paths": [], "private_scratch": str(scratch.relative_to(base)),
                     "allow_ui": args.sandbox_allow_ui, "clipboard": "none", "injection": False,
                     "requested_network_policy": "deny_all", "bootstrap_is_readonly_file": bootstrap is not None,
+                    "fixed_descendant_node_options": fixed_node_options if bootstrap else None,
                 })
                 lines += [f"[projects.{item.project}.sandbox]", f"executor = {toml(str(args.sandbox_executor.resolve()))}",
                           f"executor_sha256 = {toml(args.sandbox_sha256)}", f"readonly_paths = {toml(unique_grants)}",

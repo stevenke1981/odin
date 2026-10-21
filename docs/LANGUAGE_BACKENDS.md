@@ -127,7 +127,7 @@ python tests/real_ide_backends.py --binary E:/odin/target/release/odin.exe `
   --languages typescript --mode sandbox `
   --sandbox-executor '<absolute trusted wxc-exec.exe>' `
   --sandbox-sha256 '<verified SHA-256>' --sandbox-allow-ui `
-  --sandbox-typescript-init-temp `
+  --sandbox-typescript-init-temp --sandbox-typescript-child-path-flags `
   --output verification/language-ide-sandbox-typescript-01.json
 ```
 
@@ -157,6 +157,74 @@ MXC's package-specific `AC/Temp` exists. The fixed bootstrap is test host setup,
 separate from Odin's native runtime. It uses ordinary module loading, keeps stdio
 unchanged and performs no fallback or permission retry. Its generated source is
 a reproducible example in the report's `host_support` entries.
+
+The separate `--sandbox-typescript-child-path-flags` opt-in sets the constant
+`NODE_OPTIONS='--preserve-symlinks --preserve-symlinks-main'` inside that bootstrap
+for its descendants. It accepts no inherited option text. Installed TSLS 6.0.2
+explicitly constructs child `execArgv` without its parent's path flags; the
+temp-only attempts 02 and 03 preserve actual tsserver-child exit failures.
+Their captured stderr does not establish a specific child filesystem error.
+The fixed-options profile tests this source-based compatibility hypothesis,
+without changing Odin's environment allowlist, OS grants or server semantics.
+
+## Executed Windows candidate
+
+The final runs on 2026-10-21 used the same release executable, SHA-256
+`f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875`.
+The [six-language baseline report](../verification/language-ide-final-baseline-03.json)
+records 12 real LSP initializations and **260 PASS, 14 UNAVAILABLE,
+12 NOT_VERIFIED, zero FAIL**. Its [actual command receipt](../verification/language-ide-final-baseline-03.command.json)
+records exit **2**, consistent with the report's `PARTIAL` status.
+
+| Baseline language | Projects | PASS | UNAVAILABLE | NOT_VERIFIED | Project results |
+|---|---:|---:|---:|---:|---|
+| Rust | 2 | 48 | 0 | 0 | PASS / PASS |
+| Python | 2 | 40 | 4 | 0 | PASS / PASS |
+| TypeScript | 2 | 40 | 2 | 6 | PARTIAL / PARTIAL |
+| Go | 2 | 44 | 4 | 0 | PASS / PASS |
+| Java | 2 | 40 | 2 | 6 | PARTIAL / PARTIAL |
+| C# | 2 | 48 | 2 | 0 | PASS / PASS |
+
+All twelve projects passed cross-file references and real rename transactions
+with exact rollback. All six backends returned meaningful completion, hover,
+signature help, workspace symbols, incoming calls, inlay hints and semantic
+tokens. Formatting transactions passed for the five backends that advertised
+formatting. Python's backend did not advertise formatting; Go did not advertise
+completion resolution. Only Rust advertised inlay-hint resolution. Missing
+capabilities retain the table's `UNAVAILABLE` counts.
+
+Rust, Python, Go and C# passed current/version-verified valid, error and recovery
+diagnostics. TypeScript and Java returned all six expected diagnostic observations
+per language without document versions, so all twelve remain `NOT_VERIFIED`.
+These results do not establish complete indexing or diagnostics for every file.
+
+The [TypeScript native sandbox report](../verification/language-ide-final-sandbox-typescript-04.json)
+records two projects, **42 PASS, 2 UNAVAILABLE, 6 NOT_VERIFIED, zero FAIL**;
+its [actual command receipt](../verification/language-ide-final-sandbox-typescript-04.command.json)
+also records exit **2**. Both projects passed the pinned MXC transport assertion,
+symbols, cross-file references, the available IDE operations, rename apply and
+rollback, and formatting apply and rollback. Diagnostic freshness remains
+unverified for the same backend limitation as the baseline.
+
+That successful profile explicitly selected both fixed-bootstrap options and
+`allow_ui=true`. Its source and runtime grants remain read-only, the bootstrap
+has one exact read-only file grant, and only private scratch is writable.
+Constant descendant path flags resolved the observed child-exit problem; the
+captured stderr did not directly identify an `EPERM` cause. These are actual
+Odin/MCP/LSP results under the native MXC route. OS denial and child-lifecycle
+tests provide separate boundary evidence; handshake/semantic success and the
+route metadata do not set `os_boundary_verified=true` or prove full UI isolation.
+Actual sandboxed LSP workloads for the other five languages remain `NOT_RUN`.
+
+The baseline used harness SHA-256
+`d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09`;
+the sandbox run used
+`1160258157d2790782e9060be0556af874397daf741196ef32297435c6c0dbf6`.
+Later harness changes added only explicit sandbox compatibility profiles and
+fail-fast handling of permanent backend exits. The completed baseline was not
+reclassified or rerun. All failed attempts remain preserved alongside the
+final reports. Their companion raw stdout, command receipts, transcripts and LF
+normalization receipts bind the actual exit codes and artifact hashes.
 
 ## Evidence boundary
 
