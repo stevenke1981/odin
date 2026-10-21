@@ -1,10 +1,14 @@
 # Odin 實作與驗收看板
 
-**現行85契約；38 PARTIAL、2 NOT_RUN。** 原58保留、前版72再新增13。完整原DoD與相依見 [FEATURE_SPEC.md](FEATURE_SPEC.md)，source-bound結果見 [feature-evidence.json](../verification/feature-evidence.json)。
+**現行85契約；40項原始需求尚未全數接受。** 原58保留、前版72再新增13。完整原DoD與相依見 [FEATURE_SPEC.md](FEATURE_SPEC.md)，逐需求結果見 [feature-evidence.json](../verification/feature-evidence.json)。以下分開記錄歷史實跑與最終候選，不把不同來源／binary的結果合併成PASS。
 
-最新c5084f4 clean候選：17/17命令exit0、200workspace tests PASS/6 ignored，另native3 opt-in PASS；同binary標準三LS/debugpy29與真MXC/analyzer30 checks PASS。六語兩專案host baseline已執行PARTIAL、exit 2：260 PASS／14 UNAVAILABLE／12 NOT_VERIFIED／0 FAIL，12/12 initialized；TS/Java診斷未附document version。真rename/apply/rollback已含JDTLS兩專案；TS native MXC profile04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL，exit2）。不能把28 registry entries或通用gate當完整語言/IDE等價。
+最終 Windows 候選由來源 `69e769be9baa4e825139b72ce1a9b48bf8143114` 編譯，binary SHA-256 為 `83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44`。`cargo build --workspace --release --locked` exit0；metadata 的 CreateProcess 遭 AppControl 4551 拒絕，沒有原生 exit code。最終六語／十二專案矩陣、CLI runtime 與 installer 驗收均 **BLOCKED／NOT_RUN**，不能從編譯成功推論可執行。[最終 host block](../verification/language-installers-v3-final-host-block.json) 保留最初 invocation 與 stale LASTEXITCODE 的更正；[finalrun-plan](../verification/language-sandbox-v3-finalrun-plan.json) 是準備好的重跑計畫，不是執行收據。
 
-歷史72工具144-test、fe5996d191-test、author74/62+12blocked與首輪0checks保留原scope；本輪新結果不改寫它們。SIR-001 hierarchy及SIR-003 summary已修復/有獨立review；URI/JDTLS修復的最新combined review binding由root/reviewer管理。
+歷史 `780c6ad` 候選（binary SHA-256 `371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451`）的 [continuation-01](../verification/language-installers-v3-continuation-01.json) 已實跑 CLI、MCP stdio／HTTP／取消、真實後端、native inspections、Clippy 與供應鏈等檢查；該獨立 continuation PASS 不取代 workspace gate。[workspace-all-targets-01](../verification/language-installers-v3-workspace-all-targets-01.json) 仍為 exit101／FAIL，五個 stdin 子程序 fixture 因4551未能啟動。相同780 binary的 [Windows candidate installer](../verification/package-v3-windows-candidate.json) 有22項PASS，涵蓋安裝、重裝、移除及保留使用者檔案；這是歷史候選的限定生命週期驗收，不能轉移到83a81d最終binary或視為完整乾淨機器／跨版升級矩陣。
+
+語言實跑已超過「其餘五語NOT_RUN」的舊狀態：[source-bound evidence index](../verification/language-sandbox-v3-evidence-index-01.json) 核對18份收據與原始失敗，該index本身只是離線完整性驗證。歷史780 native MCP結果包括 [Go46 PASS／4 UNAVAILABLE](../verification/language-sandbox-v3-go-native-02.json)、[Python60 PASS／4 UNAVAILABLE](../verification/language-sandbox-v3-python-native-02.json) 與 [Ruff formatter18 PASS](../verification/language-sandbox-v3-ruff-native-01.json)。Python使用明確選取、逐檔hash核對的新私有backend副本，原runtime與來源仍RO；可寫副本不能在沙箱外執行或重用為可信SDK。Java與TypeScript已有native語意與CAS實跑，但未附document version的診斷仍為NOT_VERIFIED；[混合五語首輪](../verification/language-sandbox-v3-five-native-01.json) 的150 PASS／4 FAIL／4 UNAVAILABLE／12 NOT_VERIFIED原樣保留。C# [OmniSharp direct null-PID觀察](../verification/language-sandbox-v3-direct-csharp-nullpid-07.json) 僅證明限定初始化／symbols／shutdown路徑；不是Odin MCP雙專案IDE或rename/apply/rollback驗收，最終矩陣仍受上述host block阻擋。
+
+Linux最終69e769b來源正在本機VM建置（**IN_PROGRESS**），尚無本輪完成的原生測試與installer收據，不能升PASS；macOS仍未驗收。ODIN-029整項狀態由root依Linux最終結果再更新。歷史c5084f4、72工具及早期失敗保留原scope；28個registry entries、初始化或通用gate都不代表完整語言／IDE等價。最終source與review binding由root及獨立reviewer管理。
 
 ## M0 · 12 個需求
 
@@ -70,11 +74,12 @@
 
 | Owner | Write scope | 驗收與停止條件 |
 |---|---|---|
-| root integration | 專屬當輪runtime report/logs與shared整合 | 17gates、same-binary analyzer與六語baseline03 report/command/transcript/normalization已綁定；保留六語PARTIAL及歷史driver/digests，後續綁TSsandbox實測 |
-| platform author | 六語各兩專案/TSsandbox harness及證據 | 六語12專案已initialize；處理14 UNAVAILABLE與TS/Java共12 NOT_VERIFIED；保留AppControl與TSsandbox01失敗，profile04已完成限定真實語意/CAS驗收，整體PARTIAL；其他五語sandbox LSP NOT_RUN |
-| independent reviewer | immutable source/diff與review證據 | 保留已解finding的歷史；URI/JDTLS及最終combined source須正確綁定，作者不自我核准 |
-| root release | 封裝、artifact manifest、公開revision | 完成新候選適用review/runtime才打包/發布；舊公開repo與舊installer不代表此binary已發布 |
+| root integration | shared整合、最終build/runtime report與delivery／feature evidence | 最終69e769b編譯PASS與83a81d執行前4551分開；workspace exit101與continuation PASS都保留。只有相同path／SHA獲管理員正式允許並完成source/hash preflight後，才依原計畫重跑適用Windows驗收，不搬移或改造候選繞過政策 |
+| platform author | 六語各兩專案native MCP harness、明確host profiles與專屬證據 | 保留Go46／Python60／Ruff18及混合首輪失敗；最終十二專案矩陣目前BLOCKED。C#仍需完整MCP symbols／refs／rename CAS／rollback驗收；未廣告capability保留UNAVAILABLE，Java／TS未版本診斷不升current；私有Python副本每次從可信來源新建並核對hash |
+| independent reviewer | immutable source/diff與review證據 | 最終combined source、native profile與來源／binary hash須正確綁定；歷史finding與更正保留，作者不自我核准，不用舊候選PASS取代新候選審查 |
+| packaging author | 當輪Windows／Linux打包腳本、installer／runtime收據 | Windows780的22項PASS保留原binary綁定，最終Windows installer維持BLOCKED。Linux69e769b本機VM建置IN_PROGRESS；完成原生測試、封裝與生命週期驗證後交root更新ODIN-029，macOS及未測矩陣不升PASS |
+| root release | 最終artifact manifest、公開revision與發布紀錄 | 區分歷史公開版本、780 installer與本輪最終binary；依適用review、runtime及平台收據決定發布範圍，明示BLOCKED／NOT_RUN與未簽章等限制 |
 
-17gate QA driver快照不改寫；六語driver d47fa6的initial-valid觀察前移，AST條件經root/reviewer確認未變，53個production crates hash與release相同。每切片唯一owner、明確write scope；共有檔案序列整合，不覆寫衝突取得綠燈。Linux/macOS、全語言/IDE私有等價、完整installer升級/故障矩陣、benchmark仍未完成。只有全部原acceptance具適用實證才升整項PASS。
+每切片唯一owner、明確write scope；共有檔案序列整合，不覆寫衝突取得綠燈。歷史報告、command／transcript／normalization與原始driver快照不改寫，離線index PASS也不增加任何backend執行次數。Linux／macOS完整原生驗收、全語言／IDE私有等價、完整installer升級／故障矩陣及benchmark仍未完成；只有全部原acceptance具適用實證才升整項PASS。
 
-本輪 TypeScript native sandbox 最終證據：`verification/language-ide-final-sandbox-typescript-04.json` 及其 command／transcript，actual exit2／PARTIAL、42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL。固定 host bootstrap 與 child flags 的明確 profile 成功；不是自動 fallback，沒有直接 child EPERM 證據。其他五語的實際 sandbox LSP 仍 NOT_RUN，kernel deny／程序清理由獨立 native opt-in tests 證明。
+恢復Windows最終驗收時使用 [finalrun-plan](../verification/language-sandbox-v3-finalrun-plan.json) 的同path／SHA與固定profile，產生新的實跑收據；等待時間、管理員處理意向或已有歷史PASS都不能當作政策已變更或最終驗收已通過。這份看板不執行或重新授權任何候選。
