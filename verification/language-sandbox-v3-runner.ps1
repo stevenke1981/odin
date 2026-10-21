@@ -7,6 +7,10 @@ param(
     [string]$ExecutorSha256 = '8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259',
     [switch]$AllowUI,
     [switch]$TypeScriptCompatibility,
+    [switch]$EnumerateAncestors,
+    [ValidateSet('csharp-ls','omnisharp')][string]$CsharpBackend = 'csharp-ls',
+    [switch]$PythonNativeFormatterRuff,
+    [switch]$NativeFormatterOnly,
     [int]$Timeout = 60
 )
 $ErrorActionPreference = 'Stop'
@@ -25,6 +29,10 @@ $harnessSha = (Get-FileHash -LiteralPath 'tests/real_ide_backends.py' -Algorithm
 $driverArgs = @('-u', 'tests/real_ide_backends.py', '--binary', $Binary, '--languages') + $Languages + @('--mode', 'sandbox', '--sandbox-executor', $Executor, '--sandbox-sha256', $ExecutorSha256, '--timeout', $Timeout.ToString(), '--output', $Output)
 if ($AllowUI) { $driverArgs += '--sandbox-allow-ui' }
 if ($TypeScriptCompatibility) { $driverArgs += @('--sandbox-typescript-init-temp', '--sandbox-typescript-child-path-flags') }
+if ($EnumerateAncestors) { $driverArgs += '--sandbox-enumerate-ancestors' }
+if ($CsharpBackend -ne 'csharp-ls') { $driverArgs += @('--csharp-backend', $CsharpBackend) }
+if ($PythonNativeFormatterRuff) { $driverArgs += '--python-native-formatter-ruff' }
+if ($NativeFormatterOnly) { $driverArgs += '--native-formatter-only' }
 $started = (Get-Date).ToUniversalTime().ToString('o')
 & $python @driverArgs 2>&1 | Tee-Object -FilePath $logPath
 $driverExit = $LASTEXITCODE

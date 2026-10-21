@@ -303,6 +303,30 @@ failed the same runtime `chdir`, so that hypothesis is exhausted; its semantic
 acceptance remains incomplete. These direct observations justify a separate
 typed host profile, not a claim that all IDE cases passed.
 
+The v3 harness accepts `--sandbox-enumerate-ancestors` only as an explicit host
+profile. It emits typed `enumerate_paths` separately from content grants; the
+native runtime must reject unsupported enforcement. Existing drive roots are
+enumeration-only, never read-only content grants.
+
+`--csharp-backend omnisharp` explicitly selects the host-installed, hash-pinned
+OmniSharp **1.39.15** module with the existing .NET host. Its unchanged runtime
+configuration requests `LatestMajor`; the report distinguishes the pinned
+backend release from the .NET SDK version output. There is no automatic switch
+after a csharp-ls failure. This candidate is based on its
+[in-process project loader](https://github.com/OmniSharp/omnisharp-roslyn/blob/v1.39.15/src/OmniSharp.MSBuild/ProjectLoader.cs);
+source inspection and `--help` do not establish sandbox semantic acceptance.
+
+`--python-native-formatter-ruff` enables a separate explicit host profile with
+`allow_write = true`, `allow_formatters = true`, provider `ruff`, and the fixed
+arguments `format --isolated --no-cache --stdin-filename {relative_path} -`.
+The MCP request supplies `formatter_profile = "ruff"` and `expected_sha256`,
+omitting LSP formatting options/ranges. Runtime source remains read-only; only
+the parent transaction applies or rolls back the stdout proposal.
+`--native-formatter-only --languages python` verifies this route without ever
+initializing the Python LSP. It reports zero LSP projects and cannot establish
+Python semantic support. The original LSP formatting capability result remains
+independent, including `UNAVAILABLE` where advertised support is absent.
+
 `verification/language-sandbox-v3-runner.ps1` records the exact driver argv,
 binary/harness/runner hashes, actual exit code, raw stdout and transcript. It
 requires fresh output names, normalizes text to LF before final hash binding,

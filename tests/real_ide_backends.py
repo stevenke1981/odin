@@ -110,7 +110,7 @@ def installed(tools, name, fallback=None):
     return candidates[0].resolve()
 
 
-def fixture(base, tools, language, tag):
+def fixture(base, tools, language, tag, csharp_backend="csharp-ls"):
     project = f"{language}_{tag}"
     root = base / "projects" / project
     root.mkdir(parents=True)
@@ -178,14 +178,30 @@ def fixture(base, tools, language, tag):
         text = 'namespace Fixture;\npublic static class Greeter {\npublic static string greet(string name){return "Hi "+name;}\npublic static string run(){var message=greet("Odin");return message;}\n}\n'
         caller = 'namespace Fixture;\npublic static class Consumer {public static string consume(){return Greeter.greet("Caller");}}\n'
         broken = "\nclass Broken { void odin_broken( }\n"
-        program, argv = installed(tools, "csharp-ls/csharp-ls.exe"), []
+        if csharp_backend == "omnisharp":
+            module = installed(tools, "omnisharp-1.39.15/OmniSharp.dll")
+            if digest(module.read_bytes()) != "73889b00248a87ddda03db06f6ba1a206c7560c22c0d20febee666404fc282ef":
+                raise ValueError("Pinned OmniSharp module hash mismatch")
+            program = installed(tools, "dotnet/dotnet.exe")
+            argv = [str(module), "--languageserver", "--source", str(root), "--encoding", "utf-8", "--loglevel", "Information"]
+        else:
+            program, argv = installed(tools, "csharp-ls/csharp-ls.exe"), []
         extra["Fixture.csproj"] = '<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup><TargetFramework>net10.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable></PropertyGroup></Project>\n'
         extra["NuGet.Config"] = '<configuration><packageSources><clear/></packageSources></configuration>\n'
     for name, content in {source: text, consumer: caller, **extra}.items():
         path = root / name
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content, encoding="utf-8", newline="\n")
-    return Fixture(language, project, root, source, consumer, text, caller, broken, program, argv, initialization, settings)
+    item = Fixture(language, project, root, source, consumer, text, caller, broken, program, argv, initialization, settings)
+    if language == "csharp":
+        item.profile_info["selected_backend"] = csharp_backend
+        if csharp_backend == "omnisharp":
+            runtime = module.with_suffix(".runtimeconfig.json")
+            if digest(runtime.read_bytes()) != "0798510b6b14926af93c62789341f0483f14cbaa1486f5beb6f1d7ecc5adf964":
+                raise ValueError("Pinned OmniSharp runtimeconfig hash mismatch")
+            item.profile_info.update(selected_release="1.39.15", module=str(module), module_sha256=digest(module.read_bytes()),
+                                     runtimeconfig_sha256=digest(runtime.read_bytes()), runtime_roll_forward="LatestMajor", fallback=False)
+    return item
 
 
 def configure_sandbox_fixture(base, tools, item, environment):
@@ -258,6 +274,8 @@ def configure_sandbox_fixture(base, tools, item, environment):
         writable = [cache]
     elif item.language == "csharp":
         readonly.append(tools / "dotnet")
+        if item.profile_info.get("selected_backend") == "omnisharp":
+            readonly.append(Path(item.profile_info["module"]).parent)
         item.environment = {"DOTNET_ROOT": str(tools / "dotnet"),
                             "DOTNET_CLI_HOME": str(directory("dotnet-home")),
                             "NUGET_PACKAGES": str(directory("nuget")),
@@ -269,8 +287,8 @@ def configure_sandbox_fixture(base, tools, item, environment):
                          f"<MSBuildProjectExtensionsPath>{xml_escape(obj.as_posix())}/</MSBuildProjectExtensionsPath>"
                          f"<BaseOutputPath>{xml_escape(output.as_posix())}/</BaseOutputPath>"
                          "</PropertyGroup></Project>\n", encoding="utf-8", newline="\n")
-        item.profile_info = {"host_fixture_props_sha256": digest(props.read_bytes()),
-                             "external_msbuild_intermediate_and_output": True, "restore_package_sources": []}
+        item.profile_info.update(host_fixture_props_sha256=digest(props.read_bytes()),
+                                 external_msbuild_intermediate_and_output=True, restore_package_sources=[])
         writable = [cache]
     else:
         raise ValueError("No explicit sandbox profile exists for this language")
@@ -395,6 +413,8 @@ class Run:
             self.record(name, "FAIL", str(error))
 
     def project(self, fixture, fixtures, config, environment):
+        if self.args.native_formatter_only:
+            return self.formatter_project(fixture, fixtures, config, environment)
         environment = {**environment, **fixture.environment}
         self.peer = None
         self.current = {"language": fixture.language, "project": fixture.project, "checks": [],
@@ -476,6 +496,8 @@ class Run:
                 self.diagnostics(fixture, "diagnostics_valid", False)
                 self.rename(fixture, fixtures, name_path)
                 self.format(fixture, capabilities)
+                if self.args.python_native_formatter_ruff and fixture.language == "python":
+                    self.native_format(fixture, fixtures)
                 original = (fixture.root / fixture.source).read_text(encoding="utf-8")
                 transaction = self.prepare_edit(fixture, original + fixture.broken)
                 try:
@@ -493,6 +515,65 @@ class Run:
         self.current["backend_logs"] = {str(path.relative_to(self.base)): self.sanitize(path.read_text(encoding="utf-8", errors="replace")[-12000:])
                                         for path in fixture.diagnostic_files if path.is_file()}
         self.current["status"] = aggregate(self.current["checks"])
+
+    def formatter_project(self, fixture, fixtures, config, environment):
+        self.current = {"language": fixture.language, "project": fixture.project, "checks": [],
+                        "source_sha256": fixture.hashes(), "isolation": self.args.mode,
+                        "lsp_acceptance": "NOT_RUN: explicit native formatter test never initializes the language server"}
+        self.report["projects"].append(self.current)
+        try:
+            with Peer([str(self.args.binary), "--config", str(config), "serve"], env={**environment, **fixture.environment}) as self.peer:
+                initialized = self.peer.request("initialize", {"protocolVersion": "2025-11-25", "capabilities": {},
+                    "clientInfo": {"name": "odin-real-native-formatter", "version": "1"}}, timeout=20)
+                self.require("mcp_initialize", initialized.get("result", {}).get("serverInfo", {}).get("name") == "odin")
+                self.peer.notify("notifications/initialized")
+                self.current["binary_version"] = self.call(fixture.project, "get_version")
+                self.native_format(fixture, fixtures)
+                self.current["stderr"] = self.sanitize(self.peer.errors)
+        except Exception as error:
+            self.record("native_formatter_execution", "FAIL", str(error))
+            if self.peer:
+                self.current["stderr"] = self.sanitize(self.peer.errors)
+        self.current["status"] = aggregate(self.current["checks"])
+
+    def native_format(self, fixture, fixtures):
+        before = {item.project: item.hashes() for item in fixtures}
+        original = (fixture.root / fixture.source).read_bytes()
+        transaction, applied = None, False
+        arguments = {"relative_path": fixture.source, "expected_sha256": digest(original), "formatter_profile": "ruff"}
+        try:
+            try:
+                self.call(fixture.project, "format_document", {**arguments, "expected_sha256": "0" * 64})
+            except BackendError as error:
+                self.require("native_format_stale_hash_conflict", "CONFLICT" in str(error)
+                             and all(item.hashes() == before[item.project] for item in fixtures), error.response)
+            else:
+                self.require("native_format_stale_hash_conflict", False, "Stale hash was accepted")
+            preview = self.call(fixture.project, "format_document", arguments)
+            self.current["native_formatter_preview"] = self.sanitize(preview)
+            self.require("native_format_provider_and_sandbox", preview.get("provider") == "ruff"
+                         and preview.get("source") == "native_formatter" and preview.get("formatter_profile") == "ruff"
+                         and preview.get("source_modified") is False and preview.get("source_sha256") == digest(original)
+                         and preview.get("execution", {}).get("sandbox") is True
+                         and preview.get("execution", {}).get("sandbox_status") == "enforced_mxc_processcontainer"
+                         and preview.get("execution", {}).get("exit_code") == 0, preview)
+            self.require("native_format_preview_readonly", all(item.hashes() == before[item.project] for item in fixtures))
+            transaction = preview.get("transaction_id")
+            self.require("native_format_nonempty_cas_preview", bool(transaction) and bool(preview.get("files")))
+            self.call(fixture.project, "transaction_apply", {"transaction_id": transaction})
+            applied = True
+            formatted = (fixture.root / fixture.source).read_bytes()
+            self.require("native_format_cas_apply", formatted != original and digest(formatted) == preview.get("formatted_sha256"))
+            self.require("native_format_other_projects_unchanged", all(item.hashes() == before[item.project] for item in fixtures if item.project != fixture.project))
+            noop = self.call(fixture.project, "format_document", {**arguments, "expected_sha256": digest(formatted)})
+            self.require("native_format_noop", noop.get("changed") is False and not noop.get("transaction_id")
+                         and noop.get("source") == "native_formatter" and noop.get("source_sha256") == digest(formatted)
+                         and noop.get("execution", {}).get("sandbox") is True
+                         and (fixture.root / fixture.source).read_bytes() == formatted, noop)
+        finally:
+            if applied:
+                self.call(fixture.project, "transaction_rollback", {"transaction_id": transaction})
+                self.require("native_format_rollback", all(item.hashes() == before[item.project] for item in fixtures))
 
     def rename(self, fixture, fixtures, name_path):
         before = {item.project: item.hashes() for item in fixtures}
@@ -559,6 +640,13 @@ def main():
                         help="Use a fixed host-owned bootstrap to initialize MXC's private temp before the pinned TSLS module")
     parser.add_argument("--sandbox-typescript-child-path-flags", action="store_true",
                         help="Set only fixed preserve-symlinks NODE_OPTIONS for the sandboxed TSLS descendant processes")
+    parser.add_argument("--sandbox-enumerate-ancestors", action="store_true",
+                        help="Explicit metadata-only enumeration of existing source/runtime grant ancestors; requires native support")
+    parser.add_argument("--csharp-backend", choices=("csharp-ls", "omnisharp"), default="csharp-ls")
+    parser.add_argument("--python-native-formatter-ruff", action="store_true",
+                        help="Enable the explicit host Ruff stdin formatter profile in addition to the independent LSP route")
+    parser.add_argument("--native-formatter-only", action="store_true",
+                        help="Test only native Python formatter/MCP/CAS; never initialize or claim LSP support")
     parser.add_argument("--timeout", type=float, default=60)
     args = parser.parse_args()
     args.binary, args.output, args.tools_root = args.binary.resolve(), args.output.resolve(), args.tools_root.resolve()
@@ -574,8 +662,14 @@ def main():
         parser.error("The fixed TypeScript temp bootstrap requires --mode sandbox with TypeScript selected")
     if args.sandbox_typescript_child_path_flags and not args.sandbox_typescript_init_temp:
         parser.error("Fixed TypeScript child path flags require --sandbox-typescript-init-temp")
+    if args.sandbox_enumerate_ancestors and args.mode != "sandbox":
+        parser.error("Metadata enumeration is an explicit sandbox profile")
+    if args.python_native_formatter_ruff and (args.mode != "sandbox" or "python" not in args.languages):
+        parser.error("The explicit Ruff profile requires Python in sandbox mode")
+    if args.native_formatter_only and (not args.python_native_formatter_ruff or args.languages != ["python"]):
+        parser.error("Native formatter only requires --languages python --python-native-formatter-ruff")
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    report = {"scope": "REAL_ODIN_MCP_SIX_LANGUAGE_IDE", "mode": args.mode, "status": "NOT_RUN", "platform": sys.platform,
+    report = {"scope": "REAL_ODIN_MCP_NATIVE_FORMATTER_ONLY" if args.native_formatter_only else "REAL_ODIN_MCP_SIX_LANGUAGE_IDE", "mode": args.mode, "status": "NOT_RUN", "platform": sys.platform,
               "binary_sha256": digest(args.binary.read_bytes()), "harness_sha256": digest(Path(__file__).read_bytes()),
               "started_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "projects": [], "setup_errors": [],
               "boundary": "Baseline profiles explicitly run on the host without OS isolation" if args.mode == "baseline" else
@@ -602,7 +696,10 @@ def main():
         for language in args.languages:
             for tag in ("a", "b"):
                 try:
-                    item = fixture(base, args.tools_root, language, tag)
+                    item = fixture(base, args.tools_root, language, tag, csharp_backend=args.csharp_backend)
+                    if language == "python" and args.python_native_formatter_ruff:
+                        item.original = item.original.replace("name: str", "name:str").replace(" -> str:", "->str:")
+                        (item.root / item.source).write_text(item.original, encoding="utf-8", newline="\n")
                     if args.mode == "sandbox":
                         readonly, writable = configure_sandbox_fixture(base, args.tools_root, item, environment)
                         item.profile_info["readonly_paths"] = [str(path.resolve(strict=True)) for path in readonly]
@@ -645,8 +742,15 @@ def main():
                     "fixed_descendant_node_options": fixed_node_options,
                     "caller_or_repository_target": False, "fallback": False,
                 })
-            lines += [f"[projects.{item.project}]", f"root = {toml(str(item.root))}", "allow_write = true", "allow_debug = false", "allow_shell = false",
-                      f"[[projects.{item.project}.languages]]", f"id = {toml(item.language)}", f"extensions = [{toml(extensions[item.language])}]",
+            lines += [f"[projects.{item.project}]", f"root = {toml(str(item.root))}", "allow_write = true", "allow_debug = false", "allow_shell = false"]
+            if args.python_native_formatter_ruff and item.language == "python":
+                ruff = installed(args.tools_root, "python/Scripts/ruff.exe")
+                formatter = {"ruff": {"provider": "ruff", "extensions": ["py", "pyi"], "command": {
+                    "program": str(ruff), "args": ["format", "--isolated", "--no-cache", "--stdin-filename", "{relative_path}", "-"], "timeout_secs": 30}}}
+                lines += ["allow_formatters = true", f"formatters = {toml(formatter)}"]
+                report.setdefault("native_formatter_profiles", []).append({"project": item.project, "program": str(ruff),
+                    "program_sha256": digest(ruff.read_bytes()), "profile": formatter, "selection": "explicit_formatter_profile", "fallback": False})
+            lines += [f"[[projects.{item.project}.languages]]", f"id = {toml(item.language)}", f"extensions = [{toml(extensions[item.language])}]",
                       f"program = {toml(str(item.program))}", f"args = {toml(item.argv)}", f"initialization_options = {toml(item.initialization)}", f"settings = {toml(item.settings)}"]
             if args.mode == "sandbox":
                 scratch = base / "scratch" / item.project
@@ -655,6 +759,7 @@ def main():
                 if bootstrap:
                     grants.append(bootstrap)
                 unique_grants = sorted({str(path.resolve()) for path in grants if path.exists()})
+                enumerate_grants = sorted({str(parent) for path in grants for parent in path.resolve(strict=True).parents}) if args.sandbox_enumerate_ancestors else []
                 writable_grants = list(item.profile_info["readwrite_paths"])
                 safe_profile = lambda value: json.loads(json.dumps(value).replace(json.dumps(str(base))[1:-1], "<fixture>"))
                 report.setdefault("sandbox_profiles", []).append({
@@ -662,6 +767,8 @@ def main():
                     "argv": [arg.replace(str(base), "<fixture>") for arg in item.argv],
                     "readonly_paths": [path.replace(str(base), "<fixture>") for path in unique_grants],
                     "readwrite_paths": [path.replace(str(base), "<fixture>") for path in writable_grants],
+                    "enumerate_paths": [path.replace(str(base), "<fixture>") for path in enumerate_grants],
+                    "enumerate_paths_do_not_grant_file_contents": True,
                     "environment_overrides": safe_profile(item.environment), "profile_details": safe_profile(item.profile_info),
                     "initialization_options": safe_profile(item.initialization), "settings": safe_profile(item.settings),
                     "private_scratch": str(scratch.relative_to(base)),
@@ -672,6 +779,8 @@ def main():
                 lines += [f"[projects.{item.project}.sandbox]", f"executor = {toml(str(args.sandbox_executor.resolve()))}",
                           f"executor_sha256 = {toml(args.sandbox_sha256)}", f"readonly_paths = {toml(unique_grants)}",
                           f"readwrite_paths = {toml(writable_grants)}", "denied_paths = []", f"temp_root = {toml(str(scratch))}", f"allow_ui = {toml(args.sandbox_allow_ui)}"]
+                if args.sandbox_enumerate_ancestors:
+                    lines += [f"enumerate_paths = {toml(enumerate_grants)}"]
         config = base / "host.toml"
         config.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
         report["host_config_sha256"] = digest(config.read_bytes())
@@ -710,6 +819,11 @@ def main():
                     if item.language == "typescript":
                         package = args.tools_root / "typescript/node_modules/typescript/package.json"
                         report["backends"][item.language]["typescript_version"] = json.loads(package.read_text(encoding="utf-8"))["version"]
+                    if item.language == "csharp":
+                        report["backends"][item.language]["selected_backend"] = args.csharp_backend
+                        if args.csharp_backend == "omnisharp":
+                            report["backends"][item.language].update(selected_release="1.39.15", module_sha256=item.profile_info["module_sha256"],
+                                runtimeconfig_sha256=item.profile_info["runtimeconfig_sha256"], version_output_scope="dotnet host SDK; backend is the separately pinned OmniSharp release")
                 except Exception as error:
                     report["backends"][item.language] = {"version_status": "NOT_VERIFIED", "error": str(error)}
             for item in fixtures:
