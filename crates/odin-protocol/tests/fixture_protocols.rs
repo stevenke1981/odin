@@ -1203,6 +1203,154 @@ async fn real_push_diagnostic_uri_probe() {
 }
 
 #[tokio::test]
+#[ignore = "Requires explicitly supplied real JDTLS fixture/profile; records its raw rename WorkspaceEdit"]
+async fn real_java_rename_workspace_edit_probe() {
+    let profile: serde_json::Value = serde_json::from_str(
+        &std::env::var("ODIN_JAVA_RENAME_PROFILE_JSON").expect("Set explicit Java probe profile"),
+    )
+    .unwrap();
+    let root = SafeRoot::new(profile["root"].as_str().unwrap(), &[], 1024 * 1024).unwrap();
+    let source = profile["source"].as_str().unwrap();
+    let consumer = profile["consumer"].as_str().unwrap();
+    let source_text = root.read(source).unwrap();
+    let consumer_text = root.read(consumer).unwrap();
+    let position =
+        odin_protocol::text::position_from_offset(&source_text, source_text.find("greet").unwrap())
+            .unwrap();
+    let language = LanguageConfig {
+        id: "java".into(),
+        extensions: vec!["java".into()],
+        program: profile["program"].as_str().unwrap().into(),
+        args: serde_json::from_value(profile["argv"].clone()).unwrap(),
+        initialization_options: profile["initialization"].clone(),
+        settings: profile["settings"].clone(),
+    };
+    let client = LspClient::start(root.clone(), language, Duration::from_secs(30))
+        .await
+        .unwrap();
+    client.symbols(source).await.unwrap();
+    client.symbols(consumer).await.unwrap();
+    let deadline = tokio::time::Instant::now() + Duration::from_secs(30);
+    loop {
+        let references = client.at(source, position, "references").await.unwrap();
+        if references.as_array().is_some_and(|items| items.len() >= 2) {
+            break;
+        }
+        assert!(
+            tokio::time::Instant::now() < deadline,
+            "Java cross-file references not ready: {references}"
+        );
+        tokio::time::sleep(Duration::from_millis(250)).await;
+    }
+    let edit = client
+        .rename(
+            source,
+            position,
+            "salute",
+            &odin_core::sha256(source_text.as_bytes()),
+        )
+        .await
+        .unwrap();
+    let snapshots = std::collections::BTreeMap::from([
+        (source.into(), source_text),
+        (consumer.into(), consumer_text),
+    ]);
+    let planned = client.changes(&edit, &snapshots).await;
+    eprintln!(
+        "JAVA_RENAME_PROBE {}",
+        json!({"workspace_edit":edit,
+        "planned":planned.is_ok(),"plan_error":planned.as_ref().err().map(ToString::to_string)})
+    );
+    let changes = planned.unwrap();
+    assert_eq!(changes.len(), 2);
+    for change in &changes {
+        assert_eq!(
+            change.expected_sha256,
+            Some(odin_core::sha256(snapshots[&change.path].as_bytes()))
+        );
+        assert!(change.content.as_ref().unwrap().contains("salute"));
+    }
+    let state = tempfile::tempdir().unwrap();
+    let transactions =
+        odin_core::transaction::Transactions::new(root.clone(), state.path(), 10).unwrap();
+    let preview = transactions.prepare(changes, None).unwrap();
+    transactions
+        .apply(preview["transaction_id"].as_str().unwrap())
+        .unwrap();
+    assert!(root.read(source).unwrap().contains("salute"));
+    assert!(root.read(consumer).unwrap().contains("salute"));
+    let rollback = transactions
+        .prepare(
+            snapshots
+                .iter()
+                .map(|(path, text)| odin_core::transaction::Change {
+                    path: path.clone(),
+                    expected_sha256: Some(odin_core::sha256(root.read(path).unwrap().as_bytes())),
+                    content: Some(text.clone()),
+                })
+                .collect(),
+            None,
+        )
+        .unwrap();
+    transactions
+        .apply(rollback["transaction_id"].as_str().unwrap())
+        .unwrap();
+    for (path, text) in &snapshots {
+        assert_eq!(root.read(path).unwrap(), *text);
+    }
+    eprintln!("JAVA_RENAME_CAS two-file rename apply and hash-guarded rollback passed");
+    client.shutdown().await.unwrap();
+}
+
+#[tokio::test]
+async fn workspace_edit_empty_alternatives_route_rename_through_hash_guarded_transactions() {
+    for shape in [
+        "changes-empty",
+        "changes-null",
+        "documents-empty",
+        "documents-null",
+        "ambiguous",
+        "malformed",
+    ] {
+        let temp = tempfile::tempdir().unwrap();
+        let state = tempfile::tempdir().unwrap();
+        let before = "fn foo() {}";
+        std::fs::write(temp.path().join("lib.rs"), before).unwrap();
+        let root = SafeRoot::new(temp.path(), &[], 10000).unwrap();
+        let client = client_with(temp.path(), &["--rename-workspace-edit", shape]).await;
+        let edit = client
+            .rename(
+                "lib.rs",
+                ide_position(),
+                "salute",
+                &odin_core::sha256(before.as_bytes()),
+            )
+            .await
+            .unwrap();
+        let snapshots = std::collections::BTreeMap::from([("lib.rs".into(), before.into())]);
+        let changes = client.changes(&edit, &snapshots).await;
+        assert_eq!(root.read("lib.rs").unwrap(), before);
+        if matches!(shape, "ambiguous" | "malformed") {
+            assert!(changes.is_err());
+        } else {
+            let changes = changes.unwrap();
+            assert_eq!(
+                changes[0].expected_sha256,
+                Some(odin_core::sha256(before.as_bytes()))
+            );
+            let transactions =
+                odin_core::transaction::Transactions::new(root.clone(), state.path(), 10).unwrap();
+            let preview = transactions.prepare(changes, None).unwrap();
+            transactions
+                .apply(preview["transaction_id"].as_str().unwrap())
+                .unwrap();
+            assert_eq!(root.read("lib.rs").unwrap(), "fn salute() {}");
+        }
+        client.shutdown().await.unwrap();
+    }
+}
+
+#[tokio::test]
 async fn diagnostic_uri_aliases_share_cache_lookup_and_invalidation() {
     let temp = tempfile::tempdir().unwrap();
     let uri = url::Url::from_file_path(temp.path().join("lib.rs"))

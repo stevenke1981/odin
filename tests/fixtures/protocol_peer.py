@@ -24,6 +24,7 @@ P.add_argument('--encoding', default='utf-16')
 P.add_argument('--mutate-on')
 P.add_argument('--diagnostic-kind', default='clean')
 P.add_argument('--diagnostic-uri-alias', choices=['drive-colon', 'drive-colon-lower', 'escaped-name'])
+P.add_argument('--rename-workspace-edit', choices=['changes-empty', 'changes-null', 'documents-empty', 'documents-null', 'ambiguous', 'malformed'])
 P.add_argument('--ide-malformed')
 P.add_argument('--started-marker')
 P.add_argument('--expect-language-id')
@@ -249,7 +250,23 @@ def lsp(request):
     elif method == 'textDocument/prepareRename':
         respond(request, {'range': rng(0, 3, 6), 'placeholder': 'foo'})
     elif method == 'textDocument/rename':
-        respond(request, {'changes': {params['textDocument']['uri']: [{'range': rng(0, 3, 6), 'newText': params['newName']}]}})
+        edits = [{'range': rng(0, 3, 6), 'newText': params['newName']}]
+        changes = {params['textDocument']['uri']: edits}
+        documents = [{'textDocument': dict(params['textDocument'], version=None), 'edits': edits}]
+        result = {'changes': changes}
+        if A.rename_workspace_edit == 'changes-empty':
+            result = {'changes': {}, 'documentChanges': documents}
+        elif A.rename_workspace_edit == 'changes-null':
+            result = {'changes': None, 'documentChanges': documents}
+        elif A.rename_workspace_edit == 'documents-empty':
+            result['documentChanges'] = []
+        elif A.rename_workspace_edit == 'documents-null':
+            result['documentChanges'] = None
+        elif A.rename_workspace_edit == 'ambiguous':
+            result['documentChanges'] = documents
+        elif A.rename_workspace_edit == 'malformed':
+            result['documentChanges'] = {}
+        respond(request, result)
     elif method == 'textDocument/codeAction':
         respond(request, [{'title': 'fixture action', 'data': {'uri': params['textDocument']['uri'], 'diagnostics': params['context']['diagnostics']}}])
     elif method == 'codeAction/resolve':

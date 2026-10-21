@@ -266,25 +266,37 @@ impl<'a> Planner<'a> {
         if let Some(annotations) = workspace_edit.get("changeAnnotations") {
             self.annotations = serde_json::from_value(annotations.clone())?;
         }
-        // Servers must choose one representation; combining them makes order ambiguous.
-        if workspace_edit.get("changes").is_some()
-            && workspace_edit.get("documentChanges").is_some()
+        // LSP4J can serialize the unused alternative as null or an empty
+        // container. Validate both types, then reject only two populated forms:
+        // combining actual edits still makes ordering ambiguous.
+        let text_changes = match workspace_edit.get("changes") {
+            None | Some(Value::Null) => None,
+            Some(value) => Some(
+                value
+                    .as_object()
+                    .ok_or_else(|| anyhow!("Expected changes object"))?,
+            ),
+        };
+        let document_changes = match workspace_edit.get("documentChanges") {
+            None | Some(Value::Null) => None,
+            Some(value) => Some(
+                value
+                    .as_array()
+                    .ok_or_else(|| anyhow!("Expected documentChanges array"))?,
+            ),
+        };
+        if text_changes.is_some_and(|changes| !changes.is_empty())
+            && document_changes.is_some_and(|changes| !changes.is_empty())
         {
             bail!("WorkspaceEdit must use either changes or documentChanges");
         }
-        if let Some(changes) = workspace_edit.get("changes") {
-            for (uri, edits) in changes
-                .as_object()
-                .ok_or_else(|| anyhow!("Expected changes object"))?
-            {
+        if let Some(changes) = text_changes {
+            for (uri, edits) in changes {
                 self.text(uri, edits, None)?;
             }
         }
-        if let Some(changes) = workspace_edit.get("documentChanges") {
-            for change in changes
-                .as_array()
-                .ok_or_else(|| anyhow!("Expected documentChanges array"))?
-            {
+        if let Some(changes) = document_changes {
+            for change in changes {
                 if change.get("kind").is_some() {
                     self.resource(change)?;
                 } else {
@@ -409,6 +421,81 @@ mod tests {
         assert!(!root.root().join("a.rs").exists());
         assert!(!root.root().join("dead.rs").exists());
         assert!(!root.root().join("transient.rs").exists());
+    }
+
+    #[test]
+    fn empty_or_null_workspace_edit_alternatives_preserve_cas_guards() {
+        let (_temp, root, snapshots, versions) = state();
+        let changes = json!({uri(&root,"a.rs"):replace("Z")});
+        let documents =
+            json!([{"textDocument":{"uri":uri(&root,"a.rs"),"version":7},"edits":replace("Z")}]);
+        for proposal in [
+            json!({"changes":changes}),
+            json!({"changes":changes,"documentChanges":null}),
+            json!({"changes":changes,"documentChanges":[]}),
+            json!({"documentChanges":documents}),
+            json!({"changes":null,"documentChanges":documents}),
+            json!({"changes":{},"documentChanges":documents}),
+        ] {
+            let planned = Planner::new(&root, &snapshots, &versions)
+                .plan(&proposal)
+                .unwrap();
+            assert_eq!(planned.len(), 1);
+            assert_eq!(
+                planned[0].expected_sha256,
+                Some(sha256(snapshots["a.rs"].as_bytes()))
+            );
+            assert_eq!(planned[0].content.as_deref(), Some("Zlpha 😀\r\n"));
+            assert_eq!(root.read("a.rs").unwrap(), snapshots["a.rs"]);
+        }
+        for proposal in [
+            json!({"changes":changes,"documentChanges":documents}),
+            json!({"changes":changes,"documentChanges":{}}),
+            json!({"changes":[],"documentChanges":documents}),
+            json!({"changes":false,"documentChanges":documents}),
+            json!({"changes":changes,"documentChanges":""}),
+            json!({}),
+            json!({"changes":null,"documentChanges":null}),
+            json!({"changes":{},"documentChanges":[]}),
+        ] {
+            assert!(
+                Planner::new(&root, &snapshots, &versions)
+                    .plan(&proposal)
+                    .is_err(),
+                "{proposal}"
+            );
+        }
+    }
+
+    #[test]
+    fn empty_workspace_edit_alternative_never_relaxes_version_or_overwrite_policy() {
+        let (_temp, root, snapshots, versions) = state();
+        let stale = json!({"changes":{},"documentChanges":[{"textDocument":{"uri":uri(&root,"a.rs"),"version":6},"edits":replace("Z")}]});
+        assert!(
+            Planner::new(&root, &snapshots, &versions)
+                .plan(&stale)
+                .unwrap_err()
+                .to_string()
+                .contains("Stale")
+        );
+        let overwrite = json!({"changes":{},"documentChanges":[{"kind":"create","uri":uri(&root,"new.rs"),"options":{"overwrite":true}}]});
+        assert!(
+            Planner::new(&root, &snapshots, &versions)
+                .plan(&overwrite)
+                .unwrap_err()
+                .to_string()
+                .contains("overwrite")
+        );
+        let proposal = json!({"changes":null,"documentChanges":[{"textDocument":{"uri":uri(&root,"a.rs"),"version":7},"edits":replace("Z")}]});
+        assert!(
+            Planner::new(&root, &BTreeMap::new(), &versions)
+                .plan(&proposal)
+                .unwrap_err()
+                .to_string()
+                .contains("snapshot")
+        );
+        assert_eq!(root.read("a.rs").unwrap(), snapshots["a.rs"]);
+        assert!(!root.root().join("new.rs").exists());
     }
 
     #[test]

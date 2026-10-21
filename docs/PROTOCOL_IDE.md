@@ -39,6 +39,11 @@ Formatting requires tabSize 1..32 and insertSpaces boolean. It validates edits,
 returns a versioned WorkspaceEdit, and never writes the source. Engine must pass
 the result through `changes` with its pre-request source snapshot and then core
 Transactions for preview/apply. Empty edits do not prove a transaction occurred.
+WorkspaceEdit accepts an absent, null, or correctly typed empty unused
+`changes`/`documentChanges` alternative, as emitted by JDTLS/LSP4J. Both populated
+alternatives remain ambiguous and are rejected; malformed field types are never
+ignored. An entirely empty proposal remains an error. Source hashes, document
+versions, resource-operation ordering, and forbidden overwrite rules still apply.
 
 ## Coordinate and freshness rules
 
