@@ -652,8 +652,19 @@
     "note": "Prior snapshot preserved verbatim; its PASS statuses apply only to its own source/binary."
   },
   "publication": {
-    "status": "NOT_RUN_FOR_THIS_EXTENSION",
+    "status": "PUBLISHED_SOURCE_PREVIEW",
     "url": "https://github.com/stevenke1981/odin",
+    "reviewed_source_published_sha": "55066af9ec2430b8f32bb55fe9ad782c5c769c7b",
+    "verified_commit_url": "https://github.com/stevenke1981/odin/commit/55066af9ec2430b8f32bb55fe9ad782c5c769c7b",
+    "verified_at_utc": "2026-10-21T06:00:15.469688+00:00",
+    "report": "verification/language-installers-v3-publication-01.json",
+    "report_sha256": "0ed33d156c69d14cca44f1ce46d73f6502c9dad1b4adc57a429889e81224fb12",
+    "anonymous_http_status": 200,
+    "actions_total_for_published_head": 0,
+    "cloud_ci_dispatched": false,
+    "binary_release_created": false,
+    "windows_final_candidate_acceptance": "BLOCKED",
+    "source_receipt_note": "This records publication of the exact reviewed source head. Later commits may attach this receipt and refresh source hashes; final remote HEAD is checked separately to avoid a self-referential manifest.",
     "prior_publication": {
       "status": "PASS",
       "scope": "PUBLIC_SOURCE_REPOSITORY_SANDBOX_IDE_EXTENSION",
@@ -667,8 +678,7 @@
       "binary_release_created": false,
       "report": "verification/sandbox-ide-publication.json",
       "report_sha256": "6ccbf80d01c35c9b3e8794f1f38e232a1d2e2663ead553d846bc5724c0411d0e"
-    },
-    "binary_release_created": false
+    }
   },
   "language_profiles": {
     "count": 28,

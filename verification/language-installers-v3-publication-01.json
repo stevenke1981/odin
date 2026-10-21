@@ -1,0 +1,111 @@
+{
+  "scope": "ACTUAL_REVIEWED_SOURCE_PREVIEW_PUBLICATION_NOT_WINDOWS_BINARY_RELEASE",
+  "status": "PASS",
+  "started_utc": "2026-10-21T06:00:05.190163+00:00",
+  "source_published_sha": "55066af9ec2430b8f32bb55fe9ad782c5c769c7b",
+  "source_manifest_sha256": "4b4fab03656991d854ec67302aacb8361434badf0206fcc899d0ee0c8745f48d",
+  "source_review_report": "verification/language-installers-v3-review-phase4.json",
+  "source_review_sha256": "4de467df63e8b23c230a8e16d0347c80164a165565671c6c22b3e73120180517",
+  "commands": [
+    {
+      "name": "publisher",
+      "argv": [
+        "powershell",
+        "-NoProfile",
+        "-File",
+        "E:\\odin\\scripts\\publish_public.ps1",
+        "-Execute",
+        "-ExpectedHead",
+        "55066af9ec2430b8f32bb55fe9ad782c5c769c7b"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "stdout": "{\n  \"kind\": \"DOCUMENTATION_TRACEABILITY_ONLY\",\n  \"features\": 40,\n  \"serena_reference_tools\": 53,\n  \"runtime_checks_executed_by_this_script\": false,\n  \"errors\": [],\n  \"status\": \"PASS\"\n}\nChecked 921 manifest entries; mismatches=0\n{\"scope\": \"WORKFLOW_SOURCE_POLICY_ONLY\", \"status\": \"PASS\", \"errors\": []}\nbranch 'main' set up to track 'origin/main'.\nPublished and verified 55066af9ec2430b8f32bb55fe9ad782c5c769c7b at https://github.com/stevenke1981/odin. No CI was dispatched.\n",
+      "stderr": "To https://github.com/stevenke1981/odin.git\n   9017908..55066af  HEAD -> main\n",
+      "elapsed_seconds": 7.398
+    },
+    {
+      "name": "remote_main",
+      "argv": [
+        "git",
+        "ls-remote",
+        "origin",
+        "refs/heads/main"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "stdout": "55066af9ec2430b8f32bb55fe9ad782c5c769c7b\trefs/heads/main\n",
+      "stderr": "",
+      "elapsed_seconds": 0.537
+    },
+    {
+      "name": "repository",
+      "argv": [
+        "gh",
+        "api",
+        "repos/stevenke1981/odin",
+        "--jq",
+        "{full_name: .full_name, private: .private, default_branch: .default_branch, html_url: .html_url}"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "stdout": "{\"default_branch\":\"main\",\"full_name\":\"stevenke1981/odin\",\"html_url\":\"https://github.com/stevenke1981/odin\",\"private\":false}\n",
+      "stderr": "",
+      "elapsed_seconds": 0.498
+    },
+    {
+      "name": "commit",
+      "argv": [
+        "gh",
+        "api",
+        "repos/stevenke1981/odin/commits/55066af9ec2430b8f32bb55fe9ad782c5c769c7b",
+        "--jq",
+        "{sha: .sha, html_url: .html_url}"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "stdout": "{\"html_url\":\"https://github.com/stevenke1981/odin/commit/55066af9ec2430b8f32bb55fe9ad782c5c769c7b\",\"sha\":\"55066af9ec2430b8f32bb55fe9ad782c5c769c7b\"}\n",
+      "stderr": "",
+      "elapsed_seconds": 0.703
+    },
+    {
+      "name": "all_event_actions_for_head",
+      "argv": [
+        "gh",
+        "api",
+        "--method",
+        "GET",
+        "repos/stevenke1981/odin/actions/runs?head_sha=55066af9ec2430b8f32bb55fe9ad782c5c769c7b&per_page=1"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "stdout": "{\"total_count\":0,\"workflow_runs\":[]}",
+      "stderr": "",
+      "elapsed_seconds": 0.521
+    }
+  ],
+  "binary_release_created": false,
+  "cloud_ci_dispatched": false,
+  "windows_final_acceptance": "BLOCKED",
+  "candidate_executions": 0,
+  "actions_total_for_head": 0,
+  "anonymous_http": {
+    "url": "https://github.com/stevenke1981/odin/commit/55066af9ec2430b8f32bb55fe9ad782c5c769c7b",
+    "final_url": "https://github.com/stevenke1981/odin/commit/55066af9ec2430b8f32bb55fe9ad782c5c769c7b",
+    "status": 200
+  },
+  "repository": {
+    "default_branch": "main",
+    "full_name": "stevenke1981/odin",
+    "html_url": "https://github.com/stevenke1981/odin",
+    "private": false
+  },
+  "remote_main_sha": "55066af9ec2430b8f32bb55fe9ad782c5c769c7b",
+  "commit_url": "https://github.com/stevenke1981/odin/commit/55066af9ec2430b8f32bb55fe9ad782c5c769c7b",
+  "completed_utc": "2026-10-21T06:00:15.469688+00:00",
+  "command_log": {
+    "path": "verification/language-installers-v3-publication-log-01.txt",
+    "sha256": "e8e4ae8424356782a532968e701514b9d5dde77397d2f60a86c423cd2f957943"
+  },
+  "scope_note": "This records publication of the exact reviewed source head. Later commits may attach this receipt and refresh source hashes; final remote HEAD is checked separately to avoid a self-referential manifest."
+}

@@ -1,0 +1,27 @@
+COMMAND publisher
+{
+  "kind": "DOCUMENTATION_TRACEABILITY_ONLY",
+  "features": 40,
+  "serena_reference_tools": 53,
+  "runtime_checks_executed_by_this_script": false,
+  "errors": [],
+  "status": "PASS"
+}
+Checked 921 manifest entries; mismatches=0
+{"scope": "WORKFLOW_SOURCE_POLICY_ONLY", "status": "PASS", "errors": []}
+branch 'main' set up to track 'origin/main'.
+Published and verified 55066af9ec2430b8f32bb55fe9ad782c5c769c7b at https://github.com/stevenke1981/odin. No CI was dispatched.
+To https://github.com/stevenke1981/odin.git
+   9017908..55066af  HEAD -> main
+
+COMMAND remote_main
+55066af9ec2430b8f32bb55fe9ad782c5c769c7b	refs/heads/main
+
+COMMAND repository
+{"default_branch":"main","full_name":"stevenke1981/odin","html_url":"https://github.com/stevenke1981/odin","private":false}
+
+COMMAND commit
+{"html_url":"https://github.com/stevenke1981/odin/commit/55066af9ec2430b8f32bb55fe9ad782c5c769c7b","sha":"55066af9ec2430b8f32bb55fe9ad782c5c769c7b"}
+
+COMMAND all_event_actions_for_head
+{"total_count":0,"workflow_runs":[]}
