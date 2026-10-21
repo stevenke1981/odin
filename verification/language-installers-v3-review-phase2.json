@@ -1,0 +1,335 @@
+{
+  "schema_version": 1,
+  "task_id": "language-sandbox-installers-v3",
+  "revision": 2,
+  "actor_instance": "/root/independent_review_v3",
+  "receiver_instance": "/root",
+  "role_id": "independent_reviewer",
+  "kind": "handoff",
+  "simulation": false,
+  "observed_at_utc": "2026-10-21 03:58:27 UTC",
+  "base_sha": "780c6adf7de71a6d96d3af12314dcbe9b526ad8b",
+  "head_sha": "75c38f86f97e4ec14c840a8cb80afc80fa098674",
+  "full_task_base_sha": "9017908f8759de74d5c3deb89e7bdb8aedcf83fd",
+  "source_review": "PASS",
+  "status": "BLOCKED",
+  "release_approval": "BLOCKED",
+  "findings": [],
+  "scope": "Incremental independent code review and real read-only static/evidence checks. Final Windows execution blocked; final Linux target acceptance pending.",
+  "write_scopes": [
+    "verification/language-installers-v3-review-phase2.json",
+    "verification/language-installers-v3-review-phase2.md"
+  ],
+  "previous_review": {
+    "path": "verification/language-installers-v3-review-phase1.json",
+    "owned_commit": "5ef3cb9102a110890e3c718ac63746ede2414c1d",
+    "sha256": "2844daea510eb06edfed26225a6ecca585a45930e663007038f33553a11529c7"
+  },
+  "artifact": {
+    "path": "verification/language-installers-v3-review-phase2.md",
+    "sha256": "9d10a57d6879fc5c788257b8c043037ad7221b45ee1a8c43779a322e9e17d608"
+  },
+  "source_sha256": {
+    "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34",
+    "Cargo.toml": "8a009f775d201c8199a6d6f81963bb75dde59a48dc783ae6086a6a7407e21e36",
+    "README.md": "b357305b0ff2e9ec6dba014e6e4bd683894b4beefcec9bdca0b4ced0f9f33e9f",
+    "crates/odin-core/src/config.rs": "0b35cd97b09bb64bd1adc3a4a72dff803c6e7d484cd5f48b972deac1a2a12675",
+    "crates/odin-core/src/execution.rs": "155dfc311d0119f2460b7024f12911745e48729199dd9539ceffefca8c4bba88",
+    "crates/odin-core/src/process.rs": "b69e2cf89c9cf96b79f01b85ea67ad41a1f6dcdd89d5e9bedd6167062fb84fa8",
+    "crates/odin-core/src/sandbox.rs": "18be5bd8c1794375fbfd79f6ffe1d226167b0942614110c86d6cd4e92ea5f5d5",
+    "crates/odin-core/src/sandbox_policy.rs": "76fa4355780c363c1524b17713076a3a08b66384053916c1da22cbe0c05eb27a",
+    "crates/odin-engine/src/formatter.rs": "79cd591119294b25a3624ccb4d97d349856abc57039a530f93a8c2f517fc7ecb",
+    "crates/odin-engine/tools.json": "d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea",
+    "crates/odin-protocol/src/lsp.rs": "dc5d6d730c210d3c9d51fe6b05740b89f48fe425afea6bfe062bfc308429b5d8",
+    "crates/odin-protocol/src/rpc.rs": "3b8a1278025dc0a4ce5fbd13be6409b164745043e51992571bd2430ebddc99e4",
+    "docs/ARCHITECTURE.md": "0c209054dffc8ce399db8761eabd96d08d4c041604a47750f2d2634b93985277",
+    "docs/KNOWN_LIMITATIONS.md": "70f3760a390fc2a9ae61d73fe70d42ae5caa99ac0daee3f9841b1adf83dab7dc",
+    "docs/LANGUAGE_BACKENDS.md": "13cb5c7562f22be34783c37d30e083afa8666a3b318c05799a10242d311349ad",
+    "docs/OS_SANDBOX.md": "cf28280857d0b06c4ced2ce739a1b3f07e9a553d648ce0d4fbe579be973f5e89",
+    "docs/PACKAGING_WINDOWS_LINUX.md": "b804dbdad84317ea67307c17871024378b4f16747934168996f86c4531c275d4",
+    "packaging/odin.host.example.toml": "ff8b34e23ff47ce6e1f4e15059de7fc3d4a7cff37181ef4ed951b2d4b5980e32",
+    "rust-toolchain.toml": "c33d1f0b1b8fda448bea32d7dc867aa64947c87169fd9de7122ffccad1dd80f9",
+    "schemas/tools.json": "d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea",
+    "scripts/package.ps1": "02835046cf04a04c36ca79d318ec9e5df68abf96e8efacc68b67ae6c77a171cb",
+    "scripts/package.sh": "df3b2f1a841827b8d92a45d541c93480f85eb7acc2c9b32e504a721a61f6f1b7",
+    "scripts/package_tar.py": "84ee4d2e4a0d040773644d220c3ea536c0bc39587a47a3bd5b88ecb71f33c721",
+    "scripts/verify_installer.ps1": "c060fa06919c858fe1d6616889d703fdc3e63076047e1e2bb8f760b541a2c90f",
+    "scripts/verify_linux_installer.py": "9a93a88f723f5eaf73e2d24829bc0ccb27a4c05abf33c2097b51cdf5ee2c9a0b",
+    "tests/real_ide_backends.py": "db10f4a6cc50fc6ec80553d499c4644a999338214b5a34c69c1758ec6848e0cf",
+    "verification/language-installers-v3-check-continuation-preflight.py": "354e8fc8dee27c415c77510c6d47ae77e2fcb99988a532dd1c1ef85336006a7e",
+    "verification/language-installers-v3-continue.py": "70c07000525d2bb5b8e0896dbfe3e2a5a14e053d3e84fd4ff3628acb23aa0fff",
+    "verification/language-installers-v3-record-host-block.py": "547d563fb13138b08ad6994f3dd039b533206fd054b27e3b1abd24461a5b9af1",
+    "verification/language-sandbox-v3-verify-evidence.py": "e78df79eccc9d6291db6ee3a2935665c926881fef46b5fbe2a250bea8addafa9",
+    "verification/python-cwd-v3-findings.md": "5c876f3f7242e49b85921d3a2f6af0690c9d9457546e81e8b5099bc88f1d5efc",
+    "verification/python-cwd-v3-node.cjs": "69afb475e76be17a4eab961e5a25928fd37ced04e79037531f300d9b888ffbbe",
+    "verification/python-cwd-v3-private-copy.py": "3ce6fc0125229f06cd4c4e1172d9628b64583883fcd3015ade3f47e70883b01d",
+    "verification/python-cwd-v3-winapi.py": "5ea5835853c97d8ae13d07156e42de748ea14b9a7e5d1872e43619b80ee477b7"
+  },
+  "checks": [
+    {
+      "name": "isolated_lsp_process_id_and_lifetime",
+      "status": "PASS",
+      "method": "SOURCE_REVIEW_AND_PRIMARY_SPEC",
+      "paths": [
+        "crates/odin-protocol/src/lsp.rs"
+      ],
+      "result": "Host PID remains actual for unsandboxed LSP; sandboxed LSP sends null, preserving native guard/job cleanup. No capability fabrication or fallback."
+    },
+    {
+      "name": "python_fresh_private_assets_explicit_qa_host_decision",
+      "status": "PASS",
+      "method": "SOURCE_REVIEW",
+      "paths": [
+        "tests/real_ide_backends.py",
+        "verification/python-cwd-v3-private-copy.py",
+        "verification/python-cwd-v3-findings.md"
+      ],
+      "result": "Explicit sandbox-only flag. New copytree from pinned original metadata and full5427-file manifest; byte equality before and after. Original Node/Python/SDK/source stay RO, cache/scratch narrowly writable, other projects/state denied. Host metadata/version read uses original Python; no host execution of writable code, semantic patch or product fallback."
+    },
+    {
+      "name": "enumeration_filter_preserves_writable_cache_behavior",
+      "status": "PASS",
+      "method": "SOURCE_REVIEW_AND_EXECUTED_POLICY_INSPECTION",
+      "result": "Enumeration includes explicit grant ancestors but excludes each writable root and descendants; no RW copy path is promoted to trusted SDK. Recorded native policy and all36 boundary checks verified as data, not rerun by reviewer."
+    },
+    {
+      "name": "windows_powershell_arrays_modules_and_inert_template",
+      "status": "PASS",
+      "method": "SOURCE_REVIEW_AND_AST_TEMPLATE_CHECK",
+      "paths": [
+        "scripts/package.ps1",
+        "scripts/verify_installer.ps1",
+        "packaging/odin.host.example.toml"
+      ],
+      "result": "Builtin PSHOME modules, PS5 JSON array shape, no template autoload, all5permissionsfalse. Later template/new binary installer acceptance still blocked."
+    },
+    {
+      "name": "linux_static_crt_linker_correction",
+      "status": "PASS",
+      "method": "SOURCE_REVIEW_AND_DIAGNOSTIC_LOG_INSPECTION",
+      "paths": [
+        "scripts/package.sh",
+        "docs/PACKAGING_WINDOWS_LINUX.md",
+        "verification/package-v3-native-linux-diagnostic.json"
+      ],
+      "result": "musl-gcc for C and cc default for Rust self-contained CRT; no cfg/security workaround and PT_INTERP remains rejected. Old Odin runtime FAIL and Hello-only diagnostic scope preserved."
+    },
+    {
+      "name": "format_and_static_contract_checks",
+      "status": "PASS",
+      "method": "EXECUTED_REVIEWER_CHECKS",
+      "result": "fmt exit0 at69e769b; Python/PowerShell AST, inert TOML, paired catalog and manifest/receipt hashes inspected."
+    },
+    {
+      "name": "source_bound_protocol_fixture_receipt",
+      "status": "PASS",
+      "method": "AUTHOR_LOG_AND_HASH_VERIFICATION",
+      "source": "verification/language-installers-v3-isolated-pid-protocol-01.json",
+      "exit_code": 0,
+      "result": "31passed/3ignored, lsp.rs hash equals reviewed source. This is not native Csharp semantic/lifecycle proof."
+    },
+    {
+      "name": "old_binary_python_native_ide_and_ruff_receipt",
+      "status": "PASS",
+      "method": "AUTHOR_LOG_AND_HASH_VERIFICATION",
+      "source": "verification/language-sandbox-v3-python-native-02.json",
+      "exit_code": 0,
+      "result": "60PASS/4UNAVAILABLE, two initialized projects, both5427-file copies unchanged. Current harness/report/transcript/log digests matched. Applies only to old780c6ad binary371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451."
+    },
+    {
+      "name": "old_windows_installer_lifecycle_receipt",
+      "status": "PASS",
+      "method": "AUTHOR_LOG_AND_SCOPE_INSPECTION",
+      "source": "verification/package-v3-windows-lifecycle.json",
+      "result": "22checksPASS at old780c6ad and earlier template; not approval for final PID-corrected candidate or disabled-permission template."
+    },
+    {
+      "name": "windows_workspace_gate",
+      "status": "BLOCKED",
+      "method": "AUTHOR_LOG_AND_EXECUTED_COUNT_CHECK",
+      "source": "verification/language-installers-v3-workspace-all-targets-01.json",
+      "exit_code": 101,
+      "result": "214passed/5failed/6ignored; five stdin child workloads received AppControl4551. Source-bound older workspace receipt, not final full-gatePASS."
+    },
+    {
+      "name": "final_windows_binary_static_pe",
+      "status": "PASS",
+      "method": "READ_ONLY_BYTES_NOT_EXECUTION",
+      "binary_sha256": "83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44",
+      "result": "AMD64PE64,14023168bytes, known Windows/API-set plus vcruntime140.dll imports and no delay-load. Reviewer did not start/copy/rebuild candidate."
+    },
+    {
+      "name": "final_windows_native_metadata_and_dependent_acceptance",
+      "status": "BLOCKED",
+      "method": "ACTUAL_HOST_OBSERVATION_RECEIPT_INSPECTION",
+      "source": "verification/language-installers-v3-final-host-block.json",
+      "native_command_executed": false,
+      "native_exit_code": null,
+      "winerror": 4551,
+      "result": "Initial PowerShell metadata_exit_code0 was stale after wrapper error; corrected metadata null/BLOCKED. Python CreateProcess denied. No administrator state change yet confirmed; no policy mutation/copy/rebuild by reviewer."
+    },
+    {
+      "name": "final_six_language_same_candidate_matrix",
+      "status": "BLOCKED",
+      "reason": "Final Windows candidate cannot execute. Old371d4fbd Python/Go/Rust results and direct nullPID diagnostic do not establish final Csharp/six-language acceptance."
+    },
+    {
+      "name": "final_windows_installer_and_portable_lifecycle",
+      "status": "BLOCKED",
+      "reason": "Requires final candidate execution and fresh disabled-permission template packaging; older22checks do not substitute."
+    },
+    {
+      "name": "final_linux_elf_protocols_and_debian_lifecycle",
+      "status": "NOT_RUN",
+      "reason": "Final Linux build/metadata/stdio/HTTP/deb/tar lifecycle evidence not yet supplied. Old901 compilePASS/startupFAIL and Hello driver comparison remain diagnostic."
+    },
+    {
+      "name": "cloud_ci_or_publication_by_reviewer",
+      "status": "N/A",
+      "reason": "No CI, remote push, OS policy/ACL or VM serial operation performed by reviewer."
+    },
+    {
+      "name": "qa_continuation_and_offline_index_preserve_history",
+      "status": "PASS",
+      "method": "SOURCE_REVIEW_AND_EXISTING_MOCK_LOG_PLUS_DIGEST_CHECK",
+      "paths": [
+        "verification/language-installers-v3-continue.py",
+        "verification/language-installers-v3-check-continuation-preflight.py",
+        "verification/language-sandbox-v3-verify-evidence.py"
+      ],
+      "result": "Bounded prefix and all child outputs checked before native execution/log creation. Recorded5inert regression checks have0nativecalls; reviewer checked source hashes/stdout agreement and64offline-indexed artifacts. Not native/backend acceptance."
+    }
+  ],
+  "commands": [
+    {
+      "shell_command": "$OdinReviewPhase2 = @'\nimport ast, hashlib, json, pathlib, re, tomllib\nroot=pathlib.Path.cwd(); checks=[]\ndef check(name, valid, detail=None):\n    checks.append({'name':name,'status':'PASS' if valid else 'FAIL','detail':detail})\n    if not valid: raise AssertionError(name)\ndef load(name): return json.loads((root/name).read_text(encoding='utf-8'))\ndef digest(path): return hashlib.sha256(path.read_bytes()).hexdigest()\nfor name in ('tests/real_ide_backends.py','verification/python-cwd-v3-private-copy.py','verification/python-cwd-v3-probe.py','verification/python-cwd-v3-winapi.py','scripts/package_tar.py','scripts/verify_linux_installer.py'):\n    ast.parse((root/name).read_text(encoding='utf-8'),filename=name);check('python_ast:'+name,True)\ntemplate=tomllib.loads((root/'packaging/odin.host.example.toml').read_text(encoding='utf-8')); p=template['projects']['demo']\ncheck('inert_template_permissions',all(p[x] is False for x in ('allow_write','allow_shell','allow_debug','allow_inspections','allow_formatters')) and 'languages' not in p and 'commands' not in p)\ncheck('paired_catalog_bytes',(root/'crates/odin-engine/tools.json').read_bytes()==(root/'schemas/tools.json').read_bytes())\nproof=load('verification/python-cwd-v3-evidence-check.json')\ncheck('python_native_receipt_all_artifact_hashes',all(digest(root/'verification'/p)==h for p,h in proof['artifacts'].items()),len(proof['artifacts']))\nnative=load('verification/python-cwd-v3-private-20261021T033321Z.json'); manifest=load('verification/python-cwd-v3-private-20261021T033321Z-files.json')\ncheck('private_copy_manifest_binding',digest(root/'verification'/native['copy_manifest'])==native['copy_manifest_sha256'] and manifest['count']==len(manifest['files'])==5427)\nchecks_in_runs=[c for run in native['runs'] for c in run['result']['checks']]\ncheck('native_boundary_check_results',len(checks_in_runs)==36 and all(c['status']=='PASS' and c.get('value') is not False for c in checks_in_runs),len(checks_in_runs))\ncheck('two_projects_native_exit_zero',len(native['runs'])==2 and all(r['exit_code']==0 for r in native['runs']))\ncheck('original_and_private_bytes_unchanged',native['host_checks']['original_assets_unchanged'] and all(native['host_checks']['copies_still_match_original'].values()) and native['host_checks']['protected_hashes_unchanged'])\ncheck('no_host_loopback_connections',native['host_checks']['host_loopback_accepts']==0)\nfor run in native['runs']:\n    policy=run['policy']; writable=[pathlib.PureWindowsPath(x) for x in policy['filesystem']['readwritePaths']]\n    enumeration=[pathlib.PureWindowsPath(x) for x in policy['processContainer']['filesystem']['enumeratePaths']]\n    check('enum_does_not_override_rw:'+run['project'],not any(e==w or w in e.parents for e in enumeration for w in writable))\nprotocol=load('verification/language-installers-v3-isolated-pid-protocol-01.json')\ncheck('protocol_actual_log_and_source',protocol['exit_code']==0 and '31 passed; 0 failed; 3 ignored' in protocol['output'] and all(digest(root/p)==h for p,h in protocol['source_sha256'].items()))\nworkspace=load('verification/language-installers-v3-workspace-all-targets-01.json')\ncounts=[tuple(map(int,x)) for x in re.findall(r'test result: (?:ok|FAILED)\\. (\\d+) passed; (\\d+) failed; (\\d+) ignored',workspace['output'])]\ntotals=[sum(x[i] for x in counts) for i in range(3)]\ncheck('workspace_five_real_failures_remain_fail',workspace['status']=='FAIL' and workspace['exit_code']==101 and totals==[214,5,6] and 'os error 4551' in workspace['output'],totals)\nwindows=load('verification/package-v3-windows-lifecycle.json')\ncheck('windows_installer22_pass_scope_is_old780',windows['status']=='PASS' and len(windows['checks'])==22 and all(c['status']=='PASS' for c in windows['checks']) and windows['build']['revision']=='780c6adf7de71a6d96d3af12314dcbe9b526ad8b')\nprint(json.dumps({'status':'PASS','checks':checks},ensure_ascii=False))\n'@\n$OdinReviewPhase2 | python -",
+      "cwd": "C:/Users/steven/.codex/worktrees/odin-review-v3/odin",
+      "head_sha": "84f9b3a763e95967f9ae900c7ff6981354f93b15",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"status\": \"PASS\", \"checks\": [{\"name\": \"python_ast:tests/real_ide_backends.py\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"python_ast:verification/python-cwd-v3-private-copy.py\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"python_ast:verification/python-cwd-v3-probe.py\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"python_ast:verification/python-cwd-v3-winapi.py\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"python_ast:scripts/package_tar.py\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"python_ast:scripts/verify_linux_installer.py\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"inert_template_permissions\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"paired_catalog_bytes\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"python_native_receipt_all_artifact_hashes\", \"status\": \"PASS\", \"detail\": 13}, {\"name\": \"private_copy_manifest_binding\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"native_boundary_check_results\", \"status\": \"PASS\", \"detail\": 36}, {\"name\": \"two_projects_native_exit_zero\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"original_and_private_bytes_unchanged\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"no_host_loopback_connections\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"enum_does_not_override_rw:a\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"enum_does_not_override_rw:b\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"protocol_actual_log_and_source\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"workspace_five_real_failures_remain_fail\", \"status\": \"PASS\", \"detail\": [214, 5, 6]}, {\"name\": \"windows_installer22_pass_scope_is_old780\", \"status\": \"PASS\", \"detail\": null}]}\r\n"
+    },
+    {
+      "shell_command": "$OdinParseErrors = @()\nforeach ($OdinPsFile in @('scripts/package.ps1','scripts/verify_installer.ps1')) {\n    $OdinTokens = $null\n    $OdinErrors = $null\n    $null = [System.Management.Automation.Language.Parser]::ParseFile((Join-Path (Get-Location) $OdinPsFile), [ref]$OdinTokens, [ref]$OdinErrors)\n    $OdinParseErrors += @($OdinErrors)\n}\nif ($OdinParseErrors.Count -ne 0) { $OdinParseErrors | Out-String; exit 1 }\nWrite-Output 'PASS PowerShell AST syntax: package.ps1, verify_installer.ps1'",
+      "cwd": "C:/Users/steven/.codex/worktrees/odin-review-v3/odin",
+      "head_sha": "84f9b3a763e95967f9ae900c7ff6981354f93b15",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "PASS PowerShell AST syntax: package.ps1, verify_installer.ps1\r\n"
+    },
+    {
+      "shell_command": "cargo fmt --all -- --check",
+      "cwd": "C:/Users/steven/.codex/worktrees/odin-review-v3/odin",
+      "head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "shell_command": "$OdinReviewPythonRun = @'\nimport hashlib,json,pathlib\nroot=pathlib.Path.cwd(); prefix='verification/language-sandbox-v3-python-native-02'\nreport=json.loads((root/(prefix+'.json')).read_text(encoding='utf-8')); receipt=json.loads((root/(prefix+'.command.json')).read_text(encoding='utf-8'))\nh=lambda p:hashlib.sha256((root/p).read_bytes()).hexdigest()\nassert receipt['report_sha256']==h(prefix+'.json') and receipt['log_sha256']==h(prefix+'.txt')\nassert report['transcript_sha256']==h(prefix+'.requests.jsonl') and report['binary_sha256']==receipt['binary_sha256']\nprint(json.dumps({'integrity':'PASS','status':report['status'],'counts':report['counts'],'binary_sha256':report['binary_sha256'],'binary_metadata':report.get('binary_metadata'),'exit_code':receipt['exit_code'],'actual_lsp_projects_initialized':report['actual_lsp_projects_initialized'],'checks_by_project':{p['project']:[(c['name'],c['status']) for c in p['checks']] for p in report['projects']},'backend_assets':[(x['project'],len(x['files']),x['manifest_sha256']) for x in report.get('private_python_asset_manifests',[])]},ensure_ascii=False))\n'@\n$OdinReviewPythonRun | python -",
+      "cwd": "C:/Users/steven/.codex/worktrees/odin-review-v3/odin",
+      "head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"integrity\": \"PASS\", \"status\": \"PASS\", \"counts\": {\"PASS\": 60, \"UNAVAILABLE\": 4}, \"binary_sha256\": \"371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451\", \"binary_metadata\": null, \"exit_code\": 0, \"actual_lsp_projects_initialized\": 2, \"checks_by_project\": {\"python_a\": [[\"mcp_initialize\", \"PASS\"], [\"actual_lsp_initialize\", \"PASS\"], [\"actual_native_sandbox_route\", \"PASS\"], [\"document_symbols\", \"PASS\"], [\"cross_file_references\", \"PASS\"], [\"completion\", \"PASS\"], [\"hover\", \"PASS\"], [\"signature_help\", \"PASS\"], [\"workspace_symbols\", \"PASS\"], [\"inlay_hints\", \"PASS\"], [\"semantic_tokens\", \"PASS\"], [\"call_hierarchy\", \"PASS\"], [\"completion_resolve\", \"PASS\"], [\"inlay_hint_resolve\", \"UNAVAILABLE\"], [\"diagnostics_valid\", \"PASS\"], [\"rename_preview_readonly\", \"PASS\"], [\"rename_definition_and_consumer\", \"PASS\"], [\"rename_other_projects_unchanged\", \"PASS\"], [\"rename_rollback\", \"PASS\"], [\"format_transaction\", \"UNAVAILABLE\"], [\"native_format_stale_hash_conflict\", \"PASS\"], [\"native_format_provider_and_sandbox\", \"PASS\"], [\"native_format_preview_readonly\", \"PASS\"], [\"native_format_nonempty_cas_preview\", \"PASS\"], [\"native_format_cas_apply\", \"PASS\"], [\"native_format_other_projects_unchanged\", \"PASS\"], [\"native_format_noop\", \"PASS\"], [\"native_format_rollback\", \"PASS\"], [\"diagnostics_error\", \"PASS\"], [\"diagnostic_fixture_rollback\", \"PASS\"], [\"diagnostics_recovered\", \"PASS\"], [\"private_backend_assets_unchanged\", \"PASS\"]], \"python_b\": [[\"mcp_initialize\", \"PASS\"], [\"actual_lsp_initialize\", \"PASS\"], [\"actual_native_sandbox_route\", \"PASS\"], [\"document_symbols\", \"PASS\"], [\"cross_file_references\", \"PASS\"], [\"completion\", \"PASS\"], [\"hover\", \"PASS\"], [\"signature_help\", \"PASS\"], [\"workspace_symbols\", \"PASS\"], [\"inlay_hints\", \"PASS\"], [\"semantic_tokens\", \"PASS\"], [\"call_hierarchy\", \"PASS\"], [\"completion_resolve\", \"PASS\"], [\"inlay_hint_resolve\", \"UNAVAILABLE\"], [\"diagnostics_valid\", \"PASS\"], [\"rename_preview_readonly\", \"PASS\"], [\"rename_definition_and_consumer\", \"PASS\"], [\"rename_other_projects_unchanged\", \"PASS\"], [\"rename_rollback\", \"PASS\"], [\"format_transaction\", \"UNAVAILABLE\"], [\"native_format_stale_hash_conflict\", \"PASS\"], [\"native_format_provider_and_sandbox\", \"PASS\"], [\"native_format_preview_readonly\", \"PASS\"], [\"native_format_nonempty_cas_preview\", \"PASS\"], [\"native_format_cas_apply\", \"PASS\"], [\"native_format_other_projects_unchanged\", \"PASS\"], [\"native_format_noop\", \"PASS\"], [\"native_format_rollback\", \"PASS\"], [\"diagnostics_error\", \"PASS\"], [\"diagnostic_fixture_rollback\", \"PASS\"], [\"diagnostics_recovered\", \"PASS\"], [\"private_backend_assets_unchanged\", \"PASS\"]]}, \"backend_assets\": [[\"python_a\", 5427, \"fd843dd81461dd6e6af7cfe8f84c110bb766d2dec0b3cdbb1887b3272b51f243\"], [\"python_b\", 5427, \"fd843dd81461dd6e6af7cfe8f84c110bb766d2dec0b3cdbb1887b3272b51f243\"]]}\r\n"
+    },
+    {
+      "shell_command": "$OdinReviewBinding = @'\nimport hashlib,json,pathlib,subprocess\nroot=pathlib.Path.cwd(); h=lambda path:hashlib.sha256((root/path).read_bytes()).hexdigest()\nr=json.loads((root/'verification/language-sandbox-v3-python-native-02.json').read_text(encoding='utf-8'))\nc=json.loads((root/'verification/language-sandbox-v3-python-native-02.command.json').read_text(encoding='utf-8'))\nassert r['harness_sha256']==c['harness_sha256']==h('tests/real_ide_backends.py')\nfor manifest in r['private_python_asset_manifests']:\n    assert hashlib.sha256(json.dumps(manifest['files'],sort_keys=True,separators=(',',':')).encode()).hexdigest()==manifest['manifest_sha256']\nfor p in r['projects']:\n    assert p['binary_version']['build']['revision']=='780c6adf7de71a6d96d3af12314dcbe9b526ad8b'\nreport=json.loads((root/'verification/package-v3-native-linux-diagnostic.json').read_text(encoding='utf-8'))\nassert all(h(p)==digest for p,digest in report['evidence'].items())\nassert report['native_binary_smoke']['status']=='FAIL' and report['final_candidate_build_runtime_installers']=='NOT_RUN'\nprint(json.dumps({'status':'PASS','scope':'current Python harness and old binary identity retained; Linux diagnostic does not claim final acceptance','python_harness_sha256':r['harness_sha256'],'linux_diagnostic_sources':len(report['evidence'])}))\n'@\n$OdinReviewBinding | python -",
+      "cwd": "C:/Users/steven/.codex/worktrees/odin-review-v3/odin",
+      "head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+      "exit_code": 1,
+      "status": "FAIL",
+      "output": "Traceback (most recent call last):\r\n  File \"<stdin>\", line 9, in <module>\r\nKeyError: 'build'\r\n"
+    },
+    {
+      "shell_command": "$OdinReviewShape = @'\nimport json,pathlib\nroot=pathlib.Path.cwd(); r=json.loads((root/'verification/language-sandbox-v3-python-native-02.json').read_text(encoding='utf-8'))\nprint(json.dumps({'binary_version':r['projects'][0]['binary_version'],'top_keys':list(r)}))\n'@\n$OdinReviewShape | python -",
+      "cwd": "C:/Users/steven/.codex/worktrees/odin-review-v3/odin",
+      "head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"binary_version\": {\"name\": \"Odin\", \"schema_version\": 1, \"standalone\": true, \"trace\": {\"elapsed_ms\": 0, \"id\": \"b6ee2dc1-25ed-4fdb-92f0-0c356e7d131f\", \"result_bytes\": 70, \"result_sha256\": \"56962aba324858cc3f3306c0c5e6854072861e96a2c79ef23586e0d3de4e050b\"}, \"version\": \"0.2.0\"}, \"top_keys\": [\"scope\", \"mode\", \"status\", \"platform\", \"binary_sha256\", \"harness_sha256\", \"started_utc\", \"projects\", \"setup_errors\", \"boundary\", \"private_python_asset_manifests\", \"native_formatter_profiles\", \"sandbox_profiles\", \"host_config_sha256\", \"binary_launch\", \"backends\", \"counts\", \"matrix\", \"actual_lsp_projects_initialized\", \"transcript_sha256\", \"line_endings_normalized_before_hash_binding\", \"odin_trace_hashes_describe_original_unredacted_payloads\"]}\r\n"
+    },
+    {
+      "shell_command": "$OdinReviewBindingFixed = @'\nimport hashlib,json,pathlib\nroot=pathlib.Path.cwd(); h=lambda path:hashlib.sha256((root/path).read_bytes()).hexdigest()\nr=json.loads((root/'verification/language-sandbox-v3-python-native-02.json').read_text(encoding='utf-8'))\nc=json.loads((root/'verification/language-sandbox-v3-python-native-02.command.json').read_text(encoding='utf-8'))\nassert r['harness_sha256']==c['harness_sha256']==h('tests/real_ide_backends.py')\nfor manifest in r['private_python_asset_manifests']:\n    assert hashlib.sha256(json.dumps(manifest['files'],sort_keys=True,separators=(',',':')).encode()).hexdigest()==manifest['manifest_sha256']\nbuild=json.loads((root/'verification/package-v3-windows-build.json').read_text(encoding='utf-8'))\nassert r['binary_sha256']==build['binary_sha256'] and build['build']['revision']=='780c6adf7de71a6d96d3af12314dcbe9b526ad8b'\nreport=json.loads((root/'verification/package-v3-native-linux-diagnostic.json').read_text(encoding='utf-8'))\nassert all(h(p)==digest for p,digest in report['evidence'].items())\nassert report['native_binary_smoke']['status']=='FAIL' and report['final_candidate_build_runtime_installers']=='NOT_RUN'\nprint(json.dumps({'status':'PASS','scope':'current Python harness and old binary identity retained; Linux diagnostic does not claim final acceptance','python_harness_sha256':r['harness_sha256'],'old_windows_revision':build['build']['revision'],'linux_diagnostic_sources':len(report['evidence'])}))\n'@\n$OdinReviewBindingFixed | python -",
+      "cwd": "C:/Users/steven/.codex/worktrees/odin-review-v3/odin",
+      "head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"status\": \"PASS\", \"scope\": \"current Python harness and old binary identity retained; Linux diagnostic does not claim final acceptance\", \"python_harness_sha256\": \"db10f4a6cc50fc6ec80553d499c4644a999338214b5a34c69c1758ec6848e0cf\", \"old_windows_revision\": \"780c6adf7de71a6d96d3af12314dcbe9b526ad8b\", \"linux_diagnostic_sources\": 7}\r\n"
+    },
+    {
+      "shell_command": "$OdinReviewPe = @'\nimport hashlib,json,pathlib,struct\np=pathlib.Path('E:/odin/target/release/odin.exe'); data=p.read_bytes(); sha=hashlib.sha256(data).hexdigest()\nassert sha=='83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44'\nassert data[:2]==b'MZ'; pe=struct.unpack_from('<I',data,0x3c)[0]; assert data[pe:pe+4]==b'PE\\0\\0'\nmachine,nsects=struct.unpack_from('<HH',data,pe+4); optsize=struct.unpack_from('<H',data,pe+20)[0]; opt=pe+24\nassert machine==0x8664 and struct.unpack_from('<H',data,opt)[0]==0x20b\nsections=[]\nfor i in range(nsects):\n    at=opt+optsize+40*i; vs,va,rs,raw=struct.unpack_from('<IIII',data,at+8); sections.append((va,max(vs,rs),raw))\ndef offset(rva):\n    for va,size,raw in sections:\n        if va<=rva<va+size:return raw+rva-va\n    raise AssertionError('unmapped RVA')\nimports=[]; at=offset(struct.unpack_from('<I',data,opt+120)[0])\nwhile True:\n    name=struct.unpack_from('<I',data,at+12)[0]\n    if not name:break\n    nameat=offset(name); imports.append(data[nameat:data.index(0,nameat)].decode('ascii').lower()); at+=20\nassert optsize>=224 and struct.unpack_from('<I',data,opt+216)[0]==0\nbuiltin={'kernel32.dll','ntdll.dll','ws2_32.dll','userenv.dll','bcryptprimitives.dll','bcrypt.dll','advapi32.dll','crypt32.dll','rpcrt4.dll','vcruntime140.dll'}\nassert all(n.startswith(('api-ms-win-','ext-ms-win-')) or n in builtin for n in imports)\nprint(json.dumps({'status':'PASS','scope':'READ_ONLY_STATIC_PE_INSPECTION_ONLY_NO_EXECUTION_COPY_OR_REBUILD','path':str(p),'binary_sha256':sha,'bytes':len(data),'machine':'AMD64','imports':sorted(imports),'delay_load_imports':False,'native_execution':'BLOCKED_BY_HOST_POLICY_AS_REPORTED_NO_RETRY_BY_REVIEWER'}))\n'@\n$OdinReviewPe | python -",
+      "cwd": "C:/Users/steven/.codex/worktrees/odin-review-v3/odin",
+      "head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"status\": \"PASS\", \"scope\": \"READ_ONLY_STATIC_PE_INSPECTION_ONLY_NO_EXECUTION_COPY_OR_REBUILD\", \"path\": \"E:\\\\odin\\\\target\\\\release\\\\odin.exe\", \"binary_sha256\": \"83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44\", \"bytes\": 14023168, \"machine\": \"AMD64\", \"imports\": [\"api-ms-win-core-synch-l1-2-0.dll\", \"api-ms-win-crt-heap-l1-1-0.dll\", \"api-ms-win-crt-locale-l1-1-0.dll\", \"api-ms-win-crt-math-l1-1-0.dll\", \"api-ms-win-crt-runtime-l1-1-0.dll\", \"api-ms-win-crt-stdio-l1-1-0.dll\", \"api-ms-win-crt-string-l1-1-0.dll\", \"api-ms-win-crt-time-l1-1-0.dll\", \"api-ms-win-crt-utility-l1-1-0.dll\", \"bcryptprimitives.dll\", \"kernel32.dll\", \"kernel32.dll\", \"ntdll.dll\", \"userenv.dll\", \"vcruntime140.dll\", \"ws2_32.dll\"], \"delay_load_imports\": false, \"native_execution\": \"BLOCKED_BY_HOST_POLICY_AS_REPORTED_NO_RETRY_BY_REVIEWER\"}\r\n"
+    },
+    {
+      "shell_command": "$OdinReviewHostCorrection = @'\nimport hashlib,json,pathlib\nroot=pathlib.Path('E:/odin'); h=lambda name:hashlib.sha256((root/name).read_bytes()).hexdigest()\nnames=['verification/language-installers-v3-windows-build-final-initial.json','verification/language-installers-v3-windows-build-final.json','verification/language-installers-v3-final-host-block.json','verification/language-installers-v3-host-codeintegrity.json']\ninitial,corrected,block=[json.loads((root/name).read_text(encoding='utf-8')) for name in names[:3]]\nassert initial['metadata_exit_code']==0 and initial['metadata_output']==''\nassert corrected['metadata_exit_code'] is None and corrected['metadata_status']=='BLOCKED_BEFORE_EXECUTION'\nassert corrected['metadata_observation_report_sha256']==h(corrected['metadata_observation_report'])\nassert corrected['original_observation_report_sha256']==h(corrected['original_observation_report'])\nassert block['status']=='BLOCKED' and block['native_command_executed'] is False and block['native_exit_code'] is None\nassert block['host_event_log_sha256']==h(block['host_event_log']) and block['original_report_sha256']==h(block['original_report'])\nassert any(x.get('winerror')==4551 for x in block['observations'])\nassert block['administrator_state_change_confirmed'] is False and block['policy_modified_by_agent'] is False and block['candidate_copied_after_block'] is False\nassert block['binary_sha256']==corrected['binary_sha256']=='83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44'\nprint(json.dumps({'status':'PASS','scope':'EVIDENCE_INTEGRITY_ONLY_RELEASE_REMAINS_BLOCKED','compiled_source':block['compiled_source_head_sha'],'artifacts':{name:h(name) for name in names},'line_endings_lf':all(b'\\r' not in (root/name).read_bytes() for name in names),'administrator_state_change_confirmed':False}))\n'@\n$OdinReviewHostCorrection | python -",
+      "cwd": "C:/Users/steven/.codex/worktrees/odin-review-v3/odin",
+      "head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"status\": \"PASS\", \"scope\": \"EVIDENCE_INTEGRITY_ONLY_RELEASE_REMAINS_BLOCKED\", \"compiled_source\": \"69e769be9baa4e825139b72ce1a9b48bf8143114\", \"artifacts\": {\"verification/language-installers-v3-windows-build-final-initial.json\": \"33939a1f4be5bca82f6aca28c175bc638d30ca750bb70eaabf3a5b6c5f563bd8\", \"verification/language-installers-v3-windows-build-final.json\": \"ce5ce0faf29a24558c01788be460cbda3595e763ec21cdc33d53b1a7576126fe\", \"verification/language-installers-v3-final-host-block.json\": \"f9a732fe58edc2f9cf97e6a688bddd511fd84ae4421d744fb6c6a1b094986d58\", \"verification/language-installers-v3-host-codeintegrity.json\": \"0783b05aeac0c4ed659de728c9343e17b7994857a68c416ef522df80077592ce\"}, \"line_endings_lf\": true, \"administrator_state_change_confirmed\": false}\r\n"
+    },
+    {
+      "shell_command": "$OdinReviewPreflight = @'\nimport ast,hashlib,json,pathlib,subprocess\nroot=pathlib.Path.cwd(); h=lambda p:hashlib.sha256((root/p).read_bytes()).hexdigest()\nnames=['verification/language-installers-v3-continue.py','verification/language-installers-v3-check-continuation-preflight.py','verification/language-installers-v3-record-host-block.py','verification/language-sandbox-v3-verify-evidence.py']\nfor p in names: ast.parse((root/p).read_text(encoding='utf-8'),filename=p)\nr=json.loads((root/'verification/language-installers-v3-continuation-preflight-01.json').read_text(encoding='utf-8'))\nassert r['exit_code']==0 and r['status']=='PASS' and not r['blocked_candidate_executed']\nassert len(r['result']['checks'])==5 and all(c['status']=='PASS' and c['native_process_calls']==0 for c in r['result']['checks'])\nassert all(h(p)==sha for p,sha in r['source_sha256'].items())\nassert json.loads(r['stdout'])==r['result']\nassert subprocess.run(['git','diff','--quiet','69e769b','HEAD','--','crates','Cargo.lock','Cargo.toml','rust-toolchain.toml','schemas'],capture_output=True).returncode==0\nidx=json.loads((root/'verification/language-sandbox-v3-evidence-index-01.json').read_text(encoding='utf-8'))\nassert idx['scope']=='OFFLINE_EVIDENCE_INTEGRITY_ONLY' and idx['backend_executions']==0 and idx['historical_results_modified'] is False\nassert h('verification/language-sandbox-v3-verify-evidence.py')==idx['source_sha256']\nartifacts=sum((record['artifacts'] for record in idx['records']),[])\nassert all(h(a['path'])==a['sha256'] for a in artifacts)\nprint(json.dumps({'status':'PASS','scope':'STATIC_AND_EXISTING_INERT_LOG_REVIEW_ONLY','inert_preflight_checks':5,'blocked_candidate_executions_by_reviewer':0,'offline_index_artifacts_verified':len(artifacts),'rust_cargo_schema_unchanged_since_compiled69':True}))\n'@\n$OdinReviewPreflight | python -",
+      "cwd": "C:/Users/steven/.codex/worktrees/odin-review-v3/odin",
+      "head_sha": "75c38f86f97e4ec14c840a8cb80afc80fa098674",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"status\": \"PASS\", \"scope\": \"STATIC_AND_EXISTING_INERT_LOG_REVIEW_ONLY\", \"inert_preflight_checks\": 5, \"blocked_candidate_executions_by_reviewer\": 0, \"offline_index_artifacts_verified\": 64, \"rust_cargo_schema_unchanged_since_compiled69\": true}\r\n"
+    }
+  ],
+  "reviewer_activity_notes": [
+    {
+      "status": "FAIL",
+      "scope": "READ_ONLY_REVIEW_INSPECTION_SCRIPT",
+      "detail": "An evidence-binding check assumed get_version contained build metadata and exited1 with KeyError build. The source report was unchanged. Corrected check binds the report binary digest to the actual Windows build receipt instead; subsequent exit0 retained below."
+    }
+  ],
+  "corrected_evidence_observations": [
+    {
+      "scope": "WINDOWS_FINAL_METADATA",
+      "state": "CORRECTED_WITH_ORIGINAL_PRESERVED",
+      "detail": "Author identified stale PowerShell LASTEXITCODE after a pre-execution StandardOutputEncoding error. Reviewer verified original33939a... receipt and canonical ce5ce0... receipt binds actual4551 denial. BuildPASS is separate from native executionBLOCKED."
+    }
+  ],
+  "primary_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/microsoft/language-server-protocol/gh-pages/_specifications/lsp/3.17/general/initialize.md",
+      "purpose": "Nullable initialize.processId; parent monitoring semantics."
+    },
+    {
+      "url": "https://github.com/microsoft/mxc/issues/1467",
+      "purpose": "Upstream readonly-directory SetCurrentDirectory failure corroboration, not exact host kernel attribution."
+    }
+  ],
+  "unresolved": [
+    "Administrator policy allowance is pending; do not infer approval/state change from elapsed time or prior generic authorization.",
+    "Final Windows candidate83a81d cannot execute; new six-language/native Csharp, binary protocols and final installer lifecycle are BLOCKED.",
+    "Windows complete workspace command still has five actual AppControl failures; no full-gatePASS.",
+    "Final Linux native ELF/protocol/install evidence remains NOT_RUN in this review phase.",
+    "Writable copied QA assets must never be host-executed, trusted/reused after sandbox execution, or published as installed SDK tooling.",
+    "Full40 requirements, all optional backend capabilities, unversioned TypeScript/Java diagnostic freshness, Linux sandbox, cross-version/interrupted installers and formal security audit remain outside claimed PASS."
+  ],
+  "next_owner": "root",
+  "next_action": "Retain frozen candidate/hostBLOCKED, finish Linux independently. Root delivery/status update must keep current candidate execution/Windows installers BLOCKED, old evidence scoped, and no full WindowsgatePASS. After administrator state confirmation, execute final Windows candidate-bound acceptance and request independent evidence revalidation.",
+  "external_side_effects": {
+    "authorized": false,
+    "performed": false
+  },
+  "budget": "Inherited; no explicit token/time budget supplied.",
+  "compiled_product_source_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+  "host_evidence_bindings": {
+    "commit": "39d782c",
+    "included_in_reviewed_snapshot": true,
+    "artifacts": {
+      "verification/language-installers-v3-windows-build-final-initial.json": "33939a1f4be5bca82f6aca28c175bc638d30ca750bb70eaabf3a5b6c5f563bd8",
+      "verification/language-installers-v3-windows-build-final.json": "ce5ce0faf29a24558c01788be460cbda3595e763ec21cdc33d53b1a7576126fe",
+      "verification/language-installers-v3-final-host-block.json": "f9a732fe58edc2f9cf97e6a688bddd511fd84ae4421d744fb6c6a1b094986d58",
+      "verification/language-installers-v3-host-codeintegrity.json": "0783b05aeac0c4ed659de728c9343e17b7994857a68c416ef522df80077592ce"
+    }
+  }
+}
