@@ -1,0 +1,11 @@
+{
+  "scope": "ACTUAL_HOST_ARTIFACT_TRANSFER_HASH_VERIFICATION",
+  "status": "PASS",
+  "files": 81,
+  "bytes": 25752727,
+  "manifest_sha256": "215c13a90175e86beba3db9681ec83cb32360436292bdcc9ee2bf741c67a95f1",
+  "receiver_port_47654_closed": true,
+  "source_revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+  "packaging_revision": "a8399993d7c528ad4858b2e4e246e5994eab4bb8",
+  "output": "E:\\odin\\dist\\package-v3-linux-0fe03ba"
+}

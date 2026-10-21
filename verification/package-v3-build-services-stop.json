@@ -1,0 +1,100 @@
+{
+  "scope": "NORMAL_TASK_BUILD_ENVIRONMENT_SHUTDOWN_ONLY",
+  "status": "PASS",
+  "guest_poweroff": {
+    "argv": [
+      "systemctl",
+      "poweroff",
+      "--no-block"
+    ],
+    "guest_command_exit_code": 0,
+    "qemu_pid": 27184,
+    "process_absent_after_poweroff": true
+  },
+  "source_http_stop": {
+    "argv": [
+      "C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.EXE",
+      "-NoProfile",
+      "-File",
+      "E:\\odin\\.odin\\stop_packaging_source_http_v3.ps1"
+    ],
+    "exit_code": 0,
+    "log": "verification/package-v3-build-services-source-http-stop-log.txt",
+    "log_sha256": "965e63efb29e9ffd271ec1f68342e65d93cf9d1bbacd78d6adfafd1943a56bb5",
+    "script_sha256": "22ecde7f92664d3b20f4bd2cfc1c4e61b410c553d51ca23e42e0261ec9f1c9ce",
+    "original_host_log_sha256": "f094374098330b3d8878cabb7abbc29e957b7fde6af241c0f2990502e3230418"
+  },
+  "process_absence_check": {
+    "argv": [
+      "C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.EXE",
+      "-NoProfile",
+      "-Command",
+      "@(Get-CimInstance Win32_Process -Filter 'ProcessId=27184 OR ProcessId=29504 OR ProcessId=43700').Count"
+    ],
+    "exit_code": 0,
+    "stdout": "0\n"
+  },
+  "completed_receiver_pid": 43700,
+  "ports": [
+    {
+      "bind": "127.0.0.1",
+      "port": 47651,
+      "closed": true
+    },
+    {
+      "bind": "127.0.0.1",
+      "port": 47652,
+      "closed": true
+    },
+    {
+      "bind": "127.0.0.1",
+      "port": 47654,
+      "closed": true
+    }
+  ],
+  "overlay_preserved": "E:\\odin\\.odin\\validation-tools\\packaging-v3\\vm\\odin-validation.qcow2",
+  "host_artifacts_verified_after_shutdown": 81,
+  "application_signal_acceptance": "NOT_RUN; shutting down the build VM does not establish SIGTERM/SIGINT LSP/DAP descendant or journal acceptance.",
+  "evidence": {
+    "poweroff_command": {
+      "path": "verification/package-v3-build-services-poweroff-command.json",
+      "sha256": "0dfb2207086b7bbe728fca869bf77e3b66564046e6fce02ddfdbc7576ba9b607"
+    },
+    "poweroff_log": {
+      "path": "verification/package-v3-build-services-poweroff-log.txt",
+      "sha256": "84ce525573b37206f21931fb03f36c44c176840f354e63090452aab3ab30f45e",
+      "original_sha256": "88e4f872d6c2b8031151a5fe4024991bade2653122647ddb91fcdd4d46518360"
+    },
+    "source_stop_log": {
+      "path": "verification/package-v3-build-services-source-http-stop-log.txt",
+      "sha256": "965e63efb29e9ffd271ec1f68342e65d93cf9d1bbacd78d6adfafd1943a56bb5",
+      "original_sha256": "f094374098330b3d8878cabb7abbc29e957b7fde6af241c0f2990502e3230418"
+    },
+    "source_stop_script": {
+      "path": "verification/package-v3-build-services-source-http-stop.ps1",
+      "sha256": "22ecde7f92664d3b20f4bd2cfc1c4e61b410c553d51ca23e42e0261ec9f1c9ce"
+    },
+    "shutdown_driver": {
+      "path": "verification/package-v3-build-services-shutdown-driver.py",
+      "sha256": "c6233fdfd4f54047bbb428917d612c74efaa5f1f8d0c1006f110ad7cad3c7cc7"
+    },
+    "host_transfer_check": {
+      "path": "verification/package-v3-build-services-host-transfer-check.json",
+      "sha256": "4934df2e0eab80933ab84aa74183a1d855d4245069143f67e135e854b9a9c2db"
+    },
+    "upload_command": {
+      "path": "verification/package-v3-build-services-upload-command.json",
+      "sha256": "6433cc72a385ac6a71baab35376b470d25d8b19c0e6ab9e1a6ba6c003fb0872d"
+    },
+    "upload_log": {
+      "path": "verification/package-v3-build-services-upload-log.txt",
+      "sha256": "e1dc803ea79423a5a311c8a2ddad5692524a0f9268651f34d1645bea4373d00f",
+      "original_sha256": "c6c622bba9092bea367526cd9019e541d9057e19e5adaae346ff7be5ddbe2e66"
+    },
+    "canonical_linux_results": {
+      "path": "verification/package-v3-linux-final.json",
+      "sha256": "c1a9f4a750660873c55be1294a431c048fa3f0094c6f1a314d46f448cb62af93"
+    }
+  },
+  "normalization": "Public serial logs strip CR and trailing whitespace; original host SHA256 is retained. No exit or outcome changed."
+}

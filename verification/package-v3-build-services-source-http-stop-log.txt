@@ -1,0 +1,7 @@
+{
+  "Scope": "TASK_ONLY_READ_ONLY_SOURCE_HTTP_STOP",
+  "ProcessId": 29504,
+  "ExecutablePath": "C:\\Python314\\python.exe",
+  "CommandLine": "\"C:\\Python314\\python.exe\" -m http.server 47652 --bind 127.0.0.1 --directory E:\\odin\\.odin\\validation-tools\\packaging-v3\\transfer",
+  "StopSucceeded": true
+}

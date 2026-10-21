@@ -1,0 +1,7 @@
+{
+  "command": "python3 /opt/odin-transfer/upload-linux-v3.py --manifest /opt/odin-export/manifest-0fe03ba.json --directory /opt/odin-export/v3-0fe03ba",
+  "exit_code": 0,
+  "timed_out": false,
+  "serial": "127.0.0.1:47651",
+  "output": "native-final-artifacts-upload.txt"
+}

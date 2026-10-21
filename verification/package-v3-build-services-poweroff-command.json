@@ -1,0 +1,7 @@
+{
+  "command": "set -eu\ntest \"$(cat /opt/odin-delivery/v3-0fe03ba/job.exit)\" = 0\ntest \"$(cat /opt/odin-transfer/final-postpack-0fe03ba-02.exit)\" = 0\nprintf '%s\\n' '215c13a90175e86beba3db9681ec83cb32360436292bdcc9ee2bf741c67a95f1  /opt/odin-export/manifest-0fe03ba.json' | sha256sum --check -\nsync\nsystemctl poweroff --no-block\n",
+  "exit_code": 0,
+  "timed_out": false,
+  "serial": "127.0.0.1:47651",
+  "output": "native-final-normal-poweroff.txt"
+}
