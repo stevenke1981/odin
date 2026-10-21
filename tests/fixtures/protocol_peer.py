@@ -7,6 +7,9 @@ import json
 import re
 import sys
 import time
+from pathlib import Path
+from urllib.parse import urlsplit
+from urllib.request import url2pathname
 
 P = argparse.ArgumentParser()
 P.add_argument('mode', choices=['lsp', 'dap'])
@@ -15,6 +18,12 @@ P.add_argument('--push-only', action='store_true')
 P.add_argument('--stale-diagnostics', action='store_true')
 P.add_argument('--dap-minimal', action='store_true')
 P.add_argument('--dap-restart-config', action='store_true')
+P.add_argument('--ide', action='store_true')
+P.add_argument('--capabilities-json', default='{}')
+P.add_argument('--encoding', default='utf-16')
+P.add_argument('--mutate-on')
+P.add_argument('--diagnostic-kind', default='clean')
+P.add_argument('--ide-malformed')
 A = P.parse_args()
 DOCS = {}
 VERSIONS = {}
@@ -60,7 +69,28 @@ def rng(line, start, end):
 
 
 def diagnostics(uri, version):
-    send({'jsonrpc': '2.0', 'method': 'textDocument/publishDiagnostics', 'params': {'uri': uri, 'version': version, 'diagnostics': []}})
+    if A.diagnostic_kind == 'none':
+        return
+    report = {'uri': uri, 'version': version, 'diagnostics': diagnostic_items()}
+    if A.diagnostic_kind == 'unversioned':
+        report.pop('version')
+    if A.diagnostic_kind == 'stale-out-of-bounds':
+        report['version'] = version - 1
+        report['diagnostics'] = [{'range': rng(50, 0, 5), 'message': 'old error', 'severity': 1}]
+    send({'jsonrpc': '2.0', 'method': 'textDocument/publishDiagnostics', 'params': report})
+
+
+def diagnostic_items():
+    if A.diagnostic_kind == 'malformed':
+        return 'invalid'
+    if A.diagnostic_kind in ('errors', 'unversioned'):
+        return [{'range': rng(0, 3, 6), 'message': 'fixture error', 'severity': 1, 'code': 'E-FIXTURE', 'source': 'fixture-linter'},
+                {'range': rng(0, 3, 6), 'message': 'fixture warning', 'severity': 2, 'code': 42}]
+    return []
+
+
+def hierarchy_item(uri):
+    return {'name': 'foo', 'kind': 12, 'uri': uri, 'range': rng(0, 0, 11), 'selectionRange': rng(0, 3, 6), 'data': {'keep': 'opaque'}}
 
 
 def end_position(text):
@@ -72,10 +102,16 @@ def lsp(request):
     global INITIALIZE
     method = request.get('method')
     params = request.get('params', {})
+    if A.mutate_on == method:
+        uri = params.get('textDocument', {}).get('uri')
+        if uri is None and DOCS:
+            uri = next(iter(DOCS))
+        if uri is not None:
+            Path(url2pathname(urlsplit(uri).path)).write_text('fn external_change() {}', encoding='utf-8')
     if method == 'initialize':
         INITIALIZE = params
         capabilities = {
-            'positionEncoding': 'utf-16', 'textDocumentSync': {'openClose': True, 'change': A.sync_kind},
+            'positionEncoding': A.encoding, 'textDocumentSync': {'openClose': True, 'change': A.sync_kind},
             'documentSymbolProvider': True, 'referencesProvider': True,
             'definitionProvider': True, 'implementationProvider': True,
             'renameProvider': {'prepareProvider': True},
@@ -83,6 +119,14 @@ def lsp(request):
         }
         if not A.push_only:
             capabilities['diagnosticProvider'] = {'interFileDependencies': False, 'workspaceDiagnostics': False}
+        if A.ide:
+            capabilities.update({'completionProvider': {'resolveProvider': True}, 'hoverProvider': True,
+                                 'signatureHelpProvider': {'triggerCharacters': ['(']}, 'workspaceSymbolProvider': True,
+                                 'callHierarchyProvider': True, 'typeHierarchyProvider': True,
+                                 'documentFormattingProvider': True, 'documentRangeFormattingProvider': True,
+                                 'inlayHintProvider': {'resolveProvider': True},
+                                 'semanticTokensProvider': {'full': True, 'range': True, 'legend': {'tokenTypes': ['function'], 'tokenModifiers': ['declaration']}}})
+        capabilities.update(json.loads(A.capabilities_json))
         respond(request, {'capabilities': capabilities})
     elif method == 'textDocument/didOpen':
         doc = params['textDocument']
@@ -116,7 +160,45 @@ def lsp(request):
     elif method in ('textDocument/references', 'textDocument/implementation'):
         respond(request, [])
     elif method == 'textDocument/diagnostic':
-        respond(request, {'kind': 'full', 'items': []})
+        if A.diagnostic_kind == 'backend-error':
+            send({'jsonrpc': '2.0', 'id': request['id'], 'error': {'code': -32603, 'message': 'Fixture diagnostic backend failed'}})
+        else:
+            respond(request, {'kind': 'full', 'items': diagnostic_items()})
+    elif method == 'textDocument/completion':
+        respond(request, {'isIncomplete': False, 'items': [{'label': 'foo', 'kind': 3, 'data': {'uri': params['textDocument']['uri']},
+                                                         'command': {'title': 'data only', 'command': 'must.not.execute'}}]})
+    elif method == 'completionItem/resolve':
+        item = dict(params)
+        item['detail'] = 'resolved fixture completion'
+        item['additionalTextEdits'] = []
+        respond(request, item)
+    elif method == 'textDocument/hover':
+        respond(request, {'contents': {'kind': 'plaintext', 'value': 'fixture hover'}, 'range': rng(0, 3, 6)})
+    elif method == 'textDocument/signatureHelp':
+        respond(request, {'signatures': [{'label': 'foo(arg: i32)', 'parameters': [{'label': [4, 12]}]}], 'activeSignature': 0, 'activeParameter': 0})
+    elif method == 'workspace/symbol':
+        symbols = [{'name': 'foo', 'kind': 12, 'location': {'uri': uri, 'range': rng(0, 3, 6)}} for uri in DOCS]
+        symbols.append({'name': 'outside', 'kind': 12, 'location': {'uri': (Path.cwd().parent / 'outside.rs').as_uri(), 'range': rng(0, 0, 1)}})
+        respond(request, symbols)
+    elif method in ('textDocument/prepareCallHierarchy', 'textDocument/prepareTypeHierarchy'):
+        respond(request, {} if A.ide_malformed == 'hierarchy' else [hierarchy_item(params['textDocument']['uri'])])
+    elif method in ('callHierarchy/incomingCalls', 'callHierarchy/outgoingCalls'):
+        key = 'from' if method.endswith('incomingCalls') else 'to'
+        respond(request, [{key: params['item'], 'fromRanges': [rng(0, 3, 6)]}])
+    elif method in ('typeHierarchy/supertypes', 'typeHierarchy/subtypes'):
+        respond(request, [params['item']])
+    elif method in ('textDocument/formatting', 'textDocument/rangeFormatting'):
+        range_to_edit = params.get('range', rng(0, 0, 11))
+        respond(request, [{'range': range_to_edit, 'newText': 'fn formatted() {}'}])
+    elif method in ('textDocument/semanticTokens/full', 'textDocument/semanticTokens/range'):
+        respond(request, {'data': [0, 3, 3] if A.ide_malformed == 'tokens' else [0, 3, 3, 0, 0], 'resultId': 'fixture-tokens'})
+    elif method == 'textDocument/inlayHint':
+        respond(request, [{'position': {'line': 0, 'character': 6}, 'label': ': i32', 'data': {'uri': params['textDocument']['uri']}}])
+    elif method == 'inlayHint/resolve':
+        hint = dict(params)
+        hint['tooltip'] = 'resolved fixture hint'
+        hint['textEdits'] = []
+        respond(request, hint)
     elif method == 'textDocument/definition':
         respond(request, {'uri': params['textDocument']['uri'], 'range': rng(0, 3, 6)})
     elif method == 'textDocument/prepareRename':

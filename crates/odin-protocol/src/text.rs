@@ -72,6 +72,20 @@ pub fn end_position(text: &str) -> Position {
     }
     Position { line, character }
 }
+/// Translate UTF-8 byte offsets reported by native linters into LSP positions.
+/// An offset inside a code point or between CR and LF has no valid LSP column.
+pub fn position_from_offset(text: &str, byte_offset: usize) -> Result<Position> {
+    if byte_offset > text.len() || !text.is_char_boundary(byte_offset) {
+        bail!("Byte offset is outside text or splits a UTF-8 code point");
+    }
+    if byte_offset > 0
+        && text.as_bytes().get(byte_offset - 1) == Some(&b'\r')
+        && text.as_bytes().get(byte_offset) == Some(&b'\n')
+    {
+        bail!("Byte offset splits a CRLF line ending");
+    }
+    Ok(end_position(&text[..byte_offset]))
+}
 pub fn edit(text: &str, edits: &[TextEdit]) -> Result<String> {
     let mut ranges = Vec::new();
     for item in edits {
@@ -103,6 +117,23 @@ impl Range {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn utf8_byte_offsets_round_trip_utf16_and_line_endings() {
+        let text = "a😀\r\n中\rb\n";
+        for byte in (0..=text.len()).filter(|offset| text.is_char_boundary(*offset)) {
+            if byte > 0
+                && text.as_bytes()[byte - 1] == b'\r'
+                && text.as_bytes().get(byte) == Some(&b'\n')
+            {
+                assert!(position_from_offset(text, byte).is_err());
+            } else {
+                let position = position_from_offset(text, byte).unwrap();
+                assert_eq!(offset(text, position).unwrap(), byte);
+            }
+        }
+        assert!(position_from_offset(text, 2).is_err());
+        assert!(position_from_offset(text, text.len() + 1).is_err());
+    }
     #[test]
     fn bare_cr_is_a_line_break_and_end_position_uses_utf16() {
         let text = "a😀\rb中\r\nc\n";

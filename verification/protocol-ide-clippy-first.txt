@@ -1,0 +1,22 @@
+    Checking odin-core v0.2.0 (C:\Users\steven\.codex\worktrees\odin-protocol\odin\crates\odin-core)
+    Checking odin-protocol v0.2.0 (C:\Users\steven\.codex\worktrees\odin-protocol\odin\crates\odin-protocol)
+error: this boolean expression can be simplified
+    --> crates\odin-protocol\src\lsp.rs:1103:17
+     |
+1103 | /                 !part["value"]
+1104 | |                     .as_str()
+1105 | |                     .is_some_and(|value| !value.is_empty())
+     | |___________________________________________________________^
+     |
+     = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#nonminimal_bool
+     = note: `-D clippy::nonminimal-bool` implied by `-D warnings`
+     = help: to override `-D warnings` add `#[allow(clippy::nonminimal_bool)]`
+help: try
+     |
+1103 ~                 part["value"]
+1104 +                     .as_str().is_none_or(|value| value.is_empty())
+     |
+
+error: could not compile `odin-protocol` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `odin-protocol` (lib test) due to 1 previous error

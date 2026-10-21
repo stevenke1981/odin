@@ -539,3 +539,338 @@ async fn dap_restart_ticket_allows_a_new_configuration_cycle_without_deadlock() 
     assert_eq!(adapter.status().unwrap()["generation"], 2);
     adapter.shutdown().await.unwrap();
 }
+
+fn ide_position() -> odin_protocol::text::Position {
+    odin_protocol::text::Position {
+        line: 0,
+        character: 3,
+    }
+}
+fn ide_range() -> odin_protocol::text::Range {
+    odin_protocol::text::Range {
+        start: odin_protocol::text::Position {
+            line: 0,
+            character: 0,
+        },
+        end: odin_protocol::text::Position {
+            line: 0,
+            character: 11,
+        },
+    }
+}
+
+#[tokio::test]
+async fn ide_reads_and_resolves_are_fresh_inert_and_utf16_negotiated() {
+    let temp = tempfile::tempdir().unwrap();
+    let before = "fn foo() {}";
+    std::fs::write(temp.path().join("lib.rs"), before).unwrap();
+    let client = client_with(temp.path(), &["--ide"]).await;
+    let hash = odin_core::sha256(before.as_bytes());
+    let completion = client.completion("lib.rs", ide_position()).await.unwrap();
+    assert_eq!(completion["document"]["sha256"], hash);
+    assert_eq!(completion["freshness"], "current");
+    let resolved = client
+        .resolve_completion("lib.rs", &completion["result"]["items"][0], &hash)
+        .await
+        .unwrap();
+    assert_eq!(resolved["result"]["detail"], "resolved fixture completion");
+    assert_eq!(resolved["commands_executed"], false);
+    assert_eq!(
+        client.hover("lib.rs", ide_position()).await.unwrap()["result"]["contents"]["value"],
+        "fixture hover"
+    );
+    assert_eq!(
+        client
+            .signature_help("lib.rs", ide_position())
+            .await
+            .unwrap()["result"]["activeSignature"],
+        0
+    );
+    let hints = client.inlay_hints("lib.rs", ide_range()).await.unwrap();
+    let hint = client
+        .resolve_inlay_hint("lib.rs", &hints["result"][0], &hash)
+        .await
+        .unwrap();
+    assert_eq!(hint["result"]["tooltip"], "resolved fixture hint");
+    assert_eq!(hint["edits_applied"], false);
+    for range in [None, Some(ide_range())] {
+        let tokens = client.semantic_tokens("lib.rs", range).await.unwrap();
+        assert_eq!(tokens["result"]["data"], json!([0, 3, 3, 0, 0]));
+        assert_eq!(tokens["legend"]["tokenTypes"][0], "function");
+    }
+    assert_eq!(
+        std::fs::read_to_string(temp.path().join("lib.rs")).unwrap(),
+        before
+    );
+    client.shutdown().await.unwrap();
+}
+
+#[tokio::test]
+async fn ide_workspace_symbols_are_scoped_limited_and_project_local() {
+    let temp = tempfile::tempdir().unwrap();
+    std::fs::create_dir(temp.path().join("src")).unwrap();
+    for path in ["lib.rs", "other.rs", "src/nested.rs"] {
+        std::fs::write(temp.path().join(path), "fn foo() {}").unwrap();
+    }
+    let client = client_with(temp.path(), &["--ide"]).await;
+    for path in ["lib.rs", "other.rs", "src/nested.rs"] {
+        client.sync(path).await.unwrap();
+    }
+    let limited = client
+        .workspace_symbols_scoped("foo", None, 1)
+        .await
+        .unwrap();
+    assert_eq!(limited["result"].as_array().unwrap().len(), 1);
+    assert_eq!(limited["total_in_scope"], 3);
+    assert_eq!(limited["truncated"], true);
+    assert_eq!(limited["excluded_outside_snapshot"], 1);
+    let scoped = client
+        .workspace_symbols_scoped("foo", Some("src"), 10)
+        .await
+        .unwrap();
+    assert_eq!(scoped["result"].as_array().unwrap().len(), 1);
+    assert_eq!(scoped["result"][0]["relative_path"], "src/nested.rs");
+    assert!(
+        client
+            .workspace_symbols_scoped("foo", Some("../"), 10)
+            .await
+            .is_err()
+    );
+    assert!(
+        client
+            .workspace_symbols_scoped("foo", None, 0)
+            .await
+            .is_err()
+    );
+    client.shutdown().await.unwrap();
+}
+
+#[tokio::test]
+async fn ide_call_and_type_hierarchies_preserve_opaque_items_and_ranges() {
+    let temp = tempfile::tempdir().unwrap();
+    std::fs::write(temp.path().join("lib.rs"), "fn foo() {}").unwrap();
+    let client = client_with(temp.path(), &["--ide"]).await;
+    for direction in ["incoming", "outgoing"] {
+        let calls = client
+            .call_hierarchy("lib.rs", ide_position(), direction)
+            .await
+            .unwrap();
+        assert_eq!(calls["result"][0]["item"]["data"]["keep"], "opaque");
+        assert_eq!(calls["result"][0]["related"].as_array().unwrap().len(), 1);
+    }
+    for direction in ["super", "sub"] {
+        let types = client
+            .hierarchy("lib.rs", ide_position(), direction)
+            .await
+            .unwrap();
+        assert_eq!(types["hierarchy"][0]["related"][0]["name"], "foo");
+    }
+    assert!(
+        client
+            .call_hierarchy("lib.rs", ide_position(), "unknown")
+            .await
+            .is_err()
+    );
+    client.shutdown().await.unwrap();
+}
+
+#[tokio::test]
+async fn ide_formatting_prepares_a_versioned_workspace_edit_for_core_cas_only() {
+    use odin_core::transaction::Transactions;
+    let temp = tempfile::tempdir().unwrap();
+    let before = "fn foo() {}";
+    std::fs::write(temp.path().join("lib.rs"), before).unwrap();
+    let root = SafeRoot::new(temp.path(), &[], 10000).unwrap();
+    let client = client_with(temp.path(), &["--ide"]).await;
+    let hash = odin_core::sha256(before.as_bytes());
+    let options = json!({"tabSize":4,"insertSpaces":true});
+    let edit = client
+        .formatting("lib.rs", &options, None, &hash)
+        .await
+        .unwrap();
+    assert!(
+        edit["documentChanges"][0]["textDocument"]["version"]
+            .as_i64()
+            .is_some()
+    );
+    assert!(
+        client
+            .formatting("lib.rs", &options, Some(ide_range()), &hash)
+            .await
+            .is_ok()
+    );
+    assert_eq!(root.read("lib.rs").unwrap(), before);
+    let snapshots = std::collections::BTreeMap::from([("lib.rs".into(), before.into())]);
+    let changes = client.changes(&edit, &snapshots).await.unwrap();
+    let journal = tempfile::tempdir().unwrap();
+    let transactions = Transactions::new(root.clone(), journal.path(), 10).unwrap();
+    let preview = transactions.prepare(changes, None).unwrap();
+    assert_eq!(root.read("lib.rs").unwrap(), before);
+    transactions
+        .apply(preview["transaction_id"].as_str().unwrap())
+        .unwrap();
+    assert_eq!(root.read("lib.rs").unwrap(), "fn formatted() {}");
+    assert!(
+        client
+            .formatting("lib.rs", &options, None, &hash)
+            .await
+            .unwrap_err()
+            .to_string()
+            .contains("CONFLICT")
+    );
+    client.shutdown().await.unwrap();
+}
+
+#[tokio::test]
+async fn ide_queries_reject_stale_resolve_hashes_and_response_time_changes() {
+    let temp = tempfile::tempdir().unwrap();
+    let before = "fn foo() {}";
+    std::fs::write(temp.path().join("lib.rs"), before).unwrap();
+    let hash = odin_core::sha256(before.as_bytes());
+    let client = client_with(temp.path(), &["--ide"]).await;
+    let item =
+        client.completion("lib.rs", ide_position()).await.unwrap()["result"]["items"][0].clone();
+    let hint = client.inlay_hints("lib.rs", ide_range()).await.unwrap()["result"][0].clone();
+    std::fs::write(temp.path().join("lib.rs"), "fn changed() {}").unwrap();
+    assert!(
+        client
+            .resolve_completion("lib.rs", &item, &hash)
+            .await
+            .unwrap_err()
+            .to_string()
+            .contains("CONFLICT")
+    );
+    assert!(
+        client
+            .resolve_inlay_hint("lib.rs", &hint, &hash)
+            .await
+            .unwrap_err()
+            .to_string()
+            .contains("CONFLICT")
+    );
+    client.shutdown().await.unwrap();
+    std::fs::write(temp.path().join("lib.rs"), before).unwrap();
+    let racing = client_with(
+        temp.path(),
+        &["--ide", "--mutate-on", "textDocument/completion"],
+    )
+    .await;
+    assert!(
+        racing
+            .completion("lib.rs", ide_position())
+            .await
+            .unwrap_err()
+            .to_string()
+            .contains("CONFLICT")
+    );
+    racing.shutdown().await.unwrap();
+    std::fs::write(temp.path().join("lib.rs"), before).unwrap();
+    let workspace_race =
+        client_with(temp.path(), &["--ide", "--mutate-on", "workspace/symbol"]).await;
+    workspace_race.sync("lib.rs").await.unwrap();
+    assert!(
+        workspace_race
+            .workspace_symbols("foo")
+            .await
+            .unwrap_err()
+            .to_string()
+            .contains("CONFLICT")
+    );
+    workspace_race.shutdown().await.unwrap();
+}
+
+#[tokio::test]
+async fn ide_invalid_capabilities_encoding_and_payloads_are_explicit_errors() {
+    let temp = tempfile::tempdir().unwrap();
+    std::fs::write(temp.path().join("lib.rs"), "fn foo() {}").unwrap();
+    let unavailable=client_with(temp.path(),&["--ide","--capabilities-json",r#"{"completionProvider":false,"hoverProvider":"true","semanticTokensProvider":{"full":false}}"#]).await;
+    assert!(
+        unavailable
+            .completion("lib.rs", ide_position())
+            .await
+            .unwrap_err()
+            .to_string()
+            .contains("CAPABILITY_UNAVAILABLE")
+    );
+    assert!(
+        unavailable
+            .hover("lib.rs", ide_position())
+            .await
+            .unwrap_err()
+            .to_string()
+            .contains("CAPABILITY_UNAVAILABLE")
+    );
+    assert!(
+        unavailable
+            .semantic_tokens("lib.rs", None)
+            .await
+            .unwrap_err()
+            .to_string()
+            .contains("CAPABILITY_UNAVAILABLE")
+    );
+    unavailable.shutdown().await.unwrap();
+    let mut arguments = args("lsp");
+    arguments.extend(["--encoding".into(), "utf-8".into()]);
+    let language = LanguageConfig {
+        id: "rust".into(),
+        extensions: vec!["rs".into()],
+        program: python(),
+        args: arguments,
+        initialization_options: serde_json::Value::Null,
+        settings: serde_json::Value::Null,
+    };
+    let rejected = LspClient::start(
+        SafeRoot::new(temp.path(), &[], 1000).unwrap(),
+        language,
+        Duration::from_secs(3),
+    )
+    .await;
+    assert!(rejected.err().unwrap().to_string().contains("UTF-16"));
+    for malformed in ["tokens", "hierarchy"] {
+        let client = client_with(temp.path(), &["--ide", "--ide-malformed", malformed]).await;
+        if malformed == "tokens" {
+            assert!(client.semantic_tokens("lib.rs", None).await.is_err());
+        } else {
+            assert!(
+                client
+                    .call_hierarchy("lib.rs", ide_position(), "incoming")
+                    .await
+                    .is_err()
+            );
+        }
+        client.shutdown().await.unwrap();
+    }
+}
+
+#[tokio::test]
+async fn ide_diagnostics_include_inspection_metadata_and_preserve_backend_failure() {
+    let temp = tempfile::tempdir().unwrap();
+    std::fs::write(temp.path().join("lib.rs"), "fn foo() {}").unwrap();
+    let errors = client_with(temp.path(), &["--diagnostic-kind", "errors"]).await;
+    let report = errors.diagnostics("lib.rs").await.unwrap();
+    assert_eq!(report["status"], "errors");
+    assert_eq!(report["summary"]["errors"], 1);
+    assert_eq!(report["summary"]["warnings"], 1);
+    assert_eq!(report["findings"][0]["rule_id"], "E-FIXTURE");
+    assert_eq!(report["findings"][0]["source"], "fixture-linter");
+    assert_eq!(report["findings"][0]["relative_path"], "lib.rs");
+    assert_eq!(report["summary"]["complete"], true);
+    errors.shutdown().await.unwrap();
+    for kind in ["backend-error", "malformed"] {
+        let broken = client_with(temp.path(), &["--diagnostic-kind", kind]).await;
+        assert!(broken.diagnostics("lib.rs").await.is_err());
+        broken.shutdown().await.unwrap();
+    }
+    for (kind, status) in [
+        ("none", "pending"),
+        ("unversioned", "unverified"),
+        ("stale-out-of-bounds", "stale"),
+    ] {
+        let client = client_with(temp.path(), &["--push-only", "--diagnostic-kind", kind]).await;
+        client.symbols("lib.rs").await.unwrap();
+        let report = client.diagnostics("lib.rs").await.unwrap();
+        assert_eq!(report["status"], status);
+        assert_eq!(report["summary"]["complete"], false);
+        client.shutdown().await.unwrap();
+    }
+}

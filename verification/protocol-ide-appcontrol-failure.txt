@@ -1,0 +1,10 @@
+   Compiling odin-protocol v0.2.0 (C:\Users\steven\.codex\worktrees\odin-protocol\odin\crates\odin-protocol)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.93s
+     Running unittests src\lib.rs (E:\odin\target\debug\deps\odin_protocol-b6905337e014fe48.exe)
+error: test failed, to rerun pass `-p odin-protocol --lib`
+
+Caused by:
+  could not execute process `E:\odin\target\debug\deps\odin_protocol-b6905337e014fe48.exe` (never executed)
+
+Caused by:
+  應用程式控制原則已封鎖此檔案。 (os error 4551)
