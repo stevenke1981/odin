@@ -74,10 +74,10 @@ Linux 保留 [69 原生 fsync 失敗](../verification/package-v3-linux-69-diagno
 
 | Owner | Write scope | 驗收與停止條件 |
 |---|---|---|
-| root integration | shared整合、最終build/runtime report與delivery／feature evidence | 最終69e769b編譯PASS與83a81d執行前4551分開；workspace exit101與continuation PASS都保留。只有相同path／SHA獲管理員正式允許並完成source/hash preflight後，才依原計畫重跑適用Windows驗收，不搬移或改造候選繞過政策 |
+| root integration | shared整合、最終build/runtime report與delivery／feature evidence | Windows69e769b編譯PASS與83a81d執行前4551分開；workspace exit101與continuation PASS都保留。只有相同path／SHA獲管理員正式允許並完成source/hash preflight後，才依原計畫重跑適用Windows驗收，不搬移或改造候選繞過政策 |
 | platform author | 六語各兩專案native MCP harness、明確host profiles與專屬證據 | 保留Go46／Python60／Ruff18及混合首輪失敗；最終十二專案矩陣目前BLOCKED。C#仍需完整MCP symbols／refs／rename CAS／rollback驗收；未廣告capability保留UNAVAILABLE，Java／TS未版本診斷不升current；私有Python副本每次從可信來源新建並核對hash |
 | independent reviewer | immutable source/diff與review證據 | 最終combined source、native profile與來源／binary hash須正確綁定；歷史finding與更正保留，作者不自我核准，不用舊候選PASS取代新候選審查 |
-| packaging author | 當輪Windows／Linux打包腳本、installer／runtime收據 | Windows780的22項PASS保留原binary綁定，最終Windows installer維持BLOCKED。Linux69e769b本機VM建置IN_PROGRESS；完成原生測試、封裝與生命週期驗證後交root更新ODIN-029，macOS及未測矩陣不升PASS |
+| packaging author | 當輪Windows／Linux打包腳本、installer／runtime收據 | Windows780的22項PASS保留原binary綁定，最終Windows installer維持BLOCKED。Linux app來源0fe03ba，封裝文件另綁packaging revision；原69／d3失敗保留，當前完整驗收IN_PROGRESS。完成後交root更新ODIN-029，macOS及未測矩陣不升PASS |
 | root release | 最終artifact manifest、公開revision與發布紀錄 | 區分歷史公開版本、780 installer與本輪最終binary；依適用review、runtime及平台收據決定發布範圍，明示BLOCKED／NOT_RUN與未簽章等限制 |
 
 每切片唯一owner、明確write scope；共有檔案序列整合，不覆寫衝突取得綠燈。歷史報告、command／transcript／normalization與原始driver快照不改寫，離線index PASS也不增加任何backend執行次數。Linux／macOS完整原生驗收、全語言／IDE私有等價、完整installer升級／故障矩陣及benchmark仍未完成；只有全部原acceptance具適用實證才升整項PASS。
