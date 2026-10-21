@@ -211,11 +211,11 @@
     {
       "serena_tool": "jet_brains_run_inspections",
       "group": "jetbrains_tools",
-      "odin_native": "get_diagnostics_for_file (LSP only)",
+      "odin_native": "run_inspections / prepare_inspection_fix",
       "status": "NATIVE_SOURCE_PARTIAL",
       "runtime_dependency": "NONE_ON_SERENA",
       "verification": "FULL_UPSTREAM_EQUIVALENCE_NOT_VERIFIED",
-      "notes": "原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。"
+      "notes": "原生 Clippy/Ruff/ESLint providers、強制唯讀來源 OS 沙箱與 CAS safe-fix preview；不重現 JetBrains 私有 inspection 規則全集。"
     },
     {
       "serena_tool": "jet_brains_safe_delete",

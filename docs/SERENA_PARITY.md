@@ -32,7 +32,7 @@
 | `jet_brains_list_inspections` | `—` | NOT_IMPLEMENTED | 原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。 |
 | `jet_brains_move` | `move_symbol` | NATIVE_SOURCE_PARTIAL | 原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。 |
 | `jet_brains_rename` | `rename_symbol` | NATIVE_SOURCE_PARTIAL | 原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。 |
-| `jet_brains_run_inspections` | `get_diagnostics_for_file (LSP only)` | NATIVE_SOURCE_PARTIAL | 原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。 |
+| `jet_brains_run_inspections` | `run_inspections / prepare_inspection_fix` | NATIVE_SOURCE_PARTIAL | 原生 Clippy/Ruff/ESLint providers、強制唯讀來源 OS 沙箱與 CAS safe-fix preview；不重現 JetBrains 私有 inspection 規則全集。 |
 | `jet_brains_safe_delete` | `safe_delete_symbol` | NATIVE_SOURCE_PARTIAL | 原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。 |
 | `jet_brains_type_hierarchy` | `type_hierarchy` | NATIVE_SOURCE_PARTIAL | 原生 LSP／DAP 取決於 backend capabilities；無 JetBrains 私有 inspection provider 或 persistent Python REPL，未宣稱等價。 |
 | `execute_shell_command` | `execute_shell_command` | NATIVE_SOURCE_PARTIAL | 原生僅固定 host argv profile；不接受上游任意 shell 字串。 |
@@ -67,7 +67,7 @@
 
 | 領域 | 原生現況 | 尚未對齊／依賴界線 |
 |---|---|---|
-| 40+ 語言與專用適配 | Generic LSP transport / 可配置伺服器；未驗證所有語言 | 必須逐語言原生適配與驗收；不包含上游 adapters |
+| 40+ 語言與專用適配 | 直接 LSP transport、28 個設定指引 profiles 與檔案 languageId；逐語驗收另列 | 必須逐語言原生適配與驗收；不包含上游 adapters |
 | REPL facade `lsp / jb / ide / fs / edit / mem / cfg / ext / shell` | 同領域部分 native tools；不模擬 Python objects/facades | 沒有 Python / JetBrains REPL；待獨立設計，不回退上游 |
 | YAML、Jinja、contexts、modes | host TOML、project flags、只收緊權限的 contexts/modes | 不執行 repository 配置或 Jinja；不保證相同設定語意 |
 | 記憶 topic / ref / rename | Markdown + mem: + CAS、readonly、scope import/export/move | 不承諾完整上游 repository-local 行為 |
