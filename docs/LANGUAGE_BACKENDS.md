@@ -337,6 +337,19 @@ formatting no-op and exact rollback. The run initialized **zero Python language
 servers**. This establishes the explicit native formatting workflow, while the
 separate Python LSP runtime failure remains unresolved.
 
+The [first typed-profile five-language matrix](../verification/language-sandbox-v3-five-native-01.json)
+used that same frozen binary and returned actual exit **1**:
+**150 PASS / 4 FAIL / 4 UNAVAILABLE / 12 NOT_VERIFIED** across ten projects.
+Both Rust projects passed all checks. Java and TypeScript passed live semantic,
+cross-file rename/CAS/rollback and formatting checks, while their unversioned
+diagnostics remain `NOT_VERIFIED` and unsupported resolve capabilities remain
+`UNAVAILABLE`. Both Go projects returned document symbols but failed cross-file
+references with `no package metadata`. Both explicitly selected OmniSharp
+projects initialized and then exited before semantic acceptance. These failed
+projects were not replaced with handshake-only passes. The separate direct Go
+package diagnostic preserves raw LSP trace/notifications showing the same
+missing metadata outside Odin; it is not product acceptance.
+
 `verification/language-sandbox-v3-runner.ps1` records the exact driver argv,
 binary/harness/runner hashes, actual exit code, raw stdout and transcript. It
 requires fresh output names, normalizes text to LF before final hash binding,

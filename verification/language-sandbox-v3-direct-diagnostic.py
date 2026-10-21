@@ -26,9 +26,12 @@ def main():
     parser.add_argument("--probe", choices=("go-lsp", "java-security", "python-runtime-cwd"), required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--enumerate-runtime-ancestors", action="store_true")
+    parser.add_argument("--go-package-diagnostics", action="store_true")
     args = parser.parse_args()
     if args.output.exists():
         parser.error("Choose a fresh report")
+    if args.go_package_diagnostics and args.probe != "go-lsp":
+        parser.error("Go package diagnostics require the fixed Go LSP profile")
     executor = Path("C:/Users/steven/AppData/Local/Programs/DevTools/mxc/node_modules/@microsoft/mxc-sdk/bin/x64/wxc-exec.exe")
     assert sha(executor) == "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259"
     tools = Path("E:/odin/.odin/validation-tools")
@@ -45,6 +48,10 @@ def main():
         environment["GOTOOLCHAIN"] = "local"
         item = fixture(base, tools, language, "diagnostic")
         readonly, writable = configure_sandbox_fixture(base, tools, item, environment)
+        go_log = None
+        if args.go_package_diagnostics:
+            go_log = writable[0] / "gopls-diagnostic.log"
+            item.argv = ["-rpc.trace", "-logfile", str(go_log)]
         environment.update(item.environment)
         scratch, policies = base / "private-scratch", base / "policies"
         scratch.mkdir(); policies.mkdir()
@@ -170,6 +177,11 @@ def main():
                     peer.notify("textDocument/didOpen", {"textDocument": {"uri": (item.root / item.source).as_uri(),
                                 "languageId": language, "version": 1, "text": item.original}})
                     report["symbols"] = peer.request("textDocument/documentSymbol", {"textDocument": {"uri": (item.root / item.source).as_uri()}}, timeout=15)
+                    if args.go_package_diagnostics:
+                        peer.notify("textDocument/didOpen", {"textDocument": {"uri": (item.root / item.consumer).as_uri(),
+                                    "languageId": language, "version": 1, "text": item.consumer_original}})
+                        report["references"] = peer.request("textDocument/references", {"textDocument": {"uri": (item.root / item.source).as_uri()},
+                            "position": {"line": 1, "character": 6}, "context": {"includeDeclaration": True}}, timeout=15)
                     try:
                         report["shutdown"] = peer.request("shutdown", {}, timeout=3)
                         peer.notify("exit", {})
@@ -183,6 +195,8 @@ def main():
                     report["events"] = list(peer.events)
                     report["stderr"] = list(peer.errors)
             report["native_exit_code"] = peer.process.returncode
+        if go_log and go_log.is_file():
+            report["gopls_log"] = go_log.read_text(encoding="utf-8", errors="replace")[-30000:]
         serialized = json.dumps(report, ensure_ascii=False, indent=2)
         serialized = serialized.replace(json.dumps(str(base))[1:-1], "<fixture>")
         args.output.write_text(serialized + "\n", encoding="utf-8", newline="\n")
