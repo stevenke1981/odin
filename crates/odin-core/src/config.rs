@@ -30,6 +30,7 @@ pub struct PolicyConfig {
     pub allow_write: bool,
     pub allow_shell: bool,
     pub allow_debug: bool,
+    pub allow_inspections: bool,
     pub excluded_tools: Vec<String>,
 }
 fn default_state() -> PathBuf {
@@ -74,6 +75,10 @@ pub struct ProjectConfig {
     #[serde(default)]
     pub allow_debug: bool,
     #[serde(default)]
+    pub allow_inspections: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub sandbox: Option<crate::sandbox_policy::MxcSandboxConfig>,
+    #[serde(default)]
     pub excluded_tools: Vec<String>,
     #[serde(default = "default_deny")]
     pub deny_globs: Vec<String>,
@@ -83,6 +88,29 @@ pub struct ProjectConfig {
     pub commands: BTreeMap<String, CommandConfig>,
     #[serde(default)]
     pub debuggers: BTreeMap<String, CommandConfig>,
+    #[serde(default)]
+    pub inspections: BTreeMap<String, InspectionProfile>,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum InspectionProvider {
+    Clippy,
+    Ruff,
+    Eslint,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct InspectionProfile {
+    pub provider: InspectionProvider,
+    pub command: CommandConfig,
+    #[serde(default = "default_version_args")]
+    pub version_args: Vec<String>,
+}
+
+fn default_version_args() -> Vec<String> {
+    vec!["--version".to_owned()]
 }
 fn default_deny() -> Vec<String> {
     [
@@ -132,6 +160,7 @@ impl Config {
                     project.allow_write &= policy.allow_write;
                     project.allow_shell &= policy.allow_shell;
                     project.allow_debug &= policy.allow_debug;
+                    project.allow_inspections &= policy.allow_inspections;
                     project
                         .excluded_tools
                         .extend(policy.excluded_tools.iter().cloned());
@@ -227,6 +256,13 @@ impl Config {
                     return Err(Fault::invalid("Command timeout must be 1..600"));
                 }
             }
+            for (name, profile) in &project.inspections {
+                validate_id(name)?;
+                validate_inspection(profile)?;
+            }
+            if let Some(sandbox) = &mut project.sandbox {
+                validate_sandbox_policy(sandbox, parent, &path, &config.state_dir)?;
+            }
         }
         // An overlapping root under another ID could bypass the same-file gate
         // or present a writable alias for a read-only project. Reject at startup.
@@ -262,6 +298,122 @@ pub fn validate_id(id: &str) -> Result<()> {
     }
     Ok(())
 }
+fn validate_inspection(profile: &InspectionProfile) -> Result<()> {
+    validate_program(&profile.command.program)?;
+    if !(1..=600).contains(&profile.command.timeout_secs)
+        || profile.command.args.len() > 128
+        || profile.version_args.len() > 16
+    {
+        return Err(Fault::invalid(
+            "Inspection profile exceeds execution limits",
+        ));
+    }
+    for argument in profile.command.args.iter().chain(&profile.version_args) {
+        if argument.contains(['\0', '\n', '\r']) || argument.len() > 16_384 {
+            return Err(Fault::invalid("Invalid inspection argument"));
+        }
+        let option = argument.split('=').next().unwrap_or(argument);
+        if [
+            "--fix",
+            "--fix-only",
+            "--add-noqa",
+            "--output-file",
+            "--output",
+            "-o",
+        ]
+        .contains(&option)
+        {
+            return Err(Fault::invalid(
+                "Inspection tools may preview fixes, never write source directly",
+            ));
+        }
+    }
+    Ok(())
+}
+
+fn validate_sandbox_policy(
+    policy: &mut crate::sandbox_policy::MxcSandboxConfig,
+    parent: &Path,
+    host_config: &Path,
+    state: &Path,
+) -> Result<()> {
+    if policy.executor_sha256.len() != 64
+        || !policy
+            .executor_sha256
+            .bytes()
+            .all(|byte| byte.is_ascii_hexdigit())
+    {
+        return Err(Fault::invalid("Sandbox executor requires an exact SHA-256"));
+    }
+    policy.executor_sha256.make_ascii_lowercase();
+    if policy.readonly_paths.len() + policy.readwrite_paths.len() + policy.denied_paths.len() > 256
+    {
+        return Err(Fault::invalid("Too many sandbox filesystem grants"));
+    }
+    for path in std::iter::once(&mut policy.executor)
+        .chain(std::iter::once(&mut policy.temp_root))
+        .chain(&mut policy.readonly_paths)
+        .chain(&mut policy.readwrite_paths)
+        .chain(&mut policy.denied_paths)
+    {
+        if path.is_relative() {
+            *path = parent.join(&*path);
+        }
+        *path = canonical_storage_path(&normalize_absolute(path))?;
+        if path.parent().is_none() {
+            return Err(Fault::invalid("Sandbox cannot grant a filesystem root"));
+        }
+    }
+    if !policy.executor.is_file() {
+        return Err(Fault::new(
+            "MISSING_BACKEND",
+            "Sandbox executor is not installed",
+        ));
+    }
+    if crate::sha256(&std::fs::read(&policy.executor)?) != policy.executor_sha256 {
+        return Err(Fault::new(
+            "INTEGRITY_ERROR",
+            "Sandbox executor hash does not match host policy",
+        ));
+    }
+    policy
+        .denied_paths
+        .extend([host_config.to_owned(), state.to_owned()]);
+    policy.denied_paths.sort();
+    policy.denied_paths.dedup();
+    for denied in &policy.denied_paths {
+        if storage_contains(&policy.temp_root, denied)
+            || storage_contains(denied, &policy.temp_root)
+        {
+            return Err(Fault::invalid(
+                "Sandbox scratch overlaps protected host storage",
+            ));
+        }
+        if policy
+            .readwrite_paths
+            .iter()
+            .any(|grant| storage_contains(denied, grant) || storage_contains(grant, denied))
+        {
+            return Err(Fault::invalid(
+                "Sandbox writable grant overlaps a protected path",
+            ));
+        }
+    }
+    Ok(())
+}
+
+fn storage_contains(path: &Path, root: &Path) -> bool {
+    #[cfg(windows)]
+    {
+        PathBuf::from(path.to_string_lossy().to_lowercase())
+            .starts_with(PathBuf::from(root.to_string_lossy().to_lowercase()))
+    }
+    #[cfg(not(windows))]
+    {
+        path.starts_with(root)
+    }
+}
+
 fn validate_program(program: &str) -> Result<()> {
     if program.is_empty() || program.contains(['\n', '\r', '\0']) {
         return Err(Fault::invalid("Invalid executable"));

@@ -1,0 +1,20 @@
+{
+  "scope": "HOST_POLICY_CONFIGURATION_NOT_OS_ENFORCEMENT",
+  "status": "PASS",
+  "command": [
+    "cargo",
+    "test",
+    "-p",
+    "odin-core",
+    "--test",
+    "host_execution_policy",
+    "--locked"
+  ],
+  "exit_code": 0,
+  "output": "\nrunning 5 tests\ntest new_execution_permissions_are_not_implicitly_enabled ... ok\ntest policies_can_only_reduce_inspection_permission ... ok\ntest inspection_profiles_cannot_enable_source_writing_flags ... ok\ntest sandbox_policy_binds_executor_and_protects_host_storage ... ok\ntest sandbox_writable_grants_cannot_cover_configuration_or_state ... ok\n\ntest result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s\n\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.16s\n     Running tests\\host_execution_policy.rs (target\\debug\\deps\\host_execution_policy-5c3d470a1c5b88e9.exe)\n",
+  "source_sha256": {
+    "crates/odin-core/src/config.rs": "bbd24da059a85c199277e7ae6d104f4a4260fb952734b6f39455bbf2d5c31f12",
+    "crates/odin-core/src/sandbox_policy.rs": "1f7e8404e7e19eb5e4c1df0624dc3e3bfd5b49ea8384bdae8eae9562f179e7e3",
+    "crates/odin-core/tests/host_execution_policy.rs": "e1eb970e6c1ea8e7f5b677b8e78073f1c6bd32c0e8f28f5d772cdd38ca4bb20f"
+  }
+}

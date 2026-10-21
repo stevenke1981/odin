@@ -6,6 +6,7 @@ pub mod error;
 pub mod memory;
 pub mod paths;
 pub mod process;
+pub mod sandbox_policy;
 pub mod search;
 pub mod store;
 pub mod transaction;
