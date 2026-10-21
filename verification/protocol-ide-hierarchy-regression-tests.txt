@@ -1,0 +1,21 @@
+   Compiling odin-protocol v0.2.0 (C:\Users\steven\.codex\worktrees\odin-protocol\odin\crates\odin-protocol)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.24s
+     Running unittests src\lib.rs (E:\odin\target\debug\deps\odin_protocol-b6905337e014fe48.exe)
+
+running 2 tests
+test lsp::tests::hierarchy_budget_rejects_expired_synchronous_serialization ... ok
+test lsp::tests::hierarchy_budget_counts_escaped_utf8_and_all_retained_fields ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 29 filtered out; finished in 0.12s
+
+     Running tests\fixture_protocols.rs (E:\odin\target\debug\deps\fixture_protocols-19f49fcd3452269d.exe)
+
+running 4 tests
+test hierarchy_prepare_quota_rejects_before_any_related_rpc ... ok
+test hierarchy_relation_and_range_counts_are_bounded_before_validation ... ok
+test hierarchy_json_quota_is_cumulative_and_stops_before_fifth_related_rpc ... ok
+test hierarchy_timeout_covers_prepare_and_all_related_rpcs_together ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 23 filtered out; finished in 2.07s
+
+exit_code=0

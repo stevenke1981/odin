@@ -1,0 +1,101 @@
+{
+  "task_id": "SIR-001-hierarchy-resource-bounds",
+  "actor_instance": "/root/protocol_implementation",
+  "recorded_utc": "2026-10-21T01:11:40.557173+00:00",
+  "base_sha": "0e50a643df38c6bcb4d67ec5df36455a25bcff78",
+  "tested_code_sha": "4a066f8fe5141671eac550322081a332167d1dd2",
+  "platform": "x86_64-pc-windows-msvc",
+  "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+  "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-protocol\\odin",
+  "cargo_target_dir": "E:/odin/target",
+  "source_hash_normalization": "UTF-8 bytes with CRLF normalized to LF",
+  "source_sha256": {
+    "crates/odin-protocol/src/lsp.rs": "bff9436ee2c837f0a154c51ab1ef66cdb3f6e3542359f8cb93629cee45611224",
+    "crates/odin-protocol/src/text.rs": "047329493570b965a79f93a4dd3b2f62a05147d9610547eee5ae4d38619055c2",
+    "crates/odin-protocol/src/rpc.rs": "3de2e6d0f08a1b7725726e46390afbf30741ec8c0468bca850ebf98855d6a7c9",
+    "crates/odin-protocol/src/dap.rs": "23236ae9bd7476136ec17793cb1b4c2a7cc8404e7c17d5e36b124221ee82b05c",
+    "crates/odin-protocol/src/workspace.rs": "bbd5af31583f9c1322f2c6b90fcfaf438270e9be8b9e664b616c7cefc8647d16",
+    "crates/odin-protocol/tests/fixture_protocols.rs": "612c03ee771bc93228345542be0d087293d2e7b8dc9ad12c1a26b31e66cabab9",
+    "tests/fixtures/protocol_peer.py": "3b351a3a6cb33267549d505ae949a80842f4e558038df8cd9e78e1d81847c7a2",
+    "docs/PROTOCOL_IDE.md": "7405f18a0f746f84afc7263f863ca25a6ca99170b2e15079949a8d50082fb860",
+    "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34"
+  },
+  "test_binaries": [
+    {
+      "path": "E:\\odin\\target\\debug\\deps\\odin_protocol-b6905337e014fe48.exe",
+      "sha256": "6b37248bc9204d079c4052683b9bba8bc610c57a0796ecca10d6ef3e6623d747",
+      "mtime_utc": "2026-10-21T01:10:08.670960+00:00"
+    },
+    {
+      "path": "E:\\odin\\target\\debug\\deps\\fixture_protocols-19f49fcd3452269d.exe",
+      "sha256": "a08bcff323d4a5257bc3f7b2d93cf419b6c0e2cfc88ba89c37d2496a3b56427b",
+      "mtime_utc": "2026-10-21T01:10:10.434229+00:00"
+    }
+  ],
+  "limits": {
+    "prepare_items": 128,
+    "related_items_total": 4096,
+    "call_ranges_total": 8192,
+    "retained_json_bytes": 4194304,
+    "both_result_fields_json_bytes": 8388608,
+    "deadline": "One startup-configured timeout across the whole query; explicit checks between bounded synchronous operations"
+  },
+  "checks": [
+    {
+      "status": "PASS",
+      "command": "cargo test -p odin-protocol --locked hierarchy_ -- --nocapture",
+      "exit_code": 0,
+      "unit_passed": 2,
+      "fixture_passed": 4,
+      "log": "verification/protocol-ide-hierarchy-regression-tests.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "cargo test -p odin-protocol --locked",
+      "exit_code": 0,
+      "unit_passed": 31,
+      "fixture_passed": 26,
+      "ignored": 1,
+      "log": "verification/protocol-ide-hierarchy-package-tests.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "cargo clippy -p odin-protocol --all-targets --locked -- -D warnings",
+      "exit_code": 0,
+      "log": "verification/protocol-ide-hierarchy-clippy.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "rustfmt --edition 2024 --check crates/odin-protocol/src/lsp.rs crates/odin-protocol/tests/fixture_protocols.rs",
+      "exit_code": 0,
+      "log": "verification/protocol-ide-hierarchy-fmt.txt"
+    },
+    {
+      "status": "NOT_RUN",
+      "command": "intentional GiB / OOM reproduction",
+      "reason": "Bounded counterexamples exercise the defect without exhausting the host"
+    },
+    {
+      "status": "NOT_RUN",
+      "command": "real-language hierarchy acceptance / final integrated binary",
+      "owner": "/root",
+      "reason": "Protocol fixtures do not prove real backend language behavior"
+    },
+    {
+      "status": "NOT_RUN",
+      "command": "Linux/macOS native checks",
+      "reason": "This slice was executed on Windows only"
+    }
+  ],
+  "independent_rereview": "PENDING /root",
+  "historical_appcontrol_evidence": "verification/protocol-ide-appcontrol.json remains unchanged; the historical rejected artifact is not relabeled PASS",
+  "os_policy_modified": false,
+  "target_path_moved": false,
+  "cloud_ci": false,
+  "remote_push": false,
+  "remaining_boundaries": [
+    "Encoded JSON limits exclude envelope and allocator overhead; existing per-frame transport limit bounds the current incoming response",
+    "A blocking OS file read cannot be preempted; explicit deadline checks reject after the read completes"
+  ],
+  "next_owner": "/root for integration and independent rereview"
+}
