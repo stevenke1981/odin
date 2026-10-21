@@ -105,6 +105,25 @@ async fn invalid_utf8_and_nonzero_exit_are_not_usable_source() {
 }
 
 #[tokio::test]
+async fn zero_exit_does_not_make_partial_stdin_a_success() {
+    let root = tempfile::tempdir().unwrap();
+    let result = run_with_stdin(
+        &config("early-success", 10),
+        root.path(),
+        (1024, 1024),
+        None,
+        &"x".repeat(1_048_576),
+    )
+    .await
+    .unwrap();
+    assert_eq!(result["exit_code"], 0);
+    assert_eq!(result["stdout"], "partial");
+    assert_eq!(result["success"], false);
+    assert_eq!(result["stdin_complete"], false);
+    assert!(result["stdin_error"].is_string());
+}
+
+#[tokio::test]
 async fn deadline_includes_child_that_does_not_read_stdin() {
     let root = tempfile::tempdir().unwrap();
     let input = "x".repeat(1_048_576);

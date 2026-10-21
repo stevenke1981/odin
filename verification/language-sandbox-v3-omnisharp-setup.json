@@ -1,0 +1,19 @@
+{
+  "scope": "Official pinned alternative host backend tool setup only; not C# sandbox or IDE acceptance",
+  "status": "PASS",
+  "started_utc": "2026-10-21T03:01:26.1288980Z",
+  "finished_utc": "2026-10-21T03:01:31.7120176Z",
+  "source": "https://github.com/OmniSharp/omnisharp-roslyn/releases/tag/v1.39.15",
+  "asset": "https://github.com/OmniSharp/omnisharp-roslyn/releases/download/v1.39.15/omnisharp-win-x64-net6.0.zip",
+  "publisher_sha256": "b03eb6b9ac6446fce803b87c0965e94cef5570cc86f47bfefe2f60933d8658e8",
+  "actual_sha256": "b03eb6b9ac6446fce803b87c0965e94cef5570cc86f47bfefe2f60933d8658e8",
+  "runtimeconfig_sha256": "0798510b6b14926af93c62789341f0483f14cbaa1486f5beb6f1d7ecc5adf964",
+  "program_sha256": "73889b00248a87ddda03db06f6ba1a206c7560c22c0d20febee666404fc282ef",
+  "command": [
+    "E:\\odin\\.odin\\validation-tools\\dotnet\\dotnet.exe",
+    "E:\\odin\\.odin\\validation-tools\\omnisharp-1.39.15\\OmniSharp.dll",
+    "--help"
+  ],
+  "exit_code": 0,
+  "output": "Usage:  [options]\n\nOptions:\n  -?|-h|--help             Show help information.\n  -s|--source              Solution or directory for OmniSharp to point at\n                           (defaults to current directory).\n  -l|--loglevel            Level of logging (defaults to 'Information').\n  -v|--verbose             Explicitly set 'Debug' log level.\n  -hpid|--hostPID          Host process ID.\n  -z|--zero-based-indices  Use zero based indices in request/responses (defaults\n                           to 'false').\n  -pl|--plugin             Plugin name(s).\n  -d|--debug               Wait for debugger to attach\n  --locale                 Locale to use for localization (defaults to system\n                           locale).\n  -lsp|--languageserver    Use Language Server Protocol.\n  -e|--encoding            Input / output encoding for STDIO protocol.\n\n"
+}

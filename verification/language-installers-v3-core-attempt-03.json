@@ -1,0 +1,8 @@
+{
+  "command": "cargo test -p odin-core --locked --test stdin_execution --test host_execution_policy",
+  "started_utc": "2026-10-21T02:58:06.5847690Z",
+  "finished_utc": "2026-10-21T02:58:13.1033573Z",
+  "exit_code": 101,
+  "status": "FAIL",
+  "output": "   Compiling odin-core v0.2.0 (E:\\odin\\crates\\odin-core)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.14s\n     Running tests\\host_execution_policy.rs (target\\debug\\deps\\host_execution_policy-5c3d470a1c5b88e9.exe)\nerror: test failed, to rerun pass `-p odin-core --test host_execution_policy`\n\nCaused by:\n  could not execute process `E:\\odin\\target\\debug\\deps\\host_execution_policy-5c3d470a1c5b88e9.exe` (never executed)\n\nCaused by:\n  應用程式控制原則已封鎖此檔案。 (os error 4551)\n"
+}

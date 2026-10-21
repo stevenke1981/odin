@@ -23,6 +23,7 @@ fn main() -> io::Result<()> {
             io::stderr().write_all(b"\xff")?;
         }
         Some("exit") => std::process::exit(23),
+        Some("early-success") => io::stdout().write_all(b"partial")?,
         Some("no-read") => std::thread::sleep(std::time::Duration::from_secs(60)),
         _ => std::process::exit(87),
     }

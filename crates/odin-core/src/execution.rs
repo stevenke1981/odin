@@ -104,6 +104,9 @@ async fn run_capture(
         if let Some(input) = input {
             let mut stdin = stdin.ok_or_else(|| std::io::Error::other("Missing stdin"))?;
             stdin.write_all(input.as_bytes()).await?;
+            // Windows Tokio pipes queue blocking writes; shutdown alone does
+            // not report a queued write failure. Observe it before success.
+            stdin.flush().await?;
             stdin.shutdown().await?;
         }
         Ok::<_, std::io::Error>(())
