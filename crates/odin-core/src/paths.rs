@@ -231,7 +231,9 @@ impl SafeRoot {
             drop(file);
             parent.rename(&temporary, &parent, &leaf)?;
             #[cfg(unix)]
-            parent.try_clone()?.into_std_file().sync_all()?;
+            // A directory capability may be O_PATH, which cannot be fsynced.
+            // Reopen this held directory read-only, without an ambient path.
+            parent.open(".")?.sync_all()?;
             Ok(())
         })();
         if result.is_err() {
@@ -249,7 +251,7 @@ impl SafeRoot {
         let (parent, leaf) = self.parent_handle(relative)?;
         parent.remove_file(leaf)?;
         #[cfg(unix)]
-        parent.into_std_file().sync_all()?;
+        parent.open(".")?.sync_all()?;
         Ok(())
     }
     pub fn relative(&self, absolute: &Path) -> Result<String> {

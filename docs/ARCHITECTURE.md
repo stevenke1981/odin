@@ -107,6 +107,11 @@ journal 的 committed replay 具有冪等效果；request_id 只可重用相同�
 
 **限制：沒有跨檔案瞬間原子可見性，外部程式不受 Odin 鎖限制。** 原生 I/O 改用 pinned directory/no-follow handles，Windows canonical identity、8.3、junction／hardlink 有回歸；最後 CAS 與 rename 間的外部競態、全部磁碟故障仍未被宣稱解決。Snapshots 總量上限 32 MiB。
 
+Unix 的 directory capability 可能是 `O_PATH` 描述符，不能直接 `fsync`。
+rename／unlink 後以既有 directory handle 相對開啟 `.` 取得唯讀描述符再同步；
+不重開 ambient 絕對路徑、不忽略同步錯誤。Linux 原生測試發現的 `EBADF`
+與後續修正驗收各自保留來源快照，Windows 既有候選不因此重建。
+
 LSP rename／CodeAction 先取得有界來源快照，檢查版本，把有序 text edits／CreateFile／RenameFile／DeleteFile 折疊成一份 CAS Change 流程。只接受 regular UTF-8 files／既有父目錄；拒絕 overwrite、recursive、binary、directory 和需確認 annotation。
 
 ## 7. 記憶、搜尋與資料存放
