@@ -1,0 +1,66 @@
+{
+  "status": "PASS_EVIDENCE_CHECKS_ONLY",
+  "commands": [
+    {
+      "command": [
+        "python",
+        "compile-without-execution",
+        "verification\\python-cwd-v3-private-copy.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "compile-without-execution",
+        "verification\\python-cwd-v3-probe.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "compile-without-execution",
+        "verification\\python-cwd-v3-winapi.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Program Files/nodejs/node.exe",
+        "--check",
+        "verification\\python-cwd-v3-bootstrap.cjs"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:/Program Files/nodejs/node.exe",
+        "--check",
+        "verification\\python-cwd-v3-node.cjs"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "native_profile_report": "python-cwd-v3-private-20261021T033321Z.json",
+  "report_sha256": "3f78160b63a86503992a6c8926d8bd56aaa2eb1132138eb039f408945b969385",
+  "artifacts": {
+    "python-cwd-v3-20261021T032507Z.json": "7a28952ba8a8546dc1e68e0f1993f37942c6c059d0df1806729f1e91a8430a8c",
+    "python-cwd-v3-20261021T032837Z.json": "b19701ee1504b7cfe130f3c81dfb87f42ac02d8e0fe4cdebea74d591d97e21eb",
+    "python-cwd-v3-20261021T032926Z.json": "3c5449ac487b8d71719e9b72ddb26b28fd735456677cebccd69986f27637af5a",
+    "python-cwd-v3-bootstrap.cjs": "be146ec3223a6c4a69e13dfd6cfd4b7625e88cf5642f2b86b1df354f4d7118f3",
+    "python-cwd-v3-findings.md": "5c876f3f7242e49b85921d3a2f6af0690c9d9457546e81e8b5099bc88f1d5efc",
+    "python-cwd-v3-node.cjs": "69afb475e76be17a4eab961e5a25928fd37ced04e79037531f300d9b888ffbbe",
+    "python-cwd-v3-private-20261021T033218Z-files.json": "5b3b566c35516fe19e2e513b9c32b42112e14b4dd640ec6ccd7b17c4b714d2a3",
+    "python-cwd-v3-private-20261021T033218Z.json": "eb56bd188a85dc1e1233f1dc8751dfa156741fe18255a166338bbfb62a120792",
+    "python-cwd-v3-private-20261021T033321Z-files.json": "7a532f4e9f46115bd633c067dd3d5c007a98d06b2f1d77805b087e72255b4a2d",
+    "python-cwd-v3-private-20261021T033321Z.json": "3f78160b63a86503992a6c8926d8bd56aaa2eb1132138eb039f408945b969385",
+    "python-cwd-v3-private-copy.py": "3ce6fc0125229f06cd4c4e1172d9628b64583883fcd3015ade3f47e70883b01d",
+    "python-cwd-v3-probe.py": "cceac06122d98783b0709b20f318f43ac68c821f64602643101d31c228d48e8e",
+    "python-cwd-v3-winapi.py": "5ea5835853c97d8ae13d07156e42de748ea14b9a7e5d1872e43619b80ee477b7"
+  }
+}

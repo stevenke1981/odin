@@ -1,0 +1,1603 @@
+{
+  "task_id": "python-cwd-v3-private-copy-native-proof",
+  "status": "PASS_NATIVE_PROFILE_ONLY",
+  "scope": "Explicit QA host profile only. No product code/config changes, no automatic fallback.",
+  "base": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35",
+  "copy_manifest": "python-cwd-v3-private-20261021T033321Z-files.json",
+  "copy_manifest_sha256": "7a532f4e9f46115bd633c067dd3d5c007a98d06b2f1d77805b087e72255b4a2d",
+  "files": {
+    "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin\\verification\\python-cwd-v3-private-copy.py": "3ce6fc0125229f06cd4c4e1172d9628b64583883fcd3015ade3f47e70883b01d",
+    "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin\\verification\\python-cwd-v3-node.cjs": "69afb475e76be17a4eab961e5a25928fd37ced04e79037531f300d9b888ffbbe",
+    "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin\\verification\\python-cwd-v3-winapi.py": "5ea5835853c97d8ae13d07156e42de748ea14b9a7e5d1872e43619b80ee477b7",
+    "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64\\wxc-exec.exe": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+    "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\nodejs_wheel\\node.exe": "2ad12dec08161c0c3bc76e7cf2db9cfcab688ede73e49c5bb21b75be7a97847d",
+    "C:\\Python314\\python.exe": "434b361fe0c5960d404974feed493db47f2603a1ace2574312104fbed0182c6f"
+  },
+  "risk": "Backend can modify its own private RW copy. Never execute/reuse this copy outside the sandbox or publish it as a trusted SDK. Recreate each QA profile from verified pristine installed assets.",
+  "runs": [
+    {
+      "command": [
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64\\wxc-exec.exe",
+        "--config",
+        "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\denied-policies\\fixed-a.json",
+        "--",
+        "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\nodejs_wheel\\node.exe",
+        "--preserve-symlinks",
+        "--preserve-symlinks-main",
+        "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin\\verification\\python-cwd-v3-node.cjs",
+        "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\fixed-input-a.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.925,
+      "stdout": "{\"node\":\"v24.19.0\",\"libuv\":\"1.52.1\",\"executable\":\"E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\nodejs_wheel\\\\node.exe\",\"initial\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\source-a\",\"dot_entries\":[\"sample.py\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\source-a\",\"length\":53,\"last_error\":0,\"last_error_valid\":false}}},\"targets\":[{\"name\":\"private_copy_dist_upper_backslash\",\"path\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"before\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\source-a\",\"dot_entries\":[\"sample.py\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\source-a\",\"length\":53,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"private_copy_dist_lower_backslash\",\"path\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"before\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"private_copy_dist_upper_forward\",\"path\":\"E:/odin/.odin/python-cwd-v3-private-md06xw35/backend-a/basedpyright/dist\",\"before\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"private_copy_dist_lower_forward\",\"path\":\"e:/odin/.odin/python-cwd-v3-private-md06xw35/backend-a/basedpyright/dist\",\"before\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"installed_dist_upper_backslash\",\"path\":\"E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\",\"before\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"error\":{\"code\":\"EPERM\",\"errno\":-4048,\"syscall\":\"chdir\",\"message\":\"EPERM: operation not permitted, chdir 'e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist' -> 'E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist'\",\"path\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dest\":\"E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\"},\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"installed_dist_lower_backslash\",\"path\":\"e:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\",\"before\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"error\":{\"code\":\"EPERM\",\"errno\":-4048,\"syscall\":\"chdir\",\"message\":\"EPERM: operation not permitted, chdir 'e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist' -> 'e:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist'\",\"path\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dest\":\"e:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\"},\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"installed_dist_upper_forward\",\"path\":\"E:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist\",\"before\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"error\":{\"code\":\"EPERM\",\"errno\":-4048,\"syscall\":\"chdir\",\"message\":\"EPERM: operation not permitted, chdir 'e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist' -> 'E:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist'\",\"path\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dest\":\"E:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist\"},\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"installed_dist_lower_forward\",\"path\":\"e:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist\",\"before\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"error\":{\"code\":\"EPERM\",\"errno\":-4048,\"syscall\":\"chdir\",\"message\":\"EPERM: operation not permitted, chdir 'e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist' -> 'e:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist'\",\"path\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dest\":\"e:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist\"},\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"private_scratch_upper_backslash\",\"path\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"before\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-a\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"dot_entries\":[],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"length\":54,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"private_scratch_lower_backslash\",\"path\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"before\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"dot_entries\":[],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"length\":54,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"dot_entries\":[],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"length\":54,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"private_scratch_upper_forward\",\"path\":\"E:/odin/.odin/python-cwd-v3-private-md06xw35/scratch-a\",\"before\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"dot_entries\":[],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"length\":54,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"dot_entries\":[],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"length\":54,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"private_scratch_lower_forward\",\"path\":\"e:/odin/.odin/python-cwd-v3-private-md06xw35/scratch-a\",\"before\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"dot_entries\":[],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"length\":54,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"dot_entries\":[],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-a\",\"length\":54,\"last_error\":0,\"last_error_valid\":false}}}}],\"checks\":[{\"name\":\"readonly_source_read\",\"status\":\"PASS\",\"value\":true},{\"name\":\"explicit_scratch_write\",\"status\":\"PASS\",\"value\":true},{\"name\":\"explicit_private_backend_write\",\"status\":\"PASS\",\"value\":true},{\"name\":\"outside_content_read_0\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_overwrite_0\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_content_read_1\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_overwrite_1\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_content_read_2\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_overwrite_2\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_content_read_3\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_overwrite_3\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_content_read_4\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_overwrite_4\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"readonly_source_overwrite\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"readonly_source_create\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"installed_readonly_write_open_0\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"denied_policy_read\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"loopback_denied\",\"status\":\"PASS\",\"code\":\"EACCES\"}]}\n",
+      "stderr": "",
+      "stdout_raw_sha256": "c6352595342bf51303b4c61275cb382cc2745a3d732a8f2f1b18a57fc35367db",
+      "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": {
+        "node": "v24.19.0",
+        "libuv": "1.52.1",
+        "executable": "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\nodejs_wheel\\node.exe",
+        "initial": {
+          "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-a",
+          "dot_entries": [
+            "sample.py"
+          ],
+          "inherited_winapi": {
+            "exit_code": 0,
+            "stderr": "",
+            "result": {
+              "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-a",
+              "length": 53,
+              "last_error": 0,
+              "last_error_valid": false
+            }
+          }
+        },
+        "targets": [
+          {
+            "name": "private_copy_dist_upper_backslash",
+            "path": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+            "before": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-a",
+              "dot_entries": [
+                "sample.py"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-a",
+                  "length": 53,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "private_copy_dist_lower_backslash",
+            "path": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+            "before": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "private_copy_dist_upper_forward",
+            "path": "E:/odin/.odin/python-cwd-v3-private-md06xw35/backend-a/basedpyright/dist",
+            "before": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "private_copy_dist_lower_forward",
+            "path": "e:/odin/.odin/python-cwd-v3-private-md06xw35/backend-a/basedpyright/dist",
+            "before": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "installed_dist_upper_backslash",
+            "path": "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist",
+            "before": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "error": {
+              "code": "EPERM",
+              "errno": -4048,
+              "syscall": "chdir",
+              "message": "EPERM: operation not permitted, chdir 'e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist' -> 'E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist'",
+              "path": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dest": "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist"
+            },
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "installed_dist_lower_backslash",
+            "path": "e:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist",
+            "before": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "error": {
+              "code": "EPERM",
+              "errno": -4048,
+              "syscall": "chdir",
+              "message": "EPERM: operation not permitted, chdir 'e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist' -> 'e:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist'",
+              "path": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dest": "e:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist"
+            },
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "installed_dist_upper_forward",
+            "path": "E:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist",
+            "before": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "error": {
+              "code": "EPERM",
+              "errno": -4048,
+              "syscall": "chdir",
+              "message": "EPERM: operation not permitted, chdir 'e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist' -> 'E:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist'",
+              "path": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dest": "E:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist"
+            },
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "installed_dist_lower_forward",
+            "path": "e:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist",
+            "before": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "error": {
+              "code": "EPERM",
+              "errno": -4048,
+              "syscall": "chdir",
+              "message": "EPERM: operation not permitted, chdir 'e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist' -> 'e:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist'",
+              "path": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dest": "e:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist"
+            },
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "private_scratch_upper_backslash",
+            "path": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+            "before": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+              "dot_entries": [],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+                  "length": 54,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "private_scratch_lower_backslash",
+            "path": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+            "before": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+              "dot_entries": [],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+                  "length": 54,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+              "dot_entries": [],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+                  "length": 54,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "private_scratch_upper_forward",
+            "path": "E:/odin/.odin/python-cwd-v3-private-md06xw35/scratch-a",
+            "before": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+              "dot_entries": [],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+                  "length": 54,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+              "dot_entries": [],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+                  "length": 54,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "private_scratch_lower_forward",
+            "path": "e:/odin/.odin/python-cwd-v3-private-md06xw35/scratch-a",
+            "before": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+              "dot_entries": [],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+                  "length": 54,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+              "dot_entries": [],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+                  "length": 54,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          }
+        ],
+        "checks": [
+          {
+            "name": "readonly_source_read",
+            "status": "PASS",
+            "value": true
+          },
+          {
+            "name": "explicit_scratch_write",
+            "status": "PASS",
+            "value": true
+          },
+          {
+            "name": "explicit_private_backend_write",
+            "status": "PASS",
+            "value": true
+          },
+          {
+            "name": "outside_content_read_0",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_overwrite_0",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_content_read_1",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_overwrite_1",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_content_read_2",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_overwrite_2",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_content_read_3",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_overwrite_3",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_content_read_4",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_overwrite_4",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "readonly_source_overwrite",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "readonly_source_create",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "installed_readonly_write_open_0",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "denied_policy_read",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "loopback_denied",
+            "status": "PASS",
+            "code": "EACCES"
+          }
+        ]
+      },
+      "project": "a",
+      "policy": {
+        "version": "1.0.0",
+        "containment": "processcontainer",
+        "lifecycle": {
+          "destroyOnExit": true,
+          "preservePolicy": false
+        },
+        "process": {
+          "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-a",
+          "env": [
+            "SystemRoot=C:\\WINDOWS",
+            "WINDIR=C:\\WINDOWS",
+            "COMSPEC=C:\\WINDOWS\\system32\\cmd.exe",
+            "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.CPL",
+            "OS=Windows_NT",
+            "PROCESSOR_ARCHITECTURE=AMD64",
+            "PATH=E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\nodejs_wheel;C:\\Python314;C:\\WINDOWS\\System32",
+            "HOME=E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+            "USERPROFILE=E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+            "APPDATA=E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+            "LOCALAPPDATA=E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+            "TEMP=E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a",
+            "TMP=E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a"
+          ],
+          "inheritDefaultEnv": false,
+          "timeout": 25000
+        },
+        "filesystem": {
+          "readonlyPaths": [
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-a",
+            "E:\\odin\\.odin\\validation-tools\\python",
+            "C:\\Python314",
+            "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin\\verification\\python-cwd-v3-node.cjs",
+            "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin\\verification\\python-cwd-v3-winapi.py",
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\fixed-input-a.json"
+          ],
+          "readwritePaths": [
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a",
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a"
+          ],
+          "deniedPaths": [
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\denied-policies",
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\denied-host-state",
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-b",
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b",
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b"
+          ]
+        },
+        "processContainer": {
+          "filesystem": {
+            "enumeratePaths": [
+              "C:\\",
+              "C:\\Users",
+              "C:\\Users\\steven",
+              "C:\\Users\\steven\\.codex",
+              "C:\\Users\\steven\\.codex\\worktrees",
+              "C:\\Users\\steven\\.codex\\worktrees\\odin-engine",
+              "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin",
+              "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin\\verification",
+              "E:\\",
+              "E:\\odin",
+              "E:\\odin\\.odin",
+              "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35",
+              "E:\\odin\\.odin\\validation-tools"
+            ]
+          }
+        },
+        "fallback": {
+          "allowDaclMutation": false
+        },
+        "network": {
+          "egress": {
+            "default": "deny"
+          },
+          "ingress": {
+            "default": "deny",
+            "hostLoopback": "deny"
+          }
+        },
+        "ui": {
+          "disable": false,
+          "clipboard": "none",
+          "injection": false
+        },
+        "telemetry": {
+          "enabled": false
+        }
+      },
+      "policy_sha256": "e21c35554e0c8f3a4836466bec9a27373540599c07b10ac32e7a9bd468111936",
+      "fixed_ls_profile": {
+        "program": "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\nodejs_wheel\\node.exe",
+        "args": [
+          "--preserve-symlinks",
+          "--preserve-symlinks-main",
+          "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\langserver.index.js",
+          "--stdio"
+        ],
+        "source_readonly": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-a",
+        "private_backend_rw": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a",
+        "original_runtime_readonly": "E:\\odin\\.odin\\validation-tools\\python",
+        "bootstrap": false,
+        "fallback": false
+      }
+    },
+    {
+      "command": [
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64\\wxc-exec.exe",
+        "--config",
+        "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\denied-policies\\fixed-b.json",
+        "--",
+        "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\nodejs_wheel\\node.exe",
+        "--preserve-symlinks",
+        "--preserve-symlinks-main",
+        "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin\\verification\\python-cwd-v3-node.cjs",
+        "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\fixed-input-b.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.908,
+      "stdout": "{\"node\":\"v24.19.0\",\"libuv\":\"1.52.1\",\"executable\":\"E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\nodejs_wheel\\\\node.exe\",\"initial\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\source-b\",\"dot_entries\":[\"sample.py\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\source-b\",\"length\":53,\"last_error\":0,\"last_error_valid\":false}}},\"targets\":[{\"name\":\"private_copy_dist_upper_backslash\",\"path\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"before\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\source-b\",\"dot_entries\":[\"sample.py\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\source-b\",\"length\":53,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"private_copy_dist_lower_backslash\",\"path\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"before\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"private_copy_dist_upper_forward\",\"path\":\"E:/odin/.odin/python-cwd-v3-private-md06xw35/backend-b/basedpyright/dist\",\"before\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"private_copy_dist_lower_forward\",\"path\":\"e:/odin/.odin/python-cwd-v3-private-md06xw35/backend-b/basedpyright/dist\",\"before\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"installed_dist_upper_backslash\",\"path\":\"E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\",\"before\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"error\":{\"code\":\"EPERM\",\"errno\":-4048,\"syscall\":\"chdir\",\"message\":\"EPERM: operation not permitted, chdir 'e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist' -> 'E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist'\",\"path\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dest\":\"E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\"},\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"installed_dist_lower_backslash\",\"path\":\"e:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\",\"before\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"error\":{\"code\":\"EPERM\",\"errno\":-4048,\"syscall\":\"chdir\",\"message\":\"EPERM: operation not permitted, chdir 'e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist' -> 'e:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist'\",\"path\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dest\":\"e:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\"},\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"installed_dist_upper_forward\",\"path\":\"E:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist\",\"before\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"error\":{\"code\":\"EPERM\",\"errno\":-4048,\"syscall\":\"chdir\",\"message\":\"EPERM: operation not permitted, chdir 'e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist' -> 'E:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist'\",\"path\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dest\":\"E:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist\"},\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"installed_dist_lower_forward\",\"path\":\"e:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist\",\"before\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"error\":{\"code\":\"EPERM\",\"errno\":-4048,\"syscall\":\"chdir\",\"message\":\"EPERM: operation not permitted, chdir 'e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist' -> 'e:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist'\",\"path\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dest\":\"e:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist\"},\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"private_scratch_upper_backslash\",\"path\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"before\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"dot_entries\":[\"pyright-langserver.js\",\"pyright-langserver.js.map\",\"pyright.js\",\"pyright.js.map\",\"typeshed-fallback\"],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\backend-b\\\\basedpyright\\\\dist\",\"length\":72,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"dot_entries\":[],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"length\":54,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"private_scratch_lower_backslash\",\"path\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"before\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"dot_entries\":[],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"length\":54,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"dot_entries\":[],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"length\":54,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"private_scratch_upper_forward\",\"path\":\"E:/odin/.odin/python-cwd-v3-private-md06xw35/scratch-b\",\"before\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"dot_entries\":[],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"length\":54,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"dot_entries\":[],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"length\":54,\"last_error\":0,\"last_error_valid\":false}}}},{\"name\":\"private_scratch_lower_forward\",\"path\":\"e:/odin/.odin/python-cwd-v3-private-md06xw35/scratch-b\",\"before\":{\"process_cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"dot_entries\":[],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"E:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"length\":54,\"last_error\":0,\"last_error_valid\":false}}},\"returned\":true,\"after\":{\"process_cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"dot_entries\":[],\"inherited_winapi\":{\"exit_code\":0,\"stderr\":\"\",\"result\":{\"cwd\":\"e:\\\\odin\\\\.odin\\\\python-cwd-v3-private-md06xw35\\\\scratch-b\",\"length\":54,\"last_error\":0,\"last_error_valid\":false}}}}],\"checks\":[{\"name\":\"readonly_source_read\",\"status\":\"PASS\",\"value\":true},{\"name\":\"explicit_scratch_write\",\"status\":\"PASS\",\"value\":true},{\"name\":\"explicit_private_backend_write\",\"status\":\"PASS\",\"value\":true},{\"name\":\"outside_content_read_0\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_overwrite_0\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_content_read_1\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_overwrite_1\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_content_read_2\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_overwrite_2\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_content_read_3\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_overwrite_3\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_content_read_4\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"outside_overwrite_4\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"readonly_source_overwrite\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"readonly_source_create\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"installed_readonly_write_open_0\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"denied_policy_read\",\"status\":\"PASS\",\"code\":\"EPERM\"},{\"name\":\"loopback_denied\",\"status\":\"PASS\",\"code\":\"EACCES\"}]}\n",
+      "stderr": "",
+      "stdout_raw_sha256": "08083b88ee70ea8b461a85bec2ec752fbce07f419e76b30484630a96db2989fa",
+      "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": {
+        "node": "v24.19.0",
+        "libuv": "1.52.1",
+        "executable": "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\nodejs_wheel\\node.exe",
+        "initial": {
+          "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-b",
+          "dot_entries": [
+            "sample.py"
+          ],
+          "inherited_winapi": {
+            "exit_code": 0,
+            "stderr": "",
+            "result": {
+              "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-b",
+              "length": 53,
+              "last_error": 0,
+              "last_error_valid": false
+            }
+          }
+        },
+        "targets": [
+          {
+            "name": "private_copy_dist_upper_backslash",
+            "path": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+            "before": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-b",
+              "dot_entries": [
+                "sample.py"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-b",
+                  "length": 53,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "private_copy_dist_lower_backslash",
+            "path": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+            "before": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "private_copy_dist_upper_forward",
+            "path": "E:/odin/.odin/python-cwd-v3-private-md06xw35/backend-b/basedpyright/dist",
+            "before": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "private_copy_dist_lower_forward",
+            "path": "e:/odin/.odin/python-cwd-v3-private-md06xw35/backend-b/basedpyright/dist",
+            "before": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "installed_dist_upper_backslash",
+            "path": "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist",
+            "before": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "error": {
+              "code": "EPERM",
+              "errno": -4048,
+              "syscall": "chdir",
+              "message": "EPERM: operation not permitted, chdir 'e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist' -> 'E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist'",
+              "path": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dest": "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist"
+            },
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "installed_dist_lower_backslash",
+            "path": "e:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist",
+            "before": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "error": {
+              "code": "EPERM",
+              "errno": -4048,
+              "syscall": "chdir",
+              "message": "EPERM: operation not permitted, chdir 'e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist' -> 'e:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist'",
+              "path": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dest": "e:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist"
+            },
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "installed_dist_upper_forward",
+            "path": "E:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist",
+            "before": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "error": {
+              "code": "EPERM",
+              "errno": -4048,
+              "syscall": "chdir",
+              "message": "EPERM: operation not permitted, chdir 'e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist' -> 'E:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist'",
+              "path": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dest": "E:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist"
+            },
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "installed_dist_lower_forward",
+            "path": "e:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist",
+            "before": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "error": {
+              "code": "EPERM",
+              "errno": -4048,
+              "syscall": "chdir",
+              "message": "EPERM: operation not permitted, chdir 'e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist' -> 'e:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist'",
+              "path": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dest": "e:/odin/.odin/validation-tools/python/Lib/site-packages/basedpyright/dist"
+            },
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "private_scratch_upper_backslash",
+            "path": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+            "before": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+              "dot_entries": [
+                "pyright-langserver.js",
+                "pyright-langserver.js.map",
+                "pyright.js",
+                "pyright.js.map",
+                "typeshed-fallback"
+              ],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\dist",
+                  "length": 72,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+              "dot_entries": [],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+                  "length": 54,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "private_scratch_lower_backslash",
+            "path": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+            "before": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+              "dot_entries": [],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+                  "length": 54,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+              "dot_entries": [],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+                  "length": 54,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "private_scratch_upper_forward",
+            "path": "E:/odin/.odin/python-cwd-v3-private-md06xw35/scratch-b",
+            "before": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+              "dot_entries": [],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+                  "length": 54,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+              "dot_entries": [],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+                  "length": 54,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          },
+          {
+            "name": "private_scratch_lower_forward",
+            "path": "e:/odin/.odin/python-cwd-v3-private-md06xw35/scratch-b",
+            "before": {
+              "process_cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+              "dot_entries": [],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+                  "length": 54,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            },
+            "returned": true,
+            "after": {
+              "process_cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+              "dot_entries": [],
+              "inherited_winapi": {
+                "exit_code": 0,
+                "stderr": "",
+                "result": {
+                  "cwd": "e:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+                  "length": 54,
+                  "last_error": 0,
+                  "last_error_valid": false
+                }
+              }
+            }
+          }
+        ],
+        "checks": [
+          {
+            "name": "readonly_source_read",
+            "status": "PASS",
+            "value": true
+          },
+          {
+            "name": "explicit_scratch_write",
+            "status": "PASS",
+            "value": true
+          },
+          {
+            "name": "explicit_private_backend_write",
+            "status": "PASS",
+            "value": true
+          },
+          {
+            "name": "outside_content_read_0",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_overwrite_0",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_content_read_1",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_overwrite_1",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_content_read_2",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_overwrite_2",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_content_read_3",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_overwrite_3",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_content_read_4",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "outside_overwrite_4",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "readonly_source_overwrite",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "readonly_source_create",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "installed_readonly_write_open_0",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "denied_policy_read",
+            "status": "PASS",
+            "code": "EPERM"
+          },
+          {
+            "name": "loopback_denied",
+            "status": "PASS",
+            "code": "EACCES"
+          }
+        ]
+      },
+      "project": "b",
+      "policy": {
+        "version": "1.0.0",
+        "containment": "processcontainer",
+        "lifecycle": {
+          "destroyOnExit": true,
+          "preservePolicy": false
+        },
+        "process": {
+          "cwd": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-b",
+          "env": [
+            "SystemRoot=C:\\WINDOWS",
+            "WINDIR=C:\\WINDOWS",
+            "COMSPEC=C:\\WINDOWS\\system32\\cmd.exe",
+            "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.CPL",
+            "OS=Windows_NT",
+            "PROCESSOR_ARCHITECTURE=AMD64",
+            "PATH=E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\nodejs_wheel;C:\\Python314;C:\\WINDOWS\\System32",
+            "HOME=E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+            "USERPROFILE=E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+            "APPDATA=E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+            "LOCALAPPDATA=E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+            "TEMP=E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b",
+            "TMP=E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b"
+          ],
+          "inheritDefaultEnv": false,
+          "timeout": 25000
+        },
+        "filesystem": {
+          "readonlyPaths": [
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-b",
+            "E:\\odin\\.odin\\validation-tools\\python",
+            "C:\\Python314",
+            "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin\\verification\\python-cwd-v3-node.cjs",
+            "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin\\verification\\python-cwd-v3-winapi.py",
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\fixed-input-b.json"
+          ],
+          "readwritePaths": [
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b",
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-b"
+          ],
+          "deniedPaths": [
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\denied-policies",
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\denied-host-state",
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-a",
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a",
+            "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\scratch-a"
+          ]
+        },
+        "processContainer": {
+          "filesystem": {
+            "enumeratePaths": [
+              "C:\\",
+              "C:\\Users",
+              "C:\\Users\\steven",
+              "C:\\Users\\steven\\.codex",
+              "C:\\Users\\steven\\.codex\\worktrees",
+              "C:\\Users\\steven\\.codex\\worktrees\\odin-engine",
+              "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin",
+              "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin\\verification",
+              "E:\\",
+              "E:\\odin",
+              "E:\\odin\\.odin",
+              "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35",
+              "E:\\odin\\.odin\\validation-tools"
+            ]
+          }
+        },
+        "fallback": {
+          "allowDaclMutation": false
+        },
+        "network": {
+          "egress": {
+            "default": "deny"
+          },
+          "ingress": {
+            "default": "deny",
+            "hostLoopback": "deny"
+          }
+        },
+        "ui": {
+          "disable": false,
+          "clipboard": "none",
+          "injection": false
+        },
+        "telemetry": {
+          "enabled": false
+        }
+      },
+      "policy_sha256": "624f00ad7867a1766ea96da1475c8d640d8f0b137bac6060871953a9d4ddb924",
+      "fixed_ls_profile": {
+        "program": "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\nodejs_wheel\\node.exe",
+        "args": [
+          "--preserve-symlinks",
+          "--preserve-symlinks-main",
+          "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\langserver.index.js",
+          "--stdio"
+        ],
+        "source_readonly": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-b",
+        "private_backend_rw": "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b",
+        "original_runtime_readonly": "E:\\odin\\.odin\\validation-tools\\python",
+        "bootstrap": false,
+        "fallback": false
+      }
+    }
+  ],
+  "native_capability_probe": {
+    "command": [
+      "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64\\wxc-exec.exe",
+      "--probe"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.086,
+    "stdout": "{\n  \"tier\": \"base-container\",\n  \"needsDaclAugmentation\": false,\n  \"warnings\": [],\n  \"probes\": {\n    \"baseContainerApiPresent\": true,\n    \"nativeCaptureAvailable\": true,\n    \"guardedCaptureAvailable\": false,\n    \"bfscfgPresent\": false,\n    \"bfsCompiledIn\": false,\n    \"baseContainerSupportsDenyPaths\": true,\n    \"baseContainerSupportsEnumeratePaths\": true,\n    \"baseContainerSupportsIngressHostLoopbackAllow\": true,\n    \"isolationSessionAvailable\": true,\n    \"hyperlightAvailable\": true,\n    \"uiCapabilities\": {\n      \"canBlockClipboardRead\": true,\n      \"canBlockClipboardWrite\": true,\n      \"canBlockInputInjection\": true,\n      \"canBlockInputMethodChanges\": true,\n      \"canBlockExternalUiObjects\": true,\n      \"canBlockGlobalUiNamespace\": true,\n      \"canBlockDesktopSwitching\": true,\n      \"canBlockLogoffOrShutdown\": true,\n      \"canBlockSystemParameterChanges\": true,\n      \"canBlockDisplaySettingsChanges\": true\n    }\n  }\n}\n",
+    "stderr": "",
+    "stdout_raw_sha256": "f4a659a2521f901c226f47d033fd04bc5a02654821388abd568270090adc3f75",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "result": {
+      "tier": "base-container",
+      "needsDaclAugmentation": false,
+      "warnings": [],
+      "probes": {
+        "baseContainerApiPresent": true,
+        "nativeCaptureAvailable": true,
+        "guardedCaptureAvailable": false,
+        "bfscfgPresent": false,
+        "bfsCompiledIn": false,
+        "baseContainerSupportsDenyPaths": true,
+        "baseContainerSupportsEnumeratePaths": true,
+        "baseContainerSupportsIngressHostLoopbackAllow": true,
+        "isolationSessionAvailable": true,
+        "hyperlightAvailable": true,
+        "uiCapabilities": {
+          "canBlockClipboardRead": true,
+          "canBlockClipboardWrite": true,
+          "canBlockInputInjection": true,
+          "canBlockInputMethodChanges": true,
+          "canBlockExternalUiObjects": true,
+          "canBlockGlobalUiNamespace": true,
+          "canBlockDesktopSwitching": true,
+          "canBlockLogoffOrShutdown": true,
+          "canBlockSystemParameterChanges": true,
+          "canBlockDisplaySettingsChanges": true
+        }
+      }
+    }
+  },
+  "host_checks": {
+    "protected_hashes_unchanged": true,
+    "readonly_creates_absent": true,
+    "positive_scratch_verified": true,
+    "positive_backend_write_verified": true,
+    "original_assets_unchanged": true,
+    "copies_still_match_original": {
+      "a": true,
+      "b": true
+    },
+    "host_loopback_accepts": 0,
+    "protected_hashes_before": {
+      "C:\\Users\\steven\\AppData\\Local\\Temp\\python-cwd-v3-outside-_kx8pq1r\\private.txt": "74a9e97f05cef61b8be55c3c89dc0f737c7c77299f2290b2e93d21764e8451dd",
+      "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\outside-private.txt": "03615878fbfeacfb1b6c7821d0a3a7cac5e62ec9d9ab4bbddb730d586d95a72a",
+      "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\denied-host-state\\state.txt": "11445fc11f2b071dfe1adbdbe65f5720ede74fafdcccd3338f45155a577a38cf",
+      "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\denied-policies\\host-policy.txt": "f17ed93d443ac4fdde78d25a83f7ad45f67096f59b203bf4711aacc12d0d0411",
+      "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-a\\sample.py": "2c3c9ce04abfc806b80b3766375eb73b0ef73c1af74d786d52423573fe3ca250",
+      "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\source-b\\sample.py": "898e1d0a7370a062afea141ba39cf63912ec1c549be4c3fec1e616609e22291c",
+      "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-a\\basedpyright\\langserver.index.js": "f200762078eb9880faf421a5b30f9ef3055b1d85c6f10780d75db4da8d8499f1",
+      "E:\\odin\\.odin\\python-cwd-v3-private-md06xw35\\backend-b\\basedpyright\\langserver.index.js": "f200762078eb9880faf421a5b30f9ef3055b1d85c6f10780d75db4da8d8499f1"
+    }
+  },
+  "semantic_and_mcp_acceptance": "NOT_RUN: platform owner runs exact explicit profile against both projects next"
+}
