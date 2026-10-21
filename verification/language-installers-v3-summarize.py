@@ -178,6 +178,7 @@ def main():
         'ruff_native': binding('verification/language-sandbox-v3-ruff-native-01.json'),
         'csharp_direct': binding('verification/language-sandbox-v3-direct-csharp-nullpid-07.command.json', 'Real semantic symbols and server exit 0; diagnostic driver cleanup exit 1. No full MCP or final-binary PASS.'),
         'windows_installer_780': binding('verification/package-v3-windows-candidate.json', '22 install/reinstall/uninstall checks passed for older 780c6ad; final 69 Windows packaging remains blocked.'),
+        'linux_retired_69_failure': binding('verification/package-v3-linux-69-diagnostic.json', 'Actual older Linux build/metadata passed, but workspace39PASS/6FAIL and MCP15PASS/1FAIL exposed Unix fsync. No installer was released for that broken candidate.'),
         'evidence_integrity': binding('verification/language-sandbox-v3-evidence-index-01.json', 'Offline 18-receipt/source/transcript integrity only, no backend execution.'),
         'prepared_final_matrix': binding('verification/language-sandbox-v3-finalrun-plan.json', 'Plan only; 0 final-candidate LSP projects executed.'),
         'qa_report_preflight': binding('verification/language-installers-v3-continuation-preflight-01.json', 'Five inert overwrite-protection checks; zero native process calls.'),
