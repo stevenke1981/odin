@@ -60,11 +60,22 @@ impl LspClient {
         language: LanguageConfig,
         timeout: Duration,
     ) -> Result<Arc<Self>> {
+        Self::start_with_sandbox(root, language, timeout, None).await
+    }
+    pub async fn start_with_sandbox(
+        root: SafeRoot,
+        language: LanguageConfig,
+        timeout: Duration,
+        sandbox: Option<(
+            &odin_core::sandbox_policy::MxcSandboxConfig,
+            &std::path::Path,
+        )>,
+    ) -> Result<Arc<Self>> {
         let uri = Url::from_directory_path(root.root())
             .map_err(|_| anyhow!("Invalid workspace path"))?
             .to_string();
         let workspace = json!([{"uri":uri,"name":"odin-workspace"}]);
-        let rpc = RpcProcess::spawn(
+        let rpc = RpcProcess::spawn_with_sandbox(
             &language.program,
             &language.args,
             root.root(),
@@ -73,6 +84,7 @@ impl LspClient {
             timeout,
             workspace.clone(),
             language.settings.clone(),
+            sandbox,
         )?;
         let result=rpc.request("initialize",json!({
             "processId":std::process::id(),"clientInfo":{"name":"odin","version":env!("CARGO_PKG_VERSION")},
@@ -238,7 +250,7 @@ impl LspClient {
                 let version = self.version()?;
                 self.rpc.invalidate_diagnostics(&uri)?;
                 if open_close {
-                    self.rpc.notify("textDocument/didOpen",json!({"textDocument":{"uri":uri,"languageId":self.language.id,"version":version,"text":content}})).await?;
+                    self.rpc.notify("textDocument/didOpen",json!({"textDocument":{"uri":uri,"languageId":odin_core::languages::language_id_for_path(&self.language.id,std::path::Path::new(path)),"version":version,"text":content}})).await?;
                 }
                 documents.insert(
                     path.into(),
@@ -267,7 +279,7 @@ impl LspClient {
                     self.rpc
                         .notify("textDocument/didClose", json!({"textDocument":{"uri":uri}}))
                         .await?;
-                    self.rpc.notify("textDocument/didOpen",json!({"textDocument":{"uri":uri,"languageId":self.language.id,"version":version,"text":content}})).await?;
+                    self.rpc.notify("textDocument/didOpen",json!({"textDocument":{"uri":uri,"languageId":odin_core::languages::language_id_for_path(&self.language.id,std::path::Path::new(path)),"version":version,"text":content}})).await?;
                 }
                 document.version = version;
                 document.hash = hash;

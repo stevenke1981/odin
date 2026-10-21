@@ -335,6 +335,14 @@ async fn backend_progress_and_explicit_restart_are_observable() {
     )
     .unwrap();
     rpc.request("fixture/progress", json!({})).await.unwrap();
+    assert_eq!(
+        rpc.status().unwrap()["isolation"]["launch_route"],
+        "host_process"
+    );
+    assert_eq!(
+        rpc.status().unwrap()["isolation"]["os_boundary_verified"],
+        false
+    );
     assert_eq!(rpc.status().unwrap()["server_status"]["quiescent"], false);
     assert_eq!(
         rpc.status().unwrap()["active_progress"]
@@ -873,4 +881,107 @@ async fn ide_diagnostics_include_inspection_metadata_and_preserve_backend_failur
         assert_eq!(report["summary"]["complete"], false);
         client.shutdown().await.unwrap();
     }
+}
+
+#[tokio::test]
+async fn sandbox_startup_failure_never_retries_backend_without_sandbox() {
+    use odin_core::sandbox_policy::MxcSandboxConfig;
+    let temp = tempfile::tempdir().unwrap();
+    let state = tempfile::tempdir().unwrap();
+    let marker = temp.path().join("backend-started.txt");
+    let config = MxcSandboxConfig {
+        executor: state.path().join("missing-executor.exe"),
+        executor_sha256: "0".repeat(64),
+        readonly_paths: vec![],
+        readwrite_paths: vec![],
+        denied_paths: vec![],
+        temp_root: state.path().into(),
+        allow_ui: false,
+    };
+    let mut arguments = args("lsp");
+    arguments.extend([
+        "--started-marker".into(),
+        marker.to_string_lossy().into_owned(),
+    ]);
+    let rpc = RpcProcess::spawn_with_sandbox(
+        &python(),
+        &arguments,
+        temp.path(),
+        Framing::ContentLength,
+        Dialect::JsonRpc,
+        Duration::from_secs(3),
+        json!([]),
+        json!({}),
+        Some((&config, state.path())),
+    );
+    assert!(rpc.is_err());
+    assert!(!marker.exists());
+    let language = LanguageConfig {
+        id: "rust".into(),
+        extensions: vec!["rs".into()],
+        program: python(),
+        args: arguments,
+        initialization_options: serde_json::Value::Null,
+        settings: serde_json::Value::Null,
+    };
+    assert!(
+        LspClient::start_with_sandbox(
+            SafeRoot::new(temp.path(), &[], 1000).unwrap(),
+            language,
+            Duration::from_secs(3),
+            Some((&config, state.path()))
+        )
+        .await
+        .is_err()
+    );
+    assert!(!marker.exists());
+    let mut arguments = args("dap");
+    arguments.extend([
+        "--started-marker".into(),
+        marker.to_string_lossy().into_owned(),
+    ]);
+    let command = CommandConfig {
+        program: python(),
+        args: arguments,
+        timeout_secs: 3,
+    };
+    assert!(
+        DebugAdapter::start_with_sandbox(
+            &command,
+            &SafeRoot::new(temp.path(), &[], 1000).unwrap(),
+            Some((&config, state.path()))
+        )
+        .await
+        .is_err()
+    );
+    assert!(!marker.exists());
+}
+
+#[tokio::test]
+async fn configured_language_profile_uses_file_specific_lsp_language_id() {
+    let temp = tempfile::tempdir().unwrap();
+    std::fs::write(temp.path().join("app.tsx"), "fn foo() {}").unwrap();
+    let mut arguments = args("lsp");
+    arguments.extend([
+        "--ide".into(),
+        "--expect-language-id".into(),
+        "typescriptreact".into(),
+    ]);
+    let language = LanguageConfig {
+        id: "typescript".into(),
+        extensions: vec!["tsx".into()],
+        program: python(),
+        args: arguments,
+        initialization_options: serde_json::Value::Null,
+        settings: serde_json::Value::Null,
+    };
+    let client = LspClient::start(
+        SafeRoot::new(temp.path(), &[], 1000).unwrap(),
+        language,
+        Duration::from_secs(3),
+    )
+    .await
+    .unwrap();
+    assert!(client.completion("app.tsx", ide_position()).await.is_ok());
+    client.shutdown().await.unwrap();
 }

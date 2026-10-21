@@ -48,7 +48,17 @@ pub struct DebugAdapter {
 
 impl DebugAdapter {
     pub async fn start(config: &CommandConfig, root: &SafeRoot) -> Result<Arc<Self>> {
-        let rpc = RpcProcess::spawn(
+        Self::start_with_sandbox(config, root, None).await
+    }
+    pub async fn start_with_sandbox(
+        config: &CommandConfig,
+        root: &SafeRoot,
+        sandbox: Option<(
+            &odin_core::sandbox_policy::MxcSandboxConfig,
+            &std::path::Path,
+        )>,
+    ) -> Result<Arc<Self>> {
+        let rpc = RpcProcess::spawn_with_sandbox(
             &config.program,
             &config.args,
             root.root(),
@@ -57,6 +67,7 @@ impl DebugAdapter {
             Duration::from_secs(config.timeout_secs),
             json!([]),
             Value::Null,
+            sandbox,
         )?;
         let capabilities = rpc.request("initialize", json!({
             "clientID":"odin","clientName":"Odin","adapterID":"configured-adapter",

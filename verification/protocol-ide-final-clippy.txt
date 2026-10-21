@@ -1,0 +1,2 @@
+    Checking odin-protocol v0.2.0 (C:\Users\steven\.codex\worktrees\odin-protocol\odin\crates\odin-protocol)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.38s

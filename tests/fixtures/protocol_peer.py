@@ -24,7 +24,11 @@ P.add_argument('--encoding', default='utf-16')
 P.add_argument('--mutate-on')
 P.add_argument('--diagnostic-kind', default='clean')
 P.add_argument('--ide-malformed')
+P.add_argument('--started-marker')
+P.add_argument('--expect-language-id')
 A = P.parse_args()
+if A.started_marker:
+    Path(A.started_marker).write_text('fixture started', encoding='utf-8')
 DOCS = {}
 VERSIONS = {}
 LAUNCHES = []
@@ -130,6 +134,8 @@ def lsp(request):
         respond(request, {'capabilities': capabilities})
     elif method == 'textDocument/didOpen':
         doc = params['textDocument']
+        if A.expect_language_id:
+            assert doc['languageId'] == A.expect_language_id
         DOCS[doc['uri']] = doc['text']
         VERSIONS[doc['uri']] = doc['version']
         diagnostics(doc['uri'], doc['version'])

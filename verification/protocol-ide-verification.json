@@ -2,53 +2,53 @@
   "task_id": "language-ide-protocol",
   "actor_instance": "/root/protocol_implementation",
   "base_sha": "9b71abc",
-  "code_commit": "f6e4fc9960b97757eda4dea8bc59b010308156b8",
   "date": "2026-10-21",
   "platform": "x86_64-pc-windows-msvc",
   "rust": "1.90.0",
   "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-protocol\\odin",
   "source_hash_normalization": "UTF-8 bytes with CRLF normalized to LF",
   "source_sha256": {
-    "crates/odin-protocol/src/lsp.rs": "e2659f7a54e6cdc5130a35d261bc4566408736a23944c8dae840d0e9808c1ab9",
+    "crates/odin-protocol/src/lsp.rs": "24737fece6142e43864e2b81a7465de87c2af3e8e2e853f3595eabd75a2df995",
     "crates/odin-protocol/src/text.rs": "047329493570b965a79f93a4dd3b2f62a05147d9610547eee5ae4d38619055c2",
-    "crates/odin-protocol/tests/fixture_protocols.rs": "bdeeeb833df467f42e4bd397bfcdcdb825f9dce204a82a8a4093e7c81cd7ede5",
-    "tests/fixtures/protocol_peer.py": "725919cfe9c428cbfe946423b5d1ea0a3d4d337cd7426763d799ff734ca2962d",
-    "docs/PROTOCOL_IDE.md": "1959056ed4d77ccc43fafcbfa295358bb535f80e1e0e2ef0b273be35c623694c",
+    "crates/odin-protocol/src/rpc.rs": "3de2e6d0f08a1b7725726e46390afbf30741ec8c0468bca850ebf98855d6a7c9",
+    "crates/odin-protocol/src/dap.rs": "23236ae9bd7476136ec17793cb1b4c2a7cc8404e7c17d5e36b124221ee82b05c",
+    "crates/odin-protocol/tests/fixture_protocols.rs": "6ce2cb532abb69da1b45a18787123bfbe53f12255159678859249adae81b07dc",
+    "tests/fixtures/protocol_peer.py": "ae2bd17ca4b9a91141bb6101aaaeffbe39a6892a64e480eece9a08b64571bff3",
+    "docs/PROTOCOL_IDE.md": "c541a13b23aea478bdbe3a2c8fcae9fdcb33dc0fe8a5470bbf22306b19a01ab1",
     "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34"
   },
   "checks": [
     {
       "status": "PASS",
-      "command": "cargo clippy -p odin-protocol --all-targets --locked -- -D warnings",
+      "command": "cargo test -p odin-protocol --locked",
       "exit_code": 0,
-      "log": "verification/protocol-ide-clippy.txt",
-      "scope": "Compile and lint, not runtime proof"
+      "unit_tests_passed": 29,
+      "fixture_tests_passed": 22,
+      "ignored_real_tests": 1,
+      "log": "verification/protocol-ide-final-tests.txt"
     },
     {
       "status": "PASS",
-      "command": "rustfmt --edition 2024 --check crates/odin-protocol/src/lsp.rs crates/odin-protocol/src/text.rs crates/odin-protocol/tests/fixture_protocols.rs",
+      "command": "cargo clippy -p odin-protocol --all-targets --locked -- -D warnings",
       "exit_code": 0,
-      "log": "verification/protocol-ide-fmt.txt"
+      "log": "verification/protocol-ide-final-clippy.txt"
     },
     {
-      "status": "BLOCKED",
-      "command": "cargo test -p odin-protocol --locked",
-      "exit_code": 101,
-      "tests_executed": 0,
-      "log": "verification/protocol-ide-appcontrol-failure.txt",
-      "reason": "Windows Application Control rejected the final unit executable with error 4551; compilation completed successfully",
-      "host_evidence": "verification/protocol-ide-appcontrol.json"
+      "status": "PASS",
+      "command": "rustfmt --edition 2024 --check crates/odin-protocol/src/lsp.rs crates/odin-protocol/src/text.rs crates/odin-protocol/src/rpc.rs crates/odin-protocol/src/dap.rs crates/odin-protocol/tests/fixture_protocols.rs",
+      "exit_code": 0,
+      "log": "verification/protocol-ide-final-fmt.txt"
     },
     {
       "status": "NOT_RUN",
       "command": "real-language IDE and final binary acceptance",
-      "owner": "/root",
-      "reason": "Fixture protocol behavior is not real language support evidence"
+      "owner": "/root and /root/platform_implementation",
+      "reason": "Fixture protocol behavior and selected launch routing are not native OS-enforcement or real-language acceptance evidence"
     },
     {
       "status": "NOT_RUN",
       "command": "Linux/macOS native checks",
-      "reason": "This task is running on Windows only"
+      "reason": "This task ran on Windows only"
     }
   ],
   "historical_checks": [
@@ -67,14 +67,30 @@
       "exit_code": 101,
       "reason": "One nonminimal_bool lint; fixed with is_none_or without weakening thresholds",
       "log": "verification/protocol-ide-clippy-first.txt"
+    },
+    {
+      "status": "BLOCKED",
+      "command": "cargo test -p odin-protocol --locked",
+      "exit_code": 101,
+      "tests_executed": 0,
+      "log": "verification/protocol-ide-appcontrol-failure.txt",
+      "reason": "Windows Application Control rejected the final unit executable with error 4551; compilation completed successfully",
+      "host_evidence": "verification/protocol-ide-appcontrol.json",
+      "source_code_commit": "f6e4fc9960b97757eda4dea8bc59b010308156b8",
+      "binary_sha256": "F97B1C0ACA1DB9622B7EA96388DD22C0EE50A236063A6D2DDAF74302D1047454"
     }
   ],
   "security_policy_modified": false,
   "remote_push": false,
   "cloud_ci": false,
-  "dependencies_pending": [
-    "root RPC spawn_with_sandbox API for LSP start_with_sandbox wrapper",
-    "root language_id_for_path registry API"
-  ],
-  "next_owner": "/root and /root/engine_implementation"
+  "dependencies_pending": [],
+  "next_owner": "/root and /root/engine_implementation",
+  "source_binding": "Hashes identify the exact final tested sources; commits only changing evidence do not change these source hashes.",
+  "dependency_commits": {
+    "host_policy": "fea8b61",
+    "native_sandbox": "b5f563e",
+    "execution_and_language_registry": "d6f3e50"
+  },
+  "expanded_scope_authorization": "Root explicitly assigned rpc.rs and dap.rs sandbox startup wrappers in addition to original LSP IDE scope.",
+  "important_boundary": "The former artifact was denied by Application Control. Final meaningful wrapper/language integration changes produced a new tested candidate, without changing policy or moving the target path. The original denial is not reclassified as a passing run."
 }

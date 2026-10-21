@@ -86,6 +86,25 @@ new source. A current report with no findings is `status: "clean"` while
 
 ## Evidence and boundaries
 
+Legacy RPC/LSP/DAP starts delegate to new `*_with_sandbox` starts with `None`.
+Explicit sandbox input is `Option<(&MxcSandboxConfig, &Path)>`; the path is an
+existing trusted host policy directory. A configured sandbox uses core's
+hash-pinned executor preparation and never retries without the sandbox.
+The prepared command's scratch environment is preserved. Pipe setup and process
+tree management still apply. Policy/scratch guards survive job/group closure
+and parent reaping. Drop transfers a delayed reap to a background thread; it
+retains the guard until that reap completes, including after Tokio shutdown.
+Explicit cleanup waits are bounded; OS-level delayed background reaping has no
+guaranteed completion deadline. Job assignment retains its documented spawn
+window and does not imply atomic descendant termination visibility.
+
+Transport status reports the selected isolation route and a verified executor
+hash without exposing host paths. `os_boundary_verified` stays false: selecting
+that route or completing an LSP handshake is not a filesystem/network denial
+test. Native enforcement evidence is recorded by the OS sandbox integration
+owner. File-specific document language IDs use the shared registry (for example
+TSX maps to typescriptreact), while custom host profile IDs are retained.
+
 `verification/protocol-ide-*` records actual package checks. Fixture peers only
 prove protocol behavior, validation, and conflict handling. Multi-language real
 backend and binary/tool-routing verification belongs to the integration owner;

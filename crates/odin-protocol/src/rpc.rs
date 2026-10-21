@@ -115,9 +115,40 @@ impl Drop for WriteGuard {
     }
 }
 
+struct BackendChild {
+    child: Option<Child>,
+    process_tree: Option<odin_core::process::ProcessTree>,
+    sandbox_guard: Option<odin_core::sandbox::SandboxGuard>,
+}
+impl Drop for BackendChild {
+    fn drop(&mut self) {
+        // Close the job/group before releasing the parent's lifetime guard.
+        // The scratch and policy must survive asynchronous parent reaping.
+        drop(self.process_tree.take());
+        let Some(mut child) = self.child.take() else {
+            return;
+        };
+        let sandbox_guard = self.sandbox_guard.take();
+        if child.try_wait().is_ok_and(|status| status.is_some()) {
+            return;
+        }
+        let _ = child.start_kill();
+        if child.try_wait().is_ok_and(|status| status.is_some()) {
+            return;
+        }
+        std::thread::spawn(move || {
+            // This tail also works after a Tokio runtime has shut down. Keep
+            // the guard if an OS-level reap is delayed; never release it early.
+            while !child.try_wait().is_ok_and(|status| status.is_some()) {
+                std::thread::sleep(Duration::from_millis(10));
+            }
+            drop(sandbox_guard);
+        });
+    }
+}
 pub struct RpcProcess {
-    child: Mutex<Child>,
-    process_tree: StdMutex<Option<odin_core::process::ProcessTree>>,
+    backend: Mutex<BackendChild>,
+    isolation: Value,
     stdin: Arc<Mutex<ChildStdin>>,
     pending: Pending,
     events: Events,
@@ -147,19 +178,64 @@ impl RpcProcess {
         workspace: Value,
         settings: Value,
     ) -> Result<Arc<Self>> {
-        let mut command = Command::new(program);
+        Self::spawn_with_sandbox(
+            program, args, cwd, framing, dialect, timeout, workspace, settings, None,
+        )
+    }
+    #[expect(
+        clippy::too_many_arguments,
+        reason = "Keep explicit transport options and an operator-owned sandbox boundary"
+    )]
+    pub fn spawn_with_sandbox(
+        program: &str,
+        args: &[String],
+        cwd: &Path,
+        framing: Framing,
+        dialect: Dialect,
+        timeout: Duration,
+        workspace: Value,
+        settings: Value,
+        sandbox: Option<(&odin_core::sandbox_policy::MxcSandboxConfig, &Path)>,
+    ) -> Result<Arc<Self>> {
+        let isolation = match sandbox {
+            Some((config, _)) => json!({"requested":true,"launch_route":"mxc_process_container",
+                "executor_sha256":config.executor_sha256,"hash_verified":true,"os_boundary_verified":false}),
+            None => {
+                json!({"requested":false,"launch_route":"host_process","os_boundary_verified":false})
+            }
+        };
+        let (mut command, sandbox_guard) = if let Some((config, policy_dir)) = sandbox {
+            let launch = odin_core::sandbox::prepare(config, program, args, cwd, policy_dir, None)?;
+            (Command::from(launch.command), Some(launch.guard))
+        } else {
+            let mut command = Command::new(program);
+            command.args(args).current_dir(cwd);
+            odin_core::process::configure_child(command.as_std_mut());
+            (command, None)
+        };
         command
-            .args(args)
-            .current_dir(cwd)
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
             .stderr(Stdio::inherit())
             .kill_on_drop(true);
-        odin_core::process::configure_child(command.as_std_mut());
-        let mut child = command
+        let child = command
             .spawn()
             .with_context(|| format!("Cannot start backend executable: {program}"))?;
-        let process_tree = odin_core::process::ProcessTree::attach(&child)?;
+        let mut backend = BackendChild {
+            child: Some(child),
+            process_tree: None,
+            sandbox_guard,
+        };
+        backend.process_tree = Some(odin_core::process::ProcessTree::attach(
+            backend
+                .child
+                .as_ref()
+                .ok_or_else(|| anyhow!("Missing child"))?,
+        )?);
+        let child = backend
+            .child
+            .as_mut()
+            .ok_or_else(|| anyhow!("Missing child"))?;
         let stdin = Arc::new(Mutex::new(
             child
                 .stdin
@@ -258,8 +334,8 @@ impl RpcProcess {
             }
         });
         Ok(Arc::new(Self {
-            child: Mutex::new(child),
-            process_tree: StdMutex::new(Some(process_tree)),
+            backend: Mutex::new(backend),
+            isolation,
             stdin,
             pending,
             events,
@@ -295,6 +371,7 @@ impl RpcProcess {
     }
     pub fn status(&self) -> Result<Value> {
         Ok(json!({"closed":self.is_closed(),
+            "isolation":self.isolation,
             "pending_requests":self.pending.lock().map_err(|_|anyhow!("Pending lock poisoned"))?.len(),
             "server_status":self.server_status.lock().map_err(|_|anyhow!("Status lock poisoned"))?.clone(),
             "active_progress":self.progress.lock().map_err(|_|anyhow!("Progress lock poisoned"))?.clone()}))
@@ -303,7 +380,10 @@ impl RpcProcess {
     /// that ignores it is killed and reaped; no request is retried.
     pub async fn wait_for_exit(&self) -> Result<()> {
         let result = {
-            let mut child = self.child.lock().await;
+            let mut backend = self.backend.lock().await;
+            let Some(child) = backend.child.as_mut() else {
+                return Ok(());
+            };
             tokio::time::timeout(self.timeout, child.wait()).await
         };
         match result {
@@ -320,21 +400,22 @@ impl RpcProcess {
     }
     pub async fn terminate(&self) -> Result<()> {
         self.closed.store(true, Ordering::SeqCst);
-        self.process_tree
-            .lock()
-            .map_err(|_| anyhow!("Process tree lock poisoned"))?
-            .take();
         self.reader.abort();
         if let Ok(mut pending) = self.pending.lock() {
             pending.clear();
         }
-        let mut child = self.child.lock().await;
-        if child.try_wait()?.is_none() {
+        let mut backend = self.backend.lock().await;
+        drop(backend.process_tree.take());
+        if let Some(child) = backend.child.as_mut()
+            && child.try_wait()?.is_none()
+        {
             child.start_kill()?;
             tokio::time::timeout(self.timeout.max(Duration::from_secs(1)), child.wait())
                 .await
                 .map_err(|_| anyhow!("Backend process cleanup timed out"))??;
         }
+        backend.child.take();
+        backend.sandbox_guard.take();
         Ok(())
     }
     pub async fn request(&self, method: &str, params: Value) -> Result<Value> {
@@ -453,7 +534,6 @@ impl RpcProcess {
 impl Drop for RpcProcess {
     fn drop(&mut self) {
         self.reader.abort();
-        let _ = self.child.get_mut().start_kill();
     }
 }
 async fn write_frame_bounded(
