@@ -1,0 +1,89 @@
+{
+  "task_id": "push-diagnostic-uri-alias",
+  "actor_instance": "/root/protocol_implementation",
+  "base_sha": "3542314913ed82e974e5445e51ebc7b854128b5c",
+  "tested_code_sha": "73baca363c3dabbe38868e3d2ab0122c7db915b2",
+  "platform": "x86_64-pc-windows-msvc",
+  "recorded_utc": "2026-10-21T01:26:07.588386+00:00",
+  "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-protocol\\odin",
+  "cargo_target_dir": "E:/odin/target",
+  "source_hash_normalization": "UTF-8 CRLF to LF",
+  "source_sha256": {
+    "crates/odin-protocol/src/rpc.rs": "3b8a1278025dc0a4ce5fbd13be6409b164745043e51992571bd2430ebddc99e4",
+    "crates/odin-protocol/src/lsp.rs": "bff9436ee2c837f0a154c51ab1ef66cdb3f6e3542359f8cb93629cee45611224",
+    "crates/odin-protocol/src/workspace.rs": "bbd5af31583f9c1322f2c6b90fcfaf438270e9be8b9e664b616c7cefc8647d16",
+    "crates/odin-protocol/tests/fixture_protocols.rs": "eaaa4b739fc71a4106bfd76829e7cd7c9e980af13578a8e3044a906d289fdf72",
+    "tests/fixtures/protocol_peer.py": "0598db0e37b5905fc34ba2943534061a6a5321f318105342cff4321ec31ab26d",
+    "docs/PROTOCOL_IDE.md": "0edff6222bd34bdd4bf76c93d9c15e7a781715dbf867b48a75a6c8c33ac19297",
+    "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34"
+  },
+  "checks": [
+    {
+      "status": "PASS",
+      "command": "cargo test -p odin-protocol --locked",
+      "exit_code": 0,
+      "unit_passed": 33,
+      "fixture_passed": 30,
+      "ignored": 2,
+      "log": "verification/protocol-ide-uri-package-tests.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "cargo clippy -p odin-protocol --all-targets --locked -- -D warnings",
+      "exit_code": 0,
+      "log": "verification/protocol-ide-uri-clippy.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "rustfmt --edition 2024 --check crates/odin-protocol/src/rpc.rs crates/odin-protocol/tests/fixture_protocols.rs",
+      "exit_code": 0,
+      "log": "verification/protocol-ide-uri-fmt.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "cargo test -p odin-protocol --locked real_push_diagnostic_uri_probe -- --ignored --nocapture",
+      "environment": {
+        "ODIN_URI_PROBE_TOOLS": "E:/odin/.odin/validation-tools",
+        "ODIN_NODE": "C:/Program Files/nodejs/node.exe"
+      },
+      "exit_code": 0,
+      "real_backends": [
+        "basedpyright 1.40.2",
+        "typescript-language-server 6.0.2"
+      ],
+      "log": "verification/protocol-ide-uri-real-after.txt"
+    },
+    {
+      "status": "NOT_RUN",
+      "command": "Final integrated tool/binary real-language acceptance",
+      "owner": "/root and /root/platform_implementation"
+    },
+    {
+      "status": "NOT_RUN",
+      "command": "Linux/macOS native execution",
+      "reason": "Windows slice only"
+    }
+  ],
+  "real_counterexample": {
+    "log": "verification/protocol-ide-uri-real-before.txt",
+    "command_exit_code": 0,
+    "scope": "Observational probe before fix, not a passing cache behavior assertion",
+    "client_uri": "file:///C:/Users/.../sample.py|ts",
+    "server_uri": "file:///c%3A/Users/.../sample.py|ts",
+    "before_cache_lookup": false,
+    "after_cache_lookup": true,
+    "basedpyright_version": 1,
+    "typescript_version": null,
+    "typescript_freshness_boundary": "Unversioned reports remain unverified; URI identity supplies no source version"
+  },
+  "security_boundaries": [
+    "Cache identity is lexical, with no filesystem canonicalize or authorization",
+    "Only Windows drive-letter case folds; all remaining path case is preserved",
+    "Authority/UNC/query/fragment/malformed escape/encoded separator/NUL/nonUTF8 are errors",
+    "Version/hash freshness and CAS behavior unchanged"
+  ],
+  "os_policy_modified": false,
+  "remote_push": false,
+  "cloud_ci": false,
+  "independent_review": "PENDING /root"
+}
