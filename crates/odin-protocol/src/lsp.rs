@@ -1524,14 +1524,15 @@ mod tests {
             serde_json::to_vec(&result).unwrap().len()
         );
         assert!(budget.retained_bytes * 2 <= HIERARCHY_JSON_LIMIT * 2);
-        let oversized = json!({"data":"x".repeat(HIERARCHY_JSON_LIMIT)});
-        assert!(
-            budget
-                .reserve_item(&oversized, true)
-                .unwrap_err()
-                .to_string()
-                .contains("LIMIT_EXCEEDED")
-        );
+        // Exercise the real cumulative byte limit without making a 4 MiB
+        // serialization finish before a wall-clock deadline on a slow target.
+        // Deadline rejection has its own deterministic expired-budget test.
+        let mut nearly_full = HierarchyBudget::new(Instant::now() + Duration::from_secs(1));
+        nearly_full.retained_bytes = HIERARCHY_JSON_LIMIT - 8;
+        let before = nearly_full.retained_bytes;
+        let error = nearly_full.reserve_item(&item, true).unwrap_err();
+        assert!(error.to_string().contains("LIMIT_EXCEEDED"), "{error:#}");
+        assert_eq!(nearly_full.retained_bytes, before);
         budget.add_relations(HIERARCHY_RELATION_LIMIT / 2).unwrap();
         budget.add_relations(HIERARCHY_RELATION_LIMIT / 2).unwrap();
         assert!(budget.add_relations(1).is_err());
