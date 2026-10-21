@@ -350,6 +350,17 @@ projects were not replaced with handshake-only passes. The separate direct Go
 package diagnostic preserves raw LSP trace/notifications showing the same
 missing metadata outside Odin; it is not product acceptance.
 
+The direct `go-list-06` probe then failed with a concrete missing MXC
+package-private `AC/Temp` directory. A new host gopls profile can point its Go
+subprocess environment at a precreated private cache directory; the source
+grant remains read-only. The direct OmniSharp `06` notifications showed an
+error-free .NET 10 project load before a clean server exit. Its
+[host-process monitor](https://github.com/OmniSharp/omnisharp-roslyn/blob/v1.39.15/src/OmniSharp.LanguageServerProtocol/LanguageServerHost.cs)
+cancels on any failure to query the client PID. A null LSP client PID is a
+separate hypothesis to test, not an established fix. The direct C# driver also
+returned exit 1 during temporary-directory cleanup; that failure is retained
+in its command receipt and raw stdout.
+
 `verification/language-sandbox-v3-runner.ps1` records the exact driver argv,
 binary/harness/runner hashes, actual exit code, raw stdout and transcript. It
 requires fresh output names, normalizes text to LF before final hash binding,

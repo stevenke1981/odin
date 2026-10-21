@@ -1,0 +1,31 @@
+Traceback (most recent call last):
+  File "C:\Users\steven\.codex\worktrees\odin-platform\odin\verification\language-sandbox-v3-direct-diagnostic.py", line 219, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "C:\Users\steven\.codex\worktrees\odin-platform\odin\verification\language-sandbox-v3-direct-diagnostic.py", line 41, in main
+    with ExitStack() as resources:
+         ~~~~~~~~~^^
+  File "C:\Python314\Lib\contextlib.py", line 619, in __exit__
+    raise exc
+  File "C:\Python314\Lib\contextlib.py", line 604, in __exit__
+    if cb(*exc_details):
+       ~~^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 972, in __exit__
+    self.cleanup()
+    ~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\tempfile.py", line 976, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\tempfile.py", line 956, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\shutil.py", line 697, in _rmtree_unsafe
+    onexc(os.rmdir, fullname, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\shutil.py", line 693, in _rmtree_unsafe
+    os.rmdir(fullname)
+    ~~~~~~~~^^^^^^^^^^
+OSError: [WinError 145] �ؿ����O�Ū��C: 'C:\\Users\\steven\\AppData\\Local\\Temp\\odin-native-diagnostic-99tq8mk4\\private-scratch\\Packages\\sandbox.{55c8e890-8f7c-42b1-b811-852dd6c095e1}\\AC\\Temp\\CodeAnalysis\\OmnisharpAnalyzerShadowCopies\\0be4928da56f4d6b9d3d94b0e6048f73\\1'

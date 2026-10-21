@@ -1,0 +1,1193 @@
+{
+  "scope": "DIRECT_NATIVE_BACKEND_DIAGNOSTIC_ONLY",
+  "odin_mcp_checks": 0,
+  "probe": "csharp-lsp",
+  "source_sha256": "e9ee1c39996363ed529be87300af6bd157ae690ed3dd1ae49e6544e86f801914",
+  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+  "status": "OBSERVED_FAILURE",
+  "trusted_fixture_offline_restore": {
+    "command": [
+      "E:\\odin\\.odin\\validation-tools\\dotnet\\dotnet.exe",
+      "restore",
+      "Fixture.csproj",
+      "--configfile",
+      "NuGet.Config"
+    ],
+    "exit_code": 0,
+    "stdout": "  正在判斷要還原的專案...\n  已還原 <fixture>\\projects\\csharp_diagnostic\\Fixture.csproj (60 毫秒 內)。\n",
+    "stderr": "\n歡迎使用 .NET 10.0!\n---------------------\nSDK 版本: 10.0.402\n\n----------------\n編寫您的第一個應用程式: https://aka.ms/dotnet-hello-world\n了解新功能: https://aka.ms/dotnet-whats-new\n探索文件: https://aka.ms/dotnet-docs\n在 GitHub 上報告問題和尋找來源: https://github.com/dotnet/core\n使用 'dotnet --help' 查看可用的命令或瀏覽: https://aka.ms/dotnet-cli\n--------------------------------------------------------------------------------------\n"
+  },
+  "native_capability_probe": {
+    "exit_code": 0,
+    "stdout": "{\n  \"tier\": \"base-container\",\n  \"needsDaclAugmentation\": false,\n  \"warnings\": [],\n  \"probes\": {\n    \"baseContainerApiPresent\": true,\n    \"nativeCaptureAvailable\": true,\n    \"guardedCaptureAvailable\": false,\n    \"bfscfgPresent\": false,\n    \"bfsCompiledIn\": false,\n    \"baseContainerSupportsDenyPaths\": true,\n    \"baseContainerSupportsEnumeratePaths\": true,\n    \"baseContainerSupportsIngressHostLoopbackAllow\": true,\n    \"isolationSessionAvailable\": true,\n    \"hyperlightAvailable\": true,\n    \"uiCapabilities\": {\n      \"canBlockClipboardRead\": true,\n      \"canBlockClipboardWrite\": true,\n      \"canBlockInputInjection\": true,\n      \"canBlockInputMethodChanges\": true,\n      \"canBlockExternalUiObjects\": true,\n      \"canBlockGlobalUiNamespace\": true,\n      \"canBlockDesktopSwitching\": true,\n      \"canBlockLogoffOrShutdown\": true,\n      \"canBlockSystemParameterChanges\": true,\n      \"canBlockDisplaySettingsChanges\": true\n    }\n  }\n}\n",
+    "stderr": ""
+  },
+  "enumerate_metadata_paths": [
+    "C:\\",
+    "C:\\Users",
+    "C:\\Users\\steven",
+    "C:\\Users\\steven\\AppData",
+    "C:\\Users\\steven\\AppData\\Local",
+    "C:\\Users\\steven\\AppData\\Local\\Temp",
+    "<fixture>",
+    "<fixture>\\projects",
+    "E:\\",
+    "E:\\odin",
+    "E:\\odin\\.odin",
+    "E:\\odin\\.odin\\validation-tools"
+  ],
+  "metadata_boundary": {
+    "command": [
+      "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64\\wxc-exec.exe",
+      "--config",
+      "<fixture>\\policies\\boundary-policy.json",
+      "--",
+      "C:\\Program Files\\nodejs\\node.exe",
+      "--preserve-symlinks",
+      "--preserve-symlinks-main",
+      "<fixture>\\fixed-boundary-check.mjs"
+    ],
+    "policy_sha256": "6cd5d9c273704db5d5be2832ac820e71cc063f67b817e33f5bc444dc3025eec7",
+    "source": "import fs from 'node:fs';\nimport net from 'node:net';\nimport {createHash} from 'node:crypto';\nconst source=\"C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-native-diagnostic-99tq8mk4\\\\projects\\\\csharp_diagnostic\\\\Greeter.cs\";const outside=[\"C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\language-sandbox-v3-outside-yya13xw2\\\\outside-sentinel.txt\", \"E:\\\\odin\\\\.odin\\\\language-sandbox-v3-outside-j05vy6ta\\\\outside-sentinel.txt\"];\nconst positive=\"C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-native-diagnostic-99tq8mk4\\\\backend-cache\\\\csharp_diagnostic\\\\native-positive-write.txt\";const policy=\"C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-native-diagnostic-99tq8mk4\\\\policies\\\\fixed-policy.json\";\nconst checks=[];const denied=(name,action)=>{try{action();checks.push({name,status:'FAIL'});}catch(error){checks.push({name,status:'PASS',error:error.code});}};\nchecks.push({name:'permitted_source_read',status:createHash('sha256').update(fs.readFileSync(source)).digest('hex')===\"c511c991918b734eb5b97e4ccd8b81298568523ddf3e1e7d606558e7c51f3f1c\"?'PASS':'FAIL'});\nfs.writeFileSync(positive,'explicit-private-write');checks.push({name:'explicit_writable_positive',status:fs.readFileSync(positive,'utf8')==='explicit-private-write'?'PASS':'FAIL'});\nfor(const path of outside){const drive=path.slice(0,1);denied('outside_content_read_'+drive,()=>fs.readFileSync(path));denied('outside_overwrite_'+drive,()=>fs.writeFileSync(path,'denied'));}\ndenied('readonly_source_overwrite',()=>fs.writeFileSync(source,'denied'));\ndenied('readonly_source_create',()=>fs.writeFileSync(source+'.forbidden','denied'));\ndenied('protected_policy_read',()=>fs.readFileSync(policy));\nfor(const path of [\"C:\\\\\", \"E:\\\\\"]){checks.push({name:'volume_metadata_query_'+path.slice(0,1),status:fs.statSync(path).isDirectory()?'PASS':'FAIL'});}\nconst loopbackDenied=await new Promise(resolve=>{const socket=net.createConnection({host:'127.0.0.1',port:53125});socket.once('connect',()=>{socket.destroy();resolve(false);});socket.once('error',()=>resolve(true));socket.setTimeout(700,()=>{socket.destroy();resolve(true);});});\nchecks.push({name:'loopback_connection_denied',status:loopbackDenied?'PASS':'FAIL'});\nconsole.log(JSON.stringify({checks}));process.exit(checks.every(c=>c.status==='PASS')?0:1);\n",
+    "source_sha256": "ef8e33ff02484a7a8664499b90b9f30e96769d06d045122f4a430f6fb074424e",
+    "exit_code": 0,
+    "stdout": "{\"checks\":[{\"name\":\"permitted_source_read\",\"status\":\"PASS\"},{\"name\":\"explicit_writable_positive\",\"status\":\"PASS\"},{\"name\":\"outside_content_read_C\",\"status\":\"PASS\",\"error\":\"EPERM\"},{\"name\":\"outside_overwrite_C\",\"status\":\"PASS\",\"error\":\"EPERM\"},{\"name\":\"outside_content_read_E\",\"status\":\"PASS\",\"error\":\"EPERM\"},{\"name\":\"outside_overwrite_E\",\"status\":\"PASS\",\"error\":\"EPERM\"},{\"name\":\"readonly_source_overwrite\",\"status\":\"PASS\",\"error\":\"EPERM\"},{\"name\":\"readonly_source_create\",\"status\":\"PASS\",\"error\":\"EPERM\"},{\"name\":\"protected_policy_read\",\"status\":\"PASS\",\"error\":\"EPERM\"},{\"name\":\"volume_metadata_query_C\",\"status\":\"PASS\"},{\"name\":\"volume_metadata_query_E\",\"status\":\"PASS\"},{\"name\":\"loopback_connection_denied\",\"status\":\"PASS\"}]}\n",
+    "stderr": "",
+    "outside_host_hash_unchanged": true,
+    "outside_drive_host_hashes": {
+      "C:": {
+        "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\language-sandbox-v3-outside-yya13xw2\\outside-sentinel.txt",
+        "unchanged": true,
+        "sha256": "450e045d789e0ac4ce4748b122874681b3e15f09a3e78a778a119aa14293f237"
+      },
+      "E:": {
+        "path": "E:\\odin\\.odin\\language-sandbox-v3-outside-j05vy6ta\\outside-sentinel.txt",
+        "unchanged": true,
+        "sha256": "450e045d789e0ac4ce4748b122874681b3e15f09a3e78a778a119aa14293f237"
+      }
+    },
+    "readonly_source_host_hash_unchanged": true,
+    "host_loopback_accepts": 0,
+    "positive_host_write_verified": true
+  },
+  "program_sha256": "abce6623a6729059cf39bb0f728c4a7804f625895099c88c17e6e704661e09eb",
+  "policy_sha256": "eb50a3de29f05ac320edc77e92de4a10328f00d077fbf4b756c61ec940d5c890",
+  "command": [
+    "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64\\wxc-exec.exe",
+    "--config",
+    "<fixture>\\policies\\fixed-policy.json",
+    "--",
+    "E:\\odin\\.odin\\validation-tools\\dotnet\\dotnet.exe",
+    "E:\\odin\\.odin\\validation-tools\\omnisharp-1.39.15\\OmniSharp.dll",
+    "--languageserver",
+    "--source",
+    "<fixture>\\projects\\csharp_diagnostic",
+    "--encoding",
+    "utf-8",
+    "--loglevel",
+    "Information"
+  ],
+  "policy": {
+    "version": "1.0.0",
+    "containment": "processcontainer",
+    "lifecycle": {
+      "destroyOnExit": true,
+      "preservePolicy": false
+    },
+    "process": {
+      "cwd": "<fixture>\\projects\\csharp_diagnostic",
+      "env": [
+        "PATH=E:\\odin\\.odin\\validation-tools\\go\\go\\bin;E:\\odin\\.odin\\validation-tools\\dotnet;E:\\odin\\.odin\\validation-tools\\jdk\\jdk-25.0.4.1+1\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell;C:\\Users\\steven\\.codex\\tmp\\arg0-windows\\codex-arg0BMy7vX;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\libheif\\libheif\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\jxrlib\\jxrlib\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\poppler\\Library\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\bin\\override;C:\\Python314\\Scripts\\;C:\\Python314\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\nodejs\\;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\GitHub CLI\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Archiver;C:\\Program Files\\Downloader;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\python-3.13.16\\tools\\Scripts;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\python-3.13.16\\tools;C:\\Users\\steven\\.cargo\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\node-24.21.0\\node-v24.21.0-win-x64;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\gh-2.102.0\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\git-2.56.0.2\\cmd;C:\\Users\\steven\\AppData\\Roaming\\npm;C:\\Program Files\\Godot;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg.Essentials_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-9.0.1-essentials_build\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\soundx;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\bin\\fallback;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd;C:\\Users\\steven\\AppData\\Local\\OpenAI\\Codex\\bin\\ce4759538b7f2f1a;C:\\Users\\steven\\AppData\\Local\\OpenAI\\Codex\\bin\\896a0166b774037a",
+        "SYSTEMROOT=C:\\WINDOWS",
+        "SystemRoot=C:\\WINDOWS",
+        "WINDIR=C:\\WINDOWS",
+        "COMSPEC=C:\\WINDOWS\\system32\\cmd.exe",
+        "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.CPL",
+        "USERPROFILE=<fixture>\\private-scratch",
+        "TEMP=<fixture>\\private-scratch",
+        "TMP=<fixture>\\private-scratch",
+        "APPDATA=<fixture>\\private-scratch",
+        "LOCALAPPDATA=<fixture>\\private-scratch",
+        "LANG=C.UTF-8",
+        "LC_ALL=C.UTF-8",
+        "ProgramFiles=C:\\Program Files",
+        "ProgramFiles(x86)=C:\\Program Files (x86)",
+        "ProgramW6432=C:\\Program Files",
+        "ProgramData=C:\\ProgramData",
+        "ALLUSERSPROFILE=C:\\ProgramData",
+        "GOTOOLCHAIN=local",
+        "DOTNET_ROOT=E:\\odin\\.odin\\validation-tools\\dotnet",
+        "DOTNET_CLI_HOME=<fixture>\\backend-cache\\csharp_diagnostic\\dotnet-home",
+        "NUGET_PACKAGES=<fixture>\\backend-cache\\csharp_diagnostic\\nuget",
+        "DOTNET_CLI_TELEMETRY_OPTOUT=1",
+        "DOTNET_GENERATE_ASPNET_CERTIFICATE=false",
+        "HOME=<fixture>\\private-scratch",
+        "GOTELEMETRY=off"
+      ],
+      "inheritDefaultEnv": false,
+      "timeout": 25000
+    },
+    "filesystem": {
+      "readonlyPaths": [
+        "<fixture>\\projects\\csharp_diagnostic",
+        "E:\\odin\\.odin\\validation-tools\\dotnet",
+        "E:\\odin\\.odin\\validation-tools\\dotnet",
+        "E:\\odin\\.odin\\validation-tools\\omnisharp-1.39.15"
+      ],
+      "readwritePaths": [
+        "<fixture>\\backend-cache\\csharp_diagnostic",
+        "<fixture>\\private-scratch"
+      ],
+      "deniedPaths": [
+        "<fixture>\\policies"
+      ]
+    },
+    "fallback": {
+      "allowDaclMutation": false
+    },
+    "network": {
+      "egress": {
+        "default": "deny"
+      },
+      "ingress": {
+        "default": "deny",
+        "hostLoopback": "deny"
+      }
+    },
+    "ui": {
+      "disable": false,
+      "clipboard": "none",
+      "injection": false
+    },
+    "telemetry": {
+      "enabled": false
+    },
+    "processContainer": {
+      "filesystem": {
+        "enumeratePaths": [
+          "C:\\",
+          "C:\\Users",
+          "C:\\Users\\steven",
+          "C:\\Users\\steven\\AppData",
+          "C:\\Users\\steven\\AppData\\Local",
+          "C:\\Users\\steven\\AppData\\Local\\Temp",
+          "<fixture>",
+          "<fixture>\\projects",
+          "E:\\",
+          "E:\\odin",
+          "E:\\odin\\.odin",
+          "E:\\odin\\.odin\\validation-tools"
+        ]
+      }
+    }
+  },
+  "explicit_host_allow_ui": true,
+  "profile_info": {
+    "selected_backend": "omnisharp",
+    "selected_release": "1.39.15",
+    "module": "E:\\odin\\.odin\\validation-tools\\omnisharp-1.39.15\\OmniSharp.dll",
+    "module_sha256": "73889b00248a87ddda03db06f6ba1a206c7560c22c0d20febee666404fc282ef",
+    "runtimeconfig_sha256": "0798510b6b14926af93c62789341f0483f14cbaa1486f5beb6f1d7ecc5adf964",
+    "runtime_roll_forward": "LatestMajor",
+    "fallback": false,
+    "host_fixture_props_sha256": "3d5ed6f29f13775c26c00c601de4ff8103bcdde79c43191a85349a04deac0ea4",
+    "external_msbuild_intermediate_and_output": true,
+    "restore_package_sources": []
+  },
+  "initialize": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+      "capabilities": {
+        "textDocumentSync": 1,
+        "experimental": {},
+        "workspace": {
+          "workspaceFolders": {
+            "changeNotifications": false
+          },
+          "fileOperations": {}
+        }
+      },
+      "serverInfo": {
+        "name": "OmniSharp",
+        "version": "1.39.15+Branch.tags-v1.39.15.Sha.83fd615eafff33e297a9f59280d929cf09ec0d3c.83fd615eafff33e297a9f59280d929cf09ec0d3c"
+      }
+    }
+  },
+  "error": "Peer exited; stderr=[]",
+  "events": [
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.Services.DotNetCliService: Checking the 'DOTNET_ROOT' environment variable to find a .NET SDK | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.Services.DotNetCliService: DotNetPath set to E:\\odin\\.odin\\validation-tools\\dotnet\\dotnet | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.MSBuild.Discovery.MSBuildLocator: Located 1 MSBuild instance(s)\r\n            1: .NET Core SDK 10.0.402 18.9.15 - \"E:\\odin\\.odin\\validation-tools\\dotnet\\sdk\\10.0.402\" | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.MSBuild.Discovery.MSBuildLocator: Registered MSBuild instance: .NET Core SDK 10.0.402 18.9.15 - \"E:\\odin\\.odin\\validation-tools\\dotnet\\sdk\\10.0.402\" | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.WorkspaceInitializer: Invoking Workspace Options Provider: OmniSharp.Roslyn.CSharp.Services.CSharpFormattingWorkspaceOptionsProvider, Order: 0 | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.WorkspaceInitializer: Updating the solution's fallback AnalyzerConfigOptions. | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.Cake.CakeProjectSystem: Detecting Cake files in '<fixture>\\projects\\csharp_diagnostic\\'. | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.Cake.CakeProjectSystem: Did not find any Cake files | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.MSBuild.ProjectSystem: No solution files found in '<fixture>\\projects\\csharp_diagnostic\\' | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.MSBuild.ProjectManager: Queue project update for '<fixture>\\projects\\csharp_diagnostic\\Fixture.csproj' | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.Script.ScriptProjectSystem: Detecting CSX files in '<fixture>\\projects\\csharp_diagnostic\\'. | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.Script.ScriptProjectSystem: Did not find any CSX files | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.Roslyn.CSharp.Services.Diagnostics.CSharpDiagnosticWorkerWithAnalyzers: Solution initialized -> queue all documents for code analysis. Initial document count: 0. | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.WorkspaceInitializer: Configuration finished. | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.MSBuild.ProjectManager: Loading project: <fixture>\\projects\\csharp_diagnostic\\Fixture.csproj | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.MSBuild.ProjectManager: Successfully loaded project file '<fixture>\\projects\\csharp_diagnostic\\Fixture.csproj'. | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/msbuildprojectdiagnostics, Params = {\r\n  \"FileName\": \"C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-native-diagnostic-99tq8mk4\\\\projects\\\\csharp_diagnostic\\\\Fixture.csproj\",\r\n  \"Warnings\": [],\r\n  \"Errors\": []\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/msbuildprojectdiagnostics, Params = {\r\n  \"FileName\": \"C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-native-diagnostic-99tq8mk4\\\\projects\\\\csharp_diagnostic\\\\Fixture.csproj\",\r\n  \"Warnings\": [],\r\n  \"Errors\": []\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.MSBuild.ProjectManager: Adding project '<fixture>\\projects\\csharp_diagnostic\\Fixture.csproj' | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 1,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 1,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 1,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 1,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 1,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 1,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 1,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 1,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 1,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 1,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 1,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 5,\r\n  \"NumberFilesRemaining\": 4\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 5,\r\n  \"NumberFilesRemaining\": 4\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 1,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 5,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 1,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 5,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(20%)\"\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(20%)\"\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.MSBuild.ProjectManager: Update project: Fixture | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 1,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 5,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 1,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 5,\r\n  \"NumberFilesRemaining\": 0\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 5,\r\n  \"NumberFilesRemaining\": 4\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 5,\r\n  \"NumberFilesRemaining\": 4\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(20%)\"\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(20%)\"\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(100%)\"\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 5,\r\n  \"NumberFilesRemaining\": 4\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/backgrounddiagnosticstatus, Params = {\r\n  \"Status\": 0,\r\n  \"NumberProjects\": 1,\r\n  \"NumberFilesTotal\": 5,\r\n  \"NumberFilesRemaining\": 4\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(20%)\"\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectdiagnosticstatus, Params = {\r\n  \"Type\": \"background\",\r\n  \"Status\": 0,\r\n  \"ProjectFilePath\": \"(20%)\"\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 2,
+        "message": "OmniSharp.Extensions.LanguageServer.Server.LspServerOutputFilter: Tried to send request or notification before initialization was completed and will be sent later OutgoingNotification { Method = o#/projectconfiguration, Params = {\r\n  \"ProjectId\": \"5ab2ca003f4194f0\",\r\n  \"SessionId\": \"-427734155\",\r\n  \"OutputKind\": 2,\r\n  \"ProjectCapabilities\": [\r\n    \"GenerateDocumentationFile\",\r\n    \"CSharp\",\r\n    \"Managed\",\r\n    \"ReferencesFolder\",\r\n    \"LanguageService\",\r\n    \"RelativePathDerivedDefaultNamespace\",\r\n    \"AssemblyReferences\",\r\n    \"COMReferences\",\r\n    \"ProjectReferences\",\r\n    \"SharedProjectReferences\",\r\n    \"OutputGroups\",\r\n    \"AllTargetOutputGroups\",\r\n    \"VisualStudioWellKnownOutputGroups\",\r\n    \"SingleFileGenerators\",\r\n    \"DeclaredSourceItems\",\r\n    \"UserSourceItems\",\r\n    \"NativeAOT\",\r\n    \"SupportsHotReload\",\r\n    \"SupportsComputeRunCommand\",\r\n    \"Pack\",\r\n    \"NetSdkOCIImageBuild\"\r\n  ],\r\n  \"TargetFrameworks\": [\r\n    \"net10.0\"\r\n  ],\r\n  \"SdkVersion\": \"161339459\",\r\n  \"References\": [\r\n    \"f9b57385e04dcef1\",\r\n    \"b04d1a92c03aa393\",\r\n    \"740a41f35e38e687\",\r\n    \"a650b002a55ee732\",\r\n    \"8bb25cdfa9f58d95\",\r\n    \"ca01f9c6c9519128\",\r\n    \"a7db6d4c13eb109a\",\r\n    \"4787ec450370cdc\",\r\n    \"faae3cd2329a5f23\",\r\n    \"b136c9057d0eac41\",\r\n    \"a4be57a67913d9f2\",\r\n    \"c2f7e51423366080\",\r\n    \"9221249557edf7da\",\r\n    \"ac08b9147e6c6cc1\",\r\n    \"fc8f31a851b2f1e\",\r\n    \"3d1fab7a1546aa70\",\r\n    \"75c42701c310d265\",\r\n    \"6eac5906d797823f\",\r\n    \"51b6b65db45d8317\",\r\n    \"977562ede61122d1\",\r\n    \"6f06be6c7dad3d57\",\r\n    \"782a823a2d8cd40\",\r\n    \"13bbf2cbcdb96469\",\r\n    \"a8b1d9f359d7b4f\",\r\n    \"8db448e27f0bad1b\",\r\n    \"5faa84ffcc646d16\",\r\n    \"3dd9e1e713ce28c1\",\r\n    \"bc70a3688f03b546\",\r\n    \"3e025539204a5d59\",\r\n    \"12bec27505c61c10\",\r\n    \"65e9cc7358ddee2e\",\r\n    \"7df5bfe00323a6a8\",\r\n    \"ce3f444652eead51\",\r\n    \"feebdde9a00fe94b\",\r\n    \"22d24df113118e04\",\r\n    \"6a8ada60e30e6abf\",\r\n    \"6001a9b860f7e43\",\r\n    \"e94e5ff7b2eb39a9\",\r\n    \"46b5412910b12f1a\",\r\n    \"eac4975c939bd705\",\r\n    \"a777367473e5f95c\",\r\n    \"f67433e0978efe89\",\r\n    \"d574426ce261f3cd\",\r\n    \"2620772be337bacb\",\r\n    \"ce4b86769789bfd2\",\r\n    \"afe098e2b8eb2364\",\r\n    \"4bca77302b767821\",\r\n    \"b42e3bf9c2caf9d\",\r\n    \"11d6a5981dd09f1d\",\r\n    \"2528657f041a0f71\",\r\n    \"1a4910e7928d2be4\",\r\n    \"385f6cb9a1a92341\",\r\n    \"8a6a053fd546c4b9\",\r\n    \"4bd5d70d9487a7\",\r\n    \"546da94a433dd46b\",\r\n    \"c8cd67501180cdb3\",\r\n    \"99380cc3f9cb0f62\",\r\n    \"e9ad645088056795\",\r\n    \"2b71ac54faa4d900\",\r\n    \"6d26f5b6d581bb7a\",\r\n    \"e99748daf45287f7\",\r\n    \"a3ac73bd1c3ce685\",\r\n    \"88a79e3fbc9be5a5\",\r\n    \"baed534980001b3e\",\r\n    \"a094f278ebd28638\",\r\n    \"f02b6f1120327ed5\",\r\n    \"1fdb3be137e7c8ab\",\r\n    \"d8d06e6254ff9a8\",\r\n    \"7a37191fa2429c0\",\r\n    \"db2085d40be0c6b\",\r\n    \"732e2f41e1ec328f\",\r\n    \"cc0b8a0dc4b5cc17\",\r\n    \"b3ec78066692ce40\",\r\n    \"b633596fb5206911\",\r\n    \"b1c086ddba588d7f\",\r\n    \"3935c25fc587591d\",\r\n    \"5db9cd2d6d302594\",\r\n    \"1fe2caf02ff5116\",\r\n    \"d1e401c8e175f133\",\r\n    \"beb154638739ac8f\",\r\n    \"d795c4b069f42de2\",\r\n    \"28889d355be716fb\",\r\n    \"987004758afb653e\",\r\n    \"a93a13f245d3dbf5\",\r\n    \"c2c7e5dd6bcf2f46\",\r\n    \"f40e391e11837c28\",\r\n    \"1f1effdb4f95fef\",\r\n    \"4b3556ed143bb1a1\",\r\n    \"990c07b3a694f061\",\r\n    \"16f3b3c6aa66dbea\",\r\n    \"bbc2c7fb9307d0f8\",\r\n    \"cae96c695fa0a849\",\r\n    \"23af2e185bf7f884\",\r\n    \"10682f5180926917\",\r\n    \"531413e8ae8921e9\",\r\n    \"cbb2e2956b8bc5a1\",\r\n    \"693159958e045249\",\r\n    \"abb76040f918f212\",\r\n    \"2978ebe3fa017619\",\r\n    \"d753dc831058d377\",\r\n    \"5d5ab2fae13c7cd7\",\r\n    \"6f36e9e201c8abbc\",\r\n    \"2c2215284100c1bc\",\r\n    \"abef39459b5f8089\",\r\n    \"58b2ccb5d5268768\",\r\n    \"f4c238ed95a4c9e0\",\r\n    \"463559064b820a89\",\r\n    \"f46a5248555641f3\",\r\n    \"31a917d25f0111b0\",\r\n    \"d9a0d90fcf36b125\",\r\n    \"f707ec8ff0716b6a\",\r\n    \"d31ae060adc0cf68\",\r\n    \"b740561cbe999190\",\r\n    \"6f6cd086b29443f\",\r\n    \"3e2b84419c2678fe\",\r\n    \"16aa5cd16608904e\",\r\n    \"88efed4970ce8fb\",\r\n    \"525af1cb4f8c1ef\",\r\n    \"82365a1d92723ea2\",\r\n    \"f9081118726c671d\",\r\n    \"1dc6ba4b51a92fe2\",\r\n    \"480fcc9a46d59829\",\r\n    \"96ae799a9cd65a64\",\r\n    \"1f0a5acc2009b69e\",\r\n    \"53da3fcaf9d4a664\",\r\n    \"762862983c40286f\",\r\n    \"7143cd55e6267a10\",\r\n    \"9c4f1e8060c475b4\",\r\n    \"5641b1bfbef8f076\",\r\n    \"c074fd9cba688aec\",\r\n    \"6b8a7cd56172fed1\",\r\n    \"5d25704a6a0be6ed\",\r\n    \"7de0d61ed8a595ec\",\r\n    \"85c2a8db5105888\",\r\n    \"ec2dac2bf194d54a\",\r\n    \"baae63d2bc6dd501\",\r\n    \"6e18d5f5513ced07\",\r\n    \"ecc917c3c9b5c475\",\r\n    \"3e60a289d38463fa\",\r\n    \"3297b865f846bd0a\",\r\n    \"4d9b25b5312a81c5\",\r\n    \"34cfcce7d574a410\",\r\n    \"762c57508db7a1c2\",\r\n    \"81016cf6be9235ed\",\r\n    \"96f5a81e8df6f19c\",\r\n    \"bc2ea691e56496f8\",\r\n    \"5d957776a3bc8463\",\r\n    \"4fcdd50549f35f69\",\r\n    \"1613d6b76156e26a\",\r\n    \"609f5396c0534146\",\r\n    \"31be6951d8a1de6e\",\r\n    \"d373f3c4566c70c6\",\r\n    \"b42e1bda5a17dc0e\",\r\n    \"3017ef0c38e2d837\",\r\n    \"92e480fdaacc79e0\",\r\n    \"ffb314483a45fa40\",\r\n    \"3159cfd5553fa1b8\",\r\n    \"6a5eaa177b0b8d54\",\r\n    \"add48a46678bd09d\",\r\n    \"c70f2a1b237f229d\",\r\n    \"3beb376886d63c97\",\r\n    \"363b07840a344182\",\r\n    \"f638dfb632c7bb3e\",\r\n    \"4fc1e02f10ba6dcc\",\r\n    \"7f7e058ceeba44c4\",\r\n    \"76fdeb10eb04a251\",\r\n    \"c229c6a3986d545b\"\r\n  ],\r\n  \"FileExtensions\": [\r\n    \"-1257278712\"\r\n  ],\r\n  \"FileCounts\": [\r\n    5\r\n  ],\r\n  \"SdkStyleProject\": true\r\n}, TraceParent = , TraceState =  } | @Request='OutgoingNotification { Method = o#/projectconfiguration, Params = {\r\n  \"ProjectId\": \"5ab2ca003f4194f0\",\r\n  \"SessionId\": \"-427734155\",\r\n  \"OutputKind\": 2,\r\n  \"ProjectCapabilities\": [\r\n    \"GenerateDocumentationFile\",\r\n    \"CSharp\",\r\n    \"Managed\",\r\n    \"ReferencesFolder\",\r\n    \"LanguageService\",\r\n    \"RelativePathDerivedDefaultNamespace\",\r\n    \"AssemblyReferences\",\r\n    \"COMReferences\",\r\n    \"ProjectReferences\",\r\n    \"SharedProjectReferences\",\r\n    \"OutputGroups\",\r\n    \"AllTargetOutputGroups\",\r\n    \"VisualStudioWellKnownOutputGroups\",\r\n    \"SingleFileGenerators\",\r\n    \"DeclaredSourceItems\",\r\n    \"UserSourceItems\",\r\n    \"NativeAOT\",\r\n    \"SupportsHotReload\",\r\n    \"SupportsComputeRunCommand\",\r\n    \"Pack\",\r\n    \"NetSdkOCIImageBuild\"\r\n  ],\r\n  \"TargetFrameworks\": [\r\n    \"net10.0\"\r\n  ],\r\n  \"SdkVersion\": \"161339459\",\r\n  \"References\": [\r\n    \"f9b57385e04dcef1\",\r\n    \"b04d1a92c03aa393\",\r\n    \"740a41f35e38e687\",\r\n    \"a650b002a55ee732\",\r\n    \"8bb25cdfa9f58d95\",\r\n    \"ca01f9c6c9519128\",\r\n    \"a7db6d4c13eb109a\",\r\n    \"4787ec450370cdc\",\r\n    \"faae3cd2329a5f23\",\r\n    \"b136c9057d0eac41\",\r\n    \"a4be57a67913d9f2\",\r\n    \"c2f7e51423366080\",\r\n    \"9221249557edf7da\",\r\n    \"ac08b9147e6c6cc1\",\r\n    \"fc8f31a851b2f1e\",\r\n    \"3d1fab7a1546aa70\",\r\n    \"75c42701c310d265\",\r\n    \"6eac5906d797823f\",\r\n    \"51b6b65db45d8317\",\r\n    \"977562ede61122d1\",\r\n    \"6f06be6c7dad3d57\",\r\n    \"782a823a2d8cd40\",\r\n    \"13bbf2cbcdb96469\",\r\n    \"a8b1d9f359d7b4f\",\r\n    \"8db448e27f0bad1b\",\r\n    \"5faa84ffcc646d16\",\r\n    \"3dd9e1e713ce28c1\",\r\n    \"bc70a3688f03b546\",\r\n    \"3e025539204a5d59\",\r\n    \"12bec27505c61c10\",\r\n    \"65e9cc7358ddee2e\",\r\n    \"7df5bfe00323a6a8\",\r\n    \"ce3f444652eead51\",\r\n    \"feebdde9a00fe94b\",\r\n    \"22d24df113118e04\",\r\n    \"6a8ada60e30e6abf\",\r\n    \"6001a9b860f7e43\",\r\n    \"e94e5ff7b2eb39a9\",\r\n    \"46b5412910b12f1a\",\r\n    \"eac4975c939bd705\",\r\n    \"a777367473e5f95c\",\r\n    \"f67433e0978efe89\",\r\n    \"d574426ce261f3cd\",\r\n    \"2620772be337bacb\",\r\n    \"ce4b86769789bfd2\",\r\n    \"afe098e2b8eb2364\",\r\n    \"4bca77302b767821\",\r\n    \"b42e3bf9c2caf9d\",\r\n    \"11d6a5981dd09f1d\",\r\n    \"2528657f041a0f71\",\r\n    \"1a4910e7928d2be4\",\r\n    \"385f6cb9a1a92341\",\r\n    \"8a6a053fd546c4b9\",\r\n    \"4bd5d70d9487a7\",\r\n    \"546da94a433dd46b\",\r\n    \"c8cd67501180cdb3\",\r\n    \"99380cc3f9cb0f62\",\r\n    \"e9ad645088056795\",\r\n    \"2b71ac54faa4d900\",\r\n    \"6d26f5b6d581bb7a\",\r\n    \"e99748daf45287f7\",\r\n    \"a3ac73bd1c3ce685\",\r\n    \"88a79e3fbc9be5a5\",\r\n    \"baed534980001b3e\",\r\n    \"a094f278ebd28638\",\r\n    \"f02b6f1120327ed5\",\r\n    \"1fdb3be137e7c8ab\",\r\n    \"d8d06e6254ff9a8\",\r\n    \"7a37191fa2429c0\",\r\n    \"db2085d40be0c6b\",\r\n    \"732e2f41e1ec328f\",\r\n    \"cc0b8a0dc4b5cc17\",\r\n    \"b3ec78066692ce40\",\r\n    \"b633596fb5206911\",\r\n    \"b1c086ddba588d7f\",\r\n    \"3935c25fc587591d\",\r\n    \"5db9cd2d6d302594\",\r\n    \"1fe2caf02ff5116\",\r\n    \"d1e401c8e175f133\",\r\n    \"beb154638739ac8f\",\r\n    \"d795c4b069f42de2\",\r\n    \"28889d355be716fb\",\r\n    \"987004758afb653e\",\r\n    \"a93a13f245d3dbf5\",\r\n    \"c2c7e5dd6bcf2f46\",\r\n    \"f40e391e11837c28\",\r\n    \"1f1effdb4f95fef\",\r\n    \"4b3556ed143bb1a1\",\r\n    \"990c07b3a694f061\",\r\n    \"16f3b3c6aa66dbea\",\r\n    \"bbc2c7fb9307d0f8\",\r\n    \"cae96c695fa0a849\",\r\n    \"23af2e185bf7f884\",\r\n    \"10682f5180926917\",\r\n    \"531413e8ae8921e9\",\r\n    \"cbb2e2956b8bc5a1\",\r\n    \"693159958e045249\",\r\n    \"abb76040f918f212\",\r\n    \"2978ebe3fa017619\",\r\n    \"d753dc831058d377\",\r\n    \"5d5ab2fae13c7cd7\",\r\n    \"6f36e9e201c8abbc\",\r\n    \"2c2215284100c1bc\",\r\n    \"abef39459b5f8089\",\r\n    \"58b2ccb5d5268768\",\r\n    \"f4c238ed95a4c9e0\",\r\n    \"463559064b820a89\",\r\n    \"f46a5248555641f3\",\r\n    \"31a917d25f0111b0\",\r\n    \"d9a0d90fcf36b125\",\r\n    \"f707ec8ff0716b6a\",\r\n    \"d31ae060adc0cf68\",\r\n    \"b740561cbe999190\",\r\n    \"6f6cd086b29443f\",\r\n    \"3e2b84419c2678fe\",\r\n    \"16aa5cd16608904e\",\r\n    \"88efed4970ce8fb\",\r\n    \"525af1cb4f8c1ef\",\r\n    \"82365a1d92723ea2\",\r\n    \"f9081118726c671d\",\r\n    \"1dc6ba4b51a92fe2\",\r\n    \"480fcc9a46d59829\",\r\n    \"96ae799a9cd65a64\",\r\n    \"1f0a5acc2009b69e\",\r\n    \"53da3fcaf9d4a664\",\r\n    \"762862983c40286f\",\r\n    \"7143cd55e6267a10\",\r\n    \"9c4f1e8060c475b4\",\r\n    \"5641b1bfbef8f076\",\r\n    \"c074fd9cba688aec\",\r\n    \"6b8a7cd56172fed1\",\r\n    \"5d25704a6a0be6ed\",\r\n    \"7de0d61ed8a595ec\",\r\n    \"85c2a8db5105888\",\r\n    \"ec2dac2bf194d54a\",\r\n    \"baae63d2bc6dd501\",\r\n    \"6e18d5f5513ced07\",\r\n    \"ecc917c3c9b5c475\",\r\n    \"3e60a289d38463fa\",\r\n    \"3297b865f846bd0a\",\r\n    \"4d9b25b5312a81c5\",\r\n    \"34cfcce7d574a410\",\r\n    \"762c57508db7a1c2\",\r\n    \"81016cf6be9235ed\",\r\n    \"96f5a81e8df6f19c\",\r\n    \"bc2ea691e56496f8\",\r\n    \"5d957776a3bc8463\",\r\n    \"4fcdd50549f35f69\",\r\n    \"1613d6b76156e26a\",\r\n    \"609f5396c0534146\",\r\n    \"31be6951d8a1de6e\",\r\n    \"d373f3c4566c70c6\",\r\n    \"b42e1bda5a17dc0e\",\r\n    \"3017ef0c38e2d837\",\r\n    \"92e480fdaacc79e0\",\r\n    \"ffb314483a45fa40\",\r\n    \"3159cfd5553fa1b8\",\r\n    \"6a5eaa177b0b8d54\",\r\n    \"add48a46678bd09d\",\r\n    \"c70f2a1b237f229d\",\r\n    \"3beb376886d63c97\",\r\n    \"363b07840a344182\",\r\n    \"f638dfb632c7bb3e\",\r\n    \"4fc1e02f10ba6dcc\",\r\n    \"7f7e058ceeba44c4\",\r\n    \"76fdeb10eb04a251\",\r\n    \"c229c6a3986d545b\"\r\n  ],\r\n  \"FileExtensions\": [\r\n    \"-1257278712\"\r\n  ],\r\n  \"FileCounts\": [\r\n    5\r\n  ],\r\n  \"SdkStyleProject\": true\r\n}, TraceParent = , TraceState =  }'"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/msbuildprojectdiagnostics",
+      "params": {
+        "FileName": "<fixture>\\projects\\csharp_diagnostic\\Fixture.csproj",
+        "Warnings": [],
+        "Errors": []
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/backgrounddiagnosticstatus",
+      "params": {
+        "Status": 0,
+        "NumberProjects": 1,
+        "NumberFilesTotal": 1,
+        "NumberFilesRemaining": 0
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/backgrounddiagnosticstatus",
+      "params": {
+        "Status": 0,
+        "NumberProjects": 1,
+        "NumberFilesTotal": 1,
+        "NumberFilesRemaining": 0
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/backgrounddiagnosticstatus",
+      "params": {
+        "Status": 0,
+        "NumberProjects": 1,
+        "NumberFilesTotal": 1,
+        "NumberFilesRemaining": 0
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/backgrounddiagnosticstatus",
+      "params": {
+        "Status": 0,
+        "NumberProjects": 1,
+        "NumberFilesTotal": 1,
+        "NumberFilesRemaining": 0
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/backgrounddiagnosticstatus",
+      "params": {
+        "Status": 0,
+        "NumberProjects": 1,
+        "NumberFilesTotal": 1,
+        "NumberFilesRemaining": 0
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectdiagnosticstatus",
+      "params": {
+        "Type": "background",
+        "Status": 0,
+        "ProjectFilePath": "(100%)"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectdiagnosticstatus",
+      "params": {
+        "Type": "background",
+        "Status": 0,
+        "ProjectFilePath": "(100%)"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/backgrounddiagnosticstatus",
+      "params": {
+        "Status": 1,
+        "NumberProjects": 1,
+        "NumberFilesTotal": 1,
+        "NumberFilesRemaining": 0
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectdiagnosticstatus",
+      "params": {
+        "Type": "background",
+        "Status": 0,
+        "ProjectFilePath": "(100%)"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/backgrounddiagnosticstatus",
+      "params": {
+        "Status": 1,
+        "NumberProjects": 1,
+        "NumberFilesTotal": 1,
+        "NumberFilesRemaining": 0
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectdiagnosticstatus",
+      "params": {
+        "Type": "background",
+        "Status": 0,
+        "ProjectFilePath": "(100%)"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/backgrounddiagnosticstatus",
+      "params": {
+        "Status": 1,
+        "NumberProjects": 1,
+        "NumberFilesTotal": 1,
+        "NumberFilesRemaining": 0
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/backgrounddiagnosticstatus",
+      "params": {
+        "Status": 1,
+        "NumberProjects": 1,
+        "NumberFilesTotal": 1,
+        "NumberFilesRemaining": 0
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectdiagnosticstatus",
+      "params": {
+        "Type": "background",
+        "Status": 0,
+        "ProjectFilePath": "(100%)"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectdiagnosticstatus",
+      "params": {
+        "Type": "background",
+        "Status": 0,
+        "ProjectFilePath": "(100%)"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectdiagnosticstatus",
+      "params": {
+        "Type": "background",
+        "Status": 0,
+        "ProjectFilePath": "(100%)"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectdiagnosticstatus",
+      "params": {
+        "Type": "background",
+        "Status": 0,
+        "ProjectFilePath": "(100%)"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/backgrounddiagnosticstatus",
+      "params": {
+        "Status": 1,
+        "NumberProjects": 1,
+        "NumberFilesTotal": 1,
+        "NumberFilesRemaining": 0
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectdiagnosticstatus",
+      "params": {
+        "Type": "background",
+        "Status": 0,
+        "ProjectFilePath": "(100%)"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/backgrounddiagnosticstatus",
+      "params": {
+        "Status": 1,
+        "NumberProjects": 1,
+        "NumberFilesTotal": 5,
+        "NumberFilesRemaining": 0
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectdiagnosticstatus",
+      "params": {
+        "Type": "background",
+        "Status": 0,
+        "ProjectFilePath": "(100%)"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/backgrounddiagnosticstatus",
+      "params": {
+        "Status": 0,
+        "NumberProjects": 1,
+        "NumberFilesTotal": 5,
+        "NumberFilesRemaining": 4
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectdiagnosticstatus",
+      "params": {
+        "Type": "background",
+        "Status": 0,
+        "ProjectFilePath": "(20%)"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/backgrounddiagnosticstatus",
+      "params": {
+        "Status": 0,
+        "NumberProjects": 1,
+        "NumberFilesTotal": 5,
+        "NumberFilesRemaining": 4
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectdiagnosticstatus",
+      "params": {
+        "Type": "background",
+        "Status": 0,
+        "ProjectFilePath": "(20%)"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/backgrounddiagnosticstatus",
+      "params": {
+        "Status": 1,
+        "NumberProjects": 1,
+        "NumberFilesTotal": 5,
+        "NumberFilesRemaining": 0
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectdiagnosticstatus",
+      "params": {
+        "Type": "background",
+        "Status": 0,
+        "ProjectFilePath": "(100%)"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/backgrounddiagnosticstatus",
+      "params": {
+        "Status": 0,
+        "NumberProjects": 1,
+        "NumberFilesTotal": 5,
+        "NumberFilesRemaining": 4
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectdiagnosticstatus",
+      "params": {
+        "Type": "background",
+        "Status": 0,
+        "ProjectFilePath": "(20%)"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectconfiguration",
+      "params": {
+        "ProjectId": "5ab2ca003f4194f0",
+        "SessionId": "-427734155",
+        "OutputKind": 2,
+        "ProjectCapabilities": [
+          "GenerateDocumentationFile",
+          "CSharp",
+          "Managed",
+          "ReferencesFolder",
+          "LanguageService",
+          "RelativePathDerivedDefaultNamespace",
+          "AssemblyReferences",
+          "COMReferences",
+          "ProjectReferences",
+          "SharedProjectReferences",
+          "OutputGroups",
+          "AllTargetOutputGroups",
+          "VisualStudioWellKnownOutputGroups",
+          "SingleFileGenerators",
+          "DeclaredSourceItems",
+          "UserSourceItems",
+          "NativeAOT",
+          "SupportsHotReload",
+          "SupportsComputeRunCommand",
+          "Pack",
+          "NetSdkOCIImageBuild"
+        ],
+        "TargetFrameworks": [
+          "net10.0"
+        ],
+        "SdkVersion": "161339459",
+        "References": [
+          "f9b57385e04dcef1",
+          "b04d1a92c03aa393",
+          "740a41f35e38e687",
+          "a650b002a55ee732",
+          "8bb25cdfa9f58d95",
+          "ca01f9c6c9519128",
+          "a7db6d4c13eb109a",
+          "4787ec450370cdc",
+          "faae3cd2329a5f23",
+          "b136c9057d0eac41",
+          "a4be57a67913d9f2",
+          "c2f7e51423366080",
+          "9221249557edf7da",
+          "ac08b9147e6c6cc1",
+          "fc8f31a851b2f1e",
+          "3d1fab7a1546aa70",
+          "75c42701c310d265",
+          "6eac5906d797823f",
+          "51b6b65db45d8317",
+          "977562ede61122d1",
+          "6f06be6c7dad3d57",
+          "782a823a2d8cd40",
+          "13bbf2cbcdb96469",
+          "a8b1d9f359d7b4f",
+          "8db448e27f0bad1b",
+          "5faa84ffcc646d16",
+          "3dd9e1e713ce28c1",
+          "bc70a3688f03b546",
+          "3e025539204a5d59",
+          "12bec27505c61c10",
+          "65e9cc7358ddee2e",
+          "7df5bfe00323a6a8",
+          "ce3f444652eead51",
+          "feebdde9a00fe94b",
+          "22d24df113118e04",
+          "6a8ada60e30e6abf",
+          "6001a9b860f7e43",
+          "e94e5ff7b2eb39a9",
+          "46b5412910b12f1a",
+          "eac4975c939bd705",
+          "a777367473e5f95c",
+          "f67433e0978efe89",
+          "d574426ce261f3cd",
+          "2620772be337bacb",
+          "ce4b86769789bfd2",
+          "afe098e2b8eb2364",
+          "4bca77302b767821",
+          "b42e3bf9c2caf9d",
+          "11d6a5981dd09f1d",
+          "2528657f041a0f71",
+          "1a4910e7928d2be4",
+          "385f6cb9a1a92341",
+          "8a6a053fd546c4b9",
+          "4bd5d70d9487a7",
+          "546da94a433dd46b",
+          "c8cd67501180cdb3",
+          "99380cc3f9cb0f62",
+          "e9ad645088056795",
+          "2b71ac54faa4d900",
+          "6d26f5b6d581bb7a",
+          "e99748daf45287f7",
+          "a3ac73bd1c3ce685",
+          "88a79e3fbc9be5a5",
+          "baed534980001b3e",
+          "a094f278ebd28638",
+          "f02b6f1120327ed5",
+          "1fdb3be137e7c8ab",
+          "d8d06e6254ff9a8",
+          "7a37191fa2429c0",
+          "db2085d40be0c6b",
+          "732e2f41e1ec328f",
+          "cc0b8a0dc4b5cc17",
+          "b3ec78066692ce40",
+          "b633596fb5206911",
+          "b1c086ddba588d7f",
+          "3935c25fc587591d",
+          "5db9cd2d6d302594",
+          "1fe2caf02ff5116",
+          "d1e401c8e175f133",
+          "beb154638739ac8f",
+          "d795c4b069f42de2",
+          "28889d355be716fb",
+          "987004758afb653e",
+          "a93a13f245d3dbf5",
+          "c2c7e5dd6bcf2f46",
+          "f40e391e11837c28",
+          "1f1effdb4f95fef",
+          "4b3556ed143bb1a1",
+          "990c07b3a694f061",
+          "16f3b3c6aa66dbea",
+          "bbc2c7fb9307d0f8",
+          "cae96c695fa0a849",
+          "23af2e185bf7f884",
+          "10682f5180926917",
+          "531413e8ae8921e9",
+          "cbb2e2956b8bc5a1",
+          "693159958e045249",
+          "abb76040f918f212",
+          "2978ebe3fa017619",
+          "d753dc831058d377",
+          "5d5ab2fae13c7cd7",
+          "6f36e9e201c8abbc",
+          "2c2215284100c1bc",
+          "abef39459b5f8089",
+          "58b2ccb5d5268768",
+          "f4c238ed95a4c9e0",
+          "463559064b820a89",
+          "f46a5248555641f3",
+          "31a917d25f0111b0",
+          "d9a0d90fcf36b125",
+          "f707ec8ff0716b6a",
+          "d31ae060adc0cf68",
+          "b740561cbe999190",
+          "6f6cd086b29443f",
+          "3e2b84419c2678fe",
+          "16aa5cd16608904e",
+          "88efed4970ce8fb",
+          "525af1cb4f8c1ef",
+          "82365a1d92723ea2",
+          "f9081118726c671d",
+          "1dc6ba4b51a92fe2",
+          "480fcc9a46d59829",
+          "96ae799a9cd65a64",
+          "1f0a5acc2009b69e",
+          "53da3fcaf9d4a664",
+          "762862983c40286f",
+          "7143cd55e6267a10",
+          "9c4f1e8060c475b4",
+          "5641b1bfbef8f076",
+          "c074fd9cba688aec",
+          "6b8a7cd56172fed1",
+          "5d25704a6a0be6ed",
+          "7de0d61ed8a595ec",
+          "85c2a8db5105888",
+          "ec2dac2bf194d54a",
+          "baae63d2bc6dd501",
+          "6e18d5f5513ced07",
+          "ecc917c3c9b5c475",
+          "3e60a289d38463fa",
+          "3297b865f846bd0a",
+          "4d9b25b5312a81c5",
+          "34cfcce7d574a410",
+          "762c57508db7a1c2",
+          "81016cf6be9235ed",
+          "96f5a81e8df6f19c",
+          "bc2ea691e56496f8",
+          "5d957776a3bc8463",
+          "4fcdd50549f35f69",
+          "1613d6b76156e26a",
+          "609f5396c0534146",
+          "31be6951d8a1de6e",
+          "d373f3c4566c70c6",
+          "b42e1bda5a17dc0e",
+          "3017ef0c38e2d837",
+          "92e480fdaacc79e0",
+          "ffb314483a45fa40",
+          "3159cfd5553fa1b8",
+          "6a5eaa177b0b8d54",
+          "add48a46678bd09d",
+          "c70f2a1b237f229d",
+          "3beb376886d63c97",
+          "363b07840a344182",
+          "f638dfb632c7bb3e",
+          "4fc1e02f10ba6dcc",
+          "7f7e058ceeba44c4",
+          "76fdeb10eb04a251",
+          "c229c6a3986d545b"
+        ],
+        "FileExtensions": [
+          "-1257278712"
+        ],
+        "FileCounts": [
+          5
+        ],
+        "SdkStyleProject": true
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectchanged",
+      "params": {
+        "MsBuildProject": {
+          "ProjectGuid": "00000000-0000-0000-0000-000000000000",
+          "Path": "<fixture>\\projects\\csharp_diagnostic\\Fixture.csproj",
+          "AssemblyName": "Fixture",
+          "TargetPath": "<fixture>\\backend-cache\\csharp_diagnostic\\bin\\Debug\\net10.0\\Fixture.dll",
+          "TargetFramework": ".NETCoreApp,Version=v10.0",
+          "SourceFiles": [
+            "<fixture>\\projects\\csharp_diagnostic\\Consumer.cs",
+            "<fixture>\\projects\\csharp_diagnostic\\Greeter.cs",
+            "<fixture>\\backend-cache\\csharp_diagnostic\\obj\\Debug\\net10.0\\Fixture.GlobalUsings.g.cs",
+            "<fixture>\\backend-cache\\csharp_diagnostic\\obj\\Debug\\net10.0\\.NETCoreApp,Version=v10.0.AssemblyAttributes.cs",
+            "<fixture>\\backend-cache\\csharp_diagnostic\\obj\\Debug\\net10.0\\Fixture.AssemblyInfo.cs"
+          ],
+          "TargetFrameworks": [
+            {
+              "Name": ".NETCoreApp",
+              "FriendlyName": ".NETCoreApp",
+              "ShortName": "net10.0"
+            }
+          ],
+          "OutputPath": "C:/Users/steven/AppData/Local/Temp/odin-native-diagnostic-99tq8mk4/backend-cache/csharp_diagnostic/bin/Debug\\net10.0\\",
+          "IntermediateOutputPath": "C:/Users/steven/AppData/Local/Temp/odin-native-diagnostic-99tq8mk4/backend-cache/csharp_diagnostic/obj/Debug\\net10.0\\",
+          "Configuration": "Debug",
+          "Platform": "AnyCPU",
+          "IsExe": false,
+          "IsUnityProject": false
+        }
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/logMessage",
+      "params": {
+        "type": 3,
+        "message": "OmniSharp.LanguageServerProtocol.LanguageServerHost: Omnisharp server running using Lsp at location '<fixture>\\projects\\csharp_diagnostic\\' on host 32348. | "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "o#/projectadded",
+      "params": {
+        "MsBuildProject": {
+          "ProjectGuid": "00000000-0000-0000-0000-000000000000",
+          "Path": "<fixture>\\projects\\csharp_diagnostic\\Fixture.csproj",
+          "AssemblyName": "Fixture",
+          "TargetPath": "<fixture>\\backend-cache\\csharp_diagnostic\\bin\\Debug\\net10.0\\Fixture.dll",
+          "TargetFramework": ".NETCoreApp,Version=v10.0",
+          "SourceFiles": [
+            "<fixture>\\projects\\csharp_diagnostic\\Consumer.cs",
+            "<fixture>\\projects\\csharp_diagnostic\\Greeter.cs",
+            "<fixture>\\backend-cache\\csharp_diagnostic\\obj\\Debug\\net10.0\\Fixture.GlobalUsings.g.cs",
+            "<fixture>\\backend-cache\\csharp_diagnostic\\obj\\Debug\\net10.0\\.NETCoreApp,Version=v10.0.AssemblyAttributes.cs",
+            "<fixture>\\backend-cache\\csharp_diagnostic\\obj\\Debug\\net10.0\\Fixture.AssemblyInfo.cs"
+          ],
+          "TargetFrameworks": [
+            {
+              "Name": ".NETCoreApp",
+              "FriendlyName": ".NETCoreApp",
+              "ShortName": "net10.0"
+            }
+          ],
+          "OutputPath": "C:/Users/steven/AppData/Local/Temp/odin-native-diagnostic-99tq8mk4/backend-cache/csharp_diagnostic/bin/Debug\\net10.0\\",
+          "IntermediateOutputPath": "C:/Users/steven/AppData/Local/Temp/odin-native-diagnostic-99tq8mk4/backend-cache/csharp_diagnostic/obj/Debug\\net10.0\\",
+          "Configuration": "Debug",
+          "Platform": "AnyCPU",
+          "IsExe": false,
+          "IsUnityProject": false
+        }
+      }
+    }
+  ],
+  "stderr": [],
+  "native_exit_code": 0
+}

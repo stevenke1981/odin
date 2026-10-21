@@ -1,0 +1,181 @@
+{
+  "scope": "DIRECT_NATIVE_BACKEND_DIAGNOSTIC_ONLY",
+  "odin_mcp_checks": 0,
+  "probe": "go-list",
+  "source_sha256": "e9ee1c39996363ed529be87300af6bd157ae690ed3dd1ae49e6544e86f801914",
+  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+  "status": "OBSERVED",
+  "native_capability_probe": {
+    "exit_code": 0,
+    "stdout": "{\n  \"tier\": \"base-container\",\n  \"needsDaclAugmentation\": false,\n  \"warnings\": [],\n  \"probes\": {\n    \"baseContainerApiPresent\": true,\n    \"nativeCaptureAvailable\": true,\n    \"guardedCaptureAvailable\": false,\n    \"bfscfgPresent\": false,\n    \"bfsCompiledIn\": false,\n    \"baseContainerSupportsDenyPaths\": true,\n    \"baseContainerSupportsEnumeratePaths\": true,\n    \"baseContainerSupportsIngressHostLoopbackAllow\": true,\n    \"isolationSessionAvailable\": true,\n    \"hyperlightAvailable\": true,\n    \"uiCapabilities\": {\n      \"canBlockClipboardRead\": true,\n      \"canBlockClipboardWrite\": true,\n      \"canBlockInputInjection\": true,\n      \"canBlockInputMethodChanges\": true,\n      \"canBlockExternalUiObjects\": true,\n      \"canBlockGlobalUiNamespace\": true,\n      \"canBlockDesktopSwitching\": true,\n      \"canBlockLogoffOrShutdown\": true,\n      \"canBlockSystemParameterChanges\": true,\n      \"canBlockDisplaySettingsChanges\": true\n    }\n  }\n}\n",
+    "stderr": ""
+  },
+  "enumerate_metadata_paths": [
+    "C:\\",
+    "C:\\Users",
+    "C:\\Users\\steven",
+    "C:\\Users\\steven\\AppData",
+    "C:\\Users\\steven\\AppData\\Local",
+    "C:\\Users\\steven\\AppData\\Local\\Temp",
+    "<fixture>",
+    "<fixture>\\projects",
+    "E:\\",
+    "E:\\odin",
+    "E:\\odin\\.odin",
+    "E:\\odin\\.odin\\validation-tools",
+    "E:\\odin\\.odin\\validation-tools\\go",
+    "E:\\odin\\.odin\\validation-tools\\go-work"
+  ],
+  "metadata_boundary": {
+    "command": [
+      "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64\\wxc-exec.exe",
+      "--config",
+      "<fixture>\\policies\\boundary-policy.json",
+      "--",
+      "C:\\Program Files\\nodejs\\node.exe",
+      "--preserve-symlinks",
+      "--preserve-symlinks-main",
+      "<fixture>\\fixed-boundary-check.mjs"
+    ],
+    "policy_sha256": "bdd0a3030c26f45999dc08c535be17bf2ed7bda2b67776fae0a4986416d296be",
+    "source": "import fs from 'node:fs';\nimport net from 'node:net';\nimport {createHash} from 'node:crypto';\nconst source=\"C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-native-diagnostic-uav5ar6y\\\\projects\\\\go_diagnostic\\\\sample.go\";const outside=[\"C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\language-sandbox-v3-outside-uc8nnvjf\\\\outside-sentinel.txt\", \"E:\\\\odin\\\\.odin\\\\language-sandbox-v3-outside-we46y_g2\\\\outside-sentinel.txt\"];\nconst positive=\"C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-native-diagnostic-uav5ar6y\\\\backend-cache\\\\go_diagnostic\\\\native-positive-write.txt\";const policy=\"C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-native-diagnostic-uav5ar6y\\\\policies\\\\fixed-policy.json\";\nconst checks=[];const denied=(name,action)=>{try{action();checks.push({name,status:'FAIL'});}catch(error){checks.push({name,status:'PASS',error:error.code});}};\nchecks.push({name:'permitted_source_read',status:createHash('sha256').update(fs.readFileSync(source)).digest('hex')===\"63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04\"?'PASS':'FAIL'});\nfs.writeFileSync(positive,'explicit-private-write');checks.push({name:'explicit_writable_positive',status:fs.readFileSync(positive,'utf8')==='explicit-private-write'?'PASS':'FAIL'});\nfor(const path of outside){const drive=path.slice(0,1);denied('outside_content_read_'+drive,()=>fs.readFileSync(path));denied('outside_overwrite_'+drive,()=>fs.writeFileSync(path,'denied'));}\ndenied('readonly_source_overwrite',()=>fs.writeFileSync(source,'denied'));\ndenied('readonly_source_create',()=>fs.writeFileSync(source+'.forbidden','denied'));\ndenied('protected_policy_read',()=>fs.readFileSync(policy));\nfor(const path of [\"C:\\\\\", \"E:\\\\\"]){checks.push({name:'volume_metadata_query_'+path.slice(0,1),status:fs.statSync(path).isDirectory()?'PASS':'FAIL'});}\nconst loopbackDenied=await new Promise(resolve=>{const socket=net.createConnection({host:'127.0.0.1',port:55386});socket.once('connect',()=>{socket.destroy();resolve(false);});socket.once('error',()=>resolve(true));socket.setTimeout(700,()=>{socket.destroy();resolve(true);});});\nchecks.push({name:'loopback_connection_denied',status:loopbackDenied?'PASS':'FAIL'});\nconsole.log(JSON.stringify({checks}));process.exit(checks.every(c=>c.status==='PASS')?0:1);\n",
+    "source_sha256": "3e2442184800149313fff0c1bb5a12e1fdcefd442ac6f59fec6c32157f155829",
+    "exit_code": 0,
+    "stdout": "{\"checks\":[{\"name\":\"permitted_source_read\",\"status\":\"PASS\"},{\"name\":\"explicit_writable_positive\",\"status\":\"PASS\"},{\"name\":\"outside_content_read_C\",\"status\":\"PASS\",\"error\":\"EPERM\"},{\"name\":\"outside_overwrite_C\",\"status\":\"PASS\",\"error\":\"EPERM\"},{\"name\":\"outside_content_read_E\",\"status\":\"PASS\",\"error\":\"EPERM\"},{\"name\":\"outside_overwrite_E\",\"status\":\"PASS\",\"error\":\"EPERM\"},{\"name\":\"readonly_source_overwrite\",\"status\":\"PASS\",\"error\":\"EPERM\"},{\"name\":\"readonly_source_create\",\"status\":\"PASS\",\"error\":\"EPERM\"},{\"name\":\"protected_policy_read\",\"status\":\"PASS\",\"error\":\"EPERM\"},{\"name\":\"volume_metadata_query_C\",\"status\":\"PASS\"},{\"name\":\"volume_metadata_query_E\",\"status\":\"PASS\"},{\"name\":\"loopback_connection_denied\",\"status\":\"PASS\"}]}\n",
+    "stderr": "",
+    "outside_host_hash_unchanged": true,
+    "outside_drive_host_hashes": {
+      "C:": {
+        "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\language-sandbox-v3-outside-uc8nnvjf\\outside-sentinel.txt",
+        "unchanged": true,
+        "sha256": "450e045d789e0ac4ce4748b122874681b3e15f09a3e78a778a119aa14293f237"
+      },
+      "E:": {
+        "path": "E:\\odin\\.odin\\language-sandbox-v3-outside-we46y_g2\\outside-sentinel.txt",
+        "unchanged": true,
+        "sha256": "450e045d789e0ac4ce4748b122874681b3e15f09a3e78a778a119aa14293f237"
+      }
+    },
+    "readonly_source_host_hash_unchanged": true,
+    "host_loopback_accepts": 0,
+    "positive_host_write_verified": true
+  },
+  "program_sha256": "83b7ba66215e696414fa49462d0db2da4f4cf15c7bebd42f0b189fa04866999d",
+  "policy_sha256": "0c35294448cd3999a0fe11b6c6716db8c1a799feb1d70f773519a8b357b73ff8",
+  "command": [
+    "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64\\wxc-exec.exe",
+    "--config",
+    "<fixture>\\policies\\fixed-policy.json",
+    "--",
+    "E:\\odin\\.odin\\validation-tools\\go\\go\\bin\\go.exe",
+    "list",
+    "-e",
+    "-json",
+    "-deps",
+    "-compiled",
+    "."
+  ],
+  "policy": {
+    "version": "1.0.0",
+    "containment": "processcontainer",
+    "lifecycle": {
+      "destroyOnExit": true,
+      "preservePolicy": false
+    },
+    "process": {
+      "cwd": "<fixture>\\projects\\go_diagnostic",
+      "env": [
+        "PATH=E:\\odin\\.odin\\validation-tools\\go\\go\\bin;E:\\odin\\.odin\\validation-tools\\dotnet;E:\\odin\\.odin\\validation-tools\\jdk\\jdk-25.0.4.1+1\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell;C:\\Users\\steven\\.codex\\tmp\\arg0-windows\\codex-arg0BMy7vX;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\libheif\\libheif\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\jxrlib\\jxrlib\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\poppler\\Library\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\bin\\override;C:\\Python314\\Scripts\\;C:\\Python314\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\nodejs\\;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\GitHub CLI\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Archiver;C:\\Program Files\\Downloader;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\python-3.13.16\\tools\\Scripts;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\python-3.13.16\\tools;C:\\Users\\steven\\.cargo\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\node-24.21.0\\node-v24.21.0-win-x64;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\gh-2.102.0\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\git-2.56.0.2\\cmd;C:\\Users\\steven\\AppData\\Roaming\\npm;C:\\Program Files\\Godot;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg.Essentials_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-9.0.1-essentials_build\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\soundx;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\bin\\fallback;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd;C:\\Users\\steven\\AppData\\Local\\OpenAI\\Codex\\bin\\ce4759538b7f2f1a;C:\\Users\\steven\\AppData\\Local\\OpenAI\\Codex\\bin\\896a0166b774037a",
+        "SYSTEMROOT=C:\\WINDOWS",
+        "SystemRoot=C:\\WINDOWS",
+        "WINDIR=C:\\WINDOWS",
+        "COMSPEC=C:\\WINDOWS\\system32\\cmd.exe",
+        "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.CPL",
+        "USERPROFILE=<fixture>\\private-scratch",
+        "TEMP=<fixture>\\private-scratch",
+        "TMP=<fixture>\\private-scratch",
+        "APPDATA=<fixture>\\private-scratch",
+        "LOCALAPPDATA=<fixture>\\private-scratch",
+        "LANG=C.UTF-8",
+        "LC_ALL=C.UTF-8",
+        "ProgramFiles=C:\\Program Files",
+        "ProgramFiles(x86)=C:\\Program Files (x86)",
+        "ProgramW6432=C:\\Program Files",
+        "ProgramData=C:\\ProgramData",
+        "ALLUSERSPROFILE=C:\\ProgramData",
+        "GOTOOLCHAIN=local",
+        "GOROOT=E:\\odin\\.odin\\validation-tools\\go\\go",
+        "GOPATH=<fixture>\\backend-cache\\go_diagnostic\\go-path",
+        "GOCACHE=<fixture>\\backend-cache\\go_diagnostic\\go-cache",
+        "GOMODCACHE=<fixture>\\backend-cache\\go_diagnostic\\go-modules",
+        "GOTELEMETRY=off",
+        "HOME=<fixture>\\private-scratch",
+        "DOTNET_CLI_TELEMETRY_OPTOUT=1",
+        "DOTNET_GENERATE_ASPNET_CERTIFICATE=false"
+      ],
+      "inheritDefaultEnv": false,
+      "timeout": 25000
+    },
+    "filesystem": {
+      "readonlyPaths": [
+        "<fixture>\\projects\\go_diagnostic",
+        "E:\\odin\\.odin\\validation-tools\\go-work\\bin",
+        "E:\\odin\\.odin\\validation-tools\\go\\go"
+      ],
+      "readwritePaths": [
+        "<fixture>\\backend-cache\\go_diagnostic",
+        "<fixture>\\private-scratch"
+      ],
+      "deniedPaths": [
+        "<fixture>\\policies"
+      ]
+    },
+    "fallback": {
+      "allowDaclMutation": false
+    },
+    "network": {
+      "egress": {
+        "default": "deny"
+      },
+      "ingress": {
+        "default": "deny",
+        "hostLoopback": "deny"
+      }
+    },
+    "ui": {
+      "disable": false,
+      "clipboard": "none",
+      "injection": false
+    },
+    "telemetry": {
+      "enabled": false
+    },
+    "processContainer": {
+      "filesystem": {
+        "enumeratePaths": [
+          "C:\\",
+          "C:\\Users",
+          "C:\\Users\\steven",
+          "C:\\Users\\steven\\AppData",
+          "C:\\Users\\steven\\AppData\\Local",
+          "C:\\Users\\steven\\AppData\\Local\\Temp",
+          "<fixture>",
+          "<fixture>\\projects",
+          "E:\\",
+          "E:\\odin",
+          "E:\\odin\\.odin",
+          "E:\\odin\\.odin\\validation-tools",
+          "E:\\odin\\.odin\\validation-tools\\go",
+          "E:\\odin\\.odin\\validation-tools\\go-work"
+        ]
+      }
+    }
+  },
+  "explicit_host_allow_ui": true,
+  "profile_info": {},
+  "native_exit_code": 1,
+  "stdout": "",
+  "stderr": "go: creating work dir: GetFileAttributesEx <fixture>\\private-scratch\\Packages\\sandbox.{c5774a47-593f-45b0-b895-72795d44841b}\\AC\\Temp: The system cannot find the path specified.\n",
+  "stdout_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_raw_sha256": "1f857d03151ce60a7ca1e7405b8d8b7c060cd529b8d7039c71191f96fa2e0a77"
+}

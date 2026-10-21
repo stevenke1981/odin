@@ -23,10 +23,11 @@ def sha(path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--probe", choices=("go-lsp", "java-security", "python-runtime-cwd"), required=True)
+    parser.add_argument("--probe", choices=("go-lsp", "go-list", "java-security", "python-runtime-cwd", "csharp-lsp"), required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--enumerate-runtime-ancestors", action="store_true")
     parser.add_argument("--go-package-diagnostics", action="store_true")
+    parser.add_argument("--csharp-backend", choices=("csharp-ls", "omnisharp"), default="csharp-ls")
     args = parser.parse_args()
     if args.output.exists():
         parser.error("Choose a fresh report")
@@ -46,7 +47,7 @@ def main():
         environment["PATH"] = os.pathsep.join([str(tools / "go/go/bin"), str(tools / "dotnet"),
                                                str(jdks[0].parent) if len(jdks) == 1 else "", environment.get("PATH", "")])
         environment["GOTOOLCHAIN"] = "local"
-        item = fixture(base, tools, language, "diagnostic")
+        item = fixture(base, tools, language, "diagnostic", csharp_backend=args.csharp_backend)
         readonly, writable = configure_sandbox_fixture(base, tools, item, environment)
         go_log = None
         if args.go_package_diagnostics:
@@ -58,6 +59,13 @@ def main():
         for key in ("HOME", "USERPROFILE", "APPDATA", "LOCALAPPDATA", "TEMP", "TMP"):
             environment[key] = str(scratch)
         environment.update(GOTELEMETRY="off", DOTNET_CLI_TELEMETRY_OPTOUT="1", DOTNET_GENERATE_ASPNET_CERTIFICATE="false")
+        if language == "csharp":
+            restore_command = [str(tools / "dotnet/dotnet.exe"), "restore", "Fixture.csproj", "--configfile", "NuGet.Config"]
+            restore = subprocess.run(restore_command, cwd=item.root, env=environment, capture_output=True, text=True, encoding="utf-8", timeout=30)
+            report["trusted_fixture_offline_restore"] = {"command": restore_command, "exit_code": restore.returncode,
+                "stdout": restore.stdout, "stderr": restore.stderr}
+            if restore.returncode:
+                raise RuntimeError("Trusted offline C# fixture restore failed")
         cwd = item.root
         if args.probe == "python-runtime-cwd":
             cwd = tools / "python/Lib/site-packages/basedpyright/dist"
@@ -65,6 +73,9 @@ def main():
             item.argv = [f"-Djava.io.tmpdir={base / 'backend-cache' / item.project / 'tmp'}",
                          "-Duser.language=en", "-Duser.country=US", "-Djava.security.debug=properties,provider",
                          "-XshowSettings:security", "--version"]
+        if args.probe == "go-list":
+            item.program = tools / "go/go/bin/go.exe"
+            item.argv = ["list", "-e", "-json", "-deps", "-compiled", "."]
         policy = {"version": "1.0.0", "containment": "processcontainer",
                   "lifecycle": {"destroyOnExit": True, "preservePolicy": False},
                   "process": {"cwd": str(cwd), "env": [f"{key}={value}" for key, value in environment.items()],
@@ -158,7 +169,7 @@ def main():
         command = [str(executor), "--config", str(policy_path), "--", str(item.program), *item.argv]
         report.update(program_sha256=sha(item.program), policy_sha256=sha(policy_path), command=command,
                       policy=policy, explicit_host_allow_ui=True, profile_info=item.profile_info)
-        if args.probe == "java-security":
+        if args.probe in ("java-security", "go-list"):
             result = subprocess.run(command, cwd=policies, capture_output=True, timeout=35)
             report.update(native_exit_code=result.returncode, stdout=result.stdout.decode("utf-8", errors="replace"),
                           stderr=result.stderr.decode("utf-8", errors="replace"),
