@@ -254,9 +254,15 @@ async fn code_action_resolution_preserves_diagnostics_without_executing_edits() 
 #[tokio::test]
 async fn request_timeout_cancels_once_and_leaves_no_pending_registration() {
     let temp = tempfile::tempdir().unwrap();
+    let ready = temp.path().join("fixture-started");
+    let mut fixture_args = args("lsp");
+    fixture_args.extend([
+        "--started-marker".into(),
+        ready.to_string_lossy().into_owned(),
+    ]);
     let rpc = RpcProcess::spawn(
         &python(),
-        &args("lsp"),
+        &fixture_args,
         temp.path(),
         Framing::ContentLength,
         Dialect::JsonRpc,
@@ -265,6 +271,15 @@ async fn request_timeout_cancels_once_and_leaves_no_pending_registration() {
         json!({}),
     )
     .unwrap();
+    // The 100 ms assertion concerns an unanswered protocol request, not Python
+    // imports competing with other fixture processes during a workspace run.
+    tokio::time::timeout(Duration::from_secs(3), async {
+        while !ready.is_file() {
+            tokio::time::sleep(Duration::from_millis(5)).await;
+        }
+    })
+    .await
+    .expect("Protocol fixture did not finish startup");
     assert!(
         rpc.request("fixture/cancelable", json!({}))
             .await
