@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "scope": "LF normalization preserves all executed check results, including failures and unverified results",
+  "line_endings_normalized_before_hash_binding": true,
+  "logical_checks_sha256_before": "1459dffbe1c076348a9f0c5fc06e24406450cc073b28e56ee6e55f16200b38d9",
+  "logical_checks_sha256_after": "1459dffbe1c076348a9f0c5fc06e24406450cc073b28e56ee6e55f16200b38d9",
+  "actual_driver_exit_code": 2,
+  "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+  "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+  "artifacts": [
+    {
+      "path": "verification/language-ide-final-baseline-03.json",
+      "sha256": "74607775a28d75d91d5a4e045e319963fcf3e4469923b4233d97ca26b27a6847"
+    },
+    {
+      "path": "verification/language-ide-final-baseline-03.requests.jsonl",
+      "sha256": "5089119c1e9b490bd71bc7dc7c371890606694271b26ab6d16d369c7ccc22641"
+    },
+    {
+      "path": "verification/language-ide-final-baseline-03.txt",
+      "sha256": "3caf84a17d5d700f9f629c625f7f7fd0840823b4c40798efe7234e13692b580d"
+    },
+    {
+      "path": "verification/language-ide-final-baseline-03.command.json",
+      "sha256": "e97a533711ca0a8d5e5dbaa8ca44169496badfc3e76c4c05529ab7eadc1c9548"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "scope": "LF normalization preserves all executed check results, including failures and unverified results",
+  "line_endings_normalized_before_hash_binding": true,
+  "logical_checks_sha256_before": "e62e72d6a7a5797d14834bcf248fcf93ae2497a190edf6ef470e2e40bd4de5af",
+  "logical_checks_sha256_after": "e62e72d6a7a5797d14834bcf248fcf93ae2497a190edf6ef470e2e40bd4de5af",
+  "actual_driver_exit_code": 1,
+  "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+  "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+  "artifacts": [
+    {
+      "path": "verification/language-ide-final-sandbox-typescript-01.json",
+      "sha256": "d0d4961aa17190a4549909cca7139b22a8ac1421ebfaae81d0db214ef1abac4d"
+    },
+    {
+      "path": "verification/language-ide-final-sandbox-typescript-01.requests.jsonl",
+      "sha256": "b0d62a5165c12a9a346c977ac59b3ce3af91210e4db0b29e1d9221090146dc60"
+    },
+    {
+      "path": "verification/language-ide-final-sandbox-typescript-01.txt",
+      "sha256": "fdc3b5f1d449f1f64b6e116518baf99541d66d9d03f8aeecc570037ab2922399"
+    },
+    {
+      "path": "verification/language-ide-final-sandbox-typescript-01.command.json",
+      "sha256": "f920b48ae94f73277fcdd3bd4c6a52507401737780e287f027639778599329c8"
+    }
+  ]
+}

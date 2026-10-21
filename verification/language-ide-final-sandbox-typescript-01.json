@@ -1,0 +1,1110 @@
+{
+  "scope": "REAL_ODIN_MCP_SIX_LANGUAGE_IDE",
+  "mode": "sandbox",
+  "status": "FAIL",
+  "platform": "win32",
+  "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+  "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+  "started_utc": "2026-10-21T01:50:26Z",
+  "projects": [
+    {
+      "language": "typescript",
+      "project": "typescript_a",
+      "checks": [
+        {
+          "name": "mcp_initialize",
+          "status": "PASS"
+        },
+        {
+          "name": "actual_lsp_initialize",
+          "status": "FAIL",
+          "detail": {
+            "configured": true,
+            "error": {
+              "code": "BACKEND_ERROR",
+              "message": "Backend process exited"
+            },
+            "extensions": [
+              "ts"
+            ],
+            "id": "typescript",
+            "probed": true,
+            "ready": false
+          }
+        },
+        {
+          "name": "project_execution",
+          "status": "FAIL",
+          "detail": "actual_lsp_initialize"
+        }
+      ],
+      "source_sha256": {
+        "sample.ts": "d189338ba51ef8e6c3ceb37dbbb5772b7bf271e23a859b67f5aad5b6babeb18d",
+        "consumer.ts": "29f9bb3c0b618e2ba4ff3d9876d66456774971f064df855cd2bbf361b6cb2ef7"
+      },
+      "isolation": "sandbox",
+      "binary_version": {
+        "name": "Odin",
+        "schema_version": 1,
+        "standalone": true,
+        "trace": {
+          "elapsed_ms": 0,
+          "id": "db049b2b-a35e-41e3-9900-083cf7ed56a1",
+          "result_bytes": 70,
+          "result_sha256": "56962aba324858cc3f3306c0c5e6854072861e96a2c79ef23586e0d3de4e050b"
+        },
+        "version": "0.2.0"
+      },
+      "capabilities": {
+        "debug_allowed": false,
+        "external_tool_bridge": false,
+        "inspection_profiles": [],
+        "inspections_allowed": false,
+        "languages": [
+          {
+            "configured": true,
+            "error": {
+              "code": "BACKEND_ERROR",
+              "message": "Backend process exited"
+            },
+            "extensions": [
+              "ts"
+            ],
+            "id": "typescript",
+            "probed": true,
+            "ready": false
+          }
+        ],
+        "project": "typescript_a",
+        "result_retention": {
+          "max_bytes": 134217728,
+          "max_results": 128,
+          "ttl_ms": 86400000
+        },
+        "semantic_available": false,
+        "shell_allowed": false,
+        "standalone": true,
+        "tools": [
+          {
+            "enabled": true,
+            "name": "status",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_version",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_schemas",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_capabilities",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_projects",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_current_config",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "initial_instructions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "onboarding",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_dir",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_for_pattern",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "index_build",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "index_query",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_symbols_overview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_referencing_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_implementations",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_declaration",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_type_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "code_actions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "hover",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "signature_help",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "workspace_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "call_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "format_document",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hints",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hint_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "semantic_tokens",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_inspection_providers",
+            "policy": "read"
+          },
+          {
+            "enabled": false,
+            "name": "run_inspections",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "prepare_inspection_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "prepare_code_action",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "apply_quick_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "move_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inline_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "restart_language_server",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_prepare",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_rollback",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_list",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_recover",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "create_text_file",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_content",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replacement_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "replace_in_files",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_at_line",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_symbol_body",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_before_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_after_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "safe_delete_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "list_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_memory",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "write_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "edit_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_export",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_import",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_move_scope",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "check_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "recover_memories",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "query_project",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_run",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_vars",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_clear",
+            "policy": "state"
+          },
+          {
+            "enabled": false,
+            "name": "execute_shell_command",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_start",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_request",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_events",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_stop",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_batch",
+            "policy": "execute"
+          },
+          {
+            "enabled": true,
+            "name": "result_read",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "audit_log",
+            "policy": "read"
+          }
+        ],
+        "trace": {
+          "elapsed_ms": 259,
+          "id": "090c52f3-ffa7-40e1-8234-ad033a24b39f",
+          "result_bytes": 5466,
+          "result_sha256": "fba0b7f83b100645da14d22e62f9fac408881dd42b25ed759c9d27ae15255e58"
+        },
+        "write_allowed": true
+      },
+      "stderr": [
+        "node:internal/fs/promises:1889",
+        "  return await PromisePrototypeThen(",
+        "         ^",
+        "",
+        "Error: ENOENT: no such file or directory, realpath '<fixture>\\scratch\\typescript_a\\odin-mxc-L7gPc8\\Packages\\sandbox.{993dd626-ad91-4552-be8b-eb58e0efe24c}\\AC\\Temp'",
+        "    at async Object.realpath (node:internal/fs/promises:1889:10)",
+        "    at async file:///<tools_root>/typescript/node_modules/typescript-language-server/lib/cli.mjs:19567:30 {",
+        "  errno: -4058,",
+        "  code: 'ENOENT',",
+        "  syscall: 'realpath',",
+        "  path: 'C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-language-ide-ezicq388\\\\scratch\\\\typescript_a\\\\odin-mxc-L7gPc8\\\\Packages\\\\sandbox.{993dd626-ad91-4552-be8b-eb58e0efe24c}\\\\AC\\\\Temp'",
+        "}",
+        "",
+        "Node.js v24.21.0"
+      ],
+      "status": "FAIL"
+    },
+    {
+      "language": "typescript",
+      "project": "typescript_b",
+      "checks": [
+        {
+          "name": "mcp_initialize",
+          "status": "PASS"
+        },
+        {
+          "name": "actual_lsp_initialize",
+          "status": "FAIL",
+          "detail": {
+            "configured": true,
+            "error": {
+              "code": "BACKEND_ERROR",
+              "message": "Backend process exited"
+            },
+            "extensions": [
+              "ts"
+            ],
+            "id": "typescript",
+            "probed": true,
+            "ready": false
+          }
+        },
+        {
+          "name": "project_execution",
+          "status": "FAIL",
+          "detail": "actual_lsp_initialize"
+        }
+      ],
+      "source_sha256": {
+        "sample.ts": "d189338ba51ef8e6c3ceb37dbbb5772b7bf271e23a859b67f5aad5b6babeb18d",
+        "consumer.ts": "29f9bb3c0b618e2ba4ff3d9876d66456774971f064df855cd2bbf361b6cb2ef7"
+      },
+      "isolation": "sandbox",
+      "binary_version": {
+        "name": "Odin",
+        "schema_version": 1,
+        "standalone": true,
+        "trace": {
+          "elapsed_ms": 0,
+          "id": "4745e373-c272-402a-a062-a33af1778dda",
+          "result_bytes": 70,
+          "result_sha256": "56962aba324858cc3f3306c0c5e6854072861e96a2c79ef23586e0d3de4e050b"
+        },
+        "version": "0.2.0"
+      },
+      "capabilities": {
+        "debug_allowed": false,
+        "external_tool_bridge": false,
+        "inspection_profiles": [],
+        "inspections_allowed": false,
+        "languages": [
+          {
+            "configured": true,
+            "error": {
+              "code": "BACKEND_ERROR",
+              "message": "Backend process exited"
+            },
+            "extensions": [
+              "ts"
+            ],
+            "id": "typescript",
+            "probed": true,
+            "ready": false
+          }
+        ],
+        "project": "typescript_b",
+        "result_retention": {
+          "max_bytes": 134217728,
+          "max_results": 128,
+          "ttl_ms": 86400000
+        },
+        "semantic_available": false,
+        "shell_allowed": false,
+        "standalone": true,
+        "tools": [
+          {
+            "enabled": true,
+            "name": "status",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_version",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_schemas",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_capabilities",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_projects",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_current_config",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "initial_instructions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "onboarding",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_dir",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_for_pattern",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "index_build",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "index_query",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_symbols_overview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_referencing_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_implementations",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "find_declaration",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_type_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_file",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "get_diagnostics_for_symbol",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "code_actions",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "hover",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "signature_help",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "completion_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "workspace_symbols",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "call_hierarchy",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "format_document",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hints",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "inlay_hint_resolve",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "semantic_tokens",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "list_inspection_providers",
+            "policy": "read"
+          },
+          {
+            "enabled": false,
+            "name": "run_inspections",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "prepare_inspection_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "prepare_code_action",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "apply_quick_fix",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "move_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "inline_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "restart_language_server",
+            "policy": "state"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_prepare",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_rollback",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_list",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "transaction_recover",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "create_text_file",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_content",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replacement_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "replace_in_files",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_lines",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_at_line",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "replace_symbol_body",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_before_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "insert_after_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "safe_delete_symbol",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "list_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "read_memory",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "write_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "edit_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "delete_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "rename_memory",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_export",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_import",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_move_scope",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_preview",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "memory_transaction_apply",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "check_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "search_memories",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "recover_memories",
+            "policy": "write"
+          },
+          {
+            "enabled": true,
+            "name": "query_project",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_run",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_vars",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "flow_clear",
+            "policy": "state"
+          },
+          {
+            "enabled": false,
+            "name": "execute_shell_command",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_start",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_request",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_events",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_stop",
+            "policy": "execute"
+          },
+          {
+            "enabled": false,
+            "name": "debug_batch",
+            "policy": "execute"
+          },
+          {
+            "enabled": true,
+            "name": "result_read",
+            "policy": "read"
+          },
+          {
+            "enabled": true,
+            "name": "audit_log",
+            "policy": "read"
+          }
+        ],
+        "trace": {
+          "elapsed_ms": 236,
+          "id": "9d776660-469d-499a-8d26-1601ed89239e",
+          "result_bytes": 5466,
+          "result_sha256": "e0bb9c7aabd91c057639be7528030afec1b376e0272204082da915e68c994c7c"
+        },
+        "write_allowed": true
+      },
+      "stderr": [
+        "node:internal/fs/promises:1889",
+        "  return await PromisePrototypeThen(",
+        "         ^",
+        "",
+        "Error: ENOENT: no such file or directory, realpath '<fixture>\\scratch\\typescript_b\\odin-mxc-4tGGyF\\Packages\\sandbox.{95d5c8ff-1615-42ae-a913-58c0b3fb32d7}\\AC\\Temp'",
+        "    at async Object.realpath (node:internal/fs/promises:1889:10)",
+        "    at async file:///<tools_root>/typescript/node_modules/typescript-language-server/lib/cli.mjs:19567:30 {",
+        "  errno: -4058,",
+        "  code: 'ENOENT',",
+        "  syscall: 'realpath',",
+        "  path: 'C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-language-ide-ezicq388\\\\scratch\\\\typescript_b\\\\odin-mxc-4tGGyF\\\\Packages\\\\sandbox.{95d5c8ff-1615-42ae-a913-58c0b3fb32d7}\\\\AC\\\\Temp'",
+        "}",
+        "",
+        "Node.js v24.21.0"
+      ],
+      "status": "FAIL"
+    }
+  ],
+  "setup_errors": [],
+  "boundary": "Explicit MXC profile; actual LSP results and runtime route recorded, not full OS/UI parity",
+  "host_config_sha256": "a12a8f3d09871943627284b86e171db64ff6d587a750cff2a561b18be9199046",
+  "binary_launch": {
+    "status": "PASS",
+    "exit_code": 0,
+    "stdout": "odin 0.2.0\n",
+    "stderr": ""
+  },
+  "backends": {
+    "typescript": {
+      "program_sha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
+      "version_argv": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--preserve-symlinks",
+        "--preserve-symlinks-main",
+        "<tools_root>\\typescript\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+        "--version"
+      ],
+      "version_exit_code": 0,
+      "version_stdout": "6.0.2\n",
+      "version_stderr": "",
+      "typescript_version": "6.0.3"
+    }
+  },
+  "counts": {
+    "PASS": 2,
+    "FAIL": 4
+  },
+  "matrix": {
+    "typescript": {
+      "typescript_a": "FAIL",
+      "typescript_b": "FAIL"
+    }
+  },
+  "actual_lsp_projects_initialized": 0,
+  "transcript_sha256": "b0d62a5165c12a9a346c977ac59b3ce3af91210e4db0b29e1d9221090146dc60",
+  "line_endings_normalized_before_hash_binding": true,
+  "odin_trace_hashes_describe_original_unredacted_payloads": true
+}
