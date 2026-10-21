@@ -1,0 +1,64 @@
+{
+  "task_id": "symbol-diagnostics-summary-review-fix",
+  "head_before_evidence": "844b9936cee8d24853ad5576abb9a492261d9936",
+  "commands": [
+    {
+      "command": [
+        "cargo",
+        "fmt",
+        "-p",
+        "odin-engine",
+        "--",
+        "--check"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.22,
+      "log": "engine-ide-symbol-diagnostics-1.txt",
+      "log_sha256": "d75586dde30ccd87d87b5b614999b399a77577b11a41e2b60101c5d4d91f054f"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "odin-engine",
+        "--test",
+        "completion",
+        "symbol_diagnostics_summary_matches_filtered_severities_and_status",
+        "--locked"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 6.18,
+      "log": "engine-ide-symbol-diagnostics-2.txt",
+      "log_sha256": "3557f210b1e8e970008a4cf863e63ebc1144e98c63258210f73f439203b80e6e"
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "-p",
+        "odin-engine",
+        "--all-targets",
+        "--locked",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 1.55,
+      "log": "engine-ide-symbol-diagnostics-3.txt",
+      "log_sha256": "e057caeb29b50f1133cfbf1b69bb2399674657109e0ccca581646097819751be"
+    }
+  ],
+  "scope": "Targeted regression plus package strict fmt/Clippy. Workspace/full-suite latest attempt remains AppControl-blocked; see engine-ide-verification.json.",
+  "status": "PASS",
+  "source_hashes": {
+    "crates/odin-engine/src/lib.rs": "0d15e3161b18cd5d1f1bf3de6a6f499a1bf9ada8f719bf1c0509e536cd91ce9d",
+    "crates/odin-engine/tests/completion.rs": "3dddfde2c36edffaddc440c95d8181c3b09b9c131f93a7ce9a58d80eab4678af",
+    "crates/odin-engine/tests/fixtures/lsp_peer.py": "213782f40d3ce2d08d1060a89cc8814510c016d6bfd56f4a4222bd084e68ea35",
+    "docs/IDE_IMPLEMENTATION.md": "fde89a975c76bfa02ffa753dcbb4d44b16bf58ed835e8af6de23d41066a0e4d8"
+  }
+}

@@ -55,6 +55,13 @@ while (message := read_message()) is not None:
                 for index in range(20)] + [result[0]['children'][1]]
     elif method == 'textDocument/diagnostic':
         result = {'kind': 'full', 'items': [{'range': RANGE, 'severity': 2, 'code': 'fixture-rule', 'message': 'fixture diagnostic'}]}
+        if '--scoped-diagnostics' in sys.argv:
+            def diagnostic(line, severity, label):
+                item = {'range': {'start': {'line': line, 'character': 3}, 'end': {'line': line, 'character': 6}}, 'message': label}
+                if severity is not None:
+                    item['severity'] = severity
+                return item
+            result['items'] = [diagnostic(0, 1, 'foo error'), diagnostic(1, 2, 'bar warning'), diagnostic(1, None, 'bar unknown')]
     elif method in ('textDocument/definition', 'textDocument/references', 'textDocument/implementation'):
         result = [{'uri': uri, 'range': {'start': {'line': 0, 'character': 3}, 'end': {'line': 0, 'character': 6}}}]
     elif method == 'textDocument/codeAction':

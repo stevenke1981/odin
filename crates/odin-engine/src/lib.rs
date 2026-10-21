@@ -659,11 +659,23 @@ impl Engine {
                             .map(|severity| {
                                 findings
                                     .iter()
-                                    .filter(|finding| finding["severity"] == severity)
+                                    .filter(|finding| finding["lsp_severity"] == severity)
                                     .count()
                             })
                             .collect::<Vec<_>>();
                         let total = findings.len();
+                        let unknown = total - counts.iter().sum::<usize>();
+                        let status = if report["freshness"] != "current" {
+                            report["status"].clone()
+                        } else if counts[0] > 0 {
+                            json!("errors")
+                        } else if counts[1] > 0 {
+                            json!("warnings")
+                        } else if total > 0 {
+                            json!("findings")
+                        } else {
+                            json!("clean")
+                        };
                         for (key, count) in ["errors", "warnings", "information", "hints"]
                             .into_iter()
                             .zip(counts)
@@ -671,7 +683,10 @@ impl Engine {
                             report["summary"][key] = json!(count);
                         }
                         report["summary"]["total"] = json!(total);
+                        report["summary"]["unknown"] = json!(unknown);
+                        report["status"] = status;
                     }
+                    report["summary"]["scope"] = json!("symbol");
                     report["scope"] = json!({"relative_path":path,"name_path":string(a,"name_path")?,"range":symbol.range});
                     report["name_path"] = symbol.name_path.into();
                 }

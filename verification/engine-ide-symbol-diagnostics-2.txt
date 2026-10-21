@@ -1,0 +1,12 @@
+Command: cargo test -p odin-engine --test completion symbol_diagnostics_summary_matches_filtered_severities_and_status --locked
+   Compiling odin-engine v0.2.0 (C:\Users\steven\.codex\worktrees\odin-engine\odin\crates\odin-engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.03s
+     Running tests\completion.rs (target\debug\deps\completion-1bae91554546a5b6.exe)
+
+running 1 test
+test symbol_diagnostics_summary_matches_filtered_severities_and_status ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 18 filtered out; finished in 0.16s
+
+
+Exit code: 0

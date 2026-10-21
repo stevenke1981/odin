@@ -688,6 +688,48 @@ async fn symbol_offset_skips_body_resolution_before_copying() {
 }
 
 #[tokio::test]
+async fn symbol_diagnostics_summary_matches_filtered_severities_and_status() {
+    let (_root, _state, old_engine) = setup_lsp();
+    let mut config = old_engine.config.clone();
+    config.projects.get_mut("one").unwrap().languages[0]
+        .args
+        .push("--scoped-diagnostics".into());
+    drop(old_engine);
+    let engine = Engine::new(config).unwrap();
+    let file = call(
+        &engine,
+        "get_diagnostics_for_file",
+        json!({"relative_path":"source.rs"}),
+    )
+    .await;
+    assert_eq!(file["summary"]["total"], 3);
+    assert_eq!(file["status"], "errors");
+    let foo = call(
+        &engine,
+        "get_diagnostics_for_symbol",
+        json!({"relative_path":"source.rs","name_path":"module/foo"}),
+    )
+    .await;
+    assert_eq!(foo["summary"]["total"], 1);
+    assert_eq!(foo["summary"]["errors"], 1);
+    assert_eq!(foo["summary"]["warnings"], 0);
+    assert_eq!(foo["summary"]["unknown"], 0);
+    assert_eq!(foo["status"], "errors");
+    assert_eq!(foo["summary"]["scope"], "symbol");
+    let bar = call(
+        &engine,
+        "get_diagnostics_for_symbol",
+        json!({"relative_path":"source.rs","name_path":"module/bar"}),
+    )
+    .await;
+    assert_eq!(bar["summary"]["total"], 2);
+    assert_eq!(bar["summary"]["errors"], 0);
+    assert_eq!(bar["summary"]["warnings"], 1);
+    assert_eq!(bar["summary"]["unknown"], 1);
+    assert_eq!(bar["status"], "warnings");
+}
+
+#[tokio::test]
 async fn symbol_body_rejects_external_write_while_backend_response_is_pending() {
     let (root, state, old_engine) = setup_lsp();
     let mut config = old_engine.config.clone();

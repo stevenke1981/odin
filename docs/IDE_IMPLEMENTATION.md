@@ -16,6 +16,8 @@ Odin handles these tools through its own Rust engine, protocol client and core T
 
 Read responses contain `provider`, `source:lsp`, `freshness:current`, `position_encoding:utf-16` and document `{path,uri,sha256,version}`. Workspace responses identify their checked project scope. The protocol client reads current sources again after requests, so an external writer during the RPC produces `CONFLICT`. `current` does not prove that a server's project index is complete; `index_complete_proven` remains false. Read tools still initialize explicitly configured language servers and write local audit/cache state.
 
+Symbol diagnostics filter both raw diagnostics and normalized findings to the selected symbol. Summary counts use the numeric `lsp_severity`, retain unknown severity counts, set `summary.scope:symbol` and recompute status from the filtered findings without upgrading unverified freshness.
+
 Odin does not call `workspace/executeCommand`. Returned Markdown, command objects, data fields, completion edits and hint label parts are untrusted display/proposal data. No resolve tool mutates source. Formatting, native inspection fixes and existing edit-only CodeActions all enter the core transaction journal and revalidate hashes at apply time.
 
 ## Native inspections
