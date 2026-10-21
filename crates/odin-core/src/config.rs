@@ -535,7 +535,11 @@ fn validate_sandbox_policy(
         return Err(Fault::invalid("Sandbox executor requires an exact SHA-256"));
     }
     policy.executor_sha256.make_ascii_lowercase();
-    if policy.readonly_paths.len() + policy.readwrite_paths.len() + policy.denied_paths.len() > 256
+    if policy.readonly_paths.len()
+        + policy.readwrite_paths.len()
+        + policy.denied_paths.len()
+        + policy.enumerate_paths.len()
+        > 256
     {
         return Err(Fault::invalid("Too many sandbox filesystem grants"));
     }
@@ -551,6 +555,19 @@ fn validate_sandbox_policy(
         *path = canonical_storage_path(&normalize_absolute(path))?;
         if path.parent().is_none() {
             return Err(Fault::invalid("Sandbox cannot grant a filesystem root"));
+        }
+    }
+    // Unlike content grants, an explicit metadata-only path may be a volume
+    // root. Do not add ancestors automatically or promote it to readonly.
+    for path in &mut policy.enumerate_paths {
+        if path.is_relative() {
+            *path = parent.join(&*path);
+        }
+        *path = canonical_storage_path(&normalize_absolute(path))?;
+        if !path.is_dir() {
+            return Err(Fault::invalid(
+                "Sandbox enumeration paths must be existing directories",
+            ));
         }
     }
     if !policy.executor.is_file() {
@@ -571,6 +588,15 @@ fn validate_sandbox_policy(
     policy.denied_paths.sort();
     policy.denied_paths.dedup();
     for denied in &policy.denied_paths {
+        if policy
+            .enumerate_paths
+            .iter()
+            .any(|path| storage_contains(path, denied))
+        {
+            return Err(Fault::invalid(
+                "Sandbox enumeration path is inside protected storage",
+            ));
+        }
         if storage_contains(&policy.temp_root, denied)
             || storage_contains(denied, &policy.temp_root)
         {

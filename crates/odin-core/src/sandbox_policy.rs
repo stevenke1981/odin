@@ -14,6 +14,10 @@ pub struct MxcSandboxConfig {
     pub readwrite_paths: Vec<PathBuf>,
     #[serde(default)]
     pub denied_paths: Vec<PathBuf>,
+    /// Explicit query/enumeration-only paths. These never cover content reads,
+    /// executable discovery or cwd readability. Native support is mandatory.
+    #[serde(default)]
+    pub enumerate_paths: Vec<PathBuf>,
     pub temp_root: PathBuf,
     #[serde(default)]
     pub allow_ui: bool,

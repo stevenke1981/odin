@@ -1,0 +1,17 @@
+{
+  "command": "cargo test -p odin-core --locked --test os_sandbox_native -- --ignored --test-threads=1 --nocapture",
+  "started_utc": "2026-10-21T03:12:10.0435583Z",
+  "finished_utc": "2026-10-21T03:12:15.0943286Z",
+  "exit_code": 101,
+  "status": "FAIL",
+  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+  "source_sha256": {
+    "crates/odin-core/src/execution.rs": "155dfc311d0119f2460b7024f12911745e48729199dd9539ceffefca8c4bba88",
+    "crates/odin-core/src/sandbox_policy.rs": "76fa4355780c363c1524b17713076a3a08b66384053916c1da22cbe0c05eb27a",
+    "crates/odin-core/src/sandbox.rs": "18be5bd8c1794375fbfd79f6ffe1d226167b0942614110c86d6cd4e92ea5f5d5",
+    "crates/odin-core/tests/os_sandbox_native.rs": "5923210fc19435d8ad8a6ea2145c45c2b58a44e23ba42bf411fb32c133ff30a2",
+    "crates/odin-core/tests/fixtures/os_sandbox_workload.rs": "7e8d8905257adfdee5e0b9b195e3d4d99306bae752cf7bf7f11136c0d9d6a09c",
+    "crates/odin-core/src/config.rs": "0b35cd97b09bb64bd1adc3a4a72dff803c6e7d484cd5f48b972deac1a2a12675"
+  },
+  "output": "   Compiling odin-core v0.2.0 (E:\\odin\\crates\\odin-core)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.56s\n     Running tests\\os_sandbox_native.rs (target\\debug\\deps\\os_sandbox_native-b4457c3f1ab6ba4b.exe)\nerror: test failed, to rerun pass `-p odin-core --test os_sandbox_native`\n\nCaused by:\n  could not execute process `E:\\odin\\target\\debug\\deps\\os_sandbox_native-b4457c3f1ab6ba4b.exe --ignored --test-threads=1 --nocapture` (never executed)\n\nCaused by:\n  應用程式控制原則已封鎖此檔案。 (os error 4551)\n"
+}

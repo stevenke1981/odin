@@ -913,6 +913,7 @@ async fn sandbox_startup_failure_never_retries_backend_without_sandbox() {
         readonly_paths: vec![],
         readwrite_paths: vec![],
         denied_paths: vec![],
+        enumerate_paths: vec![],
         temp_root: state.path().into(),
         allow_ui: false,
     };

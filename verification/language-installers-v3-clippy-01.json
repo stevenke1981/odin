@@ -1,0 +1,8 @@
+{
+  "command": "cargo clippy --workspace --all-targets --locked -- -D warnings",
+  "started_utc": "2026-10-21T03:12:39.0295022Z",
+  "finished_utc": "2026-10-21T03:12:44.4078054Z",
+  "exit_code": 0,
+  "status": "PASS",
+  "output": "    Checking odin-core v0.2.0 (E:\\odin\\crates\\odin-core)\n   Compiling odin-agent v0.2.0 (E:\\odin\\crates\\odin)\n    Checking odin-protocol v0.2.0 (E:\\odin\\crates\\odin-protocol)\n    Checking odin-engine v0.2.0 (E:\\odin\\crates\\odin-engine)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 5.10s\n"
+}

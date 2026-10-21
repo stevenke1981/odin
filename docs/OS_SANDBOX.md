@@ -20,6 +20,17 @@ read-only, read-write and denied paths, a dedicated `temp_root`, and optionally
 `allow_ui = true`. The default is `allow_ui = false`. Repository data and RPC
 arguments cannot provide executable sandbox configuration.
 
+An optional, default-empty `enumerate_paths` list maps only to the stable
+`processContainer.filesystem.enumeratePaths` contract. The host may explicitly
+select existing ancestor directories, including a volume root, for path queries
+and directory-name enumeration without authorizing file-content reads or writes.
+Odin never adds ancestors automatically or counts these paths as readable
+coverage for an executable/cwd. Paths inside protected or denied storage are
+rejected. The native probe must report
+`baseContainerSupportsEnumeratePaths=true`; otherwise enforcement fails closed,
+with no read-only ancestor grant, alternate tier or OS ACL mutation. This still
+exposes directory names, so the host should select only required ancestors.
+
 `Config::load` canonicalizes host paths, checks the executor pin, and merges the
 host configuration file and Odin state directory into denied paths. Runtime
 `prepare` validates paths and the executable pin again and probes the installed

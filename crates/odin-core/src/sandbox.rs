@@ -41,9 +41,11 @@ pub fn health(config: &MxcSandboxConfig) -> Result<Value> {
         ));
     }
     let capabilities = probe(&executor)?;
+    require_enumeration_support(&config.enumerate_paths, &capabilities)?;
     Ok(
         json!({"backend":"mxc_processcontainer","executor_sha256":config.executor_sha256,
-        "probe":capabilities,"workload_acceptance":"NOT_RUN","fallback":false}),
+        "probe":capabilities,"enumeration_only_configured":!config.enumerate_paths.is_empty(),
+        "workload_acceptance":"NOT_RUN","fallback":false}),
     )
 }
 
@@ -233,6 +235,18 @@ fn probe(executor: &Path) -> Result<Value> {
     Ok(value)
 }
 
+fn require_enumeration_support(requested: &[PathBuf], capabilities: &Value) -> Result<()> {
+    if !requested.is_empty()
+        && capabilities["probes"]["baseContainerSupportsEnumeratePaths"] != true
+    {
+        return Err(Fault::new(
+            "SANDBOX_UNAVAILABLE",
+            "Host-requested enumeration-only access requires native ProcessContainer support",
+        ));
+    }
+    Ok(())
+}
+
 /// Generate a private immutable JSON policy and a native CLI command. This is
 /// Windows-only; unsupported platforms and every failed precondition return Err.
 /// The caller must add trusted host config/state to denied_paths, choose stdio,
@@ -279,8 +293,32 @@ pub fn prepare(
         ));
     }
     let readonly = paths(&config.readonly_paths)?;
+    if config.enumerate_paths.len() > 256 {
+        return Err(invalid("Too many enumeration-only paths"));
+    }
+    let enumeration = paths(&config.enumerate_paths)?;
+    if enumeration.iter().any(|path| !path.is_dir()) {
+        return Err(invalid(
+            "Enumeration-only paths must be existing directories",
+        ));
+    }
     let mut writable = paths(&config.readwrite_paths)?;
     let mut denied = paths(&config.denied_paths)?;
+    if readonly
+        .iter()
+        .chain(&writable)
+        .any(|path| path.parent().is_none())
+    {
+        return Err(invalid(
+            "Filesystem roots may only be selected for enumeration, not content access",
+        ));
+    }
+    if enumeration
+        .iter()
+        .any(|path| within(path, &policy_dir) || denied.iter().any(|deny| within(path, deny)))
+    {
+        return Err(invalid("Enumeration-only path is inside protected storage"));
+    }
     if overlaps(&temp_root, &cwd)
         || overlaps(&temp_root, &policy_dir)
         || temp_root.parent().is_none()
@@ -346,7 +384,8 @@ pub fn prepare(
     {
         return Err(invalid("Workload cwd must be within an explicit grant"));
     }
-    probe(&executor)?;
+    let capabilities = probe(&executor)?;
+    require_enumeration_support(&enumeration, &capabilities)?;
     let scratch = tempfile::Builder::new()
         .prefix("odin-mxc-")
         .tempdir_in(&temp_root)?;
@@ -408,13 +447,16 @@ pub fn prepare(
         }
         None => 0,
     };
-    let policy = json!({"version":"1.0.0", "containment":"processcontainer",
+    let mut policy = json!({"version":"1.0.0", "containment":"processcontainer",
         "lifecycle":{"destroyOnExit":true,"preservePolicy":false},
         "process":{"cwd":cwd,"env":environment,"inheritDefaultEnv":false,"timeout":milliseconds},
         "filesystem":{"readonlyPaths":readonly,"readwritePaths":writable,"deniedPaths":denied},
         "fallback":{"allowDaclMutation":false},
         "network":{"egress":{"default":"deny"},"ingress":{"default":"deny","hostLoopback":"deny"}},
         "ui":{"disable":!config.allow_ui,"clipboard":"none","injection":false},"telemetry":{"enabled":false}});
+    if !enumeration.is_empty() {
+        policy["processContainer"] = json!({"filesystem":{"enumeratePaths":enumeration}});
+    }
     let mut policy_file = tempfile::Builder::new()
         .prefix("odin-mxc-policy-")
         .suffix(".json")
@@ -437,4 +479,33 @@ pub fn prepare(
             _scratch: scratch,
         },
     })
+}
+
+#[cfg(test)]
+mod enumeration_tests {
+    use super::*;
+
+    #[test]
+    fn enumeration_requires_explicit_native_support_without_promoting_grants() {
+        let requested = vec![PathBuf::from("host-selected-directory")];
+        for probe in [
+            json!({}),
+            json!({"probes":{"baseContainerSupportsEnumeratePaths":false}}),
+        ] {
+            assert_eq!(
+                require_enumeration_support(&requested, &probe)
+                    .unwrap_err()
+                    .code,
+                "SANDBOX_UNAVAILABLE"
+            );
+            assert!(require_enumeration_support(&[], &probe).is_ok());
+        }
+        assert!(
+            require_enumeration_support(
+                &requested,
+                &json!({"probes":{"baseContainerSupportsEnumeratePaths":true}})
+            )
+            .is_ok()
+        );
+    }
 }

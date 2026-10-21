@@ -262,3 +262,37 @@ fn sandbox_writable_grants_cannot_cover_configuration_or_state() {
         assert_eq!(Config::load(&path).unwrap_err().code, "INVALID_ARGUMENT");
     }
 }
+
+#[test]
+fn enumeration_is_explicit_directory_only_and_distinct_from_content_grants() {
+    let (directory, path) = fixture();
+    std::fs::write(directory.path().join("executor.exe"), b"fixture").unwrap();
+    std::fs::create_dir(directory.path().join("host-state")).unwrap();
+    let hash = odin_core::sha256(b"fixture");
+    let policy = format!(
+        "[projects.demo.sandbox]\nexecutor='executor.exe'\nexecutor_sha256='{hash}'\ntemp_root='scratch'\n"
+    );
+    let volume = directory
+        .path()
+        .ancestors()
+        .last()
+        .unwrap()
+        .to_string_lossy()
+        .replace('\\', "/");
+    write(
+        &path,
+        &format!("{policy}enumerate_paths=['{volume}','workspace']\n"),
+    );
+    let config = Config::load(&path).unwrap();
+    let sandbox = config.projects["demo"].sandbox.as_ref().unwrap();
+    assert_eq!(sandbox.enumerate_paths.len(), 2);
+    assert!(sandbox.readonly_paths.is_empty() && sandbox.readwrite_paths.is_empty());
+    assert!(!config.projects["demo"].allow_write && !config.projects["demo"].allow_shell);
+    for invalid in ["executor.exe", "missing-directory", "host-state"] {
+        write(&path, &format!("{policy}enumerate_paths=['{invalid}']\n"));
+        assert_eq!(Config::load(&path).unwrap_err().code, "INVALID_ARGUMENT");
+    }
+    // A metadata-only volume root is allowed; read content at that root is not.
+    write(&path, &format!("{policy}readonly_paths=['{volume}']\n"));
+    assert_eq!(Config::load(&path).unwrap_err().code, "INVALID_ARGUMENT");
+}

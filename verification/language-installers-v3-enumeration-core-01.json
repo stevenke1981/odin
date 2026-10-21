@@ -1,0 +1,17 @@
+{
+  "command": "cargo test -p odin-core --locked --test host_execution_policy --test stdin_execution",
+  "started_utc": "2026-10-21T03:11:16.9939716Z",
+  "finished_utc": "2026-10-21T03:11:27.0127488Z",
+  "exit_code": 101,
+  "status": "FAIL",
+  "source_sha256": {
+    "crates/odin-core/src/execution.rs": "155dfc311d0119f2460b7024f12911745e48729199dd9539ceffefca8c4bba88",
+    "crates/odin-core/src/sandbox_policy.rs": "76fa4355780c363c1524b17713076a3a08b66384053916c1da22cbe0c05eb27a",
+    "crates/odin-core/tests/fixtures/stdin_workload.rs": "93f2a2c2ccd2e9db54bf34b93723a4beeb8a86a60df9ce1a3ec66fd00dc53a86",
+    "crates/odin-core/src/config.rs": "0b35cd97b09bb64bd1adc3a4a72dff803c6e7d484cd5f48b972deac1a2a12675",
+    "crates/odin-core/src/sandbox.rs": "dc9d6630fce930c5ba0a51e8a84ad8ed0d8ef7d186c910f78a77bf63fc568561",
+    "crates/odin-core/tests/host_execution_policy.rs": "ba34311478079eca7d43a7904b228fa2d9c17697214cf26be162d6cb4302421a",
+    "crates/odin-core/tests/stdin_execution.rs": "9d80ac47146314c2b7ab043b91a19391ec090f4819862131fb836c06ea3b1a31"
+  },
+  "output": "   Compiling odin-core v0.2.0 (E:\\odin\\crates\\odin-core)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.21s\n     Running tests\\host_execution_policy.rs (target\\debug\\deps\\host_execution_policy-5c3d470a1c5b88e9.exe)\n\nrunning 8 tests\ntest new_execution_permissions_are_not_implicitly_enabled ... ok\ntest formatter_argv_is_fixed_isolated_stdin_only_and_placeholder_is_exact ... ok\ntest policies_can_only_reduce_inspection_permission ... ok\ntest formatter_policy_is_explicit_reducible_and_cannot_grant_write ... ok\ntest inspection_profiles_cannot_enable_source_writing_flags ... ok\ntest sandbox_policy_binds_executor_and_protects_host_storage ... ok\ntest sandbox_writable_grants_cannot_cover_configuration_or_state ... ok\ntest enumeration_is_explicit_directory_only_and_distinct_from_content_grants ... ok\n\ntest result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s\n\n     Running tests\\stdin_execution.rs (target\\debug\\deps\\stdin_execution-9c171f31b016c15b.exe)\nerror: test failed, to rerun pass `-p odin-core --test stdin_execution`\n\nCaused by:\n  could not execute process `E:\\odin\\target\\debug\\deps\\stdin_execution-9c171f31b016c15b.exe` (never executed)\n\nCaused by:\n  應用程式控制原則已封鎖此檔案。 (os error 4551)\n"
+}

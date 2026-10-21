@@ -95,6 +95,7 @@ impl Fixture {
             readonly_paths: vec![bin.clone(), read.clone()],
             readwrite_paths: vec![write.clone()],
             denied_paths: vec![denied.clone()],
+            enumerate_paths: vec![],
             temp_root: scratch,
             allow_ui: false,
         };
@@ -135,7 +136,15 @@ impl Fixture {
 #[test]
 #[ignore = "Requires explicit trusted native MXC path/hash and a supported Windows host"]
 fn filesystem_network_stdio_and_descendant_isolation() {
-    let fixture = Fixture::new();
+    let mut fixture = Fixture::new();
+    // Explicit ancestor queries are not content grants, even for the volume
+    // root. The same outside/denied/readonly/network negatives must still hold.
+    fixture.config.enumerate_paths = fixture
+        ._base
+        .path()
+        .ancestors()
+        .map(PathBuf::from)
+        .collect();
     let health = odin_core::sandbox::health(&fixture.config).unwrap();
     assert_eq!(health["backend"], "mxc_processcontainer");
     assert_eq!(health["workload_acceptance"], "NOT_RUN");
@@ -150,6 +159,20 @@ fn filesystem_network_stdio_and_descendant_isolation() {
     assert_eq!(policy["network"]["egress"]["default"], "deny");
     assert_eq!(policy["network"]["ingress"]["hostLoopback"], "deny");
     assert_eq!(policy["ui"]["disable"], true);
+    assert_eq!(
+        policy["processContainer"]["filesystem"]["enumeratePaths"]
+            .as_array()
+            .unwrap()
+            .len(),
+        fixture.config.enumerate_paths.len()
+    );
+    assert!(
+        policy["filesystem"]["readonlyPaths"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .all(|path| PathBuf::from(path.as_str().unwrap()).parent().is_some())
+    );
     let mut child = command
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())
@@ -296,7 +319,7 @@ fn filesystem_network_stdio_and_descendant_isolation() {
     );
 
     // Preflight rejects case aliases, junction traversal, and broad scratch roots.
-    for invalid_case in 0..5 {
+    for invalid_case in 0..11 {
         changed = fixture.config.clone();
         match invalid_case {
             0 => changed
@@ -305,7 +328,25 @@ fn filesystem_network_stdio_and_descendant_isolation() {
             1 => changed.readonly_paths.push(fixture.read.join("junction")),
             2 => changed.readwrite_paths.push(fixture.policies.join("child")),
             3 => changed.temp_root = fixture._base.path().to_path_buf(),
-            _ => changed.readwrite_paths.push(fixture.read.clone()),
+            4 => changed.readwrite_paths.push(fixture.read.clone()),
+            5 => changed
+                .enumerate_paths
+                .push(fixture.read.join("allowed.txt")),
+            6 => changed.enumerate_paths.push(fixture.denied.clone()),
+            7 => changed.enumerate_paths.push(PathBuf::from(
+                fixture._base.path().to_string_lossy().to_uppercase(),
+            )),
+            8 => changed.readonly_paths.retain(|path| path != &fixture.bin),
+            9 => changed.readonly_paths.retain(|path| path != &fixture.read),
+            _ => changed.readonly_paths.push(
+                fixture
+                    ._base
+                    .path()
+                    .ancestors()
+                    .last()
+                    .unwrap()
+                    .to_path_buf(),
+            ),
         }
         assert!(
             prepare(
