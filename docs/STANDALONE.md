@@ -7,10 +7,10 @@
 ## 此次實際變更
 
 - 刪除 `crates/odin-protocol/src/bridge.rs`、其 module export、`BridgeConfig`、engine 的橋接 cache / 啟動 / dispatch / 權限分支。
-- 刪除 `serena_tools`、`serena_call` 及 schema；58 個基礎 Odin 工具保留，並擴充為 72 個原生契約。
+- 刪除 `serena_tools`、`serena_call` 及 schema；58 個基礎 Odin 工具保留，目前擴充為 85 個原生契約。
 - 刪除橋接設定、呼叫範例和上游 mock fixture。
 - `status` 回報 standalone / external_tool_bridge；CLI doctor 檢查直接後端。
-- 舊 bridge 設定由 deny_unknown_fields 拒絕；舊工具回未知工具。相關 Rust 回歸測試已寫但 NOT_RUN。
+- 舊 bridge 設定由 deny_unknown_fields 拒絕；舊工具回未知工具。相關回歸已納入本輪 workspace 與 MCP smoke 執行，證據見最新交付狀態。
 - 重新生成 API、53 項功能對照與契約；加入生產原始碼／Cargo 設定的去相依靜態檢查。
 
 ## 執行期依賴邊界
@@ -21,6 +21,7 @@
 | MCP stdio / 本機 HTTP / Dashboard | Odin；HTTP 模式需 host token | 不需要 |
 | 符號、引用、診斷、Rename | 另裝並配置相應 LSP 語言伺服器 | 不需要 |
 | 除錯 | 另裝並配置 DAP debug adapter、debuggee 與授權 | 不需要 |
+| Windows OS 沙箱／原生 inspections | host 明確配置 hash-pinned native MXC；inspections 另需對應 analyzer | 不需要 |
 | Rust 核心 | 不需 Python runtime | 不需要 |
 | 開發驗證腳本／fixture | Python；Rust tests 另需 Cargo | 不需要 |
 
@@ -28,7 +29,7 @@
 
 ## 這次沒有補齊的功能
 
-獨立性並不等於 Serena 全功能等價。Move／Inline 語意重構、JetBrains inspections、其 persistent debug REPL、完整 Python REPL、40+ 語言專用適配、上游所有 YAML/Jinja/context/mode 語意仍未重寫。普通 LSP diagnostics 不等於 IDE inspections；DAP primitives 不等於 JetBrains REPL；JSON flow 不等於 Python。
+獨立性並不等於 Serena 全功能等價。Move／Inline 已有後端 edit-only 安全入口；完整逐語言語意重構、JetBrains 私有 inspections、其 persistent debug REPL、完整 Python REPL、40+ 語言專用適配、上游所有 YAML/Jinja/context/mode 語意仍未完整驗收。Clippy／Ruff／ESLint 已有獨立原生 providers，但普通 LSP diagnostics 不等於全部 IDE inspections；DAP primitives 不等於 JetBrains REPL；JSON flow 不等於 Python。
 
 缺少上述能力時，本版不能保證完成對應任務，也不會偷偷呼叫 Serena。功能矩陣保留 NOT_IMPLEMENTED 和 NATIVE_SOURCE_PARTIAL，不以刪除橋接把缺口改標完成。
 

@@ -1,0 +1,499 @@
+{
+  "status": "PASS",
+  "scope": "REAL_ODIN_MCP_MXC_ANALYZERS",
+  "started_at_utc": "2026-10-21T01:43:07.738201+00:00",
+  "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+  "checks": [
+    {
+      "name": "executor_integrity",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "real_binary_metadata",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "real_fixture_lockfile",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "real_mcp_handshake",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "rust:shell_uses_native_sandbox",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "rust:analysis_readonly",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "rust:real_normalized_rule",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "rust:current_complete_report",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "rust:real_safe_fix_available",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "rust:preview_readonly",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "rust:cas_fix_applied",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "rust:exact_fix_rollback",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "python:shell_uses_native_sandbox",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "python:analysis_readonly",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "python:real_normalized_rule",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "python:current_complete_report",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "python:real_safe_fix_available",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "python:preview_readonly",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "python:cas_fix_applied",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "python:exact_fix_rollback",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "typescript:shell_uses_native_sandbox",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "typescript:analysis_readonly",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "typescript:real_normalized_rule",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "typescript:current_complete_report",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "typescript:real_safe_fix_available",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "typescript:preview_readonly",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "typescript:cas_fix_applied",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "typescript:exact_fix_rollback",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "repository_executable_config_not_used",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "private_scratch_cleaned",
+      "status": "PASS",
+      "detail": null
+    }
+  ],
+  "responses": {
+    "rust:sandbox_command": {
+      "args": [
+        "clippy",
+        "--version"
+      ],
+      "descendant_process_lifetime_managed": true,
+      "exit_code": 0,
+      "output_truncated": false,
+      "program": "C:\\Users\\steven\\.rustup\\toolchains\\1.90.0-x86_64-pc-windows-msvc\\bin\\cargo.exe",
+      "sandbox": true,
+      "sandbox_status": "enforced_mxc_processcontainer",
+      "stderr": "",
+      "stdout": "clippy 0.1.90 (1159e78c47 2025-09-14)\n",
+      "success": true,
+      "timed_out": false,
+      "trace": {
+        "elapsed_ms": 232,
+        "id": "77c5cc29-9b2c-404e-be1f-0228650abc46",
+        "result_bytes": 371,
+        "result_sha256": "9fa5e98d4065be9bafeb83e930ff3d7d6c961e8ecad395147ceb05d6ba836635"
+      }
+    },
+    "rust:findings": {
+      "execution": {
+        "exit_code": 0,
+        "sandbox": true,
+        "sandbox_status": "enforced_mxc_processcontainer",
+        "source_modified_by_odin": false,
+        "version_verified": true
+      },
+      "findings": [
+        {
+          "document_version": null,
+          "finding_id": "240f193d74cdfeeb7ca9867abab965f8d9fd2ff052d5cd64cb648bcdaab9a95b",
+          "fix_available": true,
+          "freshness": "current",
+          "message": "unneeded `return` statement",
+          "position_encoding": "utf-16",
+          "provider": "clippy",
+          "range": {
+            "end": {
+              "character": 34,
+              "line": 0
+            },
+            "start": {
+              "character": 25,
+              "line": 0
+            }
+          },
+          "relative_path": "src/lib.rs",
+          "rule_id": "clippy::needless_return",
+          "severity": 2,
+          "sha256": "20e3fde08b42a999ec9b62964fad2fd1fec293fb5465a74dff4daa13f0f1dd6d",
+          "source": "clippy",
+          "version": "clippy 0.1.90 (1159e78c47 2025-09-14)"
+        }
+      ],
+      "freshness": "current",
+      "position_encoding": "utf-16",
+      "provider": "clippy",
+      "scope": "host_fixed_profile",
+      "status": "complete",
+      "summary": {
+        "complete": true,
+        "errors": 0,
+        "total": 1,
+        "warnings": 1
+      },
+      "trace": {
+        "elapsed_ms": 562,
+        "id": "9a04ed14-3310-4884-90b9-b0cbdde1c251",
+        "result_bytes": 961,
+        "result_sha256": "999ee6a0d4c7176ea4cb1a2f01dda952c841837981032443cb4cd22abfb7a5a6"
+      },
+      "version": "clippy 0.1.90 (1159e78c47 2025-09-14)",
+      "whole_project_verified": false
+    },
+    "rust:fix_preview": {
+      "atomic_visibility": "per_file_only",
+      "files": [
+        {
+          "after_sha256": "1d18601d314a0f20adaa751182dce1187f1b6cbe154ee6cbca02abe862cefc02",
+          "before_sha256": "20e3fde08b42a999ec9b62964fad2fd1fec293fb5465a74dff4daa13f0f1dd6d",
+          "diff": "--- a/src/lib.rs\n+++ b/src/lib.rs\n@@ -1 +1 @@\n-pub fn answer() -> i32 { return 42; }\n+pub fn answer() -> i32 { 42}\n",
+          "path": "src/lib.rs"
+        }
+      ],
+      "finding_id": "240f193d74cdfeeb7ca9867abab965f8d9fd2ff052d5cd64cb648bcdaab9a95b",
+      "journaled_recovery": true,
+      "phase": "draft",
+      "provider": "clippy",
+      "requires_apply": true,
+      "source_modified": false,
+      "trace": {
+        "elapsed_ms": 454,
+        "id": "8a51a419-ec24-40e9-b189-2101f9af1fdf",
+        "result_bytes": 608,
+        "result_sha256": "f6abb855ed052570fe6f737b9d2d4dc7c7ed2a885eb838f06e8a0cad703d4d49"
+      },
+      "transaction_id": "bf2614fe-df87-4534-890e-e3de66fe0897"
+    },
+    "python:sandbox_command": {
+      "args": [
+        "--version"
+      ],
+      "descendant_process_lifetime_managed": true,
+      "exit_code": 0,
+      "output_truncated": false,
+      "program": "E:\\odin\\.odin\\validation-tools\\python\\Scripts\\ruff.exe",
+      "sandbox": true,
+      "sandbox_status": "enforced_mxc_processcontainer",
+      "stderr": "",
+      "stdout": "ruff 0.17.1\n",
+      "success": true,
+      "timed_out": false,
+      "trace": {
+        "elapsed_ms": 172,
+        "id": "54b0b603-161e-455b-b5a6-e79107afef3c",
+        "result_bytes": 311,
+        "result_sha256": "14cfd7df5a2508408d9598499ec34661c60e2a484dd0d3f9ff889e14f6178cf2"
+      }
+    },
+    "python:findings": {
+      "execution": {
+        "exit_code": 1,
+        "sandbox": true,
+        "sandbox_status": "enforced_mxc_processcontainer",
+        "source_modified_by_odin": false,
+        "version_verified": true
+      },
+      "findings": [
+        {
+          "document_version": null,
+          "finding_id": "690958e6f161cf6e74ece7c7811518c26ece4eae0dc2e527f25ec70b8795e3b9",
+          "fix_available": true,
+          "freshness": "current",
+          "message": "`os` imported but unused",
+          "position_encoding": "utf-16",
+          "provider": "ruff",
+          "range": {
+            "end": {
+              "character": 9,
+              "line": 0
+            },
+            "start": {
+              "character": 7,
+              "line": 0
+            }
+          },
+          "relative_path": "sample.py",
+          "rule_id": "F401",
+          "severity": 1,
+          "sha256": "7cf49ca22055861ab5dd4227ba9475b9afe14f6ebdbcaa75aebca25f50f1b61b",
+          "source": "ruff",
+          "version": "ruff 0.17.1"
+        }
+      ],
+      "freshness": "current",
+      "position_encoding": "utf-16",
+      "provider": "ruff",
+      "scope": "host_fixed_profile",
+      "status": "complete",
+      "summary": {
+        "complete": true,
+        "errors": 1,
+        "total": 1,
+        "warnings": 0
+      },
+      "trace": {
+        "elapsed_ms": 384,
+        "id": "cc19f31c-8371-4571-8a2e-475e39235a91",
+        "result_bytes": 878,
+        "result_sha256": "db1e70098341dab1fddc0609b6a66ce2bb0852c19feab0b90e7dfdcf5824f0ed"
+      },
+      "version": "ruff 0.17.1",
+      "whole_project_verified": false
+    },
+    "python:fix_preview": {
+      "atomic_visibility": "per_file_only",
+      "files": [
+        {
+          "after_sha256": "5cb122109a6e9da9f1affcc911df7d05711d5c7aed0d47ed5b6ce22caf3acf23",
+          "before_sha256": "7cf49ca22055861ab5dd4227ba9475b9afe14f6ebdbcaa75aebca25f50f1b61b",
+          "diff": "--- a/sample.py\n+++ b/sample.py\n@@ -1,3 +1,2 @@\n-import os\n \n value = 42\n",
+          "path": "sample.py"
+        }
+      ],
+      "finding_id": "690958e6f161cf6e74ece7c7811518c26ece4eae0dc2e527f25ec70b8795e3b9",
+      "journaled_recovery": true,
+      "phase": "draft",
+      "provider": "ruff",
+      "requires_apply": true,
+      "source_modified": false,
+      "trace": {
+        "elapsed_ms": 370,
+        "id": "64a43c5b-0ebd-40af-bd9e-d31518d18da3",
+        "result_bytes": 564,
+        "result_sha256": "10314272629635cb8752b557b7a5b61414739d51806b505580f66568420924ec"
+      },
+      "transaction_id": "139ddb6c-c31e-4459-ad56-10d2f2177c22"
+    },
+    "typescript:sandbox_command": {
+      "args": [
+        "--preserve-symlinks",
+        "--preserve-symlinks-main",
+        "E:\\odin\\.odin\\validation-tools\\inspections\\node_modules\\eslint\\bin\\eslint.js",
+        "--version"
+      ],
+      "descendant_process_lifetime_managed": true,
+      "exit_code": 0,
+      "output_truncated": false,
+      "program": "C:\\Program Files\\nodejs\\node.exe",
+      "sandbox": true,
+      "sandbox_status": "enforced_mxc_processcontainer",
+      "stderr": "",
+      "stdout": "v10.13.0\n",
+      "success": true,
+      "timed_out": false,
+      "trace": {
+        "elapsed_ms": 507,
+        "id": "14756aee-52a2-4014-85b9-043391f2d299",
+        "result_bytes": 419,
+        "result_sha256": "ea200591ba371bee64711b71dcd0f7e504d041b33273fc9818476ec6c521d45e"
+      }
+    },
+    "typescript:findings": {
+      "execution": {
+        "exit_code": 1,
+        "sandbox": true,
+        "sandbox_status": "enforced_mxc_processcontainer",
+        "source_modified_by_odin": false,
+        "version_verified": true
+      },
+      "findings": [
+        {
+          "document_version": null,
+          "finding_id": "cd55c54e3b1e32d09c1869d8302ef96c3f891f8030e99233add67c98876263ca",
+          "fix_available": true,
+          "freshness": "current",
+          "message": "Missing semicolon.",
+          "position_encoding": "utf-16",
+          "provider": "eslint",
+          "range": {
+            "end": {
+              "character": 0,
+              "line": 1
+            },
+            "start": {
+              "character": 24,
+              "line": 0
+            }
+          },
+          "relative_path": "sample.ts",
+          "rule_id": "semi",
+          "severity": 1,
+          "sha256": "5d2eb782fe3a645dbf5bdf2d765a254438962649c9c892811408cb50e04a5be4",
+          "source": "eslint",
+          "version": "v10.13.0"
+        }
+      ],
+      "freshness": "current",
+      "position_encoding": "utf-16",
+      "provider": "eslint",
+      "scope": "host_fixed_profile",
+      "status": "complete",
+      "summary": {
+        "complete": true,
+        "errors": 1,
+        "total": 1,
+        "warnings": 0
+      },
+      "trace": {
+        "elapsed_ms": 1174,
+        "id": "8c2c8b66-1a58-437d-adde-00a3c856d9aa",
+        "result_bytes": 873,
+        "result_sha256": "3ead04fbe4d69e7ab92b5ff449b9a7b6a2351c8a7df1c96c212dc8c3b979be2b"
+      },
+      "version": "v10.13.0",
+      "whole_project_verified": false
+    },
+    "typescript:fix_preview": {
+      "atomic_visibility": "per_file_only",
+      "files": [
+        {
+          "after_sha256": "a2098bd92b10bf8b816d24b7556b1ce8c49a879d130489065ef1051c17e042f6",
+          "before_sha256": "5d2eb782fe3a645dbf5bdf2d765a254438962649c9c892811408cb50e04a5be4",
+          "diff": "--- a/sample.ts\n+++ b/sample.ts\n@@ -1 +1 @@\n-export const answer = 42\n+export const answer = 42;\n",
+          "path": "sample.ts"
+        }
+      ],
+      "finding_id": "cd55c54e3b1e32d09c1869d8302ef96c3f891f8030e99233add67c98876263ca",
+      "journaled_recovery": true,
+      "phase": "draft",
+      "provider": "eslint",
+      "requires_apply": true,
+      "source_modified": false,
+      "trace": {
+        "elapsed_ms": 1174,
+        "id": "06db7eca-0c49-4319-9c60-289629af00c3",
+        "result_bytes": 589,
+        "result_sha256": "5a650f52fc38d7fdf3ecf1dc0e13f43deb870f9780af7887454ea42ff28335dd"
+      },
+      "transaction_id": "86933b6c-a8a2-427e-9bdb-fa3174de4b57"
+    }
+  },
+  "backend_stderr": [],
+  "commands": [
+    {
+      "argv": [
+        "odin",
+        "metadata"
+      ],
+      "exit_code": 0,
+      "output": "{\n  \"compiler\": \"rustc 1.90.0 (1159e78c4 2025-09-14)\",\n  \"external_tool_bridge\": false,\n  \"model_token_usage\": \"UNKNOWN\",\n  \"name\": \"Odin\",\n  \"profile\": \"release\",\n  \"revision\": \"c5084f4947fc4a07c9ab381fa9998ba1a1e2246d\",\n  \"schema_version\": 1,\n  \"standalone\": true,\n  \"target\": \"x86_64-pc-windows-msvc\",\n  \"tracked_source_dirty\": false,\n  \"version\": \"0.2.0\"\n}\n"
+    },
+    {
+      "argv": [
+        "cargo",
+        "generate-lockfile",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "binary_metadata": {
+    "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "external_tool_bridge": false,
+    "model_token_usage": "UNKNOWN",
+    "name": "Odin",
+    "profile": "release",
+    "revision": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+    "schema_version": 1,
+    "standalone": true,
+    "target": "x86_64-pc-windows-msvc",
+    "tracked_source_dirty": false,
+    "version": "0.2.0"
+  },
+  "completed_at_utc": "2026-10-21T01:43:13.376269+00:00"
+}

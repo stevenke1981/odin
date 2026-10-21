@@ -2,7 +2,7 @@
 
 ## 本次交付
 
-本版為 Windows 原生預覽，非完整 40 項／跨平台穩定版。`verification/local-validation.json` 保存真實命令與 exit code；`delivery-status.json` 彙總，`feature-evidence.json` 逐項列未驗收條件。舊 source/fixture reports 是歷史靜態證據，不能代替目前 binary／真實後端紀錄。
+本版為 Windows 原生預覽，非完整 40 項／跨平台穩定版。`verification/sandbox-ide-release-validation.json` 保存本輪 17 項真實命令與 exit code；`delivery-status.json` 彙總，`feature-evidence.json` 逐項列未驗收條件。`local-validation.json` 與舊 source/fixture reports 保留其歷史範圍，不能代替目前 binary／真實後端紀錄。
 
 禁止以「有 test function」、「有 CI YAML」、「工具名稱已列出」、「fixture 回傳成功」推論產品完成。
 

@@ -1,0 +1,1 @@
+{"status": "PASS", "scope": "Git-tracked current public candidate only", "files_checked": 366, "findings": [], "license_inventory_packages": 260, "missing_license_metadata_or_text": [], "sbom_sha256": "ff87a7793794945da79cb8fa1c1b5c326fc78f2711aa222b9e809bc16b07b999", "limit": "Pattern scan and package metadata are not a formal security or legal audit."}

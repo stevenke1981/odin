@@ -1,8 +1,8 @@
 # Odin 原生產品路線圖
 
-目前是 **0.2.0 Windows x64 MSVC 原生預覽**：四個 Rust crates、72 個工具契約，原有 58 個工具保留並新增 14 個。Cargo.lock 已實際產生並納入 Git；已執行 Windows package tests、CLI/MCP/HTTP smoke，另有三個真實 LSP 與 debugpy 的定向報告。工具存在與局部測試通過，不能代表全部 40 項需求完成。
+目前是 **0.2.0 Windows x64 MSVC 原生預覽**：四個 Rust crates、85 個工具契約，包含可選 native MXC 沙箱、IDE 查詢及原生 inspection providers。Cargo.lock 已實際產生並納入 Git；已執行 Windows workspace tests、CLI/MCP/HTTP smoke、原生沙箱與 analyzer 驗收。工具存在與局部測試通過，不能代表全部 40 項需求完成。
 
-[FEATURE_SPEC.md](FEATURE_SPEC.md)、[IMPLEMENTATION_BACKLOG.md](IMPLEMENTATION_BACKLOG.md) 與 [feature-evidence.json](../verification/feature-evidence.json) 定義需求、相依、實際證據及未驗收條件。Windows 最終整合 runner 已完成 16 個零退出命令及 144 Rust tests（1 ignored）；最終 Windows portable／installer 已打包並通過隔離安裝驗收；公開 GitHub 發布結果見 delivery-status.json 的實際紀錄。
+[FEATURE_SPEC.md](FEATURE_SPEC.md)、[IMPLEMENTATION_BACKLOG.md](IMPLEMENTATION_BACKLOG.md) 與 [feature-evidence.json](../verification/feature-evidence.json) 定義需求、相依、實際證據及未驗收條件。最新 Windows runner 已完成 17 個零退出命令及 200 Rust tests（6 ignored，另 native opt-in 3 PASS）。先前 72 工具版 portable／installer 保留歷史範圍，本輪未重新封裝；語言矩陣與公開發布結果見 delivery-status.json。
 
 ## 當前可用範圍
 
@@ -15,15 +15,15 @@
 
 ## 下一個整合門檻
 
-同一候選來源的 workspace fmt/test/clippy、release build、真 binary CLI/stdio/HTTP/cancellation、真實後端與供應鏈已執行，16 個 command 皆 exit 0，結果與 source/binary digest 記在 `verification/local-validation.json`。套件切片和舊 binary 的 PASS 不自動適用後續變更；下一步是包含最新文件的最終打包與 artifact manifest 核對。
+同一候選來源的 workspace fmt/test/clippy、release build、真 binary CLI/stdio/HTTP/cancellation、原生沙箱、真實後端與供應鏈已執行，17 個 command 皆 exit 0，結果與 source/binary digest 記在 `verification/sandbox-ide-release-validation.json`。套件切片和舊 binary 的 PASS 不自動適用後續變更；新 driver 與語言報告另綁實際來源。完整發行仍需本輪安裝封裝與平台矩陣。
 
 公開前保留獨立 review、機密掃描、license/SBOM/advisory、manifest 和 manual self-hosted workflow policy。推送後才核對 public visibility 與 remote HEAD；不因 push 啟動雲端 CI。
 
 ## 完整功能與平台門檻
 
-真正 OS sandbox、Linux/macOS 原生執行、乾淨 Windows installer/升級/rollback、Defender/CFA、真 client 應用整合、六語言及 40+ 語言適配仍待完成。Job Objects/process groups 是生命週期管理，沒有 workspace 外存取限制。
+Windows MXC sandbox 已實作並有限定的 kernel boundary 與語言／分析器實測；Linux/macOS 原生執行及 sandbox、完整 OS 隔離矩陣、乾淨 Windows installer/升級/rollback、Defender/CFA、真 client 應用整合及 40+ 語言適配仍待完成。未配置 MXC 時的 Job Objects/process groups 仍只管理生命週期。
 
-語意 Move/Inline、native inspection/linter providers、Safe Delete reachability/cascade 必須逐語言驗證編譯與行為；不以 regex 搬移、空 diagnostics 或 command 已送出冒充成功。repo-local memory migration、背景 watcher、完整 DAG、state retention/backup 與全部敵意 I/O 矩陣仍有缺口。
+語意 Move/Inline、Safe Delete reachability/cascade 仍需逐語言驗證編譯與行為；Clippy/Ruff/ESLint providers 已有限定的真實 30-check 驗收，不能推論全部規則或 IDE 私有 inspections 等價。不以 regex 搬移、空 diagnostics 或 command 已送出冒充成功。repo-local memory migration、背景 watcher、完整 DAG、state retention/backup 與全部敵意 I/O 矩陣仍有缺口。
 
 ## 1.0 條件
 

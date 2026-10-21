@@ -1,0 +1,17 @@
+
+running 3 tests
+test abort_and_native_timeout_reap_the_sandbox_tree ... ok
+test bounded_execution_retains_guard_until_abort_and_timeout_reaping ... ok
+test filesystem_network_stdio_and_descendant_isolation ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 21.11s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s
+     Running tests\os_sandbox_native.rs (target\debug\deps\os_sandbox_native-b4457c3f1ab6ba4b.exe)
+native_sandbox lifecycle=None parent_and_child_reaped=true heartbeat_stopped=true
+native_sandbox lifecycle=Some(1.5s) parent_and_child_reaped=true heartbeat_stopped=true
+bounded_execution abort=true native_parent_child_reaped=true held_scratch_removed=true policy_removed=true
+bounded_execution abort=false native_parent_child_reaped=true held_scratch_removed=true policy_removed=true
+native_sandbox mode=check checks={"denied_read":true,"denied_write":true,"environment_filtered":true,"junction_read_denied":true,"network_denied":true,"outside_execute_denied":true,"outside_read":true,"outside_write":true,"read_allowed":true,"readonly_write_denied":true,"scratch_write":true,"write_allowed":true}
+native_sandbox mode=child-check checks={"denied_read":true,"denied_write":true,"environment_filtered":true,"junction_read_denied":true,"network_denied":true,"outside_execute_denied":true,"outside_read":true,"outside_write":true,"read_allowed":true,"readonly_write_denied":true,"scratch_write":true,"write_allowed":true}
+native_sandbox launch_failure_exit=Some(-1) no_fallback=true

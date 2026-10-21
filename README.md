@@ -10,7 +10,7 @@ Markdown 記憶與受限 JSON 流程。產品沒有 Serena bridge、Python REPL�
 這次已從未編譯的原始碼預覽，推進到 Windows x64 MSVC 的實際建置、測試與
 二進位後端驗收。**40 項規格尚未全數驗收；目前不是跨平台穩定版。** 最新命令、
 exit code、來源／binary hash 以 [交付狀態](verification/delivery-status.json)、
-[本機驗收](verification/local-validation.json) 與
+[本機驗收](verification/sandbox-ide-release-validation.json) 與
 [逐需求證據](verification/feature-evidence.json) 為準。舊紀錄保留為歷史，
 不能覆蓋最新結果，也不能把 protocol fixture 當真實語言支援。
 
@@ -94,8 +94,15 @@ project。交易是逐檔原子替換與可恢復日誌，沒有多檔瞬間原�
 每語兩專案的獨立驗收，`tests/real_native_inspections.py` 測實際 MXC 與三種
 analyzer。提供測試程式不代表測試通過；後端版本、範圍及 binary digest 記在驗收報告。
 
-Windows 提供 portable ZIP 與 Inno Setup recipe。安裝、同版重裝、卸載有隔離
-smoke；乾淨主機、跨版升級、Defender/CFA、取消回復另行驗收。Linux/macOS
+本輪實際通過 17 項整合命令、200 項 Rust 測試，另執行 3 項原生沙箱測試及
+30 項分析器檢查。六語各兩專案的 [真後端矩陣](verification/language-ide-final-baseline-03.json)
+記錄 260 PASS、14 UNAVAILABLE、12 NOT_VERIFIED、0 FAIL，整體為 PARTIAL；
+未提供的能力與 TypeScript／Java 無版本診斷不算通過。詳見
+[語言支援範圍](docs/LANGUAGE_SUPPORT.md)。
+
+Windows 提供 portable ZIP 與 Inno Setup recipe。先前 72 工具版本的安裝、同版
+重裝、卸載有隔離 smoke；這次擴充尚未重新封裝。乾淨主機、跨版升級、
+Defender/CFA、取消回復另行驗收。Linux/macOS
 原生驗收與性能比較維持 NOT_RUN。CI 僅手動 self-hosted，推送不啟動 hosted CI。
 
 ### 邊界與後續工作
@@ -109,5 +116,5 @@ profile 是設定指引，不是 28 語驗收成功。IDE 功能依 backend capa
 
 [已知限制](docs/KNOWN_LIMITATIONS.md) · [安全邊界](docs/SECURITY.md) ·
 [架構](docs/ARCHITECTURE.md) · [40 項規格](docs/FEATURE_SPEC.md) ·
-[工作分派](docs/dispatch-plan.md) · [MIT](LICENSE) ·
+[工作分派](docs/dispatch-sandbox-ide.md) · [MIT](LICENSE) ·
 [第三方授權文字](docs/THIRD_PARTY_LICENSES.txt)

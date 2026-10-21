@@ -14,7 +14,9 @@ debug launch payloads and 28 declarative language setup profiles. The registry
 does not assert installation or language acceptance.
 
 Independent review addressed hierarchy query budgets, cancellation cleanup and
-scoped diagnostic summaries. Source-bound Windows gates and real backend
+scoped diagnostic summaries. Real backends exposed Windows percent-encoded file
+URI cache mismatches and JDTLS empty WorkspaceEdit alternatives; both now retain
+freshness, conflict checks and transaction rollback. Source-bound Windows gates and real backend
 reports distinguish execution, unavailable capabilities and remaining gaps.
 Linux/macOS sandboxing, every-language IDE parity and all 40 original acceptance
 criteria remain separate from this Windows preview. No cloud CI was dispatched.
