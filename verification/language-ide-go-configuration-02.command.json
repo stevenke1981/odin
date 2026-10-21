@@ -1,0 +1,23 @@
+{
+  "command": [
+    "python",
+    "-u",
+    "tests/real_ide_backends.py",
+    "--binary",
+    "E:/odin/target/release/odin.exe",
+    "--languages",
+    "go",
+    "--output",
+    "verification/language-ide-go-configuration-02.json"
+  ],
+  "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin",
+  "started_utc": "2026-10-21T01:27:26.3129568Z",
+  "finished_utc": "2026-10-21T01:27:28.8429956Z",
+  "exit_code": 0,
+  "binary_sha256": "c4f558615ec1930d991963c282acdcfe5df804e109c04cf2fb398fd78c650122",
+  "harness_sha256": "862bf89645e99c5110bd6d700ba8a8a16c4f796c86218dd4c20dad3d32a416bf",
+  "raw_stdout_log": "verification/language-ide-go-configuration-02.txt",
+  "log_sha256": "0b6ef87776c3ad6d72c285bdf2b11f3cca5c83be1f1b2c1b76debe9877a330f4",
+  "report_sha256": "0ccd731338f47313c2be3288f5f51f89ab0493d6a3a4b6ab9eb419b9d8a85c5a",
+  "line_endings_normalized_before_hash_binding": true
+}
