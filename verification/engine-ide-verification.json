@@ -1,8 +1,8 @@
 {
   "task_id": "native-ide-engine",
-  "status": "PASS",
+  "status": "BLOCKED",
   "base_sha": "9b71abc98b89f72cce08d2795dfb139281f6d613",
-  "head_before_evidence": "eb88a86b542faf84b15783d4517d0aa982c70872",
+  "head_before_evidence": "b9430bfd01c956cd93925470309de37594ec7187",
   "branch": "feat/ide-native-tools",
   "platform": "nt",
   "source_hashes": {
@@ -37,7 +37,7 @@
     "scripts/generate_catalog.py": "b6c77d93efccd1b4516310532a18f43005f57ab4e948ecacc85e443a8e5d9d08",
     "scripts/generate_docs.py": "544a98afe4431b8818a06796765fb9c476271368583a930676d1498a4c1f082e",
     "verification/engine-ide-catalog-check.py": "9d3f3edf68f31e221398cfc67d4ddf765a0e544f5cd3d5b56e78f9bfc8942e75",
-    "verification/engine-ide-verify.py": "83c620638ac35864e8772adef6be155cf558cd2a72fd028c2ec6ca3ec9097e56"
+    "verification/engine-ide-verify.py": "9756d86b48146b77add08a896bdde41e0e3117af44c8d7cfd311e00bd4315b5b"
   },
   "commands": [
     {
@@ -49,7 +49,7 @@
       "status": "PASS",
       "elapsed_seconds": 0.26,
       "log": "engine-ide-gate-1.txt",
-      "log_sha256": "9088e022bf521b916643450bd677bf8c6494a090e1fb9e544f087fa07ae0926c"
+      "log_sha256": "49c0ae8712dcaa99f98dc57d0a435000a33dc3164f467fd0ff43ff3b893d2b06"
     },
     {
       "command": [
@@ -74,11 +74,11 @@
         "odin-engine",
         "--locked"
       ],
-      "exit_code": 0,
-      "status": "PASS",
-      "elapsed_seconds": 21.9,
+      "exit_code": 101,
+      "status": "BLOCKED",
+      "elapsed_seconds": 27.2,
       "log": "engine-ide-gate-3.txt",
-      "log_sha256": "f482538e0171b91cb909955fa814f5ebb0bbc3420af6b48c70526af9a05772e2"
+      "log_sha256": "d9a2085b865c304e929c21ef0ee2e825d4660720fa16782ac6a09fcf650d3988"
     },
     {
       "command": [
@@ -94,9 +94,9 @@
       ],
       "exit_code": 0,
       "status": "PASS",
-      "elapsed_seconds": 1.48,
+      "elapsed_seconds": 1.07,
       "log": "engine-ide-gate-4.txt",
-      "log_sha256": "517607b5e93a51bc424a614b78a9a5f684d81d9ee3c168aec4f645bc01655e82"
+      "log_sha256": "ab676d3bee7ea5a34d2115586362c3475cdfb1b35c4d888c322df5fc52e527ca"
     }
   ],
   "boundaries": [
@@ -136,7 +136,9 @@
     "scripts/generate_catalog.py": "b6c77d93efccd1b4516310532a18f43005f57ab4e948ecacc85e443a8e5d9d08",
     "scripts/generate_docs.py": "544a98afe4431b8818a06796765fb9c476271368583a930676d1498a4c1f082e",
     "verification/engine-ide-catalog-check.py": "9d3f3edf68f31e221398cfc67d4ddf765a0e544f5cd3d5b56e78f9bfc8942e75",
-    "verification/engine-ide-verify.py": "83c620638ac35864e8772adef6be155cf558cd2a72fd028c2ec6ca3ec9097e56"
+    "verification/engine-ide-verify.py": "9756d86b48146b77add08a896bdde41e0e3117af44c8d7cfd311e00bd4315b5b"
   },
-  "source_unchanged_during_gates": true
+  "source_unchanged_during_gates": true,
+  "environment_blocker": "AppControl os error 4551 denied unchanged invariants test executable before execution. 62 tests ran and passed; 12 invariants NOT_RUN on this attempt. No policy changes or alternate-path retries.",
+  "prior_full_pass": "engine-ide-prior-pass.json: same engine sources, all 74 tests actually passed before the environmental denial."
 }

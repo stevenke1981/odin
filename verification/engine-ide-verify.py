@@ -58,6 +58,9 @@ def main():
             result = subprocess.run(command, cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT,
                                     encoding='utf-8', errors='replace', check=False)
             stream.write(f'\nExit code: {result.returncode}\n')
+        # Child Python processes on Windows can emit CRLF directly into this
+        # descriptor. Git stores these text logs as LF; hash the committed form.
+        log.write_bytes(log.read_bytes().replace(b'\r\n', b'\n'))
         item = {'command': command, 'exit_code': result.returncode,
                 'status': 'PASS' if result.returncode == 0 else 'FAIL',
                 'elapsed_seconds': round(time.monotonic() - started, 2),

@@ -1,0 +1,115 @@
+Command: cargo test -p odin-engine --locked
+   Compiling odin-engine v0.2.0 (C:\Users\steven\.codex\worktrees\odin-engine\odin\crates\odin-engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.14s
+     Running unittests src\lib.rs (target\debug\deps\odin_engine-2ad1c4edd17061ce.exe)
+
+running 34 tests
+test flow::tests::refs_select_values_not_code ... ok
+test flow::tests::source_strings_are_inert ... ok
+test flow::tests::missing_reference_is_an_error ... ok
+test inspections::tests::provider_versions_distinguish_clippy_from_cargo_and_unknown_output ... ok
+test schema::tests::accepts_nullable ... ok
+test flow::tests::repeated_references_and_namespace_growth_fail_before_large_clones ... ok
+test refactor::tests::does_not_accept_command_only_or_mixed_action ... ok
+test refactor::tests::enforces_semantic_action_kind_and_unambiguous_title ... ok
+test schema::tests::rejects_missing ... ok
+test schema::tests::rejects_unknown_fields ... ok
+test symbols::tests::repeated_overlapping_bodies_exhaust_budget_before_copy ... ok
+test tests::inserts_into_empty_document ... ok
+test occurrences::tests::occurrence_ids_change_with_content_or_flags ... ok
+test symbols::tests::exact_and_case_insensitive_matching ... ok
+test occurrences::tests::empty_regex_matches_are_rejected ... ok
+test tests::preserves_crlf_line_edit ... ok
+test tests::literal_replacement_count ... ok
+test symbols::tests::filters_kind_depth_scope_and_name ... ok
+test text_replace::tests::length_first_rejects_many_literal_and_capture_expansions ... ok
+test inspections::tests::eslint_utf16_columns_and_global_fix_indices_preserve_bom ... ok
+test occurrences::tests::regex_expands_only_selected_capture_and_preserves_crlf ... ok
+test inspections::tests::malformed_analyzer_coordinates_and_overlapping_edits_are_rejected ... ok
+test tests::regex_replacement_captures ... ok
+test inspections::tests::clippy_machine_applicable_bytes_are_converted_and_build_completion_is_required ... ok
+test inspections::tests::ruff_scalar_columns_bom_and_crlf_convert_to_utf16_with_safe_fix ... ok
+test inspections::tests::parser_count_output_and_resulting_file_size_limits_are_enforced ... ok
+test text_replace::tests::bounded_template_matches_upstream_capture_interpolation ... ok
+test inspections::tests::unsafe_suggestions_cross_file_locations_and_unknown_sources_never_become_safe_fixes ... ok
+test results::tests::expired_results_are_removed_without_evicting_fresh_results ... ok
+test flow::tests::measurement_handles_escaping_and_node_limit_without_serialized_copy ... ok
+test inspections::tests::repeated_primary_clippy_suggestions_have_an_aggregate_preallocation_budget ... ok
+test inspections::tests::inspection_profiles_reject_write_flags_and_require_provider_safety_flags ... ok
+test flow::tests::a_locked_session_does_not_lock_other_sessions_and_clear_rejects_busy ... ok
+test inspections::tests::sandbox_write_and_temp_grants_cannot_overlap_sources_or_state ... ok
+
+test result: ok. 34 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+     Running tests\completion.rs (target\debug\deps\completion-1bae91554546a5b6.exe)
+
+running 18 tests
+test symbol_body_rejects_external_write_while_backend_response_is_pending ... ok
+test debug_batch_fails_closed_without_host_debug_permission ... ok
+test trace_digest_and_audit_id_match_without_logging_contents ... ok
+test occurrence_ids_reject_new_snapshots_and_duplicate_targets ... ok
+test five_matches_can_select_exactly_two_and_never_write_before_apply ... ok
+test flow_builtins_run_as_data_and_failed_drafts_do_not_commit ... ok
+test multiline_regex_selection_preserves_crlf_and_expands_captures ... ok
+test version_schema_capabilities_and_policy_agree ... ok
+test literal_capture_memory_and_occurrence_growth_fail_before_materializing_output ... ok
+test protocol_fixture_quickfix_uses_diagnostics_and_resolve_but_rejects_server_commands ... ok
+test flow_repeated_references_tool_outputs_and_namespace_are_bounded_before_copying ... ok
+test protocol_fixture_debug_batch_is_session_bound_and_reports_each_request ... ok
+test incremental_query_sees_new_content_and_deleted_files ... ok
+test protocol_fixture_symbol_filters_and_capability_probe_use_actual_backend_messages ... ok
+test protocol_fixture_move_and_inline_produce_transaction_previews_without_text_fallback ... ok
+test memory_bundle_import_and_scope_move_are_previewed_owned_and_guarded ... ok
+test results_roundtrip_in_utf8_chunks_with_project_scope_digest_and_expiry ... ok
+test symbol_offset_skips_body_resolution_before_copying ... ok
+
+test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 7.47s
+
+     Running tests\debug_launch_policy.rs (target\debug\deps\debug_launch_policy-1fc1253a6d6df07e.exe)
+
+running 3 tests
+test batch_launch_policy_is_applied_before_any_adapter_request_and_preserves_per_step_outcomes ... ok
+test unconfigured_debug_policy_preserves_explicit_privileged_host_behavior_and_reports_it ... ok
+test immutable_single_launch_uses_host_payload_and_rejects_other_launch_or_missing_attach ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.43s
+
+     Running tests\ide_tools.rs (target\debug\deps\ide_tools-bce788123f4f5772.exe)
+
+running 7 tests
+test range_formatting_and_empty_edits_keep_explicit_preview_semantics ... ok
+test inspection_catalog_metadata_permissions_and_required_sandbox_are_consistent ... ok
+test workspace_symbols_and_call_hierarchy_are_local_bounded_and_real_rpc ... ok
+test formatting_only_previews_cas_and_revalidates_on_apply ... ok
+test ide_reads_resolve_metadata_and_never_execute_backend_commands ... ok
+test ide_policy_hashes_utf16_and_missing_capabilities_fail_closed ... ok
+test source_changed_during_ide_rpc_is_a_conflict_for_reads_and_formatting ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.51s
+
+     Running tests\invariants.rs (target\debug\deps\invariants-b5ba5a60dcff7b31.exe)
+
+running 12 tests
+test legacy_bridge_configuration_is_rejected ... ok
+test project_override_is_rejected ... ok
+test removed_bridge_tools_are_unknown ... ok
+test malformed_arguments_do_not_fall_back_to_defaults ... ok
+test flow_cannot_reach_mutating_tools ... ok
+test standalone_status_and_catalog_agree ... ok
+test cross_project_queries_are_read_only ... ok
+test readonly_rejects_source_creation ... ok
+test exact_hash_required_after_read ... ok
+test flow_state_is_scoped_to_project ... ok
+test source_edits_are_preview_then_apply ... ok
+test memory_roundtrip_has_hash ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.43s
+
+   Doc-tests odin_engine
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+Exit code: 0

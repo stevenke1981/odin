@@ -1,17 +1,34 @@
 {
   "task_id": "native-ide-engine",
   "actor_instance": "/root/engine_implementation",
-  "status": "PASS",
+  "status": "BLOCKED",
   "base_sha": "9b71abc98b89f72cce08d2795dfb139281f6d613",
   "branch": "feat/ide-native-tools",
   "budget": "Not separately assigned",
-  "write_scopes": ["crates/odin-engine/src except shell.rs", "crates/odin-engine/tests", "both tools.json catalogs", "scripts/generate_catalog.py", "scripts/generate_docs.py", "docs/API.md", "docs/IDE_IMPLEMENTATION.md", "verification/engine-ide-*"],
-  "dependencies_original_commits": ["fea8b61", "b5f563e", "d6f3e50", "c7cb183", "f6e4fc9", "797ed12", "0e50a64"],
+  "write_scopes": [
+    "crates/odin-engine/src except shell.rs",
+    "crates/odin-engine/tests",
+    "both tools.json catalogs",
+    "scripts/generate_catalog.py",
+    "scripts/generate_docs.py",
+    "docs/API.md",
+    "docs/IDE_IMPLEMENTATION.md",
+    "verification/engine-ide-*"
+  ],
+  "dependencies_original_commits": [
+    "fea8b61",
+    "b5f563e",
+    "d6f3e50",
+    "c7cb183",
+    "f6e4fc9",
+    "797ed12",
+    "0e50a64"
+  ],
   "acceptance": {
     "catalog_schema_policy_dispatch_docs": "PASS: 85 mirrored tools; 13 new IDE/inspection contracts",
     "generator_idempotence": "PASS: two consecutive regenerations are byte-identical",
     "fmt": "PASS: cargo fmt -p odin-engine -- --check; exit 0",
-    "package_tests": "PASS: cargo test -p odin-engine --locked; exit 0; 74 tests (34 unit, 18 completion, 3 debug launch policy, 7 IDE, 12 invariants)",
+    "package_tests": "PASS prior 74 tests: engine-ide-prior-pass.json. Latest evidence-only rerun BLOCKED by AppControl 4551 for final 12 invariants; 62 tests executed PASS; exit101.",
     "strict_clippy": "PASS: cargo clippy -p odin-engine --all-targets --locked -- -D warnings; exit 0",
     "new_ide_protocol_routing": "PASS: real stdio fixture subprocesses, commands remain inert",
     "native_output_normalization": "PASS: Clippy/Ruff/ESLint provider-shaped JSON, Unicode/BOM/CRLF, safe fixes and boundedness",
