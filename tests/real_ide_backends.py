@@ -136,7 +136,7 @@ def fixture(base, tools, language, tag):
         caller = 'import { greet } from "./sample";\nexport const message=greet("Caller");\n'
         broken = '\nexport const odin_broken: number = "wrong";\n'
         program = Path(shutil.which("node") or "C:/Program Files/nodejs/node.exe").resolve()
-        argv = [str(installed(tools, "typescript/node_modules/typescript-language-server/lib/cli.mjs")), "--stdio"]
+        argv = ["--preserve-symlinks-main", str(installed(tools, "typescript/node_modules/typescript-language-server/lib/cli.mjs")), "--stdio"]
         initialization = {"tsserver": {"path": str(installed(tools, "typescript/node_modules/typescript/lib/tsserver.js"))},
                           "preferences": {"includeInlayParameterNameHints": "all", "includeInlayVariableTypeHints": True,
                                           "includeInlayFunctionLikeReturnTypeHints": True}}
@@ -474,6 +474,9 @@ def main():
                             "GOPATH": str(args.tools_root / "go-work"), "GOCACHE": str(args.tools_root / "go-cache"),
                             "GOMODCACHE": str(args.tools_root / "go-modules"), "GOROOT": str(args.tools_root / "go/go")})
         environment["DOTNET_SKIP_FIRST_TIME_EXPERIENCE"] = "1"
+        if args.mode == "sandbox" and "rust" in args.languages:
+            environment.setdefault("RUSTUP_HOME", str(Path.home() / ".rustup"))
+            environment.setdefault("CARGO_HOME", str(Path.home() / ".cargo"))
         jdks = list(args.tools_root.glob("jdk/*/bin/java.exe"))
         if len(jdks) == 1:
             environment["JAVA_HOME"] = str(jdks[0].parent.parent)
@@ -528,7 +531,7 @@ def main():
                 if item.language == "python":
                     command = [str(args.tools_root / "python/Scripts/python.exe"), "-c", "import importlib.metadata;print(importlib.metadata.version('basedpyright'))"]
                 elif item.language == "typescript":
-                    command = [str(item.program), item.argv[0], "--version"]
+                    command = [str(item.program), "--preserve-symlinks-main", str(installed(args.tools_root, "typescript/node_modules/typescript-language-server/lib/cli.mjs")), "--version"]
                 else:
                     command = [str(item.program), "version" if item.language == "go" else "--version"]
                 try:
