@@ -1118,3 +1118,290 @@ async fn hierarchy_timeout_covers_prepare_and_all_related_rpcs_together() {
         client.shutdown().await.unwrap();
     }
 }
+
+#[tokio::test]
+#[ignore = "Requires explicitly supplied basedpyright and TypeScript tools; records real diagnostic URI behavior"]
+async fn real_push_diagnostic_uri_probe() {
+    let tools =
+        PathBuf::from(std::env::var("ODIN_URI_PROBE_TOOLS").expect("Set ODIN_URI_PROBE_TOOLS"));
+    for language in ["python", "typescript"] {
+        let temp = tempfile::tempdir().unwrap();
+        let (file, text, program, arguments, initialization) = if language == "python" {
+            (
+                "sample.py",
+                "value: str = 42\n",
+                tools
+                    .join("python/Scripts/basedpyright-langserver.exe")
+                    .to_string_lossy()
+                    .into_owned(),
+                vec!["--stdio".to_owned()],
+                json!(null),
+            )
+        } else {
+            (
+                "sample.ts",
+                "export const value: string = 42;\n",
+                std::env::var("ODIN_NODE").unwrap_or_else(|_| "node".into()),
+                vec![
+                    "--preserve-symlinks".into(),
+                    "--preserve-symlinks-main".into(),
+                    tools
+                        .join("typescript/node_modules/typescript-language-server/lib/cli.mjs")
+                        .to_string_lossy()
+                        .into_owned(),
+                    "--stdio".into(),
+                ],
+                json!({"tsserver":{"path":tools.join("typescript/node_modules/typescript/lib/tsserver.js")}}),
+            )
+        };
+        std::fs::write(temp.path().join(file), text).unwrap();
+        let workspace_uri = url::Url::from_directory_path(temp.path())
+            .unwrap()
+            .to_string();
+        let open_uri = url::Url::from_file_path(temp.path().join(file))
+            .unwrap()
+            .to_string();
+        let workspace = json!([{"uri":workspace_uri,"name":"uri-probe"}]);
+        let rpc = RpcProcess::spawn(&program, &arguments, temp.path(), Framing::ContentLength,
+            Dialect::JsonRpc, Duration::from_secs(8), workspace.clone(),
+            json!({"basedpyright":{"analysis":{"typeCheckingMode":"basic","diagnosticMode":"openFilesOnly"}},
+                "python":{"analysis":{"typeCheckingMode":"basic","diagnosticMode":"openFilesOnly"}}})).unwrap();
+        rpc.request("initialize", json!({"processId":std::process::id(),"rootUri":workspace_uri,"workspaceFolders":workspace,
+            "initializationOptions":initialization,"capabilities":{"workspace":{"configuration":true,"workspaceFolders":true},
+                "textDocument":{"publishDiagnostics":{"versionSupport":true}},"general":{"positionEncodings":["utf-16"]}}})).await.unwrap();
+        rpc.notify("initialized", json!({})).await.unwrap();
+        rpc.notify(
+            "textDocument/didOpen",
+            json!({"textDocument":{"uri":open_uri,"languageId":language,"version":1,"text":text}}),
+        )
+        .await
+        .unwrap();
+        let deadline = tokio::time::Instant::now() + Duration::from_secs(8);
+        let report = loop {
+            if let Some(event) = rpc.events().unwrap().into_iter().find(|event| {
+                event["method"] == "textDocument/publishDiagnostics"
+                    && event["params"]["diagnostics"]
+                        .as_array()
+                        .is_some_and(|items| !items.is_empty())
+            }) {
+                break event["params"].clone();
+            }
+            assert!(
+                tokio::time::Instant::now() < deadline,
+                "No real diagnostic notification: {language}"
+            );
+            tokio::time::sleep(Duration::from_millis(30)).await;
+        };
+        eprintln!(
+            "URI_PROBE {}",
+            json!({"language":language,"did_open_uri":open_uri,
+            "publish_diagnostics":report,"cache_lookup":rpc.diagnostics(&open_uri).unwrap().is_some()})
+        );
+        assert_eq!(rpc.diagnostics(&open_uri).unwrap(), Some(report));
+        rpc.terminate().await.unwrap();
+    }
+}
+
+#[tokio::test]
+async fn diagnostic_uri_aliases_share_cache_lookup_and_invalidation() {
+    let temp = tempfile::tempdir().unwrap();
+    let uri = url::Url::from_file_path(temp.path().join("lib.rs"))
+        .unwrap()
+        .to_string();
+    let mut aliases = vec![uri.replace("/lib.rs", "/%6Cib.rs")];
+    if cfg!(windows) {
+        let drive = uri.as_bytes()[8].to_ascii_lowercase() as char;
+        aliases.push(format!("file:///{drive}%3A{}", &uri[10..]));
+        aliases.push(format!("file:///{drive}%3a{}", &uri[10..]));
+    }
+    let rpc = RpcProcess::spawn(
+        &python(),
+        &args("lsp"),
+        temp.path(),
+        Framing::ContentLength,
+        Dialect::JsonRpc,
+        Duration::from_secs(3),
+        json!([]),
+        json!({}),
+    )
+    .unwrap();
+    for alias in &aliases {
+        let report = json!({"uri":alias,"version":7,"diagnostics":[]});
+        rpc.request("fixture/publishDiagnostics", report.clone())
+            .await
+            .unwrap();
+        assert_eq!(rpc.diagnostics(&uri).unwrap(), Some(report.clone()));
+        for lookup in &aliases {
+            assert_eq!(rpc.diagnostics(lookup).unwrap(), Some(report.clone()));
+        }
+        rpc.invalidate_diagnostics(&uri).unwrap();
+        assert!(rpc.diagnostics(alias).unwrap().is_none());
+        rpc.request(
+            "fixture/publishDiagnostics",
+            json!({"uri":uri,"version":8,"diagnostics":[]}),
+        )
+        .await
+        .unwrap();
+        rpc.invalidate_diagnostics(alias).unwrap();
+        assert!(rpc.diagnostics(&uri).unwrap().is_none());
+    }
+    rpc.terminate().await.unwrap();
+}
+
+#[tokio::test]
+async fn malformed_diagnostic_uri_is_a_protocol_error_not_a_clean_report() {
+    let temp = tempfile::tempdir().unwrap();
+    let rpc = RpcProcess::spawn(
+        &python(),
+        &args("lsp"),
+        temp.path(),
+        Framing::ContentLength,
+        Dialect::JsonRpc,
+        Duration::from_secs(3),
+        json!([]),
+        json!({}),
+    )
+    .unwrap();
+    let uri = format!(
+        "{}?untrusted",
+        url::Url::from_file_path(temp.path().join("lib.rs")).unwrap()
+    );
+    assert!(rpc.diagnostics(&uri).is_err());
+    assert!(rpc.invalidate_diagnostics(&uri).is_err());
+    let error = rpc
+        .request(
+            "fixture/publishDiagnostics",
+            json!({"uri":uri,"version":1,"diagnostics":[]}),
+        )
+        .await
+        .unwrap_err();
+    assert!(
+        error.to_string().contains("Invalid diagnostic URI"),
+        "{error:#}"
+    );
+    assert!(rpc.is_closed());
+    rpc.terminate().await.unwrap();
+}
+
+fn replace_fixture_source(
+    root: &SafeRoot,
+    transactions: &odin_core::transaction::Transactions,
+    text: &str,
+) {
+    let before = root.read("lib.rs").unwrap();
+    let preview = transactions
+        .prepare(
+            vec![odin_core::transaction::Change {
+                path: "lib.rs".into(),
+                expected_sha256: Some(odin_core::sha256(before.as_bytes())),
+                content: Some(text.into()),
+            }],
+            None,
+        )
+        .unwrap();
+    transactions
+        .apply(preview["transaction_id"].as_str().unwrap())
+        .unwrap();
+}
+
+#[tokio::test]
+async fn aliased_push_diagnostics_track_current_errors_clean_recovery_and_source_hash() {
+    let mut aliases = vec!["escaped-name"];
+    if cfg!(windows) {
+        aliases.extend(["drive-colon", "drive-colon-lower"]);
+    }
+    for alias in aliases {
+        let temp = tempfile::tempdir().unwrap();
+        let state = tempfile::tempdir().unwrap();
+        std::fs::write(temp.path().join("lib.rs"), "fn foo() {}").unwrap();
+        let root = SafeRoot::new(temp.path(), &[], 10000).unwrap();
+        let transactions =
+            odin_core::transaction::Transactions::new(root.clone(), state.path(), 10).unwrap();
+        let client = client_with(
+            temp.path(),
+            &[
+                "--push-only",
+                "--diagnostic-kind",
+                "source-toggle",
+                "--diagnostic-uri-alias",
+                alias,
+            ],
+        )
+        .await;
+        client.symbols("lib.rs").await.unwrap(); // Response is a barrier after the fixture push.
+        let clean = client.diagnostics("lib.rs").await.unwrap();
+        assert_eq!(clean["freshness"], "current");
+        assert_eq!(clean["status"], "clean");
+        assert_eq!(clean["version_verified"], true);
+        replace_fixture_source(&root, &transactions, "fn broken() {}");
+        client.symbols("lib.rs").await.unwrap();
+        let error = client.diagnostics("lib.rs").await.unwrap();
+        assert_eq!(error["status"], "errors");
+        assert_eq!(error["freshness"], "current");
+        assert_eq!(error["version_verified"], true);
+        assert_eq!(error["summary"]["errors"], 1);
+        assert_eq!(
+            error["findings"][0]["source_sha256"],
+            odin_core::sha256(b"fn broken() {}")
+        );
+        assert!(
+            error["current_version"].as_i64().unwrap() > clean["current_version"].as_i64().unwrap()
+        );
+        replace_fixture_source(&root, &transactions, "fn foo() {}");
+        client.symbols("lib.rs").await.unwrap();
+        let recovered = client.diagnostics("lib.rs").await.unwrap();
+        assert_eq!(recovered["status"], "clean");
+        assert_eq!(recovered["version_verified"], true);
+        assert!(
+            recovered["current_version"].as_i64().unwrap()
+                > error["current_version"].as_i64().unwrap()
+        );
+        client.shutdown().await.unwrap();
+    }
+}
+
+#[tokio::test]
+async fn aliased_push_diagnostics_preserve_stale_and_unversioned_status() {
+    let temp = tempfile::tempdir().unwrap();
+    let state = tempfile::tempdir().unwrap();
+    std::fs::write(temp.path().join("lib.rs"), "fn foo() {}").unwrap();
+    let root = SafeRoot::new(temp.path(), &[], 10000).unwrap();
+    let transactions =
+        odin_core::transaction::Transactions::new(root.clone(), state.path(), 10).unwrap();
+    let client = client_with(
+        temp.path(),
+        &[
+            "--push-only",
+            "--stale-diagnostics",
+            "--diagnostic-uri-alias",
+            "escaped-name",
+        ],
+    )
+    .await;
+    client.symbols("lib.rs").await.unwrap();
+    replace_fixture_source(&root, &transactions, "fn broken() {}");
+    client.symbols("lib.rs").await.unwrap();
+    let stale = client.diagnostics("lib.rs").await.unwrap();
+    assert_eq!(stale["freshness"], "stale");
+    assert_eq!(stale["version_verified"], false);
+    assert_eq!(stale["summary"]["complete"], false);
+    client.shutdown().await.unwrap();
+    let client = client_with(
+        temp.path(),
+        &[
+            "--push-only",
+            "--diagnostic-kind",
+            "unversioned",
+            "--diagnostic-uri-alias",
+            "escaped-name",
+        ],
+    )
+    .await;
+    client.symbols("lib.rs").await.unwrap();
+    let unverified = client.diagnostics("lib.rs").await.unwrap();
+    assert_eq!(unverified["freshness"], "unverified");
+    assert_eq!(unverified["version_verified"], false);
+    assert_eq!(unverified["summary"]["complete"], false);
+    assert!(unverified["findings"][0]["source_sha256"].is_null());
+    client.shutdown().await.unwrap();
+}

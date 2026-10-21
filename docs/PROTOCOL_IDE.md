@@ -98,6 +98,16 @@ become a clean result. Historical stale ranges are not interpreted against the
 new source. A current report with no findings is `status: "clean"` while
 `clean_build_proven` remains false.
 
+Push diagnostic cache insertion, lookup and invalidation use the same lexical
+local-file URI identity. Percent escapes are decoded without filesystem I/O;
+Windows drive letters are folded so `file:///C:/...` matches a backend's
+`file:///c%3A/...`. Path-component case stays intact on every platform. This
+cache identity does not authorize a path or change the source/version checks.
+Authority/UNC URIs, query/fragment suffixes, malformed escapes, encoded
+separators/NUL and non-UTF-8 paths are explicit protocol errors. The original
+report URI is retained. Unversioned backend reports remain unverified even
+when their URI matches; URI equivalence never supplies a document version.
+
 ## Evidence and boundaries
 
 Legacy RPC/LSP/DAP starts delegate to new `*_with_sandbox` starts with `None`.

@@ -23,6 +23,7 @@ P.add_argument('--capabilities-json', default='{}')
 P.add_argument('--encoding', default='utf-16')
 P.add_argument('--mutate-on')
 P.add_argument('--diagnostic-kind', default='clean')
+P.add_argument('--diagnostic-uri-alias', choices=['drive-colon', 'drive-colon-lower', 'escaped-name'])
 P.add_argument('--ide-malformed')
 P.add_argument('--started-marker')
 P.add_argument('--expect-language-id')
@@ -81,7 +82,7 @@ def rng(line, start, end):
 def diagnostics(uri, version):
     if A.diagnostic_kind == 'none':
         return
-    report = {'uri': uri, 'version': version, 'diagnostics': diagnostic_items()}
+    report = {'uri': diagnostic_uri(uri), 'version': version, 'diagnostics': diagnostic_items(uri)}
     if A.diagnostic_kind == 'unversioned':
         report.pop('version')
     if A.diagnostic_kind == 'stale-out-of-bounds':
@@ -90,10 +91,23 @@ def diagnostics(uri, version):
     send({'jsonrpc': '2.0', 'method': 'textDocument/publishDiagnostics', 'params': report})
 
 
-def diagnostic_items():
+def diagnostic_uri(uri):
+    if A.diagnostic_uri_alias in ('drive-colon', 'drive-colon-lower'):
+        match = re.match(r'file:///([A-Za-z]):(/.*)', uri)
+        if not match:
+            raise ValueError('drive-colon fixture requires an absolute Windows drive URI')
+        colon = '%3A' if A.diagnostic_uri_alias == 'drive-colon' else '%3a'
+        return 'file:///' + match[1].lower() + colon + match[2]
+    if A.diagnostic_uri_alias == 'escaped-name':
+        return re.sub(r'/([A-Za-z])([^/]*)$', lambda m: '/%' + format(ord(m[1]), '02X') + m[2], uri)
+    return uri
+
+
+def diagnostic_items(uri=None):
     if A.diagnostic_kind == 'malformed':
         return 'invalid'
-    if A.diagnostic_kind in ('errors', 'unversioned'):
+    if A.diagnostic_kind in ('errors', 'unversioned') or (
+            A.diagnostic_kind == 'source-toggle' and 'broken' in DOCS.get(uri, '')):
         return [{'range': rng(0, 3, 6), 'message': 'fixture error', 'severity': 1, 'code': 'E-FIXTURE', 'source': 'fixture-linter'},
                 {'range': rng(0, 3, 6), 'message': 'fixture warning', 'severity': 2, 'code': 42}]
     return []
@@ -188,7 +202,7 @@ def lsp(request):
         if A.diagnostic_kind == 'backend-error':
             send({'jsonrpc': '2.0', 'id': request['id'], 'error': {'code': -32603, 'message': 'Fixture diagnostic backend failed'}})
         else:
-            respond(request, {'kind': 'full', 'items': diagnostic_items()})
+            respond(request, {'kind': 'full', 'items': diagnostic_items(params['textDocument']['uri'])})
     elif method == 'textDocument/completion':
         respond(request, {'isIncomplete': False, 'items': [{'label': 'foo', 'kind': 3, 'data': {'uri': params['textDocument']['uri']},
                                                          'command': {'title': 'data only', 'command': 'must.not.execute'}}]})
@@ -244,6 +258,9 @@ def lsp(request):
         respond(request, result)
     elif method == 'fixture/state':
         respond(request, {'cancelled': CANCELLED, 'documents': DOCS, 'versions': VERSIONS, 'initialize': INITIALIZE})
+    elif method == 'fixture/publishDiagnostics':
+        send({'jsonrpc': '2.0', 'method': 'textDocument/publishDiagnostics', 'params': params})
+        respond(request, {})
     elif method == 'fixture/progress':
         send({'jsonrpc': '2.0', 'method': '$/progress', 'params': {'token': 'index', 'value': {'kind': 'begin', 'title': 'indexing'}}})
         send({'jsonrpc': '2.0', 'method': 'experimental/serverStatus', 'params': {'health': 'ok', 'quiescent': False}})

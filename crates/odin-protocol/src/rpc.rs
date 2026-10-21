@@ -303,10 +303,11 @@ impl RpcProcess {
                             "command":message["command"],"success":false,"message":"Reverse requests are disabled"}),timeout).await?;
                         continue;
                     }
-                    if message["method"]=="textDocument/publishDiagnostics"
-                        && let Some(uri)=message["params"]["uri"].as_str() {
+                    if message["method"]=="textDocument/publishDiagnostics" {
+                            let uri=message["params"]["uri"].as_str().ok_or_else(||anyhow!("Invalid diagnostic URI"))?;
+                            let key=diagnostic_uri_key(uri)?;
                             let mut map=d.lock().map_err(|_|anyhow!("Diagnostics lock poisoned"))?;
-                            if map.len()<1024 || map.contains_key(uri) {map.insert(uri.into(),message["params"].clone());}
+                            if map.len()<1024 || map.contains_key(&key) {map.insert(key,message["params"].clone());}
                     }
                     if message["method"]=="experimental/serverStatus" {
                         *status.lock().map_err(|_|anyhow!("Status lock poisoned"))?=Some(message["params"].clone());
@@ -516,20 +517,87 @@ impl RpcProcess {
             .collect())
     }
     pub fn diagnostics(&self, uri: &str) -> Result<Option<Value>> {
+        let key = diagnostic_uri_key(uri)?;
         Ok(self
             .latest_diagnostics
             .lock()
             .map_err(|_| anyhow!("Diagnostics lock poisoned"))?
-            .get(uri)
+            .get(&key)
             .cloned())
     }
     pub fn invalidate_diagnostics(&self, uri: &str) -> Result<()> {
+        let key = diagnostic_uri_key(uri)?;
         self.latest_diagnostics
             .lock()
             .map_err(|_| anyhow!("Diagnostics lock poisoned"))?
-            .remove(uri);
+            .remove(&key);
         Ok(())
     }
+}
+/// Lexical cache identity only: no filesystem access or path authorization.
+/// Keep path-component case intact (including on case-sensitive Windows dirs).
+fn diagnostic_uri_key(uri: &str) -> Result<String> {
+    if !uri
+        .get(..8)
+        .is_some_and(|prefix| prefix.eq_ignore_ascii_case("file:///"))
+        || uri
+            .bytes()
+            .any(|byte| byte.is_ascii_control() || byte == b' ' || byte == b'\\')
+    {
+        bail!("Invalid diagnostic URI: expected an absolute local file URI");
+    }
+    let bytes = uri.as_bytes();
+    let mut index = 0;
+    while index < bytes.len() {
+        if bytes[index] == b'%' {
+            let hex = bytes
+                .get(index + 1..index + 3)
+                .filter(|hex| hex.iter().all(u8::is_ascii_hexdigit))
+                .ok_or_else(|| anyhow!("Invalid diagnostic URI: malformed percent escape"))?;
+            let decode = |byte: u8| {
+                if byte.is_ascii_digit() {
+                    byte - b'0'
+                } else {
+                    byte.to_ascii_lowercase() - b'a' + 10
+                }
+            };
+            if matches!(decode(hex[0]) * 16 + decode(hex[1]), 0 | b'/' | b'\\') {
+                bail!("Invalid diagnostic URI: encoded separator or NUL");
+            }
+            index += 3;
+        } else {
+            index += 1;
+        }
+    }
+    let url = url::Url::parse(uri).context("Invalid diagnostic URI")?;
+    if url.scheme() != "file"
+        || url.host_str().is_some()
+        || !url.username().is_empty()
+        || url.password().is_some()
+        || url.port().is_some()
+        || url.query().is_some()
+        || url.fragment().is_some()
+        || url.path().starts_with("//")
+    {
+        bail!("Invalid diagnostic URI: authority, query, fragment, or UNC is unsupported");
+    }
+    let path = url
+        .to_file_path()
+        .map_err(|_| anyhow!("Invalid diagnostic URI: expected a local file path"))?;
+    let key = path
+        .to_str()
+        .ok_or_else(|| anyhow!("Invalid diagnostic URI: path must be UTF-8"))?
+        .to_owned();
+    #[cfg(windows)]
+    let key = {
+        let mut key = key;
+        if key.as_bytes().get(1) != Some(&b':') || !key.as_bytes()[0].is_ascii_alphabetic() {
+            bail!("Invalid diagnostic URI: expected an absolute drive path");
+        }
+        key[..1].make_ascii_lowercase();
+        key
+    };
+    Ok(key)
 }
 impl Drop for RpcProcess {
     fn drop(&mut self) {
@@ -644,6 +712,68 @@ pub async fn read_frame<R: AsyncBufRead + Unpin>(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn diagnostic_uri_keys_are_lexical_and_preserve_path_case() {
+        let base = if cfg!(windows) {
+            "file:///C:/Project/"
+        } else {
+            "file:///Project/"
+        };
+        assert_eq!(
+            diagnostic_uri_key(&format!("{base}lib%20name.rs")).unwrap(),
+            diagnostic_uri_key(&format!("{base}%6Cib%20name.rs")).unwrap()
+        );
+        assert_ne!(
+            diagnostic_uri_key(&format!("{base}File.rs")).unwrap(),
+            diagnostic_uri_key(&format!("{base}file.rs")).unwrap()
+        );
+        for uri in [
+            "file://server/share/lib.rs",
+            "file://localhost/C:/lib.rs",
+            "file:////server/share/lib.rs",
+            "file:///C:/lib.rs?query",
+            "file:///C:/lib.rs#fragment",
+            "file:///C:/bad%",
+            "file:///C:/bad%GG",
+            "file:///C:/bad%00.rs",
+            "file:///C:/a%2Fb.rs",
+            "file:///C:/a%5Cb.rs",
+            "file:///C:/bad%FF.rs",
+            "file:///C:/bad\\name.rs",
+            "file:///C:/bad name.rs",
+            "https://example.com/lib.rs",
+            "not a URI",
+        ] {
+            assert!(diagnostic_uri_key(uri).is_err(), "{uri}");
+        }
+    }
+    #[cfg(windows)]
+    #[test]
+    fn diagnostic_uri_keys_match_real_windows_drive_aliases() {
+        let original = "file:///C:/Users/steven/Project/sample.py";
+        for alias in [
+            "file:///c%3A/Users/steven/Project/sample.py",
+            "file:///c%3a/Users/steven/Project/sample.py",
+            "file:///c:/Users/steven/Project/sample.py",
+        ] {
+            assert_eq!(
+                diagnostic_uri_key(original).unwrap(),
+                diagnostic_uri_key(alias).unwrap()
+            );
+        }
+        assert_ne!(
+            diagnostic_uri_key(original).unwrap(),
+            diagnostic_uri_key("file:///D:/Users/steven/Project/sample.py").unwrap()
+        );
+    }
+    #[cfg(not(windows))]
+    #[test]
+    fn diagnostic_uri_keys_do_not_fold_case_on_non_windows() {
+        assert_ne!(
+            diagnostic_uri_key("file:///C:/Project/lib.rs").unwrap(),
+            diagnostic_uri_key("file:///c%3A/Project/lib.rs").unwrap()
+        );
+    }
     #[tokio::test]
     async fn malformed_headers_are_rejected() {
         for input in [
