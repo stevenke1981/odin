@@ -1,0 +1,104 @@
+{
+  "scope": "QA_EVIDENCE_CLASSIFICATION_REPAIR_AND_INERT_REGRESSION",
+  "status": "PASS",
+  "finding": "R4-E01",
+  "finding_status": "CLOSED_SOURCE_AND_INERT_TESTS_VERIFIED",
+  "independent_reviewer": "/root/independent_review_v3",
+  "independent_review_scope": "Exact helper/source bytes, nine evidence bindings, six inert checks and native restage hashes independently verified. Actual final canonical export is checked separately after execution.",
+  "original_problem": "The exporter previously allowed canonical PASS when command exits were zero but the driver summary itself was FAIL or contained driver_error.",
+  "fix": "Require original runner PASS without driver_error, mandatory actual v5 path/hash, and collector cross-checking original runner and command receipts. No product or gate relaxation.",
+  "app_build_revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+  "packaging_revision": "a8399993d7c528ad4858b2e4e246e5994eab4bb8",
+  "actual_command_exit_code": 0,
+  "inert_checks": [
+    {
+      "name": "control_complete_runner",
+      "expected_accepted": true,
+      "exporter_accepted": true,
+      "collector_accepted": true,
+      "status": "PASS"
+    },
+    {
+      "name": "all_commands_zero_but_runner_fail",
+      "expected_accepted": false,
+      "exporter_accepted": false,
+      "collector_accepted": false,
+      "status": "PASS"
+    },
+    {
+      "name": "all_commands_zero_but_runner_fail_and_error",
+      "expected_accepted": false,
+      "exporter_accepted": false,
+      "collector_accepted": false,
+      "status": "PASS"
+    },
+    {
+      "name": "all_commands_zero_but_runner_pass_with_error",
+      "expected_accepted": false,
+      "exporter_accepted": false,
+      "collector_accepted": false,
+      "status": "PASS"
+    },
+    {
+      "name": "collector_rejects_legacy_driver",
+      "expected_accepted": false,
+      "collector_accepted": false,
+      "status": "PASS"
+    },
+    {
+      "name": "collector_rejects_missing_driver",
+      "expected_accepted": false,
+      "collector_accepted": false,
+      "status": "PASS"
+    }
+  ],
+  "native_app_processes_executed": 0,
+  "backend_processes_executed": 0,
+  "running_release_interrupted": false,
+  "driver": {
+    "path": "run-linux-candidate-v5.py",
+    "sha256": "7403d0729ccbd30c45df38c9a67422ea36ba6bc82641939eee63d204cac05984"
+  },
+  "evidence": {
+    "original_exporter": {
+      "path": "verification/package-v3-evidence-outcomes-exporter-before-R4-E01.py",
+      "sha256": "26d37ea0c858077a26b2ab15376b8be386603418c34dc96758af29a6a8dd2b2e"
+    },
+    "fixed_exporter": {
+      "path": "verification/package-v3-evidence-outcomes-exporter.py",
+      "sha256": "150744b5682576421e0f26f4c6dbf608205e4ee4b70b6d490360c8964876114a"
+    },
+    "fixed_collector": {
+      "path": "verification/package-v3-evidence-outcomes-collector.py",
+      "sha256": "46be88c6865a4492bd2d9658c1e36cf9ef99110be89082add44bfaf5ac89a765"
+    },
+    "check_source": {
+      "path": "verification/package-v3-evidence-outcomes-checks.py",
+      "sha256": "48f1feebfb7efcad5ad3b65818394eed43874bfdb173d54ff9d0c07a9e85b91a"
+    },
+    "check_report": {
+      "path": "verification/package-v3-evidence-outcomes-checks-report.json",
+      "sha256": "ceb9d78dd0a3bfef70aadaf6b2d8446616f5ce9e7c07b064acdce2f524728513"
+    },
+    "actual_command": {
+      "path": "verification/package-v3-evidence-outcomes-checks-command.json",
+      "sha256": "01025f591dc2e14c69f646313c8accf2f3dba8bd3278cefa63b5cef227ae9ea5"
+    },
+    "actual_log": {
+      "path": "verification/package-v3-evidence-outcomes-checks-log.txt",
+      "sha256": "e1726c02ef7c48350bf3fa1c732f4b0676fc5957e940fd14e7d7aeafee224c26",
+      "original_sha256": "76ead7c16ae6b643eb2538f1ab8e569f8d900469f1bd33643dcb2763f05804a6"
+    },
+    "actual_stage": {
+      "path": "verification/package-v3-evidence-outcomes-stage-command.json",
+      "sha256": "e1f563e276f777e79fa8b22599bbe7c156570932a2ab97f661ada68f4c62e261"
+    },
+    "actual_stage_log": {
+      "path": "verification/package-v3-evidence-outcomes-stage-log.txt",
+      "sha256": "dda4788f8094f805c87ee72a2ff8f996883e6c18dace8a8165ffe6e1ce5c116b",
+      "original_sha256": "053bf0edc773f88f88e73f62bf576b520bbcb4e13293274ae5eb9aa5bf427ce1"
+    }
+  },
+  "original_exporter_transport_kernel_lines": [],
+  "normalization": "Public text logs strip serial CR/trailing whitespace; original digests are retained. Original and fixed helper source bytes are exact."
+}

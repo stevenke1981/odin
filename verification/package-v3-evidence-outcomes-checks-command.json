@@ -1,0 +1,20 @@
+{
+  "scope": "ACTUAL_INERT_QA_EVIDENCE_REGRESSION_COMMAND",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-X",
+    "utf8",
+    "E:\\odin\\.odin\\validation-tools\\packaging-v3\\transfer\\check-linux-evidence-outcomes-v3.py",
+    "E:\\odin\\.odin\\validation-tools\\packaging-v3\\transfer\\export-linux-v3.py",
+    "E:\\odin\\.odin\\collect_linux_final_v3.py",
+    "E:\\odin\\.odin\\validation-tools\\packaging-v3\\linux-outcomes-regression-03.json"
+  ],
+  "cwd": "E:/odin",
+  "exit_code": 0,
+  "status": "PASS",
+  "elapsed_seconds": 0.075,
+  "log": "linux-outcomes-regression-03.txt",
+  "log_sha256": "76ead7c16ae6b643eb2538f1ab8e569f8d900469f1bd33643dcb2763f05804a6",
+  "report": "linux-outcomes-regression-03.json",
+  "report_sha256": "ceb9d78dd0a3bfef70aadaf6b2d8446616f5ce9e7c07b064acdce2f524728513"
+}

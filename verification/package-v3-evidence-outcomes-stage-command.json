@@ -1,0 +1,7 @@
+{
+  "command": "set -eu\ncd /opt/odin-transfer\nprintf '%s\\n' '26d37ea0c858077a26b2ab15376b8be386603418c34dc96758af29a6a8dd2b2e  export-linux-v3.py' | sha256sum --check -\ncp -p export-linux-v3.py export-linux-v3-before-R4-E01.py\ncurl --fail --silent --show-error http://10.0.2.2:47652/export-linux-v3.py -o export-linux-v3-R4-E01.py\nprintf '%s\\n' '150744b5682576421e0f26f4c6dbf608205e4ee4b70b6d490360c8964876114a  export-linux-v3-R4-E01.py' | sha256sum --check -\npython3 -m py_compile export-linux-v3-R4-E01.py\nmv -f export-linux-v3-R4-E01.py export-linux-v3.py\nchmod 0444 export-linux-v3.py\nsha256sum export-linux-v3-before-R4-E01.py export-linux-v3.py run-linux-candidate-v5.py\ndate -u\ntail -n 5 /opt/odin-delivery/v3-0fe03ba/job.log\ntest ! -f /opt/odin-delivery/v3-0fe03ba/binary-sha256.json || cat /opt/odin-delivery/v3-0fe03ba/binary-sha256.json\n",
+  "exit_code": 0,
+  "timed_out": false,
+  "serial": "127.0.0.1:47651",
+  "output": "native-final-helper-R4-E01-stage.txt"
+}
