@@ -12,10 +12,10 @@ ROOT = Path(__file__).resolve().parents[1]
 WINDOWS_REVISION = '69e769be9baa4e825139b72ce1a9b48bf8143114'
 PRODUCT_REVISION = '0fe03ba30da9600c25588d506d7e094df89cf56f'
 PREVIOUS_DOCUMENTATION = '75c38f8'
-LINUX_CANONICAL_REPORT = 'verification/package-v3-linux-final.json'
+LINUX_CANONICAL_REPORT = 'verification/package-v3-linux-notices-final.json'
 LINUX_BINARY_SHA256 = 'e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42'
 LINUX_TARGET = 'x86_64-unknown-linux-musl'
-PACKAGING_REVISION = 'a8399993d7c528ad4858b2e4e246e5994eab4bb8'
+PACKAGING_REVISION = 'f5878bfa725db8c0dcab7e45ca3cf89159508975'
 
 
 def sha(path):
@@ -183,11 +183,15 @@ def main():
         'windows_installer_780': binding('verification/package-v3-windows-candidate.json', '22 install/reinstall/uninstall checks passed for older 780c6ad; final 69 Windows packaging remains blocked.'),
         'linux_retired_69_failure': binding('verification/package-v3-linux-69-diagnostic.json', 'Actual older Linux build/metadata passed, but workspace39PASS/6FAIL and MCP15PASS/1FAIL exposed Unix fsync. No installer was released for that broken candidate.'),
         'linux_retired_d3_failure': binding('verification/package-v3-linux-d3-diagnostic.json', 'Core39PASS after Unix fix; full suite192PASS/19FAIL/3ignored exposed fixture Python dependency and two protocol assertions. Release was stopped with -15, no ELF/installer acceptance inferred.'),
+        'linux_initial_functional_package': binding('verification/package-v3-linux-final.json', 'Original e64/0fe application gates and a839 functional package acceptance; retained unchanged before completing toolchain/native runtime notices. The new documentation-only package reuses the same executed application evidence.'),
         'evidence_integrity': binding('verification/language-sandbox-v3-evidence-index-01.json', 'Offline 18-receipt/source/transcript integrity only, no backend execution.'),
         'prepared_final_matrix': binding('verification/language-sandbox-v3-finalrun-plan.json', 'Plan only; 0 final-candidate LSP projects executed.'),
         'qa_report_preflight': binding('verification/language-installers-v3-continuation-preflight-01.json', 'Five inert overwrite-protection checks; zero native process calls.'),
         'qa_failed_runner_rejection': binding('verification/package-v3-evidence-outcomes-01.json', 'Six inert failure-classification checks and independently reviewed exact helper hashes; no product or backend process calls.'),
-        'qa_linux_criteria_classification': binding('verification/language-installers-v3-linux-classification-02.json', 'Twelve inert criterion-classification checks against the final assembler source; not native Linux execution.'),
+        'qa_linux_criteria_classification': binding('verification/language-installers-v3-linux-classification-03.json', 'Twelve inert criterion-classification checks against the final assembler source; not native Linux execution.'),
+        'runtime_notice_sources': binding('verification/runtime-notices-v3-sources.json', 'Exact upstream archive/source and runtime notice inventory, not a legal compliance certification.'),
+        'runtime_notice_checks': binding('verification/runtime-notices-v3-checks.json', '94 executed offline archive, notice segment and source-fidelity checks; no application or backend execution.'),
+        'qa_notice_repack_guards': binding('verification/package-v3-notices-evidence-outcomes-01.json', 'Six inert evidence guards for a documentation-only repack; original application execution is explicitly retained rather than rerun.'),
     }
     linux = linux_evidence(args.linux_report) if args.linux_report else {
         'status': 'IN_PROGRESS', 'acceptance_status': 'NOT_RUN', 'selected_source_head_sha': PRODUCT_REVISION,
