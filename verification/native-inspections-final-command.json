@@ -1,0 +1,31 @@
+{
+  "command": [
+    "C:\\Python314\\python.exe",
+    "-X",
+    "utf8",
+    "tests/real_native_inspections.py",
+    "--binary",
+    "target/release/odin.exe",
+    "--executor",
+    "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64\\wxc-exec.exe",
+    "--executor-sha256",
+    "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+    "--tools-root",
+    ".odin/validation-tools",
+    "--node",
+    "C:\\Program Files\\nodejs\\node.exe",
+    "--output",
+    "verification/native-inspections-final.json"
+  ],
+  "cwd": ".",
+  "exit_code": 0,
+  "status": "PASS",
+  "completed_at_utc": "2026-10-21T01:16:29.251757+00:00",
+  "log": "verification/native-inspections-final-command.txt",
+  "log_sha256": "7708d93f9a10d830cb035947028c123b254ade119c62b3a5364a15769ee94c0b",
+  "report": "verification/native-inspections-final.json",
+  "report_sha256": "6046bf0d4514e7bf501082909e6f8e975eeade35ed5abf89dadee58b0c0b926f",
+  "harness_sha256": "11a6e3724bcd10e09c8dfa3487329df15b85f8c89b22fea65db494f436fb278f",
+  "binary_sha256": "c4f558615ec1930d991963c282acdcfe5df804e109c04cf2fb398fd78c650122",
+  "line_endings_normalized_before_hash_binding": true
+}
