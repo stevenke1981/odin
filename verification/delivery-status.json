@@ -2,7 +2,7 @@
   "project": "Odin",
   "version": "0.2.0",
   "release_class": "NATIVE_PREVIEW_WITH_WINDOWS_HOST_BLOCK",
-  "generated_at_utc": "2026-10-21T04:01:28.473016+00:00",
+  "generated_at_utc": "2026-10-21T04:22:00.281301+00:00",
   "architecture": "Independent Rust toolkit with direct LSP/DAP; no Serena bridge",
   "workspace_crates": 4,
   "tool_contracts": 85,
@@ -15,8 +15,8 @@
   "current_extension": {
     "scope": "FIVE_ADDITIONAL_NATIVE_SANDBOX_LANGUAGES_AND_WINDOWS_LINUX_INSTALLERS",
     "status": "PARTIAL",
-    "compiled_product_source_head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
-    "product_source_hashes_match_build_revision": true,
+    "current_product_source_head_sha": "d3e550594783ee9881c6aba251403ff1add0af86",
+    "product_source_hashes_match_selected_linux_revision": true,
     "current_product_sha256": {
       "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34",
       "Cargo.toml": "8a009f775d201c8199a6d6f81963bb75dde59a48dc783ae6086a6a7407e21e36",
@@ -27,7 +27,7 @@
       "crates/odin-core/src/languages.rs": "064cff38c7056babb767490a20100797ca7a9bcb1948c22c633c16f4bdc73d6e",
       "crates/odin-core/src/lib.rs": "93046231f7ca483d76e7546528b67d9211e6252c8b8dd38ae64164171d301b8f",
       "crates/odin-core/src/memory.rs": "2b613b41174cc41f6778cc4ddc0350eaa2cd0753b2f6b881c1ff4b7b96f7abf4",
-      "crates/odin-core/src/paths.rs": "126d10be43423a6ed531cfb952603c8092ed4252b9556650f95f290a6fff5f1b",
+      "crates/odin-core/src/paths.rs": "7ff6f57fc9315732bc1b32732503af9f8358b51353baf04049c3580de8c02cd9",
       "crates/odin-core/src/process.rs": "b69e2cf89c9cf96b79f01b85ea67ad41a1f6dcdd89d5e9bedd6167062fb84fa8",
       "crates/odin-core/src/sandbox.rs": "18be5bd8c1794375fbfd79f6ffe1d226167b0942614110c86d6cd4e92ea5f5d5",
       "crates/odin-core/src/sandbox_policy.rs": "76fa4355780c363c1524b17713076a3a08b66384053916c1da22cbe0c05eb27a",
@@ -77,11 +77,15 @@
       "crates/odin/src/mcp.rs": "16ac2886ea5003b116f025ae48b8368700dd10b9fb59520d4f96e999c3c1ba95",
       "crates/odin/src/metadata.rs": "6010f496c4af39edc2523362ddcb9b3398cfe8ae996ac916e19aaf833d4d4063",
       "crates/odin/src/setup.rs": "350cbcfabe792f342d4aebb8170a6265b9d6cfa70f3cea9fe341411fdadb40e4",
+      "dashboard/index.html": "819b2325b4da961c3d12b1f6779aa5cdf1b77b8e9f16ef1f1b39be86969dca3b",
+      "rust-toolchain.toml": "c33d1f0b1b8fda448bea32d7dc867aa64947c87169fd9de7122ffccad1dd80f9",
       "schemas/tools.json": "d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea"
     },
     "windows_final_candidate": {
       "status": "BLOCKED",
       "binary_path": "E:/odin/target/release/odin.exe",
+      "compiled_source_head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+      "source_relation": "Retained Windows69 candidate. Current source additionally fixes two Unix-only directory sync branches; no current-source Windows rebuild or runtime acceptance is inferred.",
       "binary_sha256": "83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44",
       "build_exit_code": 0,
       "metadata_executed": false,
@@ -106,8 +110,8 @@
     "linux": {
       "status": "IN_PROGRESS",
       "acceptance_status": "NOT_RUN",
-      "compiled_source_head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
-      "scope": "Disposable Debian 12 QEMU guest; native final build/gates/packaging in progress. No PASS inferred."
+      "selected_source_head_sha": "d3e550594783ee9881c6aba251403ff1add0af86",
+      "scope": "Fixed-source candidate in disposable Debian 12 QEMU guest. Prior69 native suite failed Unix fsync; replacement gates/build/packaging are not inferred PASS."
     },
     "independent_review": {
       "report": "verification/language-installers-v3-review-phase2.json",
@@ -124,6 +128,14 @@
         "source_head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
         "exit_code": 0,
         "note": "Compile exit 0; metadata execution blocked, no runtime acceptance."
+      },
+      "windows_target_fmt_clippy": {
+        "report": "verification/language-installers-v3-windows-static-final-01.json",
+        "report_sha256": "593ea5ce8ad336fba638a1048e59c6726519cbfa276422833f1c5e21e35a34ea",
+        "scope": "CURRENT_WINDOWS_TARGET_FMT_AND_CLIPPY_NOT_BLOCKED_APP_EXECUTION",
+        "status": "PASS",
+        "source_head_sha": "bb1042c6f153ad4f3597743b3a3980aac4968ef2",
+        "note": "Current Windows-target fmt and all-target strict Clippy exit 0; blocked release app hash unchanged and never executed."
       },
       "windows_host_block": {
         "report": "verification/language-installers-v3-final-host-block.json",
@@ -306,6 +318,14 @@
       "source_head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
       "exit_code": 0,
       "note": "Compile exit 0; metadata execution blocked, no runtime acceptance."
+    },
+    "windows_target_fmt_clippy": {
+      "report": "verification/language-installers-v3-windows-static-final-01.json",
+      "report_sha256": "593ea5ce8ad336fba638a1048e59c6726519cbfa276422833f1c5e21e35a34ea",
+      "scope": "CURRENT_WINDOWS_TARGET_FMT_AND_CLIPPY_NOT_BLOCKED_APP_EXECUTION",
+      "status": "PASS",
+      "source_head_sha": "bb1042c6f153ad4f3597743b3a3980aac4968ef2",
+      "note": "Current Windows-target fmt and all-target strict Clippy exit 0; blocked release app hash unchanged and never executed."
     },
     "windows_host_block": {
       "report": "verification/language-installers-v3-final-host-block.json",

@@ -9,12 +9,13 @@ from pathlib import Path
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-PRODUCT_REVISION = '69e769be9baa4e825139b72ce1a9b48bf8143114'
+WINDOWS_REVISION = '69e769be9baa4e825139b72ce1a9b48bf8143114'
+PRODUCT_REVISION = 'd3e550594783ee9881c6aba251403ff1add0af86'
 PREVIOUS_DOCUMENTATION = '75c38f8'
 LINUX_CANONICAL_REPORT = 'verification/package-v3-linux-final.json'
-LINUX_BINARY_SHA256 = '5b1f352840074325f384743a06d9fffc64f7c191df1ffb448711b1852cbcbb1d'
+LINUX_BINARY_SHA256 = None  # Set only after the fixed-source ELF actually builds and runs.
 LINUX_TARGET = 'x86_64-unknown-linux-musl'
-PACKAGING_REVISION = 'bb1042c6f153ad4f3597743b3a3980aac4968ef2'
+PACKAGING_REVISION = PRODUCT_REVISION
 
 
 def sha(path):
@@ -71,6 +72,8 @@ def linux_evidence(name):
     """Validate the exact native candidate and classify each original criterion."""
     if name != LINUX_CANONICAL_REPORT:
         raise ValueError('Only the final canonical native Linux report is applicable')
+    if not isinstance(LINUX_BINARY_SHA256, str) or len(LINUX_BINARY_SHA256) != 64:
+        raise ValueError('The fixed Linux candidate has not been built and selected yet')
     value = load(name)
     metadata = value.get('build_metadata', {})
     if (value.get('scope') != 'ACTUAL_LINUX_VM_BUILD_WORKSPACE_GATES_SMOKES_AND_INSTALLERS'
@@ -152,11 +155,11 @@ def main():
     parser.add_argument('--review-report', help='Independent review report, if available')
     args = parser.parse_args()
     tracked = subprocess.check_output(['git', 'ls-files', '-z'], cwd=ROOT).decode().split('\0')
-    product_files = sorted(name for name in tracked if name.startswith(('crates/', 'schemas/')) or name in ('Cargo.lock', 'Cargo.toml'))
+    product_files = sorted(name for name in tracked if name.startswith(('crates/', 'schemas/', 'dashboard/')) or name in ('Cargo.lock', 'Cargo.toml', 'rust-toolchain.toml'))
     for name in product_files:
         compiled = subprocess.check_output(['git', 'show', f'{PRODUCT_REVISION}:{name}'], cwd=ROOT)
         if (ROOT/name).read_bytes() != compiled:
-            raise ValueError('Product differs from the built revision: '+name)
+            raise ValueError('Product differs from the selected Linux source revision: '+name)
     delivery_history, old_delivery = archive('verification/delivery-status.json')
     evidence_history, evidence = archive('verification/feature-evidence.json')
     now = datetime.datetime.now(datetime.UTC).isoformat()
@@ -180,15 +183,17 @@ def main():
         'qa_report_preflight': binding('verification/language-installers-v3-continuation-preflight-01.json', 'Five inert overwrite-protection checks; zero native process calls.'),
     }
     linux = linux_evidence(args.linux_report) if args.linux_report else {
-        'status': 'IN_PROGRESS', 'acceptance_status': 'NOT_RUN', 'compiled_source_head_sha': PRODUCT_REVISION,
-        'scope': 'Disposable Debian 12 QEMU guest; native final build/gates/packaging in progress. No PASS inferred.'}
+        'status': 'IN_PROGRESS', 'acceptance_status': 'NOT_RUN', 'selected_source_head_sha': PRODUCT_REVISION,
+        'scope': 'Fixed-source candidate in disposable Debian 12 QEMU guest. Prior69 native suite failed Unix fsync; replacement gates/build/packaging are not inferred PASS.'}
     review = binding(args.review_report) if args.review_report else {'status': 'IN_PROGRESS', 'release_approval': 'BLOCKED'}
     current = {
         'scope': 'FIVE_ADDITIONAL_NATIVE_SANDBOX_LANGUAGES_AND_WINDOWS_LINUX_INSTALLERS',
-        'status': 'PARTIAL', 'compiled_product_source_head_sha': PRODUCT_REVISION,
-        'product_source_hashes_match_build_revision': True,
+        'status': 'PARTIAL', 'current_product_source_head_sha': PRODUCT_REVISION,
+        'product_source_hashes_match_selected_linux_revision': True,
         'current_product_sha256': {name: sha(ROOT/name) for name in product_files},
         'windows_final_candidate': {'status': 'BLOCKED', 'binary_path': 'E:/odin/target/release/odin.exe',
+            'compiled_source_head_sha': WINDOWS_REVISION,
+            'source_relation': 'Retained Windows69 candidate. Current source additionally fixes two Unix-only directory sync branches; no current-source Windows rebuild or runtime acceptance is inferred.',
             'binary_sha256': build['binary_sha256'], 'build_exit_code': build['exit_code'],
             'metadata_executed': False, 'metadata_exit_code': None,
             'administrator_policy_allowance_confirmed': False,
@@ -234,7 +239,7 @@ def main():
         scope='Current v3 extension below; prior source-bound checks remain historical and do not certify the blocked final Windows candidate.',
         previous_documentation=binding(evidence_history), language_installers_v3=current)
     evidence['final_integrated_candidate'] = copy.deepcopy(current['windows_final_candidate'])
-    evidence['final_integrated_candidate']['compiled_source_head_sha'] = PRODUCT_REVISION
+    evidence['final_integrated_candidate']['compiled_source_head_sha'] = WINDOWS_REVISION
     evidence['final_integrated_candidate_scope'] = 'Current compiled Windows candidate; execution remains blocked. Complete prior candidate objects are preserved in previous_documentation.'
     evidence['publication'] = copy.deepcopy(delivery['publication'])
     evidence['final_artifacts'] = {'windows_current': 'BLOCKED', 'windows_historical_780': reports['windows_installer_780'], 'linux': linux}
@@ -255,7 +260,7 @@ def main():
         'ODIN-019': '28 registry entries是宣告指引。新增五語native workload保留逐binary證據；Go/Python通過限定雙專案，C#全MCP和final69六語仍待驗收。',
         'ODIN-027': '手動self-hosted CI政策未變，未啟動cloud CI。Windows workspace exit101及AppControl4551明確保留，13獨立PASS不取代全suite；Linux native結果另綁來源。',
         'ODIN-028': '780c6ad portable/Inno7.1實際install/reinstall/uninstall22 checks PASS。69e769b已編譯但4551阻擋，最終Windows安裝包未實跑；未驗跨版/乾淨機/簽章。',
-        'ODIN-029': 'Linux69 native build/gates/deb與tar驗收以language_installers_v3.linux實際報告為準；進行中不推定PASS。macOS仍NOT_RUN，Linux sandbox未實作。',
+        'ODIN-029': 'Linux69原生suite發現Unix directory fsync失敗；d3e5505修正後的native build/gates/deb與tar以language_installers_v3.linux實際報告為準，不轉移舊結果。macOS仍NOT_RUN，Linux sandbox未實作。',
         'ODIN-035': '780真native analyzer30 checks與Ruff stdin formatter18 checks PASS，新增輸出完整性/權限/expected-hash拒絕路徑；final69與所有IDE規則等價未驗收。',
         'ODIN-040': '本輪來源/命令/binary/逐語言transcript與18 receipt離線索引已綁定；保留原失敗、初次觀察更正與blocked final69，不讓歷史PASS流入新版。',
     }
