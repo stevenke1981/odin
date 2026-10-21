@@ -10,7 +10,7 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 WINDOWS_REVISION = '69e769be9baa4e825139b72ce1a9b48bf8143114'
-PRODUCT_REVISION = 'd3e550594783ee9881c6aba251403ff1add0af86'
+PRODUCT_REVISION = '0fe03ba30da9600c25588d506d7e094df89cf56f'
 PREVIOUS_DOCUMENTATION = '75c38f8'
 LINUX_CANONICAL_REPORT = 'verification/package-v3-linux-final.json'
 LINUX_BINARY_SHA256 = None  # Set only after the fixed-source ELF actually builds and runs.
@@ -168,6 +168,7 @@ def main():
     reports = {
         'windows_build': binding('verification/language-installers-v3-windows-build-final.json', 'Compile exit 0; metadata execution blocked, no runtime acceptance.'),
         'windows_target_fmt_clippy': binding('verification/language-installers-v3-windows-static-final-01.json', 'Current Windows-target fmt and all-target strict Clippy exit 0; blocked release app hash unchanged and never executed.'),
+        'windows_protocol_final_02': binding('verification/language-installers-v3-windows-protocol-final-02.json', 'Current combined source: fmt, protocol library tests and all-target strict Clippy exit 0; retained release candidate never executed or rebuilt.'),
         'windows_host_block': binding('verification/language-installers-v3-final-host-block.json'),
         'windows_workspace_attempt': binding('verification/language-installers-v3-workspace-all-targets-01.json', 'Older source: 214 passed / 5 failed / 6 ignored; five stdin workload starts blocked by host policy. Not replaced by independent continuation.'),
         'windows_independent_continuation': binding('verification/language-installers-v3-continuation-01.json', '13 independent commands exit 0 against the 780c6ad candidate; not the final 69e769b candidate.'),
@@ -194,7 +195,7 @@ def main():
         'current_product_sha256': {name: sha(ROOT/name) for name in product_files},
         'windows_final_candidate': {'status': 'BLOCKED', 'binary_path': 'E:/odin/target/release/odin.exe',
             'compiled_source_head_sha': WINDOWS_REVISION,
-            'source_relation': 'Retained Windows69 candidate. Current source additionally fixes two Unix-only directory sync branches; no current-source Windows rebuild or runtime acceptance is inferred.',
+            'source_relation': 'Retained Windows69 candidate. Current source additionally fixes Unix-only directory sync and rejects raw UNC URI prefixes before normalization; no current-source Windows rebuild or runtime acceptance is inferred.',
             'binary_sha256': build['binary_sha256'], 'build_exit_code': build['exit_code'],
             'metadata_executed': False, 'metadata_exit_code': None,
             'administrator_policy_allowance_confirmed': False,
@@ -261,7 +262,7 @@ def main():
         'ODIN-019': '28 registry entries是宣告指引。新增五語native workload保留逐binary證據；Go/Python通過限定雙專案，C#全MCP和final69六語仍待驗收。',
         'ODIN-027': '手動self-hosted CI政策未變，未啟動cloud CI。Windows workspace exit101及AppControl4551明確保留，13獨立PASS不取代全suite；Linux native結果另綁來源。',
         'ODIN-028': '780c6ad portable/Inno7.1實際install/reinstall/uninstall22 checks PASS。69e769b已編譯但4551阻擋，最終Windows安裝包未實跑；未驗跨版/乾淨機/簽章。',
-        'ODIN-029': 'Linux69原生suite發現Unix directory fsync失敗；d3e5505修正後的native build/gates/deb與tar以language_installers_v3.linux實際報告為準，不轉移舊結果。macOS仍NOT_RUN，Linux sandbox未實作。',
+        'ODIN-029': 'Linux69發現Unix fsync失敗，d3核心39PASS後全suite另揭露fixture依賴及兩項protocol測試；整合修正0fe03ba的native build/gates/deb與tar以language_installers_v3.linux實際報告為準，不轉移舊結果。macOS仍NOT_RUN，Linux sandbox未實作。',
         'ODIN-035': '780真native analyzer30 checks與Ruff stdin formatter18 checks PASS，新增輸出完整性/權限/expected-hash拒絕路徑；final69與所有IDE規則等價未驗收。',
         'ODIN-040': '本輪來源/命令/binary/逐語言transcript與18 receipt離線索引已綁定；保留原失敗、初次觀察更正與blocked final69，不讓歷史PASS流入新版。',
     }

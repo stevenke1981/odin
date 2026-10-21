@@ -1,0 +1,5 @@
+    Checking odin-core v0.2.0 (<WORKSPACE>\crates\odin-core)
+   Compiling odin-agent v0.2.0 (<WORKSPACE>\crates\odin)
+    Checking odin-protocol v0.2.0 (<WORKSPACE>\crates\odin-protocol)
+    Checking odin-engine v0.2.0 (<WORKSPACE>\crates\odin-engine)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.16s
