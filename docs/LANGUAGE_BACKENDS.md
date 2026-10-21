@@ -361,6 +361,13 @@ separate hypothesis to test, not an established fix. The direct C# driver also
 returned exit 1 during temporary-directory cleanup; that failure is retained
 in its command receipt and raw stdout.
 
+The next explicit Go profile sets `TEMP`, `TMP` and `GOTMPDIR` in gopls's
+host-authored Go subprocess `env` to a precreated per-project `go-temp` cache.
+It uses the existing narrow writable cache grant, not writable source or a
+global environment change. A separate fixed direct OmniSharp probe can send a
+null `initialize.processId` to test its host-PID monitor hypothesis without
+granting access to host processes.
+
 `verification/language-sandbox-v3-runner.ps1` records the exact driver argv,
 binary/harness/runner hashes, actual exit code, raw stdout and transcript. It
 requires fresh output names, normalizes text to LF before final hash binding,

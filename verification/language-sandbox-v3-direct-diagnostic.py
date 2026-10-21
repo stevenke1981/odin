@@ -28,11 +28,14 @@ def main():
     parser.add_argument("--enumerate-runtime-ancestors", action="store_true")
     parser.add_argument("--go-package-diagnostics", action="store_true")
     parser.add_argument("--csharp-backend", choices=("csharp-ls", "omnisharp"), default="csharp-ls")
+    parser.add_argument("--null-client-process-id", action="store_true")
     args = parser.parse_args()
     if args.output.exists():
         parser.error("Choose a fresh report")
     if args.go_package_diagnostics and args.probe != "go-lsp":
         parser.error("Go package diagnostics require the fixed Go LSP profile")
+    if args.null_client_process_id and args.probe != "csharp-lsp":
+        parser.error("The null-PID hypothesis is restricted to the fixed C# LSP probe")
     executor = Path("C:/Users/steven/AppData/Local/Programs/DevTools/mxc/node_modules/@microsoft/mxc-sdk/bin/x64/wxc-exec.exe")
     assert sha(executor) == "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259"
     tools = Path("E:/odin/.odin/validation-tools")
@@ -178,10 +181,11 @@ def main():
         else:
             with Peer(command, framing="header", cwd=policies) as peer:
                 try:
-                    params = {"processId": os.getpid(), "rootUri": item.root.as_uri(),
+                    params = {"processId": None if args.null_client_process_id else os.getpid(), "rootUri": item.root.as_uri(),
                               "workspaceFolders": [{"uri": item.root.as_uri(), "name": item.project}],
                               "capabilities": {"general": {"positionEncodings": ["utf-16"]}},
                               "initializationOptions": item.initialization}
+                    report["client_process_id"] = params["processId"]
                     report["initialize"] = peer.request("initialize", params, timeout=15)
                     peer.notify("initialized", {})
                     peer.notify("workspace/didChangeConfiguration", {"settings": item.settings})

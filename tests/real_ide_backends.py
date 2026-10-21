@@ -253,7 +253,12 @@ def configure_sandbox_fixture(base, tools, item, environment):
                             "GOCACHE": str(directory("go-cache")), "GOMODCACHE": str(directory("go-modules")),
                             "GOTOOLCHAIN": "local", "GOTELEMETRY": "off"}
         item.initialization["env"] = {**item.environment, "GOPROXY": "off", "GOSUMDB": "off"}
+        # MXC redirects the process TEMP to a package directory that may not
+        # exist. This fixed Go subprocess profile uses precreated private cache.
+        go_temporary = str(directory("go-temp"))
+        item.initialization["env"].update(TEMP=go_temporary, TMP=go_temporary, GOTMPDIR=go_temporary)
         item.settings["gopls"]["env"] = dict(item.initialization["env"])
+        item.profile_info["fixed_go_subprocess_temp"] = go_temporary
         writable = [cache]
     elif item.language == "java":
         readonly = [item.root, item.program.parent.parent, tools / "jdtls"]
