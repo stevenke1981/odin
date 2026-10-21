@@ -1,6 +1,6 @@
 # Publish the reviewed Odin candidate as a public GitHub repository
 
-The approved target is `stevenke1981/odin`, with public visibility. **This document does not record a completed publication.** The integration owner must perform the authorized GitHub operation and record the repository URL, pushed commit, public visibility and verified remote HEAD. Earlier connector limitations or a historical 404 are not evidence of current repository state.
+The approved public repository is [stevenke1981/odin](https://github.com/stevenke1981/odin). Actual publication, anonymous HTTP status and remote-head evidence are recorded in [publication.json](../verification/publication.json). The following procedure applies to later reviewed updates; local preparation alone is not publication evidence.
 
 Odin is a Windows native preview with 72 tool contracts. The 40 requirements remain partially accepted; Linux/macOS, OS sandbox, broad language/IDE parity and benchmarks are incomplete. Publish that scope honestly. The completed local Windows checks, public source repository, packaged binary release and cloud CI are separate outcomes.
 

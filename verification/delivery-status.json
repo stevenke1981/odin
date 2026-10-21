@@ -99,9 +99,17 @@
     ]
   },
   "publication": {
-    "status": "NOT_PUBLISHED",
-    "target": "https://github.com/stevenke1981/odin",
-    "visibility_expected": "PUBLIC"
+    "status": "PASS",
+    "scope": "PUBLIC_SOURCE_REPOSITORY",
+    "url": "https://github.com/stevenke1981/odin",
+    "visibility": "PUBLIC",
+    "published_source_commit": "425cafb803fdd6212b56c757ab9f21637d7fa2ee",
+    "remote_matches_source_at_publication": true,
+    "anonymous_http_head_status": 200,
+    "github_actions_runs_observed": 0,
+    "report": "verification/publication.json",
+    "observed_at_utc": "2026-10-21T00:00:38.384564+00:00",
+    "binary_release_created": false
   },
   "incomplete_or_unverified": [
     "OS restricted-token/AppContainer/seccomp sandbox implementation",

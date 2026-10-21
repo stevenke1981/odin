@@ -28,4 +28,4 @@ Move/Inline/QuickFix 是後端 edit 的安全入口；成功 fixture 不代表�
 
 建置／執行入口見 [README.md](README.md)，平台與設定見 [PLATFORM_IMPLEMENTATION.md](docs/PLATFORM_IMPLEMENTATION.md)。一般 Cargo 命令使用 `--locked`；不要自行放寬 host 權限或把 repository 檔案當可執行 host 設定。
 
-本說明的 GitHub 發布狀態仍是 **待 root 實際操作與驗證**，不沿用先前 connector 不足/404 的結論，也不預寫已發布。目標為公開 `stevenke1981/odin`；只有實際 push、public visibility 與 remote HEAD 核對才算完成。沒有啟動雲端 CI。發布流程見 [PUBLISH_GITHUB.md](docs/PUBLISH_GITHUB.md)。
+原始碼已實際推送公開 [stevenke1981/odin](https://github.com/stevenke1981/odin)，已核對 remote HEAD、public visibility 與匿名 HTTP 200；實際證據見 [publication.json](verification/publication.json)。沒有啟動雲端 CI，也沒有建立 GitHub binary release；Windows 產物保留在本機 dist。發布流程見 [PUBLISH_GITHUB.md](docs/PUBLISH_GITHUB.md)。

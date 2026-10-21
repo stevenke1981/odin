@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "scope": "Actual authorized public source repository publication; not a stable/full-feature certification or binary release",
+  "observed_at_utc": "2026-10-21T00:00:38.384564+00:00",
+  "url": "https://github.com/stevenke1981/odin",
+  "visibility": "PUBLIC",
+  "default_branch": "main",
+  "authenticated_account": "stevenke1981",
+  "published_source_commit": "425cafb803fdd6212b56c757ab9f21637d7fa2ee",
+  "remote_main_head_at_observation": "425cafb803fdd6212b56c757ab9f21637d7fa2ee",
+  "remote_matches_published_source": true,
+  "anonymous_http_head_status": 200,
+  "github_actions_runs_observed": 0,
+  "cloud_ci_dispatched": false,
+  "github_binary_release_created": false,
+  "tested_runtime_source_commit": "82901e5cd45845c75c7475d2697db42d472b67ac",
+  "tested_runtime_hashes_still_match": true,
+  "observation_commands": [
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "425cafb803fdd6212b56c757ab9f21637d7fa2ee",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "ls-remote",
+        "origin",
+        "refs/heads/main"
+      ],
+      "exit_code": 0,
+      "stdout": "425cafb803fdd6212b56c757ab9f21637d7fa2ee\trefs/heads/main",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "gh",
+        "repo",
+        "view",
+        "stevenke1981/odin",
+        "--json",
+        "nameWithOwner,isPrivate,url,defaultBranchRef"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"defaultBranchRef\":{\"name\":\"main\"},\"isPrivate\":false,\"nameWithOwner\":\"stevenke1981/odin\",\"url\":\"https://github.com/stevenke1981/odin\"}",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "gh",
+        "api",
+        "user",
+        "--jq",
+        ".login"
+      ],
+      "exit_code": 0,
+      "stdout": "stevenke1981",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/stevenke1981/odin/actions/runs",
+        "--jq",
+        ".total_count"
+      ],
+      "exit_code": 0,
+      "stdout": "0",
+      "stderr": ""
+    }
+  ],
+  "observation_note": "This snapshot records the source publication. A subsequent documentation/evidence commit may follow on main; its final remote-head check is performed separately."
+}
