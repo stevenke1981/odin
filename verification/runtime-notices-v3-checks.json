@@ -1,0 +1,240 @@
+{
+  "task_id": "runtime-notices-v3",
+  "actor_instance": "/root/engine_implementation",
+  "base_sha": "a688ec59bd33aa864e55b66a4ca6fd058569e2bc",
+  "generated_at_utc": "2026-10-21T05:38:36.405354+00:00",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]",
+  "scope": "DOCUMENT_SOURCE_INTEGRITY_ONLY_NOT_LEGAL_CERTIFICATION",
+  "command": {
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-"
+    ],
+    "stdin_source": "verification/runtime-notices-v3-reproduce.md Python block",
+    "stdin_sha256": "9eaa74263c513f0cc238fc00ef732dc86d5d0cb3c0bcb2b6ea51ada11f86853d",
+    "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin",
+    "exit_code": 0,
+    "stdout": "{\r\n  \"status\": \"PASS\",\r\n  \"scope\": \"DOCUMENT_SOURCE_INTEGRITY_ONLY\",\r\n  \"checks\": [\r\n    \"raw source rust_manifest\",\r\n    \"raw source rust_manifest_checksum\",\r\n    \"raw source rust_musl_recipe\",\r\n    \"raw source rust_musl_docker\",\r\n    \"raw source musl_cross_hash\",\r\n    \"raw source rust_compiler_builtins_ref\",\r\n    \"raw source rust_llvm_ref\",\r\n    \"raw source rust_bootstrap_compile\",\r\n    \"raw source compiler_builtins_license\",\r\n    \"raw source compiler_builtins_cargo\",\r\n    \"raw source llvm_libunwind_license\",\r\n    \"raw source llvm_compiler_rt_license\",\r\n    \"raw source musl_cross_makefile\",\r\n    \"raw source rust_bootstrap_llvm\",\r\n    \"raw source rust_unicode_license\",\r\n    \"raw source llvm_crt_begin_source\",\r\n    \"raw source llvm_crt_end_source\",\r\n    \"raw source rust_release_commit\",\r\n    \"publisher manifest checksum\",\r\n    \"pre-existing publisher manifest binding\",\r\n    \"Rust release commit\",\r\n    \"musl pinned source archive SHA-1\",\r\n    \"musl recipe version\",\r\n    \"LLVM source pin\",\r\n    \"CRT source provenance\",\r\n    \"compiler builtins version\",\r\n    \"archive rust-std-1.90.0-x86_64-unknown-linux-musl.tar.xz\",\r\n    \"earlier download rust-std-1.90.0-x86_64-unknown-linux-musl.tar.xz\",\r\n    \"publisher target entry rust-std-1.90.0-x86_64-unknown-linux-musl.tar.xz\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/LICENSE-MIT\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/LICENSE-APACHE\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/COPYRIGHT\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/version\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/git-commit-hash\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/libc.a\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/libunwind.a\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/libcompiler_builtins-45a2a44cd5360a5f.rlib\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crt1.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/Scrt1.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/rcrt1.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtendS.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtbeginS.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtend.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crti.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtbegin.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtn.o\",\r\n    \"archive rustc-1.90.0-x86_64-unknown-linux-gnu.tar.xz\",\r\n    \"earlier download rustc-1.90.0-x86_64-unknown-linux-gnu.tar.xz\",\r\n    \"publisher target entry rustc-1.90.0-x86_64-unknown-linux-gnu.tar.xz\",\r\n    \"member rustc-1.90.0-x86_64-unknown-linux-gnu/LICENSE-MIT\",\r\n    \"member rustc-1.90.0-x86_64-unknown-linux-gnu/LICENSE-APACHE\",\r\n    \"member rustc-1.90.0-x86_64-unknown-linux-gnu/COPYRIGHT\",\r\n    \"member rustc-1.90.0-x86_64-unknown-linux-gnu/version\",\r\n    \"member rustc-1.90.0-x86_64-unknown-linux-gnu/git-commit-hash\",\r\n    \"member rustc-1.90.0-x86_64-unknown-linux-gnu/rustc/share/doc/rust/COPYRIGHT-library.html\",\r\n    \"same compiler/std LICENSE-MIT\",\r\n    \"same compiler/std LICENSE-APACHE\",\r\n    \"same compiler/std COPYRIGHT\",\r\n    \"same compiler/std version\",\r\n    \"same compiler/std git-commit-hash\",\r\n    \"HTML non-whitespace text preserved\",\r\n    \"SQLite crate bytes\",\r\n    \"SQLite Cargo checksum\",\r\n    \"SQLite member libsqlite3-sys-0.35.0/sqlite3/sqlite3.c\",\r\n    \"SQLite member libsqlite3-sys-0.35.0/sqlite3/sqlite3.h\",\r\n    \"SQLite member libsqlite3-sys-0.35.0/LICENSE\",\r\n    \"SQLite version\",\r\n    \"whole notice\",\r\n    \"notice payload RUST-LICENSE-MIT\",\r\n    \"notice markers RUST-LICENSE-MIT\",\r\n    \"notice payload RUST-LICENSE-APACHE\",\r\n    \"notice markers RUST-LICENSE-APACHE\",\r\n    \"notice payload RUST-COPYRIGHT\",\r\n    \"notice markers RUST-COPYRIGHT\",\r\n    \"notice payload RUST-LIBRARY-NOTICES\",\r\n    \"notice markers RUST-LIBRARY-NOTICES\",\r\n    \"notice payload RUST-UNICODE-3.0\",\r\n    \"notice markers RUST-UNICODE-3.0\",\r\n    \"notice payload MUSL-COPYRIGHT\",\r\n    \"notice markers MUSL-COPYRIGHT\",\r\n    \"notice payload RUST-COMPILER-BUILTINS\",\r\n    \"notice markers RUST-COMPILER-BUILTINS\",\r\n    \"notice payload LLVM-LIBUNWIND\",\r\n    \"notice markers LLVM-LIBUNWIND\",\r\n    \"notice payload LLVM-COMPILER-RT\",\r\n    \"notice markers LLVM-COMPILER-RT\",\r\n    \"notice payload SQLITE-SOURCE-NOTICE\",\r\n    \"notice markers SQLITE-SOURCE-NOTICE\",\r\n    \"Cargo inventory count\",\r\n    \"Cargo SQLite wrapper scope\",\r\n    \"native runtime absent from Cargo inventory\",\r\n    \"original Cargo notice untouched\",\r\n    \"same ELF read-only hash\",\r\n    \"ELF magic without execution\"\r\n  ],\r\n  \"count\": 94\r\n}\r\n",
+    "stderr": "",
+    "elapsed_seconds": 14.462
+  },
+  "status": "PASS",
+  "independent_review": "NOT_RUN_BY_AUTHOR",
+  "bundle_inclusion_and_lifecycle": "NOT_RUN_BY_AUTHOR",
+  "product_build_and_tests": {
+    "status": "N/A",
+    "reason": "Documentation/evidence-only slice; unchanged application source and ELF. Parent retains existing source-bound gates."
+  },
+  "windows_release_candidate_execution": "NOT_RUN",
+  "vm_access": "NOT_RUN",
+  "legal_compliance_certification": "NOT_PERFORMED",
+  "result": {
+    "status": "PASS",
+    "scope": "DOCUMENT_SOURCE_INTEGRITY_ONLY",
+    "checks": [
+      "raw source rust_manifest",
+      "raw source rust_manifest_checksum",
+      "raw source rust_musl_recipe",
+      "raw source rust_musl_docker",
+      "raw source musl_cross_hash",
+      "raw source rust_compiler_builtins_ref",
+      "raw source rust_llvm_ref",
+      "raw source rust_bootstrap_compile",
+      "raw source compiler_builtins_license",
+      "raw source compiler_builtins_cargo",
+      "raw source llvm_libunwind_license",
+      "raw source llvm_compiler_rt_license",
+      "raw source musl_cross_makefile",
+      "raw source rust_bootstrap_llvm",
+      "raw source rust_unicode_license",
+      "raw source llvm_crt_begin_source",
+      "raw source llvm_crt_end_source",
+      "raw source rust_release_commit",
+      "publisher manifest checksum",
+      "pre-existing publisher manifest binding",
+      "Rust release commit",
+      "musl pinned source archive SHA-1",
+      "musl recipe version",
+      "LLVM source pin",
+      "CRT source provenance",
+      "compiler builtins version",
+      "archive rust-std-1.90.0-x86_64-unknown-linux-musl.tar.xz",
+      "earlier download rust-std-1.90.0-x86_64-unknown-linux-musl.tar.xz",
+      "publisher target entry rust-std-1.90.0-x86_64-unknown-linux-musl.tar.xz",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/LICENSE-MIT",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/LICENSE-APACHE",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/COPYRIGHT",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/version",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/git-commit-hash",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/libc.a",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/libunwind.a",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/libcompiler_builtins-45a2a44cd5360a5f.rlib",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crt1.o",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/Scrt1.o",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/rcrt1.o",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtendS.o",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtbeginS.o",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtend.o",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crti.o",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtbegin.o",
+      "member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtn.o",
+      "archive rustc-1.90.0-x86_64-unknown-linux-gnu.tar.xz",
+      "earlier download rustc-1.90.0-x86_64-unknown-linux-gnu.tar.xz",
+      "publisher target entry rustc-1.90.0-x86_64-unknown-linux-gnu.tar.xz",
+      "member rustc-1.90.0-x86_64-unknown-linux-gnu/LICENSE-MIT",
+      "member rustc-1.90.0-x86_64-unknown-linux-gnu/LICENSE-APACHE",
+      "member rustc-1.90.0-x86_64-unknown-linux-gnu/COPYRIGHT",
+      "member rustc-1.90.0-x86_64-unknown-linux-gnu/version",
+      "member rustc-1.90.0-x86_64-unknown-linux-gnu/git-commit-hash",
+      "member rustc-1.90.0-x86_64-unknown-linux-gnu/rustc/share/doc/rust/COPYRIGHT-library.html",
+      "same compiler/std LICENSE-MIT",
+      "same compiler/std LICENSE-APACHE",
+      "same compiler/std COPYRIGHT",
+      "same compiler/std version",
+      "same compiler/std git-commit-hash",
+      "HTML non-whitespace text preserved",
+      "SQLite crate bytes",
+      "SQLite Cargo checksum",
+      "SQLite member libsqlite3-sys-0.35.0/sqlite3/sqlite3.c",
+      "SQLite member libsqlite3-sys-0.35.0/sqlite3/sqlite3.h",
+      "SQLite member libsqlite3-sys-0.35.0/LICENSE",
+      "SQLite version",
+      "whole notice",
+      "notice payload RUST-LICENSE-MIT",
+      "notice markers RUST-LICENSE-MIT",
+      "notice payload RUST-LICENSE-APACHE",
+      "notice markers RUST-LICENSE-APACHE",
+      "notice payload RUST-COPYRIGHT",
+      "notice markers RUST-COPYRIGHT",
+      "notice payload RUST-LIBRARY-NOTICES",
+      "notice markers RUST-LIBRARY-NOTICES",
+      "notice payload RUST-UNICODE-3.0",
+      "notice markers RUST-UNICODE-3.0",
+      "notice payload MUSL-COPYRIGHT",
+      "notice markers MUSL-COPYRIGHT",
+      "notice payload RUST-COMPILER-BUILTINS",
+      "notice markers RUST-COMPILER-BUILTINS",
+      "notice payload LLVM-LIBUNWIND",
+      "notice markers LLVM-LIBUNWIND",
+      "notice payload LLVM-COMPILER-RT",
+      "notice markers LLVM-COMPILER-RT",
+      "notice payload SQLITE-SOURCE-NOTICE",
+      "notice markers SQLITE-SOURCE-NOTICE",
+      "Cargo inventory count",
+      "Cargo SQLite wrapper scope",
+      "native runtime absent from Cargo inventory",
+      "original Cargo notice untouched",
+      "same ELF read-only hash",
+      "ELF magic without execution"
+    ],
+    "count": 94
+  },
+  "files": [
+    {
+      "path": "docs/THIRD_PARTY_RUNTIME_NOTICES.txt",
+      "bytes": 420502,
+      "sha256": "3909eadeb6220801da62ebfe18b7335639dcc2ebb49c1f05d916cc91d575f246"
+    },
+    {
+      "path": "verification/runtime-notices-v3-sources.json",
+      "bytes": 1333648,
+      "sha256": "3c3808fb09cd289f91c274c2b54a82080e03a190073b5d36318901043de6a2ed"
+    },
+    {
+      "path": "verification/runtime-notices-v3-reproduce.md",
+      "bytes": 11933,
+      "sha256": "3987c7906b5d5822d479189b95ab57f07e32d847168ed35fb17eb3297c4283d5"
+    },
+    {
+      "path": "docs/THIRD_PARTY_LICENSES.txt",
+      "bytes": 2605877,
+      "sha256": "4de450b34e325e2e0e4b493eb8f3a3a2d3a85fedd328ef0a260a2445b97c0b95"
+    },
+    {
+      "path": "verification/license-inventory.json",
+      "bytes": 84192,
+      "sha256": "c16d9fcb29a80478dbcfc44f952d44fca218ba47433ecddfeef1ff8001a10743"
+    },
+    {
+      "path": "Cargo.lock",
+      "bytes": 63807,
+      "sha256": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34"
+    },
+    {
+      "path": "verification/package-v3-linux-final-build-environment.json",
+      "bytes": 784,
+      "sha256": "d6c5469b2992d440192d9516adb546e0d79b198c679178a86523ebf179ddbfc6"
+    },
+    {
+      "path": "verification/package-v3-linux-final-build.command.json",
+      "bytes": 416,
+      "sha256": "ae1bc5ec4ba26bc9bd1e55b0d7af2cc555ca3b394bbf32c93495e104d6faca3d"
+    },
+    {
+      "path": "verification/package-v3-linux-final-elf.txt",
+      "bytes": 3287,
+      "sha256": "bd3fbbdaad3b229c00ded908c2b12b65f706d745135bf7b51e631aa89879e23b"
+    },
+    {
+      "path": "E:/odin/.odin/validation-tools/packaging-v3/native-rust/setup-report.json",
+      "bytes": 2877,
+      "sha256": "79dded6d5048bcbcac0dc7fa09315a7370f0386d55df6184f0138a9cb85530e2"
+    },
+    {
+      "path": "E:/odin/.odin/validation-tools/packaging-v3/native-rust/SHA256SUMS",
+      "bytes": 676,
+      "sha256": "180ede7409c32aab960790e70aaaf87dcb7bfce5b9900cacaefe5c048bac7bcf"
+    },
+    {
+      "path": "E:/odin/.odin/validation-tools/packaging-v3/vm/native-apt-setup-02.json",
+      "bytes": 342,
+      "sha256": "9e2cc4d0441c23f67293f5c344ac06da5550840f5e8124d08aadfb9ff4b67825"
+    },
+    {
+      "path": "E:/odin/.odin/validation-tools/packaging-v3/vm/native-apt-setup-02.txt",
+      "bytes": 4588,
+      "sha256": "b88c8836da0d84b24750684731121683e3efcef889f701291773e0d1a4c83245"
+    }
+  ],
+  "prior_command": {
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-"
+    ],
+    "stdin_source": "verification/runtime-notices-v3-reproduce.md Python block",
+    "stdin_sha256": "e5686959b34f0ca8dd69aff23c4ce76b14682e589ef8cf1db3662c8716949f69",
+    "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin",
+    "exit_code": 0,
+    "stdout": "{\r\n  \"status\": \"PASS\",\r\n  \"scope\": \"DOCUMENT_SOURCE_INTEGRITY_ONLY\",\r\n  \"checks\": [\r\n    \"raw source rust_manifest\",\r\n    \"raw source rust_manifest_checksum\",\r\n    \"raw source rust_musl_recipe\",\r\n    \"raw source rust_musl_docker\",\r\n    \"raw source musl_cross_hash\",\r\n    \"raw source rust_compiler_builtins_ref\",\r\n    \"raw source rust_llvm_ref\",\r\n    \"raw source rust_bootstrap_compile\",\r\n    \"raw source compiler_builtins_license\",\r\n    \"raw source compiler_builtins_cargo\",\r\n    \"raw source llvm_libunwind_license\",\r\n    \"raw source llvm_compiler_rt_license\",\r\n    \"raw source musl_cross_makefile\",\r\n    \"raw source rust_bootstrap_llvm\",\r\n    \"raw source rust_unicode_license\",\r\n    \"raw source llvm_crt_begin_source\",\r\n    \"raw source llvm_crt_end_source\",\r\n    \"raw source rust_release_commit\",\r\n    \"publisher manifest checksum\",\r\n    \"pre-existing publisher manifest binding\",\r\n    \"Rust release commit\",\r\n    \"musl pinned source archive SHA-1\",\r\n    \"musl recipe version\",\r\n    \"LLVM source pin\",\r\n    \"CRT source provenance\",\r\n    \"compiler builtins version\",\r\n    \"archive rust-std-1.90.0-x86_64-unknown-linux-musl.tar.xz\",\r\n    \"earlier download rust-std-1.90.0-x86_64-unknown-linux-musl.tar.xz\",\r\n    \"publisher target entry rust-std-1.90.0-x86_64-unknown-linux-musl.tar.xz\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/LICENSE-MIT\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/LICENSE-APACHE\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/COPYRIGHT\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/version\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/git-commit-hash\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/libc.a\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/libunwind.a\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/libcompiler_builtins-45a2a44cd5360a5f.rlib\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crt1.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/Scrt1.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/rcrt1.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtendS.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtbeginS.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtend.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crti.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtbegin.o\",\r\n    \"member rust-std-1.90.0-x86_64-unknown-linux-musl/rust-std-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtn.o\",\r\n    \"archive rustc-1.90.0-x86_64-unknown-linux-gnu.tar.xz\",\r\n    \"earlier download rustc-1.90.0-x86_64-unknown-linux-gnu.tar.xz\",\r\n    \"publisher target entry rustc-1.90.0-x86_64-unknown-linux-gnu.tar.xz\",\r\n    \"member rustc-1.90.0-x86_64-unknown-linux-gnu/LICENSE-MIT\",\r\n    \"member rustc-1.90.0-x86_64-unknown-linux-gnu/LICENSE-APACHE\",\r\n    \"member rustc-1.90.0-x86_64-unknown-linux-gnu/COPYRIGHT\",\r\n    \"member rustc-1.90.0-x86_64-unknown-linux-gnu/version\",\r\n    \"member rustc-1.90.0-x86_64-unknown-linux-gnu/git-commit-hash\",\r\n    \"member rustc-1.90.0-x86_64-unknown-linux-gnu/rustc/share/doc/rust/COPYRIGHT-library.html\",\r\n    \"same compiler/std LICENSE-MIT\",\r\n    \"same compiler/std LICENSE-APACHE\",\r\n    \"same compiler/std COPYRIGHT\",\r\n    \"same compiler/std version\",\r\n    \"same compiler/std git-commit-hash\",\r\n    \"HTML non-whitespace text preserved\",\r\n    \"SQLite crate bytes\",\r\n    \"SQLite Cargo checksum\",\r\n    \"SQLite member libsqlite3-sys-0.35.0/sqlite3/sqlite3.c\",\r\n    \"SQLite member libsqlite3-sys-0.35.0/sqlite3/sqlite3.h\",\r\n    \"SQLite member libsqlite3-sys-0.35.0/LICENSE\",\r\n    \"SQLite version\",\r\n    \"whole notice\",\r\n    \"notice payload RUST-LICENSE-MIT\",\r\n    \"notice markers RUST-LICENSE-MIT\",\r\n    \"notice payload RUST-LICENSE-APACHE\",\r\n    \"notice markers RUST-LICENSE-APACHE\",\r\n    \"notice payload RUST-COPYRIGHT\",\r\n    \"notice markers RUST-COPYRIGHT\",\r\n    \"notice payload RUST-LIBRARY-NOTICES\",\r\n    \"notice markers RUST-LIBRARY-NOTICES\",\r\n    \"notice payload RUST-UNICODE-3.0\",\r\n    \"notice markers RUST-UNICODE-3.0\",\r\n    \"notice payload MUSL-COPYRIGHT\",\r\n    \"notice markers MUSL-COPYRIGHT\",\r\n    \"notice payload RUST-COMPILER-BUILTINS\",\r\n    \"notice markers RUST-COMPILER-BUILTINS\",\r\n    \"notice payload LLVM-LIBUNWIND\",\r\n    \"notice markers LLVM-LIBUNWIND\",\r\n    \"notice payload LLVM-COMPILER-RT\",\r\n    \"notice markers LLVM-COMPILER-RT\",\r\n    \"notice payload SQLITE-SOURCE-NOTICE\",\r\n    \"notice markers SQLITE-SOURCE-NOTICE\",\r\n    \"Cargo inventory count\",\r\n    \"Cargo SQLite wrapper scope\",\r\n    \"native runtime absent from Cargo inventory\",\r\n    \"original Cargo notice untouched\",\r\n    \"same ELF read-only hash\",\r\n    \"ELF magic without execution\"\r\n  ],\r\n  \"count\": 94\r\n}\r\n",
+    "stderr": "",
+    "note": "Initial successful 94-check execution, before caching repeated archive hash calculations and correcting the first formatting observation exit code in the reproduction prose."
+  },
+  "git_checks": {
+    "whitespace": {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "owned_paths_only": {
+      "status": "PASS",
+      "paths": [
+        "docs/THIRD_PARTY_RUNTIME_NOTICES.txt",
+        "verification/runtime-notices-v3-checks.json",
+        "verification/runtime-notices-v3-reproduce.md",
+        "verification/runtime-notices-v3-sources.json"
+      ]
+    },
+    "notice_git_blob_exact_bytes": {
+      "status": "PASS",
+      "sha256": "3909eadeb6220801da62ebfe18b7335639dcc2ebb49c1f05d916cc91d575f246"
+    },
+    "product_source_changes": []
+  }
+}
