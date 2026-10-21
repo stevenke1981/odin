@@ -48,6 +48,11 @@ enum Commands {
     Validate,
     /// Print binary build identity. Requires no configuration.
     Metadata,
+    /// Show declarative LSP profiles; never installs or starts backends.
+    Languages {
+        #[arg(long)]
+        project: Option<String>,
+    },
     /// Emit a client configuration; changing a named host file requires --apply.
     Setup {
         #[arg(long, value_enum)]
@@ -102,6 +107,8 @@ enum Commands {
     Doctor {
         #[arg(long)]
         probe_lsp: bool,
+        #[arg(long)]
+        probe_sandbox: bool,
     },
     /// Build the lexical index for a project.
     Index {
@@ -134,6 +141,11 @@ async fn main() -> Result<()> {
     let cli = Cli::parse();
     match &cli.command {
         Commands::Metadata => return print_json(&metadata::build_metadata()),
+        Commands::Languages { project: None } => {
+            return print_json(&json!({"adapters":odin_core::languages::ADAPTERS,
+                "status":"CONFIGURATION_GUIDANCE","installed":"NOT_PROBED",
+                "acceptance":"NOT_RUN","automatic_installation":false}));
+        }
         Commands::Tools => {
             return print_json(&serde_json::from_str(include_str!(
                 "../../odin-engine/tools.json"
@@ -149,6 +161,12 @@ async fn main() -> Result<()> {
     let config =
         Config::load(&cli.config)?.with_policy(cli.context.as_deref(), cli.mode.as_deref())?;
     match &cli.command {
+        Commands::Languages { project: Some(id) } => {
+            let project = config.projects.get(id).context("Unknown project")?;
+            return print_json(&json!({"project":id,"configured":project.languages,
+                "adapters":odin_core::languages::ADAPTERS,"acceptance":"NOT_RUN",
+                "note":"Registry entries are setup guidance. Use doctor --probe-lsp for initialization; consult source-bound acceptance reports for features."}));
+        }
         Commands::Validate => {
             return print_json(&json!({"valid":true, "build":metadata::build_metadata(),
             "projects":config.projects.iter().map(|(id,p)|json!({"id":id,"allow_write":p.allow_write,"allow_shell":p.allow_shell,"allow_debug":p.allow_debug})).collect::<Vec<_>>(),
@@ -232,8 +250,11 @@ async fn main() -> Result<()> {
         | Commands::Tools
         | Commands::Setup { .. }
         | Commands::Hook { .. } => unreachable!("handled before engine creation"),
-        Commands::Doctor { probe_lsp } => {
-            let report = doctor(&engine, probe_lsp).await;
+        Commands::Doctor {
+            probe_lsp,
+            probe_sandbox,
+        } => {
+            let report = doctor(&engine, probe_lsp, probe_sandbox).await;
             let failed = report["ok"] == false;
             print_json(&report)?;
             if failed {
@@ -307,6 +328,7 @@ async fn main() -> Result<()> {
                 .with_context(|| format!("Set {token_env} to a random local bearer token"))?;
             http::serve(engine, listen, token).await?;
         }
+        Commands::Languages { .. } => unreachable!("language guidance returned before state creation"),
     }
     Ok(())
 }
@@ -345,7 +367,7 @@ fn ensure_host_output(config: &Config, output: Option<&Path>) -> Result<()> {
     Ok(())
 }
 
-async fn doctor(engine: &Arc<Engine>, probe_lsp: bool) -> Value {
+async fn doctor(engine: &Arc<Engine>, probe_lsp: bool, probe_sandbox: bool) -> Value {
     let mut checks = Vec::new();
     let mut ok = true;
     for (id, project) in &engine.projects {
@@ -393,9 +415,24 @@ async fn doctor(engine: &Arc<Engine>, probe_lsp: bool) -> Value {
             let found = exists_program(&backend.program); ok &= found;
             json!({"profile":name,"found_on_path":found,"integration":"NOT_RUN","enabled":project.config.allow_debug})
         }).collect::<Vec<_>>();
+        let sandbox = if let Some(policy) = &project.config.sandbox {
+            if probe_sandbox {
+                match odin_core::sandbox::health(policy) {
+                    Ok(report) => json!({"configured":true,"probe_status":"PASS","report":report}),
+                    Err(error) => {
+                        ok = false;
+                        json!({"configured":true,"probe_status":"FAIL","error":error})
+                    }
+                }
+            } else {
+                json!({"configured":true,"probe_status":"NOT_RUN","enforcement":"required_on_spawn"})
+            }
+        } else {
+            json!({"configured":false,"probe_status":"NOT_RUN","enforcement":"not_requested"})
+        };
         checks.push(json!({"project":id,"root_exists":project.root.root().is_dir(),
             "root_readable":std::fs::read_dir(project.root.root()).is_ok(),"allow_write":project.config.allow_write,
-            "write_access_probe":"NOT_RUN","languages":languages,"debuggers":debuggers}));
+            "write_access_probe":"NOT_RUN","languages":languages,"debuggers":debuggers,"sandbox":sandbox}));
     }
     json!({"ok":ok,"build":metadata::build_metadata(),"checks":checks,"mcp_transport_probe":"NOT_RUN",
         "note":"LSP PASS means initialize handshake only, not indexing or feature parity. DAP presence does not prove integration. No write permissions are enabled."})

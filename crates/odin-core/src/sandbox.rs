@@ -28,6 +28,25 @@ fn invalid(message: impl Into<String>) -> Fault {
     Fault::new("SANDBOX_POLICY_INVALID", message)
 }
 
+/// Read-only native capability probe with an integrity check of the host's
+/// selected executor. A successful probe is not workload isolation evidence.
+pub fn health(config: &MxcSandboxConfig) -> Result<Value> {
+    let executor = canonical(&config.executor)?;
+    if !executor.is_file()
+        || !sha256(&fs::read(&executor)?).eq_ignore_ascii_case(&config.executor_sha256)
+    {
+        return Err(Fault::new(
+            "SANDBOX_EXECUTOR_MISMATCH",
+            "Sandbox executor is missing or its SHA-256 changed",
+        ));
+    }
+    let capabilities = probe(&executor)?;
+    Ok(
+        json!({"backend":"mxc_processcontainer","executor_sha256":config.executor_sha256,
+        "probe":capabilities,"workload_acceptance":"NOT_RUN","fallback":false}),
+    )
+}
+
 /// Return a local, canonical path and reject links/reparse aliases in every input component.
 fn canonical(path: &Path) -> Result<PathBuf> {
     if !path.is_absolute() {
