@@ -1,0 +1,14 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running tests\os_sandbox_native.rs (target\debug\deps\os_sandbox_native-b4457c3f1ab6ba4b.exe)
+
+running 2 tests
+native_sandbox lifecycle=None parent_and_child_reaped=true heartbeat_stopped=true
+native_sandbox lifecycle=Some(1.5s) parent_and_child_reaped=true heartbeat_stopped=true
+test abort_and_native_timeout_reap_the_sandbox_tree ... ok
+native_sandbox mode=check checks={"denied_read":true,"denied_write":true,"environment_filtered":true,"junction_read_denied":true,"network_denied":true,"outside_execute_denied":true,"outside_read":true,"outside_write":true,"read_allowed":true,"readonly_write_denied":true,"scratch_write":true,"write_allowed":true}
+native_sandbox mode=child-check checks={"denied_read":true,"denied_write":true,"environment_filtered":true,"junction_read_denied":true,"network_denied":true,"outside_execute_denied":true,"outside_read":true,"outside_write":true,"read_allowed":true,"readonly_write_denied":true,"scratch_write":true,"write_allowed":true}
+native_sandbox launch_failure_exit=Some(-1) no_fallback=true
+test filesystem_network_stdio_and_descendant_isolation ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 8.93s
+

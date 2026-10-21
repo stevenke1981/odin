@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "scope": "NATIVE_WINDOWS_OS_SANDBOX_AUTHOR_MODULE",
+  "status": "PASS",
+  "timestamp_utc": "2026-10-21T00:48:28.7255323Z",
+  "base_sha": "9b71abc98b89f72cce08d2795dfb139281f6d613",
+  "shared_core_commit": "fea8b61",
+  "local_dependency_head": "c1814c4b8c04091900a1cdbc376e2dee56beca95",
+  "source_sha256": [
+    {
+      "path": "crates/odin-core/src/sandbox.rs",
+      "sha256": "2c1cf16c5e0f140201719f9bdb6ea9ef2969960ba97cb5e71600cb4cb3de035f"
+    },
+    {
+      "path": "crates/odin-core/src/process.rs",
+      "sha256": "0b29b3328ec78668ab2ce1c100f4a9856f3cec6e42a0ad676c3462fe0cf794c7"
+    },
+    {
+      "path": "crates/odin-core/tests/os_sandbox_native.rs",
+      "sha256": "8ce63960b98663831c8ba912ca5ba8d8604c40248f441015066893b08679580a"
+    },
+    {
+      "path": "crates/odin-core/tests/fixtures/os_sandbox_workload.rs",
+      "sha256": "40de2e3df2abf18577757797a56f3f4c1c12affb318f739586849b55ba9e05a0"
+    },
+    {
+      "path": "docs/OS_SANDBOX.md",
+      "sha256": "fc5e88a09d7c7dc3d8fe377ef2ff4c5a83b513cdf0c8769dd08c906d43a20465"
+    }
+  ],
+  "temporary_compilation_wiring": "lib.rs temporarily exports pub mod sandbox; this shared-file change is excluded from the author commit. Root must export the module on integration.",
+  "host": {
+    "os": "Microsoft Windows NT 10.0.26300.0",
+    "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "platform": "x86_64-pc-windows-msvc"
+  },
+  "executor": {
+    "path": "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64\\wxc-exec.exe",
+    "sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+    "authenticode_status": "Valid",
+    "probe_exit_code": 0,
+    "probe": "verification/sandbox-native-probe.json"
+  },
+  "checks": [
+    {
+      "status": "PASS",
+      "command": "cargo fmt -p odin-core -- --check",
+      "exit_code": 0,
+      "log": "verification/sandbox-fmt.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "rustfmt --edition 2024 --check crates/odin-core/tests/fixtures/os_sandbox_workload.rs",
+      "exit_code": 0,
+      "log": "verification/sandbox-fixture-fmt.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "cargo clippy -p odin-core --all-targets --locked -- -D warnings",
+      "exit_code": 0,
+      "log": "verification/sandbox-clippy-first.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "cargo test -p odin-core --locked",
+      "exit_code": 0,
+      "passed": 51,
+      "ignored": 2,
+      "log": "verification/sandbox-core-tests.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "cargo test -p odin-core --test os_sandbox_native --locked -- --ignored --test-threads=1 --nocapture",
+      "explicit_host_env": {
+        "ODIN_MXC_EXECUTOR": "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64\\wxc-exec.exe",
+        "ODIN_MXC_SHA256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259"
+      },
+      "exit_code": 0,
+      "passed": 2,
+      "filtered_out": 1,
+      "log": "verification/sandbox-native-final.txt"
+    }
+  ],
+  "acceptance": [
+    "exact binary stdio and separate stderr",
+    "RO read and RW read/write",
+    "nested explicit deny read/write",
+    "RO create and overwrite rejection",
+    "outside read/write/executable launch rejection",
+    "junction target escape rejection",
+    "direct and descendant network loopback blocked with zero listener accepts",
+    "child runtime environment filtered",
+    "private scratch directory create/write and normal-exit cleanup",
+    "exit status 7 preserved",
+    "invalid pin, aliases, protected-storage grants, broad scratch and missing target rejected",
+    "native invalid-image launch failed with exit -1 and no direct retry",
+    "abort and native timeout reap parent/descendant and stop heartbeat",
+    "guard is Send+Sync"
+  ],
+  "preserved_failures": [
+    {
+      "status": "FAIL",
+      "command_exit_code": 101,
+      "log": "verification/sandbox-native-expanded.txt",
+      "reason": "Private TEMP base does not exist until workload creates it"
+    },
+    {
+      "status": "FAIL",
+      "command_exit_code": 101,
+      "log": "verification/sandbox-scratch-diagnostic.txt",
+      "reason": "Initial diagnostic assertion omitted child stderr"
+    },
+    {
+      "status": "FAIL",
+      "command_exit_code": 101,
+      "log": "verification/sandbox-scratch-environment.txt",
+      "reason": "Confirmed package-specific TEMP below private scratch returns NotFound, not access denied"
+    }
+  ],
+  "resolution": "Fixture now creates its own native package TEMP directory inside the existing private RW grant before testing scratch write; policy was not broadened. Production workloads may need their own initialization.",
+  "not_run": [
+    "Integrated Odin binary MCP/LSP/DAP/shell sandbox dispatch; root/protocol ownership",
+    "Final integrated workspace tests and binary smoke; root ownership",
+    "Linux/macOS native isolation",
+    "BFS/AppContainer fallback or VM backends",
+    "Full UI, registry, all system devices/resources, ingress-server and external internet behavior",
+    "Independent review of author patch; root review ownership"
+  ]
+}

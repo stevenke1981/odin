@@ -1,0 +1,68 @@
+{
+  "scope": "MXC_NATIVE_CLI_STDIO_FEASIBILITY",
+  "command": [
+    "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64\\wxc-exec.exe",
+    "--config",
+    "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-sandbox-probe-209ecc3cf5c049c49b4dcc02ebe6301d\\policy.json",
+    "--",
+    "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-sandbox-probe-209ecc3cf5c049c49b4dcc02ebe6301d\\bin\\sandbox-workload.exe",
+    "echo"
+  ],
+  "exit_code": 0,
+  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+  "stdout_exact": true,
+  "stderr_exact": true,
+  "stdout_hex": "436f6e74656e742d4c656e6774683a2031380d0a0d0a7b226964223a317d0a00e6b8ace8a9a6",
+  "stderr": "fixture-stderr\n",
+  "policy": {
+    "version": "1.0.0",
+    "containment": "processcontainer",
+    "lifecycle": {
+      "preservePolicy": false,
+      "destroyOnExit": true
+    },
+    "process": {
+      "inheritDefaultEnv": false,
+      "timeout": 10000,
+      "cwd": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-sandbox-probe-209ecc3cf5c049c49b4dcc02ebe6301d\\scratch",
+      "env": [
+        "SystemRoot=C:\\WINDOWS",
+        "WINDIR=C:\\WINDOWS",
+        "LOCALAPPDATA=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-sandbox-probe-209ecc3cf5c049c49b4dcc02ebe6301d\\scratch",
+        "USERPROFILE=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-sandbox-probe-209ecc3cf5c049c49b4dcc02ebe6301d\\scratch",
+        "TEMP=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-sandbox-probe-209ecc3cf5c049c49b4dcc02ebe6301d\\scratch",
+        "TMP=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-sandbox-probe-209ecc3cf5c049c49b4dcc02ebe6301d\\scratch"
+      ]
+    },
+    "filesystem": {
+      "deniedPaths": [],
+      "readonlyPaths": [
+        "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-sandbox-probe-209ecc3cf5c049c49b4dcc02ebe6301d\\bin"
+      ],
+      "readwritePaths": [
+        "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-sandbox-probe-209ecc3cf5c049c49b4dcc02ebe6301d\\scratch"
+      ]
+    },
+    "fallback": {
+      "allowDaclMutation": false
+    },
+    "network": {
+      "ingress": {
+        "hostLoopback": "deny",
+        "default": "deny"
+      },
+      "egress": {
+        "default": "deny"
+      }
+    },
+    "ui": {
+      "clipboard": "none",
+      "disable": true,
+      "injection": false
+    },
+    "telemetry": {
+      "enabled": false
+    }
+  },
+  "status": "PASS"
+}

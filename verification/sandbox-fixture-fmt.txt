@@ -1,0 +1,3 @@
+COMMAND: rustfmt --edition 2024 --check crates/odin-core/tests/fixtures/os_sandbox_workload.rs
+EXIT_CODE=0
+No formatting differences.

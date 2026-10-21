@@ -1,0 +1,85 @@
+   Compiling odin-core v0.2.0 (C:\Users\steven\.codex\worktrees\odin-platform\odin\crates\odin-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.31s
+     Running unittests src\lib.rs (target\debug\deps\odin_core-c05b13697ee528b5.exe)
+
+running 43 tests
+test memory::tests::memory_name_traversal_is_rejected ... ok
+test paths::tests::missing_parent_is_not_created ... ok
+test config::tests::aliases_cannot_bypass_project_scope ... ok
+test config::tests::unknown_context_fails_closed ... ok
+test process::tests::environment_is_an_explicit_allowlist ... ok
+test paths::tests::traversal_is_denied ... ok
+test config::tests::context_then_mode_only_reduce_explicit_host_grants ... ok
+test paths::tests::deny_secrets ... ok
+test config::tests::host_configuration_is_protected_inside_workspace ... ok
+test config::tests::windows_project_ids_cannot_share_a_state_namespace_by_case ... ok
+test paths::tests::limits_and_utf8 ... ok
+test memory::tests::reference_replacement_is_exact ... ok
+test config::tests::windows_case_aliases_cannot_rewrite_host_policy_or_state ... ok
+test transaction::tests::crash_process_worker ... ok
+test process::tests::closing_job_terminates_a_live_child ... ok
+test search::tests::match_limit_is_explicit ... ok
+test paths::tests::hardlinked_files_cannot_alias_outside_or_protected_data ... ok
+test memory::tests::reference_expansion_is_rejected_before_allocating_the_result ... ok
+test search::tests::search_returns_live_hash_and_line ... ok
+test paths::tests::handle_relative_write_preserves_content_and_cleans_temporary_files ... ok
+test memory::tests::global_writes_require_separate_permission ... ok
+test transaction::tests::case_aliases_are_duplicate_targets_on_windows ... ok
+test paths::tests::windows_junction_is_denied ... ok
+test memory::tests::memory_import_rejects_digest_tampering_and_unresolved_refs ... ok
+test memory::tests::windows_memory_aliases_cannot_bypass_readonly_or_reference_policy ... ok
+test transaction::tests::idempotency_key_cannot_change_meaning ... ok
+test transaction::tests::conflict_before_commit_has_no_partial_write ... ok
+test transaction::tests::recovery_restores_a_simulated_interrupted_commit ... ok
+test transaction::tests::recovery_refuses_to_destroy_an_external_change ... ok
+test transaction::tests::prepare_does_not_write_and_apply_is_idempotent ... ok
+test store::tests::trace_audit_contains_metadata_without_source ... ok
+test store::tests::fts_excludes_stale_contents ... ok
+test memory::tests::new_windows_notes_cannot_use_existing_parent_case_aliases ... ok
+test store::tests::incremental_refresh_updates_additions_changes_and_deletions ... ok
+test transaction::tests::undo_create_and_edit ... ok
+test memory::tests::prepared_import_detects_external_writes ... ok
+test memory::tests::scope_move_never_rebinds_cross_project_local_references ... ok
+test memory::tests::memory_rename_updates_references ... ok
+test memory::tests::memory_bundle_roundtrip_is_previewed_and_owned ... ok
+test memory::tests::scope_move_updates_references_in_one_cas_journal ... ok
+test transaction::tests::real_process_crashes_at_transaction_checkpoints_are_recoverable ... ok
+test config::tests::windows_short_aliases_use_canonical_host_policy ... ok
+test transaction::tests::aggregate_snapshot_budget_is_checked_before_journal_creation ... ok
+
+test result: ok. 43 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.09s
+
+     Running tests\host_execution_policy.rs (target\debug\deps\host_execution_policy-5c3d470a1c5b88e9.exe)
+
+running 5 tests
+test new_execution_permissions_are_not_implicitly_enabled ... ok
+test policies_can_only_reduce_inspection_permission ... ok
+test sandbox_policy_binds_executor_and_protects_host_storage ... ok
+test inspection_profiles_cannot_enable_source_writing_flags ... ok
+test sandbox_writable_grants_cannot_cover_configuration_or_state ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests\os_sandbox_native.rs (target\debug\deps\os_sandbox_native-b4457c3f1ab6ba4b.exe)
+
+running 3 tests
+test abort_and_native_timeout_reap_the_sandbox_tree ... ignored, Requires explicit trusted native MXC path/hash and a supported Windows host
+test filesystem_network_stdio_and_descendant_isolation ... ignored, Requires explicit trusted native MXC path/hash and a supported Windows host
+test lifetime_guard_can_be_retained_in_a_shared_rpc_process ... ok
+
+test result: ok. 1 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\process_contention.rs (target\debug\deps\process_contention-5446d8fdc997e20a.exe)
+
+running 2 tests
+test transaction_process_worker ... ok
+test two_native_processes_cannot_silently_overwrite_each_other ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests odin_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

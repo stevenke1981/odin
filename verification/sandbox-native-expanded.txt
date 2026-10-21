@@ -1,0 +1,22 @@
+   Compiling odin-core v0.2.0 (C:\Users\steven\.codex\worktrees\odin-platform\odin\crates\odin-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.34s
+     Running tests\os_sandbox_native.rs (target\debug\deps\os_sandbox_native-b4457c3f1ab6ba4b.exe)
+
+running 2 tests
+test abort_and_native_timeout_reap_the_sandbox_tree ... ok
+
+thread 'filesystem_network_stdio_and_descendant_isolation' panicked at crates\odin-core\tests\os_sandbox_native.rs:185:13:
+assertion `left == right` failed: check: scratch_write: {"denied_read":true,"denied_write":true,"environment_filtered":true,"junction_read_denied":true,"network_denied":true,"outside_execute_denied":true,"outside_read":true,"outside_write":true,"read_allowed":true,"readonly_write_denied":true,"scratch_write":false,"write_allowed":true}
+  left: Bool(false)
+ right: true
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test filesystem_network_stdio_and_descendant_isolation ... FAILED
+
+failures:
+
+failures:
+    filesystem_network_stdio_and_descendant_isolation
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 9.90s
+
+error: test failed, to rerun pass `-p odin-core --test os_sandbox_native`

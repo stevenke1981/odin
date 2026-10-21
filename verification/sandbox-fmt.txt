@@ -1,0 +1,3 @@
+COMMAND: cargo fmt -p odin-core -- --check
+EXIT_CODE=0
+No formatting differences.

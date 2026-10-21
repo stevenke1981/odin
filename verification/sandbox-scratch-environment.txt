@@ -1,0 +1,20 @@
+   Compiling odin-core v0.2.0 (C:\Users\steven\.codex\worktrees\odin-platform\odin\crates\odin-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.16s
+     Running tests\os_sandbox_native.rs (target\debug\deps\os_sandbox_native-b4457c3f1ab6ba4b.exe)
+
+running 1 test
+
+thread 'filesystem_network_stdio_and_descendant_isolation' panicked at crates\odin-core\tests\os_sandbox_native.rs:170:9:
+Unexpected workload diagnostic: scratch diagnostic temp_dir="C:\\Users\\steven\\AppData\\Local\\Temp\\odin-native-sandbox-i0hpHs\\scratch-root\\odin-mxc-lZXJQ1\\Packages\\sandbox.{90164c84-e08f-4ad2-81ef-59a10a43d6d0}\\AC\\Temp\\"; TEMP=Some("C:\\Users\\steven\\AppData\\Local\\Temp\\odin-native-sandbox-i0hpHs\\scratch-root\\odin-mxc-lZXJQ1\\Packages\\sandbox.{90164c84-e08f-4ad2-81ef-59a10a43d6d0}\\AC\\Temp"); TMP=Some("C:\\Users\\steven\\AppData\\Local\\Temp\\odin-native-sandbox-i0hpHs\\scratch-root\\odin-mxc-lZXJQ1\\Packages\\sandbox.{90164c84-e08f-4ad2-81ef-59a10a43d6d0}\\AC\\Temp"); result=Err(Os { code: 3, kind: NotFound, message: "系統找不到指定的路徑。" })
+
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test filesystem_network_stdio_and_descendant_isolation ... FAILED
+
+failures:
+
+failures:
+    filesystem_network_stdio_and_descendant_isolation
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 3.16s
+
+error: test failed, to rerun pass `-p odin-core --test os_sandbox_native`

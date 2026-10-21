@@ -26,6 +26,13 @@ pub fn configure_child(command: &mut Command) {
         "CARGO_HOME",
         "JAVA_HOME",
         "DOTNET_ROOT",
+        "DOTNET_CLI_HOME",
+        "NUGET_PACKAGES",
+        "GOROOT",
+        "GOPATH",
+        "GOCACHE",
+        "GOMODCACHE",
+        "GOTOOLCHAIN",
         "LANG",
         "LC_ALL",
     ] {
@@ -33,6 +40,9 @@ pub fn configure_child(command: &mut Command) {
             command.env(key, value);
         }
     }
+    command.env("GOTELEMETRY", "off");
+    command.env("DOTNET_CLI_TELEMETRY_OPTOUT", "1");
+    command.env("DOTNET_GENERATE_ASPNET_CERTIFICATE", "false");
     #[cfg(unix)]
     {
         use std::os::unix::process::CommandExt;
@@ -114,6 +124,18 @@ mod tests {
                 .get_envs()
                 .any(|(key, _)| key == "ODIN_TOKEN" || key == "GITHUB_TOKEN")
         );
+        for (key, expected) in [
+            ("GOTELEMETRY", "off"),
+            ("DOTNET_CLI_TELEMETRY_OPTOUT", "1"),
+            ("DOTNET_GENERATE_ASPNET_CERTIFICATE", "false"),
+        ] {
+            assert!(
+                command
+                    .get_envs()
+                    .any(|(name, value)| name == key
+                        && value == Some(std::ffi::OsStr::new(expected)))
+            );
+        }
     }
     #[cfg(windows)]
     #[tokio::test]
