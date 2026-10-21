@@ -1,0 +1,17 @@
+{
+  "uid": 1000,
+  "environment": {
+    "PATH": "/opt/odin-rust-1.90/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "CARGO_HOME": "/home/odin-qa/.cargo",
+    "CARGO_TARGET_DIR": "/root/odin-linux-target",
+    "CARGO_BUILD_JOBS": "4",
+    "CC_x86_64_unknown_linux_musl": "musl-gcc",
+    "AR_x86_64_unknown_linux_musl": "ar",
+    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_MUSL_LINKER": "cc",
+    "ODIN_PYTHON": "/usr/bin/python3",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_NET_OFFLINE": "true"
+  },
+  "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)\nbinary: rustc\ncommit-hash: 1159e78c4747b02ef996e55082b704c09b970588\ncommit-date: 2025-09-14\nhost: x86_64-unknown-linux-gnu\nrelease: 1.90.0\nLLVM version: 20.1.8\n",
+  "cargo": "cargo 1.90.0 (840b83a10 2025-07-30)\n"
+}

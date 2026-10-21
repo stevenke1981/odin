@@ -1,0 +1,1271 @@
+{
+  "scope": "ACTUAL_LINUX_VM_BUILD_WORKSPACE_GATES_SMOKES_AND_INSTALLERS",
+  "status": "PASS",
+  "source_revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+  "app_build_revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+  "packaging_revision": "a8399993d7c528ad4858b2e4e246e5994eab4bb8",
+  "bundled_docs_revision": "a8399993d7c528ad4858b2e4e246e5994eab4bb8",
+  "source_transfer_bundle_sha256": "a760cec2ecf064d80a801f18e11a6024cf9bf336124fc8f4a8386f1d5c687900",
+  "packaging_transfer_bundle_sha256": "4cddaad4bf14fea3f78fc9c9fb8c3f1cd341b5e8ac49794515350daf51da844a",
+  "build_metadata": {
+    "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "external_tool_bridge": false,
+    "model_token_usage": "UNKNOWN",
+    "name": "Odin",
+    "profile": "release",
+    "revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+    "schema_version": 1,
+    "standalone": true,
+    "target": "x86_64-unknown-linux-musl",
+    "tracked_source_dirty": false,
+    "version": "0.2.0"
+  },
+  "binary_sha256": "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+  "linux_target": "x86_64-unknown-linux-musl",
+  "elf": {
+    "format": "ELF64_X86_64",
+    "pt_interp": null,
+    "static_pie": true
+  },
+  "execution": "NATIVE_COMPILE_AND_NATIVE_ELF_EXECUTION_IN_LOCAL_QEMU_TCG_DEBIAN_12_X86_64",
+  "build_tests_smoke_user": "odin-qa uid=1000",
+  "installer_package_management_user": "root in disposable guest",
+  "source_manifest": {
+    "path": "verification/package-v3-linux-final-source-sha256.json",
+    "sha256": "260ba0d539ebf4ab9a3bc0df4ac21343348ca08d6769fb1606b3d98e2df3cbff",
+    "checked_files": 688
+  },
+  "packaging_source_manifest": {
+    "path": "verification/package-v3-linux-final-packaging-source-sha256.json",
+    "sha256": "3163f43fb6ab600bf2dde2da423a4042a795a83d378fe3d29b498f8e156601a1",
+    "checked_files": 728
+  },
+  "product_equivalence": {
+    "status": "PASS",
+    "compared_files": 99,
+    "scope": [
+      "crates/",
+      "schemas/",
+      "dashboard/",
+      "scripts/",
+      "packaging/",
+      "tests/",
+      "Cargo.toml",
+      "Cargo.lock",
+      "rust-toolchain.toml"
+    ],
+    "note": "Pre-build app source and the separate clean packaging tree were compared file by file; packaging uses the same selected ELF without recompilation."
+  },
+  "rust": "1.90.0",
+  "rust_linker": "cc",
+  "c_compiler": "musl-gcc",
+  "original_release_profile_preserved": true,
+  "commands": [
+    {
+      "name": "generated",
+      "argv": [
+        "python3",
+        "scripts/check_generated.py"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-generated.txt",
+      "elapsed_seconds": 1.134,
+      "log_sha256": "0bcc5c510237297d634065069ed630e38871d94d920bdeda00c939ef36100698",
+      "original_guest_log_sha256": "0bcc5c510237297d634065069ed630e38871d94d920bdeda00c939ef36100698"
+    },
+    {
+      "name": "static-source",
+      "argv": [
+        "python3",
+        "scripts/check_source.py",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/static-source-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-static-source.txt",
+      "elapsed_seconds": 2.321,
+      "log_sha256": "bed941713f75d31f2994d5ab754e6efc5781067d15d99df20721b4ea7224055a",
+      "original_guest_log_sha256": "bed941713f75d31f2994d5ab754e6efc5781067d15d99df20721b4ea7224055a"
+    },
+    {
+      "name": "fixture",
+      "argv": [
+        "python3",
+        "scripts/fixture_selftest.py",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/fixture-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-fixture.txt",
+      "elapsed_seconds": 1.672,
+      "log_sha256": "c2a21db936c942535df1de9f87a8832081058bcc3636c2a903e77b4867391dc8",
+      "original_guest_log_sha256": "c2a21db936c942535df1de9f87a8832081058bcc3636c2a903e77b4867391dc8"
+    },
+    {
+      "name": "requirements",
+      "argv": [
+        "python3",
+        "scripts/check_requirements.py"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-requirements.txt",
+      "elapsed_seconds": 1.863,
+      "log_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2",
+      "original_guest_log_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2"
+    },
+    {
+      "name": "publish-policy",
+      "argv": [
+        "python3",
+        "scripts/check_publish_policy.py"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-publish-policy.txt",
+      "elapsed_seconds": 0.278,
+      "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983",
+      "original_guest_log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983"
+    },
+    {
+      "name": "fmt",
+      "argv": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-fmt.txt",
+      "elapsed_seconds": 4.648,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_guest_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "focused-core",
+      "argv": [
+        "cargo",
+        "test",
+        "-p",
+        "odin-core",
+        "--lib",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-focused-core.txt",
+      "elapsed_seconds": 93.731,
+      "log_sha256": "b010fc2e7c1a3b00ac6183d9cbfafc0967aa0c24679f342ad4de15be248f8861",
+      "original_guest_log_sha256": "4c485b323b38e10ca77233d8eb2c63b61260baf110df06c55b2ad838d2c45515"
+    },
+    {
+      "name": "focused-protocol",
+      "argv": [
+        "cargo",
+        "test",
+        "-p",
+        "odin-protocol",
+        "--lib",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-focused-protocol.txt",
+      "elapsed_seconds": 148.301,
+      "log_sha256": "f8dc08790ded363b9ba274fd18ca3fe948fbe54e5d5b1fec120f02a82a74922a",
+      "original_guest_log_sha256": "e3719f166b56262983d521de075e9c0f19d7904aa2456a8fd7b46c452d6cb4bb"
+    },
+    {
+      "name": "tests",
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--no-fail-fast",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-tests.txt",
+      "elapsed_seconds": 534.0,
+      "log_sha256": "ec79376d6928a314876b72ab8e80b82d731dc018fa4b6e8d9feae7b22b2c0522",
+      "original_guest_log_sha256": "fc6ba479850eae6ade39da0aa1c276e11427394508f51ee17c59e96129df17c9"
+    },
+    {
+      "name": "clippy",
+      "argv": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-clippy.txt",
+      "elapsed_seconds": 66.978,
+      "log_sha256": "32a17a31902cc6a7a0b3a8fad4b107a04481e12a305c14df8843f1b3a547fd35",
+      "original_guest_log_sha256": "32a17a31902cc6a7a0b3a8fad4b107a04481e12a305c14df8843f1b3a547fd35"
+    },
+    {
+      "name": "build",
+      "argv": [
+        "cargo",
+        "build",
+        "-p",
+        "odin-agent",
+        "--release",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-build.txt",
+      "elapsed_seconds": 757.051,
+      "log_sha256": "8967ce4d60cadc152f9e0c0938fdc3746da3d0759615f44e0abaadfc5e7fd260",
+      "original_guest_log_sha256": "8967ce4d60cadc152f9e0c0938fdc3746da3d0759615f44e0abaadfc5e7fd260"
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "metadata"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-metadata.txt",
+      "elapsed_seconds": 0.098,
+      "log_sha256": "4d39375d134233aaef6aa441bd130cf91c048057619e10938403a2fa3413d9f3",
+      "original_guest_log_sha256": "4d39375d134233aaef6aa441bd130cf91c048057619e10938403a2fa3413d9f3"
+    },
+    {
+      "name": "elf",
+      "argv": [
+        "readelf",
+        "-l",
+        "-d",
+        "/opt/odin-delivery/v3-0fe03ba/odin"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-elf.txt",
+      "elapsed_seconds": 0.038,
+      "log_sha256": "bd3fbbdaad3b229c00ded908c2b12b65f706d745135bf7b51e631aa89879e23b",
+      "original_guest_log_sha256": "d5a8f5bedf0bde367e65fe4f6660f2cd5b4c24f6fbce54a8d31ed11ba4401703"
+    },
+    {
+      "name": "cli",
+      "argv": [
+        "python3",
+        "scripts/cli_smoke.py",
+        "--binary",
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/cli-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-cli.txt",
+      "elapsed_seconds": 2.693,
+      "log_sha256": "c695fb9a1f26a217c038ad2bb9e326fa35bd8766cef1a277db1ab3c9aaec90cb",
+      "original_guest_log_sha256": "c695fb9a1f26a217c038ad2bb9e326fa35bd8766cef1a277db1ab3c9aaec90cb"
+    },
+    {
+      "name": "mcp",
+      "argv": [
+        "python3",
+        "scripts/mcp_smoke.py",
+        "--binary",
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/mcp-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-mcp.txt",
+      "elapsed_seconds": 1.387,
+      "log_sha256": "a5780f7b5e7951b5460c99ebcc92725479e5e28f70e716d7617393f48c1070d3",
+      "original_guest_log_sha256": "a5780f7b5e7951b5460c99ebcc92725479e5e28f70e716d7617393f48c1070d3"
+    },
+    {
+      "name": "http",
+      "argv": [
+        "python3",
+        "scripts/http_smoke.py",
+        "--binary",
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/http-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-http.txt",
+      "elapsed_seconds": 1.361,
+      "log_sha256": "dba8f18bfb96cabb0c63806f02f6b7ca041092aa1d9cfefa7086fd6f0183f965",
+      "original_guest_log_sha256": "dba8f18bfb96cabb0c63806f02f6b7ca041092aa1d9cfefa7086fd6f0183f965"
+    },
+    {
+      "name": "cancellation",
+      "argv": [
+        "python3",
+        "scripts/mcp_cancel_smoke.py",
+        "--binary",
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/cancellation-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-cancellation.txt",
+      "elapsed_seconds": 1.526,
+      "log_sha256": "9bab41a3dab132d003b3a4c5a162005d1148baae06143da756b9e0d2187c6aba",
+      "original_guest_log_sha256": "9bab41a3dab132d003b3a4c5a162005d1148baae06143da756b9e0d2187c6aba"
+    },
+    {
+      "name": "package",
+      "argv": [
+        "bash",
+        "scripts/package.sh",
+        "dist/linux-candidate"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-package.txt",
+      "elapsed_seconds": 36.646,
+      "log_sha256": "f6fe6081ba78057e37c655f3a2b99033b791c7d62120eac73dafac4339f0d089",
+      "original_guest_log_sha256": "f6fe6081ba78057e37c655f3a2b99033b791c7d62120eac73dafac4339f0d089"
+    },
+    {
+      "name": "checksums",
+      "argv": [
+        "sha256sum",
+        "--check",
+        "SHA256SUMS"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba/dist/linux-candidate",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "verification/package-v3-linux-final-checksums.txt",
+      "elapsed_seconds": 0.162,
+      "log_sha256": "f01a5c178ca78612231c390e511dfc722626824d111d82415d3af8f8810b27ca",
+      "original_guest_log_sha256": "f01a5c178ca78612231c390e511dfc722626824d111d82415d3af8f8810b27ca"
+    },
+    {
+      "name": "final-package",
+      "argv": [
+        "python3",
+        "scripts/package_linux.py",
+        "--binary",
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "--expected-binary-sha256",
+        "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+        "--output",
+        "/opt/odin-packaging-a839999/dist/linux-final"
+      ],
+      "cwd": "/opt/odin-packaging-a839999",
+      "uid": 1000,
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 32.201,
+      "log": "verification/package-v3-linux-final-final-package.txt",
+      "log_sha256": "b33b6d3e3e4705e5c85f173ab776a22a029569922a9c50f13e367fad548e1a87",
+      "original_guest_log_sha256": "b33b6d3e3e4705e5c85f173ab776a22a029569922a9c50f13e367fad548e1a87"
+    },
+    {
+      "name": "final-checksums",
+      "argv": [
+        "sha256sum",
+        "--check",
+        "SHA256SUMS"
+      ],
+      "cwd": "/opt/odin-packaging-a839999/dist/linux-final",
+      "uid": 1000,
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.153,
+      "log": "verification/package-v3-linux-final-final-checksums.txt",
+      "log_sha256": "f01a5c178ca78612231c390e511dfc722626824d111d82415d3af8f8810b27ca",
+      "original_guest_log_sha256": "f01a5c178ca78612231c390e511dfc722626824d111d82415d3af8f8810b27ca"
+    },
+    {
+      "name": "installer_lifecycle",
+      "scope": "ACTUAL_DISPOSABLE_GUEST_INSTALLER_QA_COMMAND",
+      "argv": [
+        "python3",
+        "scripts/verify_linux_installer.py",
+        "--package",
+        "/opt/odin-packaging-a839999/dist/linux-final/odin-agent_0.2.0_amd64.deb",
+        "--portable",
+        "/opt/odin-packaging-a839999/dist/linux-final/odin-0.2.0-x86_64-unknown-linux-musl.tar.gz",
+        "--expected-binary-sha256",
+        "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/installer-qa",
+        "--disposable-vm"
+      ],
+      "cwd": "/opt/odin-packaging-a839999",
+      "uid": 0,
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 9.15,
+      "binary_sha256": "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+      "app_build_revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+      "packaging_revision": "a8399993d7c528ad4858b2e4e246e5994eab4bb8",
+      "packaging_files_checked_before_install": 728,
+      "log": "verification/package-v3-linux-final-installer-command.txt",
+      "log_sha256": "24e55f9143c0b652d2dc04f7a60aac6ad2c10202cb033cdf75721864d4a42fbb",
+      "original_guest_log_sha256": "24e55f9143c0b652d2dc04f7a60aac6ad2c10202cb033cdf75721864d4a42fbb"
+    }
+  ],
+  "workspace_tests": {
+    "passed": 211,
+    "failed": 0,
+    "ignored": 3,
+    "suites": [
+      {
+        "suite": "Running unittests src/main.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin-065cb807be46dd46)",
+        "result": "ok",
+        "passed": 6,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.17
+      },
+      {
+        "suite": "Running unittests src/lib.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin_core-0c54b3919272c1b6)",
+        "result": "ok",
+        "passed": 39,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 36.44
+      },
+      {
+        "suite": "Running tests/host_execution_policy.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/host_execution_policy-ba64541467317a85)",
+        "result": "ok",
+        "passed": 8,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.34
+      },
+      {
+        "suite": "Running tests/os_sandbox_native.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/os_sandbox_native-640c48812c5f32be)",
+        "result": "ok",
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.0
+      },
+      {
+        "suite": "Running tests/process_contention.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/process_contention-79aecff78accf8e0)",
+        "result": "ok",
+        "passed": 2,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.27
+      },
+      {
+        "suite": "Running tests/stdin_execution.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/stdin_execution-1a240c4be5a76f9e)",
+        "result": "ok",
+        "passed": 6,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 3.99
+      },
+      {
+        "suite": "Running unittests src/lib.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin_engine-223a18175d9fa8aa)",
+        "result": "ok",
+        "passed": 38,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 2.97
+      },
+      {
+        "suite": "Running tests/completion.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/completion-de085fde3ec1d11c)",
+        "result": "ok",
+        "passed": 19,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 158.66
+      },
+      {
+        "suite": "Running tests/debug_launch_policy.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/debug_launch_policy-d9047625b35d06fc)",
+        "result": "ok",
+        "passed": 3,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 2.75
+      },
+      {
+        "suite": "Running tests/formatter_profiles.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/formatter_profiles-1033a4ac20984d6e)",
+        "result": "ok",
+        "passed": 4,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 1.94
+      },
+      {
+        "suite": "Running tests/ide_tools.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/ide_tools-350c3ff0ac5e6e45)",
+        "result": "ok",
+        "passed": 8,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 8.16
+      },
+      {
+        "suite": "Running tests/invariants.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/invariants-1368bec61f17bb2e)",
+        "result": "ok",
+        "passed": 12,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 4.41
+      },
+      {
+        "suite": "Running unittests src/lib.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin_protocol-1bcd64d528506d80)",
+        "result": "ok",
+        "passed": 35,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.93
+      },
+      {
+        "suite": "Running tests/fixture_protocols.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/fixture_protocols-7eb661ab47df6214)",
+        "result": "ok",
+        "passed": 31,
+        "failed": 0,
+        "ignored": 3,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 40.35
+      },
+      {
+        "suite": "Doc-tests odin_core",
+        "result": "ok",
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.0
+      },
+      {
+        "suite": "Doc-tests odin_engine",
+        "result": "ok",
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.0
+      },
+      {
+        "suite": "Doc-tests odin_protocol",
+        "result": "ok",
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.0
+      }
+    ],
+    "status": "PASS",
+    "exit_code": 0
+  },
+  "focused_core": {
+    "passed": 39,
+    "failed": 0,
+    "ignored": 0,
+    "suites": [
+      {
+        "suite": "Running unittests src/lib.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin_core-5d5ba187b0932aec)",
+        "result": "ok",
+        "passed": 39,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 40.47
+      }
+    ],
+    "status": "PASS",
+    "exit_code": 0
+  },
+  "focused_protocol": {
+    "passed": 35,
+    "failed": 0,
+    "ignored": 0,
+    "suites": [
+      {
+        "suite": "Running unittests src/lib.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin_protocol-b1ac6992125ec576)",
+        "result": "ok",
+        "passed": 35,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 1.57
+      }
+    ],
+    "status": "PASS",
+    "exit_code": 0
+  },
+  "smokes": {
+    "cli": {
+      "status": "PASS",
+      "passed_checks": 64,
+      "failed_checks": 0
+    },
+    "mcp": {
+      "status": "PASS",
+      "passed_checks": 24,
+      "failed_checks": 0
+    },
+    "http": {
+      "status": "PASS",
+      "passed_checks": 36,
+      "failed_checks": 0
+    },
+    "cancellation": {
+      "status": "PASS",
+      "passed_checks": 8,
+      "failed_checks": 0
+    }
+  },
+  "artifacts": [
+    {
+      "path": "dist/package-v3-linux-0fe03ba/odin-0.2.0-x86_64-unknown-linux-musl.tar.gz",
+      "sha256": "1330a1c841c04e8f458aeb721cdbfad5ba6dbfa963ef950ff9a5f9f41a313926",
+      "bytes": 6031332
+    },
+    {
+      "path": "dist/package-v3-linux-0fe03ba/odin-agent_0.2.0_amd64.deb",
+      "sha256": "ced770d1bd076dcc855d71107aeda615e91348ef120e3b7b346a4a51a5f7a21b",
+      "bytes": 4365548
+    },
+    {
+      "path": "dist/package-v3-linux-0fe03ba/odin",
+      "sha256": "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+      "bytes": 14550736
+    }
+  ],
+  "payload_inventory": {
+    "path": "verification/package-v3-linux-final-payload-inventory.json",
+    "sha256": "ec594345acf45012badd0b436afdf5eabb6b97d6db21c920a9a9cf6eb0e3c3cb",
+    "entries": 47
+  },
+  "installer_lifecycle": {
+    "status": "PASS",
+    "report": {
+      "path": "verification/package-v3-linux-final-installer-report.json",
+      "sha256": "bda51691353c70587331badf11e376d1e00e55a5526f70126d35e184da962830"
+    },
+    "install_exit_code": 0,
+    "reinstall_exit_code": 0,
+    "uninstall_exit_code": 0,
+    "checks": [
+      {
+        "name": "fresh_guest_has_no_odin_package",
+        "status": "PASS"
+      },
+      {
+        "name": "no_unmanaged_odin_binary",
+        "status": "PASS"
+      },
+      {
+        "name": "native_debian_package_identity",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_regular_files_only",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_single_safe_prefix",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_inventory_has_exact_payload",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_inventory_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_selected_binary_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "shipped_template_permissions_disabled",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_native_metadata",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_binary_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_native_metadata_matches_portable",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_payload_matches_inventory",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_tool_contracts",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_language_registry",
+        "status": "PASS"
+      },
+      {
+        "name": "same_version_reinstall_binary_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "reinstall_retains_operator_file",
+        "status": "PASS"
+      },
+      {
+        "name": "uninstall_removes_owned_binary",
+        "status": "PASS"
+      },
+      {
+        "name": "uninstall_removes_owned_payload",
+        "status": "PASS"
+      },
+      {
+        "name": "uninstall_retains_operator_file",
+        "status": "PASS"
+      }
+    ]
+  },
+  "package_manifest_note": "The packaging recipe writes its own NOT_RUN lifecycle/test fields because it does not execute those commands; this companion binds separately executed gates and lifecycle QA to the same binary/artifacts.",
+  "signed": false,
+  "linux_native_os_sandbox": "NOT_IMPLEMENTED",
+  "signal_shutdown_acceptance": {
+    "requirement": "ODIN-029-A2",
+    "status": "NOT_RUN",
+    "reason": "No dedicated SIGTERM/SIGINT descendant and journal acceptance was executed."
+  },
+  "not_run": [
+    "physical_linux_host",
+    "cross_version_upgrade",
+    "interruption_rollback",
+    "macOS_runtime",
+    "Linux_real_language_servers_and_debuggers"
+  ],
+  "windows_acceptance": "SEPARATE_EVIDENCE_REQUIRED",
+  "evidence": {
+    "SHA256SUMS": {
+      "path": "verification/package-v3-linux-final-SHA256SUMS",
+      "sha256": "aee9a0d9ecf057a9c271088422b507a3be5814b9bfc1a6d3be8999caa6fce230"
+    },
+    "binary-sha256.json": {
+      "path": "verification/package-v3-linux-final-binary-sha256.json",
+      "sha256": "e190b276e4b02494050a511bad70d87128d55f162dd0e2bf45f91b2087539399"
+    },
+    "build-environment.json": {
+      "path": "verification/package-v3-linux-final-build-environment.json",
+      "sha256": "d6c5469b2992d440192d9516adb546e0d79b198c679178a86523ebf179ddbfc6"
+    },
+    "build-manifest.json": {
+      "path": "verification/package-v3-linux-final-build-manifest.json",
+      "sha256": "5ed3680a97af17b48d0cba2ff8d5103ee7ce2479735c97f830f228e6ccc2374e"
+    },
+    "build.command.json": {
+      "path": "verification/package-v3-linux-final-build.command.json",
+      "sha256": "ae1bc5ec4ba26bc9bd1e55b0d7af2cc555ca3b394bbf32c93495e104d6faca3d"
+    },
+    "build.log": {
+      "path": "verification/package-v3-linux-final-build.txt",
+      "sha256": "8967ce4d60cadc152f9e0c0938fdc3746da3d0759615f44e0abaadfc5e7fd260"
+    },
+    "cancellation-report.json": {
+      "path": "verification/package-v3-linux-final-cancellation-report.json",
+      "sha256": "61535ba20b1a57a498077bfabc92e1a00aadee00f497996d95ecdb9d1c0a661b"
+    },
+    "cancellation.command.json": {
+      "path": "verification/package-v3-linux-final-cancellation.command.json",
+      "sha256": "c13ae99ec8f78c99ced14c93a1c9e35b41fc4bd749c6b0109597e87a047047b1"
+    },
+    "cancellation.log": {
+      "path": "verification/package-v3-linux-final-cancellation.txt",
+      "sha256": "9bab41a3dab132d003b3a4c5a162005d1148baae06143da756b9e0d2187c6aba"
+    },
+    "checksums.command.json": {
+      "path": "verification/package-v3-linux-final-checksums.command.json",
+      "sha256": "8ae8080c153c39aace79d1e31f3f661f6f1044697e32e373eebe059ee0ea6a06"
+    },
+    "checksums.log": {
+      "path": "verification/package-v3-linux-final-checksums.txt",
+      "sha256": "f01a5c178ca78612231c390e511dfc722626824d111d82415d3af8f8810b27ca"
+    },
+    "cli-report.json": {
+      "path": "verification/package-v3-linux-final-cli-report.json",
+      "sha256": "0d709ad5a2eb2762de4e8d3766fc4f025ca4d834bc11f2fef47dd6db16b75378"
+    },
+    "cli.command.json": {
+      "path": "verification/package-v3-linux-final-cli.command.json",
+      "sha256": "30ce9a3719f88cfed072786c2a265de11da74a52d7186fea6577224f9eaab1f3"
+    },
+    "cli.log": {
+      "path": "verification/package-v3-linux-final-cli.txt",
+      "sha256": "c695fb9a1f26a217c038ad2bb9e326fa35bd8766cef1a277db1ab3c9aaec90cb"
+    },
+    "clippy.command.json": {
+      "path": "verification/package-v3-linux-final-clippy.command.json",
+      "sha256": "1a58db07faedf9a8a2d2968af79cb40f1fc893c0c0ddd0257666d9bec51c8192"
+    },
+    "clippy.log": {
+      "path": "verification/package-v3-linux-final-clippy.txt",
+      "sha256": "32a17a31902cc6a7a0b3a8fad4b107a04481e12a305c14df8843f1b3a547fd35"
+    },
+    "dpkg-build-command.json": {
+      "path": "verification/package-v3-linux-final-dpkg-build-command.json",
+      "sha256": "62d8f916cc924b9526dae1d56a75e484338c0a69655cad9cf7f91ee05a944f4d"
+    },
+    "elf.command.json": {
+      "path": "verification/package-v3-linux-final-elf.command.json",
+      "sha256": "cb6b339aa9ee3605d65e0668c9a5f1bb036de2ea5ae7567600f23d3891dfaad9"
+    },
+    "elf.log": {
+      "path": "verification/package-v3-linux-final-elf.txt",
+      "sha256": "bd3fbbdaad3b229c00ded908c2b12b65f706d745135bf7b51e631aa89879e23b",
+      "original_transferred_sha256": "d5a8f5bedf0bde367e65fe4f6660f2cd5b4c24f6fbce54a8d31ed11ba4401703"
+    },
+    "entry-package-report.json": {
+      "path": "verification/package-v3-linux-final-entry-package-report.json",
+      "sha256": "39ab4d305173212d38a597c03cb93e937785e48d5bafaae23fc6b85322c0dbef"
+    },
+    "export-linux-v3.py": {
+      "path": "verification/package-v3-linux-final-export-linux-v3.py",
+      "sha256": "150744b5682576421e0f26f4c6dbf608205e4ee4b70b6d490360c8964876114a"
+    },
+    "final-checksums.command.json": {
+      "path": "verification/package-v3-linux-final-final-checksums.command.json",
+      "sha256": "d990b06f492873b31b6ee9b7c75effb847d252b4b023a100e475945b809f2264"
+    },
+    "final-checksums.log": {
+      "path": "verification/package-v3-linux-final-final-checksums.txt",
+      "sha256": "f01a5c178ca78612231c390e511dfc722626824d111d82415d3af8f8810b27ca"
+    },
+    "final-package.command.json": {
+      "path": "verification/package-v3-linux-final-final-package.command.json",
+      "sha256": "3377a44e6d40bd37fc2ab837c8da0ebcc9af76a99e8a70fb7a3c5e72ff379ab1"
+    },
+    "final-package.log": {
+      "path": "verification/package-v3-linux-final-final-package.txt",
+      "sha256": "b33b6d3e3e4705e5c85f173ab776a22a029569922a9c50f13e367fad548e1a87"
+    },
+    "final-packaging-preflight.json": {
+      "path": "verification/package-v3-linux-final-final-packaging-preflight.json",
+      "sha256": "c748087972552bbbb77f50b4a0d7406fe49e7525ad5678b798e89c8001a87444"
+    },
+    "fixture-report.json": {
+      "path": "verification/package-v3-linux-final-fixture-report.json",
+      "sha256": "b2ada7d3dc7bf88f7eb2a23cab911710bfbc62b16d93f94e95df9dc1fde5a948"
+    },
+    "fixture.command.json": {
+      "path": "verification/package-v3-linux-final-fixture.command.json",
+      "sha256": "c7f882adff07539ceb3ece417a11b18b757b14ce96db81cc030eca49af6407c8"
+    },
+    "fixture.log": {
+      "path": "verification/package-v3-linux-final-fixture.txt",
+      "sha256": "c2a21db936c942535df1de9f87a8832081058bcc3636c2a903e77b4867391dc8"
+    },
+    "fmt.command.json": {
+      "path": "verification/package-v3-linux-final-fmt.command.json",
+      "sha256": "b603c46c14041e7144132abe07b7529ed0b75e511feb529b52aa53d511f9666b"
+    },
+    "fmt.log": {
+      "path": "verification/package-v3-linux-final-fmt.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "focused-core.command.json": {
+      "path": "verification/package-v3-linux-final-focused-core.command.json",
+      "sha256": "ceab55b52cc4fa0418ca318a0f13913e0d1370b21c32eda743a2b4bb3e8d2341"
+    },
+    "focused-core.log": {
+      "path": "verification/package-v3-linux-final-focused-core.txt",
+      "sha256": "b010fc2e7c1a3b00ac6183d9cbfafc0967aa0c24679f342ad4de15be248f8861",
+      "original_transferred_sha256": "4c485b323b38e10ca77233d8eb2c63b61260baf110df06c55b2ad838d2c45515"
+    },
+    "focused-protocol.command.json": {
+      "path": "verification/package-v3-linux-final-focused-protocol.command.json",
+      "sha256": "204bf7af095c4b4ade8cfc2751a6b4a88696f2653d5ecf3f2fb9f555ac7014d7"
+    },
+    "focused-protocol.log": {
+      "path": "verification/package-v3-linux-final-focused-protocol.txt",
+      "sha256": "f8dc08790ded363b9ba274fd18ca3fe948fbe54e5d5b1fec120f02a82a74922a",
+      "original_transferred_sha256": "e3719f166b56262983d521de075e9c0f19d7904aa2456a8fd7b46c452d6cb4bb"
+    },
+    "generated.command.json": {
+      "path": "verification/package-v3-linux-final-generated.command.json",
+      "sha256": "abb51e8f3d86f933e78331984c6ae8d37af7cbc776959b261231544609ab21a4"
+    },
+    "generated.log": {
+      "path": "verification/package-v3-linux-final-generated.txt",
+      "sha256": "0bcc5c510237297d634065069ed630e38871d94d920bdeda00c939ef36100698"
+    },
+    "http-report.json": {
+      "path": "verification/package-v3-linux-final-http-report.json",
+      "sha256": "d56ead5254c063c2ecf2f2b61dc20a6d6fb2fc5dc53a21eb9ec7ffdfb68e0c4e"
+    },
+    "http.command.json": {
+      "path": "verification/package-v3-linux-final-http.command.json",
+      "sha256": "c277475c8bb1201a425fec0b5eec377cee1f762d37ae29a87380a50109ee83db"
+    },
+    "http.log": {
+      "path": "verification/package-v3-linux-final-http.txt",
+      "sha256": "dba8f18bfb96cabb0c63806f02f6b7ca041092aa1d9cfefa7086fd6f0183f965"
+    },
+    "installer-command.json": {
+      "path": "verification/package-v3-linux-final-installer-command.json",
+      "sha256": "a96a6529f65531d0901d2a55d6de44df119c72cd5b7d7e5e5fa21d98aaaf4430"
+    },
+    "installer-command.log": {
+      "path": "verification/package-v3-linux-final-installer-command.txt",
+      "sha256": "24e55f9143c0b652d2dc04f7a60aac6ad2c10202cb033cdf75721864d4a42fbb"
+    },
+    "installer-preflight-first-failure.json": {
+      "path": "verification/package-v3-linux-final-installer-preflight-first-failure.json",
+      "sha256": "f30a91ee1d5a15b45a6368aa9b5200df2c608cafe8bbb16ec60bcfb25a6625f3"
+    },
+    "installer-preflight-first-failure.log": {
+      "path": "verification/package-v3-linux-final-installer-preflight-first-failure.txt",
+      "sha256": "bcfb2375ab6341e8d77846246432c520c5375ff5204e268a6218e31570763853"
+    },
+    "installer-report.json": {
+      "path": "verification/package-v3-linux-final-installer-report.json",
+      "sha256": "bda51691353c70587331badf11e376d1e00e55a5526f70126d35e184da962830"
+    },
+    "installer.exit": {
+      "path": "verification/package-v3-linux-final-installer.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "job.exit": {
+      "path": "verification/package-v3-linux-final-job.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "job.log": {
+      "path": "verification/package-v3-linux-final-job.txt",
+      "sha256": "9d9418c95e4e7e3ad5b1006b751c2506fdfcf1ba9c0503699607b16669abe7b1"
+    },
+    "linux-validation.json": {
+      "path": "verification/package-v3-linux-final-linux-validation.json",
+      "sha256": "ecb2962458a775cfe5281501d062ac3cf2a0ef0e283ba6e03d318f63ef1f8eaf"
+    },
+    "mcp-report.json": {
+      "path": "verification/package-v3-linux-final-mcp-report.json",
+      "sha256": "33ff88d50703dbf41bda14d440b2b7900cf245c8ba2fcdd5847ac0b699221c69"
+    },
+    "mcp.command.json": {
+      "path": "verification/package-v3-linux-final-mcp.command.json",
+      "sha256": "540d7d9ba5b42192bdcdc38153e740cfc061596f27bd3d3070b57579d2d92a90"
+    },
+    "mcp.log": {
+      "path": "verification/package-v3-linux-final-mcp.txt",
+      "sha256": "a5780f7b5e7951b5460c99ebcc92725479e5e28f70e716d7617393f48c1070d3"
+    },
+    "metadata.command.json": {
+      "path": "verification/package-v3-linux-final-metadata.command.json",
+      "sha256": "0e2268983f0454bfbff237ffd6f259fe5337557d3dda306de3c1b4b472693df0"
+    },
+    "metadata.log": {
+      "path": "verification/package-v3-linux-final-metadata.txt",
+      "sha256": "4d39375d134233aaef6aa441bd130cf91c048057619e10938403a2fa3413d9f3"
+    },
+    "package-report.json": {
+      "path": "verification/package-v3-linux-final-package-report.json",
+      "sha256": "5ed3680a97af17b48d0cba2ff8d5103ee7ce2479735c97f830f228e6ccc2374e"
+    },
+    "package.command.json": {
+      "path": "verification/package-v3-linux-final-package.command.json",
+      "sha256": "a6e5dc97be0a757a2c75f857932561ab5c4f7ab9ff849ed5a27d590dc6d0874a"
+    },
+    "package.log": {
+      "path": "verification/package-v3-linux-final-package.txt",
+      "sha256": "f6fe6081ba78057e37c655f3a2b99033b791c7d62120eac73dafac4339f0d089"
+    },
+    "packaging-source-sha256.json": {
+      "path": "verification/package-v3-linux-final-packaging-source-sha256.json",
+      "sha256": "3163f43fb6ab600bf2dde2da423a4042a795a83d378fe3d29b498f8e156601a1"
+    },
+    "packaging-source-stage.json": {
+      "path": "verification/package-v3-linux-final-packaging-source-stage.json",
+      "sha256": "6b832c1b445b9e7c42785e6b97577f127d65434dcd30afb0a219c8c3b3121832"
+    },
+    "payload-inventory.json": {
+      "path": "verification/package-v3-linux-final-payload-inventory.json",
+      "sha256": "ec594345acf45012badd0b436afdf5eabb6b97d6db21c920a9a9cf6eb0e3c3cb"
+    },
+    "publish-policy.command.json": {
+      "path": "verification/package-v3-linux-final-publish-policy.command.json",
+      "sha256": "f19d4399f49e5a82f001c96d3d8be9ec0160fda348041a3b37afba7b554ff076"
+    },
+    "publish-policy.log": {
+      "path": "verification/package-v3-linux-final-publish-policy.txt",
+      "sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983"
+    },
+    "requirements.command.json": {
+      "path": "verification/package-v3-linux-final-requirements.command.json",
+      "sha256": "261e1d224938ad2aa84159a5efe228e1d4b448599a163e1a52ffc0618411245f"
+    },
+    "requirements.log": {
+      "path": "verification/package-v3-linux-final-requirements.txt",
+      "sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2"
+    },
+    "run-linux-candidate-v5.py": {
+      "path": "verification/package-v3-linux-final-run-linux-candidate-v5.py",
+      "sha256": "7403d0729ccbd30c45df38c9a67422ea36ba6bc82641939eee63d204cac05984"
+    },
+    "run-linux-doc-package-v3.py": {
+      "path": "verification/package-v3-linux-final-run-linux-doc-package-v3.py",
+      "sha256": "b6b836a09d6aef7546a785ffb6f7012b5bbe27e7e853d6caf154eb8259489031"
+    },
+    "run-linux-installer-v3-before-owner-preflight.py": {
+      "path": "verification/package-v3-linux-final-run-linux-installer-v3-before-owner-preflight.py",
+      "sha256": "f4ef3709040d48a202165e5dba812b0f0412e7e57bb5f75c550ce1eca8db53b5"
+    },
+    "run-linux-installer-v3.py": {
+      "path": "verification/package-v3-linux-final-run-linux-installer-v3.py",
+      "sha256": "c1b4d33aa4fc32cbd76e107d571f24edcd4f9603be5fe0e72db9b0a149c062c2"
+    },
+    "runner-summary.json": {
+      "path": "verification/package-v3-linux-final-runner-summary.json",
+      "sha256": "50da09f0dc5ab6997c7c08c8753a189954b06255cad796c73fec2f139c8c50d6"
+    },
+    "source-after-generators.json": {
+      "path": "verification/package-v3-linux-final-source-after-generators.json",
+      "sha256": "2be9541521545f29578140791c8c178eb029c2d6dfa6e84ee69d13e74ea98ead"
+    },
+    "source-after-qa.json": {
+      "path": "verification/package-v3-linux-final-source-after-qa.json",
+      "sha256": "2be9541521545f29578140791c8c178eb029c2d6dfa6e84ee69d13e74ea98ead"
+    },
+    "source-preflight.json": {
+      "path": "verification/package-v3-linux-final-source-preflight.json",
+      "sha256": "2be9541521545f29578140791c8c178eb029c2d6dfa6e84ee69d13e74ea98ead"
+    },
+    "source-sha256.json": {
+      "path": "verification/package-v3-linux-final-source-sha256.json",
+      "sha256": "260ba0d539ebf4ab9a3bc0df4ac21343348ca08d6769fb1606b3d98e2df3cbff"
+    },
+    "static-source-report.json": {
+      "path": "verification/package-v3-linux-final-static-source-report.json",
+      "sha256": "90300832152f880d54acceb8853780080039c7eec9897806af1ca0e8baf8bce5"
+    },
+    "static-source.command.json": {
+      "path": "verification/package-v3-linux-final-static-source.command.json",
+      "sha256": "b4030444cc9c81d86c4cf66459d3f8fc8199ff9f5b68d0de19325dfcbb49e858"
+    },
+    "static-source.log": {
+      "path": "verification/package-v3-linux-final-static-source.txt",
+      "sha256": "bed941713f75d31f2994d5ab754e6efc5781067d15d99df20721b4ea7224055a"
+    },
+    "tests.command.json": {
+      "path": "verification/package-v3-linux-final-tests.command.json",
+      "sha256": "98681145558cfe822d0f8c77afdb722958f1b08f364206a841f03ca01c94e6db"
+    },
+    "tests.log": {
+      "path": "verification/package-v3-linux-final-tests.txt",
+      "sha256": "ec79376d6928a314876b72ab8e80b82d731dc018fa4b6e8d9feae7b22b2c0522",
+      "original_transferred_sha256": "fc6ba479850eae6ade39da0aa1c276e11427394508f51ee17c59e96129df17c9"
+    }
+  },
+  "transfer_evidence": {
+    "native-0fe03ba-stage.json": {
+      "path": "verification/package-v3-linux-final-native-0fe03ba-stage.json",
+      "sha256": "12421284bcbf29b42e871cf59fa6482bea5dc494de4c185d3a220042b6ad43de"
+    },
+    "native-0fe03ba-stage.txt": {
+      "path": "verification/package-v3-linux-final-native-0fe03ba-stage.txt",
+      "sha256": "cf8c602d681b7b61ff3ebc5d59a839ca93f7e8a983c4f1f8c9f69a322b27c1e0",
+      "original_transferred_sha256": "660c7275f08a1da91fac3ddcfa1c6f53293bb84e840374f3fcc988c33ac7569d"
+    },
+    "native-a839999-packaging-stage.json": {
+      "path": "verification/package-v3-linux-final-native-a839999-packaging-stage.json",
+      "sha256": "2fe101b8f228e3b951390219c6a3bddfabffecfe68cc8df579b2742297c6ee43"
+    },
+    "native-a839999-packaging-stage.txt": {
+      "path": "verification/package-v3-linux-final-native-a839999-packaging-stage.txt",
+      "sha256": "cc290ef2484a2767b576e9dddb4648230eabe50652d8c2db75b910a0f9dcd582",
+      "original_transferred_sha256": "e17540290a11b827679a98edfd7a3cf6a0e664fbd70028fe0387701a3c14bab9"
+    },
+    "native-final-helpers-stage.json": {
+      "path": "verification/package-v3-linux-final-native-final-helpers-stage.json",
+      "sha256": "abd7db11d5eb49733061bec6bef309f675f42416d86970e4f1057f2cc66f69e6"
+    },
+    "native-final-helpers-stage.txt": {
+      "path": "verification/package-v3-linux-final-native-final-helpers-stage.txt",
+      "sha256": "f60f8ca249b40d04beffe6e5ffa30ebcdb082b5f5ca58ffd06dd4ea6b945f0cc",
+      "original_transferred_sha256": "05b3de4d9dbd6b097701700dd4470f278241b76b1a671b04a35aca699ab18b2f"
+    },
+    "transfer-manifest.json": {
+      "path": "verification/package-v3-linux-final-transfer-manifest.json",
+      "sha256": "215c13a90175e86beba3db9681ec83cb32360436292bdcc9ee2bf741c67a95f1"
+    },
+    "transfer-receipt.json": {
+      "path": "verification/package-v3-linux-final-transfer-receipt.json",
+      "sha256": "ce0e8d15fcef61952bacab1a1a4ed6f8d06993d911101ce256a01d5dead68be6"
+    },
+    "artifact-receiver.py": {
+      "path": "verification/package-v3-linux-final-artifact-receiver.py",
+      "sha256": "4642cc28bce373d9cb97aada5e7516407849613e0bfb9dfead1385160e44d70e"
+    },
+    "receiver-launcher.py": {
+      "path": "verification/package-v3-linux-final-receiver-launcher.py",
+      "sha256": "c032c879c88ae678ce21fa510add864e24216b146cee932e4f666800576a6365"
+    },
+    "artifact-uploader.py": {
+      "path": "verification/package-v3-linux-final-artifact-uploader.py",
+      "sha256": "9d5121b3c60fc24de26c8024f8d39ee39731833f946d6ef287367d203c4cbd30"
+    },
+    "receiver-validation.json": {
+      "path": "verification/package-v3-linux-final-receiver-validation.json",
+      "sha256": "dab9ada0672ee25a6f57f2ffcda893a8fd94c592317c3dab791bba9aed2067c2"
+    }
+  },
+  "qa_preflight_history": [
+    {
+      "status": "FAIL_RETAINED_BEFORE_SUCCESSFUL_OWNER_PREFLIGHT",
+      "outer_exit_code": 1,
+      "git_reported_exit_code": 128,
+      "receipt": {
+        "path": "verification/package-v3-linux-final-installer-preflight-first-failure.json",
+        "sha256": "f30a91ee1d5a15b45a6368aa9b5200df2c608cafe8bbb16ec60bcfb25a6625f3"
+      },
+      "log": {
+        "path": "verification/package-v3-linux-final-installer-preflight-first-failure.txt",
+        "sha256": "bcfb2375ab6341e8d77846246432c520c5375ff5204e268a6218e31570763853"
+      },
+      "driver": {
+        "path": "verification/package-v3-linux-final-run-linux-installer-v3-before-owner-preflight.py",
+        "sha256": "f4ef3709040d48a202165e5dba812b0f0412e7e57bb5f75c550ce1eca8db53b5"
+      },
+      "successful_driver": {
+        "path": "verification/package-v3-linux-final-run-linux-installer-v3.py",
+        "sha256": "c1b4d33aa4fc32cbd76e107d571f24edcd4f9603be5fe0e72db9b0a149c062c2"
+      },
+      "actual_followup": {
+        "path": "verification/package-v3-linux-final-installer-command.json",
+        "sha256": "a96a6529f65531d0901d2a55d6de44df119c72cd5b7d7e5e5fa21d98aaaf4430"
+      },
+      "resolution": "Only the read-only Git source preflight changed to run as checkout owner odin-qa. Package-management QA still ran as root in the disposable guest, without global safe.directory changes or an app rebuild."
+    }
+  ],
+  "qa_evidence_repair": {
+    "finding": "R4-E01",
+    "status": "CLOSED",
+    "report": {
+      "path": "verification/package-v3-evidence-outcomes-02.json",
+      "sha256": "07fc02e8a3b57e9e74b4f59a40061cdf23d32e01ad5d49828add838b44c9aff4"
+    }
+  },
+  "transport": {
+    "status": "PASS",
+    "mode": "TASK_ONLY_FIXED_MANIFEST_LOOPBACK_HTTP_POST",
+    "files_verified": 81,
+    "bytes_verified": 25752727,
+    "receiver_closed_after_completion": true,
+    "expected_file_sha256_and_lengths_verified": true
+  },
+  "normalization": "Public text logs use UTF-8 LF and remove trailing whitespace; original guest log digests and exact transferred source/manifest/receipt bytes are preserved. Actual argv, exits and outcomes are unchanged.",
+  "acceptance_scope": "Native application build and execution, workspace gates, fixture/CLI/transport smokes, unsigned Debian and portable install lifecycle inside a disposable QEMU TCG Debian 12 x86_64 VM. This does not establish Linux OS sandboxing, real Linux language backend parity, macOS, or final Windows acceptance."
+}

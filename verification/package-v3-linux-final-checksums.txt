@@ -1,0 +1,2 @@
+odin-0.2.0-x86_64-unknown-linux-musl.tar.gz: OK
+odin-agent_0.2.0_amd64.deb: OK

@@ -1,0 +1,15 @@
+{"status": "PASS", "app_build_revision": "0fe03ba30da9600c25588d506d7e094df89cf56f", "packaging_revision": "a8399993d7c528ad4858b2e4e246e5994eab4bb8", "bundled_docs_revision": "a8399993d7c528ad4858b2e4e246e5994eab4bb8", "app_files_checked": 688, "packaging_files_checked": 728, "product_equivalence": {"status": "PASS", "compared_files": 99, "scope": ["crates/", "schemas/", "dashboard/", "scripts/", "packaging/", "tests/", "Cargo.toml", "Cargo.lock", "rust-toolchain.toml"]}, "binary_sha256": "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42", "binary_rebuilt": false}
+fatal: detected dubious ownership in repository at '/opt/odin-packaging-a839999'
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory /opt/odin-packaging-a839999
+Traceback (most recent call last):
+  File "/opt/odin-transfer/run-linux-installer-v3.py", line 20, in <module>
+    assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=a.tree,text=True).strip()==a.revision
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'rev-parse', 'HEAD']' returned non-zero exit status 128.

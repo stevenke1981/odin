@@ -1,0 +1,104 @@
+{
+  "scope": "FINAL_QA_EVIDENCE_CLASSIFICATION_AND_PREFLIGHT_HISTORY_BINDINGS",
+  "status": "PASS",
+  "finding": "R4-E01",
+  "finding_status": "SOURCE_FIX_PREVIOUSLY_INDEPENDENTLY_VERIFIED_FINAL_METADATA_EXTENSION_AWAITING_REVIEW",
+  "app_build_revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+  "packaging_revision": "a8399993d7c528ad4858b2e4e246e5994eab4bb8",
+  "change": "Exporter and v5 native runner remain byte-identical to the independently verified R4-E01 fix. The collector adds explicit preserved installer preflight failure history and binds this fresh exact-source six-case inert result. Installer driver only runs its two read-only Git checks as the existing checkout owner.",
+  "actual_inert_exit_code": 0,
+  "native_app_processes_executed_by_inert_checks": 0,
+  "inert_checks": [
+    {
+      "name": "control_complete_runner",
+      "expected_accepted": true,
+      "exporter_accepted": true,
+      "collector_accepted": true,
+      "status": "PASS"
+    },
+    {
+      "name": "all_commands_zero_but_runner_fail",
+      "expected_accepted": false,
+      "exporter_accepted": false,
+      "collector_accepted": false,
+      "status": "PASS"
+    },
+    {
+      "name": "all_commands_zero_but_runner_fail_and_error",
+      "expected_accepted": false,
+      "exporter_accepted": false,
+      "collector_accepted": false,
+      "status": "PASS"
+    },
+    {
+      "name": "all_commands_zero_but_runner_pass_with_error",
+      "expected_accepted": false,
+      "exporter_accepted": false,
+      "collector_accepted": false,
+      "status": "PASS"
+    },
+    {
+      "name": "collector_rejects_legacy_driver",
+      "expected_accepted": false,
+      "collector_accepted": false,
+      "status": "PASS"
+    },
+    {
+      "name": "collector_rejects_missing_driver",
+      "expected_accepted": false,
+      "collector_accepted": false,
+      "status": "PASS"
+    }
+  ],
+  "evidence": {
+    "fixed_exporter": {
+      "path": "verification/package-v3-evidence-outcomes-final-exporter.py",
+      "sha256": "150744b5682576421e0f26f4c6dbf608205e4ee4b70b6d490360c8964876114a"
+    },
+    "final_collector": {
+      "path": "verification/package-v3-evidence-outcomes-final-collector.py",
+      "sha256": "86900325480d292b1cc642285a9c235e6e7f1ba1a71d5a6d5104c91e72d39101"
+    },
+    "installer_driver": {
+      "path": "verification/package-v3-evidence-outcomes-final-installer-driver.py",
+      "sha256": "c1b4d33aa4fc32cbd76e107d571f24edcd4f9603be5fe0e72db9b0a149c062c2"
+    },
+    "check_report": {
+      "path": "verification/package-v3-evidence-outcomes-final-checks-report.json",
+      "sha256": "65d2c70e90339ef5850846b86c2f622f1a40face86c94664ea2ea67f9430ba25"
+    },
+    "actual_command": {
+      "path": "verification/package-v3-evidence-outcomes-final-checks-command.json",
+      "sha256": "dc535caed6cf4eabc06d2c34469fa0863972c65d225694fb205c18a250aab888"
+    },
+    "actual_log": {
+      "path": "verification/package-v3-evidence-outcomes-final-checks-log.txt",
+      "sha256": "69d0cbcf1333979a92bc43958e5ca5dd45dc7e9a0e86932ad6fc9547dfbf2c2c",
+      "original_sha256": "547b57e674cbb86171d21e02c5849b393b52f40ed6f487e6bbbe9395e1aa82dc"
+    },
+    "actual_stage": {
+      "path": "verification/package-v3-evidence-outcomes-final-owner-stage-command.json",
+      "sha256": "3a253e724648a413c9c6a8e440d1144ddd9f92efa24f40ee38cacb5b3bc6bc5a"
+    },
+    "actual_stage_log": {
+      "path": "verification/package-v3-evidence-outcomes-final-owner-stage-log.txt",
+      "sha256": "683fbb7290e982c025b49d69166bd2485b296fc077ebaebd4bfe03300538733f",
+      "original_sha256": "063d45958c78268796f2e56773dd817eb7499dcfdcc2d9990008d834f80459ad"
+    },
+    "first_preflight_command": {
+      "path": "verification/package-v3-evidence-outcomes-final-first-preflight-command.json",
+      "sha256": "9d44bc2e9797176b7daed1458d84fb723bf5bddbc0a1c1fd2e51b63f05f2165b"
+    },
+    "first_preflight_log": {
+      "path": "verification/package-v3-evidence-outcomes-final-first-preflight-log.txt",
+      "sha256": "dc1d5f3a6406a77fb202a7f1c0535aa8321c2e25df89987960fbd689a5e5f03b",
+      "original_sha256": "3e8f7e13c4d23b3cb9fb5f504ac30582b28031c1bb32f86e84a6d85d39c110f0"
+    },
+    "previous_proof": {
+      "path": "verification/package-v3-evidence-outcomes-01.json",
+      "sha256": "5aea6cff2f1e07946b0da412479ed25c39b471a76347cf1b53a93ba6aee43c97"
+    }
+  },
+  "previous_03_and_original_stage_preserved": true,
+  "app_binary_rebuilt_for_qa_fix": false
+}

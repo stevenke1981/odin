@@ -1,0 +1,14 @@
+{
+  "name": "publish-policy",
+  "argv": [
+    "python3",
+    "scripts/check_publish_policy.py"
+  ],
+  "cwd": "/opt/odin-linux-0fe03ba",
+  "uid": 1000,
+  "status": "PASS",
+  "exit_code": 0,
+  "log": "publish-policy.log",
+  "elapsed_seconds": 0.278,
+  "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983"
+}

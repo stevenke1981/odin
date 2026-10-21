@@ -1,0 +1,74 @@
+   Compiling syn v3.0.9
+   Compiling smallvec v1.16.3
+   Compiling serde v1.0.228
+   Compiling percent-encoding v2.3.2
+   Compiling form_urlencoded v1.2.2
+   Compiling parking_lot_core v0.9.12
+   Compiling rusqlite v0.37.0
+   Compiling parking_lot v0.12.5
+   Compiling tokio v1.48.0
+   Compiling uuid v1.18.1
+   Compiling tracing-core v0.1.36
+   Compiling tracing v0.1.41
+   Compiling synstructure v0.14.0
+   Compiling zerofrom-derive v0.1.8
+   Compiling yoke-derive v0.8.4
+   Compiling zerovec-derive v0.11.6
+   Compiling displaydoc v0.2.7
+   Compiling zerofrom v0.1.8
+   Compiling yoke v0.8.3
+   Compiling zerovec v0.11.8
+   Compiling zerotrie v0.2.5
+   Compiling odin-core v0.2.0 (/opt/odin-linux-0fe03ba/crates/odin-core)
+   Compiling tinystr v0.8.4
+   Compiling potential_utf v0.1.6
+   Compiling icu_collections v2.3.0
+   Compiling icu_locale_core v2.3.0
+   Compiling icu_provider v2.3.1
+   Compiling icu_properties v2.3.0
+   Compiling icu_normalizer v2.3.0
+   Compiling idna_adapter v1.2.2
+   Compiling idna v1.1.0
+   Compiling url v2.5.7
+   Compiling odin-protocol v0.2.0 (/opt/odin-linux-0fe03ba/crates/odin-protocol)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2m 26s
+     Running unittests src/lib.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin_protocol-b1ac6992125ec576)
+
+running 35 tests
+test lsp::tests::diagnostic_findings_have_provenance_and_pending_never_means_clean ... ok
+test lsp::tests::hierarchy_budget_counts_escaped_utf8_and_all_retained_fields ... ok
+test lsp::tests::hierarchy_budget_rejects_expired_synchronous_serialization ... ok
+test lsp::tests::nested_symbols_keep_name_paths ... ok
+test lsp::tests::semantic_tokens_reject_surrogate_splits_overlaps_and_bad_legends ... ok
+test rpc::tests::clean_eof ... ok
+test rpc::tests::diagnostic_uri_keys_are_lexical_and_preserve_path_case ... ok
+test rpc::tests::diagnostic_uri_keys_do_not_fold_case_on_non_windows ... ok
+test rpc::tests::duplicate_length_is_rejected ... ok
+test rpc::tests::framed_json_roundtrip ... ok
+test rpc::tests::malformed_headers_are_rejected ... ok
+test rpc::tests::oversize_frame_is_rejected ... ok
+test rpc::tests::truncated_frame_is_rejected ... ok
+test text::tests::ascii_offsets ... ok
+test text::tests::bare_cr_is_a_line_break_and_end_position_uses_utf16 ... ok
+test text::tests::crlf ... ok
+test text::tests::disjoint_edits ... ok
+test text::tests::invalid_line ... ok
+test text::tests::overlapping_edits_fail ... ok
+test text::tests::same_position_inserts_preserve_the_server_order ... ok
+test text::tests::trailing_empty_line ... ok
+test text::tests::unicode_utf16 ... ok
+test text::tests::utf8_byte_offsets_round_trip_utf16_and_line_endings ... ok
+test workspace::tests::annotation_confirmation_and_ambiguous_shapes_fail_closed ... ok
+test workspace::tests::delete_and_recreate_keeps_original_hash ... ok
+test workspace::tests::empty_or_null_workspace_edit_alternatives_preserve_cas_guards ... ok
+test workspace::tests::empty_workspace_edit_alternative_never_relaxes_version_or_overwrite_policy ... ok
+test workspace::tests::external_protected_directory_and_missing_parent_paths_are_rejected ... ok
+test workspace::tests::ignored_resource_operations_remain_safe_and_ordered ... ok
+test workspace::tests::ordered_resources_are_one_guarded_core_transaction ... ok
+test workspace::tests::resource_conflicts_never_overwrite_existing_content ... ok
+test workspace::tests::snapshot_version_and_external_changes_are_all_checked ... ok
+test workspace::tests::successive_text_document_edits_use_the_prior_result ... ok
+test workspace::tests::target_created_after_preview_conflicts_without_any_project_write ... ok
+test workspace::tests::unchanged_existing_source_still_has_a_transaction_hash_guard ... ok
+
+test result: ok. 35 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.57s

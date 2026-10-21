@@ -1,0 +1,83 @@
+{
+  "scope": "LOCAL_TASK_TRANSFER_RECEIVER_CHECKS",
+  "status": "PASS",
+  "checks": [
+    {
+      "method": "GET",
+      "path": "/alpha.txt",
+      "expected": 405,
+      "actual": 405,
+      "status": "PASS"
+    },
+    {
+      "method": "POST",
+      "path": "/alpha.txt?x=1",
+      "expected": 404,
+      "actual": 404,
+      "status": "PASS"
+    },
+    {
+      "method": "POST",
+      "path": "/../alpha.txt",
+      "expected": 404,
+      "actual": 404,
+      "status": "PASS"
+    },
+    {
+      "method": "POST",
+      "path": "/alpha.txt",
+      "expected": 413,
+      "actual": 413,
+      "status": "PASS"
+    },
+    {
+      "method": "POST",
+      "path": "/alpha.txt",
+      "expected": 201,
+      "actual": 201,
+      "status": "PASS"
+    },
+    {
+      "method": "POST",
+      "path": "/alpha.txt",
+      "expected": 409,
+      "actual": 409,
+      "status": "PASS"
+    },
+    {
+      "method": "POST",
+      "path": "/empty.txt",
+      "expected": 201,
+      "actual": 201,
+      "status": "PASS"
+    },
+    {
+      "name": "receiver_process_06",
+      "exit_code": 0,
+      "status": "PASS",
+      "expected_failure": false,
+      "receipt_sha256": "bbc73f1bb1b914d835255e24f60cdcd1ecd5986b4d8d207554af05d3eb9692b7"
+    },
+    {
+      "name": "hash_mismatch_rejected",
+      "actual": 422,
+      "status": "PASS"
+    },
+    {
+      "name": "receiver_process_07",
+      "exit_code": 1,
+      "status": "PASS",
+      "expected_failure": true,
+      "receipt_sha256": "232b8f3691340db715908055a3b12ec226c8cb8434dcd622aca794155208de9d"
+    },
+    {
+      "name": "absolute_deadline_closes_incomplete_request",
+      "elapsed_seconds": 2.140522300003795,
+      "exit_code": 1,
+      "expected_failure": true,
+      "status": "PASS",
+      "receipt_sha256": "c7199a19847d0fe1b26577c575fc98eaaf2b1afee5bd38871b4607b0315deeaf"
+    }
+  ],
+  "script_sha256": "4642cc28bce373d9cb97aada5e7516407849613e0bfb9dfead1385160e44d70e"
+}

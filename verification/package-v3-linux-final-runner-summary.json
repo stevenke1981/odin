@@ -1,0 +1,347 @@
+{
+  "scope": "NATIVE_LINUX_QA_DRIVER",
+  "status": "PASS",
+  "revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+  "uid": 1000,
+  "commands": [
+    {
+      "name": "generated",
+      "argv": [
+        "python3",
+        "scripts/check_generated.py"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "generated.log",
+      "elapsed_seconds": 1.134,
+      "log_sha256": "0bcc5c510237297d634065069ed630e38871d94d920bdeda00c939ef36100698"
+    },
+    {
+      "name": "static-source",
+      "argv": [
+        "python3",
+        "scripts/check_source.py",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/static-source-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "static-source.log",
+      "elapsed_seconds": 2.321,
+      "log_sha256": "bed941713f75d31f2994d5ab754e6efc5781067d15d99df20721b4ea7224055a"
+    },
+    {
+      "name": "fixture",
+      "argv": [
+        "python3",
+        "scripts/fixture_selftest.py",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/fixture-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "fixture.log",
+      "elapsed_seconds": 1.672,
+      "log_sha256": "c2a21db936c942535df1de9f87a8832081058bcc3636c2a903e77b4867391dc8"
+    },
+    {
+      "name": "requirements",
+      "argv": [
+        "python3",
+        "scripts/check_requirements.py"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "requirements.log",
+      "elapsed_seconds": 1.863,
+      "log_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2"
+    },
+    {
+      "name": "publish-policy",
+      "argv": [
+        "python3",
+        "scripts/check_publish_policy.py"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "publish-policy.log",
+      "elapsed_seconds": 0.278,
+      "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983"
+    },
+    {
+      "name": "fmt",
+      "argv": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "fmt.log",
+      "elapsed_seconds": 4.648,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "focused-core",
+      "argv": [
+        "cargo",
+        "test",
+        "-p",
+        "odin-core",
+        "--lib",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "focused-core.log",
+      "elapsed_seconds": 93.731,
+      "log_sha256": "4c485b323b38e10ca77233d8eb2c63b61260baf110df06c55b2ad838d2c45515"
+    },
+    {
+      "name": "focused-protocol",
+      "argv": [
+        "cargo",
+        "test",
+        "-p",
+        "odin-protocol",
+        "--lib",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "focused-protocol.log",
+      "elapsed_seconds": 148.301,
+      "log_sha256": "e3719f166b56262983d521de075e9c0f19d7904aa2456a8fd7b46c452d6cb4bb"
+    },
+    {
+      "name": "tests",
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--no-fail-fast",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "tests.log",
+      "elapsed_seconds": 534.0,
+      "log_sha256": "fc6ba479850eae6ade39da0aa1c276e11427394508f51ee17c59e96129df17c9"
+    },
+    {
+      "name": "clippy",
+      "argv": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "clippy.log",
+      "elapsed_seconds": 66.978,
+      "log_sha256": "32a17a31902cc6a7a0b3a8fad4b107a04481e12a305c14df8843f1b3a547fd35"
+    },
+    {
+      "name": "build",
+      "argv": [
+        "cargo",
+        "build",
+        "-p",
+        "odin-agent",
+        "--release",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "build.log",
+      "elapsed_seconds": 757.051,
+      "log_sha256": "8967ce4d60cadc152f9e0c0938fdc3746da3d0759615f44e0abaadfc5e7fd260"
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "metadata"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "metadata.log",
+      "elapsed_seconds": 0.098,
+      "log_sha256": "4d39375d134233aaef6aa441bd130cf91c048057619e10938403a2fa3413d9f3"
+    },
+    {
+      "name": "elf",
+      "argv": [
+        "readelf",
+        "-l",
+        "-d",
+        "/opt/odin-delivery/v3-0fe03ba/odin"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "elf.log",
+      "elapsed_seconds": 0.038,
+      "log_sha256": "d5a8f5bedf0bde367e65fe4f6660f2cd5b4c24f6fbce54a8d31ed11ba4401703"
+    },
+    {
+      "name": "cli",
+      "argv": [
+        "python3",
+        "scripts/cli_smoke.py",
+        "--binary",
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/cli-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "cli.log",
+      "elapsed_seconds": 2.693,
+      "log_sha256": "c695fb9a1f26a217c038ad2bb9e326fa35bd8766cef1a277db1ab3c9aaec90cb"
+    },
+    {
+      "name": "mcp",
+      "argv": [
+        "python3",
+        "scripts/mcp_smoke.py",
+        "--binary",
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/mcp-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "mcp.log",
+      "elapsed_seconds": 1.387,
+      "log_sha256": "a5780f7b5e7951b5460c99ebcc92725479e5e28f70e716d7617393f48c1070d3"
+    },
+    {
+      "name": "http",
+      "argv": [
+        "python3",
+        "scripts/http_smoke.py",
+        "--binary",
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/http-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "http.log",
+      "elapsed_seconds": 1.361,
+      "log_sha256": "dba8f18bfb96cabb0c63806f02f6b7ca041092aa1d9cfefa7086fd6f0183f965"
+    },
+    {
+      "name": "cancellation",
+      "argv": [
+        "python3",
+        "scripts/mcp_cancel_smoke.py",
+        "--binary",
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/cancellation-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "cancellation.log",
+      "elapsed_seconds": 1.526,
+      "log_sha256": "9bab41a3dab132d003b3a4c5a162005d1148baae06143da756b9e0d2187c6aba"
+    },
+    {
+      "name": "package",
+      "argv": [
+        "bash",
+        "scripts/package.sh",
+        "dist/linux-candidate"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "package.log",
+      "elapsed_seconds": 36.646,
+      "log_sha256": "f6fe6081ba78057e37c655f3a2b99033b791c7d62120eac73dafac4339f0d089"
+    },
+    {
+      "name": "checksums",
+      "argv": [
+        "sha256sum",
+        "--check",
+        "SHA256SUMS"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba/dist/linux-candidate",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "checksums.log",
+      "elapsed_seconds": 0.162,
+      "log_sha256": "f01a5c178ca78612231c390e511dfc722626824d111d82415d3af8f8810b27ca"
+    }
+  ],
+  "driver": {
+    "path": "run-linux-candidate-v5.py",
+    "sha256": "7403d0729ccbd30c45df38c9a67422ea36ba6bc82641939eee63d204cac05984"
+  }
+}

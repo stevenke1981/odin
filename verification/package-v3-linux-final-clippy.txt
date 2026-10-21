@@ -1,0 +1,5 @@
+    Checking odin-core v0.2.0 (/opt/odin-linux-0fe03ba/crates/odin-core)
+   Compiling odin-agent v0.2.0 (/opt/odin-linux-0fe03ba/crates/odin)
+    Checking odin-protocol v0.2.0 (/opt/odin-linux-0fe03ba/crates/odin-protocol)
+    Checking odin-engine v0.2.0 (/opt/odin-linux-0fe03ba/crates/odin-engine)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1m 06s

@@ -1,0 +1,16 @@
+{
+  "name": "elf",
+  "argv": [
+    "readelf",
+    "-l",
+    "-d",
+    "/opt/odin-delivery/v3-0fe03ba/odin"
+  ],
+  "cwd": "/opt/odin-linux-0fe03ba",
+  "uid": 1000,
+  "status": "PASS",
+  "exit_code": 0,
+  "log": "elf.log",
+  "elapsed_seconds": 0.038,
+  "log_sha256": "d5a8f5bedf0bde367e65fe4f6660f2cd5b4c24f6fbce54a8d31ed11ba4401703"
+}

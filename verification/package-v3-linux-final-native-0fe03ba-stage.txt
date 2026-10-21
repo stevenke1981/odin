@@ -1,0 +1,30 @@
+> > > > > > > > > > > > > > > > > > > > > > > > > > > > 3.11.2-1+deb12u1
+/opt/odin-transfer/odin-0fe03ba.bundle: OK
+/opt/odin-transfer/odin-0fe03ba-source-sha256.json: OK
+/opt/odin-transfer/run-linux-candidate-v5.py: OK
+The bundle contains this ref:
+0fe03ba30da9600c25588d506d7e094df89cf56f HEAD
+The bundle records a complete history.
+The bundle uses this hash algorithm: sha1
+/opt/odin-transfer/odin-0fe03ba.bundle is okay
+Note: switching to '0fe03ba30da9600c25588d506d7e094df89cf56f'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+{"status": "PASS", "revision": "0fe03ba30da9600c25588d506d7e094df89cf56f", "checked_files": 688, "clean": true}
+LINUX_CORRECTED_CANDIDATE_JOB_PID=30086
+
+ODIN_VM_d8425c7e718d4cb386d7089565094a1b:0

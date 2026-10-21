@@ -1,0 +1,7 @@
+{
+  "command": "set -eu\ncd /opt/odin-transfer\ncurl --fail --silent --show-error http://10.0.2.2:47652/run-linux-doc-package-v3.py -o run-linux-doc-package-v3.py\ncurl --fail --silent --show-error http://10.0.2.2:47652/run-linux-installer-v3.py -o run-linux-installer-v3.py\ncurl --fail --silent --show-error http://10.0.2.2:47652/export-linux-v3.py -o export-linux-v3.py\nsha256sum --check <<'EOF'\nb6b836a09d6aef7546a785ffb6f7012b5bbe27e7e853d6caf154eb8259489031  run-linux-doc-package-v3.py\nf4ef3709040d48a202165e5dba812b0f0412e7e57bb5f75c550ce1eca8db53b5  run-linux-installer-v3.py\n26d37ea0c858077a26b2ab15376b8be386603418c34dc96758af29a6a8dd2b2e  export-linux-v3.py\nEOF\npython3 -m py_compile run-linux-doc-package-v3.py run-linux-installer-v3.py export-linux-v3.py\nchmod 0444 run-linux-doc-package-v3.py run-linux-installer-v3.py export-linux-v3.py\ncat /opt/odin-delivery/v3-0fe03ba/job.log\ntest ! -f /opt/odin-delivery/v3-0fe03ba/clippy.command.json || cat /opt/odin-delivery/v3-0fe03ba/clippy.command.json\n",
+  "exit_code": 0,
+  "timed_out": false,
+  "serial": "127.0.0.1:47651",
+  "output": "native-final-helpers-stage.txt"
+}

@@ -1,0 +1,18 @@
+{
+  "scope": "FAILED_TASK_INSTALLER_DRIVER_SOURCE_PREFLIGHT_BEFORE_DPKG",
+  "status": "FAIL",
+  "outer_exit_code": 1,
+  "git_reported_exit_code": 128,
+  "uid": 0,
+  "git_argv": [
+    "git",
+    "rev-parse",
+    "HEAD"
+  ],
+  "cwd": "/opt/odin-packaging-a839999",
+  "installer_command_started": false,
+  "dpkg_started": false,
+  "driver_sha256": "f4ef3709040d48a202165e5dba812b0f0412e7e57bb5f75c550ce1eca8db53b5",
+  "log_sha256": "bcfb2375ab6341e8d77846246432c520c5375ff5204e268a6218e31570763853",
+  "resolution": "Run read-only Git preflight as the existing checkout owner odin-qa; keep root only for disposable guest package-management QA. No global safe.directory changes and no app rebuild."
+}

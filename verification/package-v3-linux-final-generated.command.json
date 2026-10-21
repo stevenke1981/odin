@@ -1,0 +1,14 @@
+{
+  "name": "generated",
+  "argv": [
+    "python3",
+    "scripts/check_generated.py"
+  ],
+  "cwd": "/opt/odin-linux-0fe03ba",
+  "uid": 1000,
+  "status": "PASS",
+  "exit_code": 0,
+  "log": "generated.log",
+  "elapsed_seconds": 1.134,
+  "log_sha256": "0bcc5c510237297d634065069ed630e38871d94d920bdeda00c939ef36100698"
+}

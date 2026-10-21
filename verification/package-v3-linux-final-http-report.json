@@ -1,0 +1,156 @@
+{
+  "scope": "REAL_ODIN_BINARY_LOOPBACK_HTTP_AND_MCP_SMOKE",
+  "status": "PASS",
+  "binary": "/opt/odin-delivery/v3-0fe03ba/odin",
+  "binary_sha256": "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+  "platform": "Linux-6.1.0-53-amd64-x86_64-with-glibc2.36",
+  "checks": [
+    {
+      "name": "server_starts",
+      "status": "PASS"
+    },
+    {
+      "name": "unauthenticated_rejected:/api/projects",
+      "status": "PASS"
+    },
+    {
+      "name": "unauthenticated_rejected:/api/status",
+      "status": "PASS"
+    },
+    {
+      "name": "unauthenticated_rejected:/api/metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "unauthenticated_rejected:/api/audit/demo",
+      "status": "PASS"
+    },
+    {
+      "name": "unauthenticated_rejected:/api/audit/demo/export",
+      "status": "PASS"
+    },
+    {
+      "name": "unauthenticated_rejected:/mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "authenticated_projects",
+      "status": "PASS"
+    },
+    {
+      "name": "no_store_api",
+      "status": "PASS"
+    },
+    {
+      "name": "host_header_rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "cross_origin_rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong_token_rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "dashboard_csp",
+      "status": "PASS"
+    },
+    {
+      "name": "build_metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "readonly_status",
+      "status": "PASS"
+    },
+    {
+      "name": "api_methods_readonly",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_http_status:initialize",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_response:initialize",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_initialize",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_notification_accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_http_status:tools/list",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_response:tools/list",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_catalog_names",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_catalog_schemas",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_http_status:tools/call",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_response:tools/call",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_real_tool_call",
+      "status": "PASS"
+    },
+    {
+      "name": "api_no_raw_content_or_token:/api/projects",
+      "status": "PASS"
+    },
+    {
+      "name": "api_no_raw_content_or_token:/api/status",
+      "status": "PASS"
+    },
+    {
+      "name": "api_no_raw_content_or_token:/api/metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "api_no_raw_content_or_token:/api/audit/demo",
+      "status": "PASS"
+    },
+    {
+      "name": "api_no_raw_content_or_token:/api/audit/demo/export",
+      "status": "PASS"
+    },
+    {
+      "name": "audit_records_real_tool",
+      "status": "PASS"
+    },
+    {
+      "name": "audit_metadata_allowlist",
+      "status": "PASS"
+    },
+    {
+      "name": "audit_jsonl_export",
+      "status": "PASS"
+    },
+    {
+      "name": "no_token_in_server_log",
+      "status": "PASS"
+    }
+  ],
+  "error": null,
+  "full_mcp_http_conformance": false,
+  "timestamp_unix": 1792559197.5997036
+}

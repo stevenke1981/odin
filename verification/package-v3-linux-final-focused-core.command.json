@@ -1,0 +1,23 @@
+{
+  "name": "focused-core",
+  "argv": [
+    "cargo",
+    "test",
+    "-p",
+    "odin-core",
+    "--lib",
+    "--target",
+    "x86_64-unknown-linux-musl",
+    "--locked",
+    "--offline",
+    "--",
+    "--test-threads=1"
+  ],
+  "cwd": "/opt/odin-linux-0fe03ba",
+  "uid": 1000,
+  "status": "PASS",
+  "exit_code": 0,
+  "log": "focused-core.log",
+  "elapsed_seconds": 93.731,
+  "log_sha256": "4c485b323b38e10ca77233d8eb2c63b61260baf110df06c55b2ad838d2c45515"
+}

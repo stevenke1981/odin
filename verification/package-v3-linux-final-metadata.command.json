@@ -1,0 +1,14 @@
+{
+  "name": "metadata",
+  "argv": [
+    "/opt/odin-delivery/v3-0fe03ba/odin",
+    "metadata"
+  ],
+  "cwd": "/opt/odin-linux-0fe03ba",
+  "uid": 1000,
+  "status": "PASS",
+  "exit_code": 0,
+  "log": "metadata.log",
+  "elapsed_seconds": 0.098,
+  "log_sha256": "4d39375d134233aaef6aa441bd130cf91c048057619e10938403a2fa3413d9f3"
+}

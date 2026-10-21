@@ -1,0 +1,34 @@
+{
+  "scope": "PYTHON_MOCK_PEERS_ONLY",
+  "status": "PASS",
+  "python": "3.11.2 (main, May 12 2026, 05:17:27) [GCC 12.2.0]",
+  "checks": [
+    {
+      "name": "mock_lsp_initialize",
+      "status": "PASS"
+    },
+    {
+      "name": "mock_lsp_symbol_reply",
+      "status": "PASS"
+    },
+    {
+      "name": "mock_lsp_diagnostic_reply",
+      "status": "PASS"
+    },
+    {
+      "name": "mock_dap_initialize",
+      "status": "PASS"
+    },
+    {
+      "name": "mock_dap_configuration_done",
+      "status": "PASS"
+    },
+    {
+      "name": "mock_dap_launch_unblocks",
+      "status": "PASS"
+    }
+  ],
+  "rust_compiled": false,
+  "real_backend_coverage": false,
+  "timestamp_unix": 1792557584.5754104
+}

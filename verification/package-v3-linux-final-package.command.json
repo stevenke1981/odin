@@ -1,0 +1,15 @@
+{
+  "name": "package",
+  "argv": [
+    "bash",
+    "scripts/package.sh",
+    "dist/linux-candidate"
+  ],
+  "cwd": "/opt/odin-linux-0fe03ba",
+  "uid": 1000,
+  "status": "PASS",
+  "exit_code": 0,
+  "log": "package.log",
+  "elapsed_seconds": 36.646,
+  "log_sha256": "f6fe6081ba78057e37c655f3a2b99033b791c7d62120eac73dafac4339f0d089"
+}

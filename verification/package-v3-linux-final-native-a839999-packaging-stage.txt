@@ -1,0 +1,27 @@
+> > > > > > > > > > > > > > > > > > > > > > > > > > > > > > /opt/odin-transfer/odin-a839999.bundle: OK
+/opt/odin-transfer/odin-a839999-source-sha256.json: OK
+The bundle contains this ref:
+a8399993d7c528ad4858b2e4e246e5994eab4bb8 HEAD
+The bundle records a complete history.
+The bundle uses this hash algorithm: sha1
+/opt/odin-transfer/odin-a839999.bundle is okay
+Note: switching to 'a8399993d7c528ad4858b2e4e246e5994eab4bb8'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+{"status": "PASS", "app_build_revision": "0fe03ba30da9600c25588d506d7e094df89cf56f", "packaging_revision": "a8399993d7c528ad4858b2e4e246e5994eab4bb8", "bundled_docs_revision": "a8399993d7c528ad4858b2e4e246e5994eab4bb8", "packaging_files_checked": 728, "product_equivalence": {"status": "PASS", "compared_files": 99}, "packaging_source_clean": true, "binary_rebuilt": false}
+
+ODIN_VM_f8ff3b0b8f2c438388b917cbf42841a3:0

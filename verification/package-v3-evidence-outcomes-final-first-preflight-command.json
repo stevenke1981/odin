@@ -1,0 +1,7 @@
+{
+  "command": "cat /opt/odin-transfer/final-postpack-0fe03ba.exit; tail -n 30 /opt/odin-transfer/final-postpack-0fe03ba.log; test ! -f /opt/odin-delivery/v3-0fe03ba/installer-command.json || cat /opt/odin-delivery/v3-0fe03ba/installer-command.json; test ! -f /opt/odin-delivery/v3-0fe03ba/installer-qa/installer-report.json || tail -n 40 /opt/odin-delivery/v3-0fe03ba/installer-qa/installer-report.json",
+  "exit_code": 0,
+  "timed_out": false,
+  "serial": "127.0.0.1:47651",
+  "output": "native-final-package-first-result.txt"
+}

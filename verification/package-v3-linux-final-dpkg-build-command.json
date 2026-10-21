@@ -1,0 +1,12 @@
+{
+  "command": [
+    "dpkg-deb",
+    "--root-owner-group",
+    "--build",
+    "/opt/odin-packaging-a839999/dist/linux-final/.deb-stage-x7ypjd4e",
+    "/opt/odin-packaging-a839999/dist/linux-final/odin-agent_0.2.0_amd64.deb"
+  ],
+  "exit_code": 0,
+  "stdout": "dpkg-deb: building package 'odin-agent' in '/opt/odin-packaging-a839999/dist/linux-final/odin-agent_0.2.0_amd64.deb'.\n",
+  "stderr": ""
+}

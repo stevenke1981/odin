@@ -1,0 +1,190 @@
+[
+  {
+    "path": "LICENSE",
+    "sha256": "4dc38da916919233d88cd17b3b1cafa6fa723aead4776792d00d47e79f429043"
+  },
+  {
+    "path": "README.md",
+    "sha256": "0ead58af72158897ae4cb205ff906c91083b6f7740b50252cbb2057640e858c7"
+  },
+  {
+    "path": "THIRD_PARTY_NOTICES.md",
+    "sha256": "ffd4426faae7cad2d58bd6a76ea083965c2838245588f7828c409f55b3301259"
+  },
+  {
+    "path": "build-metadata.json",
+    "sha256": "4d39375d134233aaef6aa441bd130cf91c048057619e10938403a2fa3413d9f3"
+  },
+  {
+    "path": "docs/API.md",
+    "sha256": "4255709bd3d0a2abfe73b5060cc0257047703d4d1c305001f9626a0440201c5b"
+  },
+  {
+    "path": "docs/ARCHITECTURE.md",
+    "sha256": "fe7d449980bf1f70b8e3bd882ebf0ef484997ed33e6b49333da79c8e325d0d7c"
+  },
+  {
+    "path": "docs/CORE_IMPLEMENTATION.md",
+    "sha256": "7d9ff3c2a0530d5d792a6db75e1060725a0f80dde9ef4327dd168e99a94a07ae"
+  },
+  {
+    "path": "docs/DEPENDENCIES.md",
+    "sha256": "4e11b5a504eaf17d6cc169543fde5307bcdf93c91729fdd8a1be5ae403a4cab4"
+  },
+  {
+    "path": "docs/ENGINE_IMPLEMENTATION.md",
+    "sha256": "5307caffa17de61f3f004f7189f245c91a42308f69d41f0e6a2199fae8c66985"
+  },
+  {
+    "path": "docs/FEATURE_SPEC.md",
+    "sha256": "3103a2e0cd555f733a2f812a7ff6c806e9777b31d1c43d6f0fe0cec40fc2de0b"
+  },
+  {
+    "path": "docs/IDE_IMPLEMENTATION.md",
+    "sha256": "3eaf432c4b65486fffcd1f9d5522b8785e1775ac8acae69cd7a6d20572542f21"
+  },
+  {
+    "path": "docs/IMPLEMENTATION_BACKLOG.md",
+    "sha256": "2e298e8bc3ee192e2cd044202709e30e39bbf7477bfc2748d61cd11a809dc70e"
+  },
+  {
+    "path": "docs/KNOWN_LIMITATIONS.md",
+    "sha256": "70f3760a390fc2a9ae61d73fe70d42ae5caa99ac0daee3f9841b1adf83dab7dc"
+  },
+  {
+    "path": "docs/LANGUAGE_BACKENDS.md",
+    "sha256": "13cb5c7562f22be34783c37d30e083afa8666a3b318c05799a10242d311349ad"
+  },
+  {
+    "path": "docs/LANGUAGE_SUPPORT.md",
+    "sha256": "55a9456c3a2e9f0d8df00f47daf6a5c998dea38e0ae0fc0d237a9c0971bc8789"
+  },
+  {
+    "path": "docs/NATIVE_FORMATTERS.md",
+    "sha256": "70280f5c8414c92b9efb7b334937e75380a95f44f0607e0363a840fa369f5b01"
+  },
+  {
+    "path": "docs/OS_SANDBOX.md",
+    "sha256": "cf28280857d0b06c4ced2ce739a1b3f07e9a553d648ce0d4fbe579be973f5e89"
+  },
+  {
+    "path": "docs/PACKAGING_WINDOWS_LINUX.md",
+    "sha256": "b804dbdad84317ea67307c17871024378b4f16747934168996f86c4531c275d4"
+  },
+  {
+    "path": "docs/PLATFORM_IMPLEMENTATION.md",
+    "sha256": "f02e580eb423ea42bc4e9fd3dd1150eed1c74ad0347e482faa8eeb2a96f3ad2c"
+  },
+  {
+    "path": "docs/PROTOCOL_IDE.md",
+    "sha256": "45a4639dfefbba13f950f56206e1cd347e9d2705d1d4c9449b8690c93e2a07bf"
+  },
+  {
+    "path": "docs/PROTOCOL_IMPLEMENTATION.md",
+    "sha256": "a6d85c256f04d51cd40b45c592d52ad449463a918d3eb4f89b7313d395eb572a"
+  },
+  {
+    "path": "docs/PUBLISH_GITHUB.md",
+    "sha256": "a0b7d0ae468dd4d473401e2cae8d9a7b6e4f0fc5782dc2d70e727015c6405846"
+  },
+  {
+    "path": "docs/RELEASE_GATES.md",
+    "sha256": "4bccc6ebdaf02193e6b241c615ef6be9c364d82bad1a59c97189371bbc53d234"
+  },
+  {
+    "path": "docs/ROADMAP.md",
+    "sha256": "fffdfe79560cdc8f16cb2e5ac76b4a3d8f3ba348ea46148cfd79d48a1633544b"
+  },
+  {
+    "path": "docs/SECURITY.md",
+    "sha256": "7db2f289b8562e8be3bc201a8dc789eb11fe2a71dda0a594f892f6dfaaa0a339"
+  },
+  {
+    "path": "docs/SERENA_COVERAGE_PLAN.md",
+    "sha256": "ccaa2c91e8165f73d0d1b83e5ab29557951f912ff4d9846ebe483cae18732e77"
+  },
+  {
+    "path": "docs/SERENA_PARITY.md",
+    "sha256": "247f75449cb9188af64a625cbcbe88afc36abd5dfe423780ea9d2b7a31014f05"
+  },
+  {
+    "path": "docs/SOURCES.md",
+    "sha256": "943995dc7a750e6aa52c597bd58d6fdf4dc435c536eb4617d03989edfc9b6aa0"
+  },
+  {
+    "path": "docs/STANDALONE.md",
+    "sha256": "3c2f7bc61db4ff58cd0a642448eb48de62190603a4b2fb31be06646527df1ff1"
+  },
+  {
+    "path": "docs/THIRD_PARTY_LICENSES.txt",
+    "sha256": "4de450b34e325e2e0e4b493eb8f3a3a2d3a85fedd328ef0a260a2445b97c0b95"
+  },
+  {
+    "path": "docs/USAGE.md",
+    "sha256": "095e8dc60d781a8a64b6ae68995ab297e68916f24f03e3242a50d3423386238b"
+  },
+  {
+    "path": "docs/dependency-licenses/index.json",
+    "sha256": "98a44a0e1ae77a7b0a948ac59c3d59ee10118784500f7e2e0d0199d3dbe5592d"
+  },
+  {
+    "path": "docs/dependency-licenses/valuable-0.1.1-MIT.txt",
+    "sha256": "ed60d479b8fd1f64e9cbc3de449a16a53ac1b3d1b6aeb9bf9d190a8e93061b44"
+  },
+  {
+    "path": "docs/dependency-licenses/winapi-0.4.0-MIT.txt",
+    "sha256": "ce7bc3499fee93d5022ef430d5e4201e79a6d9154f3974e42f41349f0569e09b"
+  },
+  {
+    "path": "docs/dispatch-language-installers-v3.md",
+    "sha256": "ab620a154bba54a28abaf3a5927a1347840e452f06bb430be6ff730db7c55268"
+  },
+  {
+    "path": "docs/dispatch-plan.md",
+    "sha256": "59756575702abc3269ec182c5b941e473de1692f481f18fa8ed24f5422354d9d"
+  },
+  {
+    "path": "docs/dispatch-sandbox-ide.md",
+    "sha256": "817431aeda4d7a6715a69052e93416453216827b969542f9f0070f7843fea805"
+  },
+  {
+    "path": "docs/serena-parity.csv",
+    "sha256": "e2beb7db815f3355179de261eeb07379bc5c1c2749e4489a869435b8974f847a"
+  },
+  {
+    "path": "docs/serena-parity.json",
+    "sha256": "e5c5a1b3e17c5b665432f23916adf3d44c66327cb023b4e1997e7836fee848da"
+  },
+  {
+    "path": "docs/specs/CORE_PROTOCOL.md",
+    "sha256": "83acb528b940c4fccbddb9cc4fb349a9670ad92eb0794c18a05b5596e8242308"
+  },
+  {
+    "path": "docs/specs/LANGUAGE_DEBUG_INSPECTIONS.md",
+    "sha256": "f29bd61522b5b2f9185a37e30a9874520eb174965d645407398f60ec6db1b23f"
+  },
+  {
+    "path": "docs/specs/OPERATIONS_RELEASE.md",
+    "sha256": "16f995704daa387041395123ff203c48a1c55ffd7e054817ee101982c7826ecc"
+  },
+  {
+    "path": "docs/specs/REFACTOR_TRANSACTION.md",
+    "sha256": "579f31abc2fccdc6601b64ed619a51868b7ab7c66d06199ed02f5e508faa9ac9"
+  },
+  {
+    "path": "odin",
+    "sha256": "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42"
+  },
+  {
+    "path": "odin.example.toml",
+    "sha256": "ff8b34e23ff47ce6e1f4e15059de7fc3d4a7cff37181ef4ed951b2d4b5980e32"
+  },
+  {
+    "path": "schemas/tools.json",
+    "sha256": "d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea"
+  },
+  {
+    "path": "verification/sbom.cdx.json",
+    "sha256": "ff87a7793794945da79cb8fa1c1b5c326fc78f2711aa222b9e809bc16b07b999"
+  }
+]

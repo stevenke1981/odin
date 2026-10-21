@@ -1,0 +1,5 @@
+   Compiling odin-core v0.2.0 (/opt/odin-linux-0fe03ba/crates/odin-core)
+   Compiling odin-agent v0.2.0 (/opt/odin-linux-0fe03ba/crates/odin)
+   Compiling odin-protocol v0.2.0 (/opt/odin-linux-0fe03ba/crates/odin-protocol)
+   Compiling odin-engine v0.2.0 (/opt/odin-linux-0fe03ba/crates/odin-engine)
+    Finished `release` profile [optimized] target(s) in 12m 36s

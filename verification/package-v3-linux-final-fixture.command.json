@@ -1,0 +1,16 @@
+{
+  "name": "fixture",
+  "argv": [
+    "python3",
+    "scripts/fixture_selftest.py",
+    "--output",
+    "/opt/odin-delivery/v3-0fe03ba/fixture-report.json"
+  ],
+  "cwd": "/opt/odin-linux-0fe03ba",
+  "uid": 1000,
+  "status": "PASS",
+  "exit_code": 0,
+  "log": "fixture.log",
+  "elapsed_seconds": 1.672,
+  "log_sha256": "c2a21db936c942535df1de9f87a8832081058bcc3636c2a903e77b4867391dc8"
+}

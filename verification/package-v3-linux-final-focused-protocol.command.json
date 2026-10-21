@@ -1,0 +1,23 @@
+{
+  "name": "focused-protocol",
+  "argv": [
+    "cargo",
+    "test",
+    "-p",
+    "odin-protocol",
+    "--lib",
+    "--target",
+    "x86_64-unknown-linux-musl",
+    "--locked",
+    "--offline",
+    "--",
+    "--test-threads=1"
+  ],
+  "cwd": "/opt/odin-linux-0fe03ba",
+  "uid": 1000,
+  "status": "PASS",
+  "exit_code": 0,
+  "log": "focused-protocol.log",
+  "elapsed_seconds": 148.301,
+  "log_sha256": "e3719f166b56262983d521de075e9c0f19d7904aa2456a8fd7b46c452d6cb4bb"
+}

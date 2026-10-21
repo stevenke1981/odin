@@ -1,0 +1,46 @@
+   Compiling odin-core v0.2.0 (/opt/odin-linux-0fe03ba/crates/odin-core)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 53.03s
+     Running unittests src/lib.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin_core-5d5ba187b0932aec)
+
+running 39 tests
+test config::tests::aliases_cannot_bypass_project_scope ... ok
+test config::tests::context_then_mode_only_reduce_explicit_host_grants ... ok
+test config::tests::host_configuration_is_protected_inside_workspace ... ok
+test config::tests::unknown_context_fails_closed ... ok
+test languages::tests::multiplexed_ids_and_custom_profiles_are_not_conflated ... ok
+test languages::tests::registry_ids_are_unique_with_nonempty_document_extensions ... ok
+test memory::tests::global_writes_require_separate_permission ... ok
+test memory::tests::memory_bundle_roundtrip_is_previewed_and_owned ... ok
+test memory::tests::memory_import_rejects_digest_tampering_and_unresolved_refs ... ok
+test memory::tests::memory_name_traversal_is_rejected ... ok
+test memory::tests::memory_rename_updates_references ... ok
+test memory::tests::prepared_import_detects_external_writes ... ok
+test memory::tests::reference_expansion_is_rejected_before_allocating_the_result ... ok
+test memory::tests::reference_replacement_is_exact ... ok
+test memory::tests::scope_move_never_rebinds_cross_project_local_references ... ok
+test memory::tests::scope_move_updates_references_in_one_cas_journal ... ok
+test paths::tests::deny_secrets ... ok
+test paths::tests::handle_relative_write_preserves_content_and_cleans_temporary_files ... ok
+test paths::tests::hardlinked_files_cannot_alias_outside_or_protected_data ... ok
+test paths::tests::limits_and_utf8 ... ok
+test paths::tests::missing_parent_is_not_created ... ok
+test paths::tests::symlink_escape_is_denied ... ok
+test paths::tests::traversal_is_denied ... ok
+test process::tests::environment_is_an_explicit_allowlist ... ok
+test sandbox::enumeration_tests::enumeration_requires_explicit_native_support_without_promoting_grants ... ok
+test search::tests::match_limit_is_explicit ... ok
+test search::tests::search_returns_live_hash_and_line ... ok
+test store::tests::fts_excludes_stale_contents ... ok
+test store::tests::incremental_refresh_updates_additions_changes_and_deletions ... ok
+test store::tests::trace_audit_contains_metadata_without_source ... ok
+test transaction::tests::aggregate_snapshot_budget_is_checked_before_journal_creation ... ok
+test transaction::tests::conflict_before_commit_has_no_partial_write ... ok
+test transaction::tests::crash_process_worker ... ok
+test transaction::tests::idempotency_key_cannot_change_meaning ... ok
+test transaction::tests::prepare_does_not_write_and_apply_is_idempotent ... ok
+test transaction::tests::real_process_crashes_at_transaction_checkpoints_are_recoverable ... ok
+test transaction::tests::recovery_refuses_to_destroy_an_external_change ... ok
+test transaction::tests::recovery_restores_a_simulated_interrupted_commit ... ok
+test transaction::tests::undo_create_and_edit ... ok
+
+test result: ok. 39 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 40.47s

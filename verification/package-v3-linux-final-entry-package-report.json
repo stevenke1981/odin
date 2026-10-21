@@ -1,0 +1,49 @@
+{
+  "scope": "LINUX_NATIVE_PACKAGE",
+  "status": "PASS",
+  "platform": "Linux-6.1.0-53-amd64-x86_64-with-glibc2.36",
+  "binary_sha256": "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+  "build": {
+    "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "external_tool_bridge": false,
+    "model_token_usage": "UNKNOWN",
+    "name": "Odin",
+    "profile": "release",
+    "revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+    "schema_version": 1,
+    "standalone": true,
+    "target": "x86_64-unknown-linux-musl",
+    "tracked_source_dirty": false,
+    "version": "0.2.0"
+  },
+  "elf": "STATIC_X86_64_LINUX",
+  "debian_package": "odin-agent",
+  "artifacts": [
+    {
+      "path": "odin-0.2.0-x86_64-unknown-linux-musl.tar.gz",
+      "sha256": "5d3de90dc2ac0719bdaf8a231ab898146b0fe0aaf085e7c72ff41c9ff83e8358",
+      "bytes": 6031237
+    },
+    {
+      "path": "odin-agent_0.2.0_amd64.deb",
+      "sha256": "4a51568bfb58faedf59152e5548c593a31a7205f8300fa6ccf66519b714d4cb2",
+      "bytes": 4365396
+    }
+  ],
+  "signed": false,
+  "installer_lifecycle": "NOT_RUN",
+  "native_guest_cargo_tests": "NOT_RUN",
+  "sandbox": "NOT_IMPLEMENTED_ON_LINUX",
+  "command": {
+    "command": [
+      "dpkg-deb",
+      "--root-owner-group",
+      "--build",
+      "dist/linux-candidate/.deb-stage-ojd66ll4",
+      "/opt/odin-linux-0fe03ba/dist/linux-candidate/odin-agent_0.2.0_amd64.deb"
+    ],
+    "exit_code": 0,
+    "stdout": "dpkg-deb: building package 'odin-agent' in '/opt/odin-linux-0fe03ba/dist/linux-candidate/odin-agent_0.2.0_amd64.deb'.\n",
+    "stderr": ""
+  }
+}

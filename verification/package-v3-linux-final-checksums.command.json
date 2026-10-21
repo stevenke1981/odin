@@ -1,0 +1,15 @@
+{
+  "name": "checksums",
+  "argv": [
+    "sha256sum",
+    "--check",
+    "SHA256SUMS"
+  ],
+  "cwd": "/opt/odin-linux-0fe03ba/dist/linux-candidate",
+  "uid": 1000,
+  "status": "PASS",
+  "exit_code": 0,
+  "log": "checksums.log",
+  "elapsed_seconds": 0.162,
+  "log_sha256": "f01a5c178ca78612231c390e511dfc722626824d111d82415d3af8f8810b27ca"
+}
