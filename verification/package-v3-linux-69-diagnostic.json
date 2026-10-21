@@ -1,0 +1,268 @@
+{
+  "scope": "PRESERVED_LINUX_69_NATIVE_FIRST_FAILURE_AND_INDEPENDENT_CONTINUATION",
+  "status": "FAIL",
+  "source_revision": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+  "source_manifest": {
+    "path": "verification/package-v3-linux-69-source-sha256.json",
+    "sha256": "676e588eb29d143d025f5a50e8f604af5cc9b3c36be1f5fc18356b2c3304b800"
+  },
+  "binary_sha256": "5b1f352840074325f384743a06d9fffc64f7c191df1ffb448711b1852cbcbb1d",
+  "build_metadata": {
+    "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "external_tool_bridge": false,
+    "model_token_usage": "UNKNOWN",
+    "name": "Odin",
+    "profile": "release",
+    "revision": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+    "schema_version": 1,
+    "standalone": true,
+    "target": "x86_64-unknown-linux-musl",
+    "tracked_source_dirty": false,
+    "version": "0.2.0"
+  },
+  "native_build": {
+    "status": "PASS",
+    "exit_code": 0,
+    "elapsed_seconds": 1060,
+    "command": [
+      "cargo",
+      "build",
+      "-p",
+      "odin-agent",
+      "--release",
+      "--target",
+      "x86_64-unknown-linux-musl",
+      "--locked",
+      "--offline"
+    ]
+  },
+  "workspace_tests": {
+    "status": "FAIL",
+    "exit_code": 101,
+    "passed": 39,
+    "failed": 6,
+    "ignored": 0,
+    "suites": [
+      {
+        "name": "odin-agent",
+        "passed": 6,
+        "failed": 0
+      },
+      {
+        "name": "odin-core",
+        "passed": 33,
+        "failed": 6
+      }
+    ],
+    "remaining_crates": "NOT_RUN_AFTER_CARGO_FAIL_FAST",
+    "error": "IO_ERROR: Bad file descriptor (os error 9); memory operations also report rollback_status=RecoveryRequired"
+  },
+  "strict_clippy": {
+    "status": "PASS",
+    "exit_code": 0,
+    "elapsed_seconds": 232
+  },
+  "smokes": {
+    "cli": {
+      "status": "PASS",
+      "passed": 64,
+      "failed": 0,
+      "error": null,
+      "report": {
+        "path": "verification/package-v3-linux-69-cli-report.json",
+        "sha256": "b9e931c005798a91e02a4ba8812e4d44f57f52af8a4d5b9a53b5d23201fb9759",
+        "original_guest_sha256": "b9e931c005798a91e02a4ba8812e4d44f57f52af8a4d5b9a53b5d23201fb9759"
+      }
+    },
+    "mcp": {
+      "status": "FAIL",
+      "passed": 15,
+      "failed": 1,
+      "error": "tool_result:write_memory",
+      "report": {
+        "path": "verification/package-v3-linux-69-mcp-report.json",
+        "sha256": "442ef08d0c7978c51625c79fef54b9269a21b4d758825899ac4d8f8c053d4c1f",
+        "original_guest_sha256": "442ef08d0c7978c51625c79fef54b9269a21b4d758825899ac4d8f8c053d4c1f"
+      }
+    },
+    "http": {
+      "status": "PASS",
+      "passed": 36,
+      "failed": 0,
+      "error": null,
+      "report": {
+        "path": "verification/package-v3-linux-69-http-report.json",
+        "sha256": "26e9b35fc4021f7403360ff0d64d3d979f4ab7b6a7fb3625c3ce68e3f042f50c",
+        "original_guest_sha256": "26e9b35fc4021f7403360ff0d64d3d979f4ab7b6a7fb3625c3ce68e3f042f50c"
+      }
+    },
+    "cancellation": {
+      "status": "PASS",
+      "passed": 8,
+      "failed": 0,
+      "error": null,
+      "report": {
+        "path": "verification/package-v3-linux-69-cancellation-report.json",
+        "sha256": "bebf0ca747e14c45aad48efc2b1b0e575a3dcbde7603f901d6394040d5a52d24",
+        "original_guest_sha256": "bebf0ca747e14c45aad48efc2b1b0e575a3dcbde7603f901d6394040d5a52d24"
+      }
+    }
+  },
+  "package_sh_entry": "NOT_RUN_FOR_RETIRED_BROKEN_69_CANDIDATE",
+  "installer_lifecycle": "NOT_RUN_FOR_RETIRED_BROKEN_69_CANDIDATE",
+  "successor_core_fix_revision": "d3e550594783ee9881c6aba251403ff1add0af86",
+  "successor_validation": "SEPARATE_EVIDENCE_REQUIRED",
+  "linux_native_sandbox": "NOT_IMPLEMENTED",
+  "signal_shutdown_acceptance": "NOT_RUN",
+  "evidence": {
+    "build-environment.txt": {
+      "path": "verification/package-v3-linux-69-build-environment.txt",
+      "sha256": "49c62e324d21d063f6b70efd9b41f0e91d8a40788b909ede0aa54de378ba6f43",
+      "original_guest_sha256": "49c62e324d21d063f6b70efd9b41f0e91d8a40788b909ede0aa54de378ba6f43"
+    },
+    "build.log": {
+      "path": "verification/package-v3-linux-69-build.txt",
+      "sha256": "d03c2275a99ef62a66de1286f8310b5ac4ff6a83d69329413ee56453da7d4286",
+      "original_guest_sha256": "d03c2275a99ef62a66de1286f8310b5ac4ff6a83d69329413ee56453da7d4286"
+    },
+    "build.exit": {
+      "path": "verification/package-v3-linux-69-build.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "original_guest_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "build.seconds": {
+      "path": "verification/package-v3-linux-69-build.seconds",
+      "sha256": "edb5f57c303436ed433743b6d2812ce41e43de753028c9acfd197054f88a1348",
+      "original_guest_sha256": "edb5f57c303436ed433743b6d2812ce41e43de753028c9acfd197054f88a1348"
+    },
+    "metadata.log": {
+      "path": "verification/package-v3-linux-69-metadata.txt",
+      "sha256": "f7caddec38eebf09a764f54f9f50c3a5ed3d80d75b871789fe55cb793ce69a15",
+      "original_guest_sha256": "f7caddec38eebf09a764f54f9f50c3a5ed3d80d75b871789fe55cb793ce69a15"
+    },
+    "elf.log": {
+      "path": "verification/package-v3-linux-69-elf.txt",
+      "sha256": "4328f24edf53e16d90cdfb97d3828119dd0a9993aa49d6d2f8aef081538954ef",
+      "original_guest_sha256": "b4b3e131c298946f7d5c8cbbe848fbba929a1c460af8259539bdfeb28609414c"
+    },
+    "tests.log": {
+      "path": "verification/package-v3-linux-69-tests.txt",
+      "sha256": "ab05040ce3fec7f7cc80e1600ec9a580eda7d3b308755ec944547959dac6dd06",
+      "original_guest_sha256": "ab05040ce3fec7f7cc80e1600ec9a580eda7d3b308755ec944547959dac6dd06"
+    },
+    "tests.exit": {
+      "path": "verification/package-v3-linux-69-tests.exit",
+      "sha256": "39b8dc3fc8b44765c8e6f1adee04c5b465e555ab791cc42d0d9e810d5b64297c",
+      "original_guest_sha256": "39b8dc3fc8b44765c8e6f1adee04c5b465e555ab791cc42d0d9e810d5b64297c"
+    },
+    "tests.seconds": {
+      "path": "verification/package-v3-linux-69-tests.seconds",
+      "sha256": "f1aca6f974237101f9218438c624085f95f8d3eebe9ff64ce5d36336a4bb5ad8",
+      "original_guest_sha256": "f1aca6f974237101f9218438c624085f95f8d3eebe9ff64ce5d36336a4bb5ad8"
+    },
+    "clippy.log": {
+      "path": "verification/package-v3-linux-69-clippy.txt",
+      "sha256": "b1da5122024e964de2a525a592d76bdfbe63341e0ed281f968d654c7a8b3df09",
+      "original_guest_sha256": "b1da5122024e964de2a525a592d76bdfbe63341e0ed281f968d654c7a8b3df09"
+    },
+    "clippy.exit": {
+      "path": "verification/package-v3-linux-69-clippy.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "original_guest_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "clippy.seconds": {
+      "path": "verification/package-v3-linux-69-clippy.seconds",
+      "sha256": "d11a628c403b4dcd9fc5395b7f5b0a4f2f97428d98311217332f873266da9cee",
+      "original_guest_sha256": "d11a628c403b4dcd9fc5395b7f5b0a4f2f97428d98311217332f873266da9cee"
+    },
+    "fmt.log": {
+      "path": "verification/package-v3-linux-69-fmt.txt",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "original_guest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fmt.exit": {
+      "path": "verification/package-v3-linux-69-fmt.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "original_guest_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "generated.log": {
+      "path": "verification/package-v3-linux-69-generated.txt",
+      "sha256": "0bcc5c510237297d634065069ed630e38871d94d920bdeda00c939ef36100698",
+      "original_guest_sha256": "0bcc5c510237297d634065069ed630e38871d94d920bdeda00c939ef36100698"
+    },
+    "static-source-report.json": {
+      "path": "verification/package-v3-linux-69-static-source-report.json",
+      "sha256": "9fb68726df741b4ce3675880e0cd96c957dec21a8a661cc49be5884c034bdb59",
+      "original_guest_sha256": "9fb68726df741b4ce3675880e0cd96c957dec21a8a661cc49be5884c034bdb59"
+    },
+    "fixture-report.json": {
+      "path": "verification/package-v3-linux-69-fixture-report.json",
+      "sha256": "890016601e659153c40ad98bac7e515892ac1f9d312086724d6bc939d8ea800f",
+      "original_guest_sha256": "890016601e659153c40ad98bac7e515892ac1f9d312086724d6bc939d8ea800f"
+    },
+    "cli-report.json": {
+      "path": "verification/package-v3-linux-69-cli-report.json",
+      "sha256": "b9e931c005798a91e02a4ba8812e4d44f57f52af8a4d5b9a53b5d23201fb9759",
+      "original_guest_sha256": "b9e931c005798a91e02a4ba8812e4d44f57f52af8a4d5b9a53b5d23201fb9759"
+    },
+    "mcp-report.json": {
+      "path": "verification/package-v3-linux-69-mcp-report.json",
+      "sha256": "442ef08d0c7978c51625c79fef54b9269a21b4d758825899ac4d8f8c053d4c1f",
+      "original_guest_sha256": "442ef08d0c7978c51625c79fef54b9269a21b4d758825899ac4d8f8c053d4c1f"
+    },
+    "http-report.json": {
+      "path": "verification/package-v3-linux-69-http-report.json",
+      "sha256": "26e9b35fc4021f7403360ff0d64d3d979f4ab7b6a7fb3625c3ce68e3f042f50c",
+      "original_guest_sha256": "26e9b35fc4021f7403360ff0d64d3d979f4ab7b6a7fb3625c3ce68e3f042f50c"
+    },
+    "cancellation-report.json": {
+      "path": "verification/package-v3-linux-69-cancellation-report.json",
+      "sha256": "bebf0ca747e14c45aad48efc2b1b0e575a3dcbde7603f901d6394040d5a52d24",
+      "original_guest_sha256": "bebf0ca747e14c45aad48efc2b1b0e575a3dcbde7603f901d6394040d5a52d24"
+    },
+    "cli.log": {
+      "path": "verification/package-v3-linux-69-cli.txt",
+      "sha256": "8e67371a3fbf6bc93b835303e0fc37e510a1831ce9837c265f3f155da2d974d1",
+      "original_guest_sha256": "8e67371a3fbf6bc93b835303e0fc37e510a1831ce9837c265f3f155da2d974d1"
+    },
+    "mcp.log": {
+      "path": "verification/package-v3-linux-69-mcp.txt",
+      "sha256": "a71242e4d496504fa60a21f7458ee2e22cef670401cc312eab4a452aef45fcad",
+      "original_guest_sha256": "a71242e4d496504fa60a21f7458ee2e22cef670401cc312eab4a452aef45fcad"
+    },
+    "http.log": {
+      "path": "verification/package-v3-linux-69-http.txt",
+      "sha256": "45bb939ba1e11cd7eaf56ba1040da81a226bc34b063e001158341a4eb3e79fa1",
+      "original_guest_sha256": "45bb939ba1e11cd7eaf56ba1040da81a226bc34b063e001158341a4eb3e79fa1"
+    },
+    "cancellation.log": {
+      "path": "verification/package-v3-linux-69-cancellation.txt",
+      "sha256": "8ffe4f86d4a5d97f44f3a3f7c96affb6d383ea2826e278e99716b913c929759a",
+      "original_guest_sha256": "8ffe4f86d4a5d97f44f3a3f7c96affb6d383ea2826e278e99716b913c929759a"
+    },
+    "job.exit": {
+      "path": "verification/package-v3-linux-69-job.exit",
+      "sha256": "39b8dc3fc8b44765c8e6f1adee04c5b465e555ab791cc42d0d9e810d5b64297c",
+      "original_guest_sha256": "39b8dc3fc8b44765c8e6f1adee04c5b465e555ab791cc42d0d9e810d5b64297c"
+    },
+    "qa-job.exit": {
+      "path": "verification/package-v3-linux-69-qa-job.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "original_guest_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "native-final-build-69e769b.sh": {
+      "path": "verification/package-v3-linux-69-native-final-build-69e769b.sh",
+      "sha256": "9c952095cdf8e6ac48fc7fd19538a60be669170732f56881f044f3b7552a39b8",
+      "original_guest_sha256": "9c952095cdf8e6ac48fc7fd19538a60be669170732f56881f044f3b7552a39b8"
+    },
+    "native-final-qa-69e769b.sh": {
+      "path": "verification/package-v3-linux-69-native-final-qa-69e769b.sh",
+      "sha256": "5d053ed45f54ef5aefb2b75fa1279d9a4e7728ca2668264674d9d4f40063f53d",
+      "original_guest_sha256": "5d053ed45f54ef5aefb2b75fa1279d9a4e7728ca2668264674d9d4f40063f53d"
+    }
+  },
+  "transport_console_interleaving": [
+    "[ 6116.091404] hrtimer: interrupt took 13186971 ns\n"
+  ],
+  "normalization": "Public UTF-8 LF text removes serial CR and trailing line whitespace; original guest SHA256 is retained for each file. Kernel hrtimer text interleaved with the base64 transport was removed before gzip CRC and every original file SHA256 were verified. No execution outcomes were rewritten."
+}

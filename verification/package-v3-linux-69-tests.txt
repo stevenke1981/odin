@@ -1,0 +1,301 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling libc v0.2.191
+   Compiling cfg-if v1.0.5
+   Compiling memchr v2.8.3
+   Compiling pin-project-lite v0.2.17
+   Compiling serde_core v1.0.228
+   Compiling smallvec v1.16.3
+   Compiling syn v3.0.9
+   Compiling syn v2.0.119
+   Compiling once_cell v1.21.4
+   Compiling bytes v1.12.1
+   Compiling itoa v1.0.18
+   Compiling parking_lot_core v0.9.12
+   Compiling scopeguard v1.2.0
+   Compiling lock_api v0.4.14
+   Compiling errno v0.3.14
+   Compiling log v0.4.34
+   Compiling serde v1.0.228
+   Compiling bitflags v2.13.2
+   Compiling signal-hook-registry v1.4.8
+   Compiling parking_lot v0.12.5
+   Compiling socket2 v0.6.5
+   Compiling mio v1.2.4
+   Compiling synstructure v0.14.0
+   Compiling rustix v1.1.5
+   Compiling version_check v0.9.5
+   Compiling linux-raw-sys v0.12.1
+   Compiling generic-array v0.14.7
+   Compiling aho-corasick v1.1.5
+   Compiling serde_derive v1.0.228
+   Compiling tokio-macros v2.6.1
+   Compiling zerofrom-derive v0.1.8
+   Compiling tokio v1.48.0
+   Compiling yoke-derive v0.8.4
+   Compiling zerofrom v0.1.8
+   Compiling regex-syntax v0.8.11
+   Compiling stable_deref_trait v1.2.1
+   Compiling io-lifetimes v2.0.4
+   Compiling io-lifetimes v3.0.1
+   Compiling yoke v0.8.3
+   Compiling getrandom v0.3.4
+   Compiling find-msvc-tools v0.1.15
+   Compiling regex-automata v0.4.18
+   Compiling ryu v1.0.23
+   Compiling typenum v1.20.1
+   Compiling shlex v2.0.1
+   Compiling io-extras v0.19.0
+   Compiling serde_json v1.0.145
+   Compiling crossbeam-utils v0.8.23
+   Compiling cc v1.9.0
+   Compiling zerovec-derive v0.11.6
+   Compiling pkg-config v0.3.34
+   Compiling cap-primitives v4.0.3
+   Compiling vcpkg v0.2.15
+   Compiling crossbeam-epoch v0.9.21
+   Compiling zerovec v0.11.8
+   Compiling fs-set-times v0.20.3
+   Compiling libsqlite3-sys v0.35.0
+   Compiling rustix-linux-procfs v0.1.1
+   Compiling displaydoc v0.2.7
+   Compiling maybe-owned v0.3.4
+   Compiling crossbeam-deque v0.8.8
+   Compiling cfg_aliases v0.2.2
+   Compiling ipnet v2.12.2
+   Compiling cap-std v4.0.3
+   Compiling ambient-authority v0.0.2
+   Compiling foldhash v0.1.5
+   Compiling thiserror v2.0.17
+   Compiling hashbrown v0.15.5
+   Compiling nix v0.30.1
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling thiserror-impl v2.0.17
+   Compiling bstr v1.13.1
+   Compiling same-file v1.0.6
+   Compiling cap-fs-ext v4.0.3
+   Compiling winnow v1.0.4
+   Compiling anyhow v1.0.104
+   Compiling toml_parser v1.1.5+spec-1.1.0
+   Compiling globset v0.4.18
+   Compiling walkdir v2.5.0
+   Compiling digest v0.10.7
+   Compiling hashlink v0.10.0
+   Compiling uuid v1.18.1
+   Compiling toml_datetime v0.7.5+spec-1.1.0
+   Compiling serde_spanned v1.1.2
+   Compiling toml_writer v1.1.3+spec-1.1.0
+   Compiling fastrand v2.5.0
+   Compiling winnow v0.7.15
+   Compiling cpufeatures v0.2.17
+   Compiling fallible-streaming-iterator v0.1.9
+   Compiling fallible-iterator v0.3.0
+   Compiling tempfile v3.23.0
+   Compiling sha2 v0.10.9
+   Compiling ignore v0.4.24
+   Compiling toml v0.9.8
+   Compiling tinystr v0.8.4
+   Compiling regex v1.12.2
+   Compiling tracing-core v0.1.36
+   Compiling fs2 v0.4.3
+   Compiling hex v0.4.3
+   Compiling litemap v0.8.3
+   Compiling writeable v0.6.4
+   Compiling similar v2.7.0
+   Compiling icu_locale_core v2.3.0
+   Compiling zerotrie v0.2.5
+   Compiling potential_utf v0.1.6
+   Compiling tracing-attributes v0.1.31
+   Compiling icu_normalizer_data v2.3.0
+   Compiling icu_properties_data v2.3.0
+   Compiling utf8_iter v1.0.4
+   Compiling icu_collections v2.3.0
+   Compiling icu_provider v2.3.1
+   Compiling percent-encoding v2.3.2
+   Compiling icu_properties v2.3.0
+   Compiling form_urlencoded v1.2.2
+   Compiling icu_normalizer v2.3.0
+   Compiling tracing v0.1.41
+   Compiling futures-core v0.3.34
+   Compiling futures-sink v0.3.34
+   Compiling http v1.5.0
+   Compiling futures-channel v0.3.34
+   Compiling futures-macro v0.3.34
+   Compiling idna_adapter v1.2.2
+   Compiling idna v1.1.0
+   Compiling http-body v1.1.0
+   Compiling url v2.5.7
+   Compiling slab v0.4.12
+   Compiling rusqlite v0.37.0
+   Compiling futures-io v0.3.34
+   Compiling futures-task v0.3.34
+   Compiling futures-util v0.3.34
+   Compiling autocfg v1.5.1
+   Compiling tower-service v0.3.3
+   Compiling httparse v1.10.1
+   Compiling odin-core v0.2.0 (/opt/odin-final/crates/odin-core)
+   Compiling num-traits v0.2.19
+   Compiling http-body-util v0.1.5
+   Compiling rand_core v0.10.1
+   Compiling utf8parse v0.2.2
+   Compiling ref-cast v1.0.27
+   Compiling getrandom v0.4.3
+   Compiling anstyle-parse v0.2.7
+   Compiling ref-cast-impl v1.0.27
+   Compiling serde_derive_internals v0.30.0
+   Compiling anstyle v1.0.14
+   Compiling httpdate v1.0.3
+   Compiling odin-protocol v0.2.0 (/opt/odin-final/crates/odin-protocol)
+   Compiling atomic-waker v1.1.2
+   Compiling sync_wrapper v1.0.2
+   Compiling colorchoice v1.0.5
+   Compiling anstyle-query v1.1.5
+   Compiling tower-layer v0.3.3
+   Compiling cpufeatures v0.3.1
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling anstream v0.6.21
+   Compiling schemars_derive v1.2.3
+   Compiling chacha20 v0.10.2
+   Compiling hyper v1.12.0
+   Compiling odin-engine v0.2.0 (/opt/odin-final/crates/odin-engine)
+   Compiling futures-executor v0.3.34
+   Compiling chrono v0.4.45
+   Compiling rmcp v3.6.0
+   Compiling mime v0.3.17
+   Compiling dyn-clone v1.0.20
+   Compiling lazy_static v1.5.1
+   Compiling clap_lex v0.7.7
+   Compiling strsim v0.11.1
+   Compiling hashbrown v0.17.1
+   Compiling equivalent v1.0.3
+   Compiling heck v0.5.0
+   Compiling clap_builder v4.5.50
+   Compiling clap_derive v4.5.49
+   Compiling indexmap v2.14.2
+   Compiling sharded-slab v0.1.7
+   Compiling axum-core v0.5.6
+   Compiling schemars v1.2.3
+   Compiling rand v0.10.3
+   Compiling futures v0.3.34
+   Compiling hyper-util v0.1.21
+   Compiling tower v0.5.3
+   Compiling sse-stream v0.2.6
+   Compiling tokio-util v0.7.16
+   Compiling tokio-stream v0.1.19
+   Compiling serde_urlencoded v0.7.1
+   Compiling tracing-log v0.2.0
+   Compiling matchers v0.2.0
+   Compiling async-trait v0.1.92
+   Compiling serde_path_to_error v0.1.20
+   Compiling thread_local v1.1.10
+   Compiling nu-ansi-term v0.50.3
+   Compiling matchit v0.8.4
+   Compiling pastey v0.2.3
+   Compiling odin-agent v0.2.0 (/opt/odin-final/crates/odin)
+   Compiling base64 v0.23.1
+   Compiling axum v0.8.6
+   Compiling tracing-subscriber v0.3.20
+   Compiling clap v4.5.50
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 12m 31s
+     Running unittests src/main.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin-065cb807be46dd46)
+
+running 6 tests
+test http::tests::audit_export_uses_a_metadata_allowlist ... ok
+test http::tests::tokens_are_compared_exactly ... ok
+test setup::tests::client_command_preserves_restrictive_policy_selection ... ok
+test setup::tests::hooks_are_idempotent_and_disable_restores_surroundings ... ok
+test setup::tests::malformed_sections_are_rejected ... ok
+test setup::tests::preserves_unrelated_json_and_toml_settings ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.15s
+
+     Running unittests src/lib.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin_core-0c54b3919272c1b6)
+
+running 39 tests
+test config::tests::aliases_cannot_bypass_project_scope ... ok
+test config::tests::context_then_mode_only_reduce_explicit_host_grants ... ok
+test config::tests::host_configuration_is_protected_inside_workspace ... ok
+test config::tests::unknown_context_fails_closed ... ok
+test languages::tests::multiplexed_ids_and_custom_profiles_are_not_conflated ... ok
+test languages::tests::registry_ids_are_unique_with_nonempty_document_extensions ... ok
+test memory::tests::global_writes_require_separate_permission ... ok
+test memory::tests::memory_bundle_roundtrip_is_previewed_and_owned ... FAILED
+test memory::tests::memory_import_rejects_digest_tampering_and_unresolved_refs ... ok
+test memory::tests::memory_name_traversal_is_rejected ... ok
+test memory::tests::memory_rename_updates_references ... FAILED
+test memory::tests::prepared_import_detects_external_writes ... FAILED
+test memory::tests::reference_expansion_is_rejected_before_allocating_the_result ... ok
+test memory::tests::reference_replacement_is_exact ... ok
+test memory::tests::scope_move_never_rebinds_cross_project_local_references ... FAILED
+test memory::tests::scope_move_updates_references_in_one_cas_journal ... FAILED
+test paths::tests::deny_secrets ... ok
+test paths::tests::handle_relative_write_preserves_content_and_cleans_temporary_files ... FAILED
+test paths::tests::hardlinked_files_cannot_alias_outside_or_protected_data ... ok
+test paths::tests::limits_and_utf8 ... ok
+test paths::tests::missing_parent_is_not_created ... ok
+test paths::tests::symlink_escape_is_denied ... ok
+test paths::tests::traversal_is_denied ... ok
+test process::tests::environment_is_an_explicit_allowlist ... ok
+test sandbox::enumeration_tests::enumeration_requires_explicit_native_support_without_promoting_grants ... ok
+test search::tests::match_limit_is_explicit ... ok
+test search::tests::search_returns_live_hash_and_line ... ok
+test store::tests::fts_excludes_stale_contents ... ok
+test store::tests::incremental_refresh_updates_additions_changes_and_deletions ... ok
+test store::tests::trace_audit_contains_metadata_without_source ... ok
+test transaction::tests::aggregate_snapshot_budget_is_checked_before_journal_creation ... ok
+test transaction::tests::conflict_before_commit_has_no_partial_write ... ok
+test transaction::tests::crash_process_worker ... ok
+test transaction::tests::idempotency_key_cannot_change_meaning ... ok
+test transaction::tests::prepare_does_not_write_and_apply_is_idempotent ... ok
+test transaction::tests::real_process_crashes_at_transaction_checkpoints_are_recoverable ... ok
+test transaction::tests::recovery_refuses_to_destroy_an_external_change ... ok
+test transaction::tests::recovery_restores_a_simulated_interrupted_commit ... ok
+test transaction::tests::undo_create_and_edit ... ok
+
+failures:
+
+---- memory::tests::memory_bundle_roundtrip_is_previewed_and_owned stdout ----
+
+thread 'memory::tests::memory_bundle_roundtrip_is_previewed_and_owned' panicked at crates/odin-core/src/memory.rs:799:14:
+called `Result::unwrap()` on an `Err` value: Fault { code: "TRANSACTION_FAILED", message: "IO_ERROR: Bad file descriptor (os error 9); rollback_status=RecoveryRequired" }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- memory::tests::memory_rename_updates_references stdout ----
+
+thread 'memory::tests::memory_rename_updates_references' panicked at crates/odin-core/src/memory.rs:665:14:
+called `Result::unwrap()` on an `Err` value: Fault { code: "TRANSACTION_FAILED", message: "IO_ERROR: Bad file descriptor (os error 9); rollback_status=RecoveryRequired" }
+
+---- memory::tests::prepared_import_detects_external_writes stdout ----
+
+thread 'memory::tests::prepared_import_detects_external_writes' panicked at crates/odin-core/src/memory.rs:905:14:
+called `Result::unwrap()` on an `Err` value: Fault { code: "TRANSACTION_FAILED", message: "IO_ERROR: Bad file descriptor (os error 9); rollback_status=RecoveryRequired" }
+
+---- memory::tests::scope_move_never_rebinds_cross_project_local_references stdout ----
+
+thread 'memory::tests::scope_move_never_rebinds_cross_project_local_references' panicked at crates/odin-core/src/memory.rs:882:14:
+called `Result::unwrap()` on an `Err` value: Fault { code: "TRANSACTION_FAILED", message: "IO_ERROR: Bad file descriptor (os error 9); rollback_status=RecoveryRequired" }
+
+---- memory::tests::scope_move_updates_references_in_one_cas_journal stdout ----
+
+thread 'memory::tests::scope_move_updates_references_in_one_cas_journal' panicked at crates/odin-core/src/memory.rs:849:14:
+called `Result::unwrap()` on an `Err` value: Fault { code: "TRANSACTION_FAILED", message: "IO_ERROR: Bad file descriptor (os error 9); rollback_status=RecoveryRequired" }
+
+---- paths::tests::handle_relative_write_preserves_content_and_cleans_temporary_files stdout ----
+
+thread 'paths::tests::handle_relative_write_preserves_content_and_cleans_temporary_files' panicked at crates/odin-core/src/paths.rs:378:14:
+called `Result::unwrap()` on an `Err` value: Fault { code: "IO_ERROR", message: "Bad file descriptor (os error 9)" }
+
+
+failures:
+    memory::tests::memory_bundle_roundtrip_is_previewed_and_owned
+    memory::tests::memory_rename_updates_references
+    memory::tests::prepared_import_detects_external_writes
+    memory::tests::scope_move_never_rebinds_cross_project_local_references
+    memory::tests::scope_move_updates_references_in_one_cas_journal
+    paths::tests::handle_relative_write_preserves_content_and_cleans_temporary_files
+
+test result: FAILED. 33 passed; 6 failed; 0 ignored; 0 measured; 0 filtered out; finished in 33.03s
+
+error: test failed, to rerun pass `-p odin-core --lib`
