@@ -1,0 +1,518 @@
+{
+  "scope": "REAL_ODIN_MCP_NATIVE_FORMATTER_ONLY",
+  "mode": "sandbox",
+  "status": "PASS",
+  "platform": "win32",
+  "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+  "harness_sha256": "9929f66a0a861c1fcdf5b41a104f335c6ac2e0f1270ea9cdc6de8093eb5cdfc7",
+  "started_utc": "2026-10-21T03:19:01Z",
+  "projects": [
+    {
+      "language": "python",
+      "project": "python_a",
+      "checks": [
+        {
+          "name": "mcp_initialize",
+          "status": "PASS"
+        },
+        {
+          "name": "native_format_stale_hash_conflict",
+          "status": "PASS",
+          "detail": {
+            "error": {
+              "code": "CONFLICT",
+              "message": "File hash does not match expected_sha256"
+            }
+          }
+        },
+        {
+          "name": "native_format_provider_and_sandbox",
+          "status": "PASS",
+          "detail": {
+            "atomic_visibility": "per_file_only",
+            "execution": {
+              "exit_code": 0,
+              "sandbox": true,
+              "sandbox_status": "enforced_mxc_processcontainer"
+            },
+            "files": [
+              {
+                "after_sha256": "6f8b5def3feaabc15507afdffa8029dd823f9d0bb04ae04dce6bd712e6bec566",
+                "before_sha256": "54d32559f5c193efb478621b32923408a52c37b5f18f57e2a7d2c023ec517807",
+                "diff": "--- a/sample.py\n+++ b/sample.py\n@@ -1,6 +1,7 @@\n-def greet(name:str)->str:\n+def greet(name: str) -> str:\n     return f\"Hi {name}\"\n \n-def run()->str:\n+\n+def run() -> str:\n     message = greet(\"Odin\")\n     return message\n",
+                "path": "sample.py"
+              }
+            ],
+            "formatted_sha256": "6f8b5def3feaabc15507afdffa8029dd823f9d0bb04ae04dce6bd712e6bec566",
+            "formatter_profile": "ruff",
+            "journaled_recovery": true,
+            "phase": "draft",
+            "provider": "ruff",
+            "requires_apply": true,
+            "source": "native_formatter",
+            "source_modified": false,
+            "source_sha256": "54d32559f5c193efb478621b32923408a52c37b5f18f57e2a7d2c023ec517807",
+            "trace": {
+              "elapsed_ms": 737,
+              "id": "f38f6a4f-b65a-4054-a902-42e7833e02a4",
+              "result_bytes": 956,
+              "result_sha256": "7ba1281f9ace2c60320dea25beda7135a6590b07d276099223200bc3f690e72e"
+            },
+            "transaction_id": "26f657f4-b343-4105-8d82-07cf041918b7"
+          }
+        },
+        {
+          "name": "native_format_preview_readonly",
+          "status": "PASS"
+        },
+        {
+          "name": "native_format_nonempty_cas_preview",
+          "status": "PASS"
+        },
+        {
+          "name": "native_format_cas_apply",
+          "status": "PASS"
+        },
+        {
+          "name": "native_format_other_projects_unchanged",
+          "status": "PASS"
+        },
+        {
+          "name": "native_format_noop",
+          "status": "PASS",
+          "detail": {
+            "changed": false,
+            "execution": {
+              "exit_code": 0,
+              "sandbox": true,
+              "sandbox_status": "enforced_mxc_processcontainer"
+            },
+            "formatted_sha256": "6f8b5def3feaabc15507afdffa8029dd823f9d0bb04ae04dce6bd712e6bec566",
+            "formatter_profile": "ruff",
+            "provider": "ruff",
+            "sha256": "6f8b5def3feaabc15507afdffa8029dd823f9d0bb04ae04dce6bd712e6bec566",
+            "source": "native_formatter",
+            "source_modified": false,
+            "source_sha256": "6f8b5def3feaabc15507afdffa8029dd823f9d0bb04ae04dce6bd712e6bec566",
+            "trace": {
+              "elapsed_ms": 196,
+              "id": "fab24d32-43d8-4ec1-9e10-a95fad108919",
+              "result_bytes": 451,
+              "result_sha256": "530570a0437660db68bf17fe1f7198ab107ea2e83819d44169a07d010f1cbee9"
+            }
+          }
+        },
+        {
+          "name": "native_format_rollback",
+          "status": "PASS"
+        }
+      ],
+      "source_sha256": {
+        "sample.py": "54d32559f5c193efb478621b32923408a52c37b5f18f57e2a7d2c023ec517807",
+        "consumer.py": "2225d0f87133a3f624b7e322da6848aeb4ce1b73091d0dd4bc68f2cdea551a07"
+      },
+      "isolation": "sandbox",
+      "lsp_acceptance": "NOT_RUN: explicit native formatter test never initializes the language server",
+      "binary_version": {
+        "name": "Odin",
+        "schema_version": 1,
+        "standalone": true,
+        "trace": {
+          "elapsed_ms": 0,
+          "id": "bea1beba-a487-4a9b-b924-136bc090b417",
+          "result_bytes": 70,
+          "result_sha256": "56962aba324858cc3f3306c0c5e6854072861e96a2c79ef23586e0d3de4e050b"
+        },
+        "version": "0.2.0"
+      },
+      "native_formatter_preview": {
+        "atomic_visibility": "per_file_only",
+        "execution": {
+          "exit_code": 0,
+          "sandbox": true,
+          "sandbox_status": "enforced_mxc_processcontainer"
+        },
+        "files": [
+          {
+            "after_sha256": "6f8b5def3feaabc15507afdffa8029dd823f9d0bb04ae04dce6bd712e6bec566",
+            "before_sha256": "54d32559f5c193efb478621b32923408a52c37b5f18f57e2a7d2c023ec517807",
+            "diff": "--- a/sample.py\n+++ b/sample.py\n@@ -1,6 +1,7 @@\n-def greet(name:str)->str:\n+def greet(name: str) -> str:\n     return f\"Hi {name}\"\n \n-def run()->str:\n+\n+def run() -> str:\n     message = greet(\"Odin\")\n     return message\n",
+            "path": "sample.py"
+          }
+        ],
+        "formatted_sha256": "6f8b5def3feaabc15507afdffa8029dd823f9d0bb04ae04dce6bd712e6bec566",
+        "formatter_profile": "ruff",
+        "journaled_recovery": true,
+        "phase": "draft",
+        "provider": "ruff",
+        "requires_apply": true,
+        "source": "native_formatter",
+        "source_modified": false,
+        "source_sha256": "54d32559f5c193efb478621b32923408a52c37b5f18f57e2a7d2c023ec517807",
+        "trace": {
+          "elapsed_ms": 737,
+          "id": "f38f6a4f-b65a-4054-a902-42e7833e02a4",
+          "result_bytes": 956,
+          "result_sha256": "7ba1281f9ace2c60320dea25beda7135a6590b07d276099223200bc3f690e72e"
+        },
+        "transaction_id": "26f657f4-b343-4105-8d82-07cf041918b7"
+      },
+      "stderr": [],
+      "status": "PASS"
+    },
+    {
+      "language": "python",
+      "project": "python_b",
+      "checks": [
+        {
+          "name": "mcp_initialize",
+          "status": "PASS"
+        },
+        {
+          "name": "native_format_stale_hash_conflict",
+          "status": "PASS",
+          "detail": {
+            "error": {
+              "code": "CONFLICT",
+              "message": "File hash does not match expected_sha256"
+            }
+          }
+        },
+        {
+          "name": "native_format_provider_and_sandbox",
+          "status": "PASS",
+          "detail": {
+            "atomic_visibility": "per_file_only",
+            "execution": {
+              "exit_code": 0,
+              "sandbox": true,
+              "sandbox_status": "enforced_mxc_processcontainer"
+            },
+            "files": [
+              {
+                "after_sha256": "6f8b5def3feaabc15507afdffa8029dd823f9d0bb04ae04dce6bd712e6bec566",
+                "before_sha256": "54d32559f5c193efb478621b32923408a52c37b5f18f57e2a7d2c023ec517807",
+                "diff": "--- a/sample.py\n+++ b/sample.py\n@@ -1,6 +1,7 @@\n-def greet(name:str)->str:\n+def greet(name: str) -> str:\n     return f\"Hi {name}\"\n \n-def run()->str:\n+\n+def run() -> str:\n     message = greet(\"Odin\")\n     return message\n",
+                "path": "sample.py"
+              }
+            ],
+            "formatted_sha256": "6f8b5def3feaabc15507afdffa8029dd823f9d0bb04ae04dce6bd712e6bec566",
+            "formatter_profile": "ruff",
+            "journaled_recovery": true,
+            "phase": "draft",
+            "provider": "ruff",
+            "requires_apply": true,
+            "source": "native_formatter",
+            "source_modified": false,
+            "source_sha256": "54d32559f5c193efb478621b32923408a52c37b5f18f57e2a7d2c023ec517807",
+            "trace": {
+              "elapsed_ms": 204,
+              "id": "3ece989e-e395-45de-b88d-59c104f858f2",
+              "result_bytes": 956,
+              "result_sha256": "de1b5f09a85b550e0f3f885182d31bb1a62c091e85fd56febfe8baa65bce3806"
+            },
+            "transaction_id": "94c5526e-5710-493d-b9ee-34ab88502963"
+          }
+        },
+        {
+          "name": "native_format_preview_readonly",
+          "status": "PASS"
+        },
+        {
+          "name": "native_format_nonempty_cas_preview",
+          "status": "PASS"
+        },
+        {
+          "name": "native_format_cas_apply",
+          "status": "PASS"
+        },
+        {
+          "name": "native_format_other_projects_unchanged",
+          "status": "PASS"
+        },
+        {
+          "name": "native_format_noop",
+          "status": "PASS",
+          "detail": {
+            "changed": false,
+            "execution": {
+              "exit_code": 0,
+              "sandbox": true,
+              "sandbox_status": "enforced_mxc_processcontainer"
+            },
+            "formatted_sha256": "6f8b5def3feaabc15507afdffa8029dd823f9d0bb04ae04dce6bd712e6bec566",
+            "formatter_profile": "ruff",
+            "provider": "ruff",
+            "sha256": "6f8b5def3feaabc15507afdffa8029dd823f9d0bb04ae04dce6bd712e6bec566",
+            "source": "native_formatter",
+            "source_modified": false,
+            "source_sha256": "6f8b5def3feaabc15507afdffa8029dd823f9d0bb04ae04dce6bd712e6bec566",
+            "trace": {
+              "elapsed_ms": 191,
+              "id": "bb712061-3d4b-4e42-a15c-1325401f6d8e",
+              "result_bytes": 451,
+              "result_sha256": "530570a0437660db68bf17fe1f7198ab107ea2e83819d44169a07d010f1cbee9"
+            }
+          }
+        },
+        {
+          "name": "native_format_rollback",
+          "status": "PASS"
+        }
+      ],
+      "source_sha256": {
+        "sample.py": "54d32559f5c193efb478621b32923408a52c37b5f18f57e2a7d2c023ec517807",
+        "consumer.py": "2225d0f87133a3f624b7e322da6848aeb4ce1b73091d0dd4bc68f2cdea551a07"
+      },
+      "isolation": "sandbox",
+      "lsp_acceptance": "NOT_RUN: explicit native formatter test never initializes the language server",
+      "binary_version": {
+        "name": "Odin",
+        "schema_version": 1,
+        "standalone": true,
+        "trace": {
+          "elapsed_ms": 0,
+          "id": "4f5ee89d-cfd3-4132-b95f-d334ae2800e9",
+          "result_bytes": 70,
+          "result_sha256": "56962aba324858cc3f3306c0c5e6854072861e96a2c79ef23586e0d3de4e050b"
+        },
+        "version": "0.2.0"
+      },
+      "native_formatter_preview": {
+        "atomic_visibility": "per_file_only",
+        "execution": {
+          "exit_code": 0,
+          "sandbox": true,
+          "sandbox_status": "enforced_mxc_processcontainer"
+        },
+        "files": [
+          {
+            "after_sha256": "6f8b5def3feaabc15507afdffa8029dd823f9d0bb04ae04dce6bd712e6bec566",
+            "before_sha256": "54d32559f5c193efb478621b32923408a52c37b5f18f57e2a7d2c023ec517807",
+            "diff": "--- a/sample.py\n+++ b/sample.py\n@@ -1,6 +1,7 @@\n-def greet(name:str)->str:\n+def greet(name: str) -> str:\n     return f\"Hi {name}\"\n \n-def run()->str:\n+\n+def run() -> str:\n     message = greet(\"Odin\")\n     return message\n",
+            "path": "sample.py"
+          }
+        ],
+        "formatted_sha256": "6f8b5def3feaabc15507afdffa8029dd823f9d0bb04ae04dce6bd712e6bec566",
+        "formatter_profile": "ruff",
+        "journaled_recovery": true,
+        "phase": "draft",
+        "provider": "ruff",
+        "requires_apply": true,
+        "source": "native_formatter",
+        "source_modified": false,
+        "source_sha256": "54d32559f5c193efb478621b32923408a52c37b5f18f57e2a7d2c023ec517807",
+        "trace": {
+          "elapsed_ms": 204,
+          "id": "3ece989e-e395-45de-b88d-59c104f858f2",
+          "result_bytes": 956,
+          "result_sha256": "de1b5f09a85b550e0f3f885182d31bb1a62c091e85fd56febfe8baa65bce3806"
+        },
+        "transaction_id": "94c5526e-5710-493d-b9ee-34ab88502963"
+      },
+      "stderr": [],
+      "status": "PASS"
+    }
+  ],
+  "setup_errors": [],
+  "boundary": "Explicit MXC profile; actual LSP results and runtime route recorded, not full OS/UI parity",
+  "native_formatter_profiles": [
+    {
+      "project": "python_a",
+      "program": "E:\\odin\\.odin\\validation-tools\\python\\Scripts\\ruff.exe",
+      "program_sha256": "a33c117ea0b3a9b4692df9a4d91d190f8402493dc1f967d478c74db8425289eb",
+      "profile": {
+        "ruff": {
+          "provider": "ruff",
+          "extensions": [
+            "py",
+            "pyi"
+          ],
+          "command": {
+            "program": "E:\\odin\\.odin\\validation-tools\\python\\Scripts\\ruff.exe",
+            "args": [
+              "format",
+              "--isolated",
+              "--no-cache",
+              "--stdin-filename",
+              "{relative_path}",
+              "-"
+            ],
+            "timeout_secs": 30
+          }
+        }
+      },
+      "selection": "explicit_formatter_profile",
+      "fallback": false
+    },
+    {
+      "project": "python_b",
+      "program": "E:\\odin\\.odin\\validation-tools\\python\\Scripts\\ruff.exe",
+      "program_sha256": "a33c117ea0b3a9b4692df9a4d91d190f8402493dc1f967d478c74db8425289eb",
+      "profile": {
+        "ruff": {
+          "provider": "ruff",
+          "extensions": [
+            "py",
+            "pyi"
+          ],
+          "command": {
+            "program": "E:\\odin\\.odin\\validation-tools\\python\\Scripts\\ruff.exe",
+            "args": [
+              "format",
+              "--isolated",
+              "--no-cache",
+              "--stdin-filename",
+              "{relative_path}",
+              "-"
+            ],
+            "timeout_secs": 30
+          }
+        }
+      },
+      "selection": "explicit_formatter_profile",
+      "fallback": false
+    }
+  ],
+  "sandbox_profiles": [
+    {
+      "project": "python_a",
+      "program": "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\nodejs_wheel\\node.exe",
+      "argv": [
+        "--preserve-symlinks",
+        "--preserve-symlinks-main",
+        "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\langserver.index.js",
+        "--stdio"
+      ],
+      "readonly_paths": [
+        "C:\\Python314",
+        "<fixture>\\projects\\python_a",
+        "E:\\odin\\.odin\\validation-tools\\python"
+      ],
+      "readwrite_paths": [],
+      "enumerate_paths": [],
+      "enumerate_paths_do_not_grant_file_contents": true,
+      "environment_overrides": {},
+      "profile_details": {
+        "entry_module": "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\langserver.index.js",
+        "entry_module_sha256": "f200762078eb9880faf421a5b30f9ef3055b1d85c6f10780d75db4da8d8499f1",
+        "installed_launcher_equivalent": "basedpyright.run_node -> nodejs_wheel.executable.node",
+        "readonly_paths": [
+          "<fixture>\\projects\\python_a",
+          "E:\\odin\\.odin\\validation-tools\\python",
+          "C:\\Python314"
+        ],
+        "readwrite_paths": []
+      },
+      "initialization_options": {},
+      "settings": {
+        "python": {
+          "pythonPath": "E:\\odin\\.odin\\validation-tools\\python\\Scripts\\python.exe"
+        },
+        "basedpyright": {
+          "analysis": {
+            "typeCheckingMode": "standard",
+            "inlayHints": {
+              "variableTypes": true,
+              "functionReturnTypes": true,
+              "callArgumentNames": true
+            }
+          }
+        }
+      },
+      "private_scratch": "scratch\\python_a",
+      "allow_ui": true,
+      "clipboard": "none",
+      "injection": false,
+      "requested_network_policy": "deny_all",
+      "bootstrap_is_readonly_file": false,
+      "fixed_descendant_node_options": null
+    },
+    {
+      "project": "python_b",
+      "program": "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\nodejs_wheel\\node.exe",
+      "argv": [
+        "--preserve-symlinks",
+        "--preserve-symlinks-main",
+        "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\langserver.index.js",
+        "--stdio"
+      ],
+      "readonly_paths": [
+        "C:\\Python314",
+        "<fixture>\\projects\\python_b",
+        "E:\\odin\\.odin\\validation-tools\\python"
+      ],
+      "readwrite_paths": [],
+      "enumerate_paths": [],
+      "enumerate_paths_do_not_grant_file_contents": true,
+      "environment_overrides": {},
+      "profile_details": {
+        "entry_module": "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\langserver.index.js",
+        "entry_module_sha256": "f200762078eb9880faf421a5b30f9ef3055b1d85c6f10780d75db4da8d8499f1",
+        "installed_launcher_equivalent": "basedpyright.run_node -> nodejs_wheel.executable.node",
+        "readonly_paths": [
+          "<fixture>\\projects\\python_b",
+          "E:\\odin\\.odin\\validation-tools\\python",
+          "C:\\Python314"
+        ],
+        "readwrite_paths": []
+      },
+      "initialization_options": {},
+      "settings": {
+        "python": {
+          "pythonPath": "E:\\odin\\.odin\\validation-tools\\python\\Scripts\\python.exe"
+        },
+        "basedpyright": {
+          "analysis": {
+            "typeCheckingMode": "standard",
+            "inlayHints": {
+              "variableTypes": true,
+              "functionReturnTypes": true,
+              "callArgumentNames": true
+            }
+          }
+        }
+      },
+      "private_scratch": "scratch\\python_b",
+      "allow_ui": true,
+      "clipboard": "none",
+      "injection": false,
+      "requested_network_policy": "deny_all",
+      "bootstrap_is_readonly_file": false,
+      "fixed_descendant_node_options": null
+    }
+  ],
+  "host_config_sha256": "1f5d1eb1418d1a15322f66e215931b5c9c15841cc4e857cf1e8d076b1b95b85a",
+  "binary_launch": {
+    "status": "PASS",
+    "exit_code": 0,
+    "stdout": "odin 0.2.0\n",
+    "stderr": ""
+  },
+  "backends": {
+    "python": {
+      "program_sha256": "2ad12dec08161c0c3bc76e7cf2db9cfcab688ede73e49c5bb21b75be7a97847d",
+      "version_argv": [
+        "<tools_root>\\python\\Scripts\\python.exe",
+        "-c",
+        "import importlib.metadata;print(importlib.metadata.version('basedpyright'))"
+      ],
+      "version_exit_code": 0,
+      "version_stdout": "1.40.2\n",
+      "version_stderr": ""
+    }
+  },
+  "counts": {
+    "PASS": 18
+  },
+  "matrix": {
+    "python": {
+      "python_a": "PASS",
+      "python_b": "PASS"
+    }
+  },
+  "actual_lsp_projects_initialized": 0,
+  "transcript_sha256": "2db22fe725243c7db5743ece71e863262a848f821ef991c5ab9f8cbcfb4646d5",
+  "line_endings_normalized_before_hash_binding": true,
+  "odin_trace_hashes_describe_original_unredacted_payloads": true
+}

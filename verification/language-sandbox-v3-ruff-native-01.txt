@@ -1,0 +1,19 @@
+python_a:mcp_initialize:PASS
+python_a:native_format_stale_hash_conflict:PASS
+python_a:native_format_provider_and_sandbox:PASS
+python_a:native_format_preview_readonly:PASS
+python_a:native_format_nonempty_cas_preview:PASS
+python_a:native_format_cas_apply:PASS
+python_a:native_format_other_projects_unchanged:PASS
+python_a:native_format_noop:PASS
+python_a:native_format_rollback:PASS
+python_b:mcp_initialize:PASS
+python_b:native_format_stale_hash_conflict:PASS
+python_b:native_format_provider_and_sandbox:PASS
+python_b:native_format_preview_readonly:PASS
+python_b:native_format_nonempty_cas_preview:PASS
+python_b:native_format_cas_apply:PASS
+python_b:native_format_other_projects_unchanged:PASS
+python_b:native_format_noop:PASS
+python_b:native_format_rollback:PASS
+{"status": "PASS", "counts": {"PASS": 18}, "matrix": {"python": {"python_a": "PASS", "python_b": "PASS"}}}

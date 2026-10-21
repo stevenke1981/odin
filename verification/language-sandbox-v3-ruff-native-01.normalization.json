@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "scope": "LF normalization only; all original check results preserved",
+  "logical_checks_sha256_before": "5a6a30bf2175f03c510d60a76870120a6761a344e7b20146cf36b1495f4972ec",
+  "logical_checks_sha256_after": "5a6a30bf2175f03c510d60a76870120a6761a344e7b20146cf36b1495f4972ec",
+  "actual_driver_exit_code": 0,
+  "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+  "harness_sha256": "9929f66a0a861c1fcdf5b41a104f335c6ac2e0f1270ea9cdc6de8093eb5cdfc7",
+  "artifacts": [
+    {
+      "path": "C:/Users/steven/.codex/worktrees/odin-platform/odin/verification/language-sandbox-v3-ruff-native-01.json",
+      "sha256": "d7bdface66e767081e0087b51de0f3d6753edfd846b2618f3be7ecaa3ed884bf"
+    },
+    {
+      "path": "C:/Users/steven/.codex/worktrees/odin-platform/odin/verification/language-sandbox-v3-ruff-native-01.requests.jsonl",
+      "sha256": "2db22fe725243c7db5743ece71e863262a848f821ef991c5ab9f8cbcfb4646d5"
+    },
+    {
+      "path": "C:/Users/steven/.codex/worktrees/odin-platform/odin/verification/language-sandbox-v3-ruff-native-01.txt",
+      "sha256": "144cf13e84e3780360f29e56ea6aa5e8674698d6dce5434238d57c6831db0fbd"
+    },
+    {
+      "path": "C:/Users/steven/.codex/worktrees/odin-platform/odin/verification/language-sandbox-v3-ruff-native-01.command.json",
+      "sha256": "63e9e584b7a961a72526c2476fa39e2d7c1eab9e9d76c5d4121b0746f8ecdbb7"
+    }
+  ]
+}

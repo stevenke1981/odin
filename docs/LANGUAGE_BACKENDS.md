@@ -327,6 +327,16 @@ initializing the Python LSP. It reports zero LSP projects and cannot establish
 Python semantic support. The original LSP formatting capability result remains
 independent, including `UNAVAILABLE` where advertised support is absent.
 
+The [first native Ruff acceptance](../verification/language-sandbox-v3-ruff-native-01.json)
+ran the clean `780c6ad` release candidate, SHA-256
+`371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451`,
+and returned actual driver exit **0**, **18 PASS / 0 FAIL** across two Python
+projects. Each project verified a stale-hash conflict, non-mutating preview,
+the enforced native route, nonempty CAS apply, unaffected other projects,
+formatting no-op and exact rollback. The run initialized **zero Python language
+servers**. This establishes the explicit native formatting workflow, while the
+separate Python LSP runtime failure remains unresolved.
+
 `verification/language-sandbox-v3-runner.ps1` records the exact driver argv,
 binary/harness/runner hashes, actual exit code, raw stdout and transcript. It
 requires fresh output names, normalizes text to LF before final hash binding,
