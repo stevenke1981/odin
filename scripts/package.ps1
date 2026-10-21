@@ -40,7 +40,7 @@ try {
     foreach ($Name in @('README.md','LICENSE','THIRD_PARTY_NOTICES.md')) { Copy-Item -LiteralPath (Join-Path $Root $Name) -Destination $Stage }
     Copy-Item -LiteralPath (Join-Path $Root 'docs') -Destination $Stage -Recurse
     Copy-Item -LiteralPath (Join-Path $Root 'schemas') -Destination $Stage -Recurse
-    Copy-Item -LiteralPath (Join-Path $Root 'examples/odin.native.toml') -Destination (Join-Path $Stage 'odin.example.toml')
+    Copy-Item -LiteralPath (Join-Path $Root 'packaging/odin.host.example.toml') -Destination (Join-Path $Stage 'odin.example.toml')
     Write-Utf8 (Join-Path $Stage 'build-metadata.json') ($Metadata | ConvertTo-Json -Depth 20)
     foreach ($Optional in @('docs/THIRD_PARTY_LICENSES.txt','verification/sbom.cdx.json')) {
         $Source = Join-Path $Root $Optional

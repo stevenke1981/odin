@@ -1,0 +1,15 @@
+# Inert operator template. Prefer `odin --config <host-file> init --root <existing-project>`.
+# Replace BOTH placeholders with operator-chosen paths before selecting this file.
+# Keep host configuration and state outside the installation and untrusted repository.
+state_dir = 'CHOOSE_HOST_STATE_DIRECTORY_OUTSIDE_INSTALLATION'
+
+[projects.demo]
+root = 'CHOOSE_EXISTING_PROJECT_ROOT'
+allow_write = false
+allow_shell = false
+allow_debug = false
+allow_inspections = false
+allow_formatters = false
+
+# No backend, command, debugger or sandbox is enabled by this template.
+# Add only explicit, trusted host profiles after reviewing their permissions.

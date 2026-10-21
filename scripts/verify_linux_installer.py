@@ -8,6 +8,7 @@ import platform
 import subprocess
 import tarfile
 import tempfile
+import tomllib
 from pathlib import Path
 
 
@@ -61,6 +62,8 @@ def main():
         check('portable_inventory_has_exact_payload', {row['path'] for row in inventory} == set(contents)-{'SHA256SUMS.json'})
         check('portable_inventory_sha256', all(hashlib.sha256(contents[row['path']]).hexdigest() == row['sha256'] for row in inventory))
         check('portable_selected_binary_sha256', hashlib.sha256(contents['odin']).hexdigest() == args.expected_binary_sha256.lower())
+        template = tomllib.loads(contents['odin.example.toml'].decode('utf-8'))['projects']['demo']
+        check('shipped_template_permissions_disabled', all(template[name] is False for name in ('allow_write','allow_shell','allow_debug','allow_inspections','allow_formatters')) and 'languages' not in template and 'commands' not in template)
         with tempfile.TemporaryDirectory(prefix='odin-portable-qa-') as temporary:
             portable_binary = Path(temporary)/'odin'
             portable_binary.write_bytes(contents['odin'])

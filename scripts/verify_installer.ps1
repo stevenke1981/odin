@@ -76,6 +76,8 @@ try {
     if ($Portable) { Assert-Check 'installed_metadata_matches_portable' ((ConvertTo-OdinCanonical $Metadata | ConvertTo-Json -Depth 100 -Compress) -ceq (ConvertTo-OdinCanonical $PortableMetadata | ConvertTo-Json -Depth 100 -Compress)) }
     $Inventory = @(Verify-Payload $App)
     Assert-Check 'installed_inventory_sha256' ($Inventory.Count -gt 0)
+    $Example = Get-Content -LiteralPath (Join-Path $App 'odin.example.toml') -Raw -Encoding UTF8
+    Assert-Check 'shipped_template_permissions_disabled' (@('write','shell','debug','inspections','formatters' | Where-Object { $Example -notmatch ("(?m)^allow_"+$_+"\s*=\s*false\s*$") }).Count -eq 0)
     $InstalledTools = & $Binary tools | ConvertFrom-Json
     Assert-Check 'installed_tools_exit' ($LASTEXITCODE -eq 0)
     $Catalog = Get-Content -LiteralPath (Join-Path $App 'schemas/tools.json') -Raw -Encoding UTF8 | ConvertFrom-Json

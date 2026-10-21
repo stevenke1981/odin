@@ -2,6 +2,9 @@
 
 Odin app 是 CLI、MCP 服務與本機 Dashboard。安裝不會自動啟動 daemon、
 修改 MCP client、授予 shell/debug/write，或替使用者安裝語言伺服器。
+`odin.example.toml` 是含未選定路徑的 inert host 範本，write/shell/debug/inspections/formatters
+全部關閉；安裝不會載入它。請用 `odin init` 建立自己管理的 host config，
+或明確選定 root/state 路徑與權限後再使用範本；出貨範本不是可寫 acceptance fixture。
 
 [Inno Setup 官方說明](https://jrsoftware.org/isinfo.php) 指定 Windows 應用程式；
 Windows 使用已安裝的 Inno Setup 7 產生 `.exe`，Linux 使用原生 `.deb` 與

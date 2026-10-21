@@ -22,7 +22,7 @@ def prepare_contents(binary, expected_sha256=None):
         raise ValueError('Tar packaging must run on a native Linux/macOS binary; use package.ps1 on Windows')
     if metadata.get('tracked_source_dirty') is not False or metadata.get('profile') != 'release':
         raise ValueError('Packaging requires a clean-source release build')
-    sources = {'odin': binary, 'odin.example.toml': ROOT/'examples/odin.native.toml'}
+    sources = {'odin': binary, 'odin.example.toml': ROOT/'packaging/odin.host.example.toml'}
     for name in ['README.md', 'LICENSE', 'THIRD_PARTY_NOTICES.md']:
         sources[name] = ROOT/name
     for directory in ['docs', 'schemas']:
