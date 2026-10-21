@@ -60,6 +60,9 @@ static ELF。Windows 可以使用 pinned Rust 1.90.0 與
 `bash scripts/package.sh <fresh-output-dir>` 在 Linux x86-64 明確建置 musl target，
 產生 `.deb` 與 tar；需先有 `musl-tools`（或明確設定的同等 C compiler/linker），
 以及 Rust 1.90.0 的 `x86_64-unknown-linux-musl` standard library。
+預設以 `musl-gcc` 編譯 bundled SQLite C，但 Rust 的 self-contained static CRT
+由 `cc` driver 連結；Debian 的 `musl-gcc` driver 會注入 dynamic interpreter，
+不能直接取代這個 Rust linker。封裝會拒絕帶 `PT_INTERP` 的 ELF。
 使用 rustup 的建置機可先執行 `rustup target add --toolchain 1.90.0 x86_64-unknown-linux-musl`。
 入口保留 macOS 原生 tar 路徑；沒有把 macOS 視為 Linux `.deb`。
 
