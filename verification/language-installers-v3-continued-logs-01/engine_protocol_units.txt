@@ -1,0 +1,89 @@
+
+running 38 tests
+test flow::tests::source_strings_are_inert ... ok
+test flow::tests::missing_reference_is_an_error ... ok
+test flow::tests::repeated_references_and_namespace_growth_fail_before_large_clones ... ok
+test inspections::tests::provider_versions_distinguish_clippy_from_cargo_and_unknown_output ... ok
+test flow::tests::refs_select_values_not_code ... ok
+test formatter::tests::invalid_process_outcomes_never_become_source_text ... ok
+test refactor::tests::does_not_accept_command_only_or_mixed_action ... ok
+test refactor::tests::enforces_semantic_action_kind_and_unambiguous_title ... ok
+test schema::tests::rejects_missing ... ok
+test schema::tests::rejects_unknown_fields ... ok
+test schema::tests::accepts_nullable ... ok
+test occurrences::tests::occurrence_ids_change_with_content_or_flags ... ok
+test symbols::tests::repeated_overlapping_bodies_exhaust_budget_before_copy ... ok
+test tests::inserts_into_empty_document ... ok
+test occurrences::tests::empty_regex_matches_are_rejected ... ok
+test tests::preserves_crlf_line_edit ... ok
+test tests::literal_replacement_count ... ok
+test symbols::tests::exact_and_case_insensitive_matching ... ok
+test text_replace::tests::length_first_rejects_many_literal_and_capture_expansions ... ok
+test symbols::tests::filters_kind_depth_scope_and_name ... ok
+test occurrences::tests::regex_expands_only_selected_capture_and_preserves_crlf ... ok
+test tests::regex_replacement_captures ... ok
+test inspections::tests::eslint_utf16_columns_and_global_fix_indices_preserve_bom ... ok
+test inspections::tests::malformed_analyzer_coordinates_and_overlapping_edits_are_rejected ... ok
+test text_replace::tests::bounded_template_matches_upstream_capture_interpolation ... ok
+test inspections::tests::ruff_scalar_columns_bom_and_crlf_convert_to_utf16_with_safe_fix ... ok
+test inspections::tests::parser_count_output_and_resulting_file_size_limits_are_enforced ... ok
+test inspections::tests::clippy_machine_applicable_bytes_are_converted_and_build_completion_is_required ... ok
+test inspections::tests::unsafe_suggestions_cross_file_locations_and_unknown_sources_never_become_safe_fixes ... ok
+test results::tests::expired_results_are_removed_without_evicting_fresh_results ... ok
+test flow::tests::measurement_handles_escaping_and_node_limit_without_serialized_copy ... ok
+test inspections::tests::repeated_primary_clippy_suggestions_have_an_aggregate_preallocation_budget ... ok
+test flow::tests::a_locked_session_does_not_lock_other_sessions_and_clear_rejects_busy ... ok
+test inspections::tests::inspection_profiles_reject_write_flags_and_require_provider_safety_flags ... ok
+test inspections::tests::sandbox_write_and_temp_grants_cannot_overlap_sources_or_state ... ok
+test formatter::tests::invalid_output_is_rejected_before_a_transaction_is_prepared ... ok
+test formatter::tests::noop_has_no_journal_and_external_writes_are_never_overwritten ... ok
+test formatter::tests::unicode_bom_and_crlf_preview_preserves_bytes_until_apply_and_rollback ... ok
+
+test result: ok. 38 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+
+
+running 35 tests
+test lsp::tests::hierarchy_budget_rejects_expired_synchronous_serialization ... ok
+test text::tests::crlf ... ok
+test lsp::tests::nested_symbols_keep_name_paths ... ok
+test lsp::tests::semantic_tokens_reject_surrogate_splits_overlaps_and_bad_legends ... ok
+test lsp::tests::diagnostic_findings_have_provenance_and_pending_never_means_clean ... ok
+test rpc::tests::diagnostic_uri_keys_are_lexical_and_preserve_path_case ... ok
+test text::tests::ascii_offsets ... ok
+test rpc::tests::diagnostic_uri_keys_match_real_windows_drive_aliases ... ok
+test text::tests::bare_cr_is_a_line_break_and_end_position_uses_utf16 ... ok
+test text::tests::invalid_line ... ok
+test text::tests::disjoint_edits ... ok
+test rpc::tests::truncated_frame_is_rejected ... ok
+test text::tests::overlapping_edits_fail ... ok
+test rpc::tests::duplicate_length_is_rejected ... ok
+test rpc::tests::framed_json_roundtrip ... ok
+test rpc::tests::oversize_frame_is_rejected ... ok
+test text::tests::same_position_inserts_preserve_the_server_order ... ok
+test rpc::tests::clean_eof ... ok
+test text::tests::trailing_empty_line ... ok
+test text::tests::utf8_byte_offsets_round_trip_utf16_and_line_endings ... ok
+test text::tests::unicode_utf16 ... ok
+test rpc::tests::malformed_headers_are_rejected ... ok
+test workspace::tests::annotation_confirmation_and_ambiguous_shapes_fail_closed ... ok
+test workspace::tests::external_protected_directory_and_missing_parent_paths_are_rejected ... ok
+test workspace::tests::empty_workspace_edit_alternative_never_relaxes_version_or_overwrite_policy ... ok
+test workspace::tests::delete_and_recreate_keeps_original_hash ... ok
+test workspace::tests::successive_text_document_edits_use_the_prior_result ... ok
+test workspace::tests::snapshot_version_and_external_changes_are_all_checked ... ok
+test workspace::tests::ignored_resource_operations_remain_safe_and_ordered ... ok
+test workspace::tests::resource_conflicts_never_overwrite_existing_content ... ok
+test workspace::tests::empty_or_null_workspace_edit_alternatives_preserve_cas_guards ... ok
+test workspace::tests::unchanged_existing_source_still_has_a_transaction_hash_guard ... ok
+test workspace::tests::target_created_after_preview_conflicts_without_any_project_write ... ok
+test workspace::tests::ordered_resources_are_one_guarded_core_transaction ... ok
+test lsp::tests::hierarchy_budget_counts_escaped_utf8_and_all_retained_fields ... ok
+
+test result: ok. 35 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
+
+   Compiling odin-core v0.2.0 (<WORKSPACE>\crates\odin-core)
+   Compiling odin-protocol v0.2.0 (<WORKSPACE>\crates\odin-protocol)
+   Compiling odin-engine v0.2.0 (<WORKSPACE>\crates\odin-engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 9.09s
+     Running unittests src\lib.rs (target\debug\deps\odin_engine-2ad1c4edd17061ce.exe)
+     Running unittests src\lib.rs (target\debug\deps\odin_protocol-b6905337e014fe48.exe)

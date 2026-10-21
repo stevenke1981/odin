@@ -94,19 +94,24 @@ project。交易是逐檔原子替換與可恢復日誌，沒有多檔瞬間原�
 每語兩專案的獨立驗收，`tests/real_native_inspections.py` 測實際 MXC 與三種
 analyzer。提供測試程式不代表測試通過；後端版本、範圍及 binary digest 記在驗收報告。
 
-本輪實際通過 17 項整合命令、200 項 Rust 測試，另執行 3 項原生沙箱測試及
-30 項分析器檢查。六語各兩專案的 [真後端矩陣](verification/language-ide-final-baseline-03.json)
-記錄 260 PASS、14 UNAVAILABLE、12 NOT_VERIFIED、0 FAIL，整體為 PARTIAL；
-未提供的能力與 TypeScript／Java 無版本診斷不算通過。詳見
+目前候選的來源、binary、逐語言與安裝包結果列在
+[交付狀態](verification/delivery-status.json)。每份報告只驗證其綁定的來源／執行檔；
+歷史 PASS 不替代新候選驗收。Windows AppControl 4551 阻止啟動的測試保留
+實際非零結束碼；其餘獨立檢查可以繼續執行，不能因此把完整 gate 改為 PASS。
+未提供的後端能力與 TypeScript／Java 無版本診斷不算驗證通過。
+詳見 [語言設定與驗收](docs/LANGUAGE_BACKENDS.md) 及
 [語言支援範圍](docs/LANGUAGE_SUPPORT.md)。
-同一執行檔的 [TypeScript 原生沙箱驗收](verification/language-ide-final-sandbox-typescript-04.json)
-另有兩專案 42 PASS、2 UNAVAILABLE、6 NOT_VERIFIED、0 FAIL，涵蓋語意查詢、
-重新命名、格式化及交易回復。其他五語的實際沙箱 LSP 尚未驗收。
 
-Windows 提供 portable ZIP 與 Inno Setup recipe。先前 72 工具版本的安裝、同版
-重裝、卸載有隔離 smoke；這次擴充尚未重新封裝。乾淨主機、跨版升級、
-Defender/CFA、取消回復另行驗收。Linux/macOS
-原生驗收與性能比較維持 NOT_RUN。CI 僅手動 self-hosted，推送不啟動 hosted CI。
+Python 可由 host 明確選擇 [Ruff stdin formatter](docs/NATIVE_FORMATTERS.md)，
+在原生沙箱產生 CAS 預覽；沒有自動 LSP fallback。OS 路徑查詢可另行明確配置
+enumeration-only grants，不會自動授予父目錄內容讀寫權限。
+
+Windows 使用 portable ZIP／Inno Setup 7，Linux 使用原生 `.deb`／portable tar；
+見 [編譯、封裝與生命週期驗證](docs/PACKAGING_WINDOWS_LINUX.md)。安裝範例的
+所有執行及寫入權限預設關閉。編譯、安裝測試、乾淨主機、跨版本升級、
+Defender/CFA 與中斷回復是不同驗收；Linux VM 的結果也不代表完整 Linux IDE
+或 Linux OS 沙箱支援。macOS 與性能比較尚未驗收。
+CI 僅手動 self-hosted，推送不啟動 hosted CI。
 
 ### 邊界與後續工作
 
@@ -119,5 +124,5 @@ profile 是設定指引，不是 28 語驗收成功。IDE 功能依 backend capa
 
 [已知限制](docs/KNOWN_LIMITATIONS.md) · [安全邊界](docs/SECURITY.md) ·
 [架構](docs/ARCHITECTURE.md) · [40 項規格](docs/FEATURE_SPEC.md) ·
-[工作分派](docs/dispatch-sandbox-ide.md) · [MIT](LICENSE) ·
+[工作分派](docs/dispatch-language-installers-v3.md) · [MIT](LICENSE) ·
 [第三方授權文字](docs/THIRD_PARTY_LICENSES.txt)

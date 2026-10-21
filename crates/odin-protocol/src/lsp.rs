@@ -82,6 +82,9 @@ impl LspClient {
             .map_err(|_| anyhow!("Invalid workspace path"))?
             .to_string();
         let workspace = json!([{"uri":uri,"name":"odin-workspace"}]);
+        // An isolated server cannot monitor the host process namespace. LSP
+        // permits null; the native guard/job owns its complete lifetime.
+        let process_id = sandbox.is_none().then(std::process::id);
         let rpc = RpcProcess::spawn_with_sandbox(
             &language.program,
             &language.args,
@@ -94,7 +97,7 @@ impl LspClient {
             sandbox,
         )?;
         let result=rpc.request("initialize",json!({
-            "processId":std::process::id(),"clientInfo":{"name":"odin","version":env!("CARGO_PKG_VERSION")},
+            "processId":process_id,"clientInfo":{"name":"odin","version":env!("CARGO_PKG_VERSION")},
             "rootUri":uri,"workspaceFolders":workspace,"initializationOptions":language.initialization_options,
             "capabilities":{
                 "window":{"workDoneProgress":true},

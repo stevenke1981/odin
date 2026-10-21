@@ -3,7 +3,7 @@
 Windows 建置與真實後端測試已執行；以 verification 最新報告為準。
 以下項目不能因工具或測試數增加而視為完成。
 
-1. 40 項需求尚未全數驗收。Linux x64、macOS arm64、乾淨 Windows 與三個真正 client 應用的完整矩陣保持 NOT_RUN。
+1. 40 項需求尚未全數驗收。Linux x64、macOS arm64、乾淨 Windows 與三個真正 client 應用的完整矩陣仍未驗收；特定 VM／安裝包測試不等於完整平台驗收。
 2. OS 沙箱目前選用 Windows MXC ProcessContainer、固定 base-container tier 與 executor hash；host 必須明確配置。未配置的 LSP／DAP／命令仍無 OS 隔離；inspections 則拒絕執行。Linux/macOS sandbox、BFS fallback、完整 UI／registry／device 隔離矩陣未驗收。詳見 OS_SANDBOX.md。
 3. I/O 使用 no-follow directory capabilities；Windows 大小寫、8.3、junction／hardlink 有負例。CAS 最後檢查與替換之間的外部競態不是 OS 全域原子 CAS。
 4. WorkspaceEdit 限 regular UTF-8 files 與既有父目錄。directory、recursive、binary、overwrite、需確認 annotations 明確拒絕。
@@ -16,9 +16,10 @@ Windows 建置與真實後端測試已執行；以 verification 最新報告為�
 11. DAP evaluate 與未配置 immutable debug_launches 的 launch／attach／restart 是 privileged debug 輸入。有 debug_launches 時只接受 host 固定 payload，caller 不得擴充 env/argv。OS 權限由另外配置的 MXC grants 決定；固定 payload 不代表全部 adapter 的語意 schema 已驗收。
 12. Dashboard 是單操作者唯讀檢視。沒有 OAuth、租戶 ACL、LLM token、RSS 或完整 OpenTelemetry 來源，未知值維持 UNKNOWN。
 13. Spool 有 24 小時／128 份／128 MiB project 配額，於讀寫時清理；journal、audit、index 沒有完整 retention／加密／備份。Windows ACL 未自動強化。
-14. 既有 installer smoke 屬先前 72 工具版本，這次 85 工具擴充尚未重新封裝。未驗收跨版升級、乾淨機器、取消／崩潰 rollback、Defender／SmartScreen／CFA；未簽章。其他平台打包腳本不等於原生驗收。
+14. Windows 候選已有 portable／Inno 安裝、同版重裝與卸載證據；每份結果只適用其執行檔 hash。Windows／Linux 最新產物與真實驗收見 delivery-status 及 package-v3 報告；腳本或編譯本身不等於可執行／已安裝。未驗收跨版升級、乾淨機器、取消／崩潰 rollback、Defender／SmartScreen／CFA；套件未簽章。
 15. 沒有速度、RSS、CPU、token 節省或 Serena 性能優勢主張。三規模／20 任務 benchmark、formal security audit 維持 NOT_RUN。
 16. Native inspections 目前解析 Clippy、Ruff、ESLint。必須有 inspection host grant 與唯讀來源的 native sandbox；fix 僅先回 CAS preview。報告只描述固定 profile 的範圍，不保證全專案／全部規則覆蓋。見 IDE_IMPLEMENTATION.md。
+17. Native Ruff formatting 需另外明確的 host formatter/write grants、固定 stdin profile 與唯讀來源 sandbox；不自動回退，也不支援 caller range／format options。Windows AppControl 擋住的編譯測試不算通過；真實後端測試不能替代被擋住的完整 Rust gate。
 
 Transaction before/after snapshots 總量上限 32 MiB；來源快照、記憶與結果另有
 配額。超限應縮小操作，不可覆寫衝突或移除配額取得成功。

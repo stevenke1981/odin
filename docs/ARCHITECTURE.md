@@ -80,6 +80,8 @@ sequenceDiagram
 
 符號結構保留 name、kind、階層 name_path、file、range 與 selection_range。定位函式使用 definition / declaration；引用使用 references；實作用 implementation；type hierarchy / code actions 在對端宣告支援時才呼叫。IDE 查詢包含 completion/resolve、hover、signature、workspace symbols、call hierarchy、semantic tokens 與 inlay/resolve。格式化 edit 轉成 expected-hash transaction。缺少 capability 會回 `CAPABILITY_UNAVAILABLE`，回覆附來源 hash/version 與 freshness。見 [IDE](IDE_IMPLEMENTATION.md)。
 
+`format_document` 可額外明確指定 host-owned `formatter_profile`，選擇固定 Ruff stdin 程序；必須另有 write/formatter grants 與來源唯讀的 native sandbox。bounded UTF-8 stdout 經程序結果、來源重驗及 Transactions 產生預覽；不變更 LSP capabilities，也沒有自動 fallback。沙箱 LSP 的 `initialize.processId=null` 避免要求後端查詢不可見的 host PID，生命週期仍由 native guard/job 管理。
+
 文件變更以 SHA-256 決定是否同步，version 單調遞增。與 LSP 的位置統一 **UTF-16、0-based**；轉 Rust UTF-8 byte offset 時拒絕切在 surrogate pair 中間，並處理 CRLF。文字行工具則採 1-based inclusive，兩者不混用。
 
 查詢 diagnostics 優先 pull；否則讀取 push cache，標示 version 是否驗證。尚未收到 diagnostics 回報 pending，不當作「零錯誤」。真實後端的索引準備、workspace 特例、錯誤恢復仍需各語言整合驗收。

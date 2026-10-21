@@ -113,6 +113,13 @@ lifetime, then reap the child before dropping the guard. Dropping it removes the
 temporary policy and private scratch. A launch failure is an error, never a
 request to execute the original command directly.
 
+LSP `initialize.processId` is `null` for an explicitly sandboxed launch. A server
+cannot safely query or monitor the host PID across this OS boundary; servers
+that treat an inaccessible host PID as a shutdown signal would otherwise exit
+after initialization. Unsandboxed launches retain the real host PID. The native
+guard and managed job still enforce cancellation and full process lifetime;
+this does not relax namespace access or enable an alternate execution route.
+
 MXC confines the workload before it starts. The outer Windows job used by
 `ProcessTree` provides cancellation and descendant cleanup; job assignment itself
 does not establish filesystem/network isolation. `None` means no native timeout;

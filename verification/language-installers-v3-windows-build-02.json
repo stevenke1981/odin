@@ -1,0 +1,12 @@
+{
+  "command": "cargo build --workspace --release --locked",
+  "source_head_sha": "780c6adf7de71a6d96d3af12314dcbe9b526ad8b",
+  "started_utc": "2026-10-21T03:13:42.2011169Z",
+  "finished_utc": "2026-10-21T03:15:40.6769371Z",
+  "exit_code": 0,
+  "status": "PASS",
+  "output": "   Compiling odin-core v0.2.0 (E:\\odin\\crates\\odin-core)\n   Compiling odin-agent v0.2.0 (E:\\odin\\crates\\odin)\n   Compiling odin-protocol v0.2.0 (E:\\odin\\crates\\odin-protocol)\n   Compiling odin-engine v0.2.0 (E:\\odin\\crates\\odin-engine)\n    Finished `release` profile [optimized] target(s) in 1m 58s\n",
+  "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+  "metadata_exit_code": 0,
+  "metadata_output": "{\n  \"compiler\": \"rustc 1.90.0 (1159e78c4 2025-09-14)\",\n  \"external_tool_bridge\": false,\n  \"model_token_usage\": \"UNKNOWN\",\n  \"name\": \"Odin\",\n  \"profile\": \"release\",\n  \"revision\": \"780c6adf7de71a6d96d3af12314dcbe9b526ad8b\",\n  \"schema_version\": 1,\n  \"standalone\": true,\n  \"target\": \"x86_64-pc-windows-msvc\",\n  \"tracked_source_dirty\": false,\n  \"version\": \"0.2.0\"\n}\n"
+}
