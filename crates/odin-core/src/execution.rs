@@ -8,7 +8,7 @@ use crate::{
 use serde_json::{Value, json};
 use std::{path::Path, process::Stdio, time::Duration};
 use tokio::{
-    io::{AsyncRead, AsyncReadExt},
+    io::{AsyncRead, AsyncReadExt, AsyncWriteExt},
     process::{Child, Command},
     task::JoinHandle,
 };
@@ -18,6 +18,44 @@ pub async fn run(
     root: &Path,
     max_output: usize,
     sandbox: Option<(&MxcSandboxConfig, &Path)>,
+) -> Result<Value> {
+    run_capture(
+        config,
+        root,
+        (max_output / 2, max_output / 2),
+        sandbox,
+        None,
+    )
+    .await
+}
+
+/// Feed one bounded UTF-8 snapshot to a host-configured child. Callers that use
+/// stdout as source text must reject truncation and invalid UTF-8 before CAS.
+pub async fn run_with_stdin(
+    config: &CommandConfig,
+    root: &Path,
+    output_limits: (usize, usize),
+    sandbox: Option<(&MxcSandboxConfig, &Path)>,
+    input: &str,
+) -> Result<Value> {
+    if input.len() > 16 * 1024 * 1024
+        || !(1..=16 * 1024 * 1024).contains(&output_limits.0)
+        || !(1..=4 * 1024 * 1024).contains(&output_limits.1)
+        || !(1..=600).contains(&config.timeout_secs)
+    {
+        return Err(Fault::invalid(
+            "Stdin execution limits outside supported bounds",
+        ));
+    }
+    run_capture(config, root, output_limits, sandbox, Some(input)).await
+}
+
+async fn run_capture(
+    config: &CommandConfig,
+    root: &Path,
+    output_limits: (usize, usize),
+    sandbox: Option<(&MxcSandboxConfig, &Path)>,
+    input: Option<&str>,
 ) -> Result<Value> {
     let (mut command, guard) = if let Some((policy, policy_dir)) = sandbox {
         let launch = crate::sandbox::prepare(
@@ -36,7 +74,11 @@ pub async fn run(
         (command, None)
     };
     command
-        .stdin(Stdio::null())
+        .stdin(if input.is_some() {
+            Stdio::piped()
+        } else {
+            Stdio::null()
+        })
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())
         .kill_on_drop(true);
@@ -55,14 +97,33 @@ pub async fn run(
         .stderr
         .take()
         .ok_or_else(|| Fault::new("PROCESS_ERROR", "Missing stderr"))?;
-    let out = tokio::spawn(capture(stdout, max_output / 2));
-    let err = tokio::spawn(capture(stderr, max_output / 2));
-    let (status, timed_out) =
-        match tokio::time::timeout(Duration::from_secs(config.timeout_secs), child.wait()).await {
-            Ok(status) => (Some(status?), false),
+    let out = CaptureTask(tokio::spawn(capture(stdout, output_limits.0)));
+    let err = CaptureTask(tokio::spawn(capture(stderr, output_limits.1)));
+    let stdin = child.stdin.take();
+    let feed = async {
+        if let Some(input) = input {
+            let mut stdin = stdin.ok_or_else(|| std::io::Error::other("Missing stdin"))?;
+            stdin.write_all(input.as_bytes()).await?;
+            stdin.shutdown().await?;
+        }
+        Ok::<_, std::io::Error>(())
+    };
+    // Drain both output pipes while feeding stdin. The same deadline includes
+    // a child that never reads stdin, rather than timing only its final wait.
+    let (status, timed_out, input_error) =
+        match tokio::time::timeout(Duration::from_secs(config.timeout_secs), async {
+            tokio::join!(feed, child.wait())
+        })
+        .await
+        {
+            Ok((fed, status)) => (
+                Some(status?),
+                false,
+                fed.err().map(|error| error.to_string()),
+            ),
             Err(_) => {
                 let _ = child.kill().await;
-                (None, true)
+                (None, true, None)
             }
         };
     drop(lifetime);
@@ -70,16 +131,29 @@ pub async fn run(
     let stderr = collect(err).await?;
     Ok(
         json!({"program":config.program,"args":config.args,"exit_code":status.as_ref().and_then(|s|s.code()),
-        "success":status.as_ref().is_some_and(|s|s.success())&&!timed_out,
-        "timed_out":timed_out,"stdout":stdout.0,"stderr":stderr.0,"output_truncated":stdout.1||stderr.1,
+        "success":status.as_ref().is_some_and(|s|s.success())&&!timed_out&&input_error.is_none(),
+        "timed_out":timed_out,"stdout":stdout.text,"stderr":stderr.text,"output_truncated":stdout.truncated||stderr.truncated,
+        "stdout_utf8_valid":stdout.utf8_valid,"stderr_utf8_valid":stderr.utf8_valid,
+        "stdin_complete":!timed_out&&input_error.is_none(),"stdin_error":input_error,
         "descendant_process_lifetime_managed":true,"sandbox":sandbox.is_some(),
         "sandbox_status":if sandbox.is_some(){"enforced_mxc_processcontainer"}else{"not_requested"}}),
     )
 }
-async fn capture<R: AsyncRead + Unpin>(
-    mut reader: R,
-    cap: usize,
-) -> std::io::Result<(String, bool)> {
+struct Captured {
+    text: String,
+    truncated: bool,
+    utf8_valid: bool,
+}
+
+// Dropping a cancelled execution must not detach pipe readers on the runtime.
+struct CaptureTask(JoinHandle<std::io::Result<Captured>>);
+impl Drop for CaptureTask {
+    fn drop(&mut self) {
+        self.0.abort();
+    }
+}
+
+async fn capture<R: AsyncRead + Unpin>(mut reader: R, cap: usize) -> std::io::Result<Captured> {
     let mut collected = Vec::new();
     let mut buffer = [0u8; 8192];
     let mut truncated = false;
@@ -94,19 +168,23 @@ async fn capture<R: AsyncRead + Unpin>(
             truncated = true;
         }
     }
-    Ok((String::from_utf8_lossy(&collected).into_owned(), truncated))
+    Ok(Captured {
+        utf8_valid: std::str::from_utf8(&collected).is_ok(),
+        text: String::from_utf8_lossy(&collected).into_owned(),
+        truncated,
+    })
 }
-async fn collect(mut task: JoinHandle<std::io::Result<(String, bool)>>) -> Result<(String, bool)> {
-    match tokio::time::timeout(Duration::from_secs(2), &mut task).await {
+async fn collect(mut task: CaptureTask) -> Result<Captured> {
+    match tokio::time::timeout(Duration::from_secs(2), &mut task.0).await {
         Ok(Ok(result)) => Ok(result?),
         Ok(Err(error)) => Err(Fault::new("PROCESS_ERROR", error.to_string())),
         Err(_) => {
-            task.abort();
-            Ok((
-                "Output pipe remained open after parent exit; descendant processes may still exist"
-                    .into(),
-                true,
-            ))
+            task.0.abort();
+            Ok(Captured {
+                text: "Output pipe remained open after parent exit; descendant processes may still exist".into(),
+                truncated: true,
+                utf8_valid: true,
+            })
         }
     }
 }

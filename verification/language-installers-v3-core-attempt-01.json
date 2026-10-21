@@ -1,0 +1,8 @@
+{
+  "command": "cargo test -p odin-core --locked --test stdin_execution --test host_execution_policy",
+  "started_utc": "2026-10-21T02:52:51.4399066Z",
+  "finished_utc": "2026-10-21T02:53:04.2676277Z",
+  "exit_code": 0,
+  "status": "PASS",
+  "output": "   Compiling odin-core v0.2.0 (E:\\odin\\crates\\odin-core)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.08s\n     Running tests\\host_execution_policy.rs (target\\debug\\deps\\host_execution_policy-5c3d470a1c5b88e9.exe)\n\nrunning 7 tests\ntest new_execution_permissions_are_not_implicitly_enabled ... ok\ntest formatter_argv_is_fixed_isolated_stdin_only_and_placeholder_is_exact ... ok\ntest policies_can_only_reduce_inspection_permission ... ok\ntest formatter_policy_is_explicit_reducible_and_cannot_grant_write ... ok\ntest sandbox_policy_binds_executor_and_protects_host_storage ... ok\ntest inspection_profiles_cannot_enable_source_writing_flags ... ok\ntest sandbox_writable_grants_cannot_cover_configuration_or_state ... ok\n\ntest result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s\n\n     Running tests\\stdin_execution.rs (target\\debug\\deps\\stdin_execution-9c171f31b016c15b.exe)\n\nrunning 5 tests\ntest execution_rejects_unbounded_input_capture_and_deadlines_before_spawn ... ok\ntest concurrent_output_draining_prevents_stdin_backpressure_deadlock ... ok\ntest unicode_snapshot_roundtrips_exactly_and_empty_input_closes_pipe ... ok\ntest invalid_utf8_and_nonzero_exit_are_not_usable_source ... ok\ntest deadline_includes_child_that_does_not_read_stdin ... ok\n\ntest result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.96s\n\n"
+}

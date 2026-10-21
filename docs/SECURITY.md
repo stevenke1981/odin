@@ -26,6 +26,8 @@ Serena 橋接已移除，也沒有由工具名稱觸發的上游 fallback。這�
 
 LSP／DAP 與允許執行的命令仍是外部程式；它們的內部檔案操作不經 Odin journal。配置 MXC 後限制在 host 授權的 OS grants；寫入 source grant 仍可能產生外部副作用。Native inspections 強制要求沙箱與所有配置 project 唯讀，保留外部 cache grants，修正全部轉成原生 Transactions。不得因移除 Serena 就把外部後端視為安全。
 
+Native formatting 另須 host 明確允許 `allow_formatters` 及來源寫入，選擇固定 Ruff stdin profile。程序只能讀取來源，格式化結果經有上限的 UTF-8 輸出與 expected hash 檢查後才建立交易；不讀 repository formatter config、不自動回退、不忽略截斷或程序失敗。詳見 [Native formatter 邊界](NATIVE_FORMATTERS.md)。
+
 `debug_launches.<profile>` 可由 host 固定 launch、attach、restart JSON payload；空 arguments 使用固定值，非空須完全相等。缺少指定 command payload 時拒絕。有意保留舊 host allow_debug 的 privileged 模式時，metadata 明列 unrestricted_host_debug。evaluate 仍可在 debuggee 的權限內執行語言運算；不得把它當任意不可信運算的純資料工具。
 
 ## 網路

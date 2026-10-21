@@ -1,0 +1,15 @@
+{
+  "command": [
+    "rustup",
+    "target",
+    "add",
+    "--toolchain",
+    "1.90.0-x86_64-pc-windows-msvc",
+    "x86_64-unknown-linux-musl"
+  ],
+  "exit_code": 0,
+  "status": "PASS",
+  "output": "info: downloading component rust-std\n",
+  "recorded_utc": "2026-10-21T02:42:11.113278+00:00",
+  "scope": "Explicit Linux std target installation, no default toolchain or Cargo.lock change."
+}

@@ -410,7 +410,32 @@ async fn abort_and_native_timeout_reap_the_sandbox_tree() {
 #[ignore = "Requires explicit trusted native MXC path/hash and a supported Windows host"]
 async fn bounded_execution_retains_guard_until_abort_and_timeout_reaping() {
     let fixture = Fixture::new();
-    for abort in [true, false] {
+    let echo = odin_core::config::CommandConfig {
+        program: fixture
+            .bin
+            .join("workload.exe")
+            .to_string_lossy()
+            .into_owned(),
+        args: vec!["echo".into()],
+        timeout_secs: 10,
+    };
+    let input = "唯讀來源🦀\r\n\0".repeat(8192);
+    let result = odin_core::execution::run_with_stdin(
+        &echo,
+        &fixture.read,
+        (262_144, 1024),
+        Some((&fixture.config, &fixture.policies)),
+        &input,
+    )
+    .await
+    .unwrap();
+    assert_eq!(result["success"], true);
+    assert_eq!(result["sandbox"], true);
+    assert_eq!(result["stdin_complete"], true);
+    assert_eq!(result["stdout_utf8_valid"], true);
+    assert_eq!(result["output_truncated"], false);
+    assert_eq!(result["stdout"].as_str().unwrap(), input);
+    for (with_stdin, abort) in [(false, true), (false, false), (true, true), (true, false)] {
         let heartbeat = fixture.write.join("runner-heartbeat.txt");
         let pid_file = fixture.write.join("runner-pids.json");
         let _ = fs::remove_file(&heartbeat);
@@ -433,7 +458,19 @@ async fn bounded_execution_retains_guard_until_abort_and_timeout_reaping() {
         let policy_dir = fixture.policies.clone();
         let root = fixture.read.clone();
         let task = tokio::spawn(async move {
-            odin_core::execution::run(&config, &root, 16_384, Some((&policy, &policy_dir))).await
+            if with_stdin {
+                odin_core::execution::run_with_stdin(
+                    &config,
+                    &root,
+                    (8192, 8192),
+                    Some((&policy, &policy_dir)),
+                    &"x".repeat(1_048_576),
+                )
+                .await
+            } else {
+                odin_core::execution::run(&config, &root, 16_384, Some((&policy, &policy_dir)))
+                    .await
+            }
         });
         tokio::time::timeout(Duration::from_secs(5), async {
             while !pid_file.is_file() || !heartbeat.is_file() {
@@ -487,7 +524,7 @@ async fn bounded_execution_retains_guard_until_abort_and_timeout_reaping() {
                     .starts_with("odin-mxc-policy-"))
         );
         eprintln!(
-            "bounded_execution abort={abort} native_parent_child_reaped=true held_scratch_removed=true policy_removed=true"
+            "bounded_execution with_stdin={with_stdin} abort={abort} native_parent_child_reaped=true held_scratch_removed=true policy_removed=true"
         );
     }
 }

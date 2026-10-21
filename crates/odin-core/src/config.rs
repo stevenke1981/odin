@@ -31,6 +31,7 @@ pub struct PolicyConfig {
     pub allow_shell: bool,
     pub allow_debug: bool,
     pub allow_inspections: bool,
+    pub allow_formatters: bool,
     pub excluded_tools: Vec<String>,
 }
 fn default_state() -> PathBuf {
@@ -76,6 +77,8 @@ pub struct ProjectConfig {
     pub allow_debug: bool,
     #[serde(default)]
     pub allow_inspections: bool,
+    #[serde(default)]
+    pub allow_formatters: bool,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub sandbox: Option<crate::sandbox_policy::MxcSandboxConfig>,
     #[serde(default)]
@@ -92,6 +95,8 @@ pub struct ProjectConfig {
     pub debug_launches: BTreeMap<String, DebugLaunchProfile>,
     #[serde(default)]
     pub inspections: BTreeMap<String, InspectionProfile>,
+    #[serde(default)]
+    pub formatters: BTreeMap<String, FormatterProfile>,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
@@ -109,6 +114,124 @@ pub struct InspectionProfile {
     pub command: CommandConfig,
     #[serde(default = "default_version_args")]
     pub version_args: Vec<String>,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum FormatterProvider {
+    Ruff,
+}
+
+/// A host-selected stdin formatter. Its output is data for a transaction,
+/// never permission for the child to modify project sources.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FormatterProfile {
+    pub provider: FormatterProvider,
+    pub command: CommandConfig,
+    pub extensions: Vec<String>,
+}
+
+impl FormatterProfile {
+    pub fn validate(&self) -> Result<()> {
+        validate_program(&self.command.program)?;
+        if !(1..=600).contains(&self.command.timeout_secs)
+            || self.command.args.len() > 32
+            || self.extensions.is_empty()
+            || self.extensions.len() > 64
+            || self.extensions.iter().any(|extension| {
+                extension.is_empty()
+                    || extension.len() > 32
+                    || !extension
+                        .bytes()
+                        .all(|byte| byte.is_ascii_alphanumeric() || byte == b'_')
+            })
+        {
+            return Err(Fault::invalid("Formatter profile exceeds supported bounds"));
+        }
+        let args = &self.command.args;
+        if args.first().map(String::as_str) != Some("format")
+            || args.last().map(String::as_str) != Some("-")
+            || args
+                .iter()
+                .any(|argument| argument.len() > 1024 || argument.chars().any(char::is_control))
+        {
+            return Err(Fault::invalid(
+                "Formatter must use explicit Ruff stdin format arguments",
+            ));
+        }
+        let mut seen = std::collections::BTreeSet::new();
+        let mut index = 1;
+        while index + 1 < args.len() {
+            let flag = args[index].as_str();
+            if !seen.insert(flag) {
+                return Err(Fault::invalid("Duplicate formatter flag"));
+            }
+            match flag {
+                "--isolated" | "--no-cache" | "--preview" | "--no-preview" => {}
+                "--stdin-filename" | "--line-length" | "--target-version" => {
+                    let value = args
+                        .get(index + 1)
+                        .filter(|_| index + 2 < args.len())
+                        .ok_or_else(|| Fault::invalid("Formatter flag has no value"))?;
+                    let valid = match flag {
+                        "--stdin-filename" => value == "{relative_path}",
+                        "--line-length" => {
+                            value.parse::<u16>().is_ok_and(|n| (1..=320).contains(&n))
+                        }
+                        "--target-version" => value.strip_prefix("py").is_some_and(|digits| {
+                            (2..=3).contains(&digits.len())
+                                && digits.bytes().all(|b| b.is_ascii_digit())
+                        }),
+                        _ => false,
+                    };
+                    if !valid {
+                        return Err(Fault::invalid("Invalid fixed formatter flag value"));
+                    }
+                    index += 1;
+                }
+                _ => {
+                    return Err(Fault::invalid(
+                        "Unsupported formatter option or source path",
+                    ));
+                }
+            }
+            index += 1;
+        }
+        if !(seen.contains("--isolated")
+            && seen.contains("--no-cache")
+            && seen.contains("--stdin-filename"))
+            || (seen.contains("--preview") && seen.contains("--no-preview"))
+        {
+            return Err(Fault::invalid(
+                "Formatter requires isolated, no-cache, stdin-only execution",
+            ));
+        }
+        Ok(())
+    }
+
+    /// Resolve only the one exact host placeholder, after policy validation.
+    pub fn resolved_args(&self, filename: &Path) -> Result<Vec<String>> {
+        self.validate()?;
+        if !filename.is_absolute() {
+            return Err(Fault::invalid(
+                "Formatter filename must be an absolute safe-root path",
+            ));
+        }
+        let filename = filename
+            .to_str()
+            .filter(|s| !s.chars().any(char::is_control))
+            .ok_or_else(|| {
+                Fault::invalid("Formatter filename must be valid UTF-8 without controls")
+            })?;
+        let mut args = self.command.args.clone();
+        let index = args
+            .iter()
+            .position(|argument| argument == "--stdin-filename")
+            .ok_or_else(|| Fault::invalid("Missing formatter filename option"))?;
+        args[index + 1] = filename.into();
+        Ok(args)
+    }
 }
 
 /// Optional immutable DAP launch payloads owned by the trusted host. Unknown
@@ -204,6 +327,7 @@ impl Config {
                     project.allow_shell &= policy.allow_shell;
                     project.allow_debug &= policy.allow_debug;
                     project.allow_inspections &= policy.allow_inspections;
+                    project.allow_formatters &= policy.allow_formatters;
                     project
                         .excluded_tools
                         .extend(policy.excluded_tools.iter().cloned());
@@ -320,6 +444,10 @@ impl Config {
             for (name, profile) in &project.inspections {
                 validate_id(name)?;
                 validate_inspection(profile)?;
+            }
+            for (name, profile) in &project.formatters {
+                validate_id(name)?;
+                profile.validate()?;
             }
             if let Some(sandbox) = &mut project.sandbox {
                 validate_sandbox_policy(sandbox, parent, &path, &config.state_dir)?;

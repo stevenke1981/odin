@@ -1,0 +1,9 @@
+{
+  "command": "cargo test -p odin-core --locked --test os_sandbox_native bounded_execution_retains_guard_until_abort_and_timeout_reaping -- --ignored --nocapture",
+  "started_utc": "2026-10-21T02:54:06.2680677Z",
+  "finished_utc": "2026-10-21T02:54:23.3570219Z",
+  "exit_code": 0,
+  "status": "PASS",
+  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+  "output": "   Compiling odin-core v0.2.0 (E:\\odin\\crates\\odin-core)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.96s\n     Running tests\\os_sandbox_native.rs (target\\debug\\deps\\os_sandbox_native-b4457c3f1ab6ba4b.exe)\n\nrunning 1 test\nbounded_execution with_stdin=false abort=true native_parent_child_reaped=true held_scratch_removed=true policy_removed=true\nbounded_execution with_stdin=false abort=false native_parent_child_reaped=true held_scratch_removed=true policy_removed=true\nbounded_execution with_stdin=true abort=true native_parent_child_reaped=true held_scratch_removed=true policy_removed=true\nbounded_execution with_stdin=true abort=false native_parent_child_reaped=true held_scratch_removed=true policy_removed=true\ntest bounded_execution_retains_guard_until_abort_and_timeout_reaping ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 11.07s\n\n"
+}

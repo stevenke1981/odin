@@ -23,8 +23,143 @@ fn new_execution_permissions_are_not_implicitly_enabled() {
     let config = Config::load(&path).unwrap();
     let project = &config.projects["demo"];
     assert!(!project.allow_inspections);
+    assert!(!project.allow_formatters && project.formatters.is_empty());
     assert!(!project.allow_write && !project.allow_debug && !project.allow_shell);
     assert!(project.sandbox.is_none() && project.inspections.is_empty());
+}
+
+#[test]
+fn formatter_policy_is_explicit_reducible_and_cannot_grant_write() {
+    let (_directory, path) = fixture();
+    write(
+        &path,
+        "allow_formatters=true\n[contexts.format]\nallow_formatters=true\n[contexts.read]\n",
+    );
+    let config = Config::load(&path).unwrap();
+    let enabled = config.clone().with_policy(Some("format"), None).unwrap();
+    assert!(enabled.projects["demo"].allow_formatters);
+    assert!(!enabled.projects["demo"].allow_write);
+    assert!(!config.with_policy(Some("read"), None).unwrap().projects["demo"].allow_formatters);
+    write(
+        &path,
+        "[contexts.format]\nallow_formatters=true\nallow_write=true\n",
+    );
+    let reduced = Config::load(&path)
+        .unwrap()
+        .with_policy(Some("format"), None)
+        .unwrap();
+    assert!(!reduced.projects["demo"].allow_formatters);
+    assert!(!reduced.projects["demo"].allow_write);
+}
+
+#[test]
+fn formatter_argv_is_fixed_isolated_stdin_only_and_placeholder_is_exact() {
+    use odin_core::config::{CommandConfig, FormatterProfile, FormatterProvider};
+    let (directory, path) = fixture();
+    let args = [
+        "format",
+        "--isolated",
+        "--no-cache",
+        "--stdin-filename",
+        "{relative_path}",
+        "-",
+    ];
+    let profile = FormatterProfile {
+        provider: FormatterProvider::Ruff,
+        command: CommandConfig {
+            program: "ruff".into(),
+            args: args.map(String::from).into(),
+            timeout_secs: 10,
+        },
+        extensions: vec!["py".into()],
+    };
+    profile.validate().unwrap();
+    let filename = directory.path().join("workspace/-config.py");
+    assert_eq!(
+        profile.resolved_args(&filename).unwrap()[4],
+        filename.to_str().unwrap()
+    );
+    assert!(profile.resolved_args(Path::new("relative.py")).is_err());
+    for invalid in [
+        vec!["format", "-"],
+        vec![
+            "format",
+            "--isolated",
+            "--no-cache",
+            "--stdin-filename",
+            "{relative_path}.py",
+            "-",
+        ],
+        vec![
+            "format",
+            "--isolated",
+            "--no-cache",
+            "--stdin-filename",
+            "{relative_path}",
+            "--config",
+            "evil.toml",
+            "-",
+        ],
+        vec![
+            "format",
+            "--isolated",
+            "--no-cache",
+            "--stdin-filename",
+            "{relative_path}",
+            "source.py",
+            "-",
+        ],
+        vec![
+            "format",
+            "--isolated",
+            "--isolated",
+            "--no-cache",
+            "--stdin-filename",
+            "{relative_path}",
+            "-",
+        ],
+        vec![
+            "format",
+            "--isolated",
+            "--no-cache",
+            "--stdin-filename",
+            "{relative_path}",
+            "--line-length",
+            "0",
+            "-",
+        ],
+        vec![
+            "format",
+            "--isolated",
+            "--no-cache",
+            "--stdin-filename",
+            "{relative_path}",
+            "--target-version",
+            "py3\n",
+            "-",
+        ],
+        vec![
+            "format",
+            "--isolated",
+            "--no-cache",
+            "--stdin-filename",
+            "{relative_path}",
+            "--preview",
+            "--no-preview",
+            "-",
+        ],
+    ] {
+        let mut bad = profile.clone();
+        bad.command.args = invalid.into_iter().map(String::from).collect();
+        assert!(bad.validate().is_err(), "{:?}", bad.command.args);
+    }
+    write(
+        &path,
+        "[projects.demo.formatters.ruff]\nprovider='ruff'\nextensions=['py']\ncommand={program='ruff',args=['format','--isolated','--no-cache','--stdin-filename','{relative_path}','-']}\n",
+    );
+    let loaded = Config::load(&path).unwrap();
+    assert_eq!(loaded.projects["demo"].formatters.len(), 1);
+    assert!(!loaded.projects["demo"].allow_formatters);
 }
 
 #[test]
