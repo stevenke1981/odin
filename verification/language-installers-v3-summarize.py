@@ -11,6 +11,10 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 PRODUCT_REVISION = '69e769be9baa4e825139b72ce1a9b48bf8143114'
 PREVIOUS_DOCUMENTATION = '75c38f8'
+LINUX_CANONICAL_REPORT = 'verification/package-v3-linux-final.json'
+LINUX_BINARY_SHA256 = '5b1f352840074325f384743a06d9fffc64f7c191df1ffb448711b1852cbcbb1d'
+LINUX_TARGET = 'x86_64-unknown-linux-musl'
+PACKAGING_REVISION = 'bb1042c6f153ad4f3597743b3a3980aac4968ef2'
 
 
 def sha(path):
@@ -55,6 +59,93 @@ def binding(name, note=None):
     return result
 
 
+def bound_file(reference):
+    path = (ROOT/reference['path']).resolve(strict=True)
+    path.relative_to(ROOT.resolve())
+    if not path.is_file() or sha(path) != reference['sha256']:
+        raise ValueError('Evidence digest differs: '+reference['path'])
+    return path
+
+
+def linux_evidence(name):
+    """Validate the exact native candidate and classify each original criterion."""
+    if name != LINUX_CANONICAL_REPORT:
+        raise ValueError('Only the final canonical native Linux report is applicable')
+    value = load(name)
+    metadata = value.get('build_metadata', {})
+    if (value.get('scope') != 'ACTUAL_LINUX_VM_BUILD_WORKSPACE_GATES_SMOKES_AND_INSTALLERS'
+            or value.get('app_build_revision') != PRODUCT_REVISION
+            or value.get('packaging_revision') != PACKAGING_REVISION
+            or value.get('bundled_docs_revision') != PACKAGING_REVISION
+            or value.get('linux_target') != LINUX_TARGET
+            or metadata.get('revision') != PRODUCT_REVISION
+            or metadata.get('target') != LINUX_TARGET
+            or metadata.get('profile') != 'release'
+            or metadata.get('tracked_source_dirty') is not False
+            or value.get('binary_sha256') != LINUX_BINARY_SHA256
+            or value.get('elf', {}).get('format') != 'ELF64_X86_64'
+            or value.get('elf', {}).get('pt_interp', 'missing') is not None):
+        raise ValueError('Linux source, target, metadata or ELF differs from the selected candidate')
+    if value.get('status') not in ('PASS', 'PARTIAL', 'FAIL'):
+        raise ValueError('Pending or diagnostic reports are not executed Linux acceptance')
+    source = value['source_manifest']
+    bound_file(source)
+    if source.get('checked_files', 0) <= 0:
+        raise ValueError('Linux source manifest has no checked files')
+    commands = value.get('commands', [])
+    for command in commands:
+        if not isinstance(command.get('exit_code'), int):
+            raise ValueError('Every reported Linux command needs a real exit code')
+        if command.get('status') != ('PASS' if command['exit_code'] == 0 else 'FAIL'):
+            raise ValueError('Linux command status does not match its actual exit code')
+        bound_file({'path': command['log'], 'sha256': command['log_sha256']})
+    metadata_checks = [c for c in commands if c['exit_code'] == 0
+                       and isinstance(c.get('argv'), list) and c['argv'][-1:] == ['metadata']]
+    build_checks = [c for c in commands if c['exit_code'] == 0
+                    and isinstance(c.get('argv'), list)
+                    and any(Path(arg).name == 'cargo' for arg in c['argv'])
+                    and all(arg in c['argv'] for arg in ('build', '--release', '--locked'))]
+    artifacts = value.get('artifacts', [])
+    for artifact in artifacts:
+        path = bound_file(artifact)
+        if path.stat().st_size != artifact['bytes']:
+            raise ValueError('Linux artifact size differs: '+artifact['path'])
+    native_elf = [a for a in artifacts if a['sha256'] == LINUX_BINARY_SHA256]
+    ac1 = bool(metadata_checks and build_checks and native_elf)
+    archive_kinds = {suffix for suffix in ('.deb', '.tar.gz')
+                     if any(a['path'].endswith(suffix) for a in artifacts)}
+    inventory = value.get('payload_inventory', {})
+    packaging_source = value.get('packaging_source_manifest', {})
+    lifecycle = value.get('installer_lifecycle', {})
+    ac3 = False
+    if archive_kinds == {'.deb', '.tar.gz'} and inventory and packaging_source:
+        bound_file(inventory)
+        bound_file(packaging_source)
+        ac3 = (inventory.get('entries', 0) > 0 and packaging_source.get('checked_files', 0) > 0
+               and value.get('product_equivalence', {}).get('status') == 'PASS'
+               and value.get('product_equivalence', {}).get('compared_files', 0) > 0
+               and lifecycle.get('status') == 'PASS'
+               and all(lifecycle.get(key) == 0 for key in ('install_exit_code', 'reinstall_exit_code', 'uninstall_exit_code')))
+        if ac3:
+            bound_file(lifecycle['report'])
+    signal = value.get('signal_shutdown_acceptance', {})
+    if signal.get('requirement') != 'ODIN-029-A2' or signal.get('status') != 'NOT_RUN':
+        raise ValueError('Dedicated signal/descendant/journal acceptance requires separate review; never infer it from cancellation')
+    criteria = {
+        'ODIN-029-A1': {'status': 'PARTIAL' if ac1 else 'NOT_RUN',
+            'remaining': 'Source-bound Linux native build and actual metadata execution only; macOS and the complete platform matrix remain unverified.' if ac1 else 'No applicable successful source-bound native build/metadata/ELF set.'},
+        'ODIN-029-A2': {'status': 'NOT_RUN',
+            'remaining': 'Dedicated SIGTERM/SIGINT LSP/DAP descendant cleanup and journal acceptance was not run. General MCP cancellation is not this criterion.'},
+        'ODIN-029-A3': {'status': 'PARTIAL' if ac3 else 'NOT_RUN',
+            'remaining': 'Linux source/package manifests, payload inventory and archive hashes were checked; macOS artifacts remain unverified.' if ac3 else 'Complete source/package manifest, payload inventory and archive checksum evidence is not available.'},
+    }
+    result = binding(name)
+    result['acceptance_results'] = criteria
+    result['app_build_revision'] = value['app_build_revision']
+    result['packaging_revision'] = value.get('packaging_revision')
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--linux-report', help='Completed canonical Linux native report, if available')
@@ -88,7 +179,7 @@ def main():
         'prepared_final_matrix': binding('verification/language-sandbox-v3-finalrun-plan.json', 'Plan only; 0 final-candidate LSP projects executed.'),
         'qa_report_preflight': binding('verification/language-installers-v3-continuation-preflight-01.json', 'Five inert overwrite-protection checks; zero native process calls.'),
     }
-    linux = binding(args.linux_report) if args.linux_report else {
+    linux = linux_evidence(args.linux_report) if args.linux_report else {
         'status': 'IN_PROGRESS', 'acceptance_status': 'NOT_RUN', 'compiled_source_head_sha': PRODUCT_REVISION,
         'scope': 'Disposable Debian 12 QEMU guest; native final build/gates/packaging in progress. No PASS inferred.'}
     review = binding(args.review_report) if args.review_report else {'status': 'IN_PROGRESS', 'release_approval': 'BLOCKED'}
@@ -178,13 +269,15 @@ def main():
     # A documentation assembler never upgrades the original acceptance criteria to PASS.
     if args.linux_report:
         entry = next(x for x in evidence['requirements'] if x['id'] == 'ODIN-029')
-        entry['status'] = 'PARTIAL'
-        entry['implementation'] = 'NATIVE_SOURCE_PARTIAL'
+        applicable = any(item['status'] == 'PARTIAL' for item in linux['acceptance_results'].values())
+        entry['status'] = 'PARTIAL' if applicable else 'NOT_RUN'
+        entry['implementation'] = 'NATIVE_SOURCE_PARTIAL' if applicable else 'NOT_VERIFIED'
+        entry['language_installers_v3']['status'] = entry['status']
         entry['supporting_reports'].append(copy.deepcopy(linux))
         for item in entry['acceptance_results']:
-            item.update(status='PARTIAL', remaining='Linux native execution has a source-bound report; see its actual outcomes. macOS and full signal/journal/platform matrix remain unverified.')
+            item.update(linux['acceptance_results'][item['id']])
         for item in entry['unverified_acceptance']:
-            item['remaining'] = 'Linux native result is bound separately; macOS/full signal/journal/platform acceptance remains incomplete.'
+            item['remaining'] = linux['acceptance_results'][item['id']]['remaining']
     evidence['status_summary'] = dict(Counter(entry['status'] for entry in evidence['requirements']))
     features = load('requirements/features.json')
     for entry in features['features']:

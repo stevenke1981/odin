@@ -1,0 +1,46 @@
+{
+  "scope": "READ_ONLY_ORIGIN_AND_PUBLISHER_CREDENTIAL_PREFLIGHT",
+  "observed_utc": "2026-10-21T04:06:34.154746+00:00",
+  "remote_modified": false,
+  "ci_dispatched": false,
+  "commands": [
+    {
+      "name": "git_origin",
+      "argv": [
+        "git",
+        "remote",
+        "get-url",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout": "https://github.com/stevenke1981/odin.git",
+      "stderr": ""
+    },
+    {
+      "name": "git_remote_main",
+      "argv": [
+        "git",
+        "ls-remote",
+        "origin",
+        "refs/heads/main"
+      ],
+      "exit_code": 0,
+      "stdout": "9017908f8759de74d5c3deb89e7bdb8aedcf83fd\trefs/heads/main",
+      "stderr": ""
+    },
+    {
+      "name": "publisher_cli_login",
+      "argv": [
+        "gh",
+        "api",
+        "user",
+        "--jq",
+        ".login"
+      ],
+      "exit_code": 0,
+      "stdout": "stevenke1981",
+      "stderr": ""
+    }
+  ],
+  "status": "PASS"
+}
