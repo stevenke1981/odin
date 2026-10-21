@@ -1,0 +1,76 @@
+{
+  "scope": "DOCUMENTATION_STATIC_CHECKS_ONLY_NOT_TARGET_RUNTIME_ACCEPTANCE",
+  "started_utc": "2026-10-21T05:46:19.875548+00:00",
+  "status": "PASS",
+  "commands": [
+    {
+      "name": "generated",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/check_generated.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "verification/language-installers-v3-doc-logs-03/generated.txt",
+      "log_sha256": "0bcc5c510237297d634065069ed630e38871d94d920bdeda00c939ef36100698",
+      "elapsed_seconds": 0.166
+    },
+    {
+      "name": "static_source",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/check_source.py",
+        "--output",
+        "E:\\odin\\verification\\language-installers-v3-doc-source-03.json"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "verification/language-installers-v3-doc-logs-03/static_source.txt",
+      "log_sha256": "dd5d772244c239212808d4ab95678ae69ebea331ed9c6ac8d8a965e383d36483",
+      "elapsed_seconds": 0.361
+    },
+    {
+      "name": "requirements",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/check_requirements.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "verification/language-installers-v3-doc-logs-03/requirements.txt",
+      "log_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2",
+      "elapsed_seconds": 0.129
+    },
+    {
+      "name": "publish_policy",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/check_publish_policy.py"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "verification/language-installers-v3-doc-logs-03/publish_policy.txt",
+      "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983",
+      "elapsed_seconds": 0.039
+    },
+    {
+      "name": "diff_whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "verification/language-installers-v3-doc-logs-03/diff_whitespace.txt",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsed_seconds": 0.051
+    }
+  ],
+  "blocked_candidate_executed": false,
+  "source_report": {
+    "path": "verification/language-installers-v3-doc-source-03.json",
+    "sha256": "8719e316fb96aab550774ee4e22370b29a083a7a2c13c7b308f7b646a4330de6"
+  },
+  "completed_utc": "2026-10-21T05:46:20.623131+00:00"
+}

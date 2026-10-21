@@ -2,7 +2,7 @@
   "project": "Odin",
   "version": "0.2.0",
   "release_class": "NATIVE_PREVIEW_WITH_WINDOWS_HOST_BLOCK",
-  "generated_at_utc": "2026-10-21T05:18:16.625445+00:00",
+  "generated_at_utc": "2026-10-21T05:46:01.137548+00:00",
   "architecture": "Independent Rust toolkit with direct LSP/DAP; no Serena bridge",
   "workspace_crates": 4,
   "tool_contracts": 85,
@@ -108,8 +108,8 @@
       "all_six_final_candidate_accepted": false
     },
     "linux": {
-      "report": "verification/package-v3-linux-final.json",
-      "report_sha256": "c1a9f4a750660873c55be1294a431c048fa3f0094c6f1a314d46f448cb62af93",
+      "report": "verification/package-v3-linux-notices-final.json",
+      "report_sha256": "3a25fd4b2f77556b844a648cec36b4b50218c004c8220639671461abbc1eed62",
       "scope": "ACTUAL_LINUX_VM_BUILD_WORKSPACE_GATES_SMOKES_AND_INSTALLERS",
       "status": "PASS",
       "binary_sha256": "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
@@ -128,8 +128,8 @@
         }
       },
       "app_build_revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
-      "packaging_revision": "a8399993d7c528ad4858b2e4e246e5994eab4bb8",
-      "bundled_docs_revision": "a8399993d7c528ad4858b2e4e246e5994eab4bb8"
+      "packaging_revision": "f5878bfa725db8c0dcab7e45ca3cf89159508975",
+      "bundled_docs_revision": "f5878bfa725db8c0dcab7e45ca3cf89159508975"
     },
     "independent_review": {
       "report": "verification/language-installers-v3-review-phase3.json",
@@ -324,6 +324,14 @@
         "status": "FAIL",
         "note": "Core39PASS after Unix fix; full suite192PASS/19FAIL/3ignored exposed fixture Python dependency and two protocol assertions. Release was stopped with -15, no ELF/installer acceptance inferred."
       },
+      "linux_initial_functional_package": {
+        "report": "verification/package-v3-linux-final.json",
+        "report_sha256": "c1a9f4a750660873c55be1294a431c048fa3f0094c6f1a314d46f448cb62af93",
+        "scope": "ACTUAL_LINUX_VM_BUILD_WORKSPACE_GATES_SMOKES_AND_INSTALLERS",
+        "status": "PASS",
+        "binary_sha256": "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+        "note": "Original e64/0fe application gates and a839 functional package acceptance; retained unchanged before completing toolchain/native runtime notices. The new documentation-only package reuses the same executed application evidence."
+      },
       "evidence_integrity": {
         "report": "verification/language-sandbox-v3-evidence-index-01.json",
         "report_sha256": "c040e08b822db8270182df1d7113a67be547e1819523294639b2488c46a5d8b8",
@@ -354,12 +362,32 @@
         "note": "Six inert failure-classification checks and independently reviewed exact helper hashes; no product or backend process calls."
       },
       "qa_linux_criteria_classification": {
-        "report": "verification/language-installers-v3-linux-classification-02.json",
-        "report_sha256": "0ec5790a93ea73eb8b247f0eaa0d8f4bd8f1a62a515235618c7623b966fd309a",
+        "report": "verification/language-installers-v3-linux-classification-03.json",
+        "report_sha256": "45ce7ab6057956a7b30563592c92deb5361154a9a0d91b84aba4d233563f6f4e",
         "scope": "QA_DOCUMENTATION_CLASSIFICATION_REGRESSION_NOT_NATIVE_ACCEPTANCE",
         "status": "PASS",
         "exit_code": 0,
         "note": "Twelve inert criterion-classification checks against the final assembler source; not native Linux execution."
+      },
+      "runtime_notice_sources": {
+        "report": "verification/runtime-notices-v3-sources.json",
+        "report_sha256": "3c3808fb09cd289f91c274c2b54a82080e03a190073b5d36318901043de6a2ed",
+        "scope": "RAW_OFFICIAL_SOURCE_RECEIPTS_NOT_LEGAL_CERTIFICATION",
+        "note": "Exact upstream archive/source and runtime notice inventory, not a legal compliance certification."
+      },
+      "runtime_notice_checks": {
+        "report": "verification/runtime-notices-v3-checks.json",
+        "report_sha256": "a5d93b6488cbf21374e5b612df87b05676c6bcbbb58fe4eb3a5d2fcc4746430f",
+        "scope": "DOCUMENT_SOURCE_INTEGRITY_ONLY_NOT_LEGAL_CERTIFICATION",
+        "status": "PASS",
+        "note": "94 executed offline archive, notice segment and source-fidelity checks; no application or backend execution."
+      },
+      "qa_notice_repack_guards": {
+        "report": "verification/package-v3-notices-evidence-outcomes-01.json",
+        "report_sha256": "76c45a3eb3f61493771b27af945c9c5e4461e08a8d02d5f7753857895bc90e2d",
+        "scope": "EXACT_NOTICE_COLLECTOR_AND_REUSED_EXPORTER_INERT_REGRESSION",
+        "status": "PASS",
+        "note": "Six inert evidence guards for a documentation-only repack; original application execution is explicitly retained rather than rerun."
       }
     },
     "all_40_requirements_accepted": false,
@@ -551,6 +579,14 @@
       "status": "FAIL",
       "note": "Core39PASS after Unix fix; full suite192PASS/19FAIL/3ignored exposed fixture Python dependency and two protocol assertions. Release was stopped with -15, no ELF/installer acceptance inferred."
     },
+    "linux_initial_functional_package": {
+      "report": "verification/package-v3-linux-final.json",
+      "report_sha256": "c1a9f4a750660873c55be1294a431c048fa3f0094c6f1a314d46f448cb62af93",
+      "scope": "ACTUAL_LINUX_VM_BUILD_WORKSPACE_GATES_SMOKES_AND_INSTALLERS",
+      "status": "PASS",
+      "binary_sha256": "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+      "note": "Original e64/0fe application gates and a839 functional package acceptance; retained unchanged before completing toolchain/native runtime notices. The new documentation-only package reuses the same executed application evidence."
+    },
     "evidence_integrity": {
       "report": "verification/language-sandbox-v3-evidence-index-01.json",
       "report_sha256": "c040e08b822db8270182df1d7113a67be547e1819523294639b2488c46a5d8b8",
@@ -581,12 +617,32 @@
       "note": "Six inert failure-classification checks and independently reviewed exact helper hashes; no product or backend process calls."
     },
     "qa_linux_criteria_classification": {
-      "report": "verification/language-installers-v3-linux-classification-02.json",
-      "report_sha256": "0ec5790a93ea73eb8b247f0eaa0d8f4bd8f1a62a515235618c7623b966fd309a",
+      "report": "verification/language-installers-v3-linux-classification-03.json",
+      "report_sha256": "45ce7ab6057956a7b30563592c92deb5361154a9a0d91b84aba4d233563f6f4e",
       "scope": "QA_DOCUMENTATION_CLASSIFICATION_REGRESSION_NOT_NATIVE_ACCEPTANCE",
       "status": "PASS",
       "exit_code": 0,
       "note": "Twelve inert criterion-classification checks against the final assembler source; not native Linux execution."
+    },
+    "runtime_notice_sources": {
+      "report": "verification/runtime-notices-v3-sources.json",
+      "report_sha256": "3c3808fb09cd289f91c274c2b54a82080e03a190073b5d36318901043de6a2ed",
+      "scope": "RAW_OFFICIAL_SOURCE_RECEIPTS_NOT_LEGAL_CERTIFICATION",
+      "note": "Exact upstream archive/source and runtime notice inventory, not a legal compliance certification."
+    },
+    "runtime_notice_checks": {
+      "report": "verification/runtime-notices-v3-checks.json",
+      "report_sha256": "a5d93b6488cbf21374e5b612df87b05676c6bcbbb58fe4eb3a5d2fcc4746430f",
+      "scope": "DOCUMENT_SOURCE_INTEGRITY_ONLY_NOT_LEGAL_CERTIFICATION",
+      "status": "PASS",
+      "note": "94 executed offline archive, notice segment and source-fidelity checks; no application or backend execution."
+    },
+    "qa_notice_repack_guards": {
+      "report": "verification/package-v3-notices-evidence-outcomes-01.json",
+      "report_sha256": "76c45a3eb3f61493771b27af945c9c5e4461e08a8d02d5f7753857895bc90e2d",
+      "scope": "EXACT_NOTICE_COLLECTOR_AND_REUSED_EXPORTER_INERT_REGRESSION",
+      "status": "PASS",
+      "note": "Six inert evidence guards for a documentation-only repack; original application execution is explicitly retained rather than rerun."
     }
   },
   "historical_delivery": {
