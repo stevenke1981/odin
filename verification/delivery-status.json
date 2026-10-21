@@ -2,30 +2,33 @@
   "project": "Odin",
   "version": "0.2.0",
   "release_class": "WINDOWS_NATIVE_PREVIEW",
-  "generated_at_utc": "2026-10-20T23:58:01.490670+00:00",
+  "generated_at_utc": "2026-10-21T02:08:56.570727+00:00",
   "architecture": "Independent Rust toolkit with direct LSP/DAP; no Serena bridge",
   "workspace_crates": 4,
-  "tool_contracts": 72,
+  "tool_contracts": 85,
   "serena_comparison_entries": 53,
-  "tested_source_head_sha": "82901e5cd45845c75c7475d2697db42d472b67ac",
-  "binary_sha256": "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be",
+  "tested_source_head_sha": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+  "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
   "binary_metadata": {
     "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
     "external_tool_bridge": false,
     "model_token_usage": "UNKNOWN",
     "name": "Odin",
     "profile": "release",
-    "revision": "82901e5cd45845c75c7475d2697db42d472b67ac",
+    "revision": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
     "schema_version": 1,
     "standalone": true,
     "target": "x86_64-pc-windows-msvc",
     "tracked_source_dirty": false,
     "version": "0.2.0"
   },
-  "rust_test_declarations": 146,
-  "rust_tests_executed_passed": 144,
-  "rust_tests_ignored_in_workspace_run": 1,
+  "rust_test_declarations": 208,
+  "rust_tests_executed_passed": 200,
+  "rust_tests_ignored_in_workspace_run": 6,
+  "native_opt_in_tests_executed_passed": 3,
+  "ignored_scope": "Workspace ignored 3 native sandbox tests plus 3 real LSP probes. Native tests separately executed; language acceptance is bound to separate live-binary reports.",
   "real_backend_checks_passed": 29,
+  "native_inspection_checks_passed": 30,
   "source_independence": "PASS_STATIC_AND_DIRECT_BACKEND_EXECUTION",
   "clean_machine_without_serena": "NOT_RUN",
   "all_40_requirements_accepted": false,
@@ -34,19 +37,126 @@
   "proven_faster_than_serena": false,
   "cloud_ci_started": false,
   "evidence": {
-    "local_validation": "verification/local-validation.json",
-    "real_backends": "verification/real-backends.json",
-    "independent_review": "verification/independent-review.json",
+    "local_validation": {
+      "report": "verification/sandbox-ide-release-validation.json",
+      "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
+      "status": "PASS",
+      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875"
+    },
+    "real_backends": {
+      "report": "verification/sandbox-ide-release-real-backends.json",
+      "report_sha256": "e342148d9c4bdfb8991e986b43807eef21a35de647d31d6062e1108fdc6e6d16",
+      "status": "PASS",
+      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+      "checks": {
+        "PASS": 29
+      }
+    },
+    "native_inspections": {
+      "report": "verification/native-inspections-release-final.json",
+      "report_sha256": "1b2bb92f2dd8b906146f9ecf13bee79c721f2face3bb79ece40ecbdf497a7775",
+      "status": "PASS",
+      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+      "checks": {
+        "PASS": 30
+      }
+    },
+    "native_inspections_command": {
+      "report": "verification/native-inspections-release-final-command.json",
+      "report_sha256": "b25ffb7343f01a188bf0cfdb76b705df52560b0ebb94b39d18e277fc75e962db",
+      "status": "PASS",
+      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+      "harness_sha256": "11a6e3724bcd10e09c8dfa3487329df15b85f8c89b22fea65db494f436fb278f"
+    },
+    "language_ide": {
+      "report": "verification/language-ide-final-baseline-03.json",
+      "report_sha256": "74607775a28d75d91d5a4e045e319963fcf3e4469923b4233d97ca26b27a6847",
+      "status": "PARTIAL",
+      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+      "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+      "counts": {
+        "PASS": 260,
+        "UNAVAILABLE": 14,
+        "NOT_VERIFIED": 12
+      },
+      "matrix": {
+        "rust": {
+          "rust_a": "PASS",
+          "rust_b": "PASS"
+        },
+        "python": {
+          "python_a": "PASS",
+          "python_b": "PASS"
+        },
+        "typescript": {
+          "typescript_a": "PARTIAL",
+          "typescript_b": "PARTIAL"
+        },
+        "go": {
+          "go_a": "PASS",
+          "go_b": "PASS"
+        },
+        "java": {
+          "java_a": "PARTIAL",
+          "java_b": "PARTIAL"
+        },
+        "csharp": {
+          "csharp_a": "PASS",
+          "csharp_b": "PASS"
+        }
+      },
+      "transcript_sha256": "5089119c1e9b490bd71bc7dc7c371890606694271b26ab6d16d369c7ccc22641",
+      "command_receipt": "verification/language-ide-final-baseline-03.command.json",
+      "command_receipt_sha256": "e97a533711ca0a8d5e5dbaa8ca44169496badfc3e76c4c05529ab7eadc1c9548",
+      "actual_driver_exit_code": 2,
+      "transcript": "verification/language-ide-final-baseline-03.requests.jsonl"
+    },
+    "typescript_os_sandbox": {
+      "report": "verification/language-ide-final-sandbox-typescript-04.json",
+      "report_sha256": "0a87a2b1aac45136bf2d948de1711a997abe33991c4747990dab5d3f0edd420a",
+      "status": "PARTIAL",
+      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+      "harness_sha256": "1160258157d2790782e9060be0556af874397daf741196ef32297435c6c0dbf6",
+      "counts": {
+        "PASS": 42,
+        "UNAVAILABLE": 2,
+        "NOT_VERIFIED": 6
+      },
+      "matrix": {
+        "typescript": {
+          "typescript_a": "PARTIAL",
+          "typescript_b": "PARTIAL"
+        }
+      },
+      "transcript_sha256": "acbe80f60f410453e773d45abc35e731d45e277e1ba496ff3778e45a9cc57576",
+      "command_receipt": "verification/language-ide-final-sandbox-typescript-04.command.json",
+      "command_receipt_sha256": "a61cdb686562b98bb2f75b5dab933e55f15b47fa63985a037f96fc70f8fc571f",
+      "actual_driver_exit_code": 2,
+      "transcript": "verification/language-ide-final-sandbox-typescript-04.requests.jsonl"
+    },
+    "independent_review": {
+      "report": "verification/sandbox-ide-review.json",
+      "report_sha256": "7f4a264d89e2e5044afd508142a97215511b7082f241f2fc4ad07ec1b283b3f2",
+      "status": "PASS",
+      "checks": {
+        "PASS": 17,
+        "NOT_RUN": 2,
+        "N/A": 1
+      }
+    },
     "requirements": "verification/feature-evidence.json",
     "sbom": "verification/sbom.cdx.json",
     "licenses": "verification/license-inventory.json",
-    "public_scan": "verification/public-candidate-scan.json"
+    "public_scan": "verification/public-candidate-scan.json",
+    "artifact_bindings": "verification/sandbox-ide-artifact-bindings.json",
+    "final_documentation_checks": "verification/sandbox-ide-delivery-checks.json"
   },
   "gates": {
     "generated_artifacts": "PASS",
     "fmt": "PASS",
     "workspace_tests": "PASS",
     "clippy": "PASS",
+    "native_sandbox": "PASS",
     "release_build": "PASS",
     "cli": "PASS",
     "mcp_stdio": "PASS",
@@ -59,65 +169,133 @@
     "static_source": "PASS",
     "requirements": "PASS",
     "publish_policy": "PASS",
+    "language_ide": "PARTIAL",
+    "typescript_os_sandbox": "PARTIAL",
+    "os_sandbox": "PASS_WINDOWS_NATIVE_SCOPE",
+    "independent_review": "PASS",
     "linux_native": "NOT_RUN",
     "macos_native": "NOT_RUN",
-    "os_sandbox": "NOT_IMPLEMENTED",
     "performance_comparison": "NOT_RUN",
     "formal_security_audit": "NOT_RUN",
     "cloud_ci": "NOT_RUN"
   },
-  "windows_packaging": {
-    "status": "PASS",
-    "report": "verification/windows-final-packaging.json",
-    "command_exit_codes": [
-      0,
-      0,
-      0
-    ],
-    "portable_files_verified": 39,
-    "portable_checks_passed": 87,
-    "installer_lifecycle_checks_passed": 8,
-    "installer_signed": false,
-    "artifacts": [
-      {
-        "path": "<WORKSPACE>\\dist\\0.2.0-native-preview-82901e5\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
-        "sha256": "7d49eeb990499b3da986965da73ba43ae856851bf783187ca6bacd5554084c76",
-        "bytes": 5544446
+  "language_profiles": {
+    "count": 28,
+    "meaning": "Declarative setup guidance, not 28 verified languages"
+  },
+  "language_ide": {
+    "report": "verification/language-ide-final-baseline-03.json",
+    "report_sha256": "74607775a28d75d91d5a4e045e319963fcf3e4469923b4233d97ca26b27a6847",
+    "status": "PARTIAL",
+    "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+    "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+    "counts": {
+      "PASS": 260,
+      "UNAVAILABLE": 14,
+      "NOT_VERIFIED": 12
+    },
+    "matrix": {
+      "rust": {
+        "rust_a": "PASS",
+        "rust_b": "PASS"
       },
-      {
-        "path": "<WORKSPACE>\\dist\\0.2.0-native-preview-82901e5\\odin-0.2.0-windows-x64-setup.exe",
-        "sha256": "d9be19e270bd5152c6f47bf905254a17d2fb92dfe4f30d8476562e72080a423a",
-        "bytes": 5606310
+      "python": {
+        "python_a": "PASS",
+        "python_b": "PASS"
+      },
+      "typescript": {
+        "typescript_a": "PARTIAL",
+        "typescript_b": "PARTIAL"
+      },
+      "go": {
+        "go_a": "PASS",
+        "go_b": "PASS"
+      },
+      "java": {
+        "java_a": "PARTIAL",
+        "java_b": "PARTIAL"
+      },
+      "csharp": {
+        "csharp_a": "PASS",
+        "csharp_b": "PASS"
       }
-    ],
-    "github_binary_release_created": false,
-    "not_run": [
-      "Cross-version installer upgrade",
-      "Interrupted/cancelled installation rollback",
-      "Linux/macOS native packaging and runtime",
-      "Clean-machine installation"
-    ]
+    },
+    "transcript_sha256": "5089119c1e9b490bd71bc7dc7c371890606694271b26ab6d16d369c7ccc22641",
+    "command_receipt": "verification/language-ide-final-baseline-03.command.json",
+    "command_receipt_sha256": "e97a533711ca0a8d5e5dbaa8ca44169496badfc3e76c4c05529ab7eadc1c9548",
+    "actual_driver_exit_code": 2,
+    "transcript": "verification/language-ide-final-baseline-03.requests.jsonl"
+  },
+  "os_sandbox": {
+    "status": "PASS_WINDOWS_NATIVE_SCOPE",
+    "backend": "MXC ProcessContainer / base-container",
+    "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+    "kernel_boundary_tests": {
+      "status": "PASS",
+      "passed": 3,
+      "report": "verification/sandbox-ide-release-validation.json",
+      "command_name": "native_sandbox"
+    },
+    "live_typescript_lsp": {
+      "report": "verification/language-ide-final-sandbox-typescript-04.json",
+      "report_sha256": "0a87a2b1aac45136bf2d948de1711a997abe33991c4747990dab5d3f0edd420a",
+      "status": "PARTIAL",
+      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+      "harness_sha256": "1160258157d2790782e9060be0556af874397daf741196ef32297435c6c0dbf6",
+      "counts": {
+        "PASS": 42,
+        "UNAVAILABLE": 2,
+        "NOT_VERIFIED": 6
+      },
+      "matrix": {
+        "typescript": {
+          "typescript_a": "PARTIAL",
+          "typescript_b": "PARTIAL"
+        }
+      },
+      "transcript_sha256": "acbe80f60f410453e773d45abc35e731d45e277e1ba496ff3778e45a9cc57576",
+      "command_receipt": "verification/language-ide-final-sandbox-typescript-04.command.json",
+      "command_receipt_sha256": "a61cdb686562b98bb2f75b5dab933e55f15b47fa63985a037f96fc70f8fc571f",
+      "actual_driver_exit_code": 2,
+      "transcript": "verification/language-ide-final-sandbox-typescript-04.requests.jsonl"
+    },
+    "policy": "Explicit host opt-in; hash-pinned executor; read-only sources, explicit writable cache/private scratch, network deny, no fallback. Native inspections require this boundary.",
+    "without_configuration": "LSP/DAP/fixed commands remain host processes; inspections refuse to run.",
+    "other_language_lsp_workloads": {
+      "rust": "NOT_RUN",
+      "python": "NOT_RUN",
+      "go": "NOT_RUN",
+      "java": "NOT_RUN",
+      "csharp": "NOT_RUN"
+    }
+  },
+  "windows_packaging": {
+    "status": "NOT_RUN_FOR_THIS_EXTENSION",
+    "binary_release_created": false,
+    "historical_report": "verification/windows-final-packaging.json",
+    "historical_binary_sha256": "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be",
+    "note": "The 72-tool baseline installer/portable proof does not certify the current 85-tool binary."
   },
   "publication": {
-    "status": "PASS",
+    "status": "NOT_RUN_FOR_THIS_EXTENSION",
     "scope": "PUBLIC_SOURCE_REPOSITORY",
     "url": "https://github.com/stevenke1981/odin",
-    "visibility": "PUBLIC",
-    "published_source_commit": "425cafb803fdd6212b56c757ab9f21637d7fa2ee",
-    "remote_matches_source_at_publication": true,
-    "anonymous_http_head_status": 200,
-    "github_actions_runs_observed": 0,
-    "report": "verification/publication.json",
-    "observed_at_utc": "2026-10-21T00:00:38.384564+00:00",
     "binary_release_created": false
   },
+  "historical_baseline": {
+    "report": "verification/delivery-status-baseline-72.json",
+    "report_sha256": "08fa848295f27d6a8e511bc54a88e2176ed71de2e3e1e56567389f0342ab5c96",
+    "note": "Original 72-tool validation, packaging and publication summary preserved without reclassification."
+  },
+  "post_validation_changes": "Final language driver ordering, documentation and evidence may follow the recorded build revision. Rust/core/schema/lockfile hashes remain identical; current driver execution has its own harness hash and command receipt.",
   "incomplete_or_unverified": [
-    "OS restricted-token/AppContainer/seccomp sandbox implementation",
-    "Linux/macOS native execution",
-    "full language-specific adapters and native inspection providers",
-    "full IDE-equivalence and safe-delete dynamic consumers",
-    "clean-machine/cross-version/interrupt/Defender installer matrix",
-    "performance comparison and formal security audit"
+    "TypeScript/Java unversioned diagnostics cannot establish current source version; optional backend capabilities may be unavailable.",
+    "Actual OS-sandbox LSP workload acceptance for Rust/Python/Go/Java/C# is NOT_RUN; the six-language baseline is host-process scope.",
+    "Linux/macOS native execution and sandboxing; complete UI/registry/device/CPU-memory isolation matrix.",
+    "Full IDE-equivalence, every language/rule/refactor, dependency/build configurations and dynamic safe-delete consumers.",
+    "Actual OS-sandbox DAP debuggee acceptance; debugpy live acceptance is host-process scope.",
+    "Current installer/portable repackaging, clean machine, cross-version and interrupted installation matrix.",
+    "Performance comparison and formal security audit."
   ],
-  "important_limit": "Executed Windows native preview. Passing applicable local gates is not full acceptance of all 40 requirements."
+  "important_limit": "Executed Windows native sandbox/IDE preview; passing applicable checks is not full acceptance of all 40 requirements or all-language IDE parity."
 }

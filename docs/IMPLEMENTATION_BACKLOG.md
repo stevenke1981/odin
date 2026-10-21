@@ -2,7 +2,7 @@
 
 **現行85契約；38 PARTIAL、2 NOT_RUN。** 原58保留、前版72再新增13。完整原DoD與相依見 [FEATURE_SPEC.md](FEATURE_SPEC.md)，source-bound結果見 [feature-evidence.json](../verification/feature-evidence.json)。
 
-最新c5084f4 clean候選：17/17命令exit0、200workspace tests PASS/6 ignored，另native3 opt-in PASS；同binary標準三LS/debugpy29與真MXC/analyzer30 checks PASS。六語兩專案host baseline已執行PARTIAL、exit 2：260 PASS／14 UNAVAILABLE／12 NOT_VERIFIED／0 FAIL，12/12 initialized；TS/Java診斷未附document version。真rename/apply/rollback已含JDTLS兩專案；TS native MXC profile02仍pending。不能把28 registry entries或通用gate當完整語言/IDE等價。
+最新c5084f4 clean候選：17/17命令exit0、200workspace tests PASS/6 ignored，另native3 opt-in PASS；同binary標準三LS/debugpy29與真MXC/analyzer30 checks PASS。六語兩專案host baseline已執行PARTIAL、exit 2：260 PASS／14 UNAVAILABLE／12 NOT_VERIFIED／0 FAIL，12/12 initialized；TS/Java診斷未附document version。真rename/apply/rollback已含JDTLS兩專案；TS native MXC profile04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL，exit2）。不能把28 registry entries或通用gate當完整語言/IDE等價。
 
 歷史72工具144-test、fe5996d191-test、author74/62+12blocked與首輪0checks保留原scope；本輪新結果不改寫它們。SIR-001 hierarchy及SIR-003 summary已修復/有獨立review；URI/JDTLS修復的最新combined review binding由root/reviewer管理。
 
@@ -71,8 +71,10 @@
 | Owner | Write scope | 驗收與停止條件 |
 |---|---|---|
 | root integration | 專屬當輪runtime report/logs與shared整合 | 17gates、same-binary analyzer與六語baseline03 report/command/transcript/normalization已綁定；保留六語PARTIAL及歷史driver/digests，後續綁TSsandbox實測 |
-| platform author | 六語各兩專案/TSsandbox harness及證據 | 六語12專案已initialize；處理14 UNAVAILABLE與TS/Java共12 NOT_VERIFIED；保留AppControl與TSsandbox01失敗，profile02待真實結果 |
+| platform author | 六語各兩專案/TSsandbox harness及證據 | 六語12專案已initialize；處理14 UNAVAILABLE與TS/Java共12 NOT_VERIFIED；保留AppControl與TSsandbox01失敗，profile04已完成限定真實語意/CAS驗收，整體PARTIAL；其他五語sandbox LSP NOT_RUN |
 | independent reviewer | immutable source/diff與review證據 | 保留已解finding的歷史；URI/JDTLS及最終combined source須正確綁定，作者不自我核准 |
 | root release | 封裝、artifact manifest、公開revision | 完成新候選適用review/runtime才打包/發布；舊公開repo與舊installer不代表此binary已發布 |
 
 17gate QA driver快照不改寫；六語driver d47fa6的initial-valid觀察前移，AST條件經root/reviewer確認未變，53個production crates hash與release相同。每切片唯一owner、明確write scope；共有檔案序列整合，不覆寫衝突取得綠燈。Linux/macOS、全語言/IDE私有等價、完整installer升級/故障矩陣、benchmark仍未完成。只有全部原acceptance具適用實證才升整項PASS。
+
+本輪 TypeScript native sandbox 最終證據：`verification/language-ide-final-sandbox-typescript-04.json` 及其 command／transcript，actual exit2／PARTIAL、42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL。固定 host bootstrap 與 child flags 的明確 profile 成功；不是自動 fallback，沒有直接 child EPERM 證據。其他五語的實際 sandbox LSP 仍 NOT_RUN，kernel deny／程序清理由獨立 native opt-in tests 證明。

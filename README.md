@@ -99,6 +99,9 @@ analyzer。提供測試程式不代表測試通過；後端版本、範圍及 bi
 記錄 260 PASS、14 UNAVAILABLE、12 NOT_VERIFIED、0 FAIL，整體為 PARTIAL；
 未提供的能力與 TypeScript／Java 無版本診斷不算通過。詳見
 [語言支援範圍](docs/LANGUAGE_SUPPORT.md)。
+同一執行檔的 [TypeScript 原生沙箱驗收](verification/language-ide-final-sandbox-typescript-04.json)
+另有兩專案 42 PASS、2 UNAVAILABLE、6 NOT_VERIFIED、0 FAIL，涵蓋語意查詢、
+重新命名、格式化及交易回復。其他五語的實際沙箱 LSP 尚未驗收。
 
 Windows 提供 portable ZIP 與 Inno Setup recipe。先前 72 工具版本的安裝、同版
 重裝、卸載有隔離 smoke；這次擴充尚未重新封裝。乾淨主機、跨版升級、

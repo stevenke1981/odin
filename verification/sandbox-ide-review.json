@@ -1,24 +1,67 @@
 {
   "task_id": "sandbox_ide_review",
-  "revision": 3,
+  "revision": 4,
   "actor_instance": "/root/independent_review",
   "receiver_instance": "/root",
   "role_id": "independent_reviewer",
   "result": "PASS",
-  "result_scope": "Independent correctness/security source and contract review; final runtime and language-matrix acceptance are separate gates",
+  "result_scope": "Independent source/contract review and consistency review of execution evidence PASS; executed language acceptance remains PARTIAL, not full IDE or language parity. Reviewer did not execute product tests.",
   "simulation": false,
   "observed_date": "2026-10-21",
   "base_sha": "9b71abc98b89f72cce08d2795dfb139281f6d613",
   "initial_head_sha": "155f979c693241087ed4fe6778da19a30814979c",
-  "reviewed_head_sha": "fe5996dc5793b64cb68a5f2d1139fb696cff32cf",
+  "reviewed_head_sha": "3d4a9074e8bd693ec5c896bb838ae61ee65e3a0b",
   "history": [
-    {"revision": 1, "reviewed_head_sha": "155f979c693241087ed4fe6778da19a30814979c", "result": "FAIL", "open_findings": ["SIR-001", "SIR-002"]},
-    {"revision": 2, "reviewed_head_sha": "5e4cf035222cff82b1bc95d74c54ceb894195796", "result": "FAIL", "open_findings": ["SIR-001", "SIR-003"]}
+    {
+      "revision": 1,
+      "reviewed_head_sha": "155f979c693241087ed4fe6778da19a30814979c",
+      "result": "FAIL",
+      "open_findings": [
+        "SIR-001",
+        "SIR-002"
+      ]
+    },
+    {
+      "revision": 2,
+      "reviewed_head_sha": "5e4cf035222cff82b1bc95d74c54ceb894195796",
+      "result": "FAIL",
+      "open_findings": [
+        "SIR-001",
+        "SIR-003"
+      ]
+    },
+    {
+      "revision": 3,
+      "reviewed_head_sha": "fe5996dc5793b64cb68a5f2d1139fb696cff32cf",
+      "result": "PASS",
+      "open_findings": [],
+      "source_sha256": {
+        "crates/odin-core/src/execution.rs": "d9c99fc04e0b90ba95d79e6e53e4232db2e9f6bf071ee441c222bedd389ee78d",
+        "crates/odin-core/src/process.rs": "b69e2cf89c9cf96b79f01b85ea67ad41a1f6dcdd89d5e9bedd6167062fb84fa8",
+        "crates/odin-protocol/src/lsp.rs": "bff9436ee2c837f0a154c51ab1ef66cdb3f6e3542359f8cb93629cee45611224",
+        "crates/odin-protocol/src/rpc.rs": "3de2e6d0f08a1b7725726e46390afbf30741ec8c0468bca850ebf98855d6a7c9",
+        "crates/odin-engine/src/lib.rs": "0d15e3161b18cd5d1f1bf3de6a6f499a1bf9ada8f719bf1c0509e536cd91ce9d",
+        "crates/odin-engine/src/inspections.rs": "d1aa320f462ca37c8cc5562de7fa88105093275b5c5c88dad7a8d06baf663257",
+        "crates/odin-engine/src/ide.rs": "2be8243702051c656e606be281f2b2113091e9debc83516d390d0446705184dd",
+        "crates/odin-engine/tools.json": "d921899b72aba5468aeb36186953840d1ac824625eb7470042632900f1a5a3aa",
+        "schemas/tools.json": "d921899b72aba5468aeb36186953840d1ac824625eb7470042632900f1a5a3aa",
+        "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34"
+      },
+      "review_json_sha256_lf": "df14c08d6c3a9a24ae57ec332ff9b1f215e02f5733e36ed0ca77750c80f209c7",
+      "integrated_runtime_at_review": "NOT_RUN",
+      "six_language_matrix_at_review": "NOT_RUN"
+    }
   ],
-  "write_scopes": ["verification/sandbox-ide-review.md", "verification/sandbox-ide-review.json"],
+  "write_scopes": [
+    "verification/sandbox-ide-review.md",
+    "verification/sandbox-ide-review.json"
+  ],
   "reviewer_authored_product_changes": false,
   "reviewer_executed_product_tests": false,
-  "external_side_effects": {"authorized": false, "performed": false},
+  "external_side_effects": {
+    "authorized": false,
+    "performed": false
+  },
   "findings": [
     {
       "id": "SIR-001",
@@ -28,24 +71,34 @@
       "rereviewed_at": "fe5996dc5793b64cb68a5f2d1139fb696cff32cf",
       "file": "crates/odin-protocol/src/lsp.rs",
       "symbol": "LspClient::hierarchy_response",
-      "initial_lines": [746, 804],
+      "initial_lines": [
+        746,
+        804
+      ],
       "title": "Hierarchy queries accumulate independently bounded responses without a cumulative query budget",
       "trigger": "1000 valid prepare items, followed by approximately 1 MiB of valid related data per item; every frame remains below 8 MiB",
       "impact": "About 1 GiB retained before final engine limit, plus potentially one RPC timeout per prepare item",
-      "validation": "Fix reviewed; nine normalized evidence source hashes match; six bounded quota/deadline regressions and 31 unit plus 26 fixture tests have actual exit-zero logs; reviewer execution and unsafe OOM reproduction NOT_RUN",
-      "implemented_limits": {"prepare_items": 128, "related_items": 4096, "call_ranges": 8192, "retained_encoded_json_bytes": 4194304, "both_aliases_encoded_json_bytes": 8388608, "deadline": "One configured timeout across the full query; explicit checks around bounded synchronous work"},
+      "validation": "Source fix reviewed at fe5996d; nine evidence source hashes matched that historical candidate. Six quota/deadline regression logs were reviewed. Final c5084f4 workspace gate and current source hashes also checked; reviewer product execution and unsafe OOM reproduction NOT_RUN",
+      "implemented_limits": {
+        "prepare_items": 128,
+        "related_items": 4096,
+        "call_ranges": 8192,
+        "retained_encoded_json_bytes": 4194304,
+        "both_aliases_encoded_json_bytes": 8388608,
+        "deadline": "One configured timeout across the full query; explicit checks around bounded synchronous work"
+      },
       "required_fix": "Bound prepare items, requests, total retained bytes including duplicate result/hierarchy fields, and complete query duration before allocation or additional RPC",
       "next_owner": "/root"
     },
     {
       "id": "SIR-002",
       "priority": "P2",
-      "status": "RESOLVED_IN_SOURCE",
+      "status": "RESOLVED",
       "file": "crates/odin-core/src/execution.rs",
       "symbol": "ExecutionLifetime::drop",
       "title": "Sandbox guard was released before child reaping on cancellation or attachment failure",
       "fixed_by": "2b86310e13a731fdf7b86f48c593e0aa0e71d7c4",
-      "validation": "COMMITTED_FIX_AND_NATIVE_REGRESSION_SOURCE_REVIEWED; native execution PASS reported by root; reviewer execution NOT_RUN",
+      "validation": "Committed fix reviewed; final source-bound native_sandbox log has exit 0, three tests passed, and abort=true/false parent/child reaping plus scratch/policy removal markers. Reviewer execution NOT_RUN",
       "next_owner": "/root"
     },
     {
@@ -59,38 +112,1028 @@
       "title": "Filtered symbol diagnostic summaries compare textual severity to numeric values",
       "trigger": "A current severity-1 diagnostic inside the selected symbol retains finding severity error, but the tool reports summary.total=1 and summary.errors=0",
       "impact": "Misleading diagnostic error/warning counts and a document-level status on a symbol-scoped result",
-      "validation": "Fix reviewed; all four source hashes and three targeted evidence log hashes match; targeted test, fmt and strict Clippy have exit-zero logs; reviewer product execution NOT_RUN",
+      "validation": "Source fix reviewed at fe5996d; four source and three targeted log hashes matched that historical snapshot. Final c5084f4 workspace evidence also checked; reviewer execution NOT_RUN",
       "required_fix": "Recount from lsp_severity or severity strings including unknown, then recompute symbol-scoped status without converting pending/stale/unverified to clean",
+      "next_owner": "/root"
+    },
+    {
+      "id": "SIR-004",
+      "priority": "P2",
+      "status": "RESOLVED",
+      "origin": "Discovered by actual backend matrix; repair independently source and evidence reviewed",
+      "fixed_by": "8f515447486e474fe1a867b9fb85c972078118a0",
+      "rereviewed_at": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+      "file": "crates/odin-protocol/src/rpc.rs",
+      "symbol": "RpcProcess diagnostics insert/get/invalidate and diagnostic_uri_key",
+      "lines": [
+        306,
+        519,
+        528,
+        539
+      ],
+      "title": "Equivalent Windows file URI spellings missed the push diagnostic cache",
+      "trigger": "basedpyright or TypeScript publishes file:///c%3A/... after the client opened file:///C:/...; literal-key cache lookup returns none",
+      "impact": "Published error diagnostics remain unavailable/pending to Odin despite a matching local document; absence is not proof of a clean file",
+      "required_fix": "Use one validated lexical file URI identity for insertion, lookup and invalidation without filesystem I/O or path permission grants; preserve report and version",
+      "validation": "Read raw before cache_lookup:false and final after cache_lookup:true for both installed backends; source and fixtures reviewed; latest package evidence records 35 unit plus 31 fixture tests with exit 0",
+      "evidence": [
+        "verification/protocol-ide-uri-real-before.txt",
+        "verification/protocol-ide-uri-verification.json",
+        "verification/protocol-ide-uri-java-final-uris.txt",
+        "verification/protocol-ide-uri-java-verification.json"
+      ],
+      "limits": [
+        "Only Windows drive-letter case is folded; path-component case is preserved",
+        "Authority/UNC/query/fragment, malformed escapes, encoded separators/NUL and non-UTF-8 paths are rejected",
+        "Unversioned TypeScript reports remain unverified; no version is inferred from URI matching"
+      ],
+      "next_owner": "/root"
+    },
+    {
+      "id": "SIR-005",
+      "priority": "P2",
+      "status": "RESOLVED",
+      "origin": "Discovered by actual JDTLS matrix; repair independently source and evidence reviewed",
+      "fixed_by": "6a7c319ed0a9ed874a57bf79e38a8903402ed1d4",
+      "rereviewed_at": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+      "file": "crates/odin-protocol/src/workspace.rs",
+      "symbol": "Planner::plan",
+      "lines": [
+        262,
+        272,
+        280,
+        288,
+        293,
+        298
+      ],
+      "title": "JDTLS empty unused WorkspaceEdit alternative rejected a valid cross-file rename",
+      "trigger": "Actual JDTLS returns changes:{} together with two documentChanges text edits, version:null; old planner rejects mere presence of both keys",
+      "impact": "Valid Java cross-file rename cannot reach a CAS transaction preview/apply",
+      "required_fix": "Treat only absent/null/correctly typed empty unused alternatives as absent while rejecting two populated forms and invalid types; preserve version/resource/CAS checks",
+      "validation": "Raw before planned:false and after planned:true reviewed; real JDTLS two-file references/rename, expected source hashes, core Transactions apply and hash-guarded rollback have an exit-zero log. Negative fixture/source checks retain both-populated, malformed, entirely-empty, stale-version and overwrite rejection",
+      "evidence": [
+        "verification/protocol-ide-uri-java-real-before.txt",
+        "verification/protocol-ide-uri-java-source-bound-real.txt",
+        "verification/protocol-ide-uri-java-verification.json"
+      ],
       "next_owner": "/root"
     }
   ],
   "checks": [
-    {"name": "independent_source_review", "cwd": "E:/odin", "platform": "Windows", "result": "PASS", "command_exit_code": 0},
-    {"name": "core_lifetime_fix_rereview", "sha": "2b86310e13a731fdf7b86f48c593e0aa0e71d7c4", "result": "PASS", "command_exit_code": 0},
-    {"name": "engine_diagnostic_fix_rereview", "sha": "6fc1bd54c84f074f5e324b8670522d1d74471b73", "result": "PASS", "command_exit_code": 0},
-    {"name": "hierarchy_budget_fix_rereview", "sha": "70ae12046eaceb5059aece95cf5724ef40e914a3", "result": "PASS", "command_exit_code": 0},
-    {"name": "evidence_source_and_log_hash_checks", "protocol_source_files": 9, "engine_source_files": 4, "engine_log_files": 3, "mismatches": [], "result": "PASS", "command_exit_code": 0},
-    {"name": "paired_catalogs", "tool_count": 85, "unique_tool_count": 85, "parsed_copies_equal": true, "result": "PASS", "command_exit_code": 0},
-    {"name": "reviewer_product_tests", "result": "NOT_RUN", "command_exit_code": null},
-    {"name": "integrated_candidate_runtime_acceptance", "result": "NOT_RUN", "command_exit_code": null},
-    {"name": "cloud_ci", "result": "N/A", "reason": "Not authorized or needed for this local review", "command_exit_code": null}
+    {
+      "name": "independent_source_review",
+      "cwd": "E:/odin",
+      "platform": "Windows",
+      "result": "PASS",
+      "command_exit_code": 0
+    },
+    {
+      "name": "core_lifetime_fix_rereview",
+      "sha": "2b86310e13a731fdf7b86f48c593e0aa0e71d7c4",
+      "result": "PASS",
+      "command_exit_code": 0
+    },
+    {
+      "name": "engine_diagnostic_fix_rereview",
+      "sha": "6fc1bd54c84f074f5e324b8670522d1d74471b73",
+      "result": "PASS",
+      "command_exit_code": 0
+    },
+    {
+      "name": "hierarchy_budget_fix_rereview",
+      "sha": "70ae12046eaceb5059aece95cf5724ef40e914a3",
+      "result": "PASS",
+      "command_exit_code": 0
+    },
+    {
+      "name": "evidence_source_and_log_hash_checks",
+      "protocol_source_files": 9,
+      "engine_source_files": 4,
+      "engine_log_files": 3,
+      "mismatches": [],
+      "result": "PASS",
+      "command_exit_code": 0,
+      "checked_at_sha": "fe5996dc5793b64cb68a5f2d1139fb696cff32cf",
+      "scope": "Historical revision 3 evidence snapshot; current evidence checked separately"
+    },
+    {
+      "name": "paired_catalogs",
+      "tool_count": 85,
+      "unique_tool_count": 85,
+      "parsed_copies_equal": true,
+      "result": "PASS",
+      "command_exit_code": 0
+    },
+    {
+      "name": "reviewer_product_tests",
+      "result": "NOT_RUN",
+      "command_exit_code": null
+    },
+    {
+      "name": "integrated_candidate_runtime_acceptance",
+      "result": "PASS",
+      "command_exit_code": 0,
+      "evidence": "verification/sandbox-ide-release-validation.json",
+      "performed_by": "/root",
+      "reviewer_executed": false
+    },
+    {
+      "name": "cloud_ci",
+      "result": "N/A",
+      "reason": "Not authorized or needed for this local review",
+      "command_exit_code": null
+    },
+    {
+      "name": "uri_and_java_fix_source_review",
+      "sha": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+      "result": "PASS",
+      "command_exit_code": 0
+    },
+    {
+      "name": "fixture_startup_sync_review",
+      "sha": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+      "result": "PASS",
+      "command_exit_code": 0,
+      "readiness_limit_seconds": 3,
+      "rpc_timeout_ms": 100,
+      "assertions_preserved": [
+        "exactly one cancel",
+        "zero pending requests"
+      ]
+    },
+    {
+      "name": "final_source_and_log_binding",
+      "result": "PASS",
+      "command_exit_code": 0,
+      "source_files": 102,
+      "log_files": 17,
+      "mismatches": []
+    },
+    {
+      "name": "final_native_analyzer_evidence_binding",
+      "result": "PASS",
+      "command_exit_code": 0,
+      "checks_passed": 30,
+      "report": "verification/native-inspections-release-final.json",
+      "command_report": "verification/native-inspections-release-final-command.json",
+      "reviewer_executed": false
+    },
+    {
+      "name": "six_language_matrix_evidence_review",
+      "result": "PASS",
+      "command_exit_code": 0,
+      "owner": "/root/platform_implementation",
+      "reason": "Final baseline03 executed on 12 projects; evidence integrity checked without promoting NOT_VERIFIED or UNAVAILABLE checks",
+      "observed_runtime_status": "PARTIAL",
+      "observed_driver_exit_code": 2
+    },
+    {
+      "name": "typescript_lsp_native_sandbox_evidence_review",
+      "result": "PASS",
+      "command_exit_code": 0,
+      "owner": "/root/platform_implementation",
+      "reason": "Final04 actual native transport and semantic/CAS subchecks pass; versionless diagnostics remain NOT_VERIFIED",
+      "observed_runtime_status": "PARTIAL",
+      "observed_driver_exit_code": 2
+    },
+    {
+      "name": "initial_diagnostics_harness_order_source_review",
+      "sha": "5fc4c99",
+      "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+      "result": "PASS",
+      "command_exit_code": 0
+    },
+    {
+      "name": "fixed_typescript_bootstrap_and_descendant_flags_source_review",
+      "sha": "3d4a9074e8bd693ec5c896bb838ae61ee65e3a0b",
+      "author_sha": "cd3618f196189106eb30b9bc1a935abaf5664c75",
+      "harness_sha256": "1160258157d2790782e9060be0556af874397daf741196ef32297435c6c0dbf6",
+      "result": "PASS",
+      "command_exit_code": 0
+    },
+    {
+      "name": "final_language_artifact_binding",
+      "result": "PASS",
+      "command_exit_code": 0,
+      "final_run_artifacts_checked": 10,
+      "summary_and_documentation_hashes_checked": true,
+      "historical_sandbox_artifacts_checked": 12,
+      "mismatches": []
+    },
+    {
+      "name": "runtime_source_identity_from_tested_build_to_integrated_review_head",
+      "from_sha": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+      "to_sha": "3d4a9074e8bd693ec5c896bb838ae61ee65e3a0b",
+      "result": "PASS",
+      "command_exit_code": 0,
+      "changed_crates_manifests_lock_or_catalog_files": []
+    },
+    {
+      "name": "other_five_languages_actual_native_lsp_acceptance",
+      "result": "NOT_RUN",
+      "command_exit_code": null,
+      "reason": "Rust/Python/Go/Java/C# actual native-sandboxed LSP workloads were not run in this slice; baseline language and native analyzer evidence do not substitute"
+    }
   ],
-  "author_evidence_reviewed": ["verification/protocol-ide-verification.json", "verification/engine-ide-verification.json", "verification/protocol-ide-hierarchy-verification.json", "verification/protocol-ide-hierarchy-regression-tests.txt", "verification/protocol-ide-hierarchy-package-tests.txt", "verification/engine-ide-symbol-diagnostics.json", "verification/engine-ide-symbol-diagnostics-2.txt", "verification/native-inspections-attempt-3.json"],
+  "author_evidence_reviewed": [
+    "verification/protocol-ide-verification.json",
+    "verification/engine-ide-verification.json",
+    "verification/protocol-ide-hierarchy-verification.json",
+    "verification/protocol-ide-hierarchy-regression-tests.txt",
+    "verification/protocol-ide-hierarchy-package-tests.txt",
+    "verification/engine-ide-symbol-diagnostics.json",
+    "verification/engine-ide-symbol-diagnostics-2.txt",
+    "verification/native-inspections-attempt-3.json",
+    "verification/protocol-ide-uri-verification.json",
+    "verification/protocol-ide-uri-real-before.txt",
+    "verification/protocol-ide-uri-java-verification.json",
+    "verification/protocol-ide-uri-java-real-before.txt",
+    "verification/protocol-ide-uri-java-source-bound-real.txt",
+    "verification/protocol-ide-uri-java-final-uris.txt",
+    "verification/sandbox-ide-final-validation.json",
+    "verification/sandbox-ide-release-validation.json",
+    "verification/sandbox-ide-release-real-backends.json",
+    "verification/native-inspections-release-final.json",
+    "verification/native-inspections-release-final-command.json",
+    "verification/language-ide-final-baseline-02.json",
+    "verification/language-ide-final-baseline-02.command.json",
+    "verification/language-ide-typescript-order-03.json",
+    "verification/language-ide-typescript-order-03.command.json",
+    "verification/language-ide-final-baseline-03.json",
+    "verification/language-ide-final-baseline-03.requests.jsonl",
+    "verification/language-ide-final-baseline-03.txt",
+    "verification/language-ide-final-baseline-03.command.json",
+    "verification/language-ide-final-baseline-03.normalization.json",
+    "verification/language-ide-final-sandbox-typescript-04.json",
+    "verification/language-ide-final-sandbox-typescript-04.requests.jsonl",
+    "verification/language-ide-final-sandbox-typescript-04.txt",
+    "verification/language-ide-final-sandbox-typescript-04.command.json",
+    "verification/language-ide-final-sandbox-typescript-04.normalization.json",
+    "verification/language-ide-final-summary.json"
+  ],
   "source_hash_normalization": "UTF-8 bytes with CRLF normalized to LF",
   "source_sha256": {
+    "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34",
+    "Cargo.toml": "8a009f775d201c8199a6d6f81963bb75dde59a48dc783ae6086a6a7407e21e36",
     "crates/odin-core/src/execution.rs": "d9c99fc04e0b90ba95d79e6e53e4232db2e9f6bf071ee441c222bedd389ee78d",
     "crates/odin-core/src/process.rs": "b69e2cf89c9cf96b79f01b85ea67ad41a1f6dcdd89d5e9bedd6167062fb84fa8",
-    "crates/odin-protocol/src/lsp.rs": "bff9436ee2c837f0a154c51ab1ef66cdb3f6e3542359f8cb93629cee45611224",
-    "crates/odin-protocol/src/rpc.rs": "3de2e6d0f08a1b7725726e46390afbf30741ec8c0468bca850ebf98855d6a7c9",
-    "crates/odin-engine/src/lib.rs": "0d15e3161b18cd5d1f1bf3de6a6f499a1bf9ada8f719bf1c0509e536cd91ce9d",
-    "crates/odin-engine/src/inspections.rs": "d1aa320f462ca37c8cc5562de7fa88105093275b5c5c88dad7a8d06baf663257",
     "crates/odin-engine/src/ide.rs": "2be8243702051c656e606be281f2b2113091e9debc83516d390d0446705184dd",
+    "crates/odin-engine/src/inspections.rs": "d1aa320f462ca37c8cc5562de7fa88105093275b5c5c88dad7a8d06baf663257",
+    "crates/odin-engine/src/lib.rs": "0d15e3161b18cd5d1f1bf3de6a6f499a1bf9ada8f719bf1c0509e536cd91ce9d",
     "crates/odin-engine/tools.json": "d921899b72aba5468aeb36186953840d1ac824625eb7470042632900f1a5a3aa",
+    "crates/odin-protocol/src/dap.rs": "23236ae9bd7476136ec17793cb1b4c2a7cc8404e7c17d5e36b124221ee82b05c",
+    "crates/odin-protocol/src/lib.rs": "99a75cf5cf2f0f42c91bb5d4344fa56ca54aab6d2c0c8bc498da1a1f9b98e68c",
+    "crates/odin-protocol/src/lsp.rs": "bff9436ee2c837f0a154c51ab1ef66cdb3f6e3542359f8cb93629cee45611224",
+    "crates/odin-protocol/src/rpc.rs": "3b8a1278025dc0a4ce5fbd13be6409b164745043e51992571bd2430ebddc99e4",
+    "crates/odin-protocol/src/text.rs": "047329493570b965a79f93a4dd3b2f62a05147d9610547eee5ae4d38619055c2",
+    "crates/odin-protocol/src/workspace.rs": "259f5936b90cd502b20b1eaee20977031f973fe76febed86c03b5bf3f380db6e",
+    "crates/odin-protocol/tests/fixture_protocols.rs": "da2bbda3e1f0203f68014626f78992a00c654ed513cb1529ba5fbfe364158b3b",
+    "docs/PROTOCOL_IDE.md": "45a4639dfefbba13f950f56206e1cd347e9d2705d1d4c9449b8690c93e2a07bf",
     "schemas/tools.json": "d921899b72aba5468aeb36186953840d1ac824625eb7470042632900f1a5a3aa",
-    "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34"
+    "tests/fixtures/protocol_peer.py": "a7152797c2a43297ac39e363a85c519fe48804798c4b758d505fcf003d77d024",
+    "verification/protocol-ide-uri-java-probe.py": "eb7a5e2924b6bf58cf0e7adf0ffd3b68d3d2b2ee9d76abf20349ceff0df18800",
+    "tests/real_ide_backends.py": "1160258157d2790782e9060be0556af874397daf741196ef32297435c6c0dbf6",
+    "docs/LANGUAGE_BACKENDS.md": "1035dc33f2892ad30742dd70b6a7d42eb0a4e8646baf1f53d4596249399f0581"
   },
   "remaining_blocking_findings": [],
-  "remaining_limits": ["A blocking OS file read is not preemptible; query deadline is checked after it returns", "Reviewer did not execute product tests", "The final fe5996d integrated runtime gate was incomplete when reviewed", "New six-language matrix pending; no full-language or IDE parity claim", "Linux/macOS and complete OS certification outside this review"],
-  "prior_native_analyzer_evidence": {"report": "verification/native-inspections-attempt-3.json", "status": "PASS", "checks_passed": 30, "source_revision": "30a957a95bd39d1dbbe631d2649593dbf54e6250", "binary_sha256": "cb0097266da19e2be25136a56ce1b60e8f02dc8f7eb8f33b282aae045251e014", "current_final_binary_acceptance": "NOT_RUN"},
-  "next_action": "Root completes and attaches source-bound final integrated runtime and language-matrix evidence; preserve historical failure logs and scope limits"
+  "remaining_limits": [
+    "A blocking OS file read is not preemptible; query deadline is checked after it returns",
+    "Reviewer did not execute product tests; execution results belong to /root and /root/platform_implementation",
+    "Baseline six-language/two-project acceptance is PARTIAL: 260 PASS, 14 UNAVAILABLE, 12 NOT_VERIFIED, no FAIL. TypeScript and Java diagnostics are unversioned",
+    "Actual TypeScript native-sandbox LSP acceptance is PARTIAL: 42 PASS, 2 UNAVAILABLE, 6 NOT_VERIFIED, no FAIL; diagnosis/version and complete indexing/clean-build claims remain unproven",
+    "Actual native-sandboxed Rust/Python/Go/Java/C# LSP workloads are NOT_RUN; native analyzers are separate evidence",
+    "TypeScript requires the explicitly selected fixed private-temp/descendant-flags host profile shown in the report; no automatic fallback is provided",
+    "Per-LSP route retains os_boundary_verified=false; separate source-bound native parent/child denial workload evidence covers filesystem/network isolation, not full UI isolation or per-LSP attack probes",
+    "Current clean diagnostics after every source transaction, all-project diagnostics and full IDE/backend parity are not established",
+    "Linux/macOS and complete OS certification remain outside this Windows review"
+  ],
+  "prior_native_analyzer_evidence": {
+    "report": "verification/native-inspections-attempt-3.json",
+    "status": "PASS",
+    "checks_passed": 30,
+    "source_revision": "30a957a95bd39d1dbbe631d2649593dbf54e6250",
+    "binary_sha256": "cb0097266da19e2be25136a56ce1b60e8f02dc8f7eb8f33b282aae045251e014",
+    "final_candidate_acceptance_at_revision3": "NOT_RUN"
+  },
+  "next_action": "Root freezes these two review artifacts and their hashes, integrates final delivery/manifest evidence and performs final publish checks; retain all historical failures and PARTIAL/NOT_VERIFIED/UNAVAILABLE/NOT_RUN boundaries",
+  "runtime_last_change_sha": "6a7c319ed0a9ed874a57bf79e38a8903402ed1d4",
+  "intermediate_reviews": [
+    {
+      "reviewed_head_sha": "87c11a9c5cd2fbb3407f12d000b7031884cc0d4f",
+      "result": "PASS",
+      "scope": "URI cache and JDTLS WorkspaceEdit compatibility repairs; 12 source, 2 test binary and 5 external input hashes matched at that snapshot"
+    },
+    {
+      "reviewed_head_sha": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+      "result": "PASS",
+      "scope": "Tests-only fixture startup synchronization, with 100 ms deadline, exactly-one cancel and zero-pending assertions preserved"
+    },
+    {
+      "reviewed_head_sha": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+      "result": "PASS",
+      "scope": "c5084f4 binary source plus preserved source-bound 17-command gate and native analyzers"
+    }
+  ],
+  "evidence_snapshot_notes": [
+    "URI-only evidence predates the Java repair: four source hashes were intentionally historical when checked at 87c11a9; the later Java evidence covered the resulting runtime sources.",
+    "At 87c11a9 all 12 Java-evidence source hashes, both recorded test binaries and all five external probe inputs matched; raw JAVA_PROBE_SETUP matches the recorded fixture hashes/settings/initialization.",
+    "c5084f4 changes only the timeout fixture readiness synchronization under crates; its fixture_protocols.rs hash is da2bbda3e1f0203f68014626f78992a00c654ed513cb1529ba5fbfe364158b3b. Earlier Java test source/binary hashes describe their historical snapshot, not the later test executable.",
+    "The current integrated gate binds all 102 tested runtime/harness inputs and 17 command logs with no mismatch; documentation/evidence-only commits after this gate do not change the tested binary identity.",
+    "Platform matrix artifacts were inspected in its assigned worktree before root integration; their author commits, binary identity and old/new harness identities are recorded explicitly.",
+    "Final baseline03 binds d47fa6... harness; final TS sandbox04 binds 116025... harness. The 17-command execution source snapshot remains at c5084f4 with its earlier language harness and was not relabeled as testing newer harness bytes.",
+    "No product crate/manifest/lock/catalog difference exists between c5084f4 tested build and integrated review head 3d4a9074e8bd693ec5c896bb838ae61ee65e3a0b. Newer changes in scope are explicit test-driver support, documentation and preserved evidence.",
+    "Historical native sandbox01/02/03 failures and full baseline02 failure remain FAIL; normalization and later successful subchecks do not rewrite them."
+  ],
+  "historical_fixture_startup_failure": {
+    "report": "verification/sandbox-ide-final-validation.json",
+    "source_head_sha": "87c11a9c5cd2fbb3407f12d000b7031884cc0d4f",
+    "status": "FAIL",
+    "failed_command": "cargo test --workspace --locked",
+    "exit_code": 101,
+    "log": "verification/sandbox-ide-final-logs/workspace_tests.txt",
+    "failed_test": "request_timeout_cancels_once_and_leaves_no_pending_registration",
+    "repair_commit": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+    "repair_scope": "Wait at most 3 seconds for existing Python startup marker before starting the deliberately unanswered 100 ms RPC; all cancellation/pending assertions retained",
+    "subsequent_gate_status": "PASS"
+  },
+  "final_integrated_validation": {
+    "report": "verification/sandbox-ide-release-validation.json",
+    "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
+    "status": "PASS",
+    "performed_by": "/root",
+    "reviewer_executed": false,
+    "source_head_sha": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+    "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+    "binary_metadata": {
+      "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+      "external_tool_bridge": false,
+      "model_token_usage": "UNKNOWN",
+      "name": "Odin",
+      "profile": "release",
+      "revision": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+      "schema_version": 1,
+      "standalone": true,
+      "target": "x86_64-pc-windows-msvc",
+      "tracked_source_dirty": false,
+      "version": "0.2.0"
+    },
+    "source_files_checked": 102,
+    "source_changed_during_validation": [],
+    "source_hash_mismatches": [],
+    "command_log_hash_mismatches": [],
+    "workspace_tests_passed": 200,
+    "workspace_tests_ignored": 6,
+    "native_opt_in_tests_passed": 3,
+    "real_backend_checks_passed": 29,
+    "command_count": 17,
+    "commands": [
+      {
+        "name": "generated_artifacts",
+        "argv": [
+          "python",
+          "scripts/check_generated.py"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 0.156,
+        "log": "verification/sandbox-ide-release-logs/generated_artifacts.txt",
+        "log_sha256": "a6ec063d424daf109c8806ed7c53ecb3aac46f11ea001b462f6d94d0777b282a"
+      },
+      {
+        "name": "fmt",
+        "argv": [
+          "cargo",
+          "fmt",
+          "--all",
+          "--",
+          "--check"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 0.344,
+        "log": "verification/sandbox-ide-release-logs/fmt.txt",
+        "log_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "name": "workspace_tests",
+        "argv": [
+          "cargo",
+          "test",
+          "--workspace",
+          "--locked"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 42.401,
+        "log": "verification/sandbox-ide-release-logs/workspace_tests.txt",
+        "log_sha256": "d5cf4dbd5d33dd62de1525fc59d41bd71c8fb0fa31a3ea36b9ff8a7a099dc409"
+      },
+      {
+        "name": "clippy",
+        "argv": [
+          "cargo",
+          "clippy",
+          "--workspace",
+          "--all-targets",
+          "--locked",
+          "--",
+          "-D",
+          "warnings"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 2.167,
+        "log": "verification/sandbox-ide-release-logs/clippy.txt",
+        "log_sha256": "8b2f6948c6b6ead26148d49873c13560c901fe7c37383faf17424163a4a0950d"
+      },
+      {
+        "name": "native_sandbox",
+        "argv": [
+          "cargo",
+          "test",
+          "-p",
+          "odin-core",
+          "--test",
+          "os_sandbox_native",
+          "--locked",
+          "--",
+          "--ignored",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 21.402,
+        "log": "verification/sandbox-ide-release-logs/native_sandbox.txt",
+        "log_sha256": "ab8f853d50df80d3c1366ae9577cfa480e06903d33cbebf4ad825943b5231924"
+      },
+      {
+        "name": "release_build",
+        "argv": [
+          "cargo",
+          "build",
+          "--workspace",
+          "--release",
+          "--locked"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 87.556,
+        "log": "verification/sandbox-ide-release-logs/release_build.txt",
+        "log_sha256": "1c1ffa2362f95c4bca7937083c8567f2975813da9880a3c50a1da61c090a56c6"
+      },
+      {
+        "name": "cli",
+        "argv": [
+          "python",
+          "scripts/cli_smoke.py",
+          "--binary",
+          "target/release/odin.exe",
+          "--output",
+          "verification/sandbox-ide-release-cli-smoke.json"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 0.689,
+        "log": "verification/sandbox-ide-release-logs/cli.txt",
+        "log_sha256": "02dbcf5e800217e5a65d34865ad8d3c71186e7fc1209979c84e11c1104266ec5"
+      },
+      {
+        "name": "mcp_stdio",
+        "argv": [
+          "python",
+          "scripts/mcp_smoke.py",
+          "--binary",
+          "target/release/odin.exe",
+          "--output",
+          "verification/sandbox-ide-release-mcp-smoke.json"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 0.45,
+        "log": "verification/sandbox-ide-release-logs/mcp_stdio.txt",
+        "log_sha256": "f8c882bb1e88b88aad907e4d092aa773ac4a2308b3814506d843a8f5ab4717a4"
+      },
+      {
+        "name": "mcp_http",
+        "argv": [
+          "python",
+          "scripts/http_smoke.py",
+          "--binary",
+          "target/release/odin.exe",
+          "--output",
+          "verification/sandbox-ide-release-http-smoke.json"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 0.948,
+        "log": "verification/sandbox-ide-release-logs/mcp_http.txt",
+        "log_sha256": "ef8dd0a52f77e72d1986004facd46c9bb1059ad147cf8a433a238576b6841e85"
+      },
+      {
+        "name": "mcp_cancellation",
+        "argv": [
+          "python",
+          "scripts/mcp_cancel_smoke.py",
+          "--binary",
+          "target/release/odin.exe",
+          "--output",
+          "verification/sandbox-ide-release-mcp-cancellation.json"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 0.42,
+        "log": "verification/sandbox-ide-release-logs/mcp_cancellation.txt",
+        "log_sha256": "904d73be0f9f8af3e1da11bab6fc4f1707dc3db3e2e5a6b773a8402a6f42f0cb"
+      },
+      {
+        "name": "real_backends",
+        "argv": [
+          "python",
+          "tests/real_backends.py",
+          "--binary",
+          "target/release/odin.exe",
+          "--python",
+          ".odin/validation-tools/python/Scripts/python.exe",
+          "--python-lsp",
+          ".odin/validation-tools/python/Scripts/basedpyright-langserver.exe",
+          "--typescript-lsp",
+          ".odin/validation-tools/typescript/node_modules/typescript-language-server/lib/cli.mjs",
+          "--node",
+          "C:/Program Files/nodejs/node.exe",
+          "--output",
+          "verification/sandbox-ide-release-real-backends.json"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 5.035,
+        "log": "verification/sandbox-ide-release-logs/real_backends.txt",
+        "log_sha256": "cfbfeb47accf7085d25be742408411da27065dca7a0235613c132ddb6317c530"
+      },
+      {
+        "name": "dependency_audit",
+        "argv": [
+          "cargo",
+          "audit",
+          "--deny",
+          "warnings",
+          "--json"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 2.443,
+        "log": "verification/sandbox-ide-release-logs/dependency_audit.txt",
+        "log_sha256": "9254d5c1ca8495ae225f2289fdc4394683abe266961f0dbfa231771c6eb2658f"
+      },
+      {
+        "name": "licenses",
+        "argv": [
+          "cargo",
+          "deny",
+          "--format",
+          "json",
+          "check",
+          "licenses"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 0.651,
+        "log": "verification/sandbox-ide-release-logs/licenses.txt",
+        "log_sha256": "b87ff50d7cc1bf36ebb4295f2e6f418c52149ab1d889a4a9cfddcffae397ad39"
+      },
+      {
+        "name": "supply_chain",
+        "argv": [
+          "python",
+          "scripts/supply_chain.py"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 1.151,
+        "log": "verification/sandbox-ide-release-logs/supply_chain.txt",
+        "log_sha256": "d771e404c96be72267fdf27992e39aa7148d8284778a69bda6ef4208f861a236"
+      },
+      {
+        "name": "static_source",
+        "argv": [
+          "python",
+          "scripts/check_source.py",
+          "--output",
+          "verification/sandbox-ide-release-source-check.json"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 0.258,
+        "log": "verification/sandbox-ide-release-logs/static_source.txt",
+        "log_sha256": "3c1dd6992da3dfb9732e4e82b8c88bdd17e870518e2f38d73d39262bc39c2345"
+      },
+      {
+        "name": "requirements",
+        "argv": [
+          "python",
+          "scripts/check_requirements.py"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 0.113,
+        "log": "verification/sandbox-ide-release-logs/requirements.txt",
+        "log_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2"
+      },
+      {
+        "name": "publish_policy",
+        "argv": [
+          "python",
+          "scripts/check_publish_policy.py"
+        ],
+        "cwd": ".",
+        "status": "PASS",
+        "exit_code": 0,
+        "elapsed_seconds": 0.04,
+        "log": "verification/sandbox-ide-release-logs/publish_policy.txt",
+        "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983"
+      }
+    ],
+    "completed_at_utc": "2026-10-21T01:43:02.395945+00:00"
+  },
+  "final_native_analyzer_validation": {
+    "report": "verification/native-inspections-release-final.json",
+    "report_sha256": "1b2bb92f2dd8b906146f9ecf13bee79c721f2face3bb79ece40ecbdf497a7775",
+    "command_report": "verification/native-inspections-release-final-command.json",
+    "command_report_sha256": "b25ffb7343f01a188bf0cfdb76b705df52560b0ebb94b39d18e277fc75e962db",
+    "log": "verification/native-inspections-release-final-command.txt",
+    "log_sha256": "7708d93f9a10d830cb035947028c123b254ade119c62b3a5364a15769ee94c0b",
+    "status": "PASS",
+    "scope": "REAL_ODIN_MCP_MXC_ANALYZERS",
+    "performed_by": "/root",
+    "reviewer_executed": false,
+    "exit_code": 0,
+    "checks_passed": 30,
+    "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+    "source_head_sha": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+    "harness_sha256": "11a6e3724bcd10e09c8dfa3487329df15b85f8c89b22fea65db494f436fb278f",
+    "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+    "harness_and_executor_hashes_match": true,
+    "completed_at_utc": "2026-10-21T01:43:13.376269+00:00"
+  },
+  "additional_harness_source_review": {
+    "status": "PASS",
+    "author_commit": "5fc4c99",
+    "reviewed_input": "tests/real_ide_backends.py",
+    "original_harness_sha256": "862bf89645e99c5110bd6d700ba8a8a16c4f796c86218dd4c20dad3d32a416bf",
+    "reviewed_harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+    "scope": "Move initial-valid diagnostics before the first rename/format source mutations; two explanatory comments and matching boundary documentation",
+    "diagnostics_function_ast_unchanged": true,
+    "aggregate_function_ast_unchanged": true,
+    "retained_criteria": [
+      "available with expected error/non-error shape",
+      "Only version_verified=true and summary.complete=true can PASS",
+      "Unversioned observed results remain NOT_VERIFIED",
+      "Pending timeouts remain FAIL",
+      "Broken-source edit and recovery still use Transactions and exact-byte rollback"
+    ],
+    "installed_backend_source_checked": {
+      "path": ".odin/validation-tools/typescript/node_modules/typescript-language-server/lib/cli.mjs",
+      "lines": [
+        22009,
+        22024
+      ],
+      "observation": "Consecutive empty diagnostics for the same kind are suppressed; published payload has URI and diagnostics, without version"
+    },
+    "runtime_binary_changed": false,
+    "reviewer_executed": false,
+    "command_exit_code": 0,
+    "boundary": "The 17-command gate source snapshot binds the earlier harness. New matrix evidence must bind this new harness separately; moving initial observation does not prove current clean diagnostics after every transaction."
+  },
+  "historical_language_matrix_attempt": {
+    "report": "verification/language-ide-final-baseline-02.json",
+    "author_commit": "c4b71d6",
+    "status": "FAIL",
+    "exit_code": 1,
+    "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+    "harness_sha256": "862bf89645e99c5110bd6d700ba8a8a16c4f796c86218dd4c20dad3d32a416bf",
+    "counts": {
+      "PASS": 260,
+      "UNAVAILABLE": 14,
+      "FAIL": 2,
+      "NOT_VERIFIED": 10
+    },
+    "failed_checks": [
+      "typescript_a:diagnostics_valid",
+      "typescript_b:diagnostics_valid"
+    ],
+    "project_outcomes": {
+      "PASS": 8,
+      "PARTIAL": 2,
+      "FAIL": 2
+    },
+    "artifact_hashes_checked": 4,
+    "artifact_hash_mismatches": [],
+    "boundary": "Preserved failed attempt on the final binary; not overwritten by the harness repair or LF normalization"
+  },
+  "typescript_order_probe_evidence": {
+    "report": "verification/language-ide-typescript-order-03.json",
+    "command_report": "verification/language-ide-typescript-order-03.command.json",
+    "normalization_report": "verification/language-ide-typescript-order-03.normalization.json",
+    "author_commit": "5fc4c99",
+    "status": "PARTIAL",
+    "exit_code": 2,
+    "counts": {
+      "PASS": 40,
+      "UNAVAILABLE": 2,
+      "NOT_VERIFIED": 6,
+      "FAIL": 0
+    },
+    "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+    "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+    "artifact_hashes_checked": 4,
+    "artifact_hash_mismatches": [],
+    "performed_by": "/root/platform_implementation",
+    "reviewer_executed": false,
+    "boundary": "Both TypeScript projects observed initial/error/recovery diagnostics, all unversioned and NOT_VERIFIED. This is not the final full matrix or native LSP sandbox acceptance."
+  },
+  "reviewed_harness_author_sha": "cd3618f196189106eb30b9bc1a935abaf5664c75",
+  "final_language_matrix_evidence": {
+    "mode": "baseline",
+    "status": "PARTIAL",
+    "actual_driver_exit_code": 2,
+    "counts": {
+      "PASS": 260,
+      "UNAVAILABLE": 14,
+      "NOT_VERIFIED": 12
+    },
+    "matrix": {
+      "rust": {
+        "rust_a": "PASS",
+        "rust_b": "PASS"
+      },
+      "python": {
+        "python_a": "PASS",
+        "python_b": "PASS"
+      },
+      "typescript": {
+        "typescript_a": "PARTIAL",
+        "typescript_b": "PARTIAL"
+      },
+      "go": {
+        "go_a": "PASS",
+        "go_b": "PASS"
+      },
+      "java": {
+        "java_a": "PARTIAL",
+        "java_b": "PARTIAL"
+      },
+      "csharp": {
+        "csharp_a": "PASS",
+        "csharp_b": "PASS"
+      }
+    },
+    "actual_lsp_projects_initialized": 12,
+    "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+    "report": "verification/language-ide-final-baseline-03.json",
+    "report_sha256": "74607775a28d75d91d5a4e045e319963fcf3e4469923b4233d97ca26b27a6847",
+    "transcript": "verification/language-ide-final-baseline-03.requests.jsonl",
+    "transcript_sha256": "5089119c1e9b490bd71bc7dc7c371890606694271b26ab6d16d369c7ccc22641",
+    "stdout_log": "verification/language-ide-final-baseline-03.txt",
+    "stdout_sha256": "3caf84a17d5d700f9f629c625f7f7fd0840823b4c40798efe7234e13692b580d",
+    "command_receipt": "verification/language-ide-final-baseline-03.command.json",
+    "command_receipt_sha256": "e97a533711ca0a8d5e5dbaa8ca44169496badfc3e76c4c05529ab7eadc1c9548",
+    "normalization_receipt": "verification/language-ide-final-baseline-03.normalization.json",
+    "normalization_receipt_sha256": "540d79f53cd4ce27abcf8896588e84830a20f6ed53d045fdcb6af515a0aed872",
+    "bootstrap_sources": [],
+    "performed_by": "/root/platform_implementation",
+    "reviewer_executed": false,
+    "integrity_review": "PASS",
+    "boundary": "Twelve actual projects initialized; eight project results PASS and four TypeScript/Java project results PARTIAL because 12 diagnostic checks are unversioned. No full parity inferred."
+  },
+  "final_typescript_sandbox_evidence": {
+    "mode": "sandbox",
+    "status": "PARTIAL",
+    "actual_driver_exit_code": 2,
+    "counts": {
+      "PASS": 42,
+      "UNAVAILABLE": 2,
+      "NOT_VERIFIED": 6
+    },
+    "matrix": {
+      "typescript": {
+        "typescript_a": "PARTIAL",
+        "typescript_b": "PARTIAL"
+      }
+    },
+    "actual_lsp_projects_initialized": 2,
+    "harness_sha256": "1160258157d2790782e9060be0556af874397daf741196ef32297435c6c0dbf6",
+    "report": "verification/language-ide-final-sandbox-typescript-04.json",
+    "report_sha256": "0a87a2b1aac45136bf2d948de1711a997abe33991c4747990dab5d3f0edd420a",
+    "transcript": "verification/language-ide-final-sandbox-typescript-04.requests.jsonl",
+    "transcript_sha256": "acbe80f60f410453e773d45abc35e731d45e277e1ba496ff3778e45a9cc57576",
+    "stdout_log": "verification/language-ide-final-sandbox-typescript-04.txt",
+    "stdout_sha256": "f76683d20361fc11856305d0ece2127aebefbf1919b4ec2ef99eafbed51c696d",
+    "command_receipt": "verification/language-ide-final-sandbox-typescript-04.command.json",
+    "command_receipt_sha256": "a61cdb686562b98bb2f75b5dab933e55f15b47fa63985a037f96fc70f8fc571f",
+    "normalization_receipt": "verification/language-ide-final-sandbox-typescript-04.normalization.json",
+    "normalization_receipt_sha256": "ae586d700cfc0e1c8030359bb02996c23e08586d8c3e346893beaff526a50a64",
+    "bootstrap_sources": [
+      {
+        "project": "typescript_a",
+        "relative_path": "host-support/typescript_a/typescript-bootstrap.mjs",
+        "source_sha256": "95f82f490f6eb2487b25335edcc8321517ce5a0be118cf04579ed709a0131ce6",
+        "server_module_sha256": "192638f1fa62c907fd54c0b55b12dd3dff01325a1a0ed5973907efca1c57b5eb"
+      },
+      {
+        "project": "typescript_b",
+        "relative_path": "host-support/typescript_b/typescript-bootstrap.mjs",
+        "source_sha256": "95f82f490f6eb2487b25335edcc8321517ce5a0be118cf04579ed709a0131ce6",
+        "server_module_sha256": "192638f1fa62c907fd54c0b55b12dd3dff01325a1a0ed5973907efca1c57b5eb"
+      }
+    ],
+    "performed_by": "/root/platform_implementation",
+    "reviewer_executed": false,
+    "integrity_review": "PASS",
+    "native_route_details": [
+      {
+        "project": "typescript_a",
+        "route": [
+          {
+            "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+            "hash_verified": true,
+            "launch_route": "mxc_process_container",
+            "os_boundary_verified": false,
+            "requested": true
+          }
+        ]
+      },
+      {
+        "project": "typescript_b",
+        "route": [
+          {
+            "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+            "hash_verified": true,
+            "launch_route": "mxc_process_container",
+            "os_boundary_verified": false,
+            "requested": true
+          }
+        ]
+      }
+    ],
+    "sandbox_profiles": [
+      {
+        "project": "typescript_a",
+        "program": "C:\\Program Files\\nodejs\\node.exe",
+        "argv": [
+          "--preserve-symlinks",
+          "--preserve-symlinks-main",
+          "<fixture>\\host-support\\typescript_a\\typescript-bootstrap.mjs"
+        ],
+        "readonly_paths": [
+          "C:\\Program Files\\nodejs",
+          "<fixture>\\host-support\\typescript_a\\typescript-bootstrap.mjs",
+          "<fixture>\\projects\\typescript_a",
+          "E:\\odin\\.odin\\validation-tools\\typescript"
+        ],
+        "readwrite_paths": [],
+        "private_scratch": "scratch\\typescript_a",
+        "allow_ui": true,
+        "clipboard": "none",
+        "injection": false,
+        "requested_network_policy": "deny_all",
+        "bootstrap_is_readonly_file": true,
+        "fixed_descendant_node_options": "--preserve-symlinks --preserve-symlinks-main"
+      },
+      {
+        "project": "typescript_b",
+        "program": "C:\\Program Files\\nodejs\\node.exe",
+        "argv": [
+          "--preserve-symlinks",
+          "--preserve-symlinks-main",
+          "<fixture>\\host-support\\typescript_b\\typescript-bootstrap.mjs"
+        ],
+        "readonly_paths": [
+          "C:\\Program Files\\nodejs",
+          "<fixture>\\host-support\\typescript_b\\typescript-bootstrap.mjs",
+          "<fixture>\\projects\\typescript_b",
+          "E:\\odin\\.odin\\validation-tools\\typescript"
+        ],
+        "readwrite_paths": [],
+        "private_scratch": "scratch\\typescript_b",
+        "allow_ui": true,
+        "clipboard": "none",
+        "injection": false,
+        "requested_network_policy": "deny_all",
+        "bootstrap_is_readonly_file": true,
+        "fixed_descendant_node_options": "--preserve-symlinks --preserve-symlinks-main"
+      }
+    ],
+    "boundary": "Two actual LSP projects, symbols/references/IDE and CAS rename/format apply/rollback subchecks pass. Six diagnostics remain NOT_VERIFIED. The reported route os_boundary_verified=false is retained; separate native workload checks cover OS denials, not per-LSP attack probes or full UI isolation."
+  },
+  "final_sandbox_harness_source_review": {
+    "status": "PASS",
+    "integrated_head_sha": "3d4a9074e8bd693ec5c896bb838ae61ee65e3a0b",
+    "author_commit": "cd3618f196189106eb30b9bc1a935abaf5664c75",
+    "related_author_commits": [
+      "c76637f",
+      "4b2936c"
+    ],
+    "harness_sha256": "1160258157d2790782e9060be0556af874397daf741196ef32297435c6c0dbf6",
+    "source_scope": "tests/real_ide_backends.py and matching language boundary documentation; no Odin product source changed",
+    "opt_in_scope": "child-path-flags requires init-temp; init-temp requires sandbox mode and exactly TypeScript",
+    "fixed_inputs": {
+      "server_module": "Host-selected absolute installed TSLS module serialized as a JS constant",
+      "server_module_sha256": "192638f1fa62c907fd54c0b55b12dd3dff01325a1a0ed5973907efca1c57b5eb",
+      "bootstrap_sha256": "95f82f490f6eb2487b25335edcc8321517ce5a0be118cf04579ed709a0131ce6",
+      "server_argv": "[process.execPath, fixed server module, --stdio]",
+      "descendant_NODE_OPTIONS": "--preserve-symlinks --preserve-symlinks-main"
+    },
+    "node_options_handling": "Overwrite with the exact fixed constant inside the bootstrap; do not append inherited option text",
+    "execution": "Create private tmpdir, verify fixed module SHA, then ordinary module import; no eval, caller/repository module target or automatic fallback",
+    "grants": "One readonly host-support file added; no drive-root grant, project/runtime grants remain readonly, readwrite_paths=[], private scratch and explicit UI profile unchanged, deny-all networking/clipboard none/injection false retained",
+    "failfast": "4b2936c stops retries after permanent Backend process exited and retains FAIL classification",
+    "acceptance_methods_ast_unchanged_from_5fc4c99": [
+      "project",
+      "diagnostics",
+      "rename",
+      "format",
+      "envelope",
+      "optional",
+      "prepare_edit",
+      "call",
+      "record"
+    ],
+    "installed_backend_source_checked": [
+      "cli.mjs 20160-20188: child execArgv is rebuilt and child env copies process.env",
+      "cli.mjs 22009-22024: consecutive empty diagnostics suppressed; published payload lacks version"
+    ],
+    "reviewer_executed": false,
+    "command_exit_code": 0
+  },
+  "historical_typescript_sandbox_attempts": [
+    {
+      "report": "verification/language-ide-final-sandbox-typescript-01.json",
+      "author_commit": "fe9c92a",
+      "status": "FAIL",
+      "actual_driver_exit_code": 1,
+      "counts": {
+        "PASS": 2,
+        "FAIL": 4
+      },
+      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+      "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+      "artifact_hashes_checked": 4,
+      "artifact_hash_mismatches": [],
+      "observed_failure": "Node startup ENOENT while realpath of private Package/AC/Temp before explicit bootstrap"
+    },
+    {
+      "report": "verification/language-ide-final-sandbox-typescript-02.json",
+      "author_commit": "c76637f",
+      "status": "FAIL",
+      "actual_driver_exit_code": 1,
+      "counts": {
+        "PASS": 6,
+        "FAIL": 2
+      },
+      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+      "harness_sha256": "9b8fef9ac15b89e2ccf88e58b587aa4b95933390c147030c45eab6c43cd99146",
+      "artifact_hashes_checked": 4,
+      "artifact_hash_mismatches": [],
+      "observed_failure": "TSLS child/server exit after initial LSP/native route; captured evidence does not identify a specific child filesystem error"
+    },
+    {
+      "report": "verification/language-ide-final-sandbox-typescript-03.json",
+      "author_commit": "4b2936c",
+      "status": "FAIL",
+      "actual_driver_exit_code": 1,
+      "counts": {
+        "PASS": 6,
+        "FAIL": 2
+      },
+      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+      "harness_sha256": "be61a080fe8c556acff72cc852cee50544b6f999fd39f9a034ca961e671b3d13",
+      "artifact_hashes_checked": 4,
+      "artifact_hash_mismatches": [],
+      "observed_failure": "TSLS child/server exit after initial LSP/native route; captured evidence does not identify a specific child filesystem error"
+    }
+  ],
+  "final_language_summary": {
+    "path": "verification/language-ide-final-summary.json",
+    "sha256": "aba9616b7e905cc9209556021e51c89bf2103f40e2bed3217ae3cc68b3a5da0b",
+    "status": "PARTIAL",
+    "author_commit": "cd3618f196189106eb30b9bc1a935abaf5664c75",
+    "review_result": "PASS_FOR_EVIDENCE_INTEGRITY",
+    "executed_acceptance": "PARTIAL"
+  }
 }

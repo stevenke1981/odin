@@ -4,7 +4,7 @@
 
 本輪clean product revision `c5084f4947fc4a07c9ab381fa9998ba1a1e2246d` 已執行 **17/17 gates exit0、200 workspace tests PASS/6 ignored**；其中3個native測試另外opt-in實跑PASS，其餘3個真LS probe仍ignored。source_changed=[]、tracked_source_dirty=false。Release binary SHA-256為 `f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875`。
 
-同一binary的原三LS/debugpy29 checks及真MCP→nativeMXC→Clippy/Ruff/ESLint30 checks均PASS；analyzer完整command另有exit0/log/digest。六語各兩專案的host-mode baseline已實際執行：**PARTIAL、exit 2，260 PASS／14 UNAVAILABLE／12 NOT_VERIFIED／0 FAIL，12/12 initialized**。TypeScript與Java診斷缺document version；TypeScript native MXC profile02仍待實測。28 registry entries只是設定指引，不能推論28或40+語言通過。
+同一binary的原三LS/debugpy29 checks及真MCP→nativeMXC→Clippy/Ruff/ESLint30 checks均PASS；analyzer完整command另有exit0/log/digest。六語各兩專案的host-mode baseline已實際執行：**PARTIAL、exit 2，260 PASS／14 UNAVAILABLE／12 NOT_VERIFIED／0 FAIL，12/12 initialized**。TypeScript與Java診斷缺document version；TypeScript native MXC profile04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL，exit2）。28 registry entries只是設定指引，不能推論28或40+語言通過。
 
 前版72工具/144-test、fe5996d/191-test、author切片及AppControl失敗均保留原source/binary/digest，與新結果分層。六語首輪0交換仍是歷史失敗；本次真rename/apply/rollback涵蓋JDTLS兩專案。17gates保留當時QA driver快照；六語新driver `d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09` 將initial-valid觀察前移，root/reviewer確認AST驗收條件未變；53個production crates來源hash仍與release report相符。Hierarchy安全預算與summary已修復；最新review/source binding由root/reviewer管理。
 
@@ -50,7 +50,7 @@
 
 **設計目標：** 使用官方 Rust MCP SDK；JSON-RPC Initialize / initialized / tools/list / tools/call；stdio 僅允許 JSON-RPC stdout；HTTP loopback + Bearer + Host/Origin；失敗使用明確 tool error。
 
-**已觀察範圍：** c5084f4標準binary17gates與same-binaryanalyzer30checks PASS；六語兩專案baseline已實跑PARTIAL/exit2（260/14/12/0），TS native sandbox02仍pending。
+**已觀察範圍：** c5084f4標準binary17gates與same-binaryanalyzer30checks PASS；六語兩專案baseline已實跑PARTIAL/exit2（260/14/12/0），TS native sandbox04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL，exit2）。
 
 **原驗收條件：**
 
@@ -200,7 +200,7 @@
 
 **設計目標：** 初始化 initialize/initialized、capabilities negotiation、document didOpen/didChange/didClose、WorkspaceFolder；單調版本、UTF-16 索引、超時/取消/重啟、子程序 stderr 分離、按語言設定 stdout framing。
 
-**已觀察範圍：** 新增IDE RPC/URI/JDTLS安全處理已實作；六語12/12真初始化、260PASS，14capability UNAVAILABLE及12診斷NOT_VERIFIED仍明列，TS沙箱另待驗收。
+**已觀察範圍：** 新增IDE RPC/URI/JDTLS安全處理已實作；六語12/12真初始化、260PASS，14capability UNAVAILABLE及12診斷NOT_VERIFIED仍明列，TS沙箱profile04另有兩專案42 PASS的PARTIAL證據。
 
 **原驗收條件：**
 
@@ -350,7 +350,7 @@
 
 **設計目標：** 預設最小權限執行；Windows Job Objects/restricted token 視 profile；Linux seccomp/namespace or container；macOS sandbox profile；限制子程序後代、resource/time/cpu/memory；執行命令僅 allowlisted profile。
 
-**已觀察範圍：** Windows native3與same-binaryanalyzer30checks PASS；六語baseline為host mode，TS MXC profile01缺私有TEMP失敗、explicit bootstrap profile02仍pending，跨平台未完成。
+**已觀察範圍：** Windows native3與same-binaryanalyzer30checks PASS；六語baseline為host mode，TS MXC profile01缺私有TEMP失敗、explicit固定bootstrap profile04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL），跨平台未完成。
 
 **原驗收條件：**
 
@@ -360,7 +360,7 @@
 
 **尚未驗收／完成：**
 
-- A1：nativeMXC與analyzer已PASS；六語host-baseline不等於sandbox。TS profile01因privateTEMP未建立而FAIL，profile02仍待實跑；其他OS及全資源矩陣未完成。
+- A1：nativeMXC與analyzer已PASS；六語host-baseline不等於sandbox。TS profile01因privateTEMP未建立而FAIL，profile04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL）；其他OS及全資源矩陣未完成。
 - A2：MXC 已 fail closed/無 fallback；unsupported OS/full profile failure matrix 未驗收，未配置的程序沒有自動沙箱。
 - A3：native3與實際analyzer命令/log已綁定；其餘LSP/DAP完整矩陣及最新combined review由root再核對。
 
@@ -978,7 +978,7 @@
 
 **設計目標：** 中文需求規格、英語 API tags、每項 id/priority/source/status/deps/acceptance/test；修版時更新 machine-readable backlog 與 traceability；文件語義單一來源。
 
-**已觀察範圍：** 40需求/85契約維持38PARTIAL2NOTRUN；追加六語PARTIAL真command/transcript/normalization，17gate與舊checks/digests保留，TSsandbox02/包/發布另待結果。
+**已觀察範圍：** 40需求/85契約維持38PARTIAL2NOTRUN；追加六語PARTIAL真command/transcript/normalization，17gate與舊checks/digests保留，TSsandbox04已實跑PARTIAL（42/2/6/0），封裝及發布各有獨立scope。
 
 **原驗收條件：**
 
@@ -990,7 +990,7 @@
 
 - A1：歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。
 - A2：原 58 保留並擴為 85；schema/policy/dispatch/tests/docs 已接線，真實全工具矩陣未驗收。
-- A3：17gates與六語PARTIAL已分層記錄，TSsandbox02、最終封裝/公開revision仍待實際同步。
+- A3：17gates與六語PARTIAL已分層記錄，TSsandbox04已有PARTIAL/exit2獨立證據；最終封裝NOT_RUN，公開revision依publication receipt同步。
 
 **測試案例 ID：** M0-spec-coverage, M0-spec-validator, M0-doc-links。 **前置需求：** ODIN-003。
 
@@ -1205,3 +1205,5 @@
 **測試案例 ID：** M2-result-chunks, M2-results-ttl, M2-trace-audit。 **前置需求：** ODIN-003。
 
 **證據：** `verification/feature-evidence.json#ODIN-040`；歷史checks/digests原樣保留，當輪另看extension_evidence，只宣稱實際執行scope。
+
+本輪 TypeScript native sandbox 最終證據：`verification/language-ide-final-sandbox-typescript-04.json` 及其 command／transcript，actual exit2／PARTIAL、42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL。固定 host bootstrap 與 child flags 的明確 profile 成功；不是自動 fallback，沒有直接 child EPERM 證據。其他五語的實際 sandbox LSP 仍 NOT_RUN，kernel deny／程序清理由獨立 native opt-in tests 證明。

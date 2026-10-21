@@ -597,7 +597,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "c5084f4標準binary17gates與same-binaryanalyzer30checks PASS；六語兩專案baseline已實跑PARTIAL/exit2（260/14/12/0），TS native sandbox02仍pending。",
+      "summary": "c5084f4標準binary17gates與same-binaryanalyzer30checks PASS；六語兩專案baseline已實跑PARTIAL/exit2（260/14/12/0），TS native sandbox04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL，exit2）。",
       "checks": [
         {
           "command": [
@@ -1223,7 +1223,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "新增IDE RPC/URI/JDTLS安全處理已實作；六語12/12真初始化、260PASS，14capability UNAVAILABLE及12診斷NOT_VERIFIED仍明列，TS沙箱另待驗收。",
+      "summary": "新增IDE RPC/URI/JDTLS安全處理已實作；六語12/12真初始化、260PASS，14capability UNAVAILABLE及12診斷NOT_VERIFIED仍明列，TS沙箱profile04另有兩專案42 PASS的PARTIAL證據。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked",
@@ -1816,7 +1816,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "Windows native3與same-binaryanalyzer30checks PASS；六語baseline為host mode，TS MXC profile01缺私有TEMP失敗、explicit bootstrap profile02仍pending，跨平台未完成。",
+      "summary": "Windows native3與same-binaryanalyzer30checks PASS；六語baseline為host mode，TS MXC profile01缺私有TEMP失敗、explicit固定bootstrap profile04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL），跨平台未完成。",
       "checks": [
         {
           "command": [
@@ -1868,7 +1868,7 @@
           "id": "ODIN-012-A1",
           "criterion": "受測敵意 command/process 不能更改 workspace 外檔案；子孫程序可被完整終止。",
           "status": "PARTIAL",
-          "remaining": "nativeMXC與analyzer已PASS；六語host-baseline不等於sandbox。TS profile01因privateTEMP未建立而FAIL，profile02仍待實跑；其他OS及全資源矩陣未完成。"
+          "remaining": "nativeMXC與analyzer已PASS；六語host-baseline不等於sandbox。TS profile01因privateTEMP未建立而FAIL，profile04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL）；其他OS及全資源矩陣未完成。"
         },
         {
           "id": "ODIN-012-A2",
@@ -1887,7 +1887,7 @@
         {
           "id": "ODIN-012-A1",
           "criterion": "受測敵意 command/process 不能更改 workspace 外檔案；子孫程序可被完整終止。",
-          "remaining": "nativeMXC與analyzer已PASS；六語host-baseline不等於sandbox。TS profile01因privateTEMP未建立而FAIL，profile02仍待實跑；其他OS及全資源矩陣未完成。"
+          "remaining": "nativeMXC與analyzer已PASS；六語host-baseline不等於sandbox。TS profile01因privateTEMP未建立而FAIL，profile04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL）；其他OS及全資源矩陣未完成。"
         },
         {
           "id": "ODIN-012-A2",
@@ -4122,7 +4122,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "40需求/85契約維持38PARTIAL2NOTRUN；追加六語PARTIAL真command/transcript/normalization，17gate與舊checks/digests保留，TSsandbox02/包/發布另待結果。",
+      "summary": "40需求/85契約維持38PARTIAL2NOTRUN；追加六語PARTIAL真command/transcript/normalization，17gate與舊checks/digests保留，TSsandbox04已實跑PARTIAL（42/2/6/0），封裝及發布各有獨立scope。",
       "checks": [
         {
           "command": [
@@ -4234,7 +4234,7 @@
           "id": "ODIN-033-A3",
           "criterion": "README 入口、ROADMAP、RELEASE_GATES 與驗收證據一致。",
           "status": "PARTIAL",
-          "remaining": "17gates與六語PARTIAL已分層記錄，TSsandbox02、最終封裝/公開revision仍待實際同步。"
+          "remaining": "17gates與六語PARTIAL已分層記錄，TSsandbox04已有PARTIAL/exit2獨立證據；最終封裝NOT_RUN，公開revision依publication receipt同步。"
         }
       ],
       "unverified_acceptance": [
@@ -4251,7 +4251,7 @@
         {
           "id": "ODIN-033-A3",
           "criterion": "README 入口、ROADMAP、RELEASE_GATES 與驗收證據一致。",
-          "remaining": "17gates與六語PARTIAL已分層記錄，TSsandbox02、最終封裝/公開revision仍待實際同步。"
+          "remaining": "17gates與六語PARTIAL已分層記錄，TSsandbox04已有PARTIAL/exit2獨立證據；最終封裝NOT_RUN，公開revision依publication receipt同步。"
         }
       ],
       "supporting_reports": [],
@@ -5545,7 +5545,7 @@
           "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         }
       ],
-      "remaining": "Same-binary six-language baseline was executed PARTIAL/exit2 with260 PASS,14 UNAVAILABLE,12 NOT_VERIFIED,0 FAIL and12 initialized projects. TypeScript sandbox profile02 remains pending; all40 requirements remain unaccepted."
+      "remaining": "Six-language host baseline and TypeScript native sandbox04 were separately executed PARTIAL with0 FAIL. Unsupported capabilities, unversioned diagnostics, five other sandbox LSPs and all40 full acceptance remain incomplete."
     },
     "checks": {
       "sandbox_native": {
@@ -5680,7 +5680,8 @@
         "Current native three-test suite, standard binary gates and actual native analyzer profiles passed; six-language LSP/MXC matrix, all DAP paths and cross-platform resources remain incomplete.",
         "Linux/macOS isolation, BFS/AppContainer fallback, UI/registry/devices/external-internet/ingress matrix are not accepted.",
         "Without sandbox configuration, LSP/DAP/commands have lifecycle guards only; inspections refuse execution."
-      ]
+      ],
+      "live_language_acceptance_ref": "#/extension_evidence/typescript_sandbox/latest_profile04"
     },
     "native_ide": {
       "implementation": "PARTIAL",
@@ -5713,7 +5714,7 @@
         "invariants_not_run": 12,
         "reason": "AppControl os error 4551 denied unchanged invariants test executable before execution. 62 tests ran and passed; 12 invariants NOT_RUN on this attempt. No policy changes or alternate-path retries."
       },
-      "review_followup": "SIR-001 cumulative hierarchy budgeting and SIR-003 summary were repaired and independently reviewed on fe5996d. URI/JDTLS security/startup fixes are in current c5084f4; root reports independent rereview PASS. Six-language host baseline03 was executed PARTIAL/exit2; TypeScript native-sandbox profile02 remains pending.",
+      "review_followup": "Hierarchy, diagnostic summary, URI cache and JDTLS safety fixes plus fixture readiness and later sandbox-only driver/profile fixes were independently reviewed. Host six-language baseline and native TypeScript profile04 were executed PARTIAL; unversioned diagnostics and unsupported optional capabilities remain visible.",
       "real_backend_acceptance": "PARTIAL_EXECUTED_SIX_LANGUAGE_BASELINE_EXIT2",
       "latest_engine_rerun_scope": "Historical author attempt; its AppControl denial remains unchanged. The latest integrated c5084f4 workspace suite passed 200 tests.",
       "standard_backend_validation": {
@@ -5726,7 +5727,8 @@
         "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
         "scope": "Actual Rust/Python/TypeScript symbols/references/rename/rollback and debugpy; not every added IDE capability."
       },
-      "extended_backend_validation_ref": "#/extension_evidence/six_language_baseline"
+      "extended_backend_validation_ref": "#/extension_evidence/six_language_baseline",
+      "native_sandbox_validation_ref": "#/extension_evidence/typescript_sandbox/latest_profile04"
     },
     "native_inspections": {
       "implementation": "PARTIAL",
@@ -5930,9 +5932,9 @@
         "reason": "Odin blocked before any MCP/LSP exchange. Backend probes/fixture configuration are not language acceptance."
       },
       "remaining": [
-        "Six-language two-project baseline executed PARTIAL;12 diagnostic version/freshness cases remain NOT_VERIFIED and14 capabilities UNAVAILABLE.",
-        "TypeScript MXC profile01 failed before LSP initialization because private TEMP subdirectories were missing; new explicit trusted profile02 is pending.",
-        "28 registry entries are guidance, not28 or40+ supported languages."
+        "Six-language/two-project host baseline is PARTIAL:14 capabilities UNAVAILABLE and12 diagnostic cases NOT_VERIFIED.",
+        "TypeScript native profile04 executed PARTIAL:42 PASS/2 UNAVAILABLE/6 NOT_VERIFIED/0 FAIL; profiles01-03 failures retained. Other five languages sandbox LSP NOT_RUN.",
+        "28 entries are setup guidance, not28 or40+ accepted languages. Full IDE, every rule/refactor, project type and OS parity remains incomplete."
       ],
       "current_matrix_status": "PARTIAL_EXECUTED_SIX_LANGUAGE_BASELINE_EXIT2",
       "historical_zero_exchange_attempt_scope": "first_real_attempt is preserved historical WinError4551 evidence, not the latest executed language result.",
@@ -5950,7 +5952,7 @@
     "review_and_release": {
       "latest_observed_review_source": "5e4cf035222cff82b1bc95d74c54ceb894195796",
       "symbol_summary_fix": "6fc1bd54c84f074f5e324b8670522d1d74471b73",
-      "independent_rereview": "SCOPED_REVIEW_PASS_WITH_LATEST_COMBINED_BINDING_OWNED_BY_ROOT",
+      "independent_rereview": "PASS_SOURCE_AND_FINAL_AUTHOR_EVIDENCE",
       "current_release_binary_smoke": "PASS_IN_C5084F4_17_GATE_REPORT",
       "current_packaging": "NOT_RUN_FOR_THIS_EXTENSION",
       "current_remote_publication": "NOT_RUN",
@@ -5972,6 +5974,20 @@
         "reported_by": "/root",
         "result_reported": "PASS",
         "scope": "Root reports independent rereview of URI/JDTLS/startup repair; latest combined review artifact is owned by the review/root actors."
+      },
+      "latest_independent_review": {
+        "report": "verification/sandbox-ide-review.json",
+        "report_sha256": "7f4a264d89e2e5044afd508142a97215511b7082f241f2fc4ad07ec1b283b3f2",
+        "result": "PASS",
+        "reviewed_product_source": "3d4a9074e8bd693ec5c896bb838ae61ee65e3a0b",
+        "scope": "Independent source/contracts and actual author evidence audit; reviewer did not execute product tests."
+      },
+      "artifact_bindings": {
+        "report": "verification/sandbox-ide-artifact-bindings.json",
+        "report_sha256": "a49092260914616435762903f905a81d43d57bacc09dce0f2e9336284470a009",
+        "status": "PASS",
+        "checks": 112,
+        "scope": "Cross-file source/binary/driver/log/transcript/staged artifact hash audit, not another product test execution."
       }
     },
     "all_40_requirements_accepted": false,
@@ -7041,33 +7057,139 @@
         "TypeScript and Java each retain6 NOT_VERIFIED diagnostic cases because push diagnostics omit document version; no clean-build/freshness PASS is inferred.",
         "14 unsupported capability checks remain UNAVAILABLE, not a semantic fallback or failure hidden as PASS.",
         "28 registry entries and this Windows baseline do not prove28/40+ languages, every IDE feature, native MXC LSP route or full platform parity.",
-        "TypeScript native-sandbox profile02 is still pending; baseline language execution is explicitly host mode."
+        "Native TypeScript profile04 is separately executed PARTIAL; host baseline does not certify OS isolation or the other five sandbox LSPs."
       ],
       "documentation_base_sha": "a254e4ee13671322041da0024a93d5c6467f8bc5"
     },
     "typescript_sandbox": {
-      "status": "PENDING_NEW_EXPLICIT_PROFILE_02",
-      "historical_profile01": {
-        "report": "verification/language-ide-final-sandbox-typescript-01.json",
-        "report_sha256": "d0d4961aa17190a4549909cca7139b22a8ac1421ebfaae81d0db214ef1abac4d",
-        "status": "FAIL",
+      "status": "PARTIAL_EXECUTED_NATIVE_TWO_PROJECTS",
+      "latest_profile04": {
+        "status": "PARTIAL",
+        "mode": "sandbox",
+        "report": "verification/language-ide-final-sandbox-typescript-04.json",
+        "report_sha256": "0a87a2b1aac45136bf2d948de1711a997abe33991c4747990dab5d3f0edd420a",
+        "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+        "harness_sha256": "1160258157d2790782e9060be0556af874397daf741196ef32297435c6c0dbf6",
         "counts": {
-          "PASS": 2,
-          "FAIL": 4
+          "PASS": 42,
+          "UNAVAILABLE": 2,
+          "NOT_VERIFIED": 6
         },
-        "actual_lsp_projects_initialized": 0,
-        "command_report": "verification/language-ide-final-sandbox-typescript-01.command.json",
-        "command_report_sha256": "f920b48ae94f73277fcdd3bd4c6a52507401737780e287f027639778599329c8",
-        "exit_code": 1,
-        "scope": "Two Odin MCP initializations passed, actual TypeScript LSP startup failed because MXC private TEMP package directory was absent; not a zero-MCP attempt."
+        "actual_lsp_projects_initialized": 2,
+        "command_report": "verification/language-ide-final-sandbox-typescript-04.command.json",
+        "command_report_sha256": "a61cdb686562b98bb2f75b5dab933e55f15b47fa63985a037f96fc70f8fc571f",
+        "actual_driver_exit_code": 2,
+        "stdout_log": "verification/language-ide-final-sandbox-typescript-04.txt",
+        "stdout_log_sha256": "f76683d20361fc11856305d0ece2127aebefbf1919b4ec2ef99eafbed51c696d",
+        "transcript": "verification/language-ide-final-sandbox-typescript-04.requests.jsonl",
+        "transcript_sha256": "acbe80f60f410453e773d45abc35e731d45e277e1ba496ff3778e45a9cc57576",
+        "normalization_report": "verification/language-ide-final-sandbox-typescript-04.normalization.json",
+        "normalization_sha256": "ae586d700cfc0e1c8030359bb02996c23e08586d8c3e346893beaff526a50a64",
+        "host_support": [
+          {
+            "project": "typescript_a",
+            "kind": "explicit_fixed_typescript_private_temp_bootstrap",
+            "relative_path": "host-support/typescript_a/typescript-bootstrap.mjs",
+            "source_sha256": "95f82f490f6eb2487b25335edcc8321517ce5a0be118cf04579ed709a0131ce6",
+            "server_module": "E:\\odin\\.odin\\validation-tools\\typescript\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+            "server_module_sha256": "192638f1fa62c907fd54c0b55b12dd3dff01325a1a0ed5973907efca1c57b5eb",
+            "server_argv": [
+              "C:\\Program Files\\nodejs\\node.exe",
+              "E:\\odin\\.odin\\validation-tools\\typescript\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+              "--stdio"
+            ],
+            "fixed_descendant_node_options": "--preserve-symlinks --preserve-symlinks-main",
+            "caller_or_repository_target": false,
+            "fallback": false
+          },
+          {
+            "project": "typescript_b",
+            "kind": "explicit_fixed_typescript_private_temp_bootstrap",
+            "relative_path": "host-support/typescript_b/typescript-bootstrap.mjs",
+            "source_sha256": "95f82f490f6eb2487b25335edcc8321517ce5a0be118cf04579ed709a0131ce6",
+            "server_module": "E:\\odin\\.odin\\validation-tools\\typescript\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+            "server_module_sha256": "192638f1fa62c907fd54c0b55b12dd3dff01325a1a0ed5973907efca1c57b5eb",
+            "server_argv": [
+              "C:\\Program Files\\nodejs\\node.exe",
+              "E:\\odin\\.odin\\validation-tools\\typescript\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+              "--stdio"
+            ],
+            "fixed_descendant_node_options": "--preserve-symlinks --preserve-symlinks-main",
+            "caller_or_repository_target": false,
+            "fallback": false
+          }
+        ],
+        "profile_policy": "Explicit trusted fixed bootstrap creates private TEMP, verifies fixed server module hash, fixes argv and overwrites descendant NODE_OPTIONS with constant preserve-path flags. Added only the bootstrap read-only file; source/runtime stay read-only, readwrite_paths=[], network deny, private scratch. No eval, repository/caller module, inherited NODE_OPTIONS or fallback.",
+        "observed": "Actual Odin MCP native MXC route/pin, symbols, cross-file references, IDE queries, rename and format Transactions apply/rollback passed in two projects.",
+        "limits": [
+          "Six unversioned diagnostics remain NOT_VERIFIED; two inlay-hint resolves remain UNAVAILABLE.",
+          "Fixed child flags made the explicit profile work; child EPERM was not directly observed.",
+          "LSP route os_boundary_verified=false remains unchanged. File/network/descendant denials are separately demonstrated by native opt-in workload tests.",
+          "Actual sandbox LSP acceptance for the other five languages is NOT_RUN."
+        ]
       },
-      "new_profile02": {
-        "status": "PENDING",
-        "owner": "/root/platform_implementation",
-        "reported_change": "Trusted fixed external bootstrap creates its private TEMP subdirectory inside existing grants before importing the real server. No eval and no grant widening.",
-        "success_evidence": "NOT_YET_PROVIDED"
+      "historical_documentation_before_profile02": {
+        "status": "PENDING_NEW_EXPLICIT_PROFILE_02",
+        "historical_profile01": {
+          "report": "verification/language-ide-final-sandbox-typescript-01.json",
+          "report_sha256": "d0d4961aa17190a4549909cca7139b22a8ac1421ebfaae81d0db214ef1abac4d",
+          "status": "FAIL",
+          "counts": {
+            "PASS": 2,
+            "FAIL": 4
+          },
+          "actual_lsp_projects_initialized": 0,
+          "command_report": "verification/language-ide-final-sandbox-typescript-01.command.json",
+          "command_report_sha256": "f920b48ae94f73277fcdd3bd4c6a52507401737780e287f027639778599329c8",
+          "exit_code": 1,
+          "scope": "Two Odin MCP initializations passed, actual TypeScript LSP startup failed because MXC private TEMP package directory was absent; not a zero-MCP attempt."
+        },
+        "new_profile02": {
+          "status": "PENDING",
+          "owner": "/root/platform_implementation",
+          "reported_change": "Trusted fixed external bootstrap creates its private TEMP subdirectory inside existing grants before importing the real server. No eval and no grant widening.",
+          "success_evidence": "NOT_YET_PROVIDED"
+        },
+        "baseline_is_not_sandbox": "The executed six-language baseline is explicitly host mode; it does not certify this MXC profile."
       },
-      "baseline_is_not_sandbox": "The executed six-language baseline is explicitly host mode; it does not certify this MXC profile."
+      "failed_attempts": [
+        {
+          "report": "verification/language-ide-final-sandbox-typescript-01.json",
+          "report_sha256": "d0d4961aa17190a4549909cca7139b22a8ac1421ebfaae81d0db214ef1abac4d",
+          "status": "FAIL",
+          "counts": {
+            "PASS": 2,
+            "FAIL": 4
+          },
+          "command_report": "verification/language-ide-final-sandbox-typescript-01.command.json",
+          "command_report_sha256": "f920b48ae94f73277fcdd3bd4c6a52507401737780e287f027639778599329c8",
+          "actual_driver_exit_code": 1
+        },
+        {
+          "report": "verification/language-ide-final-sandbox-typescript-02.json",
+          "report_sha256": "15499683050bbeef3a1aad4196e546c1b864157ad7dcbdf2bdec1292901b97e6",
+          "status": "FAIL",
+          "counts": {
+            "PASS": 6,
+            "FAIL": 2
+          },
+          "command_report": "verification/language-ide-final-sandbox-typescript-02.command.json",
+          "command_report_sha256": "1603487bd8da2f7aac85f36b6fed7da4b76f22e00ee8abad207a0879ffe70eb3",
+          "actual_driver_exit_code": 1
+        },
+        {
+          "report": "verification/language-ide-final-sandbox-typescript-03.json",
+          "report_sha256": "5b409362c246ad048d1a9bc2e7d53bd1fd48769e3789167a2c08c49b6b4f83d7",
+          "status": "FAIL",
+          "counts": {
+            "PASS": 6,
+            "FAIL": 2
+          },
+          "command_report": "verification/language-ide-final-sandbox-typescript-03.command.json",
+          "command_report_sha256": "d6bc0ad450d5b594a86889b207dabb38528bd377991a29155df9500c8a15ca9c",
+          "actual_driver_exit_code": 1
+        }
+      ]
     }
   },
   "final_integrated_candidate_scope": "Historical 72-tool baseline only; current source status is extension_evidence.latest_integrated_candidate. Historical 144-test PASS is not this extension run.",

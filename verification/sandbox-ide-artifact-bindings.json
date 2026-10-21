@@ -1,0 +1,753 @@
+{
+  "status": "PASS",
+  "scope": "Actual cross-file source, binary, command exit, log, transcript, review and staged public artifact hash audit; this is not another execution of product tests.",
+  "completed_at_utc": "2026-10-21T02:10:39.740650+00:00",
+  "argv": [
+    "python",
+    "-X",
+    "utf8",
+    ".odin/verify_release_artifacts.py",
+    "--sandbox",
+    "verification/language-ide-final-sandbox-typescript-04.json"
+  ],
+  "checks": [
+    {
+      "name": "integrated_17_actual_zero_exit_commands",
+      "status": "PASS"
+    },
+    {
+      "name": "clean_release_build_metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "gate_log:generated_artifacts",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/generated_artifacts.txt",
+      "expected_sha256": "a6ec063d424daf109c8806ed7c53ecb3aac46f11ea001b462f6d94d0777b282a",
+      "actual_sha256": "a6ec063d424daf109c8806ed7c53ecb3aac46f11ea001b462f6d94d0777b282a"
+    },
+    {
+      "name": "gate_log:fmt",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/fmt.txt",
+      "expected_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "actual_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "name": "gate_log:workspace_tests",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/workspace_tests.txt",
+      "expected_sha256": "d5cf4dbd5d33dd62de1525fc59d41bd71c8fb0fa31a3ea36b9ff8a7a099dc409",
+      "actual_sha256": "d5cf4dbd5d33dd62de1525fc59d41bd71c8fb0fa31a3ea36b9ff8a7a099dc409"
+    },
+    {
+      "name": "gate_log:clippy",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/clippy.txt",
+      "expected_sha256": "8b2f6948c6b6ead26148d49873c13560c901fe7c37383faf17424163a4a0950d",
+      "actual_sha256": "8b2f6948c6b6ead26148d49873c13560c901fe7c37383faf17424163a4a0950d"
+    },
+    {
+      "name": "gate_log:native_sandbox",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/native_sandbox.txt",
+      "expected_sha256": "ab8f853d50df80d3c1366ae9577cfa480e06903d33cbebf4ad825943b5231924",
+      "actual_sha256": "ab8f853d50df80d3c1366ae9577cfa480e06903d33cbebf4ad825943b5231924"
+    },
+    {
+      "name": "gate_log:release_build",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/release_build.txt",
+      "expected_sha256": "1c1ffa2362f95c4bca7937083c8567f2975813da9880a3c50a1da61c090a56c6",
+      "actual_sha256": "1c1ffa2362f95c4bca7937083c8567f2975813da9880a3c50a1da61c090a56c6"
+    },
+    {
+      "name": "gate_log:cli",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/cli.txt",
+      "expected_sha256": "02dbcf5e800217e5a65d34865ad8d3c71186e7fc1209979c84e11c1104266ec5",
+      "actual_sha256": "02dbcf5e800217e5a65d34865ad8d3c71186e7fc1209979c84e11c1104266ec5"
+    },
+    {
+      "name": "gate_log:mcp_stdio",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/mcp_stdio.txt",
+      "expected_sha256": "f8c882bb1e88b88aad907e4d092aa773ac4a2308b3814506d843a8f5ab4717a4",
+      "actual_sha256": "f8c882bb1e88b88aad907e4d092aa773ac4a2308b3814506d843a8f5ab4717a4"
+    },
+    {
+      "name": "gate_log:mcp_http",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/mcp_http.txt",
+      "expected_sha256": "ef8dd0a52f77e72d1986004facd46c9bb1059ad147cf8a433a238576b6841e85",
+      "actual_sha256": "ef8dd0a52f77e72d1986004facd46c9bb1059ad147cf8a433a238576b6841e85"
+    },
+    {
+      "name": "gate_log:mcp_cancellation",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/mcp_cancellation.txt",
+      "expected_sha256": "904d73be0f9f8af3e1da11bab6fc4f1707dc3db3e2e5a6b773a8402a6f42f0cb",
+      "actual_sha256": "904d73be0f9f8af3e1da11bab6fc4f1707dc3db3e2e5a6b773a8402a6f42f0cb"
+    },
+    {
+      "name": "gate_log:real_backends",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/real_backends.txt",
+      "expected_sha256": "cfbfeb47accf7085d25be742408411da27065dca7a0235613c132ddb6317c530",
+      "actual_sha256": "cfbfeb47accf7085d25be742408411da27065dca7a0235613c132ddb6317c530"
+    },
+    {
+      "name": "gate_log:dependency_audit",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/dependency_audit.txt",
+      "expected_sha256": "9254d5c1ca8495ae225f2289fdc4394683abe266961f0dbfa231771c6eb2658f",
+      "actual_sha256": "9254d5c1ca8495ae225f2289fdc4394683abe266961f0dbfa231771c6eb2658f"
+    },
+    {
+      "name": "gate_log:licenses",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/licenses.txt",
+      "expected_sha256": "b87ff50d7cc1bf36ebb4295f2e6f418c52149ab1d889a4a9cfddcffae397ad39",
+      "actual_sha256": "b87ff50d7cc1bf36ebb4295f2e6f418c52149ab1d889a4a9cfddcffae397ad39"
+    },
+    {
+      "name": "gate_log:supply_chain",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/supply_chain.txt",
+      "expected_sha256": "d771e404c96be72267fdf27992e39aa7148d8284778a69bda6ef4208f861a236",
+      "actual_sha256": "d771e404c96be72267fdf27992e39aa7148d8284778a69bda6ef4208f861a236"
+    },
+    {
+      "name": "gate_log:static_source",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/static_source.txt",
+      "expected_sha256": "3c1dd6992da3dfb9732e4e82b8c88bdd17e870518e2f38d73d39262bc39c2345",
+      "actual_sha256": "3c1dd6992da3dfb9732e4e82b8c88bdd17e870518e2f38d73d39262bc39c2345"
+    },
+    {
+      "name": "gate_log:requirements",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/requirements.txt",
+      "expected_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2",
+      "actual_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2"
+    },
+    {
+      "name": "gate_log:publish_policy",
+      "status": "PASS",
+      "path": "verification/sandbox-ide-release-logs/publish_policy.txt",
+      "expected_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983",
+      "actual_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983"
+    },
+    {
+      "name": "unchanged_production:Cargo.lock",
+      "status": "PASS",
+      "path": "Cargo.lock",
+      "expected_sha256": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34",
+      "actual_sha256": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34"
+    },
+    {
+      "name": "unchanged_production:Cargo.toml",
+      "status": "PASS",
+      "path": "Cargo.toml",
+      "expected_sha256": "8a009f775d201c8199a6d6f81963bb75dde59a48dc783ae6086a6a7407e21e36",
+      "actual_sha256": "8a009f775d201c8199a6d6f81963bb75dde59a48dc783ae6086a6a7407e21e36"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/Cargo.toml",
+      "status": "PASS",
+      "path": "crates/odin-core/Cargo.toml",
+      "expected_sha256": "666ad092614df526ed1b8d3253eb2565cc42c4876bb457d62734d0eb2e52f1bf",
+      "actual_sha256": "666ad092614df526ed1b8d3253eb2565cc42c4876bb457d62734d0eb2e52f1bf"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/src/config.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/src/config.rs",
+      "expected_sha256": "3f38dd3c585dab713ad6bb328f7234c1d15ca9758d80aca656d029aede6ea75a",
+      "actual_sha256": "3f38dd3c585dab713ad6bb328f7234c1d15ca9758d80aca656d029aede6ea75a"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/src/error.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/src/error.rs",
+      "expected_sha256": "f01697b5eec32006f7ea676833d30b52030a8ebd5f45974b9f33d67a6d34e90e",
+      "actual_sha256": "f01697b5eec32006f7ea676833d30b52030a8ebd5f45974b9f33d67a6d34e90e"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/src/execution.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/src/execution.rs",
+      "expected_sha256": "d9c99fc04e0b90ba95d79e6e53e4232db2e9f6bf071ee441c222bedd389ee78d",
+      "actual_sha256": "d9c99fc04e0b90ba95d79e6e53e4232db2e9f6bf071ee441c222bedd389ee78d"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/src/languages.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/src/languages.rs",
+      "expected_sha256": "064cff38c7056babb767490a20100797ca7a9bcb1948c22c633c16f4bdc73d6e",
+      "actual_sha256": "064cff38c7056babb767490a20100797ca7a9bcb1948c22c633c16f4bdc73d6e"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/src/lib.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/src/lib.rs",
+      "expected_sha256": "93046231f7ca483d76e7546528b67d9211e6252c8b8dd38ae64164171d301b8f",
+      "actual_sha256": "93046231f7ca483d76e7546528b67d9211e6252c8b8dd38ae64164171d301b8f"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/src/memory.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/src/memory.rs",
+      "expected_sha256": "2b613b41174cc41f6778cc4ddc0350eaa2cd0753b2f6b881c1ff4b7b96f7abf4",
+      "actual_sha256": "2b613b41174cc41f6778cc4ddc0350eaa2cd0753b2f6b881c1ff4b7b96f7abf4"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/src/paths.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/src/paths.rs",
+      "expected_sha256": "126d10be43423a6ed531cfb952603c8092ed4252b9556650f95f290a6fff5f1b",
+      "actual_sha256": "126d10be43423a6ed531cfb952603c8092ed4252b9556650f95f290a6fff5f1b"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/src/process.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/src/process.rs",
+      "expected_sha256": "b69e2cf89c9cf96b79f01b85ea67ad41a1f6dcdd89d5e9bedd6167062fb84fa8",
+      "actual_sha256": "b69e2cf89c9cf96b79f01b85ea67ad41a1f6dcdd89d5e9bedd6167062fb84fa8"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/src/sandbox.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/src/sandbox.rs",
+      "expected_sha256": "278e3356bb44c1a28eb53712184f9989eed169a9ef75aedb858ac2a428721b3d",
+      "actual_sha256": "278e3356bb44c1a28eb53712184f9989eed169a9ef75aedb858ac2a428721b3d"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/src/sandbox_policy.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/src/sandbox_policy.rs",
+      "expected_sha256": "1f7e8404e7e19eb5e4c1df0624dc3e3bfd5b49ea8384bdae8eae9562f179e7e3",
+      "actual_sha256": "1f7e8404e7e19eb5e4c1df0624dc3e3bfd5b49ea8384bdae8eae9562f179e7e3"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/src/search.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/src/search.rs",
+      "expected_sha256": "fb9697e493a278593076982e243245b8d331ba71e18229b8796eac979c508274",
+      "actual_sha256": "fb9697e493a278593076982e243245b8d331ba71e18229b8796eac979c508274"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/src/store.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/src/store.rs",
+      "expected_sha256": "326482e786fd8de8f02654dfc4682d160ddd70f61923788ea3503212b6f6f5fd",
+      "actual_sha256": "326482e786fd8de8f02654dfc4682d160ddd70f61923788ea3503212b6f6f5fd"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/src/transaction.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/src/transaction.rs",
+      "expected_sha256": "495b5344b6d68e8c1c2b82195fb532883fde9bf3484ac6401740eb7956fb52bb",
+      "actual_sha256": "495b5344b6d68e8c1c2b82195fb532883fde9bf3484ac6401740eb7956fb52bb"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/tests/fixtures/os_sandbox_workload.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/tests/fixtures/os_sandbox_workload.rs",
+      "expected_sha256": "7e8d8905257adfdee5e0b9b195e3d4d99306bae752cf7bf7f11136c0d9d6a09c",
+      "actual_sha256": "7e8d8905257adfdee5e0b9b195e3d4d99306bae752cf7bf7f11136c0d9d6a09c"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/tests/host_execution_policy.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/tests/host_execution_policy.rs",
+      "expected_sha256": "e1eb970e6c1ea8e7f5b677b8e78073f1c6bd32c0e8f28f5d772cdd38ca4bb20f",
+      "actual_sha256": "e1eb970e6c1ea8e7f5b677b8e78073f1c6bd32c0e8f28f5d772cdd38ca4bb20f"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/tests/os_sandbox_native.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/tests/os_sandbox_native.rs",
+      "expected_sha256": "628edb3c85aa6b8c6dc2d6b014375ee750d124df9998b337163e36369daad3a0",
+      "actual_sha256": "628edb3c85aa6b8c6dc2d6b014375ee750d124df9998b337163e36369daad3a0"
+    },
+    {
+      "name": "unchanged_production:crates/odin-core/tests/process_contention.rs",
+      "status": "PASS",
+      "path": "crates/odin-core/tests/process_contention.rs",
+      "expected_sha256": "acde589bdadca4f41290883543f49a1a6b0710a607ea40cd06b33cf8ce1ac301",
+      "actual_sha256": "acde589bdadca4f41290883543f49a1a6b0710a607ea40cd06b33cf8ce1ac301"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/Cargo.toml",
+      "status": "PASS",
+      "path": "crates/odin-engine/Cargo.toml",
+      "expected_sha256": "68752a97bc3317afd4b125f406bdff03c236cfd948ca6a9fe441211e54c4150d",
+      "actual_sha256": "68752a97bc3317afd4b125f406bdff03c236cfd948ca6a9fe441211e54c4150d"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/src/flow.rs",
+      "status": "PASS",
+      "path": "crates/odin-engine/src/flow.rs",
+      "expected_sha256": "b82de18dd48b805c0c542f94d3b2c0c90ff64052ab69b61646a69b47125d206c",
+      "actual_sha256": "b82de18dd48b805c0c542f94d3b2c0c90ff64052ab69b61646a69b47125d206c"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/src/ide.rs",
+      "status": "PASS",
+      "path": "crates/odin-engine/src/ide.rs",
+      "expected_sha256": "2be8243702051c656e606be281f2b2113091e9debc83516d390d0446705184dd",
+      "actual_sha256": "2be8243702051c656e606be281f2b2113091e9debc83516d390d0446705184dd"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/src/inspections.rs",
+      "status": "PASS",
+      "path": "crates/odin-engine/src/inspections.rs",
+      "expected_sha256": "d1aa320f462ca37c8cc5562de7fa88105093275b5c5c88dad7a8d06baf663257",
+      "actual_sha256": "d1aa320f462ca37c8cc5562de7fa88105093275b5c5c88dad7a8d06baf663257"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/src/lib.rs",
+      "status": "PASS",
+      "path": "crates/odin-engine/src/lib.rs",
+      "expected_sha256": "0d15e3161b18cd5d1f1bf3de6a6f499a1bf9ada8f719bf1c0509e536cd91ce9d",
+      "actual_sha256": "0d15e3161b18cd5d1f1bf3de6a6f499a1bf9ada8f719bf1c0509e536cd91ce9d"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/src/occurrences.rs",
+      "status": "PASS",
+      "path": "crates/odin-engine/src/occurrences.rs",
+      "expected_sha256": "9c5dacae294dea17cf1d14a729d57810d27f1492ac43292f98eb8331aff6b155",
+      "actual_sha256": "9c5dacae294dea17cf1d14a729d57810d27f1492ac43292f98eb8331aff6b155"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/src/refactor.rs",
+      "status": "PASS",
+      "path": "crates/odin-engine/src/refactor.rs",
+      "expected_sha256": "41b8c8b9154b52118d2c47bd5df863330333818ff0d4b01efc0f707a115a5869",
+      "actual_sha256": "41b8c8b9154b52118d2c47bd5df863330333818ff0d4b01efc0f707a115a5869"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/src/results.rs",
+      "status": "PASS",
+      "path": "crates/odin-engine/src/results.rs",
+      "expected_sha256": "d7b89fbaa048e8b1ec587a8596201e6c3292c6ab849df5d64ab2548be8747492",
+      "actual_sha256": "d7b89fbaa048e8b1ec587a8596201e6c3292c6ab849df5d64ab2548be8747492"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/src/schema.rs",
+      "status": "PASS",
+      "path": "crates/odin-engine/src/schema.rs",
+      "expected_sha256": "310e6e561a37a4b5f5f91c75185ac5332149503f2db72c8387b01f8cb11c8724",
+      "actual_sha256": "310e6e561a37a4b5f5f91c75185ac5332149503f2db72c8387b01f8cb11c8724"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/src/shell.rs",
+      "status": "PASS",
+      "path": "crates/odin-engine/src/shell.rs",
+      "expected_sha256": "0d1e84f741657bcd01c62b8f0dd24527023e9491c7503f71d019a2766e68e751",
+      "actual_sha256": "0d1e84f741657bcd01c62b8f0dd24527023e9491c7503f71d019a2766e68e751"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/src/symbols.rs",
+      "status": "PASS",
+      "path": "crates/odin-engine/src/symbols.rs",
+      "expected_sha256": "69056444f324be2bfdb7049b22adb9a490523bec98ff500168ee15f97c544c0f",
+      "actual_sha256": "69056444f324be2bfdb7049b22adb9a490523bec98ff500168ee15f97c544c0f"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/src/text_replace.rs",
+      "status": "PASS",
+      "path": "crates/odin-engine/src/text_replace.rs",
+      "expected_sha256": "8fa26da714905d4363ccfe60bc77196906b124a2322a8dcfdd15b035db4f654c",
+      "actual_sha256": "8fa26da714905d4363ccfe60bc77196906b124a2322a8dcfdd15b035db4f654c"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/tests/completion.rs",
+      "status": "PASS",
+      "path": "crates/odin-engine/tests/completion.rs",
+      "expected_sha256": "3dddfde2c36edffaddc440c95d8181c3b09b9c131f93a7ce9a58d80eab4678af",
+      "actual_sha256": "3dddfde2c36edffaddc440c95d8181c3b09b9c131f93a7ce9a58d80eab4678af"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/tests/debug_launch_policy.rs",
+      "status": "PASS",
+      "path": "crates/odin-engine/tests/debug_launch_policy.rs",
+      "expected_sha256": "6d89bfab59065cfdeb68303b952fe8056a9b4a45068aa58558d01b5edf8ceb52",
+      "actual_sha256": "6d89bfab59065cfdeb68303b952fe8056a9b4a45068aa58558d01b5edf8ceb52"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/tests/fixtures/dap_peer.py",
+      "status": "PASS",
+      "path": "crates/odin-engine/tests/fixtures/dap_peer.py",
+      "expected_sha256": "0aed8b9030405926f4ceed54fb39e899ca7b80d05ad9008ea35913aca45e28eb",
+      "actual_sha256": "0aed8b9030405926f4ceed54fb39e899ca7b80d05ad9008ea35913aca45e28eb"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/tests/fixtures/ide_peer.py",
+      "status": "PASS",
+      "path": "crates/odin-engine/tests/fixtures/ide_peer.py",
+      "expected_sha256": "f45d5ee6f7ac7447529818250c8a4c0460e7759ea529409e1f430ca3efb68577",
+      "actual_sha256": "f45d5ee6f7ac7447529818250c8a4c0460e7759ea529409e1f430ca3efb68577"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/tests/fixtures/lsp_peer.py",
+      "status": "PASS",
+      "path": "crates/odin-engine/tests/fixtures/lsp_peer.py",
+      "expected_sha256": "213782f40d3ce2d08d1060a89cc8814510c016d6bfd56f4a4222bd084e68ea35",
+      "actual_sha256": "213782f40d3ce2d08d1060a89cc8814510c016d6bfd56f4a4222bd084e68ea35"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/tests/ide_tools.rs",
+      "status": "PASS",
+      "path": "crates/odin-engine/tests/ide_tools.rs",
+      "expected_sha256": "65ebcdad03970578f254c01249ad37e1b9609d5989dc57d7e185ccd7310d3915",
+      "actual_sha256": "65ebcdad03970578f254c01249ad37e1b9609d5989dc57d7e185ccd7310d3915"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/tests/invariants.rs",
+      "status": "PASS",
+      "path": "crates/odin-engine/tests/invariants.rs",
+      "expected_sha256": "0c90fa06597051f18876611409092a4ec482e9b2041c4cc65267d2a517dca879",
+      "actual_sha256": "0c90fa06597051f18876611409092a4ec482e9b2041c4cc65267d2a517dca879"
+    },
+    {
+      "name": "unchanged_production:crates/odin-engine/tools.json",
+      "status": "PASS",
+      "path": "crates/odin-engine/tools.json",
+      "expected_sha256": "d921899b72aba5468aeb36186953840d1ac824625eb7470042632900f1a5a3aa",
+      "actual_sha256": "d921899b72aba5468aeb36186953840d1ac824625eb7470042632900f1a5a3aa"
+    },
+    {
+      "name": "unchanged_production:crates/odin-protocol/Cargo.toml",
+      "status": "PASS",
+      "path": "crates/odin-protocol/Cargo.toml",
+      "expected_sha256": "b89d0deb8c21224da781ccfa7549fe34f536c3561115750d9eb230accbef81fc",
+      "actual_sha256": "b89d0deb8c21224da781ccfa7549fe34f536c3561115750d9eb230accbef81fc"
+    },
+    {
+      "name": "unchanged_production:crates/odin-protocol/src/dap.rs",
+      "status": "PASS",
+      "path": "crates/odin-protocol/src/dap.rs",
+      "expected_sha256": "23236ae9bd7476136ec17793cb1b4c2a7cc8404e7c17d5e36b124221ee82b05c",
+      "actual_sha256": "23236ae9bd7476136ec17793cb1b4c2a7cc8404e7c17d5e36b124221ee82b05c"
+    },
+    {
+      "name": "unchanged_production:crates/odin-protocol/src/lib.rs",
+      "status": "PASS",
+      "path": "crates/odin-protocol/src/lib.rs",
+      "expected_sha256": "99a75cf5cf2f0f42c91bb5d4344fa56ca54aab6d2c0c8bc498da1a1f9b98e68c",
+      "actual_sha256": "99a75cf5cf2f0f42c91bb5d4344fa56ca54aab6d2c0c8bc498da1a1f9b98e68c"
+    },
+    {
+      "name": "unchanged_production:crates/odin-protocol/src/lsp.rs",
+      "status": "PASS",
+      "path": "crates/odin-protocol/src/lsp.rs",
+      "expected_sha256": "bff9436ee2c837f0a154c51ab1ef66cdb3f6e3542359f8cb93629cee45611224",
+      "actual_sha256": "bff9436ee2c837f0a154c51ab1ef66cdb3f6e3542359f8cb93629cee45611224"
+    },
+    {
+      "name": "unchanged_production:crates/odin-protocol/src/rpc.rs",
+      "status": "PASS",
+      "path": "crates/odin-protocol/src/rpc.rs",
+      "expected_sha256": "3b8a1278025dc0a4ce5fbd13be6409b164745043e51992571bd2430ebddc99e4",
+      "actual_sha256": "3b8a1278025dc0a4ce5fbd13be6409b164745043e51992571bd2430ebddc99e4"
+    },
+    {
+      "name": "unchanged_production:crates/odin-protocol/src/text.rs",
+      "status": "PASS",
+      "path": "crates/odin-protocol/src/text.rs",
+      "expected_sha256": "047329493570b965a79f93a4dd3b2f62a05147d9610547eee5ae4d38619055c2",
+      "actual_sha256": "047329493570b965a79f93a4dd3b2f62a05147d9610547eee5ae4d38619055c2"
+    },
+    {
+      "name": "unchanged_production:crates/odin-protocol/src/workspace.rs",
+      "status": "PASS",
+      "path": "crates/odin-protocol/src/workspace.rs",
+      "expected_sha256": "259f5936b90cd502b20b1eaee20977031f973fe76febed86c03b5bf3f380db6e",
+      "actual_sha256": "259f5936b90cd502b20b1eaee20977031f973fe76febed86c03b5bf3f380db6e"
+    },
+    {
+      "name": "unchanged_production:crates/odin-protocol/tests/fixture_protocols.rs",
+      "status": "PASS",
+      "path": "crates/odin-protocol/tests/fixture_protocols.rs",
+      "expected_sha256": "da2bbda3e1f0203f68014626f78992a00c654ed513cb1529ba5fbfe364158b3b",
+      "actual_sha256": "da2bbda3e1f0203f68014626f78992a00c654ed513cb1529ba5fbfe364158b3b"
+    },
+    {
+      "name": "unchanged_production:crates/odin/Cargo.toml",
+      "status": "PASS",
+      "path": "crates/odin/Cargo.toml",
+      "expected_sha256": "d2ddaeb92e112540734b2b56c5ffe608a150677aa21b378ff8e81ec74b929993",
+      "actual_sha256": "d2ddaeb92e112540734b2b56c5ffe608a150677aa21b378ff8e81ec74b929993"
+    },
+    {
+      "name": "unchanged_production:crates/odin/build.rs",
+      "status": "PASS",
+      "path": "crates/odin/build.rs",
+      "expected_sha256": "c901d4e9601890336248e1e5c20d600c2c837390e54d8dc5c7bb7704b5c2dabe",
+      "actual_sha256": "c901d4e9601890336248e1e5c20d600c2c837390e54d8dc5c7bb7704b5c2dabe"
+    },
+    {
+      "name": "unchanged_production:crates/odin/src/http.rs",
+      "status": "PASS",
+      "path": "crates/odin/src/http.rs",
+      "expected_sha256": "72746cbb15551b4a6b865e2a583ac3fdadb478fcd6041b5696c7b79069f0f275",
+      "actual_sha256": "72746cbb15551b4a6b865e2a583ac3fdadb478fcd6041b5696c7b79069f0f275"
+    },
+    {
+      "name": "unchanged_production:crates/odin/src/main.rs",
+      "status": "PASS",
+      "path": "crates/odin/src/main.rs",
+      "expected_sha256": "bbbe29e409786c8bf2915895ffeb2a958aa1da0a9f2ad2a3589f53ccd80e0108",
+      "actual_sha256": "bbbe29e409786c8bf2915895ffeb2a958aa1da0a9f2ad2a3589f53ccd80e0108"
+    },
+    {
+      "name": "unchanged_production:crates/odin/src/mcp.rs",
+      "status": "PASS",
+      "path": "crates/odin/src/mcp.rs",
+      "expected_sha256": "16ac2886ea5003b116f025ae48b8368700dd10b9fb59520d4f96e999c3c1ba95",
+      "actual_sha256": "16ac2886ea5003b116f025ae48b8368700dd10b9fb59520d4f96e999c3c1ba95"
+    },
+    {
+      "name": "unchanged_production:crates/odin/src/metadata.rs",
+      "status": "PASS",
+      "path": "crates/odin/src/metadata.rs",
+      "expected_sha256": "6010f496c4af39edc2523362ddcb9b3398cfe8ae996ac916e19aaf833d4d4063",
+      "actual_sha256": "6010f496c4af39edc2523362ddcb9b3398cfe8ae996ac916e19aaf833d4d4063"
+    },
+    {
+      "name": "unchanged_production:crates/odin/src/setup.rs",
+      "status": "PASS",
+      "path": "crates/odin/src/setup.rs",
+      "expected_sha256": "350cbcfabe792f342d4aebb8170a6265b9d6cfa70f3cea9fe341411fdadb40e4",
+      "actual_sha256": "350cbcfabe792f342d4aebb8170a6265b9d6cfa70f3cea9fe341411fdadb40e4"
+    },
+    {
+      "name": "unchanged_production:rust-toolchain.toml",
+      "status": "PASS",
+      "path": "rust-toolchain.toml",
+      "expected_sha256": "c33d1f0b1b8fda448bea32d7dc867aa64947c87169fd9de7122ffccad1dd80f9",
+      "actual_sha256": "c33d1f0b1b8fda448bea32d7dc867aa64947c87169fd9de7122ffccad1dd80f9"
+    },
+    {
+      "name": "unchanged_production:schemas/tools.json",
+      "status": "PASS",
+      "path": "schemas/tools.json",
+      "expected_sha256": "d921899b72aba5468aeb36186953840d1ac824625eb7470042632900f1a5a3aa",
+      "actual_sha256": "d921899b72aba5468aeb36186953840d1ac824625eb7470042632900f1a5a3aa"
+    },
+    {
+      "name": "actual_release_binary",
+      "status": "PASS",
+      "path": "target/release/odin.exe",
+      "expected_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+      "actual_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875"
+    },
+    {
+      "name": "live_report_counts:verification/language-ide-final-baseline-03.json",
+      "status": "PASS",
+      "counts": {
+        "PASS": 260,
+        "UNAVAILABLE": 14,
+        "NOT_VERIFIED": 12
+      }
+    },
+    {
+      "name": "actual_driver_partial_exit:verification/language-ide-final-baseline-03.json",
+      "status": "PASS",
+      "exit_code": 2
+    },
+    {
+      "name": "same_live_binary:verification/language-ide-final-baseline-03.json",
+      "status": "PASS"
+    },
+    {
+      "name": "baseline_driver_immutable_snapshot",
+      "status": "PASS",
+      "source_commit": "5149493"
+    },
+    {
+      "name": "live_report_digest:verification/language-ide-final-baseline-03.json",
+      "status": "PASS",
+      "path": "verification/language-ide-final-baseline-03.json",
+      "expected_sha256": "74607775a28d75d91d5a4e045e319963fcf3e4469923b4233d97ca26b27a6847",
+      "actual_sha256": "74607775a28d75d91d5a4e045e319963fcf3e4469923b4233d97ca26b27a6847"
+    },
+    {
+      "name": "actual_driver_log:verification/language-ide-final-baseline-03.json",
+      "status": "PASS",
+      "path": "verification/language-ide-final-baseline-03.txt",
+      "expected_sha256": "3caf84a17d5d700f9f629c625f7f7fd0840823b4c40798efe7234e13692b580d",
+      "actual_sha256": "3caf84a17d5d700f9f629c625f7f7fd0840823b4c40798efe7234e13692b580d"
+    },
+    {
+      "name": "live_request_transcript:verification/language-ide-final-baseline-03.json",
+      "status": "PASS",
+      "path": "verification/language-ide-final-baseline-03.requests.jsonl",
+      "expected_sha256": "5089119c1e9b490bd71bc7dc7c371890606694271b26ab6d16d369c7ccc22641",
+      "actual_sha256": "5089119c1e9b490bd71bc7dc7c371890606694271b26ab6d16d369c7ccc22641"
+    },
+    {
+      "name": "normalized_artifact:verification/language-ide-final-baseline-03.json",
+      "status": "PASS",
+      "path": "verification/language-ide-final-baseline-03.json",
+      "expected_sha256": "74607775a28d75d91d5a4e045e319963fcf3e4469923b4233d97ca26b27a6847",
+      "actual_sha256": "74607775a28d75d91d5a4e045e319963fcf3e4469923b4233d97ca26b27a6847"
+    },
+    {
+      "name": "normalized_artifact:verification/language-ide-final-baseline-03.requests.jsonl",
+      "status": "PASS",
+      "path": "verification/language-ide-final-baseline-03.requests.jsonl",
+      "expected_sha256": "5089119c1e9b490bd71bc7dc7c371890606694271b26ab6d16d369c7ccc22641",
+      "actual_sha256": "5089119c1e9b490bd71bc7dc7c371890606694271b26ab6d16d369c7ccc22641"
+    },
+    {
+      "name": "normalized_artifact:verification/language-ide-final-baseline-03.txt",
+      "status": "PASS",
+      "path": "verification/language-ide-final-baseline-03.txt",
+      "expected_sha256": "3caf84a17d5d700f9f629c625f7f7fd0840823b4c40798efe7234e13692b580d",
+      "actual_sha256": "3caf84a17d5d700f9f629c625f7f7fd0840823b4c40798efe7234e13692b580d"
+    },
+    {
+      "name": "normalized_artifact:verification/language-ide-final-baseline-03.command.json",
+      "status": "PASS",
+      "path": "verification/language-ide-final-baseline-03.command.json",
+      "expected_sha256": "e97a533711ca0a8d5e5dbaa8ca44169496badfc3e76c4c05529ab7eadc1c9548",
+      "actual_sha256": "e97a533711ca0a8d5e5dbaa8ca44169496badfc3e76c4c05529ab7eadc1c9548"
+    },
+    {
+      "name": "live_report_counts:verification/language-ide-final-sandbox-typescript-04.json",
+      "status": "PASS",
+      "counts": {
+        "PASS": 42,
+        "UNAVAILABLE": 2,
+        "NOT_VERIFIED": 6
+      }
+    },
+    {
+      "name": "actual_driver_partial_exit:verification/language-ide-final-sandbox-typescript-04.json",
+      "status": "PASS",
+      "exit_code": 2
+    },
+    {
+      "name": "same_live_binary:verification/language-ide-final-sandbox-typescript-04.json",
+      "status": "PASS"
+    },
+    {
+      "name": "current_sandbox_driver_source",
+      "status": "PASS",
+      "path": "tests/real_ide_backends.py",
+      "expected_sha256": "1160258157d2790782e9060be0556af874397daf741196ef32297435c6c0dbf6",
+      "actual_sha256": "1160258157d2790782e9060be0556af874397daf741196ef32297435c6c0dbf6"
+    },
+    {
+      "name": "live_report_digest:verification/language-ide-final-sandbox-typescript-04.json",
+      "status": "PASS",
+      "path": "verification/language-ide-final-sandbox-typescript-04.json",
+      "expected_sha256": "0a87a2b1aac45136bf2d948de1711a997abe33991c4747990dab5d3f0edd420a",
+      "actual_sha256": "0a87a2b1aac45136bf2d948de1711a997abe33991c4747990dab5d3f0edd420a"
+    },
+    {
+      "name": "actual_driver_log:verification/language-ide-final-sandbox-typescript-04.json",
+      "status": "PASS",
+      "path": "verification/language-ide-final-sandbox-typescript-04.txt",
+      "expected_sha256": "f76683d20361fc11856305d0ece2127aebefbf1919b4ec2ef99eafbed51c696d",
+      "actual_sha256": "f76683d20361fc11856305d0ece2127aebefbf1919b4ec2ef99eafbed51c696d"
+    },
+    {
+      "name": "live_request_transcript:verification/language-ide-final-sandbox-typescript-04.json",
+      "status": "PASS",
+      "path": "verification/language-ide-final-sandbox-typescript-04.requests.jsonl",
+      "expected_sha256": "acbe80f60f410453e773d45abc35e731d45e277e1ba496ff3778e45a9cc57576",
+      "actual_sha256": "acbe80f60f410453e773d45abc35e731d45e277e1ba496ff3778e45a9cc57576"
+    },
+    {
+      "name": "normalized_artifact:verification/language-ide-final-sandbox-typescript-04.json",
+      "status": "PASS",
+      "path": "verification/language-ide-final-sandbox-typescript-04.json",
+      "expected_sha256": "0a87a2b1aac45136bf2d948de1711a997abe33991c4747990dab5d3f0edd420a",
+      "actual_sha256": "0a87a2b1aac45136bf2d948de1711a997abe33991c4747990dab5d3f0edd420a"
+    },
+    {
+      "name": "normalized_artifact:verification/language-ide-final-sandbox-typescript-04.requests.jsonl",
+      "status": "PASS",
+      "path": "verification/language-ide-final-sandbox-typescript-04.requests.jsonl",
+      "expected_sha256": "acbe80f60f410453e773d45abc35e731d45e277e1ba496ff3778e45a9cc57576",
+      "actual_sha256": "acbe80f60f410453e773d45abc35e731d45e277e1ba496ff3778e45a9cc57576"
+    },
+    {
+      "name": "normalized_artifact:verification/language-ide-final-sandbox-typescript-04.txt",
+      "status": "PASS",
+      "path": "verification/language-ide-final-sandbox-typescript-04.txt",
+      "expected_sha256": "f76683d20361fc11856305d0ece2127aebefbf1919b4ec2ef99eafbed51c696d",
+      "actual_sha256": "f76683d20361fc11856305d0ece2127aebefbf1919b4ec2ef99eafbed51c696d"
+    },
+    {
+      "name": "normalized_artifact:verification/language-ide-final-sandbox-typescript-04.command.json",
+      "status": "PASS",
+      "path": "verification/language-ide-final-sandbox-typescript-04.command.json",
+      "expected_sha256": "a61cdb686562b98bb2f75b5dab933e55f15b47fa63985a037f96fc70f8fc571f",
+      "actual_sha256": "a61cdb686562b98bb2f75b5dab933e55f15b47fa63985a037f96fc70f8fc571f"
+    },
+    {
+      "name": "native_analyzer_actual_30_pass",
+      "status": "PASS"
+    },
+    {
+      "name": "native_analyzer_report",
+      "status": "PASS",
+      "path": "verification/native-inspections-release-final.json",
+      "expected_sha256": "1b2bb92f2dd8b906146f9ecf13bee79c721f2face3bb79ece40ecbdf497a7775",
+      "actual_sha256": "1b2bb92f2dd8b906146f9ecf13bee79c721f2face3bb79ece40ecbdf497a7775"
+    },
+    {
+      "name": "native_analyzer_driver_log",
+      "status": "PASS",
+      "path": "verification/native-inspections-release-final-command.txt",
+      "expected_sha256": "7708d93f9a10d830cb035947028c123b254ade119c62b3a5364a15769ee94c0b",
+      "actual_sha256": "7708d93f9a10d830cb035947028c123b254ade119c62b3a5364a15769ee94c0b"
+    },
+    {
+      "name": "same_native_analyzer_binary",
+      "status": "PASS"
+    },
+    {
+      "name": "paired_catalogs_identical",
+      "status": "PASS"
+    },
+    {
+      "name": "independent_review_pass_no_blockers",
+      "status": "PASS"
+    },
+    {
+      "name": "requirements_not_overstated",
+      "status": "PASS"
+    },
+    {
+      "name": "staged_git_blob_matches_bound_file:verification/sandbox-ide-release-validation.json",
+      "status": "PASS"
+    },
+    {
+      "name": "staged_git_blob_matches_bound_file:verification/native-inspections-release-final.json",
+      "status": "PASS"
+    },
+    {
+      "name": "staged_git_blob_matches_bound_file:verification/native-inspections-release-final-command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "staged_git_blob_matches_bound_file:verification/language-ide-final-baseline-03.json",
+      "status": "PASS"
+    },
+    {
+      "name": "staged_git_blob_matches_bound_file:verification/language-ide-final-sandbox-typescript-04.json",
+      "status": "PASS"
+    },
+    {
+      "name": "staged_git_blob_matches_bound_file:verification/sandbox-ide-review.json",
+      "status": "PASS"
+    }
+  ],
+  "checker_source": "from pathlib import Path\nimport argparse, datetime, hashlib, json, subprocess\n\nroot = Path(__file__).resolve().parents[1]\nparser = argparse.ArgumentParser()\nparser.add_argument('--sandbox', required=True)\nargs = parser.parse_args()\nchecks = []\nread = lambda p: json.loads((root / p).read_text(encoding='utf-8'))\ndigest = lambda p: hashlib.sha256((root / p).read_bytes()).hexdigest()\ndef check(name, passed, **detail):\n    checks.append({'name': name, 'status': 'PASS' if passed else 'FAIL', **detail})\ndef binding(path, expected, label):\n    actual = digest(path)\n    check(label, actual == expected, path=path, expected_sha256=expected, actual_sha256=actual)\n\nvalidation_path = 'verification/sandbox-ide-release-validation.json'\nvalidation = read(validation_path)\ncheck('integrated_17_actual_zero_exit_commands', validation['status'] == 'PASS' and len(validation['commands']) == 17 and all(c['exit_code'] == 0 for c in validation['commands']))\ncheck('clean_release_build_metadata', not validation['binary_metadata']['tracked_source_dirty'])\nfor c in validation['commands']:\n    binding(c['log'], c['log_sha256'], 'gate_log:' + c['name'])\nfor path, expected in validation['source_sha256'].items():\n    if path.startswith(('crates/', 'schemas/')) or path in ('Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml'):\n        binding(path, expected, 'unchanged_production:' + path)\nbinary = validation['binary_sha256']\nbinding('target/release/odin.exe', binary, 'actual_release_binary')\n\nfor name in ('verification/language-ide-final-baseline-03.json', args.sandbox):\n    report = read(name)\n    stem = str(Path(name).with_suffix('')).replace('\\\\', '/')\n    receipt = read(stem + '.command.json')\n    check('live_report_counts:' + name, report['status'] == 'PARTIAL' and report['counts'].get('FAIL', 0) == 0, counts=report['counts'])\n    check('actual_driver_partial_exit:' + name, receipt['exit_code'] == 2, exit_code=receipt['exit_code'])\n    check('same_live_binary:' + name, receipt['binary_sha256'] == report['binary_sha256'] == binary)\n    if name == args.sandbox:\n        binding('tests/real_ide_backends.py', report['harness_sha256'], 'current_sandbox_driver_source')\n    else:\n        baseline_source = subprocess.check_output(['git', 'show', '5149493:tests/real_ide_backends.py'], cwd=root)\n        check('baseline_driver_immutable_snapshot', hashlib.sha256(baseline_source).hexdigest() == report['harness_sha256'], source_commit='5149493')\n    binding(name, receipt['report_sha256'], 'live_report_digest:' + name)\n    binding(receipt['raw_stdout_log'], receipt['log_sha256'], 'actual_driver_log:' + name)\n    binding(stem + '.requests.jsonl', report['transcript_sha256'], 'live_request_transcript:' + name)\n    for artifact in read(stem + '.normalization.json')['artifacts']:\n        binding(artifact['path'], artifact['sha256'], 'normalized_artifact:' + artifact['path'])\n\nnative = 'verification/native-inspections-release-final.json'\nnative_report = read(native)\nnative_receipt = read('verification/native-inspections-release-final-command.json')\ncheck('native_analyzer_actual_30_pass', native_report['status'] == 'PASS' and len(native_report['checks']) == 30 and all(c['status'] == 'PASS' for c in native_report['checks']) and native_receipt['exit_code'] == 0)\nbinding(native, native_receipt['report_sha256'], 'native_analyzer_report')\nbinding(native_receipt['log'], native_receipt['log_sha256'], 'native_analyzer_driver_log')\ncheck('same_native_analyzer_binary', native_report['binary_sha256'] == native_receipt['binary_sha256'] == binary)\ncatalogs = ('crates/odin-engine/tools.json', 'schemas/tools.json')\ncheck('paired_catalogs_identical', (root / catalogs[0]).read_bytes() == (root / catalogs[1]).read_bytes())\nreview = read('verification/sandbox-ide-review.json')\ncheck('independent_review_pass_no_blockers', review['result'] == 'PASS' and not review['remaining_blocking_findings'])\nfeature = read('verification/feature-evidence.json')\ncheck('requirements_not_overstated', feature['status_summary'] == {'PASS': 0, 'PARTIAL': 38, 'NOT_RUN': 2})\n\nfor name in [validation_path, native, 'verification/native-inspections-release-final-command.json',\n             'verification/language-ide-final-baseline-03.json', args.sandbox, 'verification/sandbox-ide-review.json']:\n    blob = subprocess.check_output(['git', 'show', ':' + name], cwd=root)\n    check('staged_git_blob_matches_bound_file:' + name, hashlib.sha256(blob).hexdigest() == digest(name))\n\nresult = {'status': 'PASS' if all(c['status'] == 'PASS' for c in checks) else 'FAIL',\n    'scope': 'Actual cross-file source, binary, command exit, log, transcript, review and staged public artifact hash audit; this is not another execution of product tests.',\n    'completed_at_utc': datetime.datetime.now(datetime.UTC).isoformat(),\n    'argv': ['python', '-X', 'utf8', '.odin/verify_release_artifacts.py', '--sandbox', args.sandbox],\n    'checks': checks,\n    'checker_source': Path(__file__).read_text(encoding='utf-8')}\n(root / 'verification/sandbox-ide-artifact-bindings.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\\n', encoding='utf-8', newline='\\n')\nprint(json.dumps({'status': result['status'], 'bindings_checked': len(checks), 'failures': [c['name'] for c in checks if c['status'] == 'FAIL']}))\nraise SystemExit(0 if result['status'] == 'PASS' else 1)\n"
+}

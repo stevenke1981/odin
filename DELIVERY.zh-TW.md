@@ -12,6 +12,7 @@ Serena 僅用於開發代理導航；Odin 直接操作自己的 Rust core、LSP/
 - 六語各兩個受控專案另完成 completion、hover、signature、階層、語意 tokens、適用格式化交易與診斷流程。`verification/language-ide-final-baseline-03.json` 及實際 command receipt 記錄 260 PASS、14 UNAVAILABLE、12 NOT_VERIFIED、0 FAIL，整體 PARTIAL／exit 2；TS／Java 無版本診斷不算 current clean。
 - core 日誌記錄 NTFS aliases/reparse/hardlink、交易 crash checkpoint 與雙 process contention。供應鏈另有 SBOM、license inventory、advisory/pattern scan 報告。
 - 真正 Windows MXC ProcessContainer 沙箱以 executor SHA-256 綁定，明確設定檔案權限、封鎖網路、使用私有暫存，失敗不回退。三項原生測試執行了檔案／網路拒絕、後代程序、取消／逾時及清理。
+- 真 TypeScript LSP 在明確固定的 host bootstrap profile 下，兩專案完成沙箱內的語意查詢、跨檔引用、重新命名／格式化及 CAS apply／rollback；profile04 實跑 42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL，整體 PARTIAL。其他五語的實際 sandbox LSP 仍 NOT_RUN。
 - `verification/native-inspections-release-final.json` 與其 command receipt 保存同一最終 binary 的三種分析器共 30 項 PASS：唯讀分析、finding／來源 hash、安全 CAS 修正／回復及私有暫存清理。
 - 先前 72 工具版本的 portable ZIP／Inno installer 證據保留於 `verification/windows-final-packaging.json`；這次 85 工具擴充沒有重新封裝。
 

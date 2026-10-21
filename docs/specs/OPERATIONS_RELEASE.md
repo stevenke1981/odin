@@ -34,14 +34,14 @@ Linux/macOS sandbox、BFS/AppContainer fallback、VM backend、完整UI/registry
 | Native inspections currentc5084f4 | 與17gates相同binary的真MCP/MXC三provider30checks，完整command exit0/log/hash；readonly/safeCAS/cleanup | 不證明全部規則、所有OS或JetBrains-private等價 |
 | 六語兩專案首輪 | 4551阻擋於Odin啟動；0 MCP/LSP checks | 版本存在、harness生成即是六語支援 |
 | 六語兩專案baseline03 | 同f7 binary；host mode，12/12 initialized；260 PASS／14 UNAVAILABLE／12 NOT_VERIFIED／0 FAIL；完整command actual exit 2、PARTIAL | 不證明TS/Java versioned diagnostics、全部IDE能力、六語MXC或28/40+語言完成 |
-| TS native MXC profile01 | actual exit 1／FAIL；2 MCP initialize PASS，private TEMP目錄缺失；4 FAIL、0 LSP initialized | 固定trusted bootstrap的profile02仍pending，不能預寫成功 |
+| TS native MXC profile01 | actual exit 1／FAIL；2 MCP initialize PASS，private TEMP目錄缺失；4 FAIL、0 LSP initialized | 固定trusted bootstrap與常數child flags的profile04已實跑PARTIAL／exit2；42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL |
 | 當輪release candidate | `sandbox-ide-release-validation.json`的17gates、200tests/6ignored與另native3已PASS；標準三LS/debugpy29PASS | 六語baseline另為PARTIAL／exit 2，TSsandbox另待結果；不可覆寫舊baseline |
 
 Root的guard-until-reap已包含在c5084f4當輪native三測試實跑，command/exit0及log/hash記在sandbox-ide-release-validation.json的/commands/4。Analyzer attempt1、attempt2與AppControl拒絕應保留；第三次成功是修正實質harness/runtime flags，不是降低grants或重試相同假設洗綠。
 
 六語baseline03的report、command、requests與normalization分別綁定真實hash與exit 2。Normalization PASS只代表LF處理不改logical checks；不代表語言功能全PASS。新版driver d47fa6將initial-valid觀察提前至mutation前，AST條件經root/reviewer確認未變；17gate report保留舊QA快照，53個production crates檔案hash仍相同。真rename/apply/rollback包含兩個JDTLS專案；TS/Java診斷無document version，保留NOT_VERIFIED及clean_build_proven:false。
 
-TSsandbox01的private TEMP startup失敗保留；profile02以外部trusted固定bootstrap建立私有TEMP後import真server，仍待實測，不加eval或擴大權限。
+TSsandbox01的private TEMP startup失敗保留；profile04以外部trusted固定bootstrap建立私有TEMP、驗證固定server module hash、常數child flags後import真server，已實跑42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL；新增僅bootstrap唯讀檔，不放寬source/runtime/network權限且沒有eval。
 
 每個PASS要有command、exit code、OS/toolchain、source SHA/hash、backend/version、binary digest與原始log。報告source binding不同就分開記；後續文件commit不必等於binary revision，但受測source hashes必須吻合。Public日誌可遮蔽本機路徑並記processing方式，不能改結果或重寫歷史digest。詳見 [feature-evidence.json](../../verification/feature-evidence.json)。
 
@@ -62,4 +62,6 @@ Client setup/hook先dry-run、diff與備份，既有host檔案需expected hash�
 
 對外發布前完成同候選review、gates與artifact manifest。已有公開舊source repo不代表本輪已push或binary release；只有實際操作後的public visibility、remote HEAD、URL及artifact digest才可宣稱相應完成。
 
-目前產品revision為`c5084f4947fc4a07c9ab381fa9998ba1a1e2246d`，binary SHA-256為`f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875`；metadata為clean。6個workspace ignored中有3個native已另行opt-in跑過，其餘3個真LS probes仍ignored。六語host baseline03另有actual exit 2／PARTIAL證據，TS native MXC profile02、打包與發布不由17gate報告推定完成。
+目前產品revision為`c5084f4947fc4a07c9ab381fa9998ba1a1e2246d`，binary SHA-256為`f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875`；metadata為clean。6個workspace ignored中有3個native已另行opt-in跑過，其餘3個真LS probes仍ignored。六語host baseline03另有actual exit 2／PARTIAL證據，TS native MXC profile04另有actual exit2的真實證據；打包與發布不由17gate報告推定完成。
+
+本輪 TypeScript native sandbox 最終證據：`verification/language-ide-final-sandbox-typescript-04.json` 及其 command／transcript，actual exit2／PARTIAL、42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL。固定 host bootstrap 與 child flags 的明確 profile 成功；不是自動 fallback，沒有直接 child EPERM 證據。其他五語的實際 sandbox LSP 仍 NOT_RUN，kernel deny／程序清理由獨立 native opt-in tests 證明。

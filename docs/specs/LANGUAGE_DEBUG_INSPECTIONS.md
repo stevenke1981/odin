@@ -1,6 +1,6 @@
 # 語言、IDE 能力與除錯規格 (RFC-INTEL-001)
 
-**地位：原驗收目標加上本輪已實作範圍；不是40項全部完成公告。** 對應 ODIN-007/008/010/013/017/018/019/034/035/036/039。本輪共85工具契約；歷史72工具的144 tests/1 ignored維持原source/binary範圍。最新c5084f4已完成17gates、200tests/6ignored，另native3實跑PASS；六語host baseline03已實跑PARTIAL（exit 2），TS native MXC profile02仍待結果。
+**地位：原驗收目標加上本輪已實作範圍；不是40項全部完成公告。** 對應 ODIN-007/008/010/013/017/018/019/034/035/036/039。本輪共85工具契約；歷史72工具的144 tests/1 ignored維持原source/binary範圍。最新c5084f4已完成17gates、200tests/6ignored，另native3實跑PASS；六語host baseline03已實跑PARTIAL（exit 2），TS native MXC profile04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL，exit2）。
 
 ## 直接標準協定與後端分級
 
@@ -34,7 +34,7 @@ Odin 使用自己的 Rust LSP/DAP client，不啟動 Serena/JetBrains bridge，�
 
 [command](../../verification/language-ide-final-baseline-03.command.json)、[requests transcript](../../verification/language-ide-final-baseline-03.requests.jsonl)與[normalization](../../verification/language-ide-final-baseline-03.normalization.json)保留exit/log/report/transcript hashes。Normalization的PASS只證明LF處理與logical-check digest未變，不改exit 2或PARTIAL；trace result digest對應原始未遮蔽payload。Driver `d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09` 將initial-valid觀察移至mutation前，AST驗收條件經root/reviewer核對未變。17gates保留原driver快照；53個production crates來源hash與release report一致。
 
-TS native MXC profile01保留FAIL／exit 1：兩次MCP initialize PASS，但private TEMP套件目錄缺失使兩專案LSP initialize失敗（合計2 PASS、4 FAIL、0 LSP initialized）。外部trusted固定bootstrap建立private TEMP後import真server的explicit profile02仍pending；不加入eval或放寬grants。
+TS native MXC profile01保留FAIL／exit 1：兩次MCP initialize PASS，但private TEMP套件目錄缺失使兩專案LSP initialize失敗（合計2 PASS、4 FAIL、0 LSP initialized）。外部trusted固定bootstrap建立private TEMP後import真server的explicit profile04已完成兩專案語意/CAS測試，整體PARTIAL；新增僅單一bootstrap唯讀檔，不放寬source/runtime或network權限，也沒有eval。
 
 ## IDE工具的現行契約
 
@@ -77,7 +77,9 @@ Snapshot、count、raw/normalized output與累計fix長度均有配額。版本�
 - Windows MXC author兩個native tests已有PASS；guard-until-reap已由當輪native三測試實跑PASS並有持久log/exit0。詳見 [OS_SANDBOX.md](../OS_SANDBOX.md)。
 - Protocol/engine author切片及早期62+12 AppControl阻擋保留歷史；最新c5084f4 workspace200 tests PASS不抹去舊失敗，也不取代六語逐功能矩陣。
 - 最新c5084f4同release binary的真Odin MCP→MXC→Clippy/Ruff/ESLint有30 checks PASS，完整harness command exit0、log/report digests已綁定；涵蓋readonly分析、rule/range/hash/version、safeCAS preview/apply/rollback與scratch清理。舊30a957a/fe5996d成功另存歷史，仍無全規則/私有IDE等價主張。
-- 六語首輪4551/0 MCP/LSP保留為歷史失敗；最新baseline03已有12/12真LSP初始化與260 PASS，整體因14 UNAVAILABLE及12 NOT_VERIFIED維持PARTIAL／exit 2。TSsandbox01失敗另存，profile02尚待實測。
+- 六語首輪4551/0 MCP/LSP保留為歷史失敗；最新baseline03已有12/12真LSP初始化與260 PASS，整體因14 UNAVAILABLE及12 NOT_VERIFIED維持PARTIAL／exit 2。TSsandbox01失敗另存，profile04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL）。
 - 本輪c5084f4已完成17/17 gates、200tests/6ignored，另native3；標準三LS/debugpy29及同binary analyzer30實跑PASS。Hierarchy/summary已修復並有scoped review，URI/JDTLS最新combined review由root綁定。跨平台、六語剩餘能力/診斷新鮮度、TSsandbox及完整DoD仍未完成；不改host政策或放寬grants洗綠。
 
 實際source/report pointers位於 [feature-evidence.json](../../verification/feature-evidence.json) 的extension_evidence；歷史checks/digests不改寫。完整行為見 [IDE_IMPLEMENTATION.md](../IDE_IMPLEMENTATION.md)。原acceptance與成功／失敗案例仍按 [FEATURE_SPEC.md](../FEATURE_SPEC.md) 驗收。
+
+本輪 TypeScript native sandbox 最終證據：`verification/language-ide-final-sandbox-typescript-04.json` 及其 command／transcript，actual exit2／PARTIAL、42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL。固定 host bootstrap 與 child flags 的明確 profile 成功；不是自動 fallback，沒有直接 child EPERM 證據。其他五語的實際 sandbox LSP 仍 NOT_RUN，kernel deny／程序清理由獨立 native opt-in tests 證明。

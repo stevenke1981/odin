@@ -1,0 +1,8 @@
+{
+  "kind": "DOCUMENTATION_TRACEABILITY_ONLY",
+  "features": 40,
+  "serena_reference_tools": 53,
+  "runtime_checks_executed_by_this_script": false,
+  "errors": [],
+  "status": "PASS"
+}

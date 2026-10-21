@@ -1,0 +1,51 @@
+{
+  "scope": "Actual post-documentation static/requirements/publication-policy checks; not another Rust or backend test execution.",
+  "completed_at_utc": "2026-10-21T02:10:17.249572+00:00",
+  "commands": [
+    {
+      "name": "requirements",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/check_requirements.py"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "verification/sandbox-ide-delivery-logs/requirements.txt",
+      "log_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2"
+    },
+    {
+      "name": "publish_policy",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/check_publish_policy.py"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "verification/sandbox-ide-delivery-logs/publish_policy.txt",
+      "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983"
+    },
+    {
+      "name": "static_source",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/check_source.py",
+        "--output",
+        "verification/sandbox-ide-delivery-source-check.json"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "PASS",
+      "log": "verification/sandbox-ide-delivery-logs/static_source.txt",
+      "log_sha256": "0efd4edb926a974c25e432635a76b6c60875bf992b7fdd248fce8fc0500d178b"
+    }
+  ],
+  "status": "PASS"
+}

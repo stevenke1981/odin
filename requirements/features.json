@@ -4,7 +4,7 @@
   "baseline_version": "0.2.0",
   "status": "WINDOWS_NATIVE_PREVIEW_PARTIAL",
   "standalone_requirement": "No Serena code, runtime, plugin, or bridge in shipping Odin binaries",
-  "note": "85-contract Windows extension. Same f7 binary has17 release gates PASS,200 workspace tests/6 ignored plus3 native opt-in tests and30 analyzer checks. Six-language/two-project host baseline actually executed PARTIAL with exit2:260 PASS,14 UNAVAILABLE,12 NOT_VERIFIED,0 FAIL and12 initialized. TS/Java diagnostics lack document version; TS MXC profile02 remains pending. Historical checks/digests are unchanged; all40 remain unaccepted.",
+  "note": "85-contract Windows extension. Same f7 binary has17 release gates PASS,200 workspace tests/6 ignored plus3 native opt-in tests and30 analyzer checks. Six-language/two-project host baseline actually executed PARTIAL with exit2:260 PASS,14 UNAVAILABLE,12 NOT_VERIFIED,0 FAIL and12 initialized. TS/Java diagnostics lack document version; TS MXC profile04 executed PARTIAL/exit2 with42 PASS,2 UNAVAILABLE,6 NOT_VERIFIED and0 FAIL. Historical checks/digests are unchanged; all40 remain unaccepted.",
   "features": [
     {
       "id": "ODIN-001",
@@ -59,7 +59,7 @@
         "ODIN-001"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-002",
-      "implementation_summary": "c5084f4標準binary17gates與same-binaryanalyzer30checks PASS；六語兩專案baseline已實跑PARTIAL/exit2（260/14/12/0），TS native sandbox02仍pending。",
+      "implementation_summary": "c5084f4標準binary17gates與same-binaryanalyzer30checks PASS；六語兩專案baseline已實跑PARTIAL/exit2（260/14/12/0），TS native sandbox04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL，exit2）。",
       "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
@@ -201,7 +201,7 @@
         "ODIN-004"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-007",
-      "implementation_summary": "新增IDE RPC/URI/JDTLS安全處理已實作；六語12/12真初始化、260PASS，14capability UNAVAILABLE及12診斷NOT_VERIFIED仍明列，TS沙箱另待驗收。",
+      "implementation_summary": "新增IDE RPC/URI/JDTLS安全處理已實作；六語12/12真初始化、260PASS，14capability UNAVAILABLE及12診斷NOT_VERIFIED仍明列，TS沙箱profile04另有兩專案42 PASS的PARTIAL證據。",
       "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
@@ -348,7 +348,7 @@
         "ODIN-005"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-012",
-      "implementation_summary": "Windows native3與same-binaryanalyzer30checks PASS；六語baseline為host mode，TS MXC profile01缺私有TEMP失敗、explicit bootstrap profile02仍pending，跨平台未完成。",
+      "implementation_summary": "Windows native3與same-binaryanalyzer30checks PASS；六語baseline為host mode，TS MXC profile01缺私有TEMP失敗、explicit固定bootstrap profile04已實跑PARTIAL（42 PASS／2 UNAVAILABLE／6 NOT_VERIFIED／0 FAIL），跨平台未完成。",
       "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
@@ -944,7 +944,7 @@
         "ODIN-003"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-033",
-      "implementation_summary": "40需求/85契約維持38PARTIAL2NOTRUN；追加六語PARTIAL真command/transcript/normalization，17gate與舊checks/digests保留，TSsandbox02/包/發布另待結果。",
+      "implementation_summary": "40需求/85契約維持38PARTIAL2NOTRUN；追加六語PARTIAL真command/transcript/normalization，17gate與舊checks/digests保留，TSsandbox04已實跑PARTIAL（42/2/6/0），封裝及發布各有獨立scope。",
       "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
