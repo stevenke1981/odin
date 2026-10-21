@@ -1,0 +1,613 @@
+{
+  "scope": "DIRECT_BACKEND_CONFIGURATION_ONLY_NOT_ODIN_MCP_OR_SANDBOX",
+  "status": "PASS",
+  "backends": [
+    {
+      "language": "java",
+      "status": "PASS",
+      "checks": [
+        {
+          "name": "actual_initialize",
+          "status": "PASS"
+        },
+        {
+          "name": "actual_document_symbols",
+          "status": "PASS"
+        }
+      ],
+      "initialize": {
+        "capabilities": {
+          "textDocumentSync": {
+            "openClose": true,
+            "change": 2,
+            "save": {
+              "includeText": true
+            }
+          },
+          "hoverProvider": true,
+          "completionProvider": {
+            "resolveProvider": true,
+            "triggerCharacters": [
+              ".",
+              "@",
+              "#",
+              "*",
+              " "
+            ]
+          },
+          "signatureHelpProvider": {
+            "triggerCharacters": [
+              "(",
+              ","
+            ]
+          },
+          "definitionProvider": true,
+          "typeDefinitionProvider": true,
+          "implementationProvider": true,
+          "referencesProvider": true,
+          "documentHighlightProvider": true,
+          "documentSymbolProvider": true,
+          "workspaceSymbolProvider": true,
+          "codeActionProvider": {
+            "codeActionKinds": [],
+            "resolveProvider": false
+          },
+          "codeLensProvider": {
+            "resolveProvider": true
+          },
+          "documentFormattingProvider": true,
+          "documentRangeFormattingProvider": true,
+          "documentOnTypeFormattingProvider": {
+            "firstTriggerCharacter": ";",
+            "moreTriggerCharacter": [
+              "\n",
+              "}"
+            ]
+          },
+          "renameProvider": {
+            "prepareProvider": true
+          },
+          "foldingRangeProvider": true,
+          "declarationProvider": true,
+          "executeCommandProvider": {
+            "commands": [
+              "java.project.import",
+              "java.project.changeImportedProjects",
+              "java.navigate.openTypeHierarchy",
+              "java.project.resolveStackTraceLocation",
+              "java.edit.handlePasteEvent",
+              "java.edit.stringFormatting",
+              "java.project.getSettings",
+              "java.project.resolveWorkspaceSymbol",
+              "java.project.upgradeGradle",
+              "java.project.createModuleInfo",
+              "java.vm.getAllInstalls",
+              "java.edit.organizeImports",
+              "java.project.refreshDiagnostics",
+              "java.getFullyQualifiedName",
+              "java.project.removeFromSourcePath",
+              "java.project.listSourcePaths",
+              "java.project.updateSettings",
+              "java.project.getAll",
+              "java.reloadBundles",
+              "java.project.isTestFile",
+              "java.project.resolveText",
+              "java.project.getClasspaths",
+              "java.navigate.resolveTypeHierarchy",
+              "java.getTroubleshootingInfo",
+              "java.edit.smartSemicolonDetection",
+              "java.project.updateSourceAttachment",
+              "java.project.updateClassPaths",
+              "java.decompile",
+              "java.protobuf.generateSources",
+              "java.project.resolveSourceAttachment",
+              "java.project.updateJdk",
+              "java.project.addToSourcePath",
+              "java.completion.onDidSelect"
+            ]
+          },
+          "workspace": {
+            "workspaceFolders": {
+              "supported": true,
+              "changeNotifications": true
+            },
+            "textDocumentContent": {
+              "schemes": [
+                "jdt"
+              ]
+            }
+          },
+          "typeHierarchyProvider": true,
+          "callHierarchyProvider": true,
+          "selectionRangeProvider": true,
+          "semanticTokensProvider": {
+            "legend": {
+              "tokenTypes": [
+                "namespace",
+                "class",
+                "interface",
+                "enum",
+                "enumMember",
+                "type",
+                "typeParameter",
+                "method",
+                "property",
+                "variable",
+                "parameter",
+                "modifier",
+                "keyword",
+                "decorator",
+                "annotationMember",
+                "record",
+                "recordComponent"
+              ],
+              "tokenModifiers": [
+                "abstract",
+                "static",
+                "readonly",
+                "deprecated",
+                "declaration",
+                "documentation",
+                "public",
+                "private",
+                "protected",
+                "native",
+                "generic",
+                "typeArgument",
+                "importDeclaration",
+                "constructor"
+              ]
+            },
+            "range": false,
+            "full": {
+              "delta": false
+            },
+            "documentSelector": [
+              {
+                "language": "java",
+                "scheme": "file"
+              },
+              {
+                "language": "java",
+                "scheme": "jdt"
+              }
+            ]
+          },
+          "inlayHintProvider": true
+        },
+        "serverInfo": {
+          "name": "JDT Language Server (Standard)",
+          "version": "1.62.0-SNAPSHOT"
+        }
+      },
+      "symbols": [
+        {
+          "name": "fixture",
+          "kind": 4,
+          "range": {
+            "start": {
+              "line": 0,
+              "character": 0
+            },
+            "end": {
+              "line": 0,
+              "character": 16
+            }
+          },
+          "selectionRange": {
+            "start": {
+              "line": 0,
+              "character": 0
+            },
+            "end": {
+              "line": 0,
+              "character": 16
+            }
+          },
+          "detail": ""
+        },
+        {
+          "name": "Greeter",
+          "kind": 5,
+          "range": {
+            "start": {
+              "line": 1,
+              "character": 0
+            },
+            "end": {
+              "line": 4,
+              "character": 1
+            }
+          },
+          "selectionRange": {
+            "start": {
+              "line": 1,
+              "character": 13
+            },
+            "end": {
+              "line": 1,
+              "character": 20
+            }
+          },
+          "detail": "",
+          "children": [
+            {
+              "name": "greet(String)",
+              "kind": 6,
+              "range": {
+                "start": {
+                  "line": 2,
+                  "character": 0
+                },
+                "end": {
+                  "line": 2,
+                  "character": 59
+                }
+              },
+              "selectionRange": {
+                "start": {
+                  "line": 2,
+                  "character": 21
+                },
+                "end": {
+                  "line": 2,
+                  "character": 26
+                }
+              },
+              "detail": " : String"
+            },
+            {
+              "name": "run()",
+              "kind": 6,
+              "range": {
+                "start": {
+                  "line": 3,
+                  "character": 0
+                },
+                "end": {
+                  "line": 3,
+                  "character": 72
+                }
+              },
+              "selectionRange": {
+                "start": {
+                  "line": 3,
+                  "character": 21
+                },
+                "end": {
+                  "line": 3,
+                  "character": 24
+                }
+              },
+              "detail": " : String"
+            }
+          ]
+        }
+      ],
+      "stderr": [
+        "WARNING: Using incubator modules: jdk.incubator.vector",
+        "10\ufffd\ufffd 21, 2026 9:05:52 \ufffdW\ufffd\ufffd org.apache.aries.spifly.BaseActivator log",
+        "\ufffd\ufffdT: Registered provider ch.qos.logback.classic.spi.LogbackServiceProvider of service org.slf4j.spi.SLF4JServiceProvider in bundle ch.qos.logback.classic",
+        "WARNING: A terminally deprecated method in sun.misc.Unsafe has been called",
+        "WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/E:/odin/.odin/validation-tools/jdtls/config_win/org.eclipse.osgi/66/0/.cp/jars/guice-5.1.0-classes.jar)",
+        "WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner",
+        "WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release"
+      ],
+      "program_sha256": "3670faa7de6af1f8656eafe15734c020496f0e934464041c3a8c57f41d5c25f2"
+    },
+    {
+      "language": "csharp",
+      "status": "PASS",
+      "checks": [
+        {
+          "name": "actual_initialize",
+          "status": "PASS"
+        },
+        {
+          "name": "actual_document_symbols",
+          "status": "PASS"
+        }
+      ],
+      "restore_exit_code": 0,
+      "initialize": {
+        "capabilities": {
+          "textDocumentSync": {
+            "openClose": true,
+            "change": 2,
+            "save": {
+              "includeText": true
+            }
+          },
+          "completionProvider": {
+            "triggerCharacters": [
+              ".",
+              "'"
+            ],
+            "resolveProvider": true
+          },
+          "hoverProvider": true,
+          "signatureHelpProvider": {
+            "triggerCharacters": [
+              "(",
+              ",",
+              "<",
+              "{",
+              "["
+            ]
+          },
+          "definitionProvider": true,
+          "typeDefinitionProvider": true,
+          "implementationProvider": true,
+          "referencesProvider": true,
+          "documentHighlightProvider": true,
+          "documentSymbolProvider": true,
+          "codeActionProvider": true,
+          "codeLensProvider": {
+            "resolveProvider": true
+          },
+          "workspaceSymbolProvider": true,
+          "documentFormattingProvider": true,
+          "documentRangeFormattingProvider": true,
+          "documentOnTypeFormattingProvider": {
+            "firstTriggerCharacter": ";",
+            "moreTriggerCharacter": [
+              "}",
+              ")"
+            ]
+          },
+          "renameProvider": true,
+          "foldingRangeProvider": true,
+          "callHierarchyProvider": true,
+          "semanticTokensProvider": {
+            "legend": {
+              "tokenTypes": [
+                "class",
+                "comment",
+                "constant",
+                "enumMember",
+                "enum",
+                "event",
+                "method",
+                "field",
+                "variable",
+                "interface",
+                "jsonArray",
+                "jsonComment",
+                "jsonConstructorName",
+                "jsonKeyword",
+                "jsonNumber",
+                "jsonObject",
+                "jsonOperator",
+                "jsonPropertyName",
+                "jsonPunctuation",
+                "jsonString",
+                "jsonText",
+                "keyword",
+                "namespace",
+                "number",
+                "operator",
+                "parameter",
+                "property",
+                "struct",
+                "regexAlternation",
+                "regexAnchor",
+                "regexCharacterClass",
+                "regexComment",
+                "regexGrouping",
+                "regexOtherEscape",
+                "regexQuantifier",
+                "regexSelfEscapedCharacter",
+                "regexText",
+                "string",
+                "stringEscapeCharacter",
+                "typeParameter"
+              ],
+              "tokenModifiers": [
+                "static"
+              ]
+            },
+            "range": true,
+            "full": true
+          },
+          "typeHierarchyProvider": true,
+          "inlayHintProvider": {
+            "resolveProvider": false
+          },
+          "diagnosticProvider": {
+            "documentSelector": [
+              {
+                "language": "csharp",
+                "scheme": "file",
+                "pattern": "**/*.cs"
+              }
+            ],
+            "interFileDependencies": false,
+            "workspaceDiagnostics": true
+          },
+          "workspace": {
+            "workspaceFolders": {
+              "supported": true,
+              "changeNotifications": true
+            }
+          }
+        },
+        "serverInfo": {
+          "name": "csharp-ls",
+          "version": "0.28.0.0"
+        }
+      },
+      "symbols": [
+        {
+          "name": "Greeter.cs",
+          "kind": 1,
+          "range": {
+            "start": {
+              "line": 0,
+              "character": 0
+            },
+            "end": {
+              "line": 5,
+              "character": 0
+            }
+          },
+          "selectionRange": {
+            "start": {
+              "line": 0,
+              "character": 0
+            },
+            "end": {
+              "line": 5,
+              "character": 0
+            }
+          },
+          "children": [
+            {
+              "name": "Fixture",
+              "detail": "Fixture",
+              "kind": 3,
+              "range": {
+                "start": {
+                  "line": 0,
+                  "character": 0
+                },
+                "end": {
+                  "line": 5,
+                  "character": 0
+                }
+              },
+              "selectionRange": {
+                "start": {
+                  "line": 0,
+                  "character": 10
+                },
+                "end": {
+                  "line": 0,
+                  "character": 17
+                }
+              },
+              "children": [
+                {
+                  "name": "Greeter",
+                  "kind": 5,
+                  "range": {
+                    "start": {
+                      "line": 1,
+                      "character": 0
+                    },
+                    "end": {
+                      "line": 5,
+                      "character": 0
+                    }
+                  },
+                  "selectionRange": {
+                    "start": {
+                      "line": 1,
+                      "character": 20
+                    },
+                    "end": {
+                      "line": 1,
+                      "character": 27
+                    }
+                  },
+                  "children": [
+                    {
+                      "name": "greet(string name)",
+                      "detail": "string Greeter.greet(string name)",
+                      "kind": 6,
+                      "range": {
+                        "start": {
+                          "line": 2,
+                          "character": 0
+                        },
+                        "end": {
+                          "line": 3,
+                          "character": 0
+                        }
+                      },
+                      "selectionRange": {
+                        "start": {
+                          "line": 2,
+                          "character": 21
+                        },
+                        "end": {
+                          "line": 2,
+                          "character": 26
+                        }
+                      }
+                    },
+                    {
+                      "name": "run()",
+                      "detail": "string Greeter.run()",
+                      "kind": 6,
+                      "range": {
+                        "start": {
+                          "line": 3,
+                          "character": 0
+                        },
+                        "end": {
+                          "line": 4,
+                          "character": 0
+                        }
+                      },
+                      "selectionRange": {
+                        "start": {
+                          "line": 3,
+                          "character": 21
+                        },
+                        "end": {
+                          "line": 3,
+                          "character": 24
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "stderr": [
+        "9:05:59.752 info: LifeCycle[0]",
+        "      initializing, csharp-ls version 0.28.0 (Klebi\u0161kis)+72671fc7fa810c158864e72485db68e8b9b25c3d",
+        "9:05:59.789 info: LifeCycle[0]",
+        "      csharp-ls is released under MIT license and is not affiliated with Microsoft Corp.; see https://github.com/razzmatazz/csharp-language-server",
+        "9:05:59.873 info: Roslyn.Solution[0]",
+        "      SDK instances found, as reported by MSBuild:",
+        "- SDK=\".NET Core SDK\", Version=10.0.402, MSBuildPath=\"<tools_root>\\dotnet\\sdk\\10.0.402\", DiscoveryType=DotNetSdk",
+        "9:05:59.874 info: Roslyn.Solution[0]",
+        "      MSBuildLocator: will register \".NET Core SDK\", Version=10.0.402 as default instance",
+        "9:05:59.883 info: LifeCycle[0]",
+        "      handleInitialize: using workspaceFolders: [{\"uri\":\"file:///<fixture>/projects/csharp_configcheck\",\"name\":\"csharp_configcheck\"}]",
+        "9:06:00.027 info: LifeCycle[0]",
+        "      initialize: initial csharp config: { logLevel = Some \"info\"",
+        "  applyFormattingOptions = None",
+        "  analyzersEnabled = None",
+        "  useMetadataUris = Some false",
+        "  razorSupport = Some false",
+        "  locale = Some \"en-US\"",
+        "  debug = Some { solutionLoadDelay = None",
+        "                 debugMode = Some false }",
+        "  solutionPathOverride = None }",
+        "9:06:00.336 info: Workspace[0]",
+        "      didChangeConfiguration: csharp config updated: { logLevel = Some \"info\"",
+        "  applyFormattingOptions = None",
+        "  analyzersEnabled = None",
+        "  useMetadataUris = Some false",
+        "  razorSupport = Some false",
+        "  locale = Some \"en-US\"",
+        "  debug = Some { solutionLoadDelay = None",
+        "                 debugMode = Some false }",
+        "  solutionPathOverride = None }",
+        "9:06:00.477 info: Roslyn.Solution[0]",
+        "      Will use MSBuild props: map [(TargetFramework, net10.0)]"
+      ],
+      "program_sha256": "7cb2d7e69fe092b75b3ef15b061864618bff0ef4416490d49977c032f2216f8f"
+    }
+  ],
+  "driver_exit_code": 0,
+  "fixture_profile_source": "tests/real_ide_backends.py fixture(language, tag=configcheck), plus direct Content-Length JSON-RPC initialize/didOpen/documentSymbol/shutdown driver",
+  "fixture_profile_sha256": "a80020877fab664fd869d824a98f11317f2c894e0d283615052a662e24d1ea64",
+  "odin_mcp_requests_executed": 0,
+  "os_isolation_verified": false
+}
