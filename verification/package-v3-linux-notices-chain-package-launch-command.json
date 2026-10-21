@@ -1,0 +1,7 @@
+{
+  "command": "set -eu\ncd /opt/odin-transfer\nsha256sum --check <<'EOF'\nb6b836a09d6aef7546a785ffb6f7012b5bbe27e7e853d6caf154eb8259489031  run-linux-doc-package-v3.py\nc1b4d33aa4fc32cbd76e107d571f24edcd4f9603be5fe0e72db9b0a149c062c2  run-linux-installer-v3.py\n150744b5682576421e0f26f4c6dbf608205e4ee4b70b6d490360c8964876114a  export-linux-v3.py\n7403d0729ccbd30c45df38c9a67422ea36ba6bc82641939eee63d204cac05984  run-linux-candidate-v5.py\nEOF\ntest ! -e notices-package-job.exit\ncurl --fail --silent --show-error http://10.0.2.2:47652/run-linux-notices-package-v3.sh -o run-linux-notices-package-v3.sh\nprintf '%s\\n' '048f83b6e66c1ad78d0623203a46eb7119affc537f45b388c51ccab88e0ef5e4  run-linux-notices-package-v3.sh' | sha256sum --check -\nnohup sh -c 'bash /opt/odin-transfer/run-linux-notices-package-v3.sh f5878bfa725db8c0dcab7e45ca3cf89159508975; result=$?; printf \"%s\\n\" \"$result\" > /opt/odin-transfer/notices-package-job.exit; exit \"$result\"' > /opt/odin-transfer/notices-package-job.log 2>&1 < /dev/null &\nprintf 'NOTICES_PACKAGE_JOB_PID=%s\\n' \"$!\"\n",
+  "exit_code": 0,
+  "timed_out": false,
+  "serial": "127.0.0.1:47651",
+  "output": "notices-f5878bf-package-launch.txt"
+}

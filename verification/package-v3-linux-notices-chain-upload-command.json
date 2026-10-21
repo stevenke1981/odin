@@ -1,0 +1,7 @@
+{
+  "command": "python3 /opt/odin-transfer/upload-linux-v3.py --manifest /opt/odin-notice-export/manifest-0fe03ba.json --directory /opt/odin-notice-export/v3-0fe03ba",
+  "exit_code": 0,
+  "timed_out": false,
+  "serial": "127.0.0.1:47651",
+  "output": "notices-artifacts-upload-01.txt"
+}

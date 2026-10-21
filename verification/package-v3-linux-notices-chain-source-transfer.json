@@ -1,0 +1,21 @@
+{
+  "scope": "SPECIFIED_PUBLIC_COMMIT_ONLY_NATIVE_PACKAGING_SOURCE_TRANSFER",
+  "revision": "f5878bfa725db8c0dcab7e45ca3cf89159508975",
+  "files": 868,
+  "bundle": "E:\\odin\\.odin\\validation-tools\\packaging-v3\\transfer\\odin-f5878bf.bundle",
+  "bundle_sha256": "40c85c21a1079b0f5d5bd6dc7339989f64b4a55b7e30b409ccd9166086c7518b",
+  "manifest": "E:\\odin\\.odin\\validation-tools\\packaging-v3\\transfer\\odin-f5878bf-source-sha256.json",
+  "manifest_sha256": "fa6aa33f6b0b9a473a30c0ec8d339bbbd7427f8e0c230960e0039c3fe63ad1cc",
+  "bundle_create_argv": [
+    "git",
+    "bundle",
+    "create",
+    "E:\\odin\\.odin\\validation-tools\\packaging-v3\\transfer\\odin-f5878bf.bundle",
+    "build/packaging-notices-source-f5878bf"
+  ],
+  "bundle_verify_exit_code": 0,
+  "bundle_verify_stdout": "The bundle contains this ref:\nf5878bfa725db8c0dcab7e45ca3cf89159508975 refs/heads/build/packaging-notices-source-f5878bf\nThe bundle records a complete history.\nThe bundle uses this hash algorithm: sha1\n",
+  "bundle_verify_stderr": "E:/odin/.odin/validation-tools/packaging-v3/transfer/odin-f5878bf.bundle is okay\n",
+  "host_worktree_used_only_for_git_object_reads": true,
+  "host_head_changed": false
+}

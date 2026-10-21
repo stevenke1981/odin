@@ -1,0 +1,173 @@
+{
+  "scope": "NORMAL_DOCS_NOTICE_REPACK_BUILD_ENVIRONMENT_SHUTDOWN_ONLY",
+  "status": "PASS",
+  "guest_poweroff": {
+    "argv": [
+      "systemctl",
+      "poweroff",
+      "--no-block"
+    ],
+    "exit_code": 0,
+    "qemu_pid": 26612,
+    "process_absent": true
+  },
+  "source_http_stop": {
+    "argv": [
+      "C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.EXE",
+      "-NoProfile",
+      "-File",
+      "E:\\odin\\.odin\\stop_notices_source_http_v3.ps1"
+    ],
+    "exit_code": 0,
+    "log": "verification/package-v3-linux-notices-chain-source-stop-log.txt",
+    "log_sha256": "00dd8dee012c5a1a9076dfb2aa317ca2eb1a58d6d3fbb545afa6a283cb6bafa0",
+    "original_host_log_sha256": "a268fb9bd6549449e5fefa44635445df20fd65db48f12fc07512f3e5acb316e8"
+  },
+  "process_absence_check": {
+    "argv": [
+      "C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.EXE",
+      "-NoProfile",
+      "-Command",
+      "@(Get-CimInstance Win32_Process -Filter 'ProcessId=26612 OR ProcessId=40740 OR ProcessId=26672').Count"
+    ],
+    "exit_code": 0,
+    "stdout": "0\n"
+  },
+  "receiver_pid": 26672,
+  "receiver_completed_then_exited": true,
+  "ports": [
+    {
+      "bind": "127.0.0.1",
+      "port": 47651,
+      "closed": true
+    },
+    {
+      "bind": "127.0.0.1",
+      "port": 47652,
+      "closed": true
+    },
+    {
+      "bind": "127.0.0.1",
+      "port": 47654,
+      "closed": true
+    }
+  ],
+  "host_artifacts_verified_after_shutdown": 81,
+  "preserved_source_stop_first_attempt": {
+    "exit_code": 1,
+    "log": {
+      "path": "verification/package-v3-linux-notices-chain-source-stop-first-log.txt",
+      "sha256": "b065d5e433487a432db43ffe3370720dc0a426fd0fc42fc202a2633c2ff295f8",
+      "original_host_sha256": "c6e0068ff906840aca2dd3506b205751338cae443a2d503e5f60c3b98f59534d"
+    },
+    "reason": "Exact ownership guard expected quotes around the no-space Python path, but this task-owned subprocess command line omitted those quotes. The guard stopped before terminating any process; followup uses the independently observed exact command string.",
+    "exit_scope": "Actual Python stop-driver outer exit code; the PowerShell nonzero exit was observed by its assertion but was not separately serialized before the outer failure."
+  },
+  "overlay_and_old_artifacts_preserved": true,
+  "app_recompiled": false,
+  "app_gates_reexecuted": false,
+  "application_signal_acceptance": "NOT_RUN; normal VM/helper shutdown is not SIGTERM/SIGINT LSP/DAP descendant or journal acceptance.",
+  "evidence": {
+    "source_transfer": {
+      "path": "verification/package-v3-linux-notices-chain-source-transfer.json",
+      "sha256": "51242e115671e81dae5f31a54d4a858020920ac88dfdf9ebb1e17f40df91f22f"
+    },
+    "source_stage_command": {
+      "path": "verification/package-v3-linux-notices-chain-source-stage-command.json",
+      "sha256": "365046008c4641e7c02eee2af666100022d0dc81b80d42313982cbd4c12a015c"
+    },
+    "source_stage_log": {
+      "path": "verification/package-v3-linux-notices-chain-source-stage-log.txt",
+      "sha256": "a3843ccb1a1b51b4f49ebc216572ac2d8b0fa22f73fb0826de207b1e8fcf1101",
+      "original_host_sha256": "93e8f003a19750a1a7650963596a81b6b2caa8071336e98f96c555be0e644aa3"
+    },
+    "reuse_stage_command": {
+      "path": "verification/package-v3-linux-notices-chain-reuse-stage-command.json",
+      "sha256": "0af1e784c5dd1e057fcaf1bbdb72a792d2a8542c63d1aea10b32c1eadc753189"
+    },
+    "reuse_stage_log": {
+      "path": "verification/package-v3-linux-notices-chain-reuse-stage-log.txt",
+      "sha256": "d5787829a9a5666ece4c36cea3ba342d613a0a6fe0ac047bd0c43c6f8b29afeb",
+      "original_host_sha256": "9a7811c9e243c2507e091638ece921933ff3b31fee57540ea9901f25f7081cbd"
+    },
+    "package_launch": {
+      "path": "verification/package-v3-linux-notices-chain-package-launch-command.json",
+      "sha256": "1233c62bc0bb5469d5c47fbda67b31c7b269853d594cfad44943d41450243df6"
+    },
+    "package_launch_log": {
+      "path": "verification/package-v3-linux-notices-chain-package-launch-log.txt",
+      "sha256": "646cd3b1b0717cef0c3305f3170546cff46553c9893b52567ca1e6908e99d666",
+      "original_host_sha256": "66a04f748350e393d452b62e6653a337184785d89824e3fa7b77c8f075c5bc21"
+    },
+    "package_driver": {
+      "path": "verification/package-v3-linux-notices-chain-package-driver.sh",
+      "sha256": "048f83b6e66c1ad78d0623203a46eb7119affc537f45b388c51ccab88e0ef5e4"
+    },
+    "restart": {
+      "path": "verification/package-v3-linux-notices-chain-restart.json",
+      "sha256": "21f2eb3faba9d0fa1caf963ac0a1302a54af2a8cd13acde68e862e3fd1317e3e"
+    },
+    "upload_command": {
+      "path": "verification/package-v3-linux-notices-chain-upload-command.json",
+      "sha256": "117644f49df5628ab34ef0c5bf833df13aa9391e5bf601078d0c75f4e580cf47"
+    },
+    "upload_log": {
+      "path": "verification/package-v3-linux-notices-chain-upload-log.txt",
+      "sha256": "d7c524bf1e562fd7a794b8fed2bdf7d1e46def9b1ae47063ea7fe869877a0547",
+      "original_host_sha256": "b09f623296fcc375ce86dd293696d8aa70f91d041175c419cf46a7e841a8aace"
+    },
+    "manifest_read": {
+      "path": "verification/package-v3-linux-notices-chain-manifest-read-command.json",
+      "sha256": "2961687e94199c9e6f601ddd14800bd7d12ddba36a05ba6c54b8ee2a76f96a83"
+    },
+    "manifest_read_log": {
+      "path": "verification/package-v3-linux-notices-chain-manifest-read-log.txt",
+      "sha256": "fa3c7b5141c5c8bfdf46a748f38f9bccd7a843fc6abbee53083f4e7a3a675efa",
+      "original_host_sha256": "cd5a86cca3ae5161342f77d4907aa3c975b8fff1375b05e319c8e76b25b23270"
+    },
+    "manifest_decoder": {
+      "path": "verification/package-v3-linux-notices-chain-manifest-decoder.py",
+      "sha256": "54c61daca4f8114c0a1604a4d24928c15a647df0fdd2405e80cc65d4682d55bc"
+    },
+    "receiver_launcher": {
+      "path": "verification/package-v3-linux-notices-chain-receiver-launcher.py",
+      "sha256": "87131ae2df0483c754a6530f5bbd60526573d04c5b71ef27ba9ed43aaa322216"
+    },
+    "poweroff_command": {
+      "path": "verification/package-v3-linux-notices-chain-poweroff-command.json",
+      "sha256": "0d62c0eaa77749e2205d9096b5ee8d62eb0a3e6a7b2bf3811f65c4ff1e94fc32"
+    },
+    "poweroff_log": {
+      "path": "verification/package-v3-linux-notices-chain-poweroff-log.txt",
+      "sha256": "38e2a8c8e3943dab691ebeda1a87d515ea9028eca3ea022eb68ebefb9f967cad",
+      "original_host_sha256": "f090fc5b39e7de9e76a7bc4a0c2c0312e6418bd1658026b3cd344ec5de230d23"
+    },
+    "source_stop": {
+      "path": "verification/package-v3-linux-notices-chain-source-stop.ps1",
+      "sha256": "905209d3aaa3eb234a9d908075c57dd36d239e8191fcf602eb4621a48efd674c"
+    },
+    "source_stop_log": {
+      "path": "verification/package-v3-linux-notices-chain-source-stop-log.txt",
+      "sha256": "00dd8dee012c5a1a9076dfb2aa317ca2eb1a58d6d3fbb545afa6a283cb6bafa0",
+      "original_host_sha256": "a268fb9bd6549449e5fefa44635445df20fd65db48f12fc07512f3e5acb316e8"
+    },
+    "source_stop_first": {
+      "path": "verification/package-v3-linux-notices-chain-source-stop-first.ps1",
+      "sha256": "e55d3afe237ecb67db46e2dfd91058227aee4b23be7633b320c71cc0a8201db2"
+    },
+    "source_stop_first_log": {
+      "path": "verification/package-v3-linux-notices-chain-source-stop-first-log.txt",
+      "sha256": "b065d5e433487a432db43ffe3370720dc0a426fd0fc42fc202a2633c2ff295f8",
+      "original_host_sha256": "c6e0068ff906840aca2dd3506b205751338cae443a2d503e5f60c3b98f59534d"
+    },
+    "shutdown_driver": {
+      "path": "verification/package-v3-linux-notices-chain-shutdown-driver.py",
+      "sha256": "59d6b101155b10bdb42d2ba106c88dbd58c56c5bde63baa8819cdacd30aa18fb"
+    },
+    "canonical": {
+      "path": "verification/package-v3-linux-notices-final.json",
+      "sha256": "3a25fd4b2f77556b844a648cec36b4b50218c004c8220639671461abbc1eed62"
+    }
+  },
+  "console_transport_note": "One observed hrtimer kernel line interrupted the base64 manifest stream. Only that exact kernel-message shape was removed; gzip CRC and the preannounced whole manifest SHA287ed457...38ac47 matched. No captured application gate or installer log was changed."
+}

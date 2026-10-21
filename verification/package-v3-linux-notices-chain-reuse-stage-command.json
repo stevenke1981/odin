@@ -1,0 +1,7 @@
+{
+  "command": "set -eu\ntest ! -e /opt/odin-delivery/v3-notices-02\ncd /opt/odin-transfer\ncurl --fail --silent --show-error http://10.0.2.2:47652/original-functional-canonical-c1a9.json -o original-functional-canonical-c1a9.json\ncurl --fail --silent --show-error http://10.0.2.2:47652/original-functional-transfer-receipt.json -o original-functional-transfer-receipt.json\ncurl --fail --silent --show-error http://10.0.2.2:47652/reuse-linux-application-gates-notices-v3.py -o reuse-linux-application-gates-notices-v3.py\nsha256sum --check <<'EOF'\nc1a9f4a750660873c55be1294a431c048fa3f0094c6f1a314d46f448cb62af93  original-functional-canonical-c1a9.json\nce0e8d15fcef61952bacab1a1a4ed6f8d06993d911101ce256a01d5dead68be6  original-functional-transfer-receipt.json\nd13dbcc972a91acb82114d8e46bc73f93396e0bc8dab53e95474c9901cc12dcf  reuse-linux-application-gates-notices-v3.py\nEOF\ninstall -d -o odin-qa -g odin-qa /opt/odin-delivery/v3-notices-02\nrunuser -u odin-qa -- python3 /opt/odin-transfer/reuse-linux-application-gates-notices-v3.py\n",
+  "exit_code": 0,
+  "timed_out": false,
+  "serial": "127.0.0.1:47651",
+  "output": "notices-application-gates-reuse-stage.txt"
+}

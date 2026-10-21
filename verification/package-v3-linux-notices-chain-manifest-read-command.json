@@ -1,0 +1,7 @@
+{
+  "command": "set -eu\ntest \"$(cat /opt/odin-transfer/notices-package-job.exit)\" = 0\npython3 - <<'PY'\nimport base64,gzip,hashlib,json,pathlib\npath=pathlib.Path('/opt/odin-notice-export/manifest-0fe03ba.json')\ndata=path.read_bytes();manifest=json.loads(data)\nprint('NOTICES_MANIFEST_BEGIN')\nprint(base64.b64encode(gzip.compress(data,mtime=0)).decode('ascii'))\nprint('NOTICES_MANIFEST_END')\nprint(json.dumps({'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data),'files':len(manifest['files']),'total_artifact_bytes':sum(row['bytes'] for row in manifest['files'])}))\nreport=json.loads(pathlib.Path('/opt/odin-notice-export/v3-0fe03ba/linux-validation.json').read_text())\nprint(json.dumps({'status':report['status'],'artifacts':report['artifacts'],'inventory':report['payload_inventory'],'lifecycle':report['installer_lifecycle']}))\nPY\n",
+  "exit_code": 0,
+  "timed_out": false,
+  "serial": "127.0.0.1:47651",
+  "output": "notices-transfer-manifest-01.txt"
+}
