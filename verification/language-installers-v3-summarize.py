@@ -15,7 +15,7 @@ PREVIOUS_DOCUMENTATION = '75c38f8'
 LINUX_CANONICAL_REPORT = 'verification/package-v3-linux-final.json'
 LINUX_BINARY_SHA256 = None  # Set only after the fixed-source ELF actually builds and runs.
 LINUX_TARGET = 'x86_64-unknown-linux-musl'
-PACKAGING_REVISION = PRODUCT_REVISION
+PACKAGING_REVISION = 'a8399993d7c528ad4858b2e4e246e5994eab4bb8'
 
 
 def sha(path):
@@ -146,6 +146,7 @@ def linux_evidence(name):
     result['acceptance_results'] = criteria
     result['app_build_revision'] = value['app_build_revision']
     result['packaging_revision'] = value.get('packaging_revision')
+    result['bundled_docs_revision'] = value.get('bundled_docs_revision')
     return result
 
 
