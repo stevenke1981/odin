@@ -37,6 +37,9 @@ Move／Inline 是真正 LSP edit 的安全入口；後端未提供對應 action 
 需要 Rust **1.90.0**、rustfmt、Clippy 與 Windows MSVC C/C++ linker。
 `Cargo.lock` 已由真實 Cargo 產生並納入版本控制，一般建置使用 `--locked`。
 Python 僅用於開發驗收；Odin 的檔案／記憶功能不需要 Python 或 Serena。
+Linux 開發驗收也需讓 `python` 指向 Python 3；Debian 12 可安裝
+`python-is-python3`。部分協定 fixtures 固定使用此名稱，僅設定
+`ODIN_PYTHON=python3` 不足以啟動所有測試。
 
 ```powershell
 cargo build --workspace --release --locked
