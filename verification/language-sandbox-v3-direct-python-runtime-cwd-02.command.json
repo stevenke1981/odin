@@ -1,0 +1,21 @@
+{
+  "command": [
+    "python",
+    "-u",
+    "verification/language-sandbox-v3-direct-diagnostic.py",
+    "--probe",
+    "python-runtime-cwd",
+    "--output",
+    "verification/language-sandbox-v3-direct-python-runtime-cwd-02.json"
+  ],
+  "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin",
+  "started_utc": "2026-10-21T02:56:45.8807733Z",
+  "finished_utc": "2026-10-21T02:56:46.7296873Z",
+  "exit_code": 0,
+  "scope": "DIRECT_NATIVE_BACKEND_DIAGNOSTIC_ONLY",
+  "driver_sha256": "868a382921edc6fd47b310fa44d5a1671fe15e4bfe899508a7f63a681b2da2ab",
+  "harness_sha256": "21f0ddfb07eaecdc1da49cb9730d102e63b7cf1157abf0b73a93b2d361f6324b",
+  "report_sha256": "3d7a0981711d4d43232f4209a41e92fcf1b4a83c2e1623dc01bf0a67a7c78480",
+  "stdout_sha256": "ff4640b289cfab6daf1f6a7c5fe0c7696fbd4a9c21338425a8e54135824ffccb",
+  "line_endings_normalized_before_hash_binding": true
+}

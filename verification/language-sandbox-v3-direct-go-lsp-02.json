@@ -1,0 +1,355 @@
+{
+  "scope": "DIRECT_NATIVE_BACKEND_DIAGNOSTIC_ONLY",
+  "odin_mcp_checks": 0,
+  "probe": "go-lsp",
+  "source_sha256": "868a382921edc6fd47b310fa44d5a1671fe15e4bfe899508a7f63a681b2da2ab",
+  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+  "status": "OBSERVED",
+  "program_sha256": "73d07cc17551502d9df4c64d981e2e30239dffb74596c3338305338b3b7e3340",
+  "policy_sha256": "aede545ee6aff6e745cdbd13ea933163edc8c9ed6f7570920d91efe0b5cfe3b1",
+  "command": [
+    "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64\\wxc-exec.exe",
+    "--config",
+    "<fixture>\\policies\\fixed-policy.json",
+    "--",
+    "E:\\odin\\.odin\\validation-tools\\go-work\\bin\\gopls.exe"
+  ],
+  "policy": {
+    "version": "1.0.0",
+    "containment": "processcontainer",
+    "lifecycle": {
+      "destroyOnExit": true,
+      "preservePolicy": false
+    },
+    "process": {
+      "cwd": "<fixture>\\projects\\go_diagnostic",
+      "env": [
+        "PATH=C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell;C:\\Users\\steven\\.codex\\tmp\\arg0-windows\\codex-arg0BMy7vX;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\libheif\\libheif\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\jxrlib\\jxrlib\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\poppler\\Library\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\bin\\override;C:\\Python314\\Scripts\\;C:\\Python314\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\nodejs\\;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\GitHub CLI\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Archiver;C:\\Program Files\\Downloader;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\python-3.13.16\\tools\\Scripts;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\python-3.13.16\\tools;C:\\Users\\steven\\.cargo\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\node-24.21.0\\node-v24.21.0-win-x64;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\gh-2.102.0\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\git-2.56.0.2\\cmd;C:\\Users\\steven\\AppData\\Roaming\\npm;C:\\Program Files\\Godot;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg.Essentials_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-9.0.1-essentials_build\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\soundx;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\bin\\fallback;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd;C:\\Users\\steven\\AppData\\Local\\OpenAI\\Codex\\bin\\ce4759538b7f2f1a;C:\\Users\\steven\\AppData\\Local\\OpenAI\\Codex\\bin\\896a0166b774037a",
+        "SYSTEMROOT=C:\\WINDOWS",
+        "SystemRoot=C:\\WINDOWS",
+        "WINDIR=C:\\WINDOWS",
+        "COMSPEC=C:\\WINDOWS\\system32\\cmd.exe",
+        "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.CPL",
+        "USERPROFILE=<fixture>\\private-scratch",
+        "TEMP=<fixture>\\private-scratch",
+        "TMP=<fixture>\\private-scratch",
+        "APPDATA=<fixture>\\private-scratch",
+        "LOCALAPPDATA=<fixture>\\private-scratch",
+        "LANG=C.UTF-8",
+        "LC_ALL=C.UTF-8",
+        "ProgramFiles=C:\\Program Files",
+        "ProgramFiles(x86)=C:\\Program Files (x86)",
+        "ProgramW6432=C:\\Program Files",
+        "ProgramData=C:\\ProgramData",
+        "ALLUSERSPROFILE=C:\\ProgramData",
+        "GOTOOLCHAIN=local",
+        "GOROOT=E:\\odin\\.odin\\validation-tools\\go\\go",
+        "GOPATH=<fixture>\\backend-cache\\go_diagnostic\\go-path",
+        "GOCACHE=<fixture>\\backend-cache\\go_diagnostic\\go-cache",
+        "GOMODCACHE=<fixture>\\backend-cache\\go_diagnostic\\go-modules",
+        "GOTELEMETRY=off",
+        "HOME=<fixture>\\private-scratch",
+        "DOTNET_CLI_TELEMETRY_OPTOUT=1",
+        "DOTNET_GENERATE_ASPNET_CERTIFICATE=false"
+      ],
+      "inheritDefaultEnv": false,
+      "timeout": 25000
+    },
+    "filesystem": {
+      "readonlyPaths": [
+        "<fixture>\\projects\\go_diagnostic",
+        "E:\\odin\\.odin\\validation-tools\\go-work\\bin",
+        "E:\\odin\\.odin\\validation-tools\\go\\go"
+      ],
+      "readwritePaths": [
+        "<fixture>\\backend-cache\\go_diagnostic",
+        "<fixture>\\private-scratch"
+      ],
+      "deniedPaths": [
+        "<fixture>\\policies"
+      ]
+    },
+    "fallback": {
+      "allowDaclMutation": false
+    },
+    "network": {
+      "egress": {
+        "default": "deny"
+      },
+      "ingress": {
+        "default": "deny",
+        "hostLoopback": "deny"
+      }
+    },
+    "ui": {
+      "disable": false,
+      "clipboard": "none",
+      "injection": false
+    },
+    "telemetry": {
+      "enabled": false
+    }
+  },
+  "explicit_host_allow_ui": true,
+  "profile_info": {},
+  "initialize": {
+    "jsonrpc": "2.0",
+    "result": {
+      "capabilities": {
+        "textDocumentSync": {
+          "openClose": true,
+          "change": 2,
+          "save": {}
+        },
+        "completionProvider": {
+          "triggerCharacters": [
+            "."
+          ]
+        },
+        "hoverProvider": true,
+        "signatureHelpProvider": {
+          "triggerCharacters": [
+            "(",
+            ","
+          ],
+          "retriggerCharacters": [
+            ")"
+          ]
+        },
+        "definitionProvider": true,
+        "typeDefinitionProvider": true,
+        "implementationProvider": true,
+        "referencesProvider": true,
+        "documentHighlightProvider": true,
+        "documentSymbolProvider": true,
+        "codeActionProvider": true,
+        "codeLensProvider": {},
+        "documentLinkProvider": {},
+        "workspaceSymbolProvider": true,
+        "documentFormattingProvider": true,
+        "renameProvider": true,
+        "foldingRangeProvider": true,
+        "selectionRangeProvider": true,
+        "executeCommandProvider": {
+          "commands": [
+            "gopls.add_dependency",
+            "gopls.add_import",
+            "gopls.add_telemetry_counters",
+            "gopls.add_test",
+            "gopls.apply_fix",
+            "gopls.assembly",
+            "gopls.change_signature",
+            "gopls.check_upgrades",
+            "gopls.client_open_url",
+            "gopls.diagnose_files",
+            "gopls.doc",
+            "gopls.dragon_slayer",
+            "gopls.edit_go_directive",
+            "gopls.extract_to_new_file",
+            "gopls.fetch_vulncheck_result",
+            "gopls.free_symbols",
+            "gopls.gc_details",
+            "gopls.generate",
+            "gopls.go_get_package",
+            "gopls.implement_interface",
+            "gopls.list_imports",
+            "gopls.list_known_packages",
+            "gopls.lsp",
+            "gopls.maybe_prompt_for_telemetry",
+            "gopls.mem_stats",
+            "gopls.modify_tags",
+            "gopls.modules",
+            "gopls.move_declaration",
+            "gopls.move_type",
+            "gopls.package_symbols",
+            "gopls.packages",
+            "gopls.regenerate_cgo",
+            "gopls.remove_dependency",
+            "gopls.reset_go_mod_diagnostics",
+            "gopls.resolve_target",
+            "gopls.run_go_work_command",
+            "gopls.run_govulncheck",
+            "gopls.run_tests",
+            "gopls.scan_imports",
+            "gopls.split_package",
+            "gopls.start_debugging",
+            "gopls.start_profile",
+            "gopls.stop_profile",
+            "gopls.tidy",
+            "gopls.update_go_sum",
+            "gopls.upgrade_dependency",
+            "gopls.vendor",
+            "gopls.views",
+            "gopls.vulncheck",
+            "gopls.workspace_stats"
+          ]
+        },
+        "callHierarchyProvider": true,
+        "semanticTokensProvider": {
+          "legend": {
+            "tokenTypes": [
+              "namespace",
+              "type",
+              "typeParameter",
+              "parameter",
+              "property",
+              "variable",
+              "function",
+              "method",
+              "macro",
+              "keyword",
+              "comment",
+              "string",
+              "number",
+              "operator",
+              "label"
+            ],
+            "tokenModifiers": [
+              "definition",
+              "readonly",
+              "defaultLibrary",
+              "static",
+              "array",
+              "bool",
+              "chan",
+              "format",
+              "interface",
+              "map",
+              "number",
+              "pointer",
+              "signature",
+              "slice",
+              "string",
+              "struct",
+              "shadowing"
+            ]
+          },
+          "range": true,
+          "full": true
+        },
+        "typeHierarchyProvider": true,
+        "inlayHintProvider": {},
+        "workspace": {
+          "workspaceFolders": {
+            "supported": true,
+            "changeNotifications": "workspace/didChangeWorkspaceFolders"
+          },
+          "fileOperations": {
+            "didCreate": {
+              "filters": [
+                {
+                  "scheme": "file",
+                  "pattern": {
+                    "glob": "**/*.go"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "experimental": {
+          "interactiveResolveProvider": {
+            "kinds": [
+              "command"
+            ]
+          }
+        }
+      },
+      "serverInfo": {
+        "name": "gopls",
+        "version": "{\"GoVersion\":\"go1.27.3\",\"Path\":\"golang.org/x/tools/gopls\",\"Main\":{\"Path\":\"golang.org/x/tools/gopls\",\"Version\":\"v0.24.0\",\"Sum\":\"h1:nPO/LffYa4sP62Ueuema5PPnZPGaZjGl+vZGvbTek4g=\"},\"Deps\":[{\"Path\":\"github.com/BurntSushi/toml\",\"Version\":\"v1.6.0\",\"Sum\":\"h1:dRaEfpa2VI55EwlIW72hMRHdWouJeRF7TPYhI+AUQjk=\"},{\"Path\":\"github.com/fatih/camelcase\",\"Version\":\"v1.0.0\",\"Sum\":\"h1:hxNvNX/xYBp0ovncs8WyWZrOrpBNub/JfaMvbURyft8=\"},{\"Path\":\"github.com/fatih/gomodifytags\",\"Version\":\"v1.17.1-0.20250423142747-f3939df9aa3c\",\"Sum\":\"h1:dDSgAjoOMp8da3egfz0t2S+t8RGOpEmEXZubcGuc0Bg=\"},{\"Path\":\"github.com/fatih/structtag\",\"Version\":\"v1.2.0\",\"Sum\":\"h1:/OdNE99OxoI/PqaW/SuSK9uxxT3f/tcSZgon/ssNSx4=\"},{\"Path\":\"github.com/fsnotify/fsnotify\",\"Version\":\"v1.9.0\",\"Sum\":\"h1:2Ml+OJNzbYCTzsxtv8vKSFD9PbJjmhYF14k/jKC7S9k=\"},{\"Path\":\"github.com/google/jsonschema-go\",\"Version\":\"v0.4.3\",\"Sum\":\"h1:/DBOLZTfDow7pe2GmaJNhltueGTtDKICi8V8p+DQPd0=\"},{\"Path\":\"github.com/modelcontextprotocol/go-sdk\",\"Version\":\"v1.8.0\",\"Sum\":\"h1:KIvahhYqwtbeniWVPs3TcXEA7b8jEtwfBpOTAI+Urx4=\"},{\"Path\":\"github.com/segmentio/asm\",\"Version\":\"v1.2.1\",\"Sum\":\"h1:DTNbBqs57ioxAD4PrArqftgypG4/qNpXoJx8TVXxPR0=\"},{\"Path\":\"github.com/segmentio/encoding\",\"Version\":\"v0.5.4\",\"Sum\":\"h1:OW1VRern8Nw6ITAtwSZ7Idrl3MXCFwXHPgqESYfvNt0=\"},{\"Path\":\"github.com/yosida95/uritemplate/v3\",\"Version\":\"v3.0.2\",\"Sum\":\"h1:Ed3Oyj9yrmi9087+NczuL5BwkIc4wvTb5zIM+UJPGz4=\"},{\"Path\":\"golang.org/x/exp/typeparams\",\"Version\":\"v0.0.0-20260908205506-85c1c2202aba\",\"Sum\":\"h1:ZoZmFkcuQ289xJilBm9Ck3W+/okrhXc4LUpbtKFQE4k=\"},{\"Path\":\"golang.org/x/mod\",\"Version\":\"v0.41.0\",\"Sum\":\"h1:qJmnOUb4YB+FsEuM3HcWucdZASCPGhsX6uljO6pog0c=\"},{\"Path\":\"golang.org/x/oauth2\",\"Version\":\"v0.37.0\",\"Sum\":\"h1:JUlcxA8oAtauLfiH8FX2/FkAWHAdi0QtGCGc+hofE98=\"},{\"Path\":\"golang.org/x/sync\",\"Version\":\"v0.23.0\",\"Sum\":\"h1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\"},{\"Path\":\"golang.org/x/sys\",\"Version\":\"v0.48.0\",\"Sum\":\"h1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\"},{\"Path\":\"golang.org/x/telemetry\",\"Version\":\"v0.0.0-20260924152758-ed294f943157\",\"Sum\":\"h1:DftxASHKl6JolFPqoN+2WrFO53JvkHwRXvFqf8gsivA=\"},{\"Path\":\"golang.org/x/text\",\"Version\":\"v0.42.0\",\"Sum\":\"h1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\"},{\"Path\":\"golang.org/x/time\",\"Version\":\"v0.16.0\",\"Sum\":\"h1:vMb6ptszcQMkcwiRTAuNNU50gom6++Q/6gY2hDM6VDE=\"},{\"Path\":\"golang.org/x/tools\",\"Version\":\"v0.51.1-0.20261014163302-24a65270771e\",\"Sum\":\"h1:OKD783ebWgqIZn7EAQNP944SpADpjJ8k4XI3nJAeB4o=\"},{\"Path\":\"golang.org/x/vuln\",\"Version\":\"v1.8.0\",\"Sum\":\"h1:clG4qBU6zH5VKjti8n5j8BBuYzoSha392xXMkXS351U=\"},{\"Path\":\"honnef.co/go/tools\",\"Version\":\"v0.8.1\",\"Sum\":\"h1:+JKf3xJ1ni4CwrhVg4/pqsfPGP6vNAXcKbMXJodYx3w=\"},{\"Path\":\"mvdan.cc/gofumpt\",\"Version\":\"v0.12.0\",\"Sum\":\"h1:1Lbudkz2kpM9Cjz2pL4M19u7q+GaEhCTNf7N9mfpcho=\"},{\"Path\":\"mvdan.cc/xurls/v2\",\"Version\":\"v2.6.0\",\"Sum\":\"h1:3NTZpeTxYVWNSokW3MKeyVkz/j7uYXYiMtXRUfmjbgI=\"}],\"Settings\":[{\"Key\":\"-buildmode\",\"Value\":\"exe\"},{\"Key\":\"-compiler\",\"Value\":\"gc\"},{\"Key\":\"CGO_ENABLED\",\"Value\":\"0\"},{\"Key\":\"GOARCH\",\"Value\":\"amd64\"},{\"Key\":\"GOOS\",\"Value\":\"windows\"},{\"Key\":\"GOAMD64\",\"Value\":\"v1\"}],\"Version\":\"v0.24.0\"}"
+      }
+    },
+    "id": 1
+  },
+  "symbols": {
+    "jsonrpc": "2.0",
+    "error": {
+      "code": 0,
+      "message": "no views"
+    },
+    "id": 2
+  },
+  "shutdown": {
+    "jsonrpc": "2.0",
+    "result": null,
+    "id": 3
+  },
+  "events": [
+    {
+      "jsonrpc": "2.0",
+      "method": "window/showMessage",
+      "params": {
+        "type": 4,
+        "message": "Loading packages..."
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/showMessage",
+      "params": {
+        "type": 3,
+        "message": "Error loading packages: err: go command required, not found: exec: \"go\": executable file not found in %PATH%: stderr: "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/showMessage",
+      "params": {
+        "type": 1,
+        "message": "Error loading workspace folders (expected 1, got 0)\nfailed to load view for file:///C:/Users/steven/AppData/Local/Temp/odin-native-diagnostic-pwk38ny5/projects/go_diagnostic: err: go command required, not found: exec: \"go\": executable file not found in %PATH%: stderr: \n"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/showMessage",
+      "params": {
+        "type": 4,
+        "message": "Loading packages..."
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/showMessage",
+      "params": {
+        "type": 3,
+        "message": "Error loading packages: err: go command required, not found: exec: \"go\": executable file not found in %PATH%: stderr: "
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "window/showMessage",
+      "params": {
+        "type": 1,
+        "message": "Error loading workspace folders (expected 1, got 0)\nfailed to load view for file:///C:/Users/steven/AppData/Local/Temp/odin-native-diagnostic-pwk38ny5/projects/go_diagnostic: err: go command required, not found: exec: \"go\": executable file not found in %PATH%: stderr: \n"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "textDocument/publishDiagnostics",
+      "params": {
+        "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-native-diagnostic-pwk38ny5/projects/go_diagnostic/sample.go",
+        "version": 1,
+        "diagnostics": [
+          {
+            "range": {
+              "start": {
+                "line": 0,
+                "character": 8
+              },
+              "end": {
+                "line": 0,
+                "character": 15
+              }
+            },
+            "severity": 2,
+            "source": "go list",
+            "message": "No active builds contain <fixture>\\projects\\go_diagnostic\\sample.go: consider opening a new workspace folder containing it"
+          }
+        ]
+      }
+    }
+  ],
+  "stderr": [],
+  "native_exit_code": 0
+}

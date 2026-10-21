@@ -265,6 +265,17 @@ identified the installed SDK, but Roslyn's BuildHost named-pipe connection threw
 acceptance in this attempt. Later fixes and candidate runs require new reports;
 these failures remain unchanged.
 
+The separate `language-sandbox-v3-direct-*-02` reports are diagnostic native
+executor runs, with **zero Odin/MCP acceptance checks**. Java's security probe
+identified a denied `WindowsPath.toRealPath` on the installed `java.security`.
+Python still failed `chdir` even when its initial working directory was the same
+installed runtime directory. The upstream [MXC volume-root metadata issue](https://github.com/microsoft/mxc/issues/1109)
+describes a related BaseContainer limitation. No drive-root grant or host ACL
+change was added. The first direct Go probe omitted the SDK PATH prefix, so its
+`go not found` message diagnoses that probe's setup; it does not establish the
+cause of the Odin run's `no views` failure. C#'s captured named-pipe denial is
+also distinct from missing writable filesystem caches.
+
 `verification/language-sandbox-v3-runner.ps1` records the exact driver argv,
 binary/harness/runner hashes, actual exit code, raw stdout and transcript. It
 requires fresh output names, normalizes text to LF before final hash binding,

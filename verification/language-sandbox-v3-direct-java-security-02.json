@@ -1,0 +1,106 @@
+{
+  "scope": "DIRECT_NATIVE_BACKEND_DIAGNOSTIC_ONLY",
+  "odin_mcp_checks": 0,
+  "probe": "java-security",
+  "source_sha256": "868a382921edc6fd47b310fa44d5a1671fe15e4bfe899508a7f63a681b2da2ab",
+  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+  "status": "OBSERVED",
+  "program_sha256": "3670faa7de6af1f8656eafe15734c020496f0e934464041c3a8c57f41d5c25f2",
+  "policy_sha256": "ec04d2a1f3e2d03449d85e4efcfe7a402fcf4841c7f7f57c471df4673792fa8b",
+  "command": [
+    "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64\\wxc-exec.exe",
+    "--config",
+    "<fixture>\\policies\\fixed-policy.json",
+    "--",
+    "E:\\odin\\.odin\\validation-tools\\jdk\\jdk-25.0.4.1+1\\bin\\java.exe",
+    "-Djava.io.tmpdir=<fixture>\\backend-cache\\java_diagnostic\\tmp",
+    "-Duser.language=en",
+    "-Duser.country=US",
+    "-Djava.security.debug=properties,provider",
+    "-XshowSettings:security",
+    "--version"
+  ],
+  "policy": {
+    "version": "1.0.0",
+    "containment": "processcontainer",
+    "lifecycle": {
+      "destroyOnExit": true,
+      "preservePolicy": false
+    },
+    "process": {
+      "cwd": "<fixture>\\projects\\java_diagnostic",
+      "env": [
+        "PATH=C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell;C:\\Users\\steven\\.codex\\tmp\\arg0-windows\\codex-arg0BMy7vX;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\libheif\\libheif\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\jxrlib\\jxrlib\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\poppler\\Library\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\bin\\override;C:\\Python314\\Scripts\\;C:\\Python314\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\nodejs\\;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\GitHub CLI\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Archiver;C:\\Program Files\\Downloader;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\python-3.13.16\\tools\\Scripts;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\python-3.13.16\\tools;C:\\Users\\steven\\.cargo\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\node-24.21.0\\node-v24.21.0-win-x64;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\gh-2.102.0\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\git-2.56.0.2\\cmd;C:\\Users\\steven\\AppData\\Roaming\\npm;C:\\Program Files\\Godot;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg.Essentials_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-9.0.1-essentials_build\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\soundx;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\bin\\fallback;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd;C:\\Users\\steven\\AppData\\Local\\OpenAI\\Codex\\bin\\ce4759538b7f2f1a;C:\\Users\\steven\\AppData\\Local\\OpenAI\\Codex\\bin\\896a0166b774037a",
+        "SYSTEMROOT=C:\\WINDOWS",
+        "SystemRoot=C:\\WINDOWS",
+        "WINDIR=C:\\WINDOWS",
+        "COMSPEC=C:\\WINDOWS\\system32\\cmd.exe",
+        "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.CPL",
+        "USERPROFILE=<fixture>\\private-scratch",
+        "TEMP=<fixture>\\private-scratch",
+        "TMP=<fixture>\\private-scratch",
+        "APPDATA=<fixture>\\private-scratch",
+        "LOCALAPPDATA=<fixture>\\private-scratch",
+        "LANG=C.UTF-8",
+        "LC_ALL=C.UTF-8",
+        "ProgramFiles=C:\\Program Files",
+        "ProgramFiles(x86)=C:\\Program Files (x86)",
+        "ProgramW6432=C:\\Program Files",
+        "ProgramData=C:\\ProgramData",
+        "ALLUSERSPROFILE=C:\\ProgramData",
+        "GOTOOLCHAIN=local",
+        "HOME=<fixture>\\private-scratch",
+        "GOTELEMETRY=off",
+        "DOTNET_CLI_TELEMETRY_OPTOUT=1",
+        "DOTNET_GENERATE_ASPNET_CERTIFICATE=false"
+      ],
+      "inheritDefaultEnv": false,
+      "timeout": 25000
+    },
+    "filesystem": {
+      "readonlyPaths": [
+        "<fixture>\\projects\\java_diagnostic",
+        "E:\\odin\\.odin\\validation-tools\\jdk\\jdk-25.0.4.1+1",
+        "E:\\odin\\.odin\\validation-tools\\jdtls"
+      ],
+      "readwritePaths": [
+        "<fixture>\\backend-cache\\java_diagnostic",
+        "<fixture>\\private-scratch"
+      ],
+      "deniedPaths": [
+        "<fixture>\\policies"
+      ]
+    },
+    "fallback": {
+      "allowDaclMutation": false
+    },
+    "network": {
+      "egress": {
+        "default": "deny"
+      },
+      "ingress": {
+        "default": "deny",
+        "hostLoopback": "deny"
+      }
+    },
+    "ui": {
+      "disable": false,
+      "clipboard": "none",
+      "injection": false
+    },
+    "telemetry": {
+      "enabled": false
+    }
+  },
+  "explicit_host_allow_ui": true,
+  "profile_info": {
+    "configuration_seed_sha256": "3ab0be4f6c4355f923c6c4278e113d28fb417fba79b3c9a0eb34d66ef998a63a",
+    "autobuild": false,
+    "external_configuration_and_workspace": true
+  },
+  "native_exit_code": 1,
+  "stdout": "",
+  "stderr": "Security settings:\r\n    Security properties:\r\nException in thread \"main\" java.lang.InternalError: Error loading java.security file\r\n\tat java.base/java.security.Security$SecPropLoader.loadMaster(Security.java:142)\r\n\tat java.base/java.security.Security$SecPropLoader.loadAll(Security.java:120)\r\n\tat java.base/java.security.Security.initialize(Security.java:326)\r\n\tat java.base/java.security.Security.<clinit>(Security.java:315)\r\n\tat java.base/jdk.internal.misc.Unsafe.ensureClassInitialized0(Native Method)\r\n\tat java.base/jdk.internal.misc.Unsafe.ensureClassInitialized(Unsafe.java:1169)\r\n\tat java.base/java.lang.invoke.MethodHandles$Lookup.ensureInitialized(MethodHandles.java:2748)\r\n\tat java.base/jdk.internal.access.SharedSecrets.ensureClassInitialized(SharedSecrets.java:499)\r\n\tat java.base/jdk.internal.access.SharedSecrets.getJavaSecurityPropertiesAccess(SharedSecrets.java:305)\r\n\tat java.base/sun.launcher.SecuritySettings.printSecurityProperties(SecuritySettings.java:88)\r\n\tat java.base/sun.launcher.SecuritySettings.printAllSecurityConfig(SecuritySettings.java:81)\r\n\tat java.base/sun.launcher.SecuritySettings.printSecuritySettings(SecuritySettings.java:66)\r\n\tat java.base/sun.launcher.LauncherHelper.showSettings(LauncherHelper.java:171)\r\nCaused by: java.nio.file.AccessDeniedException: E:\\odin\\.odin\\validation-tools\\jdk\\jdk-25.0.4.1+1\\conf\\security\\java.security\r\n\tat java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:89)\r\n\tat java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:96)\r\n\tat java.base/sun.nio.fs.WindowsLinkSupport.getRealPath(WindowsLinkSupport.java:280)\r\n\tat java.base/sun.nio.fs.WindowsPath.toRealPath(WindowsPath.java:907)\r\n\tat java.base/sun.nio.fs.WindowsPath.toRealPath(WindowsPath.java:42)\r\n\tat java.base/java.security.Security$SecPropLoader.loadFromPath(Security.java:269)\r\n\tat java.base/java.security.Security$SecPropLoader.loadMaster(Security.java:139)\r\n\t... 12 more\r\n",
+  "stdout_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_raw_sha256": "c63d4ec901733766707f3c23352b44851812f995b7a846af9f61162deb9b5bc1"
+}

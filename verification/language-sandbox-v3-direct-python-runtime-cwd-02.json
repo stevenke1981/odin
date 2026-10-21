@@ -1,0 +1,126 @@
+{
+  "scope": "DIRECT_NATIVE_BACKEND_DIAGNOSTIC_ONLY",
+  "odin_mcp_checks": 0,
+  "probe": "python-runtime-cwd",
+  "source_sha256": "868a382921edc6fd47b310fa44d5a1671fe15e4bfe899508a7f63a681b2da2ab",
+  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+  "status": "OBSERVED_FAILURE",
+  "program_sha256": "2ad12dec08161c0c3bc76e7cf2db9cfcab688ede73e49c5bb21b75be7a97847d",
+  "policy_sha256": "9acc4c4567c111c3b647ea42ee735a881babdcf42059b67aab4dca341e4ab420",
+  "command": [
+    "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64\\wxc-exec.exe",
+    "--config",
+    "<fixture>\\policies\\fixed-policy.json",
+    "--",
+    "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\nodejs_wheel\\node.exe",
+    "--preserve-symlinks",
+    "--preserve-symlinks-main",
+    "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\langserver.index.js",
+    "--stdio"
+  ],
+  "policy": {
+    "version": "1.0.0",
+    "containment": "processcontainer",
+    "lifecycle": {
+      "destroyOnExit": true,
+      "preservePolicy": false
+    },
+    "process": {
+      "cwd": "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist",
+      "env": [
+        "PATH=C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell;C:\\Users\\steven\\.codex\\tmp\\arg0-windows\\codex-arg0BMy7vX;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\libheif\\libheif\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\jxrlib\\jxrlib\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\poppler\\Library\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\bin\\override;C:\\Python314\\Scripts\\;C:\\Python314\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\nodejs\\;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\GitHub CLI\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Archiver;C:\\Program Files\\Downloader;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\python-3.13.16\\tools\\Scripts;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\python-3.13.16\\tools;C:\\Users\\steven\\.cargo\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\node-24.21.0\\node-v24.21.0-win-x64;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\gh-2.102.0\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\git-2.56.0.2\\cmd;C:\\Users\\steven\\AppData\\Roaming\\npm;C:\\Program Files\\Godot;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg.Essentials_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-9.0.1-essentials_build\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\soundx;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\bin\\fallback;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin;C:\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd;C:\\Users\\steven\\AppData\\Local\\OpenAI\\Codex\\bin\\ce4759538b7f2f1a;C:\\Users\\steven\\AppData\\Local\\OpenAI\\Codex\\bin\\896a0166b774037a",
+        "SYSTEMROOT=C:\\WINDOWS",
+        "SystemRoot=C:\\WINDOWS",
+        "WINDIR=C:\\WINDOWS",
+        "COMSPEC=C:\\WINDOWS\\system32\\cmd.exe",
+        "PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.CPL",
+        "USERPROFILE=<fixture>\\private-scratch",
+        "TEMP=<fixture>\\private-scratch",
+        "TMP=<fixture>\\private-scratch",
+        "APPDATA=<fixture>\\private-scratch",
+        "LOCALAPPDATA=<fixture>\\private-scratch",
+        "LANG=C.UTF-8",
+        "LC_ALL=C.UTF-8",
+        "ProgramFiles=C:\\Program Files",
+        "ProgramFiles(x86)=C:\\Program Files (x86)",
+        "ProgramW6432=C:\\Program Files",
+        "ProgramData=C:\\ProgramData",
+        "ALLUSERSPROFILE=C:\\ProgramData",
+        "GOTOOLCHAIN=local",
+        "HOME=<fixture>\\private-scratch",
+        "GOTELEMETRY=off",
+        "DOTNET_CLI_TELEMETRY_OPTOUT=1",
+        "DOTNET_GENERATE_ASPNET_CERTIFICATE=false"
+      ],
+      "inheritDefaultEnv": false,
+      "timeout": 25000
+    },
+    "filesystem": {
+      "readonlyPaths": [
+        "<fixture>\\projects\\python_diagnostic",
+        "E:\\odin\\.odin\\validation-tools\\python",
+        "C:\\Python314"
+      ],
+      "readwritePaths": [
+        "<fixture>\\private-scratch"
+      ],
+      "deniedPaths": [
+        "<fixture>\\policies"
+      ]
+    },
+    "fallback": {
+      "allowDaclMutation": false
+    },
+    "network": {
+      "egress": {
+        "default": "deny"
+      },
+      "ingress": {
+        "default": "deny",
+        "hostLoopback": "deny"
+      }
+    },
+    "ui": {
+      "disable": false,
+      "clipboard": "none",
+      "injection": false
+    },
+    "telemetry": {
+      "enabled": false
+    }
+  },
+  "explicit_host_allow_ui": true,
+  "profile_info": {
+    "entry_module": "E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\langserver.index.js",
+    "entry_module_sha256": "f200762078eb9880faf421a5b30f9ef3055b1d85c6f10780d75db4da8d8499f1",
+    "installed_launcher_equivalent": "basedpyright.run_node -> nodejs_wheel.executable.node"
+  },
+  "error": "Peer exited; stderr=['node:internal/bootstrap/switches/does_own_process_state:128', '  rawMethods.chdir(directory);', '             ^', '', \"Error: EPERM: operation not permitted, chdir 'E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist' -> 'e:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist'\", '    at wrappedChdir (node:internal/bootstrap/switches/does_own_process_state:128:14)', '    at process.chdir (node:internal/worker:115:5)', '    at RealFileSystem.chdir (E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\\\\pyright-langserver.js:112778:21)', '    at PyrightFileSystem.chdir (E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\\\\pyright-langserver.js:142401:21)', '    at new LanguageServerBase (E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\\\\pyright-langserver.js:116767:21)', '    at new RealLanguageServer (E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\\\\pyright-langserver.js:142583:9)', '    at new PyrightServer (E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\\\\pyright-langserver.js:142856:9)', '    at E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\\\\pyright-langserver.js:129116:43', '    at run (E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\\\\pyright-langserver.js:129146:9)', '    at async main (E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist\\\\pyright-langserver.js:129116:5) {', '  errno: -4048,', \"  code: 'EPERM',\", \"  syscall: 'chdir',\", \"  path: 'E:\\\\\\\\odin\\\\\\\\.odin\\\\\\\\validation-tools\\\\\\\\python\\\\\\\\Lib\\\\\\\\site-packages\\\\\\\\basedpyright\\\\\\\\dist',\", \"  dest: 'e:\\\\\\\\odin\\\\\\\\.odin\\\\\\\\validation-tools\\\\\\\\python\\\\\\\\Lib\\\\\\\\site-packages\\\\\\\\basedpyright\\\\\\\\dist'\", '}', '', 'Node.js v24.19.0']",
+  "events": [],
+  "stderr": [
+    "node:internal/bootstrap/switches/does_own_process_state:128",
+    "  rawMethods.chdir(directory);",
+    "             ^",
+    "",
+    "Error: EPERM: operation not permitted, chdir 'E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist' -> 'e:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist'",
+    "    at wrappedChdir (node:internal/bootstrap/switches/does_own_process_state:128:14)",
+    "    at process.chdir (node:internal/worker:115:5)",
+    "    at RealFileSystem.chdir (E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist\\pyright-langserver.js:112778:21)",
+    "    at PyrightFileSystem.chdir (E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist\\pyright-langserver.js:142401:21)",
+    "    at new LanguageServerBase (E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist\\pyright-langserver.js:116767:21)",
+    "    at new RealLanguageServer (E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist\\pyright-langserver.js:142583:9)",
+    "    at new PyrightServer (E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist\\pyright-langserver.js:142856:9)",
+    "    at E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist\\pyright-langserver.js:129116:43",
+    "    at run (E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist\\pyright-langserver.js:129146:9)",
+    "    at async main (E:\\odin\\.odin\\validation-tools\\python\\Lib\\site-packages\\basedpyright\\dist\\pyright-langserver.js:129116:5) {",
+    "  errno: -4048,",
+    "  code: 'EPERM',",
+    "  syscall: 'chdir',",
+    "  path: 'E:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist',",
+    "  dest: 'e:\\\\odin\\\\.odin\\\\validation-tools\\\\python\\\\Lib\\\\site-packages\\\\basedpyright\\\\dist'",
+    "}",
+    "",
+    "Node.js v24.19.0"
+  ],
+  "native_exit_code": 1
+}
