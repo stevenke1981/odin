@@ -1,0 +1,107 @@
+{
+  "status": "PASS",
+  "scope": "PUBLIC_SOURCE_REPOSITORY_SANDBOX_IDE_EXTENSION",
+  "url": "https://github.com/stevenke1981/odin",
+  "visibility": "PUBLIC",
+  "published_source_commit": "1fa510e945d73e2442cdf0f995f4e5cae6cb75b6",
+  "remote_matches_source_at_publication": true,
+  "github_api_commit": "1fa510e945d73e2442cdf0f995f4e5cae6cb75b6",
+  "anonymous_http_head_status": 200,
+  "anonymous_verified_url": "https://github.com/stevenke1981/odin/commit/1fa510e945d73e2442cdf0f995f4e5cae6cb75b6",
+  "github_actions_runs_observed": 0,
+  "cloud_ci_dispatched": false,
+  "observed_at_utc": "2026-10-21T02:18:45.695103+00:00",
+  "binary_release_created": false,
+  "source_push": {
+    "script": "scripts/publish_public.ps1",
+    "arguments": [
+      "-Execute",
+      "-ExpectedHead",
+      "1fa510e945d73e2442cdf0f995f4e5cae6cb75b6"
+    ],
+    "actual_exit_code": 0,
+    "output": "{\n  \"kind\": \"DOCUMENTATION_TRACEABILITY_ONLY\",\n  \"features\": 40,\n  \"serena_reference_tools\": 53,\n  \"runtime_checks_executed_by_this_script\": false,\n  \"errors\": [],\n  \"status\": \"PASS\"\n}\nChecked 436 manifest entries; mismatches=0\n{\"scope\": \"WORKFLOW_SOURCE_POLICY_ONLY\", \"status\": \"PASS\", \"errors\": []}\nTo https://github.com/stevenke1981/odin.git\n   9b71abc..1fa510e  HEAD -> main\nbranch 'main' set up to track 'origin/main'.\nPublished and verified 1fa510e945d73e2442cdf0f995f4e5cae6cb75b6 at https://github.com/stevenke1981/odin. No CI was dispatched.\n",
+    "output_sha256": "878006b2e8640fbc0c3174cb9776aa59e167fae779cb991f587d180ad13030d5",
+    "output_normalization": "Tee-captured actual PowerShell/Git output normalized to LF for this record."
+  },
+  "read_commands": [
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "1fa510e945d73e2442cdf0f995f4e5cae6cb75b6\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "ls-remote",
+        "origin",
+        "refs/heads/main"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "1fa510e945d73e2442cdf0f995f4e5cae6cb75b6\trefs/heads/main\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/stevenke1981/odin/commits/main",
+        "--jq",
+        ".sha"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "1fa510e945d73e2442cdf0f995f4e5cae6cb75b6\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "gh",
+        "repo",
+        "view",
+        "stevenke1981/odin",
+        "--json",
+        "url,isPrivate,defaultBranchRef"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "{\"defaultBranchRef\":{\"name\":\"main\"},\"isPrivate\":false,\"url\":\"https://github.com/stevenke1981/odin\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/stevenke1981/odin/actions/runs",
+        "--jq",
+        ".total_count"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "tested_product_source": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+  "tested_binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+  "all_40_requirements_accepted": false,
+  "followup_scope": "This receipt records the source implementation commit above. A later receipt/documentation-only commit may become remote HEAD; it does not alter the tested Rust sources."
+}

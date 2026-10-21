@@ -5955,7 +5955,7 @@
       "independent_rereview": "PASS_SOURCE_AND_FINAL_AUTHOR_EVIDENCE",
       "current_release_binary_smoke": "PASS_IN_C5084F4_17_GATE_REPORT",
       "current_packaging": "NOT_RUN_FOR_THIS_EXTENSION",
-      "current_remote_publication": "NOT_RUN",
+      "current_remote_publication": "PASS_SOURCE_COMMIT_1fa510e945d73e2442cdf0f995f4e5cae6cb75b6",
       "cloud_ci_executed": false,
       "stop_conditions": [
         "Resolve blocking independent-review findings and review the new immutable head before release.",
@@ -7190,6 +7190,20 @@
           "actual_driver_exit_code": 1
         }
       ]
+    },
+    "publication": {
+      "status": "PASS",
+      "scope": "PUBLIC_SOURCE_REPOSITORY_SANDBOX_IDE_EXTENSION",
+      "url": "https://github.com/stevenke1981/odin",
+      "visibility": "PUBLIC",
+      "published_source_commit": "1fa510e945d73e2442cdf0f995f4e5cae6cb75b6",
+      "remote_matches_source_at_publication": true,
+      "anonymous_http_head_status": 200,
+      "github_actions_runs_observed": 0,
+      "observed_at_utc": "2026-10-21T02:18:45.695103+00:00",
+      "binary_release_created": false,
+      "report": "verification/sandbox-ide-publication.json",
+      "report_sha256": "6ccbf80d01c35c9b3e8794f1f38e232a1d2e2663ead553d846bc5724c0411d0e"
     }
   },
   "final_integrated_candidate_scope": "Historical 72-tool baseline only; current source status is extension_evidence.latest_integrated_candidate. Historical 144-test PASS is not this extension run.",

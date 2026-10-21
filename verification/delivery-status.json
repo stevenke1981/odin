@@ -278,10 +278,18 @@
     "note": "The 72-tool baseline installer/portable proof does not certify the current 85-tool binary."
   },
   "publication": {
-    "status": "NOT_RUN_FOR_THIS_EXTENSION",
-    "scope": "PUBLIC_SOURCE_REPOSITORY",
+    "status": "PASS",
+    "scope": "PUBLIC_SOURCE_REPOSITORY_SANDBOX_IDE_EXTENSION",
     "url": "https://github.com/stevenke1981/odin",
-    "binary_release_created": false
+    "visibility": "PUBLIC",
+    "published_source_commit": "1fa510e945d73e2442cdf0f995f4e5cae6cb75b6",
+    "remote_matches_source_at_publication": true,
+    "anonymous_http_head_status": 200,
+    "github_actions_runs_observed": 0,
+    "observed_at_utc": "2026-10-21T02:18:45.695103+00:00",
+    "binary_release_created": false,
+    "report": "verification/sandbox-ide-publication.json",
+    "report_sha256": "6ccbf80d01c35c9b3e8794f1f38e232a1d2e2663ead553d846bc5724c0411d0e"
   },
   "historical_baseline": {
     "report": "verification/delivery-status-baseline-72.json",
