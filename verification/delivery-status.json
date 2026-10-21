@@ -1,82 +1,354 @@
 {
   "project": "Odin",
   "version": "0.2.0",
-  "release_class": "WINDOWS_NATIVE_PREVIEW",
-  "generated_at_utc": "2026-10-21T02:08:56.570727+00:00",
+  "release_class": "NATIVE_PREVIEW_WITH_WINDOWS_HOST_BLOCK",
+  "generated_at_utc": "2026-10-21T04:01:28.473016+00:00",
   "architecture": "Independent Rust toolkit with direct LSP/DAP; no Serena bridge",
   "workspace_crates": 4,
   "tool_contracts": 85,
   "serena_comparison_entries": 53,
-  "tested_source_head_sha": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
-  "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
-  "binary_metadata": {
-    "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
-    "external_tool_bridge": false,
-    "model_token_usage": "UNKNOWN",
-    "name": "Odin",
-    "profile": "release",
-    "revision": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
-    "schema_version": 1,
-    "standalone": true,
-    "target": "x86_64-pc-windows-msvc",
-    "tracked_source_dirty": false,
-    "version": "0.2.0"
-  },
-  "rust_test_declarations": 208,
-  "rust_tests_executed_passed": 200,
-  "rust_tests_ignored_in_workspace_run": 6,
-  "native_opt_in_tests_executed_passed": 3,
-  "ignored_scope": "Workspace ignored 3 native sandbox tests plus 3 real LSP probes. Native tests separately executed; language acceptance is bound to separate live-binary reports.",
-  "real_backend_checks_passed": 29,
-  "native_inspection_checks_passed": 30,
-  "source_independence": "PASS_STATIC_AND_DIRECT_BACKEND_EXECUTION",
-  "clean_machine_without_serena": "NOT_RUN",
-  "all_40_requirements_accepted": false,
-  "all_serena_features_implemented": false,
   "serena_dependency": false,
   "proven_faster_than_serena": false,
+  "all_40_requirements_accepted": false,
+  "all_serena_features_implemented": false,
   "cloud_ci_started": false,
+  "current_extension": {
+    "scope": "FIVE_ADDITIONAL_NATIVE_SANDBOX_LANGUAGES_AND_WINDOWS_LINUX_INSTALLERS",
+    "status": "PARTIAL",
+    "compiled_product_source_head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+    "product_source_hashes_match_build_revision": true,
+    "current_product_sha256": {
+      "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34",
+      "Cargo.toml": "8a009f775d201c8199a6d6f81963bb75dde59a48dc783ae6086a6a7407e21e36",
+      "crates/odin-core/Cargo.toml": "666ad092614df526ed1b8d3253eb2565cc42c4876bb457d62734d0eb2e52f1bf",
+      "crates/odin-core/src/config.rs": "0b35cd97b09bb64bd1adc3a4a72dff803c6e7d484cd5f48b972deac1a2a12675",
+      "crates/odin-core/src/error.rs": "f01697b5eec32006f7ea676833d30b52030a8ebd5f45974b9f33d67a6d34e90e",
+      "crates/odin-core/src/execution.rs": "155dfc311d0119f2460b7024f12911745e48729199dd9539ceffefca8c4bba88",
+      "crates/odin-core/src/languages.rs": "064cff38c7056babb767490a20100797ca7a9bcb1948c22c633c16f4bdc73d6e",
+      "crates/odin-core/src/lib.rs": "93046231f7ca483d76e7546528b67d9211e6252c8b8dd38ae64164171d301b8f",
+      "crates/odin-core/src/memory.rs": "2b613b41174cc41f6778cc4ddc0350eaa2cd0753b2f6b881c1ff4b7b96f7abf4",
+      "crates/odin-core/src/paths.rs": "126d10be43423a6ed531cfb952603c8092ed4252b9556650f95f290a6fff5f1b",
+      "crates/odin-core/src/process.rs": "b69e2cf89c9cf96b79f01b85ea67ad41a1f6dcdd89d5e9bedd6167062fb84fa8",
+      "crates/odin-core/src/sandbox.rs": "18be5bd8c1794375fbfd79f6ffe1d226167b0942614110c86d6cd4e92ea5f5d5",
+      "crates/odin-core/src/sandbox_policy.rs": "76fa4355780c363c1524b17713076a3a08b66384053916c1da22cbe0c05eb27a",
+      "crates/odin-core/src/search.rs": "fb9697e493a278593076982e243245b8d331ba71e18229b8796eac979c508274",
+      "crates/odin-core/src/store.rs": "326482e786fd8de8f02654dfc4682d160ddd70f61923788ea3503212b6f6f5fd",
+      "crates/odin-core/src/transaction.rs": "495b5344b6d68e8c1c2b82195fb532883fde9bf3484ac6401740eb7956fb52bb",
+      "crates/odin-core/tests/fixtures/os_sandbox_workload.rs": "7e8d8905257adfdee5e0b9b195e3d4d99306bae752cf7bf7f11136c0d9d6a09c",
+      "crates/odin-core/tests/fixtures/stdin_workload.rs": "93f2a2c2ccd2e9db54bf34b93723a4beeb8a86a60df9ce1a3ec66fd00dc53a86",
+      "crates/odin-core/tests/host_execution_policy.rs": "ba34311478079eca7d43a7904b228fa2d9c17697214cf26be162d6cb4302421a",
+      "crates/odin-core/tests/os_sandbox_native.rs": "5923210fc19435d8ad8a6ea2145c45c2b58a44e23ba42bf411fb32c133ff30a2",
+      "crates/odin-core/tests/process_contention.rs": "acde589bdadca4f41290883543f49a1a6b0710a607ea40cd06b33cf8ce1ac301",
+      "crates/odin-core/tests/stdin_execution.rs": "9d80ac47146314c2b7ab043b91a19391ec090f4819862131fb836c06ea3b1a31",
+      "crates/odin-engine/Cargo.toml": "68752a97bc3317afd4b125f406bdff03c236cfd948ca6a9fe441211e54c4150d",
+      "crates/odin-engine/src/flow.rs": "b82de18dd48b805c0c542f94d3b2c0c90ff64052ab69b61646a69b47125d206c",
+      "crates/odin-engine/src/formatter.rs": "79cd591119294b25a3624ccb4d97d349856abc57039a530f93a8c2f517fc7ecb",
+      "crates/odin-engine/src/ide.rs": "e2712e30f060d31acfd5ded6ac6e4e4d9f50071951df50638d84e104a4aaf5f1",
+      "crates/odin-engine/src/inspections.rs": "b01820e8ceb56194f69b6ff71caa2640ef88d25dfd328e3a69addecebf62a720",
+      "crates/odin-engine/src/lib.rs": "faa522453d4380f4db8ebfa79d54691c9d22b6088426632a999e69204b1b0bdb",
+      "crates/odin-engine/src/occurrences.rs": "9c5dacae294dea17cf1d14a729d57810d27f1492ac43292f98eb8331aff6b155",
+      "crates/odin-engine/src/refactor.rs": "41b8c8b9154b52118d2c47bd5df863330333818ff0d4b01efc0f707a115a5869",
+      "crates/odin-engine/src/results.rs": "d7b89fbaa048e8b1ec587a8596201e6c3292c6ab849df5d64ab2548be8747492",
+      "crates/odin-engine/src/schema.rs": "310e6e561a37a4b5f5f91c75185ac5332149503f2db72c8387b01f8cb11c8724",
+      "crates/odin-engine/src/shell.rs": "0d1e84f741657bcd01c62b8f0dd24527023e9491c7503f71d019a2766e68e751",
+      "crates/odin-engine/src/symbols.rs": "69056444f324be2bfdb7049b22adb9a490523bec98ff500168ee15f97c544c0f",
+      "crates/odin-engine/src/text_replace.rs": "8fa26da714905d4363ccfe60bc77196906b124a2322a8dcfdd15b035db4f654c",
+      "crates/odin-engine/tests/completion.rs": "3dddfde2c36edffaddc440c95d8181c3b09b9c131f93a7ce9a58d80eab4678af",
+      "crates/odin-engine/tests/debug_launch_policy.rs": "6d89bfab59065cfdeb68303b952fe8056a9b4a45068aa58558d01b5edf8ceb52",
+      "crates/odin-engine/tests/fixtures/dap_peer.py": "0aed8b9030405926f4ceed54fb39e899ca7b80d05ad9008ea35913aca45e28eb",
+      "crates/odin-engine/tests/fixtures/ide_peer.py": "2feab3f5012217bce061bc0c73a78a9cf1afbcb47e087db02aec15ece2e72beb",
+      "crates/odin-engine/tests/fixtures/lsp_peer.py": "213782f40d3ce2d08d1060a89cc8814510c016d6bfd56f4a4222bd084e68ea35",
+      "crates/odin-engine/tests/formatter_profiles.rs": "74db7ea48c617788acd7d7434d71c1fd46eb3483a8e894cc2322bb055a1d2a6e",
+      "crates/odin-engine/tests/ide_tools.rs": "6bfc26c527616e97f1b636902d3b7962a42d4445cc33e3270a48db4449a0e0d5",
+      "crates/odin-engine/tests/invariants.rs": "0c90fa06597051f18876611409092a4ec482e9b2041c4cc65267d2a517dca879",
+      "crates/odin-engine/tools.json": "d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea",
+      "crates/odin-protocol/Cargo.toml": "b89d0deb8c21224da781ccfa7549fe34f536c3561115750d9eb230accbef81fc",
+      "crates/odin-protocol/src/dap.rs": "23236ae9bd7476136ec17793cb1b4c2a7cc8404e7c17d5e36b124221ee82b05c",
+      "crates/odin-protocol/src/lib.rs": "99a75cf5cf2f0f42c91bb5d4344fa56ca54aab6d2c0c8bc498da1a1f9b98e68c",
+      "crates/odin-protocol/src/lsp.rs": "dc5d6d730c210d3c9d51fe6b05740b89f48fe425afea6bfe062bfc308429b5d8",
+      "crates/odin-protocol/src/rpc.rs": "3b8a1278025dc0a4ce5fbd13be6409b164745043e51992571bd2430ebddc99e4",
+      "crates/odin-protocol/src/text.rs": "047329493570b965a79f93a4dd3b2f62a05147d9610547eee5ae4d38619055c2",
+      "crates/odin-protocol/src/workspace.rs": "259f5936b90cd502b20b1eaee20977031f973fe76febed86c03b5bf3f380db6e",
+      "crates/odin-protocol/tests/fixture_protocols.rs": "ab32f1520a3db1cc4b80861ee61b638d898712e7cec766fecb1370a27a35f0dc",
+      "crates/odin/Cargo.toml": "d2ddaeb92e112540734b2b56c5ffe608a150677aa21b378ff8e81ec74b929993",
+      "crates/odin/build.rs": "c901d4e9601890336248e1e5c20d600c2c837390e54d8dc5c7bb7704b5c2dabe",
+      "crates/odin/src/http.rs": "72746cbb15551b4a6b865e2a583ac3fdadb478fcd6041b5696c7b79069f0f275",
+      "crates/odin/src/main.rs": "bbbe29e409786c8bf2915895ffeb2a958aa1da0a9f2ad2a3589f53ccd80e0108",
+      "crates/odin/src/mcp.rs": "16ac2886ea5003b116f025ae48b8368700dd10b9fb59520d4f96e999c3c1ba95",
+      "crates/odin/src/metadata.rs": "6010f496c4af39edc2523362ddcb9b3398cfe8ae996ac916e19aaf833d4d4063",
+      "crates/odin/src/setup.rs": "350cbcfabe792f342d4aebb8170a6265b9d6cfa70f3cea9fe341411fdadb40e4",
+      "schemas/tools.json": "d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea"
+    },
+    "windows_final_candidate": {
+      "status": "BLOCKED",
+      "binary_path": "E:/odin/target/release/odin.exe",
+      "binary_sha256": "83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44",
+      "build_exit_code": 0,
+      "metadata_executed": false,
+      "metadata_exit_code": null,
+      "administrator_policy_allowance_confirmed": false,
+      "six_language_matrix": "NOT_RUN",
+      "final_installer": "NOT_RUN"
+    },
+    "historical_working_windows_candidate": {
+      "source_revision": "780c6adf7de71a6d96d3af12314dcbe9b526ad8b",
+      "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+      "native_languages": {
+        "rust": "PASS_TWO_PROJECTS",
+        "go": "PASS_TWO_PROJECTS",
+        "python": "PASS_TWO_PROJECTS_WITH_EXPLICIT_PRIVATE_QA_BACKEND_ASSETS",
+        "typescript": "PARTIAL_UNVERSIONED_DIAGNOSTICS",
+        "java": "PARTIAL_UNVERSIONED_DIAGNOSTICS",
+        "csharp": "FAIL_MCP_DIRECT_NULL_PID_DIAGNOSTIC_ONLY"
+      },
+      "all_six_final_candidate_accepted": false
+    },
+    "linux": {
+      "status": "IN_PROGRESS",
+      "acceptance_status": "NOT_RUN",
+      "compiled_source_head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+      "scope": "Disposable Debian 12 QEMU guest; native final build/gates/packaging in progress. No PASS inferred."
+    },
+    "independent_review": {
+      "report": "verification/language-installers-v3-review-phase2.json",
+      "report_sha256": "74703dc78ae1e0d6531f22357b3a0652c110f717c9569db1187a1d91d22ea80c",
+      "scope": "Incremental independent code review and real read-only static/evidence checks. Final Windows execution blocked; final Linux target acceptance pending.",
+      "status": "BLOCKED"
+    },
+    "reports": {
+      "windows_build": {
+        "report": "verification/language-installers-v3-windows-build-final.json",
+        "report_sha256": "ce5ce0faf29a24558c01788be460cbda3595e763ec21cdc33d53b1a7576126fe",
+        "status": "PASS",
+        "binary_sha256": "83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44",
+        "source_head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+        "exit_code": 0,
+        "note": "Compile exit 0; metadata execution blocked, no runtime acceptance."
+      },
+      "windows_host_block": {
+        "report": "verification/language-installers-v3-final-host-block.json",
+        "report_sha256": "f9a732fe58edc2f9cf97e6a688bddd511fd84ae4421d744fb6c6a1b094986d58",
+        "scope": "PRESERVED_WINDOWS_RELEASE_BUILD_AND_FAILED_HOST_EXECUTION_OBSERVATIONS",
+        "status": "BLOCKED",
+        "binary_sha256": "83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44"
+      },
+      "windows_workspace_attempt": {
+        "report": "verification/language-installers-v3-workspace-all-targets-01.json",
+        "report_sha256": "cff1cdf1e3ca041f7b765d7874d4d5a68871fcc8c72341c1f9f62cfb8b40d224",
+        "scope": "Complete target collection; earlier fail-fast workspace attempt is retained",
+        "status": "FAIL",
+        "source_head_sha": "e6b81d4b4409976c7fe467f5c98a997a3bf37801",
+        "exit_code": 101,
+        "note": "Older source: 214 passed / 5 failed / 6 ignored; five stdin workload starts blocked by host policy. Not replaced by independent continuation."
+      },
+      "windows_independent_continuation": {
+        "report": "verification/language-installers-v3-continuation-01.json",
+        "report_sha256": "46e2738ae653c89b470310dd11596e53984b4c18c145bf0afa538f67656b24a4",
+        "scope": "INDEPENDENT_WINDOWS_CONTINUATION_NOT_A_WORKSPACE_GATE_REPLACEMENT",
+        "status": "PASS",
+        "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+        "source_head_sha": "e6b81d4b4409976c7fe467f5c98a997a3bf37801",
+        "note": "13 independent commands exit 0 against the 780c6ad candidate; not the final 69e769b candidate."
+      },
+      "isolated_pid_protocol": {
+        "report": "verification/language-installers-v3-isolated-pid-protocol-01.json",
+        "report_sha256": "4df3e0ea606f08a8b0590c66e0ead06839fdad22a468042be8060e1df5ef0093",
+        "status": "PASS",
+        "exit_code": 0,
+        "note": "31 protocol fixture regressions passed after null-PID change; not real Csharp acceptance."
+      },
+      "five_language_first_attempt": {
+        "report": "verification/language-sandbox-v3-five-native-01.json",
+        "report_sha256": "5e6d362922808bc0168e87eb14d9cbfc3bc0b8e32e36100c2189833e4ac979c1",
+        "scope": "REAL_ODIN_MCP_SIX_LANGUAGE_IDE",
+        "status": "FAIL",
+        "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+        "counts": {
+          "PASS": 150,
+          "FAIL": 4,
+          "UNAVAILABLE": 4,
+          "NOT_VERIFIED": 12
+        },
+        "matrix": {
+          "rust": {
+            "rust_a": "PASS",
+            "rust_b": "PASS"
+          },
+          "go": {
+            "go_a": "FAIL",
+            "go_b": "FAIL"
+          },
+          "java": {
+            "java_a": "PARTIAL",
+            "java_b": "PARTIAL"
+          },
+          "typescript": {
+            "typescript_a": "PARTIAL",
+            "typescript_b": "PARTIAL"
+          },
+          "csharp": {
+            "csharp_a": "FAIL",
+            "csharp_b": "FAIL"
+          }
+        },
+        "note": "Preserve actual failing first attempt: 150 PASS / 4 FAIL / 4 UNAVAILABLE / 12 NOT_VERIFIED.",
+        "command_receipt": "verification/language-sandbox-v3-five-native-01.command.json",
+        "command_receipt_sha256": "fae46ccd3d640953d9727bdf47bf2970a49f87de99365f5b997a414172a141c0",
+        "actual_driver_exit_code": 1
+      },
+      "go_native": {
+        "report": "verification/language-sandbox-v3-go-native-02.json",
+        "report_sha256": "7d3c59058a8ef68837b48e7246d5b20b14af6b558a08fc7763c2fee9d18835af",
+        "scope": "REAL_ODIN_MCP_SIX_LANGUAGE_IDE",
+        "status": "PASS",
+        "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+        "counts": {
+          "PASS": 46,
+          "UNAVAILABLE": 4
+        },
+        "matrix": {
+          "go": {
+            "go_a": "PASS",
+            "go_b": "PASS"
+          }
+        },
+        "command_receipt": "verification/language-sandbox-v3-go-native-02.command.json",
+        "command_receipt_sha256": "1a5bf035f0f652585d5436bdd148dce71d3efad7fad33456c22f7b635e0c2a91",
+        "actual_driver_exit_code": 0
+      },
+      "python_native": {
+        "report": "verification/language-sandbox-v3-python-native-02.json",
+        "report_sha256": "eed0a5689d4a158a3d2b4ca505ccebbebdee22ad348c16a77dfa0298f3404139",
+        "scope": "REAL_ODIN_MCP_SIX_LANGUAGE_IDE",
+        "status": "PASS",
+        "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+        "counts": {
+          "PASS": 60,
+          "UNAVAILABLE": 4
+        },
+        "matrix": {
+          "python": {
+            "python_a": "PASS",
+            "python_b": "PASS"
+          }
+        },
+        "command_receipt": "verification/language-sandbox-v3-python-native-02.command.json",
+        "command_receipt_sha256": "737fe99dceb14d9298c36961ab0604cef51c332691ee00276e33a2d10eef33cd",
+        "actual_driver_exit_code": 0
+      },
+      "ruff_native": {
+        "report": "verification/language-sandbox-v3-ruff-native-01.json",
+        "report_sha256": "d7bdface66e767081e0087b51de0f3d6753edfd846b2618f3be7ecaa3ed884bf",
+        "scope": "REAL_ODIN_MCP_NATIVE_FORMATTER_ONLY",
+        "status": "PASS",
+        "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+        "counts": {
+          "PASS": 18
+        },
+        "matrix": {
+          "python": {
+            "python_a": "PASS",
+            "python_b": "PASS"
+          }
+        },
+        "command_receipt": "verification/language-sandbox-v3-ruff-native-01.command.json",
+        "command_receipt_sha256": "63e9e584b7a961a72526c2476fa39e2d7c1eab9e9d76c5d4121b0746f8ecdbb7",
+        "actual_driver_exit_code": 0
+      },
+      "csharp_direct": {
+        "report": "verification/language-sandbox-v3-direct-csharp-nullpid-07.command.json",
+        "report_sha256": "83001c3b4fd0b3c5b7a2328f6df1f6893856d2ebfa52b5bfcf1069e858fd233e",
+        "scope": "DIRECT_NATIVE_BACKEND_DIAGNOSTIC_ONLY",
+        "exit_code": 1,
+        "note": "Real semantic symbols and server exit 0; diagnostic driver cleanup exit 1. No full MCP or final-binary PASS."
+      },
+      "windows_installer_780": {
+        "report": "verification/package-v3-windows-candidate.json",
+        "report_sha256": "7f7cdcc61aa4251eed022270a0d1b87b49de8f9ba43a19ac1151c682c3ec32ce",
+        "scope": "SELECTED_780C6AD_WINDOWS_CANDIDATE_PACKAGING_AND_INSTALLER_QA",
+        "status": "PASS",
+        "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+        "note": "22 install/reinstall/uninstall checks passed for older 780c6ad; final 69 Windows packaging remains blocked."
+      },
+      "evidence_integrity": {
+        "report": "verification/language-sandbox-v3-evidence-index-01.json",
+        "report_sha256": "c040e08b822db8270182df1d7113a67be547e1819523294639b2488c46a5d8b8",
+        "scope": "OFFLINE_EVIDENCE_INTEGRITY_ONLY",
+        "status": "PASS",
+        "note": "Offline 18-receipt/source/transcript integrity only, no backend execution."
+      },
+      "prepared_final_matrix": {
+        "report": "verification/language-sandbox-v3-finalrun-plan.json",
+        "report_sha256": "b534ad1743925fb7416f8e59ef92507706ce23ea9a173a752d616ecc5e1ad80b",
+        "scope": "PREPARED_NOT_EXECUTED",
+        "status": "BLOCKED",
+        "note": "Plan only; 0 final-candidate LSP projects executed."
+      },
+      "qa_report_preflight": {
+        "report": "verification/language-installers-v3-continuation-preflight-01.json",
+        "report_sha256": "a48b5da4df7f3e6dbb6c6b89aa1a6e1f02a8b5483579677239911d4a1ea82bf6",
+        "scope": "INERT_QA_EVIDENCE_PREFLIGHT_NOT_PRODUCT_OR_NATIVE_ACCEPTANCE",
+        "status": "PASS",
+        "exit_code": 0,
+        "note": "Five inert overwrite-protection checks; zero native process calls."
+      }
+    },
+    "all_40_requirements_accepted": false,
+    "all_serena_features_implemented": false,
+    "cloud_ci_started": false
+  },
   "evidence": {
-    "local_validation": {
-      "report": "verification/sandbox-ide-release-validation.json",
-      "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
+    "windows_build": {
+      "report": "verification/language-installers-v3-windows-build-final.json",
+      "report_sha256": "ce5ce0faf29a24558c01788be460cbda3595e763ec21cdc33d53b1a7576126fe",
       "status": "PASS",
-      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875"
+      "binary_sha256": "83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44",
+      "source_head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+      "exit_code": 0,
+      "note": "Compile exit 0; metadata execution blocked, no runtime acceptance."
     },
-    "real_backends": {
-      "report": "verification/sandbox-ide-release-real-backends.json",
-      "report_sha256": "e342148d9c4bdfb8991e986b43807eef21a35de647d31d6062e1108fdc6e6d16",
+    "windows_host_block": {
+      "report": "verification/language-installers-v3-final-host-block.json",
+      "report_sha256": "f9a732fe58edc2f9cf97e6a688bddd511fd84ae4421d744fb6c6a1b094986d58",
+      "scope": "PRESERVED_WINDOWS_RELEASE_BUILD_AND_FAILED_HOST_EXECUTION_OBSERVATIONS",
+      "status": "BLOCKED",
+      "binary_sha256": "83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44"
+    },
+    "windows_workspace_attempt": {
+      "report": "verification/language-installers-v3-workspace-all-targets-01.json",
+      "report_sha256": "cff1cdf1e3ca041f7b765d7874d4d5a68871fcc8c72341c1f9f62cfb8b40d224",
+      "scope": "Complete target collection; earlier fail-fast workspace attempt is retained",
+      "status": "FAIL",
+      "source_head_sha": "e6b81d4b4409976c7fe467f5c98a997a3bf37801",
+      "exit_code": 101,
+      "note": "Older source: 214 passed / 5 failed / 6 ignored; five stdin workload starts blocked by host policy. Not replaced by independent continuation."
+    },
+    "windows_independent_continuation": {
+      "report": "verification/language-installers-v3-continuation-01.json",
+      "report_sha256": "46e2738ae653c89b470310dd11596e53984b4c18c145bf0afa538f67656b24a4",
+      "scope": "INDEPENDENT_WINDOWS_CONTINUATION_NOT_A_WORKSPACE_GATE_REPLACEMENT",
       "status": "PASS",
-      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
-      "checks": {
-        "PASS": 29
-      }
+      "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+      "source_head_sha": "e6b81d4b4409976c7fe467f5c98a997a3bf37801",
+      "note": "13 independent commands exit 0 against the 780c6ad candidate; not the final 69e769b candidate."
     },
-    "native_inspections": {
-      "report": "verification/native-inspections-release-final.json",
-      "report_sha256": "1b2bb92f2dd8b906146f9ecf13bee79c721f2face3bb79ece40ecbdf497a7775",
+    "isolated_pid_protocol": {
+      "report": "verification/language-installers-v3-isolated-pid-protocol-01.json",
+      "report_sha256": "4df3e0ea606f08a8b0590c66e0ead06839fdad22a468042be8060e1df5ef0093",
       "status": "PASS",
-      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
-      "checks": {
-        "PASS": 30
-      }
+      "exit_code": 0,
+      "note": "31 protocol fixture regressions passed after null-PID change; not real Csharp acceptance."
     },
-    "native_inspections_command": {
-      "report": "verification/native-inspections-release-final-command.json",
-      "report_sha256": "b25ffb7343f01a188bf0cfdb76b705df52560b0ebb94b39d18e277fc75e962db",
-      "status": "PASS",
-      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
-      "harness_sha256": "11a6e3724bcd10e09c8dfa3487329df15b85f8c89b22fea65db494f436fb278f"
-    },
-    "language_ide": {
-      "report": "verification/language-ide-final-baseline-03.json",
-      "report_sha256": "74607775a28d75d91d5a4e045e319963fcf3e4469923b4233d97ca26b27a6847",
-      "status": "PARTIAL",
-      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
-      "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+    "five_language_first_attempt": {
+      "report": "verification/language-sandbox-v3-five-native-01.json",
+      "report_sha256": "5e6d362922808bc0168e87eb14d9cbfc3bc0b8e32e36100c2189833e4ac979c1",
+      "scope": "REAL_ODIN_MCP_SIX_LANGUAGE_IDE",
+      "status": "FAIL",
+      "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
       "counts": {
-        "PASS": 260,
-        "UNAVAILABLE": 14,
+        "PASS": 150,
+        "FAIL": 4,
+        "UNAVAILABLE": 4,
         "NOT_VERIFIED": 12
       },
       "matrix": {
@@ -84,227 +356,166 @@
           "rust_a": "PASS",
           "rust_b": "PASS"
         },
-        "python": {
-          "python_a": "PASS",
-          "python_b": "PASS"
-        },
-        "typescript": {
-          "typescript_a": "PARTIAL",
-          "typescript_b": "PARTIAL"
-        },
         "go": {
-          "go_a": "PASS",
-          "go_b": "PASS"
+          "go_a": "FAIL",
+          "go_b": "FAIL"
         },
         "java": {
           "java_a": "PARTIAL",
           "java_b": "PARTIAL"
         },
-        "csharp": {
-          "csharp_a": "PASS",
-          "csharp_b": "PASS"
-        }
-      },
-      "transcript_sha256": "5089119c1e9b490bd71bc7dc7c371890606694271b26ab6d16d369c7ccc22641",
-      "command_receipt": "verification/language-ide-final-baseline-03.command.json",
-      "command_receipt_sha256": "e97a533711ca0a8d5e5dbaa8ca44169496badfc3e76c4c05529ab7eadc1c9548",
-      "actual_driver_exit_code": 2,
-      "transcript": "verification/language-ide-final-baseline-03.requests.jsonl"
-    },
-    "typescript_os_sandbox": {
-      "report": "verification/language-ide-final-sandbox-typescript-04.json",
-      "report_sha256": "0a87a2b1aac45136bf2d948de1711a997abe33991c4747990dab5d3f0edd420a",
-      "status": "PARTIAL",
-      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
-      "harness_sha256": "1160258157d2790782e9060be0556af874397daf741196ef32297435c6c0dbf6",
-      "counts": {
-        "PASS": 42,
-        "UNAVAILABLE": 2,
-        "NOT_VERIFIED": 6
-      },
-      "matrix": {
         "typescript": {
           "typescript_a": "PARTIAL",
           "typescript_b": "PARTIAL"
+        },
+        "csharp": {
+          "csharp_a": "FAIL",
+          "csharp_b": "FAIL"
         }
       },
-      "transcript_sha256": "acbe80f60f410453e773d45abc35e731d45e277e1ba496ff3778e45a9cc57576",
-      "command_receipt": "verification/language-ide-final-sandbox-typescript-04.command.json",
-      "command_receipt_sha256": "a61cdb686562b98bb2f75b5dab933e55f15b47fa63985a037f96fc70f8fc571f",
-      "actual_driver_exit_code": 2,
-      "transcript": "verification/language-ide-final-sandbox-typescript-04.requests.jsonl"
+      "note": "Preserve actual failing first attempt: 150 PASS / 4 FAIL / 4 UNAVAILABLE / 12 NOT_VERIFIED.",
+      "command_receipt": "verification/language-sandbox-v3-five-native-01.command.json",
+      "command_receipt_sha256": "fae46ccd3d640953d9727bdf47bf2970a49f87de99365f5b997a414172a141c0",
+      "actual_driver_exit_code": 1
     },
-    "independent_review": {
-      "report": "verification/sandbox-ide-review.json",
-      "report_sha256": "7f4a264d89e2e5044afd508142a97215511b7082f241f2fc4ad07ec1b283b3f2",
+    "go_native": {
+      "report": "verification/language-sandbox-v3-go-native-02.json",
+      "report_sha256": "7d3c59058a8ef68837b48e7246d5b20b14af6b558a08fc7763c2fee9d18835af",
+      "scope": "REAL_ODIN_MCP_SIX_LANGUAGE_IDE",
       "status": "PASS",
-      "checks": {
-        "PASS": 17,
-        "NOT_RUN": 2,
-        "N/A": 1
-      }
+      "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+      "counts": {
+        "PASS": 46,
+        "UNAVAILABLE": 4
+      },
+      "matrix": {
+        "go": {
+          "go_a": "PASS",
+          "go_b": "PASS"
+        }
+      },
+      "command_receipt": "verification/language-sandbox-v3-go-native-02.command.json",
+      "command_receipt_sha256": "1a5bf035f0f652585d5436bdd148dce71d3efad7fad33456c22f7b635e0c2a91",
+      "actual_driver_exit_code": 0
     },
-    "requirements": "verification/feature-evidence.json",
-    "sbom": "verification/sbom.cdx.json",
-    "licenses": "verification/license-inventory.json",
-    "public_scan": "verification/public-candidate-scan.json",
-    "artifact_bindings": "verification/sandbox-ide-artifact-bindings.json",
-    "final_documentation_checks": "verification/sandbox-ide-delivery-checks.json",
-    "manifest_history": "verification/sandbox-ide-manifest-history.json"
+    "python_native": {
+      "report": "verification/language-sandbox-v3-python-native-02.json",
+      "report_sha256": "eed0a5689d4a158a3d2b4ca505ccebbebdee22ad348c16a77dfa0298f3404139",
+      "scope": "REAL_ODIN_MCP_SIX_LANGUAGE_IDE",
+      "status": "PASS",
+      "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+      "counts": {
+        "PASS": 60,
+        "UNAVAILABLE": 4
+      },
+      "matrix": {
+        "python": {
+          "python_a": "PASS",
+          "python_b": "PASS"
+        }
+      },
+      "command_receipt": "verification/language-sandbox-v3-python-native-02.command.json",
+      "command_receipt_sha256": "737fe99dceb14d9298c36961ab0604cef51c332691ee00276e33a2d10eef33cd",
+      "actual_driver_exit_code": 0
+    },
+    "ruff_native": {
+      "report": "verification/language-sandbox-v3-ruff-native-01.json",
+      "report_sha256": "d7bdface66e767081e0087b51de0f3d6753edfd846b2618f3be7ecaa3ed884bf",
+      "scope": "REAL_ODIN_MCP_NATIVE_FORMATTER_ONLY",
+      "status": "PASS",
+      "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+      "counts": {
+        "PASS": 18
+      },
+      "matrix": {
+        "python": {
+          "python_a": "PASS",
+          "python_b": "PASS"
+        }
+      },
+      "command_receipt": "verification/language-sandbox-v3-ruff-native-01.command.json",
+      "command_receipt_sha256": "63e9e584b7a961a72526c2476fa39e2d7c1eab9e9d76c5d4121b0746f8ecdbb7",
+      "actual_driver_exit_code": 0
+    },
+    "csharp_direct": {
+      "report": "verification/language-sandbox-v3-direct-csharp-nullpid-07.command.json",
+      "report_sha256": "83001c3b4fd0b3c5b7a2328f6df1f6893856d2ebfa52b5bfcf1069e858fd233e",
+      "scope": "DIRECT_NATIVE_BACKEND_DIAGNOSTIC_ONLY",
+      "exit_code": 1,
+      "note": "Real semantic symbols and server exit 0; diagnostic driver cleanup exit 1. No full MCP or final-binary PASS."
+    },
+    "windows_installer_780": {
+      "report": "verification/package-v3-windows-candidate.json",
+      "report_sha256": "7f7cdcc61aa4251eed022270a0d1b87b49de8f9ba43a19ac1151c682c3ec32ce",
+      "scope": "SELECTED_780C6AD_WINDOWS_CANDIDATE_PACKAGING_AND_INSTALLER_QA",
+      "status": "PASS",
+      "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+      "note": "22 install/reinstall/uninstall checks passed for older 780c6ad; final 69 Windows packaging remains blocked."
+    },
+    "evidence_integrity": {
+      "report": "verification/language-sandbox-v3-evidence-index-01.json",
+      "report_sha256": "c040e08b822db8270182df1d7113a67be547e1819523294639b2488c46a5d8b8",
+      "scope": "OFFLINE_EVIDENCE_INTEGRITY_ONLY",
+      "status": "PASS",
+      "note": "Offline 18-receipt/source/transcript integrity only, no backend execution."
+    },
+    "prepared_final_matrix": {
+      "report": "verification/language-sandbox-v3-finalrun-plan.json",
+      "report_sha256": "b534ad1743925fb7416f8e59ef92507706ce23ea9a173a752d616ecc5e1ad80b",
+      "scope": "PREPARED_NOT_EXECUTED",
+      "status": "BLOCKED",
+      "note": "Plan only; 0 final-candidate LSP projects executed."
+    },
+    "qa_report_preflight": {
+      "report": "verification/language-installers-v3-continuation-preflight-01.json",
+      "report_sha256": "a48b5da4df7f3e6dbb6c6b89aa1a6e1f02a8b5483579677239911d4a1ea82bf6",
+      "scope": "INERT_QA_EVIDENCE_PREFLIGHT_NOT_PRODUCT_OR_NATIVE_ACCEPTANCE",
+      "status": "PASS",
+      "exit_code": 0,
+      "note": "Five inert overwrite-protection checks; zero native process calls."
+    }
   },
-  "gates": {
-    "generated_artifacts": "PASS",
-    "fmt": "PASS",
-    "workspace_tests": "PASS",
-    "clippy": "PASS",
-    "native_sandbox": "PASS",
-    "release_build": "PASS",
-    "cli": "PASS",
-    "mcp_stdio": "PASS",
-    "mcp_http": "PASS",
-    "mcp_cancellation": "PASS",
-    "real_backends": "PASS",
-    "dependency_audit": "PASS",
-    "licenses": "PASS",
-    "supply_chain": "PASS",
-    "static_source": "PASS",
-    "requirements": "PASS",
-    "publish_policy": "PASS",
-    "language_ide": "PARTIAL",
-    "typescript_os_sandbox": "PARTIAL",
-    "os_sandbox": "PASS_WINDOWS_NATIVE_SCOPE",
-    "independent_review": "PASS",
-    "linux_native": "NOT_RUN",
-    "macos_native": "NOT_RUN",
-    "performance_comparison": "NOT_RUN",
-    "formal_security_audit": "NOT_RUN",
-    "cloud_ci": "NOT_RUN"
+  "historical_delivery": {
+    "report": "verification/delivery-status-before-language-installers-v3.json",
+    "report_sha256": "fc7c8440b7501e255890d99ce8539f6e92cdec9a4be788b41da112b68ae677a0",
+    "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+    "note": "Prior snapshot preserved verbatim; its PASS statuses apply only to its own source/binary."
+  },
+  "publication": {
+    "status": "NOT_RUN_FOR_THIS_EXTENSION",
+    "url": "https://github.com/stevenke1981/odin",
+    "prior_publication": {
+      "status": "PASS",
+      "scope": "PUBLIC_SOURCE_REPOSITORY_SANDBOX_IDE_EXTENSION",
+      "url": "https://github.com/stevenke1981/odin",
+      "visibility": "PUBLIC",
+      "published_source_commit": "1fa510e945d73e2442cdf0f995f4e5cae6cb75b6",
+      "remote_matches_source_at_publication": true,
+      "anonymous_http_head_status": 200,
+      "github_actions_runs_observed": 0,
+      "observed_at_utc": "2026-10-21T02:18:45.695103+00:00",
+      "binary_release_created": false,
+      "report": "verification/sandbox-ide-publication.json",
+      "report_sha256": "6ccbf80d01c35c9b3e8794f1f38e232a1d2e2663ead553d846bc5724c0411d0e"
+    },
+    "binary_release_created": false
   },
   "language_profiles": {
     "count": 28,
     "meaning": "Declarative setup guidance, not 28 verified languages"
   },
-  "language_ide": {
-    "report": "verification/language-ide-final-baseline-03.json",
-    "report_sha256": "74607775a28d75d91d5a4e045e319963fcf3e4469923b4233d97ca26b27a6847",
-    "status": "PARTIAL",
-    "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
-    "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
-    "counts": {
-      "PASS": 260,
-      "UNAVAILABLE": 14,
-      "NOT_VERIFIED": 12
-    },
-    "matrix": {
-      "rust": {
-        "rust_a": "PASS",
-        "rust_b": "PASS"
-      },
-      "python": {
-        "python_a": "PASS",
-        "python_b": "PASS"
-      },
-      "typescript": {
-        "typescript_a": "PARTIAL",
-        "typescript_b": "PARTIAL"
-      },
-      "go": {
-        "go_a": "PASS",
-        "go_b": "PASS"
-      },
-      "java": {
-        "java_a": "PARTIAL",
-        "java_b": "PARTIAL"
-      },
-      "csharp": {
-        "csharp_a": "PASS",
-        "csharp_b": "PASS"
-      }
-    },
-    "transcript_sha256": "5089119c1e9b490bd71bc7dc7c371890606694271b26ab6d16d369c7ccc22641",
-    "command_receipt": "verification/language-ide-final-baseline-03.command.json",
-    "command_receipt_sha256": "e97a533711ca0a8d5e5dbaa8ca44169496badfc3e76c4c05529ab7eadc1c9548",
-    "actual_driver_exit_code": 2,
-    "transcript": "verification/language-ide-final-baseline-03.requests.jsonl"
-  },
-  "os_sandbox": {
-    "status": "PASS_WINDOWS_NATIVE_SCOPE",
-    "backend": "MXC ProcessContainer / base-container",
-    "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
-    "kernel_boundary_tests": {
-      "status": "PASS",
-      "passed": 3,
-      "report": "verification/sandbox-ide-release-validation.json",
-      "command_name": "native_sandbox"
-    },
-    "live_typescript_lsp": {
-      "report": "verification/language-ide-final-sandbox-typescript-04.json",
-      "report_sha256": "0a87a2b1aac45136bf2d948de1711a997abe33991c4747990dab5d3f0edd420a",
-      "status": "PARTIAL",
-      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
-      "harness_sha256": "1160258157d2790782e9060be0556af874397daf741196ef32297435c6c0dbf6",
-      "counts": {
-        "PASS": 42,
-        "UNAVAILABLE": 2,
-        "NOT_VERIFIED": 6
-      },
-      "matrix": {
-        "typescript": {
-          "typescript_a": "PARTIAL",
-          "typescript_b": "PARTIAL"
-        }
-      },
-      "transcript_sha256": "acbe80f60f410453e773d45abc35e731d45e277e1ba496ff3778e45a9cc57576",
-      "command_receipt": "verification/language-ide-final-sandbox-typescript-04.command.json",
-      "command_receipt_sha256": "a61cdb686562b98bb2f75b5dab933e55f15b47fa63985a037f96fc70f8fc571f",
-      "actual_driver_exit_code": 2,
-      "transcript": "verification/language-ide-final-sandbox-typescript-04.requests.jsonl"
-    },
-    "policy": "Explicit host opt-in; hash-pinned executor; read-only sources, explicit writable cache/private scratch, network deny, no fallback. Native inspections require this boundary.",
-    "without_configuration": "LSP/DAP/fixed commands remain host processes; inspections refuse to run.",
-    "other_language_lsp_workloads": {
-      "rust": "NOT_RUN",
-      "python": "NOT_RUN",
-      "go": "NOT_RUN",
-      "java": "NOT_RUN",
-      "csharp": "NOT_RUN"
-    }
-  },
-  "windows_packaging": {
-    "status": "NOT_RUN_FOR_THIS_EXTENSION",
-    "binary_release_created": false,
-    "historical_report": "verification/windows-final-packaging.json",
-    "historical_binary_sha256": "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be",
-    "note": "The 72-tool baseline installer/portable proof does not certify the current 85-tool binary."
-  },
-  "publication": {
-    "status": "PASS",
-    "scope": "PUBLIC_SOURCE_REPOSITORY_SANDBOX_IDE_EXTENSION",
-    "url": "https://github.com/stevenke1981/odin",
-    "visibility": "PUBLIC",
-    "published_source_commit": "1fa510e945d73e2442cdf0f995f4e5cae6cb75b6",
-    "remote_matches_source_at_publication": true,
-    "anonymous_http_head_status": 200,
-    "github_actions_runs_observed": 0,
-    "observed_at_utc": "2026-10-21T02:18:45.695103+00:00",
-    "binary_release_created": false,
-    "report": "verification/sandbox-ide-publication.json",
-    "report_sha256": "6ccbf80d01c35c9b3e8794f1f38e232a1d2e2663ead553d846bc5724c0411d0e"
-  },
-  "historical_baseline": {
-    "report": "verification/delivery-status-baseline-72.json",
-    "report_sha256": "08fa848295f27d6a8e511bc54a88e2176ed71de2e3e1e56567389f0342ab5c96",
-    "note": "Original 72-tool validation, packaging and publication summary preserved without reclassification."
-  },
-  "post_validation_changes": "Final language driver ordering, documentation and evidence may follow the recorded build revision. Rust/core/schema/lockfile hashes remain identical; current driver execution has its own harness hash and command receipt. Four historical raw CRLF JSON captures use explicit Git byte-preservation attributes so original evidence digests match public Git blobs; all logical results remain unchanged.",
-  "incomplete_or_unverified": [
-    "TypeScript/Java unversioned diagnostics cannot establish current source version; optional backend capabilities may be unavailable.",
-    "Actual OS-sandbox LSP workload acceptance for Rust/Python/Go/Java/C# is NOT_RUN; the six-language baseline is host-process scope.",
-    "Linux/macOS native execution and sandboxing; complete UI/registry/device/CPU-memory isolation matrix.",
-    "Full IDE-equivalence, every language/rule/refactor, dependency/build configurations and dynamic safe-delete consumers.",
-    "Actual OS-sandbox DAP debuggee acceptance; debugpy live acceptance is host-process scope.",
-    "Current installer/portable repackaging, clean machine, cross-version and interrupted installation matrix.",
-    "Performance comparison and formal security audit."
+  "security_boundaries": [
+    "Explicit host grants only; formatters require write plus formatter permission and native read-only-source sandbox. All source edits use expected-hash Transactions.",
+    "Enumeration reveals directory names only with explicit host configuration; no implicit readable coverage or source write grants.",
+    "Python QA uses per-project pinned private writable backend copies to handle native SetCurrentDirectory behavior. Never execute these mutable copies unsandboxed, promote them to trusted installed tools, or redistribute them.",
+    "Csharp uses explicit OmniSharp selection; sandbox LSP initializes processId=null because the native lifetime owns cleanup. No host-PID monitoring across isolation.",
+    "Linux native execution/packaging does not establish Linux OS sandbox support. Inno Setup packages Windows; Linux uses deb and portable tar."
   ],
-  "important_limit": "Executed Windows native sandbox/IDE preview; passing applicable checks is not full acceptance of all 40 requirements or all-language IDE parity."
+  "incomplete_or_unverified": [
+    "Final Windows metadata, six-language/twelve-project MCP matrix and final installer await administrator policy allowance for the unchanged candidate.",
+    "Windows workspace suite retains five actual host-policy failures; earlier independent PASS commands do not replace that failed gate.",
+    "TypeScript/Java unversioned diagnostics remain NOT_VERIFIED; unadvertised capabilities remain UNAVAILABLE. Csharp direct symbols are not full MCP acceptance.",
+    "Linux/macOS sandbox support, macOS native builds, complete resource/device isolation, and OS-sandbox DAP debuggee matrix remain unverified or unimplemented.",
+    "All-language IDE parity, every rule/refactor, clean Windows machine, cross-version/interrupted installation, signatures, benchmarks and formal security audit remain incomplete."
+  ]
 }

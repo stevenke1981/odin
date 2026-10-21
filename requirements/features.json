@@ -4,7 +4,7 @@
   "baseline_version": "0.2.0",
   "status": "WINDOWS_NATIVE_PREVIEW_PARTIAL",
   "standalone_requirement": "No Serena code, runtime, plugin, or bridge in shipping Odin binaries",
-  "note": "85-contract Windows extension. Same f7 binary has17 release gates PASS,200 workspace tests/6 ignored plus3 native opt-in tests and30 analyzer checks. Six-language/two-project host baseline actually executed PARTIAL with exit2:260 PASS,14 UNAVAILABLE,12 NOT_VERIFIED,0 FAIL and12 initialized. TS/Java diagnostics lack document version; TS MXC profile04 executed PARTIAL/exit2 with42 PASS,2 UNAVAILABLE,6 NOT_VERIFIED and0 FAIL. Historical checks/digests are unchanged; all40 remain unaccepted.",
+  "note": "Current v3 scope is verification/feature-evidence.json language_installers_v3; historical results do not certify the blocked final Windows candidate. No requirement is fully accepted.",
   "features": [
     {
       "id": "ODIN-001",

@@ -1,0 +1,203 @@
+"""Assemble source-bound delivery documentation; this never executes the product."""
+import argparse
+from collections import Counter
+import copy
+import datetime
+import hashlib
+import json
+from pathlib import Path
+import subprocess
+
+ROOT = Path(__file__).resolve().parents[1]
+PRODUCT_REVISION = '69e769be9baa4e825139b72ce1a9b48bf8143114'
+PREVIOUS_DOCUMENTATION = '75c38f8'
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def load(name):
+    return json.loads((ROOT/name).read_text(encoding='utf-8'))
+
+
+def write(name, value):
+    (ROOT/name).write_text(json.dumps(value, ensure_ascii=False, indent=2)+'\n', encoding='utf-8', newline='\n')
+
+
+def archive(name):
+    original = subprocess.check_output(['git', 'show', f'{PREVIOUS_DOCUMENTATION}:{name}'], cwd=ROOT)
+    path = ROOT/name.replace('.json', '-before-language-installers-v3.json')
+    if path.exists():
+        if path.read_bytes() != original:
+            raise ValueError('Historical documentation changed: '+str(path))
+    else:
+        with path.open('xb') as stream:
+            stream.write(original)
+    return path.relative_to(ROOT).as_posix(), json.loads(original)
+
+
+def binding(name, note=None):
+    value = load(name)
+    result = {'report': name, 'report_sha256': sha(ROOT/name)}
+    for key in ('scope', 'status', 'binary_sha256', 'source_head_sha', 'exit_code', 'counts', 'matrix'):
+        if key in value:
+            result[key] = value[key]
+    if note:
+        result['note'] = note
+    receipt_name = name.removesuffix('.json')+'.command.json'
+    if not name.endswith('.command.json') and (ROOT/receipt_name).is_file():
+        receipt = load(receipt_name)
+        if receipt.get('report_sha256') != result['report_sha256']:
+            raise ValueError('Receipt digest differs: '+receipt_name)
+        result.update(command_receipt=receipt_name, command_receipt_sha256=sha(ROOT/receipt_name),
+                      actual_driver_exit_code=receipt['exit_code'])
+    return result
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--linux-report', help='Completed canonical Linux native report, if available')
+    parser.add_argument('--review-report', help='Independent review report, if available')
+    args = parser.parse_args()
+    tracked = subprocess.check_output(['git', 'ls-files', '-z'], cwd=ROOT).decode().split('\0')
+    product_files = sorted(name for name in tracked if name.startswith(('crates/', 'schemas/')) or name in ('Cargo.lock', 'Cargo.toml'))
+    for name in product_files:
+        compiled = subprocess.check_output(['git', 'show', f'{PRODUCT_REVISION}:{name}'], cwd=ROOT)
+        if (ROOT/name).read_bytes() != compiled:
+            raise ValueError('Product differs from the built revision: '+name)
+    delivery_history, old_delivery = archive('verification/delivery-status.json')
+    evidence_history, evidence = archive('verification/feature-evidence.json')
+    now = datetime.datetime.now(datetime.UTC).isoformat()
+    build = load('verification/language-installers-v3-windows-build-final.json')
+    continuation = load('verification/language-installers-v3-continuation-01.json')
+    reports = {
+        'windows_build': binding('verification/language-installers-v3-windows-build-final.json', 'Compile exit 0; metadata execution blocked, no runtime acceptance.'),
+        'windows_host_block': binding('verification/language-installers-v3-final-host-block.json'),
+        'windows_workspace_attempt': binding('verification/language-installers-v3-workspace-all-targets-01.json', 'Older source: 214 passed / 5 failed / 6 ignored; five stdin workload starts blocked by host policy. Not replaced by independent continuation.'),
+        'windows_independent_continuation': binding('verification/language-installers-v3-continuation-01.json', '13 independent commands exit 0 against the 780c6ad candidate; not the final 69e769b candidate.'),
+        'isolated_pid_protocol': binding('verification/language-installers-v3-isolated-pid-protocol-01.json', '31 protocol fixture regressions passed after null-PID change; not real Csharp acceptance.'),
+        'five_language_first_attempt': binding('verification/language-sandbox-v3-five-native-01.json', 'Preserve actual failing first attempt: 150 PASS / 4 FAIL / 4 UNAVAILABLE / 12 NOT_VERIFIED.'),
+        'go_native': binding('verification/language-sandbox-v3-go-native-02.json'),
+        'python_native': binding('verification/language-sandbox-v3-python-native-02.json'),
+        'ruff_native': binding('verification/language-sandbox-v3-ruff-native-01.json'),
+        'csharp_direct': binding('verification/language-sandbox-v3-direct-csharp-nullpid-07.command.json', 'Real semantic symbols and server exit 0; diagnostic driver cleanup exit 1. No full MCP or final-binary PASS.'),
+        'windows_installer_780': binding('verification/package-v3-windows-candidate.json', '22 install/reinstall/uninstall checks passed for older 780c6ad; final 69 Windows packaging remains blocked.'),
+        'evidence_integrity': binding('verification/language-sandbox-v3-evidence-index-01.json', 'Offline 18-receipt/source/transcript integrity only, no backend execution.'),
+        'prepared_final_matrix': binding('verification/language-sandbox-v3-finalrun-plan.json', 'Plan only; 0 final-candidate LSP projects executed.'),
+        'qa_report_preflight': binding('verification/language-installers-v3-continuation-preflight-01.json', 'Five inert overwrite-protection checks; zero native process calls.'),
+    }
+    linux = binding(args.linux_report) if args.linux_report else {
+        'status': 'IN_PROGRESS', 'acceptance_status': 'NOT_RUN', 'compiled_source_head_sha': PRODUCT_REVISION,
+        'scope': 'Disposable Debian 12 QEMU guest; native final build/gates/packaging in progress. No PASS inferred.'}
+    review = binding(args.review_report) if args.review_report else {'status': 'IN_PROGRESS', 'release_approval': 'BLOCKED'}
+    current = {
+        'scope': 'FIVE_ADDITIONAL_NATIVE_SANDBOX_LANGUAGES_AND_WINDOWS_LINUX_INSTALLERS',
+        'status': 'PARTIAL', 'compiled_product_source_head_sha': PRODUCT_REVISION,
+        'product_source_hashes_match_build_revision': True,
+        'current_product_sha256': {name: sha(ROOT/name) for name in product_files},
+        'windows_final_candidate': {'status': 'BLOCKED', 'binary_path': 'E:/odin/target/release/odin.exe',
+            'binary_sha256': build['binary_sha256'], 'build_exit_code': build['exit_code'],
+            'metadata_executed': False, 'metadata_exit_code': None,
+            'administrator_policy_allowance_confirmed': False,
+            'six_language_matrix': 'NOT_RUN', 'final_installer': 'NOT_RUN'},
+        'historical_working_windows_candidate': {'source_revision': continuation['binary_metadata']['revision'],
+            'binary_sha256': continuation['binary_sha256'],
+            'native_languages': {'rust': 'PASS_TWO_PROJECTS', 'go': 'PASS_TWO_PROJECTS',
+                'python': 'PASS_TWO_PROJECTS_WITH_EXPLICIT_PRIVATE_QA_BACKEND_ASSETS',
+                'typescript': 'PARTIAL_UNVERSIONED_DIAGNOSTICS', 'java': 'PARTIAL_UNVERSIONED_DIAGNOSTICS',
+                'csharp': 'FAIL_MCP_DIRECT_NULL_PID_DIAGNOSTIC_ONLY'},
+            'all_six_final_candidate_accepted': False},
+        'linux': linux, 'independent_review': review, 'reports': reports,
+        'all_40_requirements_accepted': False, 'all_serena_features_implemented': False,
+        'cloud_ci_started': False,
+    }
+    delivery = {
+        'project': 'Odin', 'version': '0.2.0', 'release_class': 'NATIVE_PREVIEW_WITH_WINDOWS_HOST_BLOCK',
+        'generated_at_utc': now, 'architecture': old_delivery['architecture'],
+        'workspace_crates': 4, 'tool_contracts': 85, 'serena_comparison_entries': 53,
+        'serena_dependency': False, 'proven_faster_than_serena': False,
+        'all_40_requirements_accepted': False, 'all_serena_features_implemented': False,
+        'cloud_ci_started': False, 'current_extension': current,
+        'evidence': reports, 'historical_delivery': binding(delivery_history, 'Prior snapshot preserved verbatim; its PASS statuses apply only to its own source/binary.'),
+        'publication': {'status': 'NOT_RUN_FOR_THIS_EXTENSION', 'url': 'https://github.com/stevenke1981/odin',
+            'prior_publication': old_delivery['publication'], 'binary_release_created': False},
+        'language_profiles': old_delivery['language_profiles'],
+        'security_boundaries': [
+            'Explicit host grants only; formatters require write plus formatter permission and native read-only-source sandbox. All source edits use expected-hash Transactions.',
+            'Enumeration reveals directory names only with explicit host configuration; no implicit readable coverage or source write grants.',
+            'Python QA uses per-project pinned private writable backend copies to handle native SetCurrentDirectory behavior. Never execute these mutable copies unsandboxed, promote them to trusted installed tools, or redistribute them.',
+            'Csharp uses explicit OmniSharp selection; sandbox LSP initializes processId=null because the native lifetime owns cleanup. No host-PID monitoring across isolation.',
+            'Linux native execution/packaging does not establish Linux OS sandbox support. Inno Setup packages Windows; Linux uses deb and portable tar.'
+        ],
+        'incomplete_or_unverified': [
+            'Final Windows metadata, six-language/twelve-project MCP matrix and final installer await administrator policy allowance for the unchanged candidate.',
+            'Windows workspace suite retains five actual host-policy failures; earlier independent PASS commands do not replace that failed gate.',
+            'TypeScript/Java unversioned diagnostics remain NOT_VERIFIED; unadvertised capabilities remain UNAVAILABLE. Csharp direct symbols are not full MCP acceptance.',
+            'Linux/macOS sandbox support, macOS native builds, complete resource/device isolation, and OS-sandbox DAP debuggee matrix remain unverified or unimplemented.',
+            'All-language IDE parity, every rule/refactor, clean Windows machine, cross-version/interrupted installation, signatures, benchmarks and formal security audit remain incomplete.'
+        ]}
+    evidence.update(release_class=delivery['release_class'], observed_date=now[:10],
+        source_head_sha_at_documentation_review=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
+        scope='Current v3 extension below; prior source-bound checks remain historical and do not certify the blocked final Windows candidate.',
+        previous_documentation=binding(evidence_history), language_installers_v3=current)
+    evidence['final_integrated_candidate'] = copy.deepcopy(current['windows_final_candidate'])
+    evidence['final_integrated_candidate']['compiled_source_head_sha'] = PRODUCT_REVISION
+    evidence['final_integrated_candidate_scope'] = 'Current compiled Windows candidate; execution remains blocked. Complete prior candidate objects are preserved in previous_documentation.'
+    evidence['publication'] = copy.deepcopy(delivery['publication'])
+    evidence['final_artifacts'] = {'windows_current': 'BLOCKED', 'windows_historical_780': reports['windows_installer_780'], 'linux': linux}
+    evidence['final_windows_packaging'] = {'status': 'BLOCKED', 'final_candidate_packaged': False,
+        'historical_780_candidate': reports['windows_installer_780'], 'blocking_evidence': reports['windows_host_block']}
+    evidence['real_backend_validation'] = {'status': 'BLOCKED_FOR_FINAL_WINDOWS_CANDIDATE',
+        'historical_780_continuation': reports['windows_independent_continuation'],
+        'final_six_language_plan': reports['prepared_final_matrix']}
+    evidence['extension_evidence']['evidence_scope'] = 'Historical earlier 85-tool extension; current v3 candidate is language_installers_v3.'
+    summaries = {
+        'ODIN-001': '69e769b Windows release build exit0；metadata被AppControl4551阻擋。歷史780 suite214PASS/5FAIL/6ignored，13獨立命令PASS不能替代失敗gate。Linux native狀態見language_installers_v3.linux；macOS未驗收。',
+        'ODIN-007': '新增沙箱LSP processId=null；31 protocol fixtures PASS。780上的Rust/Go/Python已實跑兩專案，TS/Java保留未版本診斷，C#全MCP及final69六語矩陣受主機控管阻擋。',
+        'ODIN-008': '780 native真實語意查詢已取得Rust/Go/Python及TS/Java限定證據；C#nullPID direct取得真symbols但driver cleanup exit1，不能視為最終MCP PASS。',
+        'ODIN-009': '新增明確host Ruff stdin formatter與CAS preview/apply/exact rollback；780 native formatter18 checks PASS、Python雙專案60 PASS/4 UNAVAILABLE。final69尚不能啟動。',
+        'ODIN-010': '真實後端驗收分來源快照與binary hash；780有Go46/Python60及Rust/TS/Java證據，C#與final69全矩陣仍不完整，未用mock替代。',
+        'ODIN-012': '新增明確host enumerate-only grants與唯讀來源多語profile；780五語首輪150PASS/4FAIL/12NOT_VERIFIED/4UNAVAILABLE保留，Go/Python後續獨立實測PASS。final69全矩陣BLOCKED；Linux native包不代表Linux sandbox。',
+        'ODIN-017': '780真Clippy/Ruff/ESLint30 checks與native Ruff formatter18 checks有實跑證據；TS/Java未版本診斷仍NOT_VERIFIED，全規則去重矩陣未完成。',
+        'ODIN-019': '28 registry entries是宣告指引。新增五語native workload保留逐binary證據；Go/Python通過限定雙專案，C#全MCP和final69六語仍待驗收。',
+        'ODIN-027': '手動self-hosted CI政策未變，未啟動cloud CI。Windows workspace exit101及AppControl4551明確保留，13獨立PASS不取代全suite；Linux native結果另綁來源。',
+        'ODIN-028': '780c6ad portable/Inno7.1實際install/reinstall/uninstall22 checks PASS。69e769b已編譯但4551阻擋，最終Windows安裝包未實跑；未驗跨版/乾淨機/簽章。',
+        'ODIN-029': 'Linux69 native build/gates/deb與tar驗收以language_installers_v3.linux實際報告為準；進行中不推定PASS。macOS仍NOT_RUN，Linux sandbox未實作。',
+        'ODIN-035': '780真native analyzer30 checks與Ruff stdin formatter18 checks PASS，新增輸出完整性/權限/expected-hash拒絕路徑；final69與所有IDE規則等價未驗收。',
+        'ODIN-040': '本輪來源/命令/binary/逐語言transcript與18 receipt離線索引已綁定；保留原失敗、初次觀察更正與blocked final69，不讓歷史PASS流入新版。',
+    }
+    relevant = set(summaries)
+    for entry in evidence['requirements']:
+        entry['checks_scope'] = 'Historical checks retain their original source/binary scope. Current v3 evidence is language_installers_v3; final Windows runtime is blocked.'
+        if entry['id'] in relevant:
+            entry['historical_summary'] = entry['summary']
+            entry['summary'] = summaries[entry['id']]
+            entry['language_installers_v3'] = {'status': 'PARTIAL', 'ref': '#/language_installers_v3'}
+    # A documentation assembler never upgrades the original acceptance criteria to PASS.
+    if args.linux_report:
+        entry = next(x for x in evidence['requirements'] if x['id'] == 'ODIN-029')
+        entry['status'] = 'PARTIAL'
+        entry['implementation'] = 'NATIVE_SOURCE_PARTIAL'
+        entry['supporting_reports'].append(copy.deepcopy(linux))
+        for item in entry['acceptance_results']:
+            item.update(status='PARTIAL', remaining='Linux native execution has a source-bound report; see its actual outcomes. macOS and full signal/journal/platform matrix remain unverified.')
+        for item in entry['unverified_acceptance']:
+            item['remaining'] = 'Linux native result is bound separately; macOS/full signal/journal/platform acceptance remains incomplete.'
+    evidence['status_summary'] = dict(Counter(entry['status'] for entry in evidence['requirements']))
+    features = load('requirements/features.json')
+    for entry in features['features']:
+        actual = next(item for item in evidence['requirements'] if item['id'] == entry['id'])
+        entry['evidence'] = actual['status']+'; verification/feature-evidence.json#'+entry['id']
+        entry['current'] = actual['implementation']
+    features['note'] = 'Current v3 scope is verification/feature-evidence.json language_installers_v3; historical results do not certify the blocked final Windows candidate. No requirement is fully accepted.'
+    write('verification/delivery-status.json', delivery)
+    write('verification/feature-evidence.json', evidence)
+    write('requirements/features.json', features)
+    print(json.dumps({'scope': 'DOCUMENTATION_ASSEMBLY_ONLY', 'product_executions': 0,
+        'product_revision': PRODUCT_REVISION, 'status_summary': evidence['status_summary'],
+        'windows_final_candidate': 'BLOCKED', 'linux': linux.get('status')}))
+
+
+if __name__ == '__main__':
+    main()

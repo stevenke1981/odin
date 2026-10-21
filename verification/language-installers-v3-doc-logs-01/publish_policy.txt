@@ -1,0 +1,1 @@
+{"scope": "WORKFLOW_SOURCE_POLICY_ONLY", "status": "PASS", "errors": []}

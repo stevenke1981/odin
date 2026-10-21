@@ -1,0 +1,2 @@
+{"scope": "ARTIFACT_AND_CONTRACT_STATIC_CHECKS_ONLY", "status": "PASS", "rust_files": 49, "rust_lines": 19250, "rust_test_declarations": 227, "rust_compilation": "NOT_PERFORMED_BY_STATIC_CHECK"}
+Checks: 751 Fail: 0
