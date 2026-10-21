@@ -70,6 +70,9 @@ fn main() -> io::Result<()> {
             std::process::exit(status.code().unwrap_or(99));
         }
         Some("tree") => {
+            let private_temp = env::temp_dir();
+            fs::create_dir_all(&private_temp)?;
+            let _held_scratch_file = fs::File::create(private_temp.join("held-open.txt"))?;
             let child = Command::new(env::current_exe()?)
                 .args(["heartbeat", &args[1], &args[2]])
                 .stdin(Stdio::null())
@@ -82,6 +85,16 @@ fn main() -> io::Result<()> {
                 child.id()
             );
             io::stdout().flush()?;
+            if let Some(pid_file) = args.get(3) {
+                fs::write(
+                    pid_file,
+                    format!(
+                        "{{\"parent_pid\":{},\"child_pid\":{}}}",
+                        std::process::id(),
+                        child.id()
+                    ),
+                )?;
+            }
             loop {
                 thread::sleep(Duration::from_millis(20));
             }

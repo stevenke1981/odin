@@ -328,7 +328,9 @@ async fn main() -> Result<()> {
                 .with_context(|| format!("Set {token_env} to a random local bearer token"))?;
             http::serve(engine, listen, token).await?;
         }
-        Commands::Languages { .. } => unreachable!("language guidance returned before state creation"),
+        Commands::Languages { .. } => {
+            unreachable!("language guidance returned before state creation")
+        }
     }
     Ok(())
 }

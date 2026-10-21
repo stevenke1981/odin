@@ -401,3 +401,89 @@ async fn abort_and_native_timeout_reap_the_sandbox_tree() {
         drop(guard);
     }
 }
+
+#[tokio::test]
+#[ignore = "Requires explicit trusted native MXC path/hash and a supported Windows host"]
+async fn bounded_execution_retains_guard_until_abort_and_timeout_reaping() {
+    let fixture = Fixture::new();
+    for abort in [true, false] {
+        let heartbeat = fixture.write.join("runner-heartbeat.txt");
+        let pid_file = fixture.write.join("runner-pids.json");
+        let _ = fs::remove_file(&heartbeat);
+        let _ = fs::remove_file(&pid_file);
+        let config = odin_core::config::CommandConfig {
+            program: fixture
+                .bin
+                .join("workload.exe")
+                .to_string_lossy()
+                .into_owned(),
+            args: vec![
+                "tree".into(),
+                heartbeat.display().to_string(),
+                fixture.outside.join("outside.txt").display().to_string(),
+                pid_file.display().to_string(),
+            ],
+            timeout_secs: 3,
+        };
+        let policy = fixture.config.clone();
+        let policy_dir = fixture.policies.clone();
+        let root = fixture.read.clone();
+        let task = tokio::spawn(async move {
+            odin_core::execution::run(&config, &root, 16_384, Some((&policy, &policy_dir))).await
+        });
+        tokio::time::timeout(Duration::from_secs(5), async {
+            while !pid_file.is_file() || !heartbeat.is_file() {
+                tokio::time::sleep(Duration::from_millis(20)).await;
+            }
+        })
+        .await
+        .unwrap();
+        let processes: Value = serde_json::from_slice(&fs::read(&pid_file).unwrap()).unwrap();
+        assert!(
+            fs::read_dir(&fixture.config.temp_root)
+                .unwrap()
+                .next()
+                .is_some()
+        );
+        if abort {
+            task.abort();
+            assert!(task.await.unwrap_err().is_cancelled());
+        } else {
+            let result = task.await.unwrap().unwrap();
+            assert_eq!(result["sandbox"], true);
+            assert_eq!(result["success"], false);
+            assert!(
+                result["timed_out"] == true
+                    || result["exit_code"].as_i64().is_some_and(|code| code != 0)
+            );
+        }
+        tokio::time::timeout(Duration::from_secs(8), async {
+            while process_exists(processes["parent_pid"].as_u64().unwrap())
+                || process_exists(processes["child_pid"].as_u64().unwrap())
+                || fs::read_dir(&fixture.config.temp_root)
+                    .unwrap()
+                    .next()
+                    .is_some()
+            {
+                tokio::time::sleep(Duration::from_millis(20)).await;
+            }
+        })
+        .await
+        .unwrap();
+        let bytes = fs::read(&heartbeat).unwrap();
+        tokio::time::sleep(Duration::from_millis(150)).await;
+        assert_eq!(fs::read(&heartbeat).unwrap(), bytes);
+        assert!(
+            !fs::read_dir(&fixture.policies)
+                .unwrap()
+                .filter_map(|entry| entry.ok())
+                .any(|entry| entry
+                    .file_name()
+                    .to_string_lossy()
+                    .starts_with("odin-mxc-policy-"))
+        );
+        eprintln!(
+            "bounded_execution abort={abort} native_parent_child_reaped=true held_scratch_removed=true policy_removed=true"
+        );
+    }
+}

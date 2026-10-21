@@ -9,7 +9,7 @@ use serde_json::{Value, json};
 use std::{path::Path, process::Stdio, time::Duration};
 use tokio::{
     io::{AsyncRead, AsyncReadExt},
-    process::Command,
+    process::{Child, Command},
     task::JoinHandle,
 };
 
@@ -40,11 +40,13 @@ pub async fn run(
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())
         .kill_on_drop(true);
-    let mut child = command.spawn()?;
-    let tree = ExecutionLifetime {
-        tree: Some(ProcessTree::attach(&child)?),
+    let mut lifetime = ExecutionLifetime {
+        child: Some(command.spawn()?),
+        tree: None,
         guard,
     };
+    lifetime.tree = Some(ProcessTree::attach(lifetime.child()?)?);
+    let child = lifetime.child()?;
     let stdout = child
         .stdout
         .take()
@@ -63,7 +65,7 @@ pub async fn run(
                 (None, true)
             }
         };
-    drop(tree);
+    drop(lifetime);
     let stdout = collect(out).await?;
     let stderr = collect(err).await?;
     Ok(
@@ -112,12 +114,38 @@ async fn collect(mut task: JoinHandle<std::io::Result<(String, bool)>>) -> Resul
 // Field lifetime ordering matters: terminate descendants before removing the
 // kernel profile's private policy and scratch files, including caller cancellation.
 struct ExecutionLifetime {
+    child: Option<Child>,
     tree: Option<ProcessTree>,
     guard: Option<SandboxGuard>,
+}
+impl ExecutionLifetime {
+    fn child(&mut self) -> Result<&mut Child> {
+        self.child
+            .as_mut()
+            .ok_or_else(|| Fault::new("PROCESS_ERROR", "Missing child"))
+    }
 }
 impl Drop for ExecutionLifetime {
     fn drop(&mut self) {
         drop(self.tree.take());
-        drop(self.guard.take());
+        let Some(mut child) = self.child.take() else {
+            return;
+        };
+        let guard = self.guard.take();
+        if child.try_wait().is_ok_and(|status| status.is_some()) {
+            return;
+        }
+        let _ = child.start_kill();
+        if child.try_wait().is_ok_and(|status| status.is_some()) {
+            return;
+        }
+        // Reap without depending on the caller's Tokio runtime. A cancelled
+        // request cannot release its private policy/scratch while MXC is alive.
+        std::thread::spawn(move || {
+            while !child.try_wait().is_ok_and(|status| status.is_some()) {
+                std::thread::sleep(Duration::from_millis(10));
+            }
+            drop(guard);
+        });
     }
 }
