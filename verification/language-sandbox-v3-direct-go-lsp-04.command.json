@@ -1,0 +1,22 @@
+{
+  "command": [
+    "C:\\Python314\\python.exe",
+    "-u",
+    "verification/language-sandbox-v3-direct-diagnostic.py",
+    "--probe",
+    "go-lsp",
+    "--enumerate-runtime-ancestors",
+    "--output",
+    "verification/language-sandbox-v3-direct-go-lsp-04.json"
+  ],
+  "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin",
+  "started_utc": "2026-10-21T03:15:11.9686584Z",
+  "finished_utc": "2026-10-21T03:15:16.3253126Z",
+  "exit_code": 0,
+  "scope": "DIRECT_NATIVE_BACKEND_DIAGNOSTIC_ONLY",
+  "driver_sha256": "fefb608bb191a818ccf1528b33c167183b151989e3eb3d7a9175ea1b145979f1",
+  "harness_sha256": "21f0ddfb07eaecdc1da49cb9730d102e63b7cf1157abf0b73a93b2d361f6324b",
+  "report_sha256": "e2ace60316444e33ba91eead12cd2f3da9a9b7d63ea03dc2b870eea489ae8de0",
+  "stdout_sha256": "8bd3e24d668a579823616547bc8b65ddc26d6c691fda1a1b0513e6615970707b",
+  "line_endings_normalized_before_hash_binding": true
+}

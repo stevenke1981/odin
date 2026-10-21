@@ -294,6 +294,15 @@ companion `language-sandbox-v3-direct-03-integrity.json` verifies the preserved
 report/log/source hashes and all 27 boundary results. These diagnostic runs
 still contain zero Odin/MCP acceptance checks.
 
+The fresh `language-sandbox-v3-direct-*-04` profile enumerated existing C: source
+ancestors as well as E: runtime ancestors. All 36 boundary checks passed,
+including independent outside-content/write denials on both volumes and zero
+loopback connections. Go then loaded its package and returned real `greet` and
+`run` document symbols. Java's security probe again exited zero. Python still
+failed the same runtime `chdir`, so that hypothesis is exhausted; its semantic
+acceptance remains incomplete. These direct observations justify a separate
+typed host profile, not a claim that all IDE cases passed.
+
 `verification/language-sandbox-v3-runner.ps1` records the exact driver argv,
 binary/harness/runner hashes, actual exit code, raw stdout and transcript. It
 requires fresh output names, normalizes text to LF before final hash binding,

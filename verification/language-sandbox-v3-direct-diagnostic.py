@@ -81,15 +81,17 @@ def main():
                 report["status"] = "UNSUPPORTED_HOST"
                 args.output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8", newline="\n")
                 return 0
-            enumerate_paths = sorted({str(parent) for path in readonly if path.drive.lower() == "e:"
+            enumerate_paths = sorted({str(parent) for path in readonly if path.drive.lower() in ("c:", "e:")
                                       for parent in path.resolve().parents})
             policy["processContainer"] = {"filesystem": {"enumeratePaths": enumerate_paths}}
             report["enumerate_metadata_paths"] = enumerate_paths
-            outside = Path(resources.enter_context(tempfile.TemporaryDirectory(prefix="language-sandbox-v3-outside-", dir=tools.parent)))
-            assert outside.resolve().parent == tools.parent.resolve() and outside.name.startswith("language-sandbox-v3-outside-")
-            secret = outside / "outside-sentinel.txt"
-            secret.write_text("outside-content-must-not-be-readable\n", encoding="utf-8", newline="\n")
-            secret_hash = sha(secret)
+            secrets = []
+            for outside_parent in (base.parent, tools.parent):
+                outside = Path(resources.enter_context(tempfile.TemporaryDirectory(prefix="language-sandbox-v3-outside-", dir=outside_parent)))
+                assert outside.resolve().parent == outside_parent.resolve() and outside.name.startswith("language-sandbox-v3-outside-")
+                secret = outside / "outside-sentinel.txt"
+                secret.write_text("outside-content-must-not-be-readable\n", encoding="utf-8", newline="\n")
+                secrets.append((secret, sha(secret)))
             source = item.root / item.source
             source_hash = sha(source)
             positive = (writable[0] if writable else scratch) / "native-positive-write.txt"
@@ -109,17 +111,16 @@ def main():
             support = base / "fixed-boundary-check.mjs"
             boundary_source = (
                 "import fs from 'node:fs';\nimport net from 'node:net';\nimport {createHash} from 'node:crypto';\n"
-                f"const source={json.dumps(str(source))};const outside={json.dumps(str(secret))};\n"
+                f"const source={json.dumps(str(source))};const outside={json.dumps([str(path) for path, _ in secrets])};\n"
                 f"const positive={json.dumps(str(positive))};const policy={json.dumps(str(policy_path))};\n"
                 "const checks=[];const denied=(name,action)=>{try{action();checks.push({name,status:'FAIL'});}catch(error){checks.push({name,status:'PASS',error:error.code});}};\n"
                 f"checks.push({{name:'permitted_source_read',status:createHash('sha256').update(fs.readFileSync(source)).digest('hex')==={json.dumps(source_hash)}?'PASS':'FAIL'}});\n"
                 "fs.writeFileSync(positive,'explicit-private-write');checks.push({name:'explicit_writable_positive',status:fs.readFileSync(positive,'utf8')==='explicit-private-write'?'PASS':'FAIL'});\n"
-                "denied('outside_content_read',()=>fs.readFileSync(outside));\n"
-                "denied('outside_overwrite',()=>fs.writeFileSync(outside,'denied'));\n"
+                "for(const path of outside){const drive=path.slice(0,1);denied('outside_content_read_'+drive,()=>fs.readFileSync(path));denied('outside_overwrite_'+drive,()=>fs.writeFileSync(path,'denied'));}\n"
                 "denied('readonly_source_overwrite',()=>fs.writeFileSync(source,'denied'));\n"
                 "denied('readonly_source_create',()=>fs.writeFileSync(source+'.forbidden','denied'));\n"
                 "denied('protected_policy_read',()=>fs.readFileSync(policy));\n"
-                f"for(const path of {json.dumps([p for p in enumerate_paths if Path(p).parent == Path(p)])}){{checks.push({{name:'volume_metadata_query',status:fs.statSync(path).isDirectory()?'PASS':'FAIL'}});}}\n"
+                f"for(const path of {json.dumps([p for p in enumerate_paths if Path(p).parent == Path(p)])}){{checks.push({{name:'volume_metadata_query_'+path.slice(0,1),status:fs.statSync(path).isDirectory()?'PASS':'FAIL'}});}}\n"
                 f"const loopbackDenied=await new Promise(resolve=>{{const socket=net.createConnection({{host:'127.0.0.1',port:{listener.getsockname()[1]}}});socket.once('connect',()=>{{socket.destroy();resolve(false);}});socket.once('error',()=>resolve(true));socket.setTimeout(700,()=>{{socket.destroy();resolve(true);}});}});\n"
                 "checks.push({name:'loopback_connection_denied',status:loopbackDenied?'PASS':'FAIL'});\n"
                 "console.log(JSON.stringify({checks}));process.exit(checks.every(c=>c.status==='PASS')?0:1);\n"
@@ -136,11 +137,12 @@ def main():
             report["metadata_boundary"] = {"command": boundary_command, "policy_sha256": sha(boundary_path),
                 "source": boundary_source, "source_sha256": sha(support), "exit_code": boundary.returncode,
                 "stdout": boundary.stdout, "stderr": boundary.stderr,
-                "outside_host_hash_unchanged": sha(secret) == secret_hash,
+                "outside_host_hash_unchanged": all(sha(path) == expected for path, expected in secrets),
+                "outside_drive_host_hashes": {path.drive: {"path": str(path), "unchanged": sha(path) == expected, "sha256": expected} for path, expected in secrets},
                 "readonly_source_host_hash_unchanged": sha(source) == source_hash,
                 "host_loopback_accepts": len(accepted),
                 "positive_host_write_verified": positive.read_text(encoding="utf-8") == "explicit-private-write" if positive.exists() else False}
-            if (boundary.returncode or sha(secret) != secret_hash or sha(source) != source_hash or accepted
+            if (boundary.returncode or any(sha(path) != expected for path, expected in secrets) or sha(source) != source_hash or accepted
                     or report["metadata_boundary"]["positive_host_write_verified"] is not True):
                 report["status"] = "METADATA_BOUNDARY_FAILED"
                 args.output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8", newline="\n")
