@@ -73,6 +73,8 @@ def main():
         metadata = json.loads(run(['/usr/bin/odin', 'metadata']).stdout)
         check('installed_native_metadata_matches_portable', metadata == portable_metadata)
         check('installed_payload_matches_inventory', all(digest(Path('/usr/bin/odin') if row['path'] == 'odin' else Path('/usr/share/odin-agent')/row['path']) == row['sha256'] for row in inventory))
+        tools = json.loads(run(['/usr/bin/odin', 'tools']).stdout)
+        check('installed_tool_contracts', tools == json.loads(contents['schemas/tools.json']))
         languages = json.loads(run(['/usr/bin/odin', 'languages']).stdout)
         check('installed_language_registry', {'rust','python','typescript','go','java','csharp'}.issubset({item['id'] for item in languages['adapters']}))
         sentinel = Path('/usr/share/odin-agent/operator-notes.txt')

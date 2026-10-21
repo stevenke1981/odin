@@ -54,12 +54,18 @@ static ELF。Windows 可以使用 pinned Rust 1.90.0 與
 但真正封裝前必須在 Linux 執行該 ELF 的 metadata。跨編譯與 target 執行分開記錄。
 一般 GNU Linux／macOS 原生 build 可繼續使用 `scripts/package_tar.py` 建立 tar。
 
+`bash scripts/package.sh <fresh-output-dir>` 在 Linux x86-64 明確建置 musl target，
+產生 `.deb` 與 tar；需先有 `musl-tools`（或明確設定的同等 C compiler/linker），
+以及 Rust 1.90.0 的 `x86_64-unknown-linux-musl` standard library。
+使用 rustup 的建置機可先執行 `rustup target add --toolchain 1.90.0 x86_64-unknown-linux-musl`。
+入口保留 macOS 原生 tar 路徑；沒有把 macOS 視為 Linux `.deb`。
+
 ```bash
 # Run on Linux, using the actual selected ELF; no automatic dependency installation.
 sha="$(sha256sum /path/to/odin | cut -d ' ' -f 1)"
 python3 scripts/package_linux.py --binary /path/to/odin \
   --expected-binary-sha256 "$sha" --output dist/linux-candidate
-sha256sum --check dist/linux-candidate/SHA256SUMS
+(cd dist/linux-candidate && sha256sum --check SHA256SUMS)
 sudo dpkg --install dist/linux-candidate/odin-agent_0.2.0_amd64.deb
 odin metadata
 sudo dpkg --remove odin-agent

@@ -20,6 +20,19 @@ function Assert-Check([string]$Name, [bool]$Passed) {
     $Checks.Add([ordered]@{name=$Name; status=$(if($Passed){'PASS'}else{'FAIL'})})
     if (-not $Passed) { throw "Installer check failed: $Name" }
 }
+function ConvertTo-OdinCanonical($Value) {
+    if ($null -eq $Value) { return $null }
+    if ($Value -is [pscustomobject]) {
+        $Map = [ordered]@{}
+        foreach ($Property in @($Value.PSObject.Properties | Sort-Object Name)) { $Map[$Property.Name] = ConvertTo-OdinCanonical $Property.Value }
+        return $Map
+    }
+    if ($Value -is [array]) {
+        $Items = @($Value | ForEach-Object { ConvertTo-OdinCanonical $_ })
+        return ,$Items
+    }
+    return $Value
+}
 function Verify-Payload([string]$Directory) {
     $Manifest = Join-Path $Directory 'SHA256SUMS.json'
     $Rows = @(Get-Content -LiteralPath $Manifest -Raw -Encoding UTF8 | ConvertFrom-Json)
@@ -55,8 +68,51 @@ try {
     Assert-Check 'installed_binary_hash' ((Get-FileHash -LiteralPath $Binary -Algorithm SHA256).Hash -ieq $ExpectedBinarySha256)
     $Metadata = (& $Binary metadata | ConvertFrom-Json)
     Assert-Check 'installed_metadata' ($LASTEXITCODE -eq 0 -and $Metadata.target -eq 'x86_64-pc-windows-msvc')
+    if ($Portable) { Assert-Check 'installed_metadata_matches_portable' ((ConvertTo-OdinCanonical $Metadata | ConvertTo-Json -Depth 100 -Compress) -ceq (ConvertTo-OdinCanonical $PortableMetadata | ConvertTo-Json -Depth 100 -Compress)) }
     $Inventory = @(Verify-Payload $App)
     Assert-Check 'installed_inventory_sha256' ($Inventory.Count -gt 0)
+    $InstalledTools = @(& $Binary tools | ConvertFrom-Json)
+    Assert-Check 'installed_tools_exit' ($LASTEXITCODE -eq 0)
+    $Catalog = @(Get-Content -LiteralPath (Join-Path $App 'schemas/tools.json') -Raw -Encoding UTF8 | ConvertFrom-Json)
+    Assert-Check 'installed_tool_contracts' ((ConvertTo-OdinCanonical $InstalledTools | ConvertTo-Json -Depth 100 -Compress) -ceq (ConvertTo-OdinCanonical $Catalog | ConvertTo-Json -Depth 100 -Compress))
+    $Runtime = Get-Content -LiteralPath (Join-Path $App 'windows-runtime-dependencies.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+    foreach ($Entry in $Runtime.app_local) {
+        $RuntimePath = Join-Path $App $Entry.path
+        Assert-Check ('installed_runtime_signature:'+$Entry.path) ((Get-AuthenticodeSignature -LiteralPath $RuntimePath).Status -eq 'Valid')
+    }
+    # Hold a real stdio server open to prove app-local DLL loading, without granting backends or writes.
+    $RuntimeWorkspace = Join-Path $QaRoot 'runtime-workspace'
+    New-Item -ItemType Directory -Path $RuntimeWorkspace | Out-Null
+    $RuntimeConfig = Join-Path $QaRoot 'runtime-host.toml'
+    [IO.File]::WriteAllText($RuntimeConfig, ("state_dir = '"+(Join-Path $QaRoot 'runtime-state')+"'`n[projects.probe]`nroot = '"+$RuntimeWorkspace+"'`n"), [Text.UTF8Encoding]::new($false))
+    $RuntimeProcess = [Diagnostics.Process]::new()
+    $RuntimeStarted = $false
+    try {
+        $RuntimeProcess.StartInfo = [Diagnostics.ProcessStartInfo]::new($Binary, ('--config "'+$RuntimeConfig+'" serve --transport stdio'))
+        $RuntimeProcess.StartInfo.UseShellExecute = $false
+        $RuntimeProcess.StartInfo.CreateNoWindow = $true
+        $RuntimeProcess.StartInfo.RedirectStandardInput = $true
+        $RuntimeProcess.StartInfo.RedirectStandardOutput = $true
+        $RuntimeProcess.StartInfo.RedirectStandardError = $true
+        $null = $RuntimeProcess.Start()
+        $RuntimeStarted = $true
+        $Timer = [Diagnostics.Stopwatch]::StartNew()
+        $Loaded = @()
+        do {
+            $RuntimeProcess.Refresh()
+            if ($RuntimeProcess.HasExited) { throw ('Installed stdio server exited before runtime inspection: '+$RuntimeProcess.StandardError.ReadToEnd()) }
+            $Loaded = @($RuntimeProcess.Modules | ForEach-Object { $_.FileName })
+            if (@($Runtime.app_local | Where-Object { $Loaded -notcontains (Join-Path $App $_.path) }).Count -eq 0) { break }
+            Start-Sleep -Milliseconds 100
+        } while ($Timer.Elapsed.TotalSeconds -lt 10)
+        Assert-Check 'installed_runtime_loaded_app_local' (@($Runtime.app_local | Where-Object { $Loaded -notcontains (Join-Path $App $_.path) }).Count -eq 0)
+    } finally {
+        if ($RuntimeStarted) {
+            $RuntimeProcess.StandardInput.Close()
+            if (-not $RuntimeProcess.WaitForExit(5000)) { $RuntimeProcess.Kill(); $RuntimeProcess.WaitForExit() }
+        }
+        $RuntimeProcess.Dispose()
+    }
     Assert-Check 'installed_safe_default_configuration' (-not (Test-Path -LiteralPath (Join-Path $App 'odin.local.toml')) -and -not (Test-Path -LiteralPath (Join-Path $App 'state')))
     $UserData = Join-Path $App 'operator-notes.txt'
     [IO.File]::WriteAllText($UserData, 'retain user data')
