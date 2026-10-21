@@ -1,0 +1,75 @@
+{
+  "scope": "NATIVE_LINUX_DIAGNOSTIC_BUILD_AND_MUSL_LINKER_ISOLATION",
+  "status": "DIAGNOSTIC_CAUSE_ISOLATED_NOT_FINAL_ACCEPTANCE",
+  "source_revision": "9017908f8759de74d5c3deb89e7bdb8aedcf83fd",
+  "native_build": {
+    "status": "PASS",
+    "exit_code": 0,
+    "duration": "32m05s",
+    "command": [
+      "cargo",
+      "build",
+      "-p",
+      "odin-agent",
+      "--release",
+      "--target",
+      "x86_64-unknown-linux-musl",
+      "--locked",
+      "--offline"
+    ],
+    "original_build_log_sha256": "6e17fe9f48d0a4e228aa5cea4abba8fa096e0f74a651430fc7d52011a278f028"
+  },
+  "native_binary_smoke": {
+    "status": "FAIL",
+    "command": [
+      "/opt/odin-baseline-9017908/odin",
+      "metadata"
+    ],
+    "compound_receipt_exit_code": 1,
+    "observed": "Linux kernel general protection fault before metadata response",
+    "binary_sha256": "7364f2a585ee2e4b4ba7586a62adf27a101768f78dba34ab88c0dad142406c0c",
+    "packaged": false
+  },
+  "target": "x86_64-unknown-linux-musl",
+  "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+  "environment": {
+    "CARGO_BUILD_JOBS": "8",
+    "CARGO_HOME": "/root/odin-cargo-home",
+    "CARGO_TARGET_DIR": "/root/odin-linux-target",
+    "CC_x86_64_unknown_linux_musl": "musl-gcc",
+    "AR_x86_64_unknown_linux_musl": "ar",
+    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_MUSL_LINKER": "musl-gcc"
+  },
+  "minimal_source": "fn main() { println!(\"native-musl-runtime-ok\"); }\n",
+  "minimal_source_sha256": "cde60f0e7417550052aa7e7bee9df8329b5c77fa01bd51e0894ada5aec513c1d",
+  "minimal_comparison": [
+    {
+      "linker": "musl-gcc",
+      "compile_exit_code": 0,
+      "execution_exit_code": 139,
+      "pt_interp": "/lib/ld-musl-x86_64.so.1",
+      "runtime_status": "FAIL"
+    },
+    {
+      "linker": "cc",
+      "compile_exit_code": 0,
+      "execution_exit_code": 0,
+      "pt_interp": null,
+      "stdout": "native-musl-runtime-ok",
+      "runtime_status": "PASS"
+    }
+  ],
+  "conclusion": "Debian musl-gcc driver injects a dynamic interpreter into Rust self-contained static PIE. Use musl-gcc only for C compilation and normal cc for Rust linking.",
+  "product_cfg_profile_gates_changed": false,
+  "final_candidate_build_runtime_installers": "NOT_RUN",
+  "evidence": {
+    "verification/package-v3-native-baseline-build.txt": "6e17fe9f48d0a4e228aa5cea4abba8fa096e0f74a651430fc7d52011a278f028",
+    "verification/package-v3-native-baseline-build.sh": "4fc95badc51e64ab0ecc7c9188f50d0156d0b07c3b4eb790b92238caadac6fc2",
+    "verification/package-v3-native-baseline-runtime-failure.txt": "da0d29b176dd1e9927d2d64f1eaeb5b3ea445200080b1d85cf137007df4981ea",
+    "verification/package-v3-native-baseline-readelf.txt": "ee2bf02b5f4327f9bce12ee8f26ff7571cf95334f419dd1dcf03fa60d2b25998",
+    "verification/package-v3-musl-linker-diagnostic.txt": "df1c6bc127bf6981d1e2c07565068d388f1797e668dae0367add80db9502174c",
+    "verification/package-v3-musl-linker-diagnostic.sh": "10228b3ba57cb24b54f6e3a0366cd5376e2ca44e4b59d6b39919ed8bf0220708",
+    "verification/package-v3-musl-corrected-readelf.txt": "5caaad79742cdc6c2229d749a5aaefe11f1bc54225b1cba642344762a5d25e2a"
+  },
+  "normalization": "Public text is UTF-8 LF, serial CR/LF and line trailing whitespace normalized. Result fields unchanged; original build log hash preserved."
+}

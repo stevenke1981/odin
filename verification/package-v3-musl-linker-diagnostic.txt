@@ -1,0 +1,11 @@
+> > COMPILE_musl-gcc_EXIT=0
+  INTERP         0x00000000000002a8 0x00000000000002a8 0x00000000000002a8
+      [Requesting program interpreter: /lib/ld-musl-x86_64.so.1]
+[ 3168.830074] traps: hello-musl-gcc[16599] general protection fault ip:55656d32e7ac sp:7fff25d9d088 error:0 in hello-musl-gcc[55656d329000+54000]
+Segmentation fault
+EXEC_musl-gcc_EXIT=139
+COMPILE_cc_EXIT=0
+native-musl-runtime-ok
+EXEC_cc_EXIT=0
+
+ODIN_VM_56fa8abca3944304b245d30f22a5a106:0
