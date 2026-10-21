@@ -1,0 +1,21 @@
+{
+  "command": [
+    "python",
+    "-u",
+    "tests/real_ide_backends.py",
+    "--binary",
+    "E:/odin/target/release/odin.exe",
+    "--output",
+    "verification/language-ide-final-baseline-02.json"
+  ],
+  "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin",
+  "started_utc": "2026-10-21T01:43:48.3535363Z",
+  "finished_utc": "2026-10-21T01:45:17.0609986Z",
+  "exit_code": 1,
+  "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+  "harness_sha256": "862bf89645e99c5110bd6d700ba8a8a16c4f796c86218dd4c20dad3d32a416bf",
+  "raw_stdout_log": "verification/language-ide-final-baseline-02.txt",
+  "log_sha256": "4a5fb94d95a5ce850224ecdc98fae20cdf8a5945ee96143d3c722028aee83023",
+  "report_sha256": "1fd634823c6ed964d3961fd2f4c2e64fca36c95a0ea4d04dc125be303e02455a",
+  "line_endings_normalized_before_hash_binding": true
+}
