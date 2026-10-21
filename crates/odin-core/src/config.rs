@@ -89,6 +89,8 @@ pub struct ProjectConfig {
     #[serde(default)]
     pub debuggers: BTreeMap<String, CommandConfig>,
     #[serde(default)]
+    pub debug_launches: BTreeMap<String, DebugLaunchProfile>,
+    #[serde(default)]
     pub inspections: BTreeMap<String, InspectionProfile>,
 }
 
@@ -107,6 +109,47 @@ pub struct InspectionProfile {
     pub command: CommandConfig,
     #[serde(default = "default_version_args")]
     pub version_args: Vec<String>,
+}
+
+/// Optional immutable DAP launch payloads owned by the trusted host. Unknown
+/// adapter fields stay inert JSON data; repositories cannot install this policy.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct DebugLaunchProfile {
+    pub launch: serde_json::Value,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub attach: Option<serde_json::Value>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub restart: Option<serde_json::Value>,
+}
+
+impl ProjectConfig {
+    /// Apply the immutable host policy to the launch commands only. With no
+    /// selected policy, explicit allow_debug remains a privileged host grant.
+    pub fn debug_arguments(
+        &self,
+        profile: &str,
+        command: &str,
+        caller: &serde_json::Value,
+    ) -> Result<serde_json::Value> {
+        let Some(policy) = self.debug_launches.get(profile) else {
+            return Ok(caller.clone());
+        };
+        let configured = match command {
+            "launch" => Some(&policy.launch),
+            "attach" => policy.attach.as_ref(),
+            "restart" => policy.restart.as_ref(),
+            _ => return Ok(caller.clone()),
+        }
+        .ok_or_else(|| Fault::denied("DAP command has no immutable host launch payload"))?;
+        let empty = caller.is_null() || caller.as_object().is_some_and(|map| map.is_empty());
+        if !empty && caller != configured {
+            return Err(Fault::denied(
+                "DAP launch arguments differ from the immutable host payload",
+            ));
+        }
+        Ok(configured.clone())
+    }
 }
 
 fn default_version_args() -> Vec<String> {
@@ -254,6 +297,24 @@ impl Config {
                 validate_program(&command.program)?;
                 if !(1..=600).contains(&command.timeout_secs) {
                     return Err(Fault::invalid("Command timeout must be 1..600"));
+                }
+            }
+            for (name, profile) in &project.debug_launches {
+                validate_id(name)?;
+                if !project.debuggers.contains_key(name) {
+                    return Err(Fault::invalid(
+                        "Immutable debug policy names an unknown debugger",
+                    ));
+                }
+                for payload in std::iter::once(&profile.launch)
+                    .chain(profile.attach.iter())
+                    .chain(profile.restart.iter())
+                {
+                    if !payload.is_object() || serde_json::to_vec(payload)?.len() > 65_536 {
+                        return Err(Fault::invalid(
+                            "Immutable debug payload must be an object of at most 64 KiB",
+                        ));
+                    }
                 }
             }
             for (name, profile) in &project.inspections {
