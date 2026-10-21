@@ -3,9 +3,12 @@
 //! No LLM API, telemetry upload, arbitrary evaluation, or network client lives here.
 pub mod config;
 pub mod error;
+pub mod execution;
+pub mod languages;
 pub mod memory;
 pub mod paths;
 pub mod process;
+pub mod sandbox;
 pub mod sandbox_policy;
 pub mod search;
 pub mod store;
