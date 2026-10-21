@@ -1,0 +1,98 @@
+{
+  "task_id": "language-ide-gap-completion/csharp-pipe-research",
+  "status": "RESEARCH_COMPLETE",
+  "native_csharp_acceptance": "NOT_RUN_BY_THIS_AGENT",
+  "scope": "Read-only compatibility research; no OS, ACL, sandbox or backend changes performed.",
+  "observed_utc": "2026-10-21T02:55:52.873661+00:00",
+  "local_evidence": {
+    "platform_report": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin\\verification\\language-sandbox-v3-diagnostic-01.json",
+    "platform_report_sha256": "b38ac18fffb4f803d4c1bd353e1c3876a27a75f8eaac1ce0eb817ec43e935fed",
+    "backend_deps_sha256": "a8c57c1c89ffc41b34c6d8c1bb2100e30dbc51f116bb1ff09cd8d39d58f2e5f8",
+    "csharp_ls": "0.28.0+72671fc7fa810c158864e72485db68e8b9b25c3d",
+    "sdk": "10.0.402",
+    "buildhost_runtime": "10.0.13",
+    "roslyn_msbuild_workspaces": "5.9.0"
+  },
+  "observations": [
+    "Both C# projects identify the installed SDK and initialize LSP, then fail OpenProjectAsync while NamedPipeClientStream.TryConnect throws UnauthorizedAccessException.",
+    "This is semantic-workspace failure after initialization, not successful native C# IDE acceptance."
+  ],
+  "primary_sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createnamedpipea#remarks",
+      "supports": "Windows AppContainer named pipes require LOCAL namespace and same-container communication."
+    },
+    {
+      "url": "https://github.com/dotnet/roslyn/blob/main/src/Workspaces/MSBuild/Core/MSBuild/BuildHostProcessManager.cs",
+      "supports": "Current upstream creates a GUID pipe name and always starts/contacts an out-of-process BuildHost; no name override switch found in this implementation."
+    },
+    {
+      "url": "https://github.com/dotnet/roslyn/blob/main/src/Compilers/Shared/NamedPipeUtil.cs",
+      "supports": "Windows pipe name is passed through unchanged; .NET Core clients/servers use CurrentUserOnly."
+    },
+    {
+      "url": "https://github.com/razzmatazz/csharp-language-server/blob/72671fc7fa810c158864e72485db68e8b9b25c3d/src/CSharpLanguageServer/Roslyn/Solution.fs",
+      "supports": "Pinned csharp-ls project loading uses MSBuildWorkspace and OpenProjectAsync; no documented in-process/pipe-name switch was found in CLI/settings."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-environment-variables",
+      "supports": "MSBuild CLI in-process controls concern dotnet CLI execution; they do not change Roslyn BuildHostProcessManager source behavior."
+    },
+    {
+      "url": "https://github.com/microsoft/mxc/blob/main/schemas/stable/mxc-config.schema.1.0.0.json",
+      "supports": "Closed ProcessContainer schema enumerates capabilities/captureDenials/filesystem/learningMode/leastPrivilege/network/ui; no named-pipe grant is defined."
+    },
+    {
+      "url": "https://github.com/dotnet/msbuild/issues/15044",
+      "supports": "Open triaged upstream report reproduces AppContainer/MXC/SDK10 named-pipe access denial. An issue report is corroboration, not a released fix."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/OmniSharp/omnisharp-roslyn/v1.39.15/src/OmniSharp.MSBuild/ProjectLoader.cs",
+      "supports": "The pinned pre-BuildHost loader directly evaluates and builds Microsoft.Build project instances with design-time settings and SkipCompilerExecution. This avoids the observed MSBuildWorkspace BuildHost path; other MSBuild task IPC remains unverified."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/OmniSharp/omnisharp-roslyn/v1.39.15/src/OmniSharp.Stdio/StdioCommandLineApplication.cs",
+      "supports": "--languageserver explicitly selects LSP stdio rather than OmniSharp's other stdio protocol."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/OmniSharp/omnisharp-roslyn/v1.39.15/src/OmniSharp.Stdio.Driver/OmniSharp.Stdio.Driver.csproj",
+      "supports": "The net6.0 driver specifies RollForward=LatestMajor. The installed archive runtimeconfig and selected isolated runtime must still be checked before claiming compatibility."
+    },
+    {
+      "url": "https://github.com/OmniSharp/omnisharp-roslyn/blob/master/CHANGELOG.md",
+      "supports": "1.40.0 changes project loading to Roslyn BuildHost and removes direct Microsoft.Build dependencies; blindly choosing latest does not retain the candidate loader."
+    },
+    {
+      "url": "https://api.github.com/repos/OmniSharp/omnisharp-roslyn/releases/tags/v1.39.15",
+      "supports": "Live release metadata supplies the candidate's full commit, official asset size and SHA-256 digest."
+    }
+  ],
+  "explicit_backend_candidate": {
+    "status": "SOURCE_VERIFIED_NOT_EXECUTED",
+    "name": "omnisharp_pre_buildhost",
+    "version": "v1.39.15",
+    "commit": "83fd615eafff33e297a9f59280d929cf09ec0d3c",
+    "release_published_at": "2025-11-14T08:12:51Z",
+    "asset_url": "https://github.com/OmniSharp/omnisharp-roslyn/releases/download/v1.39.15/omnisharp-win-x64-net6.0.zip",
+    "asset_bytes": 52285676,
+    "asset_sha256_from_official_api": "b03eb6b9ac6446fce803b87c0965e94cef5570cc86f47bfefe2f60933d8658e8",
+    "latest_release_observed": {"version": "v2.0.0", "published_at": "2026-09-18T05:58:22Z"},
+    "proposed_fixed_host_argv": ["<isolated-dotnet.exe>", "<pinned-OmniSharp.dll>", "--languageserver"],
+    "runtime": "First verify archive runtimeconfig with the existing isolated .NET 10 host. Do not install an older runtime merely from the net6 asset name; direct loading and MSBuild/SDK compatibility require actual logs.",
+    "required_acceptance": [
+      "Pin/verify official archive and extracted backend hashes; use explicit host-selected profile, never automatic fallback.",
+      "Use the same native process-container route, source read-only grants, external caches and network-deny policy.",
+      "Verify semantic workspace loading, symbols, hover/completion, diagnostics, formatting/refactor previews and cross-project separation against both fixtures; initialize alone is insufficient.",
+      "Retain backend logs, missing-capability UNAVAILABLE outcomes, unversioned diagnostics status, and source hashes.",
+      "Do not load repository OmniSharp/plugin settings as trusted Odin host configuration. A candidate source branch is not a sandbox compatibility proof."
+    ],
+    "handoff": "Primary source links, official release pin/digest and the proposed explicit profile were sent to root and platform_implementation. Platform owns actual installation and native matrix execution."
+  },
+  "inference": "The observed failure strongly fits AppContainer named-pipe namespace/security compatibility, rather than SDK presence or source/cache file grants. LOCAL naming is a relevant requirement, not a proven sufficient fix; same-container identities, CurrentUserOnly security and actual workspace operations still require verification.",
+  "not_run": [
+    "Kernel object/security trace proving the exact deny decision",
+    "Patched upstream Roslyn build or alternative explicitly selected backend",
+    "Successful C# semantic workspace operation inside the native OS boundary"
+  ],
+  "next_owner": "platform_implementation/root: test the explicit pinned OmniSharp pre-BuildHost profile with the isolated runtime and full native matrix. Do not change global ACLs, add fictional IPC policy fields, downgrade isolation or label initialize as full IDE proof."
+}

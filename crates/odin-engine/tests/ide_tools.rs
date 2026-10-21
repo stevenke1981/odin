@@ -371,3 +371,65 @@ async fn inspection_catalog_metadata_permissions_and_required_sandbox_are_consis
         "PERMISSION_DENIED"
     );
 }
+
+#[tokio::test]
+async fn lsp_coordinates_over_one_hundred_thousand_are_valid_but_utf16_boundaries_still_apply() {
+    let (root, _state, engine) = setup(
+        false,
+        &["--hover-at-request".into(), "--tokens-in-range".into()],
+    );
+    let source = format!("{}😀x\n", "a".repeat(120000));
+    std::fs::write(root.path().join("source.rs"), source.as_bytes()).unwrap();
+    let hover = call(
+        &engine,
+        "hover",
+        document(json!({"position":{"line":0,"character":120002}})),
+    )
+    .await;
+    assert_eq!(hover["result"]["range"]["start"]["character"], 120002);
+    assert_eq!(hover["document"]["sha256"], sha256(source.as_bytes()));
+    for character in [120001, 120004] {
+        assert!(
+            engine
+                .call(
+                    "one".into(),
+                    "hover".into(),
+                    document(json!({"position":{"line":0,"character":character}}))
+                )
+                .await
+                .is_err()
+        );
+    }
+    let source = format!("{}fn\n", "\n".repeat(100001));
+    std::fs::write(root.path().join("source.rs"), source.as_bytes()).unwrap();
+    let hover = call(
+        &engine,
+        "hover",
+        document(json!({"position":{"line":100001,"character":2}})),
+    )
+    .await;
+    assert_eq!(hover["result"]["range"]["start"]["line"], 100001);
+    let range = json!({"start":{"line":100001,"character":0},"end":{"line":100001,"character":2}});
+    let tokens = call(&engine, "semantic_tokens", document(json!({"range":range}))).await;
+    assert_eq!(tokens["freshness"], "current");
+    assert_eq!(
+        engine
+            .call(
+                "one".into(),
+                "hover".into(),
+                document(json!({"position":{"line":0,"character":2147483648u64}}))
+            )
+            .await
+            .unwrap_err()
+            .code,
+        "INVALID_ARGUMENT"
+    );
+    assert_eq!(
+        engine.tool("completion").unwrap()["inputSchema"]["properties"]["limit"]["maximum"],
+        200
+    );
+    assert_eq!(
+        engine.tool("find_symbol").unwrap()["inputSchema"]["properties"]["offset"]["maximum"],
+        100000
+    );
+}

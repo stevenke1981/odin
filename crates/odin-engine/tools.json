@@ -627,12 +627,12 @@
             "line": {
               "type": "integer",
               "minimum": 0,
-              "maximum": 100000
+              "maximum": 2147483647
             },
             "character": {
               "type": "integer",
               "minimum": 0,
-              "maximum": 100000
+              "maximum": 2147483647
             }
           },
           "additionalProperties": false,
@@ -783,12 +783,12 @@
                 "line": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 },
                 "character": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 }
               },
               "additionalProperties": false,
@@ -803,12 +803,12 @@
                 "line": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 },
                 "character": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 }
               },
               "additionalProperties": false,
@@ -859,12 +859,12 @@
             "line": {
               "type": "integer",
               "minimum": 0,
-              "maximum": 100000
+              "maximum": 2147483647
             },
             "character": {
               "type": "integer",
               "minimum": 0,
-              "maximum": 100000
+              "maximum": 2147483647
             }
           },
           "additionalProperties": false,
@@ -914,12 +914,12 @@
             "line": {
               "type": "integer",
               "minimum": 0,
-              "maximum": 100000
+              "maximum": 2147483647
             },
             "character": {
               "type": "integer",
               "minimum": 0,
-              "maximum": 100000
+              "maximum": 2147483647
             }
           },
           "additionalProperties": false,
@@ -963,12 +963,12 @@
             "line": {
               "type": "integer",
               "minimum": 0,
-              "maximum": 100000
+              "maximum": 2147483647
             },
             "character": {
               "type": "integer",
               "minimum": 0,
-              "maximum": 100000
+              "maximum": 2147483647
             }
           },
           "additionalProperties": false,
@@ -1091,12 +1091,12 @@
             "line": {
               "type": "integer",
               "minimum": 0,
-              "maximum": 100000
+              "maximum": 2147483647
             },
             "character": {
               "type": "integer",
               "minimum": 0,
-              "maximum": 100000
+              "maximum": 2147483647
             }
           },
           "additionalProperties": false,
@@ -1130,7 +1130,7 @@
   },
   {
     "name": "format_document",
-    "description": "Prepare backend formatting as a SHA-256 guarded transaction; source is unchanged until apply",
+    "description": "Prepare LSP formatting or an explicitly selected host Ruff stdin profile as a SHA-256 guarded transaction; no fallback",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -1144,6 +1144,10 @@
         },
         "expected_sha256": {
           "type": "string"
+        },
+        "formatter_profile": {
+          "type": "string",
+          "description": "Explicit host native formatter profile; requires formatter permission and read-only source sandbox; whole document and fixed host options only"
         },
         "options": {
           "type": "object",
@@ -1182,12 +1186,12 @@
                 "line": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 },
                 "character": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 }
               },
               "additionalProperties": false,
@@ -1202,12 +1206,12 @@
                 "line": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 },
                 "character": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 }
               },
               "additionalProperties": false,
@@ -1264,12 +1268,12 @@
                 "line": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 },
                 "character": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 }
               },
               "additionalProperties": false,
@@ -1284,12 +1288,12 @@
                 "line": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 },
                 "character": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 }
               },
               "additionalProperties": false,
@@ -1386,12 +1390,12 @@
                 "line": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 },
                 "character": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 }
               },
               "additionalProperties": false,
@@ -1406,12 +1410,12 @@
                 "line": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 },
                 "character": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 }
               },
               "additionalProperties": false,
@@ -1567,12 +1571,12 @@
                 "line": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 },
                 "character": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 }
               },
               "additionalProperties": false,
@@ -1587,12 +1591,12 @@
                 "line": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 },
                 "character": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 }
               },
               "additionalProperties": false,
@@ -1660,12 +1664,12 @@
                 "line": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 },
                 "character": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 }
               },
               "additionalProperties": false,
@@ -1680,12 +1684,12 @@
                 "line": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 },
                 "character": {
                   "type": "integer",
                   "minimum": 0,
-                  "maximum": 100000
+                  "maximum": 2147483647
                 }
               },
               "additionalProperties": false,

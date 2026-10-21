@@ -1,0 +1,13 @@
+Command: cargo test -p odin-engine --locked
+   Compiling odin-engine v0.2.0 (C:\Users\steven\.codex\worktrees\odin-engine\odin\crates\odin-engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.54s
+     Running unittests src\lib.rs (target\debug\deps\odin_engine-2ad1c4edd17061ce.exe)
+error: test failed, to rerun pass `-p odin-engine --lib`
+
+Caused by:
+  could not execute process `C:\Users\steven\.codex\worktrees\odin-engine\odin\target\debug\deps\odin_engine-2ad1c4edd17061ce.exe` (never executed)
+
+Caused by:
+  應用程式控制原則已封鎖此檔案。 (os error 4551)
+
+Exit code: 101

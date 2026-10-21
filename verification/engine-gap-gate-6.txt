@@ -1,0 +1,5 @@
+Command: cargo clippy -p odin-engine --all-targets --locked -- -D warnings
+    Checking odin-engine v0.2.0 (C:\Users\steven\.codex\worktrees\odin-engine\odin\crates\odin-engine)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.27s
+
+Exit code: 0

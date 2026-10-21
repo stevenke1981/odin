@@ -39,7 +39,7 @@ LSP position 為 0-based UTF-16；檔案行數為 1-based inclusive。參數細�
 | `completion_resolve` | read | `project`, `relative_path`, `item`, `expected_sha256` | Resolve completion metadata against an exact source hash; never execute item commands or apply text edits |
 | `workspace_symbols` | read | `project`, `language`, `query` | Search real LSP workspace symbols for an explicit configured language; bounded local URI results |
 | `call_hierarchy` | read | `project`, `relative_path`, `position`, `direction` | Prepare and query real LSP incoming or outgoing calls; missing backend capabilities are errors |
-| `format_document` | write | `project`, `relative_path`, `expected_sha256` | Prepare backend formatting as a SHA-256 guarded transaction; source is unchanged until apply |
+| `format_document` | write | `project`, `relative_path`, `expected_sha256` | Prepare LSP formatting or an explicitly selected host Ruff stdin profile as a SHA-256 guarded transaction; no fallback |
 | `inlay_hints` | read | `project`, `relative_path` | Get bounded native LSP inlay hints with document metadata; never execute label commands |
 | `inlay_hint_resolve` | read | `project`, `relative_path`, `hint`, `expected_sha256` | Resolve an LSP inlay hint against an exact source hash without executing commands or edits |
 | `semantic_tokens` | read | `project`, `relative_path` | Get real LSP semantic tokens and legend/encoding metadata, with current document freshness |
@@ -127,3 +127,11 @@ FTS5 查詢先增量 refresh 當前檔案快照；這是詞彙搜尋，不是語
 `prepare_inspection_fix` 另要求 allow_write，重新執行固定檢查器，以 current finding_id 選擇 safe Ruff、ESLint fix 或 Clippy MachineApplicable 的單檔 edits；驗證 expected_sha256 後只回交易預覽。未知版本、未完成分析、過期來源、跨檔或不安全建議不能套用。檢查結果的 summary.complete 僅表示固定 profile 的 report 完整；whole_project_verified 始終為 false，不是完整 IDE 或安全性認證。細節與證據見 [IDE_IMPLEMENTATION](IDE_IMPLEMENTATION.md)。
 
 `debug_launches[profile]` 可由 host 固定 launch/attach/restart payload；空 arguments 使用該 payload，非空必須完全相同，未配置的 attach/restart 拒絕。single request 與 batch 都在送給 adapter 前核對。未配置此限制時 allow_debug 保持 privileged host debugging，回報 unrestricted_host_debug=true。LSP/DAP 與 shell 的 host sandbox 設定會傳入共用 native launch；配置失敗不降級。
+
+## 明確選用原生格式化
+
+`format_document.formatter_profile` 只選取 host `formatters` 的 Ruff stdin profile；未提供該參數時仍只呼叫 LSP，不做自動回退，也不改語言伺服器 capability。原生 route 要求 allow_write、allow_formatters 和唯讀專案來源／Odin state 的 native sandbox。主機固定 Ruff argv 必須使用 format、--isolated、--no-cache、--stdin-filename {relative_path}、最後的 -；只有完整佔位符參數替換成 SafeRoot 檢查過的絕對檔名。命令列值不由 caller 供應，來源以 stdin 傳入。
+
+原生 profile 僅格式化整份文件，range 與非空 options 明確回 CAPABILITY_UNAVAILABLE，不忽略 caller 的選項。成功必須有 success=true、stdin_complete=true 與零退出碼；stdin 有 16 MiB 上限。timeout、輸入未完整送達、缺少完成旗標、非零退出、截斷、無效 UTF-8 stdout、過大輸出或來源衝突均不建立交易；無變更回 changed=false。成功只回 provider=ruff、source=native_formatter、profile、來源／結果 digest 及 transaction preview；另需 transaction_apply。get_capabilities 與 get_current_config 僅列 profile metadata，不輸出 executable/argv。
+
+LSP line/character 的 schema 使用 uinteger 範圍 0..2147483647，實際位置仍必須存在於該文件且符合 UTF-16 邊界；大於 100000 的合法行／欄不再因 schema 被拒絕。count、page、match 與輸出預算維持各自原有限制。

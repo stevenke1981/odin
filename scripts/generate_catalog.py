@@ -17,7 +17,7 @@ def obj(props=None, required=None, additional=False):
     return d
 def arr(items, maximum=256):return {"type":"array","items":items,"maxItems":maximum}
 def nullable_string():return {"type":["string","null"]}
-POS=obj({"line":n(),"character":n()},["line","character"])
+POS=obj({"line":n(None,0,2147483647),"character":n(None,0,2147483647)},["line","character"])
 RANGE=obj({"start":POS,"end":POS},["start","end"])
 CHANGE=obj({"path":s(),"expected_sha256":nullable_string(),"content":nullable_string()},["path","expected_sha256","content"])
 TOOLS=[]
@@ -57,7 +57,7 @@ add("completion_resolve","Resolve completion metadata against an exact source ha
 add("workspace_symbols","Search real LSP workspace symbols for an explicit configured language; bounded local URI results","read",{"language":s(),"query":s(),"relative_path":s(),"limit":n(100,1,1000)},["language","query"])
 add("call_hierarchy","Prepare and query real LSP incoming or outgoing calls; missing backend capabilities are errors","read",{"relative_path":s(),"position":POS,"direction":s(enum=["incoming","outgoing"])},["relative_path","position","direction"])
 FORMAT_OPTIONS=obj({"tab_size":n(4,1,16),"insert_spaces":b(True),"trim_trailing_whitespace":b(),"insert_final_newline":b(),"trim_final_newlines":b()})
-add("format_document","Prepare backend formatting as a SHA-256 guarded transaction; source is unchanged until apply","write",{"relative_path":s(),"expected_sha256":s(),"options":FORMAT_OPTIONS,"range":RANGE,"request_id":s()},["relative_path","expected_sha256"])
+add("format_document","Prepare LSP formatting or an explicitly selected host Ruff stdin profile as a SHA-256 guarded transaction; no fallback","write",{"relative_path":s(),"expected_sha256":s(),"formatter_profile":s("Explicit host native formatter profile; requires formatter permission and read-only source sandbox; whole document and fixed host options only"),"options":FORMAT_OPTIONS,"range":RANGE,"request_id":s()},["relative_path","expected_sha256"])
 add("inlay_hints","Get bounded native LSP inlay hints with document metadata; never execute label commands","read",{"relative_path":s(),"range":RANGE,"limit":n(200,1,1000)},["relative_path"])
 add("inlay_hint_resolve","Resolve an LSP inlay hint against an exact source hash without executing commands or edits","read",{"relative_path":s(),"hint":obj(additional=True),"expected_sha256":s()},["relative_path","hint","expected_sha256"])
 add("semantic_tokens","Get real LSP semantic tokens and legend/encoding metadata, with current document freshness","read",{"relative_path":s(),"range":RANGE},["relative_path"])

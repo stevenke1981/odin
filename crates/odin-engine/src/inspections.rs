@@ -739,7 +739,8 @@ fn canonical_scope(path: &Path) -> Result<PathBuf> {
     }
     Ok(result)
 }
-fn validate_sandbox(
+/// Require transaction-producing subprocesses to have read-only source/state.
+pub(crate) fn validate_sandbox(
     engine: &Engine,
     sandbox: &odin_core::sandbox_policy::MxcSandboxConfig,
 ) -> Result<()> {
@@ -761,7 +762,7 @@ fn validate_sandbox(
             .any(|root| path_contains(root, &grant) || path_contains(&grant, root))
         {
             return Err(Fault::denied(
-                "Inspection writable/temp paths must not overlap any configured project or Odin state",
+                "Writable/temp paths must not overlap any configured project or Odin state",
             ));
         }
     }

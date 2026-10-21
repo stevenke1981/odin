@@ -1,0 +1,13 @@
+Command: cargo test -p odin-engine --test ide_tools lsp_coordinates_over_one_hundred_thousand --locked
+   Compiling odin-engine v0.2.0 (C:\Users\steven\.codex\worktrees\odin-engine\odin\crates\odin-engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.61s
+     Running tests\ide_tools.rs (target\debug\deps\ide_tools-bce788123f4f5772.exe)
+error: test failed, to rerun pass `-p odin-engine --test ide_tools`
+
+Caused by:
+  could not execute process `C:\Users\steven\.codex\worktrees\odin-engine\odin\target\debug\deps\ide_tools-bce788123f4f5772.exe lsp_coordinates_over_one_hundred_thousand` (never executed)
+
+Caused by:
+  應用程式控制原則已封鎖此檔案。 (os error 4551)
+
+Exit code: 101

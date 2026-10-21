@@ -20,6 +20,34 @@ Symbol diagnostics filter both raw diagnostics and normalized findings to the se
 
 Odin does not call `workspace/executeCommand`. Returned Markdown, command objects, data fields, completion edits and hint label parts are untrusted display/proposal data. No resolve tool mutates source. Formatting, native inspection fixes and existing edit-only CodeActions all enter the core transaction journal and revalidate hashes at apply time.
 
+LSP line/character inputs use the `uinteger` range 0–2147483647. Values above 100000 can represent valid positions in bounded files; source synchronization and UTF-16/range checks still reject positions outside the document or splitting a surrogate pair. Count, pagination, file and output budgets have separate limits.
+
+## Explicit native formatting
+
+`format_document` accepts optional `formatter_profile`. When absent it uses the existing LSP formatter. When present it selects only that named trusted host profile; unknown profiles and unavailable native execution return errors without trying another backend. Native profile metadata does not alter the language server's advertised formatting capability. This lets a host explicitly configure Python Ruff formatting alongside a Python language server that does not provide it.
+
+The host must configure `allow_write=true`, `allow_formatters=true`, a `formatters` entry and a native `sandbox`. Shell permission is independent. The sandbox's writable/temp grants must not overlap any configured project root or Odin state, in either direction. Sources are read-only for the formatter. All project writes are performed by Transactions after explicit apply.
+
+```toml
+[projects.python.formatters.python_ruff]
+provider = "ruff"
+extensions = ["py", "pyi"]
+[projects.python.formatters.python_ruff.command]
+program = 'C:\TrustedTools\ruff.exe'
+args = ["format", "--isolated", "--no-cache", "--stdin-filename", "{relative_path}", "-"]
+timeout_secs = 30
+```
+
+The example is a profile fragment: the trusted host separately configures permissions, source roots and sandbox toolchain grants. The direct Ruff executable and complete argv are host-owned. Core configuration validates the approved stdin grammar; only an exact `{relative_path}` value after `--stdin-filename` becomes the canonical source filename. No string interpolation, executable repository configuration, arbitrary caller argv, file formatting operands, `--check`/`--diff`, output-file or write switches are accepted. `--isolated` prevents repository formatter configuration lookup, and `--no-cache` prevents repository cache writes. Optional supported formatting flags remain fixed by the host.
+
+```json
+{"relative_path":"sample.py","expected_sha256":"<current SHA-256>","formatter_profile":"python_ruff"}
+```
+
+Native profiles accept whole-document input with fixed host options. `range` and nonempty `options` return `CAPABILITY_UNAVAILABLE`; they are never silently ignored. The exact UTF-8 source goes to stdin, subject to the file limit and the runner's 16 MiB input cap. Stdout is bounded by `max_file_bytes`, stderr by `max_output_bytes`. The process must report `success:true`, `stdin_complete:true` and exit code zero; missing or false completion flags, timeout, truncation, invalid UTF-8 stdout, oversized output and changed source hashes cannot become a prepared edit. No-op output has `changed:false` and no journal. A changed output becomes a CAS preview carrying `provider:ruff`, `source:native_formatter`, the selected profile and source/result hashes. It does not modify the source until `transaction_apply`.
+
+Synthetic process-outcome tests verify output validation, BOM/Unicode/CRLF byte preservation, no-op handling, preview/apply/rollback and external-write conflicts. Permission/routing tests never substitute for actual native sandbox or Ruff proof. The integration owner executes real Ruff/MCP acceptance separately. TypeScript/Java push diagnostics lacking a version remain unverified; this formatter addition does not upgrade diagnostic freshness or synthesize unsupported resolve capabilities.
+
 ## Native inspections
 
 The host must explicitly set `allow_inspections=true` and configure an `inspections` profile and native `sandbox`. `allow_shell` does not grant inspection permission. Contexts/modes may only reduce these grants. `list_inspection_providers`, `get_capabilities` and redacted configuration expose names/providers and permission metadata, never executable paths, arguments or executable configuration contents.

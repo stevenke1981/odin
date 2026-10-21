@@ -1,0 +1,7 @@
+Command: cargo clippy -p odin-engine --all-targets --locked -- -D warnings
+    Checking odin-core v0.2.0 (C:\Users\steven\.codex\worktrees\odin-engine\odin\crates\odin-core)
+    Checking odin-protocol v0.2.0 (C:\Users\steven\.codex\worktrees\odin-engine\odin\crates\odin-protocol)
+    Checking odin-engine v0.2.0 (C:\Users\steven\.codex\worktrees\odin-engine\odin\crates\odin-engine)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.82s
+
+Exit code: 0

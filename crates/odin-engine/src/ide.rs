@@ -13,6 +13,9 @@ pub async fn dispatch(
     tool: &str,
     args: &Value,
 ) -> Result<Value> {
+    if tool == "format_document" && args.get("formatter_profile").is_some() {
+        return crate::formatter::prepare(engine, project, args).await;
+    }
     if tool == "workspace_symbols" {
         let language = string(args, "language")?;
         let language = project

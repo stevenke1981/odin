@@ -1,6 +1,7 @@
 #![forbid(unsafe_code)]
 //! Shared application service for CLI, MCP, and the read-only dashboard.
 pub mod flow;
+mod formatter;
 mod ide;
 mod inspections;
 mod occurrences;
@@ -455,13 +456,14 @@ impl Engine {
                     json!({"project":p.id,"standalone":true,"external_tool_bridge":false,"semantic_available":languages.iter().any(|l|l["ready"]==true),"languages":languages,
                     "tools":tools,"write_allowed":p.config.allow_write,"shell_allowed":p.config.allow_shell,"debug_allowed":p.config.allow_debug,
                     "inspections_allowed":p.config.allow_inspections,"inspection_profiles":p.config.inspections.iter().map(|(name,profile)|json!({"name":name,"provider":profile.provider,"requires_sandbox":true,"enabled":p.config.allow_inspections&&p.config.sandbox.is_some()})).collect::<Vec<_>>(),
+                    "formatters_allowed":p.config.allow_formatters,"formatter_profiles":formatter::profiles(p),
                     "result_retention":{"ttl_ms":results::TTL_MS,"max_results":results::MAX_RESULTS,"max_bytes":results::MAX_STORAGE_BYTES}}),
                 )
             }
             "list_projects" => Ok(self.project_summaries()),
             "get_current_config" => Ok(
                 json!({"project":p.id,"root":p.root.root(),"allow_write":p.config.allow_write,
-                "allow_shell":p.config.allow_shell,"allow_debug":p.config.allow_debug,"allow_inspections":p.config.allow_inspections,"limits":limit,
+                "allow_shell":p.config.allow_shell,"allow_debug":p.config.allow_debug,"allow_inspections":p.config.allow_inspections,"allow_formatters":p.config.allow_formatters,"formatter_profiles":formatter::profiles(p),"limits":limit,
                 "excluded_tools":p.config.excluded_tools,"deny_globs":p.config.deny_globs,
                 "languages":p.config.languages.iter().map(|l|json!({"id":l.id,"extensions":l.extensions})).collect::<Vec<_>>(),
                 "command_profiles":p.config.commands.keys().collect::<Vec<_>>(),"debug_profiles":p.config.debuggers.keys().collect::<Vec<_>>(),"inspection_profiles":p.config.inspections.iter().map(|(name,profile)|json!({"name":name,"provider":profile.provider})).collect::<Vec<_>>()}),

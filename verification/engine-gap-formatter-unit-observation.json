@@ -1,0 +1,20 @@
+{
+  "task_id": "language-ide-gap-completion",
+  "status": "PASS",
+  "command": ["cargo", "test", "-p", "odin-engine", "formatter::tests", "--lib", "--locked", "--offline"],
+  "exit_code": 0,
+  "capture_source": "Actual functions.exec command output, exec_command chunk 6181a8. This observation transcribes that output; it is not a byte-for-byte captured log file.",
+  "source_bindings": {
+    "crates/odin-engine/src/formatter.rs": "79cd591119294b25a3624ccb4d97d349856abc57039a530f93a8c2f517fc7ecb",
+    "crates/odin-core/src/execution.rs": "7ad034aa2d7700eeddaaaf5a1dba30b7f73cfcd0818e47efc653dadaf1ad3c68"
+  },
+  "runner_dependency": "59aec03, before the a6b2bac stdin flush correction",
+  "tests_passed": [
+    "formatter::tests::invalid_process_outcomes_never_become_source_text",
+    "formatter::tests::invalid_output_is_rejected_before_a_transaction_is_prepared",
+    "formatter::tests::noop_has_no_journal_and_external_writes_are_never_overwritten",
+    "formatter::tests::unicode_bom_and_crlf_preview_preserves_bytes_until_apply_and_rollback"
+  ],
+  "observed_summary": "4 passed; 0 failed; 0 ignored; 0 measured; 34 filtered out; finished in 0.15s",
+  "boundary": "This execution occurred after requiring success=true and stdin_complete=true, with false/null/missing completion-field counterexamples. These tests use synthetic outcomes and real core Transactions; they do not launch Ruff or exercise the stdin runner. The final post-a6b2bac package unit executable was blocked by AppControl 4551, as recorded separately."
+}

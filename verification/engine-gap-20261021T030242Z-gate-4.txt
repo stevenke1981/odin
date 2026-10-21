@@ -1,0 +1,12 @@
+Command: cargo test -p odin-engine --test ide_tools lsp_coordinates_over_one_hundred_thousand --locked
+   Compiling odin-engine v0.2.0 (C:\Users\steven\.codex\worktrees\odin-engine\odin\crates\odin-engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.67s
+     Running tests\ide_tools.rs (target\debug\deps\ide_tools-bce788123f4f5772.exe)
+
+running 1 test
+test lsp_coordinates_over_one_hundred_thousand_are_valid_but_utf16_boundaries_still_apply ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 7 filtered out; finished in 0.28s
+
+
+Exit code: 0

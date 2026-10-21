@@ -65,6 +65,8 @@ while (frame := receive()) is not None:
                 time.sleep(0.01)
         if method == 'textDocument/hover':
             result = {'contents': {'kind': 'markdown', 'value': 'fixture hover'}, 'range': SPAN}
+            if '--hover-at-request' in sys.argv:
+                result['range'] = {'start': args['position'], 'end': args['position']}
         elif '--empty-formatting' in sys.argv:
             result = []
         else:
@@ -99,6 +101,9 @@ while (frame := receive()) is not None:
         result.update({'tooltip': 'resolved fixture hint', 'textEdits': [{'range': POINT, 'newText': '// hint\n'}]})
     elif method.startswith('textDocument/semanticTokens/'):
         result = {'resultId': 'fixture-v1', 'data': [0, 0, 2, 0, 1]}
+        if '--tokens-in-range' in sys.argv and 'range' in args:
+            start, end = args['range']['start'], args['range']['end']
+            result['data'] = [start['line'], start['character'], end['character'] - start['character'], 0, 1]
     elif method == 'workspace/executeCommand':
         raise RuntimeError('Engine must never execute a server command')
     elif method == 'shutdown':

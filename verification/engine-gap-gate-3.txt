@@ -1,0 +1,15 @@
+Command: cargo test -p odin-engine --test formatter_profiles --locked
+   Compiling odin-engine v0.2.0 (C:\Users\steven\.codex\worktrees\odin-engine\odin\crates\odin-engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.47s
+     Running tests\formatter_profiles.rs (target\debug\deps\formatter_profiles-643bbc7a83226821.exe)
+
+running 4 tests
+test native_formatter_rejects_source_writable_sandbox_grants_before_launch ... ok
+test formatter_metadata_is_redacted_and_does_not_invent_lsp_capabilities ... ok
+test native_profile_caller_range_options_and_argv_are_never_silently_used ... ok
+test native_formatter_permissions_and_explicit_routing_do_not_enable_a_fallback ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.32s
+
+
+Exit code: 0

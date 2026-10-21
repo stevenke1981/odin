@@ -1,0 +1,183 @@
+{
+  "task_id": "language-ide-gap-completion",
+  "actor_instance": "/root/engine_implementation",
+  "base_sha": "9017908f8759de74d5c3deb89e7bdb8aedcf83fd",
+  "head_before_evidence": "3cc34546c5ebc7ffa0d586fcebe779dd55e5a5a2",
+  "status": "BLOCKED",
+  "source_hashes": {
+    "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34",
+    "crates/odin-core/src/config.rs": "66cd996f56b8193e8e2c90026283f38207b17739f9b0f1966c0fef01d0b0a2bc",
+    "crates/odin-core/src/execution.rs": "7ad034aa2d7700eeddaaaf5a1dba30b7f73cfcd0818e47efc653dadaf1ad3c68",
+    "crates/odin-engine/src/flow.rs": "b82de18dd48b805c0c542f94d3b2c0c90ff64052ab69b61646a69b47125d206c",
+    "crates/odin-engine/src/formatter.rs": "79cd591119294b25a3624ccb4d97d349856abc57039a530f93a8c2f517fc7ecb",
+    "crates/odin-engine/src/ide.rs": "e2712e30f060d31acfd5ded6ac6e4e4d9f50071951df50638d84e104a4aaf5f1",
+    "crates/odin-engine/src/inspections.rs": "b01820e8ceb56194f69b6ff71caa2640ef88d25dfd328e3a69addecebf62a720",
+    "crates/odin-engine/src/lib.rs": "faa522453d4380f4db8ebfa79d54691c9d22b6088426632a999e69204b1b0bdb",
+    "crates/odin-engine/src/occurrences.rs": "9c5dacae294dea17cf1d14a729d57810d27f1492ac43292f98eb8331aff6b155",
+    "crates/odin-engine/src/refactor.rs": "41b8c8b9154b52118d2c47bd5df863330333818ff0d4b01efc0f707a115a5869",
+    "crates/odin-engine/src/results.rs": "d7b89fbaa048e8b1ec587a8596201e6c3292c6ab849df5d64ab2548be8747492",
+    "crates/odin-engine/src/schema.rs": "310e6e561a37a4b5f5f91c75185ac5332149503f2db72c8387b01f8cb11c8724",
+    "crates/odin-engine/src/shell.rs": "0d1e84f741657bcd01c62b8f0dd24527023e9491c7503f71d019a2766e68e751",
+    "crates/odin-engine/src/symbols.rs": "69056444f324be2bfdb7049b22adb9a490523bec98ff500168ee15f97c544c0f",
+    "crates/odin-engine/src/text_replace.rs": "8fa26da714905d4363ccfe60bc77196906b124a2322a8dcfdd15b035db4f654c",
+    "crates/odin-engine/tests/completion.rs": "3dddfde2c36edffaddc440c95d8181c3b09b9c131f93a7ce9a58d80eab4678af",
+    "crates/odin-engine/tests/debug_launch_policy.rs": "6d89bfab59065cfdeb68303b952fe8056a9b4a45068aa58558d01b5edf8ceb52",
+    "crates/odin-engine/tests/fixtures/dap_peer.py": "0aed8b9030405926f4ceed54fb39e899ca7b80d05ad9008ea35913aca45e28eb",
+    "crates/odin-engine/tests/fixtures/ide_peer.py": "2feab3f5012217bce061bc0c73a78a9cf1afbcb47e087db02aec15ece2e72beb",
+    "crates/odin-engine/tests/fixtures/lsp_peer.py": "213782f40d3ce2d08d1060a89cc8814510c016d6bfd56f4a4222bd084e68ea35",
+    "crates/odin-engine/tests/formatter_profiles.rs": "74db7ea48c617788acd7d7434d71c1fd46eb3483a8e894cc2322bb055a1d2a6e",
+    "crates/odin-engine/tests/ide_tools.rs": "6bfc26c527616e97f1b636902d3b7962a42d4445cc33e3270a48db4449a0e0d5",
+    "crates/odin-engine/tests/invariants.rs": "0c90fa06597051f18876611409092a4ec482e9b2041c4cc65267d2a517dca879",
+    "crates/odin-engine/tools.json": "d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea",
+    "docs/API.md": "4255709bd3d0a2abfe73b5060cc0257047703d4d1c305001f9626a0440201c5b",
+    "docs/IDE_IMPLEMENTATION.md": "3eaf432c4b65486fffcd1f9d5522b8785e1775ac8acae69cd7a6d20572542f21",
+    "schemas/tools.json": "d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea",
+    "scripts/generate_catalog.py": "1c761b53433ac1bc00e9c4972f36a7bf610f6a1e0ffea17d2fbce1f97d56befd",
+    "scripts/generate_docs.py": "040c59868d593039902e04d0978820882061c690a7b8e98758c3605215f853c2",
+    "verification/engine-gap-verify.py": "6640b0f9b3cfe05dd11ff042f7d34025a089012dd17af7b30949ead3400408d2"
+  },
+  "commands": [
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "C:\\Users\\steven\\.codex\\worktrees\\odin-engine\\odin\\verification\\engine-ide-catalog-check.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 0.31,
+      "log": "engine-gap-gate-1.txt",
+      "log_sha256": "49c0ae8712dcaa99f98dc57d0a435000a33dc3164f467fd0ff43ff3b893d2b06"
+    },
+    {
+      "command": [
+        "cargo",
+        "fmt",
+        "-p",
+        "odin-engine",
+        "--",
+        "--check"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 0.26,
+      "log": "engine-gap-gate-2.txt",
+      "log_sha256": "d75586dde30ccd87d87b5b614999b399a77577b11a41e2b60101c5d4d91f054f"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "odin-engine",
+        "--test",
+        "formatter_profiles",
+        "--locked"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 6.75,
+      "log": "engine-gap-gate-3.txt",
+      "log_sha256": "6ae020c544c05900d0c3e20e68240f2beda7cf8148fff283d3c4b380fc1e3155"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "odin-engine",
+        "--test",
+        "ide_tools",
+        "lsp_coordinates_over_one_hundred_thousand",
+        "--locked"
+      ],
+      "status": "BLOCKED",
+      "exit_code": 101,
+      "elapsed_seconds": 4.83,
+      "log": "engine-gap-gate-4.txt",
+      "log_sha256": "47d23caeff4a4565760cf2976db7a58c6d4af471a355fea8aa026071965a69a8",
+      "blocked_executables": [
+        {
+          "path": "target/debug/deps/ide_tools-bce788123f4f5772.exe",
+          "sha256": "de252963f40963c1df211a43a00586ce73520602ba3d85971db11df96553a904"
+        }
+      ]
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "odin-engine",
+        "--locked"
+      ],
+      "status": "BLOCKED",
+      "exit_code": 101,
+      "elapsed_seconds": 5.16,
+      "log": "engine-gap-gate-5.txt",
+      "log_sha256": "a0e3d2bace2eacd502832314c19e80546be26aaed9bf051fdb574798e56a055f",
+      "blocked_executables": [
+        {
+          "path": "target/debug/deps/odin_engine-2ad1c4edd17061ce.exe",
+          "sha256": "afdf2cf6c827569c40384acd016cbbce41f45276a58abd85085512a231dff00f"
+        }
+      ]
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "-p",
+        "odin-engine",
+        "--all-targets",
+        "--locked",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 1.42,
+      "log": "engine-gap-gate-6.txt",
+      "log_sha256": "c4ddd9bbd38ce3b64a61ed80413c86eb079eee065447d62e41e180e3d36af9fa"
+    }
+  ],
+  "scope": "Engine package on native Windows; no workspace gate, cloud CI or downloads.",
+  "boundaries": [
+    "Synthetic formatter outcomes validate output/CAS handling, not actual Ruff or OS isolation.",
+    "Native Ruff MCP/sandbox and multi-language matrices are integration-owner acceptance.",
+    "Unversioned diagnostics and unsupported resolve capabilities retain their existing truthful status."
+  ],
+  "source_hashes_after": {
+    "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34",
+    "crates/odin-core/src/config.rs": "66cd996f56b8193e8e2c90026283f38207b17739f9b0f1966c0fef01d0b0a2bc",
+    "crates/odin-core/src/execution.rs": "7ad034aa2d7700eeddaaaf5a1dba30b7f73cfcd0818e47efc653dadaf1ad3c68",
+    "crates/odin-engine/src/flow.rs": "b82de18dd48b805c0c542f94d3b2c0c90ff64052ab69b61646a69b47125d206c",
+    "crates/odin-engine/src/formatter.rs": "79cd591119294b25a3624ccb4d97d349856abc57039a530f93a8c2f517fc7ecb",
+    "crates/odin-engine/src/ide.rs": "e2712e30f060d31acfd5ded6ac6e4e4d9f50071951df50638d84e104a4aaf5f1",
+    "crates/odin-engine/src/inspections.rs": "b01820e8ceb56194f69b6ff71caa2640ef88d25dfd328e3a69addecebf62a720",
+    "crates/odin-engine/src/lib.rs": "faa522453d4380f4db8ebfa79d54691c9d22b6088426632a999e69204b1b0bdb",
+    "crates/odin-engine/src/occurrences.rs": "9c5dacae294dea17cf1d14a729d57810d27f1492ac43292f98eb8331aff6b155",
+    "crates/odin-engine/src/refactor.rs": "41b8c8b9154b52118d2c47bd5df863330333818ff0d4b01efc0f707a115a5869",
+    "crates/odin-engine/src/results.rs": "d7b89fbaa048e8b1ec587a8596201e6c3292c6ab849df5d64ab2548be8747492",
+    "crates/odin-engine/src/schema.rs": "310e6e561a37a4b5f5f91c75185ac5332149503f2db72c8387b01f8cb11c8724",
+    "crates/odin-engine/src/shell.rs": "0d1e84f741657bcd01c62b8f0dd24527023e9491c7503f71d019a2766e68e751",
+    "crates/odin-engine/src/symbols.rs": "69056444f324be2bfdb7049b22adb9a490523bec98ff500168ee15f97c544c0f",
+    "crates/odin-engine/src/text_replace.rs": "8fa26da714905d4363ccfe60bc77196906b124a2322a8dcfdd15b035db4f654c",
+    "crates/odin-engine/tests/completion.rs": "3dddfde2c36edffaddc440c95d8181c3b09b9c131f93a7ce9a58d80eab4678af",
+    "crates/odin-engine/tests/debug_launch_policy.rs": "6d89bfab59065cfdeb68303b952fe8056a9b4a45068aa58558d01b5edf8ceb52",
+    "crates/odin-engine/tests/fixtures/dap_peer.py": "0aed8b9030405926f4ceed54fb39e899ca7b80d05ad9008ea35913aca45e28eb",
+    "crates/odin-engine/tests/fixtures/ide_peer.py": "2feab3f5012217bce061bc0c73a78a9cf1afbcb47e087db02aec15ece2e72beb",
+    "crates/odin-engine/tests/fixtures/lsp_peer.py": "213782f40d3ce2d08d1060a89cc8814510c016d6bfd56f4a4222bd084e68ea35",
+    "crates/odin-engine/tests/formatter_profiles.rs": "74db7ea48c617788acd7d7434d71c1fd46eb3483a8e894cc2322bb055a1d2a6e",
+    "crates/odin-engine/tests/ide_tools.rs": "6bfc26c527616e97f1b636902d3b7962a42d4445cc33e3270a48db4449a0e0d5",
+    "crates/odin-engine/tests/invariants.rs": "0c90fa06597051f18876611409092a4ec482e9b2041c4cc65267d2a517dca879",
+    "crates/odin-engine/tools.json": "d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea",
+    "docs/API.md": "4255709bd3d0a2abfe73b5060cc0257047703d4d1c305001f9626a0440201c5b",
+    "docs/IDE_IMPLEMENTATION.md": "3eaf432c4b65486fffcd1f9d5522b8785e1775ac8acae69cd7a6d20572542f21",
+    "schemas/tools.json": "d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea",
+    "scripts/generate_catalog.py": "1c761b53433ac1bc00e9c4972f36a7bf610f6a1e0ffea17d2fbce1f97d56befd",
+    "scripts/generate_docs.py": "040c59868d593039902e04d0978820882061c690a7b8e98758c3605215f853c2",
+    "verification/engine-gap-verify.py": "6640b0f9b3cfe05dd11ff042f7d34025a089012dd17af7b30949ead3400408d2"
+  },
+  "source_unchanged_during_gates": true
+}
