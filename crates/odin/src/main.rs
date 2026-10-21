@@ -5,6 +5,7 @@ mod metadata;
 mod setup;
 use anyhow::{Context, Result, bail};
 use clap::{Parser, Subcommand, ValueEnum};
+use mcp::SessionProject;
 use odin_core::config::Config;
 use odin_engine::Engine;
 use rmcp::ServiceExt;
@@ -57,12 +58,23 @@ enum Commands {
     Setup {
         #[arg(long, value_enum)]
         client: setup::Client,
+        /// Launch the server with session selection from its startup working directory.
+        #[arg(long)]
+        project_from_cwd: bool,
+        /// Advertise this configured project as the session default (must exist in the host config).
+        #[arg(long)]
+        default_project: Option<String>,
         #[arg(long)]
         output: Option<PathBuf>,
         #[arg(long)]
         apply: bool,
         #[arg(long)]
         expected_sha256: Option<String>,
+    },
+    /// Maintain projects in the existing host config (dry-run unless --apply).
+    Project {
+        #[command(subcommand)]
+        command: ProjectCommand,
     },
     /// Emit compact strategy guidance, or maintain a managed block in a host file.
     Hook {
@@ -90,6 +102,12 @@ enum Commands {
         listen: SocketAddr,
         #[arg(long, default_value = "ODIN_TOKEN")]
         token_env: String,
+        /// Advertise the configured project containing the startup directory as the session default.
+        #[arg(long)]
+        project_from_cwd: bool,
+        /// Advertise this configured project as the session default; wins over --project-from-cwd.
+        #[arg(long)]
+        default_project: Option<String>,
     },
     /// Print all tool contracts without opening projects or creating state.
     Tools,
@@ -117,6 +135,26 @@ enum Commands {
     },
     /// Operator-only shared Markdown-journal recovery (explicit command).
     RecoverMemories,
+}
+#[derive(Subcommand)]
+enum ProjectCommand {
+    /// Append a project with no commands, shell or debug; writes need --writable.
+    Add {
+        #[arg(long)]
+        root: PathBuf,
+        /// Project ID; defaults to the root directory name, lowercased.
+        #[arg(long)]
+        name: Option<String>,
+        #[arg(long)]
+        writable: bool,
+        /// Add language guidance for markers found directly under the root (not probed).
+        #[arg(long)]
+        detect_languages: bool,
+        #[arg(long)]
+        apply: bool,
+        #[arg(long)]
+        expected_sha256: Option<String>,
+    },
 }
 #[derive(Clone, ValueEnum)]
 enum Transport {
@@ -156,6 +194,29 @@ async fn main() -> Result<()> {
             name,
             writable,
         } => return init(&cli.config, root, name, *writable),
+        Commands::Project {
+            command:
+                ProjectCommand::Add {
+                    root,
+                    name,
+                    writable,
+                    detect_languages,
+                    apply,
+                    expected_sha256,
+                },
+        } => {
+            return project_add(
+                &cli.config,
+                &ProjectAdd {
+                    root,
+                    name: name.as_deref(),
+                    writable: *writable,
+                    detect_languages: *detect_languages,
+                    apply: *apply,
+                    expected: expected_sha256.as_deref(),
+                },
+            );
+        }
         _ => {}
     }
     let config =
@@ -174,10 +235,17 @@ async fn main() -> Result<()> {
         }
         Commands::Setup {
             client,
+            project_from_cwd,
+            default_project,
             output,
             apply,
             expected_sha256,
         } => {
+            if let Some(id) = default_project
+                && !config.projects.contains_key(id)
+            {
+                bail!("Unknown configured project: {id}");
+            }
             if *apply {
                 ensure_host_output(&config, output.as_deref())?;
             }
@@ -188,30 +256,36 @@ async fn main() -> Result<()> {
                 .flatten();
             let binary = std::env::current_exe()?.canonicalize()?;
             let host_config = cli.config.canonicalize()?;
-            let content = setup::client_config(
-                *client,
-                &binary,
-                &host_config,
-                before.as_deref(),
-                cli.context.as_deref(),
-                cli.mode.as_deref(),
-            )?;
-            let fragment = setup::client_config(
-                *client,
-                &binary,
-                &host_config,
-                None,
-                cli.context.as_deref(),
-                cli.mode.as_deref(),
-            )?;
-            return print_json(&setup::emit_or_apply(
+            let options = setup::ServeOptions {
+                context: cli.context.as_deref(),
+                mode: cli.mode.as_deref(),
+                project_from_cwd: *project_from_cwd,
+                default_project: default_project.as_deref(),
+            };
+            let content =
+                setup::client_config(*client, &binary, &host_config, before.as_deref(), &options)?;
+            let fragment = setup::client_config(*client, &binary, &host_config, None, &options)?;
+            let mut result = setup::emit_or_apply(
                 output.as_deref(),
                 before.as_deref(),
                 &content,
                 &fragment,
                 *apply,
                 expected_sha256.as_deref(),
-            )?);
+            )?;
+            let registration =
+                setup::registration_command(*client, &binary, &host_config, &options)?;
+            let object = result
+                .as_object_mut()
+                .context("Setup result must be an object")?;
+            object.insert("client".into(), client.name().into());
+            object.insert("default_outputs".into(), setup::default_outputs(*client));
+            object.insert("registration_command".into(), json!(registration));
+            object.insert(
+                "auto_project".into(),
+                json!({"project_from_cwd":project_from_cwd,"default_project":default_project}),
+            );
+            return print_json(&result);
         }
         Commands::Hook {
             project,
@@ -242,6 +316,14 @@ async fn main() -> Result<()> {
         }
         _ => {}
     }
+    let session_project = match &cli.command {
+        Commands::Serve {
+            project_from_cwd,
+            default_project,
+            ..
+        } => select_session_project(&config, default_project.as_deref(), *project_from_cwd)?,
+        _ => None,
+    };
     let engine = Engine::new(config)?;
     match cli.command {
         Commands::Init { .. }
@@ -249,6 +331,7 @@ async fn main() -> Result<()> {
         | Commands::Metadata
         | Commands::Tools
         | Commands::Setup { .. }
+        | Commands::Project { .. }
         | Commands::Hook { .. } => unreachable!("handled before engine creation"),
         Commands::Doctor {
             probe_lsp,
@@ -314,25 +397,194 @@ async fn main() -> Result<()> {
             ..
         } => {
             // stdout belongs exclusively to the SDK JSON-RPC transport.
-            let service = mcp::OdinMcp { engine }
-                .serve(rmcp::transport::stdio())
-                .await?;
+            let service = mcp::OdinMcp {
+                engine,
+                session_project,
+            }
+            .serve(rmcp::transport::stdio())
+            .await?;
             service.waiting().await?;
         }
         Commands::Serve {
             transport: Transport::Http,
             listen,
             token_env,
+            ..
         } => {
             let token = std::env::var(&token_env)
                 .with_context(|| format!("Set {token_env} to a random local bearer token"))?;
-            http::serve(engine, listen, token).await?;
+            http::serve(engine, listen, token, session_project).await?;
         }
         Commands::Languages { .. } => {
             unreachable!("language guidance returned before state creation")
         }
     }
     Ok(())
+}
+
+/// Chooses the advertised session default once at startup. It only selects among
+/// projects already present in the trusted host config and grants no permission.
+fn select_session_project(
+    config: &Config,
+    default_project: Option<&str>,
+    from_cwd: bool,
+) -> Result<Option<SessionProject>> {
+    if let Some(id) = default_project {
+        if !config.projects.contains_key(id) {
+            bail!("Unknown configured project: {id}");
+        }
+        return Ok(Some(SessionProject {
+            id: id.to_owned(),
+            source: "default-project",
+        }));
+    }
+    if !from_cwd {
+        return Ok(None);
+    }
+    let selected = std::env::current_dir()
+        .and_then(|dir| dir.canonicalize())
+        .ok()
+        .and_then(|cwd| {
+            config
+                .projects
+                .iter()
+                .filter(|(_, project)| odin_core::config::path_within(&project.root, &cwd))
+                .max_by_key(|(_, project)| project.root.as_os_str().len())
+                .map(|(id, _)| id.clone())
+        });
+    match selected {
+        Some(id) => Ok(Some(SessionProject { id, source: "cwd" })),
+        None => {
+            eprintln!(
+                "odin: warning: current directory is not inside a configured project root; no session default project"
+            );
+            Ok(None)
+        }
+    }
+}
+
+struct ProjectAdd<'a> {
+    root: &'a Path,
+    name: Option<&'a str>,
+    writable: bool,
+    detect_languages: bool,
+    apply: bool,
+    expected: Option<&'a str>,
+}
+
+/// Appends one project table to an existing host config. The original text stays a
+/// byte-exact prefix, so comments and formatting survive. The result must pass the
+/// same `Config::parse` rules as startup before the CAS write.
+fn project_add(path: &Path, add: &ProjectAdd) -> Result<()> {
+    let before = setup::read_output(path)?
+        .context("Host config must already exist; use odin init for a new one")?;
+    let existing = Config::parse(&before, path)?;
+    let root = add.root.canonicalize().context("Project root must exist")?;
+    if !root.is_dir() {
+        bail!("Project root must be a directory");
+    }
+    let id = match add.name {
+        Some(name) => name.to_owned(),
+        None => default_project_id(&root)?,
+    };
+    odin_core::config::validate_id(&id)?;
+    if existing.projects.contains_key(&id) {
+        bail!("Project ID already exists: {id}");
+    }
+    let detected = if add.detect_languages {
+        odin_core::languages::ADAPTERS
+            .iter()
+            .filter(|adapter| {
+                adapter
+                    .project_markers
+                    .iter()
+                    .any(|m| root.join(m).exists())
+            })
+            .collect::<Vec<_>>()
+    } else {
+        Vec::new()
+    };
+    let mut project = serde_json::Map::new();
+    project.insert("root".into(), display_path(&root).into());
+    project.insert("allow_write".into(), add.writable.into());
+    project.insert("allow_shell".into(), false.into());
+    project.insert("allow_debug".into(), false.into());
+    if !detected.is_empty() {
+        let languages = detected
+            .iter()
+            .map(|adapter| {
+                json!({"id":adapter.id,"extensions":adapter.extensions,"program":adapter.server,"args":adapter.args})
+            })
+            .collect::<Vec<_>>();
+        project.insert("languages".into(), languages.into());
+    }
+    let mut projects = toml::Table::new();
+    projects.insert(id.clone(), toml::Value::try_from(Value::Object(project))?);
+    let mut document = toml::Table::new();
+    document.insert("projects".into(), toml::Value::Table(projects));
+    let fragment = toml::to_string(&document)?;
+    let mut after = before.clone();
+    if !after.is_empty() && !after.ends_with('\n') {
+        after.push('\n');
+    }
+    if !after.is_empty() {
+        after.push('\n');
+    }
+    after.push_str(&fragment);
+    Config::parse(&after, path).context("Resulting host config is invalid; nothing was written")?;
+    let mut result = setup::emit_or_apply(
+        Some(path),
+        Some(&before),
+        &after,
+        &fragment,
+        add.apply,
+        add.expected,
+    )?;
+    let object = result
+        .as_object_mut()
+        .context("Project result must be an object")?;
+    object.insert("project".into(), id.into());
+    object.insert("root".into(), display_path(&root).into());
+    object.insert(
+        "detected_languages".into(),
+        detected
+            .iter()
+            .map(|adapter| adapter.id)
+            .collect::<Vec<_>>()
+            .into(),
+    );
+    if add.detect_languages {
+        object.insert("languages_installed".into(), "NOT_PROBED".into());
+    }
+    print_json(&result)
+}
+
+fn default_project_id(root: &Path) -> Result<String> {
+    let name = root
+        .file_name()
+        .and_then(|name| name.to_str())
+        .context("Project root has no directory name; pass --name")?;
+    Ok(name
+        .to_ascii_lowercase()
+        .chars()
+        .map(|c| {
+            if c.is_ascii_alphanumeric() || c == '_' || c == '-' {
+                c
+            } else {
+                '-'
+            }
+        })
+        .collect())
+}
+
+/// Drops the Windows verbatim prefix from a drive path so the host file stays readable.
+/// The stored path still canonicalizes to the same directory.
+fn display_path(path: &Path) -> String {
+    let text = path.to_string_lossy().into_owned();
+    match text.strip_prefix(r"\\?\") {
+        Some(rest) if rest.len() >= 2 && rest.as_bytes()[1] == b':' => rest.to_owned(),
+        _ => text,
+    }
 }
 
 fn choose_project(config: &Config, project: Option<String>) -> Result<String> {

@@ -342,7 +342,13 @@ impl Config {
     pub fn load(path: &Path) -> Result<Self> {
         let path = path.canonicalize()?;
         let raw = std::fs::read_to_string(&path)?;
-        let mut config: Self = toml::from_str(&raw).map_err(|e| Fault::invalid(e.to_string()))?;
+        Self::parse(&raw, &path)
+    }
+    /// Fully validate host configuration text as `Config::load` does. `path` names
+    /// the host file; relative roots and state resolve against its parent directory.
+    pub fn parse(text: &str, path: &Path) -> Result<Self> {
+        let path = path.canonicalize()?;
+        let mut config: Self = toml::from_str(text).map_err(|e| Fault::invalid(e.to_string()))?;
         let parent = path
             .parent()
             .ok_or_else(|| Fault::invalid("Config has no parent"))?;
@@ -473,6 +479,26 @@ impl Config {
         }
         Ok(config)
     }
+}
+/// Component-wise containment of canonical paths. Windows comparisons ignore ASCII
+/// case and the `\\?\` verbatim prefix that `canonicalize` adds.
+pub fn path_within(root: &Path, candidate: &Path) -> bool {
+    let root = comparable_components(root);
+    let candidate = comparable_components(candidate);
+    candidate.starts_with(&root)
+}
+fn comparable_components(path: &Path) -> Vec<String> {
+    let raw = path.to_string_lossy().into_owned();
+    let trimmed = raw.strip_prefix(r"\\?\").unwrap_or(raw.as_str());
+    let folded = if cfg!(windows) {
+        trimmed.to_lowercase()
+    } else {
+        trimmed.to_owned()
+    };
+    Path::new(&folded)
+        .components()
+        .map(|component| component.as_os_str().to_string_lossy().into_owned())
+        .collect()
 }
 pub fn validate_id(id: &str) -> Result<()> {
     if id.is_empty()
@@ -859,5 +885,52 @@ mod tests {
         )
         .unwrap();
         assert_eq!(Config::load(&path).unwrap_err().code, "INVALID_ARGUMENT");
+    }
+    #[test]
+    fn parse_matches_load_and_rejects_the_same_inputs() {
+        let directory = tempfile::tempdir().unwrap();
+        std::fs::create_dir(directory.path().join("app")).unwrap();
+        let path = directory.path().join("host.toml");
+        let text = "[projects.app]\nroot = 'app'\nallow_write = true\n";
+        std::fs::write(&path, text).unwrap();
+        let loaded = Config::load(&path).unwrap();
+        let parsed = Config::parse(text, &path).unwrap();
+        assert_eq!(
+            serde_json::to_value(&loaded).unwrap(),
+            serde_json::to_value(&parsed).unwrap()
+        );
+        let nested = "[projects.outer]\nroot = 'app'\n[projects.inner]\nroot = 'app/src'\n";
+        std::fs::create_dir_all(directory.path().join("app/src")).unwrap();
+        assert!(Config::parse(nested, &path).is_err());
+        std::fs::write(&path, nested).unwrap();
+        assert!(Config::load(&path).is_err());
+    }
+    #[test]
+    fn path_within_is_component_wise() {
+        assert!(path_within(Path::new("/work/app"), Path::new("/work/app")));
+        assert!(path_within(
+            Path::new("/work/app"),
+            Path::new("/work/app/src")
+        ));
+        assert!(!path_within(
+            Path::new("/work/app"),
+            Path::new("/work/apple")
+        ));
+        assert!(!path_within(
+            Path::new("/work/app/src"),
+            Path::new("/work/app")
+        ));
+    }
+    #[cfg(windows)]
+    #[test]
+    fn path_within_ignores_windows_case_and_verbatim_prefix() {
+        assert!(path_within(
+            Path::new(r"\\?\C:\Work\App"),
+            Path::new(r"c:\work\app\Sub")
+        ));
+        assert!(!path_within(
+            Path::new(r"\\?\C:\Work\App"),
+            Path::new(r"\\?\C:\Work\Application")
+        ));
     }
 }

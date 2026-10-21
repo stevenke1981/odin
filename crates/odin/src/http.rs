@@ -1,4 +1,4 @@
-use crate::mcp::OdinMcp;
+use crate::mcp::{OdinMcp, SessionProject};
 use anyhow::{Result, bail};
 use axum::{
     Json, Router,
@@ -22,7 +22,12 @@ struct Auth {
     hosts: Arc<Vec<String>>,
     origins: Arc<Vec<String>>,
 }
-pub async fn serve(engine: Arc<Engine>, address: SocketAddr, token: String) -> Result<()> {
+pub async fn serve(
+    engine: Arc<Engine>,
+    address: SocketAddr,
+    token: String,
+    session_project: Option<SessionProject>,
+) -> Result<()> {
     if !address.ip().is_loopback() {
         bail!(
             "This release binds only loopback. Remote deployment requires a separately reviewed authenticated gateway."
@@ -45,10 +50,12 @@ pub async fn serve(engine: Arc<Engine>, address: SocketAddr, token: String) -> R
     };
     let cancel = tokio_util::sync::CancellationToken::new();
     let service_engine = engine.clone();
+    let service_session = session_project;
     let mcp = StreamableHttpService::new(
         move || {
             Ok(OdinMcp {
                 engine: service_engine.clone(),
+                session_project: service_session.clone(),
             })
         },
         LocalSessionManager::default().into(),
