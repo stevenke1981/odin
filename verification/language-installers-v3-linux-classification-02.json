@@ -1,0 +1,75 @@
+{
+  "scope": "QA_DOCUMENTATION_CLASSIFICATION_REGRESSION_NOT_NATIVE_ACCEPTANCE",
+  "started_utc": "2026-10-21T05:10:33.897416+00:00",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "verification/language-installers-v3-check-linux-classification.py"
+  ],
+  "status": "PASS",
+  "exit_code": 0,
+  "source_sha256": {
+    "verification/language-installers-v3-summarize.py": "2275ef7a6972a82c907ea99a8a470c247e9ab01bbbafba31407e8437b650e07d",
+    "verification/language-installers-v3-check-linux-classification.py": "8d0b86dfc62d07f2458c613feb85005abe668e09e9d19926f72e2f6fee82c60a"
+  },
+  "odin_or_linux_binary_executions": 0,
+  "stdout": "{\"scope\": \"INERT_DOCUMENTATION_CLASSIFIER_ONLY_NOT_LINUX_ACCEPTANCE\", \"status\": \"PASS\", \"native_process_calls\": 0, \"checks\": [{\"name\": \"each_criterion_classified_independently\", \"status\": \"PASS\"}, {\"name\": \"wrong_source\", \"status\": \"PASS\"}, {\"name\": \"wrong_packaging_source\", \"status\": \"PASS\"}, {\"name\": \"wrong_target\", \"status\": \"PASS\"}, {\"name\": \"wrong_metadata\", \"status\": \"PASS\"}, {\"name\": \"diagnostic_scope\", \"status\": \"PASS\"}, {\"name\": \"invalid_log_hash\", \"status\": \"PASS\"}, {\"name\": \"false_exit_status\", \"status\": \"PASS\"}, {\"name\": \"inferred_signal_acceptance\", \"status\": \"PASS\"}, {\"name\": \"diagnostic_report_path\", \"status\": \"PASS\"}, {\"name\": \"missing_archive_keeps_ac3_not_run\", \"status\": \"PASS\"}, {\"name\": \"missing_metadata_keeps_ac1_not_run\", \"status\": \"PASS\"}]}\n",
+  "stderr": "",
+  "elapsed_seconds": 0.273,
+  "completed_utc": "2026-10-21T05:10:34.170274+00:00",
+  "source_unchanged": true,
+  "result": {
+    "scope": "INERT_DOCUMENTATION_CLASSIFIER_ONLY_NOT_LINUX_ACCEPTANCE",
+    "status": "PASS",
+    "native_process_calls": 0,
+    "checks": [
+      {
+        "name": "each_criterion_classified_independently",
+        "status": "PASS"
+      },
+      {
+        "name": "wrong_source",
+        "status": "PASS"
+      },
+      {
+        "name": "wrong_packaging_source",
+        "status": "PASS"
+      },
+      {
+        "name": "wrong_target",
+        "status": "PASS"
+      },
+      {
+        "name": "wrong_metadata",
+        "status": "PASS"
+      },
+      {
+        "name": "diagnostic_scope",
+        "status": "PASS"
+      },
+      {
+        "name": "invalid_log_hash",
+        "status": "PASS"
+      },
+      {
+        "name": "false_exit_status",
+        "status": "PASS"
+      },
+      {
+        "name": "inferred_signal_acceptance",
+        "status": "PASS"
+      },
+      {
+        "name": "diagnostic_report_path",
+        "status": "PASS"
+      },
+      {
+        "name": "missing_archive_keeps_ac3_not_run",
+        "status": "PASS"
+      },
+      {
+        "name": "missing_metadata_keeps_ac1_not_run",
+        "status": "PASS"
+      }
+    ]
+  }
+}

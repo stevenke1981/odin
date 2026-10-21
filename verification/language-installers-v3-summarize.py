@@ -13,7 +13,7 @@ WINDOWS_REVISION = '69e769be9baa4e825139b72ce1a9b48bf8143114'
 PRODUCT_REVISION = '0fe03ba30da9600c25588d506d7e094df89cf56f'
 PREVIOUS_DOCUMENTATION = '75c38f8'
 LINUX_CANONICAL_REPORT = 'verification/package-v3-linux-final.json'
-LINUX_BINARY_SHA256 = None  # Set only after the fixed-source ELF actually builds and runs.
+LINUX_BINARY_SHA256 = 'e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42'
 LINUX_TARGET = 'x86_64-unknown-linux-musl'
 PACKAGING_REVISION = 'a8399993d7c528ad4858b2e4e246e5994eab4bb8'
 
@@ -186,6 +186,8 @@ def main():
         'evidence_integrity': binding('verification/language-sandbox-v3-evidence-index-01.json', 'Offline 18-receipt/source/transcript integrity only, no backend execution.'),
         'prepared_final_matrix': binding('verification/language-sandbox-v3-finalrun-plan.json', 'Plan only; 0 final-candidate LSP projects executed.'),
         'qa_report_preflight': binding('verification/language-installers-v3-continuation-preflight-01.json', 'Five inert overwrite-protection checks; zero native process calls.'),
+        'qa_failed_runner_rejection': binding('verification/package-v3-evidence-outcomes-01.json', 'Six inert failure-classification checks and independently reviewed exact helper hashes; no product or backend process calls.'),
+        'qa_linux_criteria_classification': binding('verification/language-installers-v3-linux-classification-02.json', 'Twelve inert criterion-classification checks against the final assembler source; not native Linux execution.'),
     }
     linux = linux_evidence(args.linux_report) if args.linux_report else {
         'status': 'IN_PROGRESS', 'acceptance_status': 'NOT_RUN', 'selected_source_head_sha': PRODUCT_REVISION,
