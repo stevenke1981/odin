@@ -173,6 +173,15 @@ fn project_add_dry_run_leaves_host_file_unchanged() {
     assert_eq!(value["operation"], "DRY_RUN");
     assert_eq!(value["project"], "newproj");
     assert_eq!(value["expected_sha256"], sha256_of(&fixture.config));
+    assert_eq!(value["host_permissions_changed"], true);
+    assert_eq!(value["allow_write"], false);
+    assert!(value.get("client_connection").is_none());
+    assert!(
+        value["note"]
+            .as_str()
+            .unwrap()
+            .contains("[projects.newproj]")
+    );
     assert_eq!(std::fs::read(&fixture.config).unwrap(), before);
 }
 
@@ -199,6 +208,15 @@ fn project_add_apply_with_expected_hash_adds_project_and_keeps_backup() {
     let value = stdout_json(&output);
     assert_eq!(value["operation"], "APPLIED");
     assert_eq!(value["project"], "Second-App");
+    assert_eq!(value["host_permissions_changed"], true);
+    assert_eq!(value["allow_write"], false);
+    assert!(value.get("client_connection").is_none());
+    assert!(
+        value["note"]
+            .as_str()
+            .unwrap()
+            .contains("Restart Odin servers")
+    );
     let backup = PathBuf::from(value["backup"].as_str().expect("backup path"));
     assert_eq!(std::fs::read(&backup).unwrap(), before);
     let config = Config::load(&fixture.config).unwrap();
@@ -232,10 +250,55 @@ fn project_add_writable_flag_sets_allow_write_only() {
         ],
     );
     assert!(output.status.success(), "{}", stderr_text(&output));
+    assert_eq!(stdout_json(&output)["allow_write"], true);
     let config = Config::load(&fixture.config).unwrap();
     let project = &config.projects["writable-root"];
     assert!(project.allow_write);
     assert!(!project.allow_shell && !project.allow_debug);
+}
+
+#[test]
+fn project_add_non_ascii_directory_requires_explicit_name() {
+    let fixture = fixture("non-ascii");
+    let root = fixture.dir.join("專案");
+    std::fs::create_dir_all(&root).unwrap();
+    let before = std::fs::read(&fixture.config).unwrap();
+    let output = project_add(&fixture.config, &["--root", root.to_str().unwrap()]);
+    assert!(!output.status.success());
+    assert!(
+        stderr_text(&output).contains("--name"),
+        "{}",
+        stderr_text(&output)
+    );
+    assert_eq!(std::fs::read(&fixture.config).unwrap(), before);
+}
+
+#[test]
+fn project_add_refuses_root_inside_state_directory() {
+    let fixture = fixture("state-root");
+    let state_root = fixture.dir.join("state").join("inner");
+    std::fs::create_dir_all(&state_root).unwrap();
+    let before = std::fs::read(&fixture.config).unwrap();
+    let hash = sha256_of(&fixture.config);
+    let output = project_add(
+        &fixture.config,
+        &[
+            "--root",
+            state_root.to_str().unwrap(),
+            "--name",
+            "inner",
+            "--apply",
+            "--expected-sha256",
+            &hash,
+        ],
+    );
+    assert!(!output.status.success());
+    assert!(
+        stderr_text(&output).contains("Project root cannot be inside the state directory"),
+        "{}",
+        stderr_text(&output)
+    );
+    assert_eq!(std::fs::read(&fixture.config).unwrap(), before);
 }
 
 #[test]

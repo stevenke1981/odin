@@ -97,8 +97,11 @@ pub fn serve_args(config: &str, options: &ServeOptions<'_>) -> Vec<String> {
     args
 }
 
-fn utf8_path<'a>(path: &'a Path, message: &str) -> Result<&'a str> {
-    path.to_str().with_context(|| message.to_owned())
+/// Client-facing path spelling: validated as UTF-8, and the `\\?\` verbatim prefix is dropped
+/// so entries and registration argv stay readable. The path still names the same file.
+fn utf8_path(path: &Path, message: &str) -> Result<String> {
+    path.to_str().with_context(|| message.to_owned())?;
+    Ok(crate::display_path(path))
 }
 
 pub fn client_config(
@@ -110,17 +113,15 @@ pub fn client_config(
 ) -> Result<String> {
     let binary = utf8_path(binary, "Client config requires a UTF-8 executable path")?;
     let config = utf8_path(config, "Client config requires a UTF-8 host config path")?;
-    let args = serve_args(config, options);
+    let args = serve_args(&config, options);
     let (section, entry) = match client {
-        Client::Codex => return codex_config(before, binary, &args),
+        Client::Codex => return codex_config(before, &binary, &args),
         Client::Claude => (
             "mcpServers",
             json!({"type":"stdio", "command": binary, "args": args}),
         ),
         Client::Opencode => {
-            let command = std::iter::once(binary.to_owned())
-                .chain(args)
-                .collect::<Vec<_>>();
+            let command = std::iter::once(binary).chain(args).collect::<Vec<_>>();
             (
                 "mcp",
                 json!({"type": "local", "command": command, "enabled": true}),
@@ -181,8 +182,8 @@ pub fn registration_command(
         prefix
             .iter()
             .map(|part| (*part).to_owned())
-            .chain(std::iter::once(binary.to_owned()))
-            .chain(serve_args(config, options))
+            .chain(std::iter::once(binary))
+            .chain(serve_args(&config, options))
             .collect(),
     ))
 }
@@ -232,7 +233,8 @@ fn suggestion(scope: &str, path: String, note: &str) -> Value {
     json!({"scope": scope, "path": path, "note": note})
 }
 
-/// Suggested locations only (never written automatically).
+/// Suggested user-scope locations only (never written automatically). Project-scope files are
+/// never suggested: they sit inside agent-writable roots, where a writable agent could repoint `--config`.
 pub fn default_outputs(client: Client) -> Value {
     let entries = match client {
         Client::Codex => vec![suggestion(
@@ -244,59 +246,35 @@ pub fn default_outputs(client: Client) -> Value {
             "TOML [mcp_servers.odin]; registration_command is the CLI alternative",
         )],
         Client::Claude => vec![suggestion(
-            "project",
-            ".mcp.json".into(),
-            "user scope lives in ~/.claude.json, which Claude Code rewrites; use registration_command",
+            "user",
+            home_relative(&[".claude.json"]),
+            "Claude Code rewrites this file; prefer registration_command (claude mcp add --scope user)",
         )],
-        Client::Opencode => vec![
-            suggestion(
-                "user",
-                home_relative(&[".config", "opencode", "opencode.json"]),
-                "JSON mcp.odin with type local",
-            ),
-            suggestion(
-                "project",
-                "opencode.json".into(),
-                "JSON mcp.odin with type local",
-            ),
-        ],
+        Client::Opencode => vec![suggestion(
+            "user",
+            home_relative(&[".config", "opencode", "opencode.json"]),
+            "JSON mcp.odin with type local",
+        )],
         Client::Agy => vec![suggestion(
             "user",
             home_relative(&[".gemini", "antigravity", "mcp_config.json"]),
             "JSON mcpServers.odin; registration_command is the CLI alternative",
         )],
-        Client::Gemini => vec![
-            suggestion(
-                "user",
-                home_relative(&[".gemini", "settings.json"]),
-                "JSON mcpServers.odin",
-            ),
-            suggestion(
-                "project",
-                ".gemini/settings.json".into(),
-                "JSON mcpServers.odin",
-            ),
-        ],
-        Client::Cursor => vec![
-            suggestion(
-                "user",
-                home_relative(&[".cursor", "mcp.json"]),
-                "JSON mcpServers.odin",
-            ),
-            suggestion("project", ".cursor/mcp.json".into(), "JSON mcpServers.odin"),
-        ],
-        Client::Vscode => vec![
-            suggestion(
-                "project",
-                ".vscode/mcp.json".into(),
-                "JSON servers.odin with type stdio",
-            ),
-            suggestion(
-                "user",
-                vscode_user_mcp(),
-                "JSON servers.odin with type stdio",
-            ),
-        ],
+        Client::Gemini => vec![suggestion(
+            "user",
+            home_relative(&[".gemini", "settings.json"]),
+            "JSON mcpServers.odin",
+        )],
+        Client::Cursor => vec![suggestion(
+            "user",
+            home_relative(&[".cursor", "mcp.json"]),
+            "JSON mcpServers.odin",
+        )],
+        Client::Vscode => vec![suggestion(
+            "user",
+            vscode_user_mcp(),
+            "JSON servers.odin with type stdio",
+        )],
     };
     Value::Array(entries)
 }
@@ -756,20 +734,53 @@ mod tests {
             let entries = outputs.as_array().unwrap();
             assert!(!entries.is_empty(), "{}", client.name());
             for entry in entries {
-                assert!(
-                    matches!(entry["scope"].as_str(), Some("user" | "project")),
-                    "{}",
-                    client.name()
-                );
+                assert_eq!(entry["scope"], "user", "{}", client.name());
                 assert!(entry["path"].as_str().is_some_and(|p| !p.is_empty()));
                 assert!(entry["note"].as_str().is_some());
             }
         }
-        assert_eq!(default_outputs(Client::Claude)[0]["path"], ".mcp.json");
+        let claude = default_outputs(Client::Claude);
+        assert_eq!(claude.as_array().unwrap().len(), 1);
+        assert!(
+            claude[0]["path"]
+                .as_str()
+                .unwrap()
+                .ends_with(".claude.json")
+        );
+        assert!(
+            claude[0]["note"]
+                .as_str()
+                .unwrap()
+                .contains("registration_command")
+        );
         assert_eq!(
             default_outputs(Client::Vscode)[0]["path"],
-            ".vscode/mcp.json"
+            vscode_user_mcp()
         );
+    }
+    #[test]
+    fn verbatim_prefix_never_reaches_entries_or_registration() {
+        let binary = Path::new(r"\\?\C:\Tools\odin.exe");
+        let config = Path::new(r"\\?\C:\Work\odin.toml");
+        let options = ServeOptions::default();
+        let text = client_config(Client::Agy, binary, config, None, &options).unwrap();
+        assert!(!text.contains(r"\\?\"), "{text}");
+        let value: Value = serde_json::from_str(&text).unwrap();
+        assert_eq!(value["mcpServers"]["odin"]["command"], r"C:\Tools\odin.exe");
+        assert_eq!(value["mcpServers"]["odin"]["args"][1], r"C:\Work\odin.toml");
+        let text = client_config(Client::Codex, binary, config, None, &options).unwrap();
+        assert!(!text.contains(r"\\?\"), "{text}");
+        let value: toml::Value = toml::from_str(&text).unwrap();
+        assert_eq!(
+            value["mcp_servers"]["odin"]["command"].as_str(),
+            Some(r"C:\Tools\odin.exe")
+        );
+        let argv = registration_command(Client::Claude, binary, config, &options)
+            .unwrap()
+            .unwrap();
+        assert!(argv.iter().all(|part| !part.contains(r"\\?\")), "{argv:?}");
+        assert_eq!(argv[7], r"C:\Tools\odin.exe");
+        assert_eq!(argv[9], r"C:\Work\odin.toml");
     }
     #[test]
     fn home_fallback_keeps_tilde_prefix() {

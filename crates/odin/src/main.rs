@@ -441,26 +441,36 @@ fn select_session_project(
     if !from_cwd {
         return Ok(None);
     }
-    let selected = std::env::current_dir()
-        .and_then(|dir| dir.canonicalize())
-        .ok()
-        .and_then(|cwd| {
-            config
-                .projects
-                .iter()
-                .filter(|(_, project)| odin_core::config::path_within(&project.root, &cwd))
-                .max_by_key(|(_, project)| project.root.as_os_str().len())
-                .map(|(id, _)| id.clone())
-        });
-    match selected {
-        Some(id) => Ok(Some(SessionProject { id, source: "cwd" })),
-        None => {
+    match project_for_cwd(config, std::env::current_dir()) {
+        Ok(Some(id)) => Ok(Some(SessionProject { id, source: "cwd" })),
+        Ok(None) => {
             eprintln!(
                 "odin: warning: current directory is not inside a configured project root; no session default project"
             );
             Ok(None)
         }
+        Err(message) => {
+            eprintln!("odin: warning: {message}");
+            Ok(None)
+        }
     }
+}
+
+/// The longest configured root containing the canonical startup directory. An
+/// undeterminable directory is reported as a distinct failure, not as "no project".
+fn project_for_cwd(
+    config: &Config,
+    cwd: std::io::Result<PathBuf>,
+) -> Result<Option<String>, String> {
+    let cwd = cwd.and_then(|dir| dir.canonicalize()).map_err(|error| {
+        format!("cannot determine current directory: {error}; no session default project")
+    })?;
+    Ok(config
+        .projects
+        .iter()
+        .filter(|(_, project)| odin_core::config::path_within(&project.root, &cwd))
+        .max_by_key(|(_, project)| project.root.as_os_str().len())
+        .map(|(id, _)| id.clone()))
 }
 
 struct ProjectAdd<'a> {
@@ -543,7 +553,20 @@ fn project_add(path: &Path, add: &ProjectAdd) -> Result<()> {
     let object = result
         .as_object_mut()
         .context("Project result must be an object")?;
-    object.insert("project".into(), id.into());
+    let note = if add.apply {
+        format!(
+            "Appended one [projects.{id}] table; existing text is kept byte-for-byte. Restart Odin servers to load it."
+        )
+    } else {
+        format!(
+            "Preview only; nothing was written. Applying appends one [projects.{id}] table; existing text is kept byte-for-byte. Restart Odin servers to load it after applying."
+        )
+    };
+    object.remove("client_connection");
+    object.insert("host_permissions_changed".into(), true.into());
+    object.insert("allow_write".into(), add.writable.into());
+    object.insert("note".into(), note.into());
+    object.insert("project".into(), json!(id));
     object.insert("root".into(), display_path(&root).into());
     object.insert(
         "detected_languages".into(),
@@ -564,7 +587,7 @@ fn default_project_id(root: &Path) -> Result<String> {
         .file_name()
         .and_then(|name| name.to_str())
         .context("Project root has no directory name; pass --name")?;
-    Ok(name
+    let id: String = name
         .to_ascii_lowercase()
         .chars()
         .map(|c| {
@@ -574,7 +597,11 @@ fn default_project_id(root: &Path) -> Result<String> {
                 '-'
             }
         })
-        .collect())
+        .collect();
+    if !id.bytes().any(|byte| byte.is_ascii_alphanumeric()) {
+        bail!("Project directory name has no ASCII letter or digit; pass --name");
+    }
+    Ok(id)
 }
 
 /// Drops the Windows verbatim prefix from a drive path so the host file stays readable.
@@ -743,4 +770,57 @@ fn exists_program(program: &str) -> bool {
             false
         })
     })
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn config_with(projects: Value) -> Config {
+        serde_json::from_value(json!({"state_dir": "state", "projects": projects})).unwrap()
+    }
+
+    #[test]
+    fn default_project_id_requires_an_ascii_name() {
+        assert_eq!(
+            default_project_id(Path::new("/work/My App")).unwrap(),
+            "my-app"
+        );
+        let error = default_project_id(Path::new("/work/專案")).unwrap_err();
+        assert!(error.to_string().contains("--name"), "{error}");
+    }
+
+    #[test]
+    fn cwd_selects_longest_containing_root_or_reports_failure() {
+        let base = std::env::temp_dir().join(format!("odin-cwd-select-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&base);
+        let nested = base.join("app").join("src");
+        let unrelated = base.join("unrelated");
+        std::fs::create_dir_all(&nested).unwrap();
+        std::fs::create_dir_all(&unrelated).unwrap();
+        let base_root = base.canonicalize().unwrap();
+        let app_root = base.join("app").canonicalize().unwrap();
+        let config = config_with(json!({
+            "outer": {"root": base_root},
+            "app": {"root": app_root},
+        }));
+        assert_eq!(
+            project_for_cwd(&config, Ok(nested)).unwrap().as_deref(),
+            Some("app")
+        );
+        assert_eq!(
+            project_for_cwd(&config, Ok(unrelated.clone()))
+                .unwrap()
+                .as_deref(),
+            Some("outer")
+        );
+        let only_app = config_with(json!({"app": {"root": app_root}}));
+        assert_eq!(project_for_cwd(&only_app, Ok(unrelated)).unwrap(), None);
+        let error = project_for_cwd(&config, Err(std::io::Error::other("gone"))).unwrap_err();
+        assert!(
+            error.contains("cannot determine current directory") && error.contains("gone"),
+            "{error}"
+        );
+        let _ = std::fs::remove_dir_all(&base);
+    }
 }
