@@ -1,0 +1,22 @@
+{
+  "command": "cargo test -p odin-protocol --locked",
+  "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-protocol\\odin",
+  "cargo_exit_code": 101,
+  "launch_error_code": 4551,
+  "tests_executed_in_latest_attempt": 0,
+  "blocked_binary": "E:\\odin\\target\\debug\\deps\\odin_protocol-b6905337e014fe48.exe",
+  "binary_sha256": "F97B1C0ACA1DB9622B7EA96388DD22C0EE50A236063A6D2DDAF74302D1047454",
+  "events": [
+    {
+      "TimeCreated": "2026-10-21T08:41:52.9226528+08:00",
+      "Id": 3077,
+      "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Users\\steven\\.rustup\\toolchains\\1.90.0-x86_64-pc-windows-msvc\\bin\\cargo.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\debug\\deps\\odin_protocol-b6905337e014fe48.exe that did not meet the Enterprise signing level requirements or violated code integrity policy (Policy ID:{0283ac0f-fff1-49ae-ada1-8a933130cad6})."
+    },
+    {
+      "TimeCreated": "2026-10-21T08:41:52.8809532+08:00",
+      "Id": 3033,
+      "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Users\\steven\\.rustup\\toolchains\\1.90.0-x86_64-pc-windows-msvc\\bin\\cargo.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\debug\\deps\\odin_protocol-b6905337e014fe48.exe that did not meet the Enterprise signing level requirements."
+    }
+  ],
+  "security_policy_modified": false
+}

@@ -1,0 +1,2 @@
+command: rustfmt --edition 2024 --check crates/odin-protocol/src/lsp.rs crates/odin-protocol/src/text.rs crates/odin-protocol/tests/fixture_protocols.rs
+exit_code: 0
