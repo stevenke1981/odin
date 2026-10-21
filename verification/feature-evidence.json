@@ -4,9 +4,9 @@
   "version": "0.2.0",
   "release_class": "WINDOWS_NATIVE_PREVIEW",
   "observed_date": "2026-10-21",
-  "source_head_sha_at_documentation_review": "83655ac50cb9f2fcc309f95455e196b3836178ba",
-  "scope": "Requirement-level assessment of completed Windows slice reports and the executed integrated candidate. Documentation review is not an independent runtime test run.",
-  "tool_contracts": 72,
+  "source_head_sha_at_documentation_review": "6fc1bd54c84f074f5e324b8670522d1d74471b73",
+  "scope": "Current 85-tool OS sandbox/language/IDE assessment with preserved historical 72-tool Windows proof. Documentation does not execute product tests.",
+  "tool_contracts": 85,
   "requirements_total": 40,
   "status_semantics": {
     "PASS": "Every acceptance criterion has applicable executed zero-exit evidence.",
@@ -371,7 +371,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "Windows 最終整合 16 個命令 exit 0；144 Rust tests 通過、1 ignored，locked release build 與 clean revision/binary metadata 已核對；跨平台矩陣未完成。",
+      "summary": "本輪fe5996d候選17/17 gates exit0，workspace191 passed/4 ignored；另opt-in native MXC3 passed。release binary為c4f55861…、dirty=false，跨平台/全新checkout仍未完整驗收。",
       "checks": [
         {
           "command": [
@@ -529,6 +529,52 @@
           "id": "ODIN-001-A1",
           "criterion": "在全新工作樹執行 cargo generate-lockfile、cargo build --workspace --locked 成功且 Cargo.lock 納入 Git。",
           "status": "PARTIAL",
+          "remaining": "當輪clean revision已locked build及metadata驗收；全新checkout重建、Linux/macOS native matrix仍未完成。"
+        },
+        {
+          "id": "ODIN-001-A2",
+          "criterion": "cargo fmt --all -- --check、cargo clippy --workspace --all-targets --locked -- -D warnings、cargo test --workspace --locked 均退出 0。",
+          "status": "PASS",
+          "remaining": null,
+          "evidence_ref": "#/extension_evidence/latest_integrated_candidate"
+        },
+        {
+          "id": "ODIN-001-A3",
+          "criterion": "Release binary 的 --version 與 commit metadata 可讀，沒有 false PASS 或預製空 binary。",
+          "status": "PASS",
+          "remaining": null,
+          "evidence_ref": "#/extension_evidence/latest_integrated_candidate"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-001-A1",
+          "criterion": "在全新工作樹執行 cargo generate-lockfile、cargo build --workspace --locked 成功且 Cargo.lock 納入 Git。",
+          "remaining": "當輪clean revision已locked build及metadata驗收；全新checkout重建、Linux/macOS native matrix仍未完成。"
+        }
+      ],
+      "supporting_reports": [
+        {
+          "report": "verification/workspace-tests.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        },
+        {
+          "report": "verification/workspace-clippy.txt",
+          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
+        }
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/latest_integrated_candidate"
+        ]
+      },
+      "baseline_acceptance_results": [
+        {
+          "id": "ODIN-001-A1",
+          "criterion": "在全新工作樹執行 cargo generate-lockfile、cargo build --workspace --locked 成功且 Cargo.lock 納入 Git。",
+          "status": "PARTIAL",
           "remaining": "Windows clean revision 的 locked release build 與來源綁定已完成；全新 checkout 重建及 Linux/macOS 原生建置矩陣仍未完成。"
         },
         {
@@ -543,23 +589,6 @@
           "status": "PASS",
           "remaining": null
         }
-      ],
-      "unverified_acceptance": [
-        {
-          "id": "ODIN-001-A1",
-          "criterion": "在全新工作樹執行 cargo generate-lockfile、cargo build --workspace --locked 成功且 Cargo.lock 納入 Git。",
-          "remaining": "Windows clean revision 的 locked release build 與來源綁定已完成；全新 checkout 重建及 Linux/macOS 原生建置矩陣仍未完成。"
-        }
-      ],
-      "supporting_reports": [
-        {
-          "report": "verification/workspace-tests.txt",
-          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
-        },
-        {
-          "report": "verification/workspace-clippy.txt",
-          "scope": "Supporting observations/logs; no command exit code is inferred from this file."
-        }
       ]
     },
     {
@@ -568,7 +597,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "真 binary 的 MCP stdio、Streamable HTTP、授權負例與取消已有 Windows smoke。",
+      "summary": "本輪真release binary CLI/stdio/HTTP/cancellation gates皆exit0；六語IDE與final analyzer replay仍是另項，不沿用前版144測試。",
       "checks": [
         {
           "command": [
@@ -699,7 +728,7 @@
           "id": "ODIN-002-A3",
           "criterion": "HTTP 無 token、錯誤 token、惡意 Origin/Host 均被拒絕；預設只綁 127.0.0.1。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "unverified_acceptance": [
@@ -716,18 +745,25 @@
         {
           "id": "ODIN-002-A3",
           "criterion": "HTTP 無 token、錯誤 token、惡意 Origin/Host 均被拒絕；預設只綁 127.0.0.1。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/latest_integrated_candidate"
+        ]
+      }
     },
     {
       "id": "ODIN-003",
-      "title": "72 個原生工具契約、版本與能力協商",
+      "title": "85 個原生工具契約、版本與能力協商",
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "擴充為 72 工具，具 schema_version/get_capabilities、catalog 一致性與錯誤／policy 測試。",
+      "summary": "原 58、前版 72、本輪 85 契約；新增 13 個 IDE/inspection tools 已有 catalog/policy/dispatch/tests/docs 切片，完整真後端矩陣未驗收。",
       "checks": [
         {
           "command": [
@@ -800,15 +836,15 @@
       "acceptance_results": [
         {
           "id": "ODIN-003-A1",
-          "criterion": "原有 58 個工具保留，擴充後 72 個 tools 全數列在 coverage 表，schema/dispatcher 逐項有功能測試。",
+          "criterion": "原有 58 個工具保留，擴充後 85 個 tools 全數列在 coverage 表，schema/dispatcher 逐項有功能測試。",
           "status": "PARTIAL",
-          "remaining": "已驗 schema/name 一致及代表功能；尚無 72 個工具每項完整成功／拒絕的獨立功能矩陣。"
+          "remaining": "85 catalog 有切片一致性證據；每個新 API 的真後端正反例及完整工具矩陣未完成。"
         },
         {
           "id": "ODIN-003-A2",
           "criterion": "錯參數、未知專案、未知工具與後端失聯各得到不同可機械判別 error code。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-003-A3",
@@ -820,13 +856,13 @@
       "unverified_acceptance": [
         {
           "id": "ODIN-003-A1",
-          "criterion": "原有 58 個工具保留，擴充後 72 個 tools 全數列在 coverage 表，schema/dispatcher 逐項有功能測試。",
-          "remaining": "已驗 schema/name 一致及代表功能；尚無 72 個工具每項完整成功／拒絕的獨立功能矩陣。"
+          "criterion": "原有 58 個工具保留，擴充後 85 個 tools 全數列在 coverage 表，schema/dispatcher 逐項有功能測試。",
+          "remaining": "85 catalog 有切片一致性證據；每個新 API 的真後端正反例及完整工具矩陣未完成。"
         },
         {
           "id": "ODIN-003-A2",
           "criterion": "錯參數、未知專案、未知工具與後端失聯各得到不同可機械判別 error code。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-003-A3",
@@ -834,7 +870,14 @@
           "remaining": "schema version 已提供；破壞式升版及遷移相容矩陣尚未實際升版驗收。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/latest_integrated_candidate"
+        ]
+      }
     },
     {
       "id": "ODIN-004",
@@ -900,7 +943,7 @@
           "id": "ODIN-004-A2",
           "criterion": "未知 project_id 和 workspace 外部的任何路徑一律拒絕。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-004-A3",
@@ -918,7 +961,7 @@
         {
           "id": "ODIN-004-A2",
           "criterion": "未知 project_id 和 workspace 外部的任何路徑一律拒絕。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-004-A3",
@@ -926,7 +969,8 @@
           "remaining": "LSP/DAP 可明確停止；停止整個 project 並驗證其他 project 持續服務的完整生命週期未驗收。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-005",
@@ -1031,7 +1075,8 @@
           "report": "verification/windows-short-aliases.txt",
           "scope": "Supporting observations/logs; no command exit code is inferred from this file."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-006",
@@ -1128,7 +1173,7 @@
           "id": "ODIN-006-A1",
           "criterion": "外部先行修改檔案時，apply 回 CONFLICT，外部修改保持不變。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-006-A2",
@@ -1140,14 +1185,14 @@
           "id": "ODIN-006-A3",
           "criterion": "rollback 永不覆蓋未知第三方資料；同 request_id 不同 payload 被拒絕。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-006-A1",
           "criterion": "外部先行修改檔案時，apply 回 CONFLICT，外部修改保持不變。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-006-A2",
@@ -1157,7 +1202,7 @@
         {
           "id": "ODIN-006-A3",
           "criterion": "rollback 永不覆蓋未知第三方資料；同 request_id 不同 payload 被拒絕。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "supporting_reports": [
@@ -1169,7 +1214,8 @@
           "report": "verification/core-process-contention.txt",
           "scope": "Supporting observations/logs; no command exit code is inferred from this file."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-007",
@@ -1177,7 +1223,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "LSP sync/capability/readiness/shutdown/restart、UTF-16/CRLF 已測；Windows 三語真後端 cross-file references/rename/rollback 已執行。",
+      "summary": "新增 completion/resolve、hover/signature、workspace/call hierarchy、inlay/resolve、semantic tokens；protocol 29 unit+22 fixtures 已測，真六語當輪因 AppControl 未啟動。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked",
@@ -1251,7 +1297,7 @@
           "id": "ODIN-007-A1",
           "criterion": "rust-analyzer 真實專案能索引兩個跨檔引用，檔案改動後讀到新符號。",
           "status": "PARTIAL",
-          "remaining": "真三語符號／引用報告另列；完整 edit→新符號及索引準備矩陣未驗收。"
+          "remaining": "新增 IDE RPC 僅有 protocol fixtures；六語兩專案當輪 Odin 啟動遭 4551，0 MCP/LSP checks。"
         },
         {
           "id": "ODIN-007-A2",
@@ -1270,7 +1316,7 @@
         {
           "id": "ODIN-007-A1",
           "criterion": "rust-analyzer 真實專案能索引兩個跨檔引用，檔案改動後讀到新符號。",
-          "remaining": "真三語符號／引用報告另列；完整 edit→新符號及索引準備矩陣未驗收。"
+          "remaining": "新增 IDE RPC 僅有 protocol fixtures；六語兩專案當輪 Odin 啟動遭 4551，0 MCP/LSP checks。"
         },
         {
           "id": "ODIN-007-A2",
@@ -1288,7 +1334,14 @@
           "report": "verification/real-backends.json",
           "scope": "Executed real-backend observations, bound to local-validation.json /commands/9 exit 0 and the integrated release binary SHA-256."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/native_ide"
+        ]
+      }
     },
     {
       "id": "ODIN-008",
@@ -1296,7 +1349,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "symbol filters/depth/scope/paging/body budget 已有回歸；真實三語 cross-file references/rename consumer uses/rollback 已執行。",
+      "summary": "workspace symbols/call hierarchy 與 source/version/freshness 已有 fixtures；舊三語結果不當成本輪完整 IDE 驗收。",
       "checks": [
         {
           "command": [
@@ -1376,7 +1429,7 @@
           "id": "ODIN-008-A1",
           "criterion": "跨檔 Rust fixtures 逐項對照 rust-analyzer 輸出定位、kind、range，至少 20 個真實查詢通過。",
           "status": "PARTIAL",
-          "remaining": "尚未完成至少 20 個真實 rust-analyzer 查詢逐項結果對照。"
+          "remaining": "20 個真 rust-analyzer 查詢對照及 workspace/call-hierarchy 真語言矩陣未完成。"
         },
         {
           "id": "ODIN-008-A2",
@@ -1388,14 +1441,14 @@
           "id": "ODIN-008-A3",
           "criterion": "不可用功能需回 CAPABILITY_UNAVAILABLE；不默默降級為純文字結果。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-008-A1",
           "criterion": "跨檔 Rust fixtures 逐項對照 rust-analyzer 輸出定位、kind、range，至少 20 個真實查詢通過。",
-          "remaining": "尚未完成至少 20 個真實 rust-analyzer 查詢逐項結果對照。"
+          "remaining": "20 個真 rust-analyzer 查詢對照及 workspace/call-hierarchy 真語言矩陣未完成。"
         },
         {
           "id": "ODIN-008-A2",
@@ -1405,7 +1458,7 @@
         {
           "id": "ODIN-008-A3",
           "criterion": "不可用功能需回 CAPABILITY_UNAVAILABLE；不默默降級為純文字結果。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "supporting_reports": [
@@ -1413,7 +1466,14 @@
           "report": "verification/real-backends.json",
           "scope": "Executed real-backend observations, bound to local-validation.json /commands/9 exit 0 and the integrated release binary SHA-256."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/native_ide"
+        ]
+      }
     },
     {
       "id": "ODIN-009",
@@ -1421,7 +1481,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "有序 TextDocumentEdit/Create/Rename/Delete regular UTF-8 file 已轉 CAS 交易；unsupported operations 明確拒絕。",
+      "summary": "format_document/range formatting 的後端 edit 轉 expected-hash Transactions preview；有序 WorkspaceEdit/CAS 保留且不隱含 apply。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked",
@@ -1485,7 +1545,7 @@
           "id": "ODIN-009-A3",
           "criterion": "遇到不支援 annotation 或檔案版本不符全部拒絕，不遺漏操作後回成功。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "unverified_acceptance": [
@@ -1502,10 +1562,17 @@
         {
           "id": "ODIN-009-A3",
           "criterion": "遇到不支援 annotation 或檔案版本不符全部拒絕，不遺漏操作後回成功。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/native_ide"
+        ]
+      }
     },
     {
       "id": "ODIN-010",
@@ -1513,7 +1580,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "Windows 真 rust-analyzer、basedpyright、TypeScript language-server 已實測 symbols、cross-file references、rename definition/consumer uses 與 rollback；完整原驗收尚未完成。",
+      "summary": "歷史三語跨檔結果保留舊 binary 範圍；本輪六語各兩專案首輪 WinError4551，實際 MCP/LSP checks=0。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked real_rust_analyzer_smoke -- --ignored --nocapture",
@@ -1559,36 +1626,36 @@
           "id": "ODIN-010-A1",
           "criterion": "每語言至少完成符號、跨檔 references、rename、diagnostics 的成功與失敗案例。",
           "status": "PARTIAL",
-          "remaining": "三語 diagnostics 成功／失敗與所有反例尚未驗收。"
+          "remaining": "當輪六語 0 MCP/LSP checks；diagnostics 正反例與全 refactor 仍未完成。"
         },
         {
           "id": "ODIN-010-A2",
           "criterion": "每個語言都記錄版本、OS、commit、命令行與 stdout/stderr 原始 log。",
           "status": "PARTIAL",
-          "remaining": "command exit、backend version、OS、source/binary digest 與整合 stdout/stderr log 已具備；每語言的完整原始協定/錯誤診斷矩陣未完成。"
+          "remaining": "新增 harness 記錄 version/config/source/transcript hash；首輪空 transcript 不能當成功語言執行 log。"
         },
         {
           "id": "ODIN-010-A3",
           "criterion": "未驗證語言不能以「40+ 已支援」列為 PASS。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-010-A1",
           "criterion": "每語言至少完成符號、跨檔 references、rename、diagnostics 的成功與失敗案例。",
-          "remaining": "三語 diagnostics 成功／失敗與所有反例尚未驗收。"
+          "remaining": "當輪六語 0 MCP/LSP checks；diagnostics 正反例與全 refactor 仍未完成。"
         },
         {
           "id": "ODIN-010-A2",
           "criterion": "每個語言都記錄版本、OS、commit、命令行與 stdout/stderr 原始 log。",
-          "remaining": "command exit、backend version、OS、source/binary digest 與整合 stdout/stderr log 已具備；每語言的完整原始協定/錯誤診斷矩陣未完成。"
+          "remaining": "新增 harness 記錄 version/config/source/transcript hash；首輪空 transcript 不能當成功語言執行 log。"
         },
         {
           "id": "ODIN-010-A3",
           "criterion": "未驗證語言不能以「40+ 已支援」列為 PASS。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "supporting_reports": [
@@ -1604,7 +1671,14 @@
           "report": "verification/real-backends-ts7-failure.json",
           "scope": "Supporting observations/logs; no command exit code is inferred from this file."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/language_registry"
+        ]
+      }
     },
     {
       "id": "ODIN-011",
@@ -1701,7 +1775,7 @@
           "id": "ODIN-011-A3",
           "criterion": "缺少 LSP/DAP 時明確提示必要後端，不會執行下載 Serena。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "unverified_acceptance": [
@@ -1718,7 +1792,7 @@
         {
           "id": "ODIN-011-A3",
           "criterion": "缺少 LSP/DAP 時明確提示必要後端，不會執行下載 Serena。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "supporting_reports": [
@@ -1730,7 +1804,8 @@
           "report": "verification/sbom.cdx.json",
           "scope": "Supporting observations/logs; no command exit code is inferred from this file."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-012",
@@ -1738,7 +1813,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "已加入環境 allowlist、Windows Job Objects／Unix process groups 與受信任固定 argv profiles；這些是程序生命週期控制。",
+      "summary": "可選Windows native MXC已實作且當輪native3測試PASS（含guard-until-reap）；revision30a957a另有MCP/MXC/analyzer30 checks PASS，final六語/跨平台仍未完成。",
       "checks": [
         {
           "command": [
@@ -1790,36 +1865,36 @@
           "id": "ODIN-012-A1",
           "criterion": "受測敵意 command/process 不能更改 workspace 外檔案；子孫程序可被完整終止。",
           "status": "PARTIAL",
-          "remaining": "沒有 AppContainer/restricted token、namespace/seccomp 或 macOS sandbox；不具 workspace 外的 OS 寫入隔離。"
+          "remaining": "當輪Windows native MXC三測試與scoped analyzer整合已有PASS；六語final LSP/MXC、Linux/macOS和完整OS資源矩陣未驗收。"
         },
         {
           "id": "ODIN-012-A2",
           "criterion": "限制模式若該 OS 不支援，必須 fail closed 且明確出錯，不能靜默解除限制。",
           "status": "PARTIAL",
-          "remaining": "完整 restricted execution mode 與各 OS fail-closed sandbox 尚未實作／驗收。"
+          "remaining": "MXC 已 fail closed/無 fallback；unsupported OS/full profile failure matrix 未驗收，未配置的程序沒有自動沙箱。"
         },
         {
           "id": "ODIN-012-A3",
           "criterion": "Shell、DAP launch、LSP executable 的信任邊界文件及 deny/allow tests 齊備。",
           "status": "PARTIAL",
-          "remaining": "固定 argv 與 deny/allow 有測試；敵意程序的完整 OS 權限邊界驗收未完成。"
+          "remaining": "正式native3測試log已提供；final六語/所有DAP/inspection paths與新head獨立review仍待完成。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-012-A1",
           "criterion": "受測敵意 command/process 不能更改 workspace 外檔案；子孫程序可被完整終止。",
-          "remaining": "沒有 AppContainer/restricted token、namespace/seccomp 或 macOS sandbox；不具 workspace 外的 OS 寫入隔離。"
+          "remaining": "當輪Windows native MXC三測試與scoped analyzer整合已有PASS；六語final LSP/MXC、Linux/macOS和完整OS資源矩陣未驗收。"
         },
         {
           "id": "ODIN-012-A2",
           "criterion": "限制模式若該 OS 不支援，必須 fail closed 且明確出錯，不能靜默解除限制。",
-          "remaining": "完整 restricted execution mode 與各 OS fail-closed sandbox 尚未實作／驗收。"
+          "remaining": "MXC 已 fail closed/無 fallback；unsupported OS/full profile failure matrix 未驗收，未配置的程序沒有自動沙箱。"
         },
         {
           "id": "ODIN-012-A3",
           "criterion": "Shell、DAP launch、LSP executable 的信任邊界文件及 deny/allow tests 齊備。",
-          "remaining": "固定 argv 與 deny/allow 有測試；敵意程序的完整 OS 權限邊界驗收未完成。"
+          "remaining": "正式native3測試log已提供；final六語/所有DAP/inspection paths與新head獨立review仍待完成。"
         }
       ],
       "supporting_reports": [
@@ -1827,7 +1902,14 @@
           "report": "verification/core-tests.txt",
           "scope": "Supporting observations/logs; no command exit code is inferred from this file."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/windows_os_sandbox"
+        ]
+      }
     },
     {
       "id": "ODIN-013",
@@ -1835,7 +1917,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "DAP 狀態/session/tickets/取消已有 fixtures；最終 release binary 對 Windows debugpy 的 breakpoint/variables/evaluate/step/disconnect 已實測。",
+      "summary": "LSP/DAP 可走 host MXC；選配 immutable debug_launches 固定 payload，未設 profile 時 allow_debug 仍為 explicit privileged mode。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked",
@@ -1927,7 +2009,7 @@
           "id": "ODIN-013-A3",
           "criterion": "不支援的 DAP 指令明確回 unsupported，不能把送出 request 當成功完成操作。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "unverified_acceptance": [
@@ -1944,7 +2026,7 @@
         {
           "id": "ODIN-013-A3",
           "criterion": "不支援的 DAP 指令明確回 unsupported，不能把送出 request 當成功完成操作。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "supporting_reports": [
@@ -1952,7 +2034,15 @@
           "report": "verification/real-backends.json",
           "scope": "Executed real-backend observations, bound to local-validation.json /commands/9 exit 0 and the integrated release binary SHA-256."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/immutable_debug_launches",
+          "#/extension_evidence/windows_os_sandbox"
+        ]
+      }
     },
     {
       "id": "ODIN-014",
@@ -2034,7 +2124,8 @@
           "remaining": "preview/交易已有測試；真實語意 Move 的引用更新與 rollback 尚未驗收。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-015",
@@ -2116,7 +2207,8 @@
           "remaining": "交易 preview 路徑已測；真實 backend Inline 的編譯與 rollback 尚未驗收。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-016",
@@ -2208,7 +2300,8 @@
           "remaining": "未完成級聯刪除與影響測試對照。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-017",
@@ -2216,7 +2309,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "版本化 pull/push diagnostics 與具 diagnostics context 的 QuickFix resolve/preview 路徑已實作及 fixture 測試。",
+      "summary": "Clippy/Ruff/ESLint providers 與 safe-fix preview 已實作；revision30a957a 真 Odin MCP→native MXC 有 30 PASS checks，symbol severity 修正另有1個targeted PASS；不等於 final 全矩陣。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked",
@@ -2268,39 +2361,47 @@
           "id": "ODIN-017-A1",
           "criterion": "同一缺陷從 LSP 與 clippy 匯入可去重但保留來源。",
           "status": "PARTIAL",
-          "remaining": "沒有完成 LSP+Clippy/Ruff/ESLint providers 匯入與去重。"
+          "remaining": "真三 analyzer/MXC 已有30 checks PASS；LSP+native 同缺陷去重與最終新head矩陣未驗收。"
         },
         {
           "id": "ODIN-017-A2",
           "criterion": "不存在的 rule/analysis 或未就緒結果回 PENDING/UNAVAILABLE，不回空 PASS。",
           "status": "PARTIAL",
-          "remaining": "pending/unavailable 已處理；完整 normalized rule/source/confidence provider schema 尚未完成。"
+          "remaining": "normalization/版本/不完整報告有 unit fixtures；真 analyzer 版本及全部錯誤路徑未驗收。"
         },
         {
           "id": "ODIN-017-A3",
           "criterion": "quick fix 必須先預覽 WorkspaceEdit，再交由交易引擎執行。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-017-A1",
           "criterion": "同一缺陷從 LSP 與 clippy 匯入可去重但保留來源。",
-          "remaining": "沒有完成 LSP+Clippy/Ruff/ESLint providers 匯入與去重。"
+          "remaining": "真三 analyzer/MXC 已有30 checks PASS；LSP+native 同缺陷去重與最終新head矩陣未驗收。"
         },
         {
           "id": "ODIN-017-A2",
           "criterion": "不存在的 rule/analysis 或未就緒結果回 PENDING/UNAVAILABLE，不回空 PASS。",
-          "remaining": "pending/unavailable 已處理；完整 normalized rule/source/confidence provider schema 尚未完成。"
+          "remaining": "normalization/版本/不完整報告有 unit fixtures；真 analyzer 版本及全部錯誤路徑未驗收。"
         },
         {
           "id": "ODIN-017-A3",
           "criterion": "quick fix 必須先預覽 WorkspaceEdit，再交由交易引擎執行。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/native_inspections",
+          "#/extension_evidence/native_ide"
+        ]
+      }
     },
     {
       "id": "ODIN-018",
@@ -2308,7 +2409,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "LSP TypeHierarchy primitives、明確兩方 project 的唯讀 query 與 scope deny 有實作。",
+      "summary": "TypeHierarchy 之外增加 CallHierarchy/workspace symbols 與 freshness；hierarchy 累計資源預算 review 缺口仍待修復與新 head 驗收。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked",
@@ -2360,7 +2461,7 @@
           "id": "ODIN-018-A1",
           "criterion": "Type Hierarchy 能列出 fixture 的父類、子類，並正確含跨檔。",
           "status": "PARTIAL",
-          "remaining": "真實後端跨檔父類/子類與依賴 hierarchy 的專項 fixture 未驗收。"
+          "remaining": "真 Type/CallHierarchy 跨檔矩陣未驗收；累計 query budget review 缺口仍待修復確認。"
         },
         {
           "id": "ODIN-018-A2",
@@ -2372,14 +2473,14 @@
           "id": "ODIN-018-A3",
           "criterion": "不支援 hierarchy 的 LSP 返回 capability unavailable 並標明缺失。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-018-A1",
           "criterion": "Type Hierarchy 能列出 fixture 的父類、子類，並正確含跨檔。",
-          "remaining": "真實後端跨檔父類/子類與依賴 hierarchy 的專項 fixture 未驗收。"
+          "remaining": "真 Type/CallHierarchy 跨檔矩陣未驗收；累計 query budget review 缺口仍待修復確認。"
         },
         {
           "id": "ODIN-018-A2",
@@ -2389,10 +2490,17 @@
         {
           "id": "ODIN-018-A3",
           "criterion": "不支援 hierarchy 的 LSP 返回 capability unavailable 並標明缺失。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/native_ide"
+        ]
+      }
     },
     {
       "id": "ODIN-019",
@@ -2400,7 +2508,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "目前只有三個具真實後端報告的語言；generic LSP 設定不等於所有語言已支援。",
+      "summary": "28 語言 profile registry 是安裝/設定指引；六語兩專案 harness 首輪 0 MCP/LSP checks，不能稱 28 或 40+ 已支援。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked real_rust_analyzer_smoke -- --ignored --nocapture",
@@ -2446,36 +2554,36 @@
           "id": "ODIN-019-A1",
           "criterion": "首批 6 語言可在本機安裝直接後端並通過核心查詢。",
           "status": "PARTIAL",
-          "remaining": "六語言核心查詢尚未完成，Go/C#/Java 等仍 NOT_RUN。"
+          "remaining": "28 registry entries 只是設定指引；Rust/Python/TypeScript/Go/Java/C# 兩專案首輪是 0 MCP/LSP checks。"
         },
         {
           "id": "ODIN-019-A2",
           "criterion": "每種新增語言均有 2 個以上實際專案 fixture 與反例；未驗證不得宣稱支援。",
           "status": "PARTIAL",
-          "remaining": "每語言至少兩個實際專案 fixture 與反例未達成。"
+          "remaining": "harness 建立專案不等於驗收；本輪受 AppControl 阻擋，40+ 語言無完整證據。"
         },
         {
           "id": "ODIN-019-A3",
           "criterion": "支援矩陣記錄每種語言的 find/reference/rename/diagnostics/refactor 狀態與證據。",
           "status": "PARTIAL",
-          "remaining": "矩陣已明列分級；diagnostics/refactors 及 40+ 語言證據未完成。"
+          "remaining": "需逐語言／功能分 INSTALLED/CONFIGURED/VERIFIED；diagnostics/refactor/IDE 真實矩陣未完成。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-019-A1",
           "criterion": "首批 6 語言可在本機安裝直接後端並通過核心查詢。",
-          "remaining": "六語言核心查詢尚未完成，Go/C#/Java 等仍 NOT_RUN。"
+          "remaining": "28 registry entries 只是設定指引；Rust/Python/TypeScript/Go/Java/C# 兩專案首輪是 0 MCP/LSP checks。"
         },
         {
           "id": "ODIN-019-A2",
           "criterion": "每種新增語言均有 2 個以上實際專案 fixture 與反例；未驗證不得宣稱支援。",
-          "remaining": "每語言至少兩個實際專案 fixture 與反例未達成。"
+          "remaining": "harness 建立專案不等於驗收；本輪受 AppControl 阻擋，40+ 語言無完整證據。"
         },
         {
           "id": "ODIN-019-A3",
           "criterion": "支援矩陣記錄每種語言的 find/reference/rename/diagnostics/refactor 狀態與證據。",
-          "remaining": "矩陣已明列分級；diagnostics/refactors 及 40+ 語言證據未完成。"
+          "remaining": "需逐語言／功能分 INSTALLED/CONFIGURED/VERIFIED；diagnostics/refactor/IDE 真實矩陣未完成。"
         }
       ],
       "supporting_reports": [
@@ -2483,7 +2591,14 @@
           "report": "verification/real-backends.json",
           "scope": "Executed real-backend observations, bound to local-validation.json /commands/9 exit 0 and the integrated release binary SHA-256."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/language_registry"
+        ]
+      }
     },
     {
       "id": "ODIN-020",
@@ -2576,7 +2691,7 @@
           "id": "ODIN-020-A2",
           "criterion": "跨 session 重啟後內容與 hashes 保持；無權限範圍不得寫入。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-020-A3",
@@ -2594,7 +2709,7 @@
         {
           "id": "ODIN-020-A2",
           "criterion": "跨 session 重啟後內容與 hashes 保持；無權限範圍不得寫入。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-020-A3",
@@ -2607,7 +2722,8 @@
           "report": "verification/core-tests.txt",
           "scope": "Supporting observations/logs; no command exit code is inferred from this file."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-021",
@@ -2689,7 +2805,8 @@
           "remaining": "定向一致性已測；大型冷暖啟動及完整漏事件矩陣未完成。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-022",
@@ -2782,7 +2899,7 @@
           "id": "ODIN-022-A2",
           "criterion": "forbid write/execute/unknown call 即使透過 flow 包裹也仍拒絕。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-022-A3",
@@ -2800,7 +2917,7 @@
         {
           "id": "ODIN-022-A2",
           "criterion": "forbid write/execute/unknown call 即使透過 flow 包裹也仍拒絕。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-022-A3",
@@ -2808,7 +2925,8 @@
           "remaining": "session 隔離已有測試；完整 DAG scheduler、cycle validation 與 bounded DAG concurrency 未實作。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-023",
@@ -2816,7 +2934,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "setup/validate/onboard/doctor 已實作；三種 generated config 的真 MCP handshake、dry-run/backup/CAS smoke 已執行。",
+      "summary": "languages registry、runtime/setup guidance 與 doctor sandbox probe 有來源；當輪真 binary/client 整合另行驗收。",
       "checks": [
         {
           "command": [
@@ -2883,7 +3001,7 @@
           "id": "ODIN-023-A2",
           "criterion": "覆寫既有配置要顯式同意，保證原有未關聯設定不變。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-023-A3",
@@ -2901,7 +3019,7 @@
         {
           "id": "ODIN-023-A2",
           "criterion": "覆寫既有配置要顯式同意，保證原有未關聯設定不變。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-023-A3",
@@ -2909,7 +3027,14 @@
           "remaining": "doctor 的 LSP probe 已實作；MCP transport、檔案權限、DAP health 的全分類矩陣尚未驗收。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/language_registry"
+        ]
+      }
     },
     {
       "id": "ODIN-024",
@@ -2917,7 +3042,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "host TOML contexts/modes 依序收緊權限，data-only policy 不可授予 host 已拒絕的權限。",
+      "summary": "allow_inspections、sandbox、inspection/debug_launches 為 host 純資料政策；context/mode 只能收緊，不能自動授予權限。",
       "checks": [
         {
           "command": [
@@ -3001,7 +3126,7 @@
           "id": "ODIN-024-A2",
           "criterion": "readonly mode 不能授予 host policy 拒絕的寫入；任意 mode 不能繞過 OS sandbox。",
           "status": "PARTIAL",
-          "remaining": "權限相交有測試；OS sandbox 本身未完成，不能宣稱 mode 提供沙箱。"
+          "remaining": "可選 Windows MXC 是獨立 host OS 決策；mode 不得建立 grants 或把未配置程序標成隔離。Linux/macOS 未完成。"
         },
         {
           "id": "ODIN-024-A3",
@@ -3019,7 +3144,7 @@
         {
           "id": "ODIN-024-A2",
           "criterion": "readonly mode 不能授予 host policy 拒絕的寫入；任意 mode 不能繞過 OS sandbox。",
-          "remaining": "權限相交有測試；OS sandbox 本身未完成，不能宣稱 mode 提供沙箱。"
+          "remaining": "可選 Windows MXC 是獨立 host OS 決策；mode 不得建立 grants 或把未配置程序標成隔離。Linux/macOS 未完成。"
         },
         {
           "id": "ODIN-024-A3",
@@ -3032,7 +3157,14 @@
           "report": "verification/core-tests.txt",
           "scope": "Supporting observations/logs; no command exit code is inferred from this file."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/latest_integrated_candidate"
+        ]
+      }
     },
     {
       "id": "ODIN-025",
@@ -3107,7 +3239,7 @@
           "id": "ODIN-025-A2",
           "criterion": "未經授權的 HTTP 請求無法讀到任何專案資料。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-025-A3",
@@ -3125,7 +3257,7 @@
         {
           "id": "ODIN-025-A2",
           "criterion": "未經授權的 HTTP 請求無法讀到任何專案資料。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-025-A3",
@@ -3133,7 +3265,8 @@
           "remaining": "token UNKNOWN 已驗；RSS/LLM token/完整 OpenTelemetry 沒有來源，未提供數值。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-026",
@@ -3234,7 +3367,8 @@
           "remaining": "文件明示子 agent 需自己的 MCP；實際多 client/子 agent 組合未驗收。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-027",
@@ -3242,7 +3376,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "同一 clean Windows revision 的 16 個整合命令全部 exit 0，source_changed=[]；144 Rust tests/1 ignored，fixture/真後端分層並綁定 source/binary digest。",
+      "summary": "本輪另存sandbox-ide-local-validation：fe5996d的17 gates全exit0、191tests/4ignored，另opt-in native3實跑；source_changed=[]，舊144-test baseline完整保留。",
       "checks": [
         {
           "command": [
@@ -3475,6 +3609,43 @@
           "id": "ODIN-027-A1",
           "criterion": "從全新 checkout 執行驗收有可審計 logs；失敗 gate 阻止 release。",
           "status": "PARTIAL",
+          "remaining": "當輪17gate命令/log/hash已完成；全新checkout與完整故障gate阻擋release負例矩陣仍待驗收。"
+        },
+        {
+          "id": "ODIN-027-A2",
+          "criterion": "fixture self-test 與真實 binary/LS/DAP 驗證分開標記。",
+          "status": "PASS",
+          "remaining": null,
+          "evidence_ref": "#/extension_evidence/latest_integrated_candidate"
+        },
+        {
+          "id": "ODIN-027-A3",
+          "criterion": "Actions 只有 workflow_dispatch，不自動啟動付費或額度計費的工作流程。",
+          "status": "PASS",
+          "remaining": null,
+          "evidence_ref": "#/extension_evidence/latest_integrated_candidate"
+        }
+      ],
+      "unverified_acceptance": [
+        {
+          "id": "ODIN-027-A1",
+          "criterion": "從全新 checkout 執行驗收有可審計 logs；失敗 gate 阻止 release。",
+          "remaining": "當輪17gate命令/log/hash已完成；全新checkout與完整故障gate阻擋release負例矩陣仍待驗收。"
+        }
+      ],
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/latest_integrated_candidate"
+        ]
+      },
+      "baseline_acceptance_results": [
+        {
+          "id": "ODIN-027-A1",
+          "criterion": "從全新 checkout 執行驗收有可審計 logs；失敗 gate 阻止 release。",
+          "status": "PARTIAL",
           "remaining": "clean candidate 的可審計 logs 已完成；全新 checkout 重建與完整故障 gate 阻擋 release 的負例矩陣仍待驗收。"
         },
         {
@@ -3489,15 +3660,7 @@
           "status": "PASS",
           "remaining": null
         }
-      ],
-      "unverified_acceptance": [
-        {
-          "id": "ODIN-027-A1",
-          "criterion": "從全新 checkout 執行驗收有可審計 logs；失敗 gate 阻止 release。",
-          "remaining": "clean candidate 的可審計 logs 已完成；全新 checkout 重建與完整故障 gate 阻擋 release 的負例矩陣仍待驗收。"
-        }
-      ],
-      "supporting_reports": []
+      ]
     },
     {
       "id": "ODIN-028",
@@ -3559,7 +3722,8 @@
           "remaining": "Defender/SmartScreen/CFA 及簽章均未驗收或未提供。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-029",
@@ -3606,7 +3770,8 @@
           "remaining": "Linux/macOS 同版本 archive manifest/checksum 尚未生成及核對。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-030",
@@ -3653,7 +3818,8 @@
           "remaining": "沒有完整失敗／性能回歸 benchmark suite 報告。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-031",
@@ -3661,7 +3827,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "最終 Windows candidate 已執行 advisory、licenses、SBOM/pattern/allowlist 相關命令且 exit 0；新增文件與最終打包工件仍需同步 manifest。",
+      "summary": "本輪fe5996d audit/licenses/supply-chain/source/publish-policy已exit0；當前文件/最終artifact與公開revision仍需最後同步。",
       "checks": [
         {
           "command": [
@@ -3771,7 +3937,7 @@
           "id": "ODIN-031-A1",
           "criterion": "公開候選 repo 目錄通過 secret scan、license scanner 與 artifact allowlist。",
           "status": "PARTIAL",
-          "remaining": "已完成被測 source snapshot 的掃描與 license/advisory；此次文件更新及最終封裝的 artifact allowlist/manifest 還需最後核對。"
+          "remaining": "當輪candidate依賴/來源掃描已執行；本次文件修改、最終package及artifact allowlist/manifest須最後核對。"
         },
         {
           "id": "ODIN-031-A2",
@@ -3783,14 +3949,14 @@
           "id": "ODIN-031-A3",
           "criterion": "權限最小化；公眾 PR 不在無防護 self-hosted runner 上自動執行。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-031-A1",
           "criterion": "公開候選 repo 目錄通過 secret scan、license scanner 與 artifact allowlist。",
-          "remaining": "已完成被測 source snapshot 的掃描與 license/advisory；此次文件更新及最終封裝的 artifact allowlist/manifest 還需最後核對。"
+          "remaining": "當輪candidate依賴/來源掃描已執行；本次文件修改、最終package及artifact allowlist/manifest須最後核對。"
         },
         {
           "id": "ODIN-031-A2",
@@ -3800,7 +3966,7 @@
         {
           "id": "ODIN-031-A3",
           "criterion": "權限最小化；公眾 PR 不在無防護 self-hosted runner 上自動執行。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "supporting_reports": [
@@ -3820,7 +3986,14 @@
           "report": "verification/sbom.cdx.json",
           "scope": "Supporting observations/logs; no command exit code is inferred from this file."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/latest_integrated_candidate"
+        ]
+      }
     },
     {
       "id": "ODIN-032",
@@ -3828,7 +4001,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "core logs 記錄真 process checkpoint crash/recovery、雙程序 contention 與 Windows NTFS aliases；不以 mock FS 代替。",
+      "summary": "當輪native MXC三測試已實跑PASS，含bounded-runner abort/timeout及guard-until-reap；磁碟故障/權限/跨平台完整敵意矩陣仍未完成。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked",
@@ -3880,13 +4053,13 @@
           "id": "ODIN-032-A1",
           "criterion": "對所有 transaction 轉態注入 failpoint，能確定 state 的下一步。",
           "status": "PARTIAL",
-          "remaining": "有真 process failpoints；partial disk write/permission denied/目錄替換的完整敵意矩陣未完成。"
+          "remaining": "guard-until-reap與MXC native3測試已具持久log/exit0；partial disk write/permission denied/全部phase與跨OS敵意矩陣未完成。"
         },
         {
           "id": "ODIN-032-A2",
           "criterion": "兩個獨立 process 同時修改同檔，其中一個必須安全拒絕或重新協商，不能靜默覆蓋。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-032-A3",
@@ -3899,12 +4072,12 @@
         {
           "id": "ODIN-032-A1",
           "criterion": "對所有 transaction 轉態注入 failpoint，能確定 state 的下一步。",
-          "remaining": "有真 process failpoints；partial disk write/permission denied/目錄替換的完整敵意矩陣未完成。"
+          "remaining": "guard-until-reap與MXC native3測試已具持久log/exit0；partial disk write/permission denied/全部phase與跨OS敵意矩陣未完成。"
         },
         {
           "id": "ODIN-032-A2",
           "criterion": "兩個獨立 process 同時修改同檔，其中一個必須安全拒絕或重新協商，不能靜默覆蓋。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-032-A3",
@@ -3929,7 +4102,14 @@
           "report": "verification/windows-short-aliases.txt",
           "scope": "Supporting observations/logs; no command exit code is inferred from this file."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/windows_os_sandbox"
+        ]
+      }
     },
     {
       "id": "ODIN-033",
@@ -3937,7 +4117,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "40 需求／53 參考映射與 72 契約經整合 runner 檢查；Windows 16 gates 已完成，發布與最終包內文件仍由實際結果同步。",
+      "summary": "40原需求同步85契約與分層extension；fe5996d當輪17gates完成，six-language matrix與final-analyzer/review/封裝仍待實際結果，不改寫歷史proof。",
       "checks": [
         {
           "command": [
@@ -4037,39 +4217,46 @@
           "id": "ODIN-033-A1",
           "criterion": "公開的 53 Serena 功能全部映射至少一項 Odin 原生需求。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-033-A2",
-          "criterion": "原有 58 個工具名稱保留並擴充為 72 個；新增 API 必須含 schema、錯誤碼與測試。",
+          "criterion": "原有 58 個工具名稱保留並擴充為 85 個；新增 API 必須含 schema、錯誤碼與測試。",
           "status": "PARTIAL",
-          "remaining": "72 個工具與 schema 已生成；全部新增 API 功能矩陣尚未全數驗收。"
+          "remaining": "原 58 保留並擴為 85；schema/policy/dispatch/tests/docs 已接線，真實全工具矩陣未驗收。"
         },
         {
           "id": "ODIN-033-A3",
           "criterion": "README 入口、ROADMAP、RELEASE_GATES 與驗收證據一致。",
           "status": "PARTIAL",
-          "remaining": "Windows final runner 已完成且 source/binary 綁定；最終封裝文件、交付狀態及公開發布紀錄仍需按實際結果同步。"
+          "remaining": "當輪17gates完成並綁source/binary；six-language matrix、final analyzer replay、獨立review與當輪封裝/發布仍待同步。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-033-A1",
           "criterion": "公開的 53 Serena 功能全部映射至少一項 Odin 原生需求。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-033-A2",
-          "criterion": "原有 58 個工具名稱保留並擴充為 72 個；新增 API 必須含 schema、錯誤碼與測試。",
-          "remaining": "72 個工具與 schema 已生成；全部新增 API 功能矩陣尚未全數驗收。"
+          "criterion": "原有 58 個工具名稱保留並擴充為 85 個；新增 API 必須含 schema、錯誤碼與測試。",
+          "remaining": "原 58 保留並擴為 85；schema/policy/dispatch/tests/docs 已接線，真實全工具矩陣未驗收。"
         },
         {
           "id": "ODIN-033-A3",
           "criterion": "README 入口、ROADMAP、RELEASE_GATES 與驗收證據一致。",
-          "remaining": "Windows final runner 已完成且 source/binary 綁定；最終封裝文件、交付狀態及公開發布紀錄仍需按實際結果同步。"
+          "remaining": "當輪17gates完成並綁source/binary；six-language matrix、final analyzer replay、獨立review與當輪封裝/發布仍待同步。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/latest_integrated_candidate"
+        ]
+      }
     },
     {
       "id": "ODIN-034",
@@ -4077,7 +4264,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "doctor --probe-lsp 與 get_capabilities 會實際 initialize，缺後端回明確錯誤；不自動執行 repo 內設定。",
+      "summary": "28 profile registry/runtime guidance 與 backend version probe 不等於 readiness 或功能通過；當輪六語真 MCP/LSP checks=0。",
       "checks": [
         {
           "command": [
@@ -4176,7 +4363,7 @@
           "id": "ODIN-034-A1",
           "criterion": "後端缺失回 MISSING_BACKEND，版本衝突回 BACKEND_UNSUPPORTED。",
           "status": "PARTIAL",
-          "remaining": "缺 backend 已有測試；完整版本 pin/unsupported-version compatibility registry 未完成。"
+          "remaining": "registry/runtime guidance 與 version probes 不等於握手；當輪六語 MCP/LSP=0，版本相容矩陣未完成。"
         },
         {
           "id": "ODIN-034-A2",
@@ -4195,7 +4382,7 @@
         {
           "id": "ODIN-034-A1",
           "criterion": "後端缺失回 MISSING_BACKEND，版本衝突回 BACKEND_UNSUPPORTED。",
-          "remaining": "缺 backend 已有測試；完整版本 pin/unsupported-version compatibility registry 未完成。"
+          "remaining": "registry/runtime guidance 與 version probes 不等於握手；當輪六語 MCP/LSP=0，版本相容矩陣未完成。"
         },
         {
           "id": "ODIN-034-A2",
@@ -4208,15 +4395,22 @@
           "remaining": "server 版本更換所需 index invalidation 尚未完整驗收。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/language_registry"
+        ]
+      }
     },
     {
       "id": "ODIN-035",
       "title": "純原生檢查與 Quick Fix 引擎",
       "priority": "P2",
       "status": "PARTIAL",
-      "implementation": "NOT_IMPLEMENTED",
-      "summary": "有 LSP QuickFix 的安全 resolve/transaction 入口；尚無獨立 Clippy/Ruff/ESLint inspection provider 引擎。",
+      "implementation": "NATIVE_SOURCE_PARTIAL",
+      "summary": "native Clippy/Ruff/ESLint readonly sandbox、findings 正規化與 safe CAS preview/apply/rollback 已有 revision30a957a 真實30 checks PASS；hierarchy 修復後 final 重跑與私有IDE等價仍未驗收。",
       "checks": [
         {
           "command": [
@@ -4258,39 +4452,46 @@
           "id": "ODIN-035-A1",
           "criterion": "能在 Rust/Python/TypeScript fixture 取得 rule、location 與可預覽 quick fix。",
           "status": "PARTIAL",
-          "remaining": "三語 native rule/location/fix providers 尚未實作及真實驗收。"
+          "remaining": "真 Clippy/Ruff/ESLint 固定 profiles 已有 rule/location/safe-fix 全流程 PASS；僅適用 revision30a957a binary，最終 hierarchy 修復後候選尚待重跑。"
         },
         {
           "id": "ODIN-035-A2",
           "criterion": "即使載入 JetBrains IDE 也不依賴 Serena 插件或授權。",
           "status": "PARTIAL",
-          "remaining": "沒有依賴 Serena/JetBrains；實際 IDE 載入情境尚未驗收。"
+          "remaining": "無 Serena/JetBrains 相依；不宣稱 JetBrains 私有 inspections/rules 或全部 IDE 等價。"
         },
         {
           "id": "ODIN-035-A3",
           "criterion": "規則尚不支援時顯示未實作，不給空結果稱合格。",
           "status": "PARTIAL",
-          "remaining": "缺能力會明確拒絕；完整 provider support matrix 尚未完成。"
+          "remaining": "unsupported/unknown/stale/truncated 會拒絕 clean/fix；真版本與所有 analyzer 失敗路徑未驗收。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-035-A1",
           "criterion": "能在 Rust/Python/TypeScript fixture 取得 rule、location 與可預覽 quick fix。",
-          "remaining": "三語 native rule/location/fix providers 尚未實作及真實驗收。"
+          "remaining": "真 Clippy/Ruff/ESLint 固定 profiles 已有 rule/location/safe-fix 全流程 PASS；僅適用 revision30a957a binary，最終 hierarchy 修復後候選尚待重跑。"
         },
         {
           "id": "ODIN-035-A2",
           "criterion": "即使載入 JetBrains IDE 也不依賴 Serena 插件或授權。",
-          "remaining": "沒有依賴 Serena/JetBrains；實際 IDE 載入情境尚未驗收。"
+          "remaining": "無 Serena/JetBrains 相依；不宣稱 JetBrains 私有 inspections/rules 或全部 IDE 等價。"
         },
         {
           "id": "ODIN-035-A3",
           "criterion": "規則尚不支援時顯示未實作，不給空結果稱合格。",
-          "remaining": "缺能力會明確拒絕；完整 provider support matrix 尚未完成。"
+          "remaining": "unsupported/unknown/stale/truncated 會拒絕 clean/fix；真版本與所有 analyzer 失敗路徑未驗收。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/native_inspections"
+        ]
+      }
     },
     {
       "id": "ODIN-036",
@@ -4298,7 +4499,7 @@
       "priority": "P2",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "debug_batch 是 bounded DAP session 命令序列，核對 UUID、每步 request ID/ticket/outcome，沒有 eval/Python REPL。",
+      "summary": "bounded DAP batch 新增 single/batch 共用 immutable payload 與 privileged metadata；當輪真 adapter 連續 session 未驗收。",
       "checks": [
         {
           "command": [
@@ -4415,7 +4616,14 @@
           "report": "verification/real-backends.json",
           "scope": "Executed real-backend observations, bound to local-validation.json /commands/9 exit 0 and the integrated release binary SHA-256."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/immutable_debug_launches"
+        ]
+      }
     },
     {
       "id": "ODIN-037",
@@ -4477,7 +4685,7 @@
           "id": "ODIN-037-A3",
           "criterion": "不要求安裝 Serena 或讀取 Serena 私有路徑。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "unverified_acceptance": [
@@ -4494,7 +4702,7 @@
         {
           "id": "ODIN-037-A3",
           "criterion": "不要求安裝 Serena 或讀取 Serena 私有路徑。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         }
       ],
       "supporting_reports": [
@@ -4502,7 +4710,8 @@
           "report": "verification/core-tests.txt",
           "scope": "Supporting observations/logs; no command exit code is inferred from this file."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-038",
@@ -4552,13 +4761,13 @@
           "id": "ODIN-038-A1",
           "criterion": "同檔 5 命中可只改指定 2 個且衝突拒絕，不多改任何匹配。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-038-A2",
           "criterion": "Regex 多行與 CRLF 的預覽與實際套用位移一致。",
           "status": "PARTIAL",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-038-A3",
@@ -4571,12 +4780,12 @@
         {
           "id": "ODIN-038-A1",
           "criterion": "同檔 5 命中可只改指定 2 個且衝突拒絕，不多改任何匹配。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-038-A2",
           "criterion": "Regex 多行與 CRLF 的預覽與實際套用位移一致。",
-          "remaining": "Windows 整合候選的 command/source/binary 已綁定；此原條件的專屬功能、完整正反例或平台矩陣尚未逐項完整驗收。"
+          "remaining": "歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。"
         },
         {
           "id": "ODIN-038-A3",
@@ -4584,7 +4793,8 @@
           "remaining": "已執行空匹配/duplicate/stale 與 count 負例；完整 overlapping replacement selection 的獨立案例清單仍需補齊。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence."
     },
     {
       "id": "ODIN-039",
@@ -4592,7 +4802,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "named host profiles、core env allowlist、DAP state/capability guards 與 process-tree cleanup 已接線。",
+      "summary": "可選 host debug_launches 固定 named adapter 的 launch/attach/restart payload，caller 不得擴充 env/argv；未設 profile 仍 explicit privileged，完整 adapter schema/OS matrix 未完成。",
       "checks": [
         {
           "command": [
@@ -4672,36 +4882,36 @@
           "id": "ODIN-039-A1",
           "criterion": "launch profiles 對不同 debugger 具有固定 schema 與測試 fixture。",
           "status": "PARTIAL",
-          "remaining": "各 debug adapter 的固定 launch schema/version discovery registry 尚未完成。"
+          "remaining": "immutable host payload 不是每個 adapter 完整語意 schema/version discovery；真正反例未完成。"
         },
         {
           "id": "ODIN-039-A2",
           "criterion": "惡意 launch args/env 不能跳出 host 授權且沒有任意 shell 字串。",
           "status": "PARTIAL",
-          "remaining": "env 是 allowlist；DAP launch/attach payload 仍授權執行 target，不能宣稱任意 args 受 OS 隔離。"
+          "remaining": "有 debug_launches 時 caller 不能擴 env/argv；未設定標 privileged，MXC 與真 debuggee 矩陣另外驗收。"
         },
         {
           "id": "ODIN-039-A3",
           "criterion": "停止會回收 debuggee 的 process tree。",
           "status": "PARTIAL",
-          "remaining": "Windows lifecycle 有測試；跨 adapter/OS debuggee 後代清理矩陣未完成。"
+          "remaining": "author MXC 有後代 termination；integrated DAP/debuggee、跨 OS 矩陣及正式 lifecycle log 待補。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-039-A1",
           "criterion": "launch profiles 對不同 debugger 具有固定 schema 與測試 fixture。",
-          "remaining": "各 debug adapter 的固定 launch schema/version discovery registry 尚未完成。"
+          "remaining": "immutable host payload 不是每個 adapter 完整語意 schema/version discovery；真正反例未完成。"
         },
         {
           "id": "ODIN-039-A2",
           "criterion": "惡意 launch args/env 不能跳出 host 授權且沒有任意 shell 字串。",
-          "remaining": "env 是 allowlist；DAP launch/attach payload 仍授權執行 target，不能宣稱任意 args 受 OS 隔離。"
+          "remaining": "有 debug_launches 時 caller 不能擴 env/argv；未設定標 privileged，MXC 與真 debuggee 矩陣另外驗收。"
         },
         {
           "id": "ODIN-039-A3",
           "criterion": "停止會回收 debuggee 的 process tree。",
-          "remaining": "Windows lifecycle 有測試；跨 adapter/OS debuggee 後代清理矩陣未完成。"
+          "remaining": "author MXC 有後代 termination；integrated DAP/debuggee、跨 OS 矩陣及正式 lifecycle log 待補。"
         }
       ],
       "supporting_reports": [
@@ -4713,7 +4923,15 @@
           "report": "verification/real-backends.json",
           "scope": "Executed real-backend observations, bound to local-validation.json /commands/9 exit 0 and the integrated release binary SHA-256."
         }
-      ]
+      ],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/immutable_debug_launches",
+          "#/extension_evidence/windows_os_sandbox"
+        ]
+      }
     },
     {
       "id": "ODIN-040",
@@ -4721,7 +4939,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "trace_id/elapsed/error、result/chunk digests、project scope、24h/128份/128MiB spill 配額與 expiry 測試已執行。",
+      "summary": "IDE/inspection 有 source hash/version/freshness/truncation 與定向回歸；歷史 trace/spool PASS 不取代本輪 final binary 與 retention 矩陣。",
       "checks": [
         {
           "command": [
@@ -4832,7 +5050,14 @@
           "remaining": "Dashboard metadata allowlist 有測試；journal/audit/index 的完整 retention/encryption/backup 未實作。"
         }
       ],
-      "supporting_reports": []
+      "supporting_reports": [],
+      "checks_scope": "Historical source-bound checks preserved; new evidence is extension_evidence.",
+      "extension_evidence": {
+        "status": "PARTIAL",
+        "refs": [
+          "#/extension_evidence/latest_integrated_candidate"
+        ]
+      }
     }
   ],
   "status_summary": {
@@ -4926,5 +5151,728 @@
       "Clean-machine installation"
     ],
     "note": "This is the later final-binary packaging evidence. Earlier recipe reports remain historical; full clean-machine/cross-version acceptance is not complete."
+  },
+  "extension_evidence": {
+    "schema_version": "1.0",
+    "task_id": "os-sandbox-language-ide-documentation",
+    "actor_instance": "/root/requirements_audit",
+    "observed_date": "2026-10-21",
+    "documentation_base_sha": "6fc1bd54c84f074f5e324b8670522d1d74471b73",
+    "implementation_base_sha": "9b71abc98b89f72cce08d2795dfb139281f6d613",
+    "write_scopes": [
+      "requirements/features.json",
+      "verification/feature-evidence.json",
+      "docs/FEATURE_SPEC.md",
+      "docs/IMPLEMENTATION_BACKLOG.md",
+      "docs/specs/LANGUAGE_DEBUG_INSPECTIONS.md",
+      "docs/specs/OPERATIONS_RELEASE.md"
+    ],
+    "budget": "Not separately assigned; scoped documentation only.",
+    "status": "PARTIAL",
+    "tool_contracts": 85,
+    "tool_count_history": {
+      "original": 58,
+      "previous_preview": 72,
+      "current": 85
+    },
+    "historical_evidence_policy": "Existing checks and source/binary/digest strings remain unchanged; they do not certify this extension.",
+    "latest_integrated_candidate": {
+      "status": "PASS",
+      "owner": "/root",
+      "report": "verification/sandbox-ide-local-validation.json",
+      "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+      "availability": "ROOT_OWNER_REPORT_AFTER_DOCUMENTATION_BASE",
+      "source_head_sha": "fe5996dc5793b64cb68a5f2d1139fb696cff32cf",
+      "binary_sha256": "c4f558615ec1930d991963c282acdcfe5df804e109c04cf2fb398fd78c650122",
+      "binary_metadata": {
+        "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+        "external_tool_bridge": false,
+        "model_token_usage": "UNKNOWN",
+        "name": "Odin",
+        "profile": "release",
+        "revision": "fe5996dc5793b64cb68a5f2d1139fb696cff32cf",
+        "schema_version": 1,
+        "standalone": true,
+        "target": "x86_64-pc-windows-msvc",
+        "tracked_source_dirty": false,
+        "version": "0.2.0"
+      },
+      "commands_executed": 17,
+      "rust_tests_passed": 191,
+      "rust_tests_ignored_in_workspace": 4,
+      "native_opt_in_tests_passed": 3,
+      "native_opt_in_tests_ignored": 0,
+      "remaining_unexecuted_ignored_case": "Real rust-analyzer ignored smoke is not included by selecting only native_sandbox tests.",
+      "source_changed_during_validation": [],
+      "completed_at_utc": "2026-10-21T01:15:20.950394+00:00",
+      "checks": [
+        {
+          "name": "generated_artifacts",
+          "argv": [
+            "python",
+            "scripts/check_generated.py"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/generated_artifacts.txt",
+          "log_sha256": "5598031b41f8cb954727f46de5c3e6af5f4e768a3cfe1eda4c30bc0b9f56c204",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/0",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "fmt",
+          "argv": [
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/fmt.txt",
+          "log_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/1",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "workspace_tests",
+          "argv": [
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/workspace_tests.txt",
+          "log_sha256": "730b81ffd35fedf6f6ff5a5a3b8249f480ef7bb5002c6d6b070e04ff878dafc7",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/2",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "clippy",
+          "argv": [
+            "cargo",
+            "clippy",
+            "--workspace",
+            "--all-targets",
+            "--locked",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/clippy.txt",
+          "log_sha256": "5af82ac7d20683edb7b8226855fea1cc0d1918c7562304467fe6fd5e1d97bfef",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/3",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "native_sandbox",
+          "argv": [
+            "cargo",
+            "test",
+            "-p",
+            "odin-core",
+            "--test",
+            "os_sandbox_native",
+            "--locked",
+            "--",
+            "--ignored",
+            "--test-threads=1",
+            "--nocapture"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/native_sandbox.txt",
+          "log_sha256": "c14351901da025793a3f3d226d79dd8bf7b1cb4e9bf948bac982e30f679dbe83",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/4",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "release_build",
+          "argv": [
+            "cargo",
+            "build",
+            "--workspace",
+            "--release",
+            "--locked"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/release_build.txt",
+          "log_sha256": "7e27650bc038ef717464efecb3328fd3b19ea84de6437d83a7b4778016c5e9f3",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/5",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "cli",
+          "argv": [
+            "python",
+            "scripts/cli_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/sandbox-ide-cli-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/cli.txt",
+          "log_sha256": "d01bcdf43fadaff2d809b94a0e78df4111879842b11d9c230a49ad78aa824f88",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/6",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "mcp_stdio",
+          "argv": [
+            "python",
+            "scripts/mcp_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/sandbox-ide-mcp-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/mcp_stdio.txt",
+          "log_sha256": "1ce056e5cd0c004488da090e9ead7b883933f5e1ac6aadef2f54626778830e6f",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/7",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "mcp_http",
+          "argv": [
+            "python",
+            "scripts/http_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/sandbox-ide-http-smoke.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/mcp_http.txt",
+          "log_sha256": "ffc4b603b228fce5a5fa7473dc5753b24dde7fca6729bbf22a768f64b4ac0b56",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/8",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "mcp_cancellation",
+          "argv": [
+            "python",
+            "scripts/mcp_cancel_smoke.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--output",
+            "verification/sandbox-ide-mcp-cancellation.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/mcp_cancellation.txt",
+          "log_sha256": "8373f0053f7f756e0b1fb289ca68274fe68de4af15d0414c47de2299bc1967f5",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/9",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "real_backends",
+          "argv": [
+            "python",
+            "tests/real_backends.py",
+            "--binary",
+            "target/release/odin.exe",
+            "--python",
+            ".odin/validation-tools/python/Scripts/python.exe",
+            "--python-lsp",
+            ".odin/validation-tools/python/Scripts/basedpyright-langserver.exe",
+            "--typescript-lsp",
+            ".odin/validation-tools/typescript/node_modules/typescript-language-server/lib/cli.mjs",
+            "--node",
+            "C:/Program Files/nodejs/node.exe",
+            "--output",
+            "verification/sandbox-ide-real-backends.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/real_backends.txt",
+          "log_sha256": "613bece8d99a2f6a1cdf215389e96c400aeb150e54104f4338816ad733b8b4e7",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/10",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "dependency_audit",
+          "argv": [
+            "cargo",
+            "audit",
+            "--deny",
+            "warnings",
+            "--json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/dependency_audit.txt",
+          "log_sha256": "9254d5c1ca8495ae225f2289fdc4394683abe266961f0dbfa231771c6eb2658f",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/11",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "licenses",
+          "argv": [
+            "cargo",
+            "deny",
+            "--format",
+            "json",
+            "check",
+            "licenses"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/licenses.txt",
+          "log_sha256": "b87ff50d7cc1bf36ebb4295f2e6f418c52149ab1d889a4a9cfddcffae397ad39",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/12",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "supply_chain",
+          "argv": [
+            "python",
+            "scripts/supply_chain.py"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/supply_chain.txt",
+          "log_sha256": "657ba85e6169c53404de3707e9bad9e37ca44a35b3765ac90fecdaa446eff413",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/13",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "static_source",
+          "argv": [
+            "python",
+            "scripts/check_source.py",
+            "--output",
+            "verification/sandbox-ide-source-check.json"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/static_source.txt",
+          "log_sha256": "3564bef62647d72bfc320c2897da14e1ea0b395a7a7d5d9d61aca1592c411181",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/14",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "requirements",
+          "argv": [
+            "python",
+            "scripts/check_requirements.py"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/requirements.txt",
+          "log_sha256": "2dbe10df21500c7ad3cf92009d5477aeb449be2ce90c3a92af2f663eda9b3a8d",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/15",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        },
+        {
+          "name": "publish_policy",
+          "argv": [
+            "python",
+            "scripts/check_publish_policy.py"
+          ],
+          "cwd": ".",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/sandbox-ide-logs/publish_policy.txt",
+          "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983",
+          "report": "verification/sandbox-ide-local-validation.json",
+          "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+          "report_pointer": "/commands/16",
+          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+        }
+      ],
+      "remaining": "Six-language two-project IDE matrix and native analyzers on this final binary remain separate pending runs; all_40_requirements_accepted stays false."
+    },
+    "checks": {
+      "sandbox_native": {
+        "report": "verification/sandbox-verification.json",
+        "report_sha256": "3749a9a497086318b7e22199eb88cad3decb87b1e2e522af144828cbbebadb1c",
+        "availability": "IN_DOCUMENTATION_BASE",
+        "report_pointer": "/checks/4",
+        "command": "cargo test -p odin-core --test os_sandbox_native --locked -- --ignored --test-threads=1 --nocapture",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/sandbox-native-final.txt",
+        "scope": "Two actual native Windows MXC launch/enforcement tests with the pinned executor; not integrated Odin/analyzer acceptance."
+      },
+      "sandbox_core": {
+        "report": "verification/sandbox-verification.json",
+        "report_sha256": "3749a9a497086318b7e22199eb88cad3decb87b1e2e522af144828cbbebadb1c",
+        "availability": "IN_DOCUMENTATION_BASE",
+        "report_pointer": "/checks/3",
+        "command": "cargo test -p odin-core --locked",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/sandbox-core-tests.txt",
+        "scope": "Author core snapshot: 51 passed, 2 ignored; not current workspace result."
+      },
+      "protocol": {
+        "report": "verification/protocol-ide-verification.json",
+        "report_sha256": "0fa3528889c8d9ad781fb8366b8c0f8c3292f92a8b64a41238f87f514b67bf07",
+        "availability": "IN_DOCUMENTATION_BASE",
+        "report_pointer": "/checks/0",
+        "command": "cargo test -p odin-protocol --locked",
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "verification/protocol-ide-final-tests.txt",
+        "scope": "29 unit + 22 protocol fixtures, not real-language IDE support."
+      },
+      "engine_prior": {
+        "report": "verification/engine-ide-prior-pass.json",
+        "report_sha256": "080acb9b5ac6a2757bc4416530ac4e30a5c95eb62614b9721876cb61089745c3",
+        "availability": "IN_DOCUMENTATION_BASE",
+        "report_pointer": "/commands/2",
+        "command": [
+          "cargo",
+          "test",
+          "-p",
+          "odin-engine",
+          "--locked"
+        ],
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "engine-ide-prior-gate-3.txt",
+        "scope": "Prior engine snapshot: all 74 package tests passed; latest rerun separately AppControl-blocked."
+      },
+      "engine_clippy": {
+        "report": "verification/engine-ide-verification.json",
+        "report_sha256": "fc5ecf3431652c7f79388d34a9126ea206f540f00b21b8dc87ff093270f28676",
+        "availability": "IN_DOCUMENTATION_BASE",
+        "report_pointer": "/commands/3",
+        "command": [
+          "cargo",
+          "clippy",
+          "-p",
+          "odin-engine",
+          "--all-targets",
+          "--locked",
+          "--",
+          "-D",
+          "warnings"
+        ],
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "engine-ide-gate-4.txt",
+        "scope": "Strict engine package Clippy; not proof that the blocked suite executed."
+      },
+      "diagnostics_regression": {
+        "report": "verification/engine-ide-symbol-diagnostics.json",
+        "report_sha256": "911fe5d9c0e2ed4846e8362313dde71068958e90bddd14e4bfef3e5ac897fc84",
+        "availability": "IN_DOCUMENTATION_BASE",
+        "report_pointer": "/commands/1",
+        "command": [
+          "cargo",
+          "test",
+          "-p",
+          "odin-engine",
+          "--test",
+          "completion",
+          "symbol_diagnostics_summary_matches_filtered_severities_and_status",
+          "--locked"
+        ],
+        "status": "PASS",
+        "exit_code": 0,
+        "log": "engine-ide-symbol-diagnostics-2.txt",
+        "scope": "One targeted symbol-severity/status regression only."
+      }
+    },
+    "windows_os_sandbox": {
+      "implementation": "PARTIAL",
+      "native_author_tests_passed": 2,
+      "check_refs": [
+        "#/extension_evidence/checks/sandbox_native",
+        "#/extension_evidence/checks/sandbox_core"
+      ],
+      "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+      "mode": "Optional trusted host-configured native MXC ProcessContainer, fixed base-container tier, no fallback.",
+      "verified_scope": [
+        "exact binary stdio and separate stderr",
+        "RO read and RW read/write",
+        "nested explicit deny read/write",
+        "RO create and overwrite rejection",
+        "outside read/write/executable launch rejection",
+        "junction target escape rejection",
+        "direct and descendant network loopback blocked with zero listener accepts",
+        "child runtime environment filtered",
+        "private scratch directory create/write and normal-exit cleanup",
+        "exit status 7 preserved",
+        "invalid pin, aliases, protected-storage grants, broad scratch and missing target rejected",
+        "native invalid-image launch failed with exit -1 and no direct retry",
+        "abort and native timeout reap parent/descendant and stop heartbeat",
+        "guard is Send+Sync"
+      ],
+      "lifecycle_followup": {
+        "status": "PASS",
+        "report": "verification/sandbox-ide-local-validation.json",
+        "report_pointer": "/commands/4",
+        "report_sha256": "ac8e56e4003ad3c6fe69a168a8a6362811d7c100494ceab4c17933395211fe49",
+        "exit_code": 0,
+        "log": "verification/sandbox-ide-logs/native_sandbox.txt",
+        "log_sha256": "c14351901da025793a3f3d226d79dd8bf7b1cb4e9bf948bac982e30f679dbe83",
+        "native_tests_passed": 3,
+        "scope": "Actual integrated native MXC enforcement, abort/timeout descendant cleanup and guard-until-reap regression.",
+        "earlier_root_reported_single_regression": "Preserved as historical context; now backed by the persisted three-test native command."
+      },
+      "remaining": [
+        "Integrated fe5996d native three-test suite and standard binary gates passed; final six-language LSP/MXC matrix and final-binary analyzer replay remain pending.",
+        "Linux/macOS isolation, BFS/AppContainer fallback, UI/registry/devices/external-internet/ingress matrix are not accepted.",
+        "Without sandbox configuration, LSP/DAP/commands have lifecycle guards only; inspections refuse execution."
+      ]
+    },
+    "native_ide": {
+      "implementation": "PARTIAL",
+      "tools": [
+        "completion",
+        "completion_resolve",
+        "hover",
+        "signature_help",
+        "workspace_symbols",
+        "call_hierarchy",
+        "format_document",
+        "inlay_hints",
+        "inlay_hint_resolve",
+        "semantic_tokens"
+      ],
+      "check_refs": [
+        "#/extension_evidence/checks/protocol",
+        "#/extension_evidence/checks/engine_prior",
+        "#/extension_evidence/checks/diagnostics_regression"
+      ],
+      "scope": "Direct LSP capability/UTF-16/freshness checks; resolve data is inert and formatting becomes expected-hash transaction preview.",
+      "latest_engine_rerun": {
+        "report": "verification/engine-ide-verification.json",
+        "report_sha256": "fc5ecf3431652c7f79388d34a9126ea206f540f00b21b8dc87ff093270f28676",
+        "availability": "IN_DOCUMENTATION_BASE",
+        "report_pointer": "/commands/2",
+        "source_status": "BLOCKED",
+        "exit_code": 101,
+        "executed_tests_passed": 62,
+        "invariants_not_run": 12,
+        "reason": "AppControl os error 4551 denied unchanged invariants test executable before execution. 62 tests ran and passed; 12 invariants NOT_RUN on this attempt. No policy changes or alternate-path retries."
+      },
+      "review_followup": "Hierarchy cumulative-budget correction is in the integrated fe5996d product candidate; its new immutable-head independent rereview remains separate. Symbol summary correction also has its targeted PASS.",
+      "real_backend_acceptance": "NOT_RUN_FOR_CURRENT_EXTENSION"
+    },
+    "native_inspections": {
+      "implementation": "PARTIAL",
+      "providers": [
+        "clippy",
+        "ruff",
+        "eslint"
+      ],
+      "check_refs": [
+        "#/extension_evidence/checks/engine_prior"
+      ],
+      "host_policy": "Requires allow_inspections, fixed analyzer/version argv, actual native sandbox and read-only sources. Writable caches/temp cannot overlap any project or Odin state; no unsandboxed retry.",
+      "safe_fix_policy": "Re-analyze exact finding_id and expected source hash. Only bounded single-file non-overlapping Clippy MachineApplicable/Ruff safe/ESLint direct edits become Transactions preview; apply is separate.",
+      "remaining": [
+        "Final hierarchy-repaired source/binary must rerun analyzer integration.",
+        "host_fixed_profile does not prove whole-project coverage or JetBrains private rule parity; cross-file fixes remain unsupported.",
+        "All versions, stale/truncated/malformed output, provider failures and OS combinations are not exhaustively accepted."
+      ],
+      "actual_success": {
+        "report": "verification/native-inspections-attempt-3.json",
+        "report_sha256": "82bea0422a7f6574120e69c987547159bae4c039d1fe4aa698d220ea2d9035a2",
+        "availability": "ROOT_OWNER_REPORT_AFTER_DOCUMENTATION_BASE",
+        "source_status": "PASS",
+        "checks_passed": 30,
+        "binary_sha256": "cb0097266da19e2be25136a56ce1b60e8f02dc8f7eb8f33b282aae045251e014",
+        "binary_metadata": {
+          "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+          "external_tool_bridge": false,
+          "model_token_usage": "UNKNOWN",
+          "name": "Odin",
+          "profile": "release",
+          "revision": "30a957a95bd39d1dbbe631d2649593dbf54e6250",
+          "schema_version": 1,
+          "standalone": true,
+          "target": "x86_64-pc-windows-msvc",
+          "tracked_source_dirty": false,
+          "version": "0.2.0"
+        },
+        "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+        "scope": "Actual Odin MCP -> native MXC -> Clippy/Ruff/ESLint; read-only analysis, normalized rule/range/hash/version, safe CAS preview/apply/rollback and private scratch cleanup.",
+        "check_pointers": [
+          "/checks/0",
+          "/checks/1",
+          "/checks/2",
+          "/checks/3",
+          "/checks/4",
+          "/checks/5",
+          "/checks/6",
+          "/checks/7",
+          "/checks/8",
+          "/checks/9",
+          "/checks/10",
+          "/checks/11",
+          "/checks/12",
+          "/checks/13",
+          "/checks/14",
+          "/checks/15",
+          "/checks/16",
+          "/checks/17",
+          "/checks/18",
+          "/checks/19",
+          "/checks/20",
+          "/checks/21",
+          "/checks/22",
+          "/checks/23",
+          "/checks/24",
+          "/checks/25",
+          "/checks/26",
+          "/checks/27",
+          "/checks/28",
+          "/checks/29"
+        ],
+        "runner_exit_code_reported_by_root": 0,
+        "exit_provenance": "Actual tool execution reported by /root. This report persists metadata/fixture-lock command exits, not the complete harness argv/exit; final runner manifest will supply that binding.",
+        "final_candidate_scope": "Release revision30a957a precedes hierarchy review repair; not final integrated new-head acceptance."
+      },
+      "failed_attempts": [
+        {
+          "report": "verification/native-inspections-attempt-1.json",
+          "report_sha256": "3650157f4ff8ebc0ddaa8014114be2775382642abfd6f58ec342697fb686b440",
+          "availability": "OWNER_WORKTREE_ONLY_AT_DOCUMENTATION_BASE",
+          "source_status": "FAIL",
+          "acceptance_status": "BLOCKED",
+          "launch_error_code": 4551,
+          "actual_mcp_checks": 0,
+          "actual_analyzer_checks": 0,
+          "preflight_checks_reported_pass": 2,
+          "reason": "Odin was denied before MCP initialize; executor-integrity/fixture-lock preflight is not analyzer acceptance."
+        },
+        {
+          "report": "verification/native-inspections-attempt-2.json",
+          "source_status": "FAIL",
+          "scope": "Rust/Python passed before ESLint version invocation failed EPERM; harness added explicit preserve-symlinks-main flags, grants not broadened."
+        }
+      ]
+    },
+    "language_registry": {
+      "profiles": 28,
+      "classification": "CONFIGURATION_AND_INSTALLATION_GUIDANCE_ONLY",
+      "installed_or_verified_implied": false,
+      "target_languages": [
+        "rust",
+        "python",
+        "typescript",
+        "go",
+        "java",
+        "csharp"
+      ],
+      "projects_per_language_target": 2,
+      "first_real_attempt": {
+        "report": "verification/language-ide-baseline-first.json",
+        "report_sha256": "6bf8ac9eca8652c5d1725ca6e05142480a0a6d6e7945e85b1dcdbdfb23e14859",
+        "availability": "OWNER_WORKTREE_ONLY_AT_DOCUMENTATION_BASE",
+        "source_status": "FAIL",
+        "acceptance_status": "BLOCKED",
+        "mode": "baseline",
+        "binary_sha256": "3491318bc59ff09c479c082e608ce4e1603ee03d99f75a7449e282f0ae601aa7",
+        "launch_error_code": 4551,
+        "projects_attempted": 12,
+        "actual_mcp_checks": 0,
+        "actual_lsp_checks": 0,
+        "transcript_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "Odin blocked before any MCP/LSP exchange. Backend probes/fixture configuration are not language acceptance."
+      },
+      "remaining": [
+        "No current six-language/two-project IDE PASS.",
+        "Historical three-language results retain earlier binary scope.",
+        "28 entries do not mean 28 or 40+ supported languages."
+      ]
+    },
+    "immutable_debug_launches": {
+      "implementation": "PARTIAL",
+      "check_refs": [
+        "#/extension_evidence/checks/engine_prior"
+      ],
+      "policy": "Optional host debug_launches fixes full launch/attach/restart payload by named adapter profile; caller may send empty/matching payload, cannot extend argv/env.",
+      "without_profile": "Explicit allow_debug stays privileged, reported via unrestricted_host_debug; evaluate is privileged too.",
+      "remaining": "Not a complete adapter schema or real-debuggee/OS-isolation acceptance."
+    },
+    "review_and_release": {
+      "latest_observed_review_source": "5e4cf035222cff82b1bc95d74c54ceb894195796",
+      "symbol_summary_fix": "6fc1bd54c84f074f5e324b8670522d1d74471b73",
+      "independent_rereview": "PENDING_ON_INTEGRATED_HEAD",
+      "current_release_binary_smoke": "PASS_IN_17_GATE_REPORT",
+      "current_packaging": "NOT_RUN_FOR_THIS_EXTENSION",
+      "current_remote_publication": "NOT_RUN",
+      "cloud_ci_executed": false,
+      "stop_conditions": [
+        "Resolve blocking independent-review findings and review the new immutable head before release.",
+        "Do not relabel zero-MCP/LSP or AppControl-blocked attempts PASS.",
+        "Do not weaken host policy, move a denied unchanged binary, broaden source grants or add fallback to obtain green results."
+      ],
+      "integrated_product_source": "fe5996dc5793b64cb68a5f2d1139fb696cff32cf"
+    },
+    "all_40_requirements_accepted": false
+  },
+  "final_integrated_candidate_scope": "Historical 72-tool baseline only; current source status is extension_evidence.latest_integrated_candidate. Historical 144-test PASS is not this extension run.",
+  "baseline_evidence_scope": {
+    "tool_contracts": 72,
+    "source_head_sha": "82901e5cd45845c75c7475d2697db42d472b67ac",
+    "binary_sha256": "5041951e452278e798568fa0c8c0f260ebe73f1a404659b3b3ac70c8141ce8be",
+    "rust_tests_passed": 144,
+    "rust_tests_ignored": 1,
+    "note": "Historical checks and digest strings are preserved verbatim."
   }
 }

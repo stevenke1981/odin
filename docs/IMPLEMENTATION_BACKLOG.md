@@ -1,8 +1,8 @@
 # Odin 實作與驗收看板
 
-Windows 原生預覽已有真實 Rust build、package tests、binary MCP/HTTP/CLI 與三語後端報告；72 個工具不代表 40 項需求全部完成。每項保留原 DoD 與明確未驗收條件。
+**現行85契約；38 PARTIAL、2 NOT_RUN。** 本輪原生 OS sandbox/language/IDE 來源已整合，但完整40需求未完成。原58工具保留，前版72再新增13。需求及原DoD見 [FEATURE_SPEC.md](FEATURE_SPEC.md)，實際範圍見 [feature-evidence.json](../verification/feature-evidence.json)。
 
-資料來源：[features.json](../requirements/features.json)、[逐需求證據](../verification/feature-evidence.json)。`PARTIAL` 不能移入 Done；只有同一候選的全部適用驗收均有實際零退出證據才能標 PASS。Linux/macOS、OS sandbox、廣泛語言／IDE 等價及性能基準未完成。
+前版72工具的144 tests/1 ignored只屬其 source-bound baseline。本輪 native MXC author2測試PASS、protocol29+22、engine prior74／latest62+12 blocked、symbol targeted1；實際三 analyzer 的30 checks PASS綁revision30a957a，早於hierarchy修復。六語首輪0 MCP/LSP checks，不能稱六語或28語言已驗收。當輪fe5996d已完成17gates、191tests/4ignored，另native3實跑；六語矩陣及final analyzer replay仍pending，不用舊成功覆蓋。
 
 ## M0 · 12 個需求
 
@@ -10,7 +10,7 @@ Windows 原生預覽已有真實 Rust build、package tests、binary MCP/HTTP/CL
 |---|---|---|---|---|
 | [ODIN-001](FEATURE_SPEC.md#odin-001) | P0 | 可重現的 Rust 建置與工具鏈 | `PARTIAL` | 無 |
 | [ODIN-002](FEATURE_SPEC.md#odin-002) | P0 | 標準 MCP stdio 與 Streamable HTTP | `PARTIAL` | ODIN-001 |
-| [ODIN-003](FEATURE_SPEC.md#odin-003) | P0 | 72 個原生工具契約、版本與能力協商 | `PARTIAL` | ODIN-002 |
+| [ODIN-003](FEATURE_SPEC.md#odin-003) | P0 | 85 個原生工具契約、版本與能力協商 | `PARTIAL` | ODIN-002 |
 | [ODIN-004](FEATURE_SPEC.md#odin-004) | P0 | 每次呼叫專案隔離與生命週期 | `PARTIAL` | ODIN-001 |
 | [ODIN-005](FEATURE_SPEC.md#odin-005) | P0 | 跨平台路徑與檔案安全 | `PARTIAL` | ODIN-004 |
 | [ODIN-006](FEATURE_SPEC.md#odin-006) | P0 | 預覽、提交與 crash-safe 修改交易 | `PARTIAL` | ODIN-005 |
@@ -64,16 +64,14 @@ Windows 原生預覽已有真實 Rust build、package tests、binary MCP/HTTP/CL
 | [ODIN-036](FEATURE_SPEC.md#odin-036) | P2 | 持久式除錯命令會話（非 Python REPL） | `PARTIAL` | ODIN-013 |
 | [ODIN-037](FEATURE_SPEC.md#odin-037) | P2 | 記憶 schema 升級與 import/export | `PARTIAL` | ODIN-020 |
 
-## 下一個可驗收切片
+## 當輪後續切片與唯一 owner
 
-- 整合 owner：Windows 候選已完成 16 個零退出 gates、144 Rust tests/1 ignored 並綁定 source/binary hash；下一步重新打包最新文件、核對 artifact manifest 與獨立 review。
-- 安全／平台 owner：保留預設 deny，另行實作真正 OS sandbox；在乾淨 Windows、Linux、macOS 做 lifecycle／敵意案例，不以 Job Objects 當沙箱。
-- 協定／語言 owner：補齊三語 diagnostics/失敗案例、20 個真實符號查詢，再擴六語言；對 Move/Inline/QuickFix 逐後端測編譯與 rollback。
-- 資料／效能 owner：repo-local memory migration、背景 watcher、完整 DAG、三規模／20 任務 benchmark。
-- 發佈 owner：獨立 review 後只推已審查 commit；核對 public visibility 與 remote HEAD，不預寫已發布，不 dispatch 雲端 CI。
+| Owner | Write scope | 驗收與停止條件 |
+|---|---|---|
+| protocol author | protocol hierarchy 累計預算與對應測試 | 修復 SIR-001 的累計bytes/requests/deadline；以新 immutable head 獨立 review |
+| root integration | shared core/engine 整合、專屬當輪 report/logs | 17gates、191tests/4ignored、native3及standard binary smoke已完成；補六語/final analyzer replay、review與package，記新SHA/digest，不覆蓋baseline |
+| platform author | 六語各兩專案 harness／證據 | 原4551嘗試保留FAIL/0checks；有實際握手與功能結果才升相應能力；不改host安全政策取得綠燈 |
+| independent reviewer | immutable diff與唯讀檢查 | 作者不自我核准；未解阻擋發現不發布；fixture不當真語言證據 |
+| root release | 候選docs/artifact manifest與已授權發布 | 完成新候選所有適用gate再打包、核對remote/public；本輪未執行的發布及cloudCI不預填成功 |
 
-每切片指定唯一 owner 與 write scope；共用 engine/catalog/config 檔案須序列整合。一位作者一個工作樹，不能把整個 src 同派給多人。
-
-## 狀態流與證據
-
-Ready → In progress → Review → Verification → Done。測試宣告、準備中的 runner、protocol fixture、cross compile 和檔案存在，都不替代各自目標的實際驗收。第一個失敗保留；修復產生新 snapshot 後，舊證據不可自動套用。
+只有實際對應全部原acceptance才可把需求升PASS；來源已實作、profile registry、後端版本存在、準備好harness都不等於驗收。共有檔案序列整合，一位作者一個worktree，不覆寫衝突取得綠燈。Linux/macOS、全語言／IDE等價、完整安裝升級／故障矩陣、benchmark仍未完成。

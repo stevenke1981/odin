@@ -1,30 +1,57 @@
 # 操作、安全與發行規格 (RFC-OPS-001)
 
-**地位：設計目標，非完成公告。** 參閱 ODIN-001/002/011/012/023/024/025/027/028/029/030/031/032/033。
+**地位：原驗收目標及本輪安全實作邊界，非完成公告。** 對應 ODIN-001/002/011/012/023/024/025/027/028/029/030/031/032/033。85個工具契約不代表40需求全部完成；本輪final gates與前版72工具的144-test baseline分開。
 
-## 安全模型（P0，不可跳過）
+## 信任與權限
 
-攻擊者可能控制 workspace 檔案與 symlinks、untrusted build scripts、LSP stderr/stdout、Agent 提示詞、HTTP 請求、競爭的編輯程序。防護包括拒絕未知 root、嚴格工具分權、路徑 handle 防競態、body/output 大小限制、OS 級 process isolation、network loopback、cache 及日誌保密。動態工具使用 **最小權限，失敗時拒絕（fail closed）**。
+Workspace、symlinks/junctions、build scripts、LSP/DAP資料、analyzer output、HTTP請求與競爭writer都可能不可信。Host config、executor、固定argv/profiles與明確檔案grants由操作者信任並授權；不自動從repository取得執行政策、shell/debug/write/inspection權限或付費額度。
 
-允許 LSP/Debug 啟動時需要檢查其 program、argv、working dir、env、來源版本。不能因為 `--readonly` 就允許不可信 server 讀寫本機任意路徑。Host 機器未受信任時需實際 Windows Job Objects/OS sandbox 或隔離容器，不假設 Rust memory safety 會阻止惡意 process。
+Core的no-follow directory capabilities、hash/CAS、body/output配額與Transactions保護原生存取。它們不是外部程序OS隔離；Job Objects/process groups只管生命週期，也不是防止同user惡意host的邊界。多檔交易沒有瞬間原子可見性，最後CAS檢查與rename之間的外部競態仍須據實揭露。
 
-## 發行證據
+## 可選Windows native MXC
 
-- v0.2.0 所有舊的靜態測試與 mock 結果僅標為 `SOURCE_PREVIEW`。
-- Windows x86_64 MSVC、Linux x86_64、macOS arm64 均需實機 `cargo build/test`。
-- 各語言 LSP+DAP 要記錄 server version、OS、命令、exit code、可重現 fixture。
-- 相容性測試含 clean machine **without Python/Serena**。Python 只可存在於 dev test harness，不能為 Odin runtime mandatory。
-- `cargo audit`/SBOM/secret scan/license 檢查須成功，不得略過已知漏洞。
-- 編譯、單元、整合、安裝/卸載、升級、異常關機、可復原、無孤兒程序均經驗收後才能標 Beta/Stable。
+Windows host可顯式配置native MXC ProcessContainer、固定base-container tier與executor SHA-256。準備時檢查pin、支援狀態、normalized paths、protected state與最小readonly/readwrite/deny grants。使用native argv，不拼shell，network固定deny；驗證或launch失敗就拒絕，**不退回直接host執行**。Pinned hash降低配置漂移，不等於code signing、可信host或無競態保證。
 
-## GitHub Actions 成本策略
+Workload在開始前進入MXC邊界，policy與private scratch guard保留至child/descendants終止及parent reap；outer Job補取消／後代清理。Runtime/工具鏈/依賴位置必須由host明確授read，cache/scratch另授write；環境allowlist不會自動授filesystem權限。Native timeout、nonzero exit與launch failure要保留真實結果。
 
-只保留 `workflow_dispatch`，使用可信 self-hosted runner；不能讓不受信任公眾 PR 自動執行任意腳本，亦不得擅自啟動 GitHub-hosted 額度。記錄 runner identity、開始/結束、commit、artifact hash。PR 可先在 review 無 CI 狀態下分析，合併之前再手動驗證。
+| 執行路徑 | Host配置sandbox | 未配置 |
+|---|---|---|
+| LSP / DAP / 固定command profile | 經native MXC launch；原有tool policy仍生效 | 明確privileged host process，只有環境／lifecycle guards |
+| Native inspections | allow_inspections +固定profiles +native sandbox，來源readonly | 拒絕，沒有unsandboxed fallback |
+| 原生source edit | Transactions +expected hashes，與外部程序政策各自檢查 | 仍需allow_write，不因其他profile而授權 |
 
-## 客戶端整合
+Inspection writable/temp不得與任何source root或Odin state重疊。Repository ESLint executable config不得自動探索；host選用analyzer、Clippy build scripts/plugins仍是受信任配置下的可執行內容。Debugger immutable payload與OS grants是兩項不同host決策，未設payload profile仍明列privileged mode。
 
-Codex、Claude Code、OpenCode setup CLI 需在變更設定前生成 diff 與備份；僅對明確授權的 profile 安裝 MCP entry；不能把 JSON 產出宣稱已接線成功，必須工具列舉成功。Uninstall 僅回復自己新增的設定。
+Linux/macOS sandbox、BFS/AppContainer fallback、VM backend、完整UI/registry/device/ingress/external-internet與compromised-host矩陣未完成。選用但unsupported/invalid的沙箱必須fail closed；不得把沒有配置說成受限模式。
 
-## Windows Inno Setup
+## 證據分層與本輪狀態
 
-需安裝、再安裝、升級、靜默安裝、修改安裝路徑、保留個人 config/state、取消與 rollback、沒有 Serena 時執行、卸載資料保護等 lifecycle tests。未執行 Windows 原生 compiler + installer 不能發穩定 EXE。
+| 層級 | 已觀察 | 不能推論 |
+|---|---|---|
+| 歷史72工具snapshot | 16 gates、144 Rust tests/1 ignored、三語29 checks；保留原revision/digest | 本輪85工具或新依賴已通過 |
+| Sandbox author module | 真native Windows MXC兩測試、具名denyfs/network/descendant/timeout/scratch案例 | 所有Odin dispatch或所有OS資源已隔離 |
+| Protocol/engine slices | 29+22 protocol fixtures、先前74 engine tests、最新62執行+12 AppControl未執行、symbol targeted1 | 真六語/完整新binary驗收 |
+| Native inspections revision30a957a | 真MCP/MXC/Clippy/Ruff/ESLint 30 checks PASS；readonly、safeCAS、cleanup | hierarchy修復後final binary、全部規則/IDE等價 |
+| 六語兩專案首輪 | 4551阻擋於Odin啟動；0 MCP/LSP checks | 版本存在、harness生成即是六語支援 |
+| 當輪final candidate | `sandbox-ide-local-validation.json`的17gates、191tests/4ignored與native3已實跑PASS | 不可用舊local-validation覆寫新狀態 |
+
+Root的guard-until-reap已包含在當輪native三測試實跑，command/exit0及log/hash記在sandbox-ide-local-validation.json的/commands/4。Analyzer attempt1、attempt2與AppControl拒絕應保留；第三次成功是修正實質harness/runtime flags，不是降低grants或重試相同假設洗綠。
+
+每個PASS要有command、exit code、OS/toolchain、source SHA/hash、backend/version、binary digest與原始log。報告source binding不同就分開記；後續文件commit不必等於binary revision，但受測source hashes必須吻合。Public日誌可遮蔽本機路徑並記processing方式，不能改結果或重寫歷史digest。詳見 [feature-evidence.json](../../verification/feature-evidence.json)。
+
+## 完整發行門檻仍保留
+
+- 同一當輪候選執行cargo fmt、workspace test --locked、clippy --all-targets --locked -- -D warnings、release build、真CLI/MCP/HTTP/cancellation及相關native/backend/analyzer驗收。未執行的entry保持NOT_RUN，失敗gate阻止發布。
+- Windows x64 MSVC、Linux x64、macOS arm64均需native build/test；cross compile不代替。乾淨核心主機without Python/Serena需另驗，開發harness有Python不能冒充該條件。
+- 依賴lock、SBOM、advisory、license、secret及artifact allowlist要涵蓋當輪新增來源；沒有正式security/legal audit的主張。
+- 獨立review針對新immutable head；未解阻擋finding不得發布。作者不能核准自己；root整合後的source差異需重新核對證據。
+- Installer完整clean-machine、跨版upgrade、取消／中斷rollback、Defender/SmartScreen/CFA、資料保護與無孤兒程序矩陣仍未驗收；簽章若無就明列未簽。舊package PASS不自動適用新85-tool binary。
+- 三規模／20個coding任務、cold/warm、P50/P95/CPU/RSS/output/tokens/成功率與失敗樣本benchmark未完成，不宣稱Rust天然更快或省token。
+
+## CI、客戶端與外部發布
+
+只保留workflow_dispatch、trusted self-hosted。公眾PR不得自動在無防護runner執行，不能為跑檢查建立/推remote或啟用hosted額度。本輪文件任務沒有cloud CI或remote副作用。
+
+Client setup/hook先dry-run、diff與備份，既有host檔案需expected hash；只動授權entry，不讀repository設定當執行權限。Generated MCP argv handshake與真Codex/Claude/OpenCode app整合分開；uninstall只回復自有設定。
+
+對外發布前完成同候選review、gates與artifact manifest。已有公開舊source repo不代表本輪已push或binary release；只有實際操作後的public visibility、remote HEAD、URL及artifact digest才可宣稱相應完成。

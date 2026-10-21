@@ -4,7 +4,7 @@
   "baseline_version": "0.2.0",
   "status": "WINDOWS_NATIVE_PREVIEW_PARTIAL",
   "standalone_requirement": "No Serena code, runtime, plugin, or bridge in shipping Odin binaries",
-  "note": "Windows x64 MSVC is built and exercised. Source implementation status is separate from acceptance. Each requirement links to executed slice checks and explicit remaining acceptance; Linux/macOS, OS sandbox, broad language/IDE parity and benchmarks are not complete.",
+  "note": "Current85 contracts. Integrated Windows fe5996d17 gates passed with191 Rust tests/4 ignored plus3 opt-in native tests; source/binary binding is extension_evidence. Historical72-tool144-test proof remains unchanged. Six-language final IDE and final-binary native-analyzer replay are pending; registry is guidance and all40 remain unaccepted.",
   "features": [
     {
       "id": "ODIN-001",
@@ -30,7 +30,8 @@
       ],
       "depends_on": [],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-001",
-      "implementation_summary": "Windows 最終整合 16 個命令 exit 0；144 Rust tests 通過、1 ignored，locked release build 與 clean revision/binary metadata 已核對；跨平台矩陣未完成。"
+      "implementation_summary": "本輪fe5996d候選17/17 gates exit0，workspace191 passed/4 ignored；另opt-in native MXC3 passed。release binary為c4f55861…、dirty=false，跨平台/全新checkout仍未完整驗收。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-002",
@@ -58,11 +59,12 @@
         "ODIN-001"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-002",
-      "implementation_summary": "真 binary 的 MCP stdio、Streamable HTTP、授權負例與取消已有 Windows smoke。"
+      "implementation_summary": "本輪真release binary CLI/stdio/HTTP/cancellation gates皆exit0；六語IDE與final analyzer replay仍是另項，不沿用前版144測試。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-003",
-      "title": "72 個原生工具契約、版本與能力協商",
+      "title": "85 個原生工具契約、版本與能力協商",
       "priority": "P0",
       "phase": "M0",
       "current": "NATIVE_SOURCE_PARTIAL",
@@ -73,7 +75,7 @@
       "goal": "避免有 tool 名字但工具不支援、或參數不一致。",
       "design": "單一來源 schema → CLI/MCP/flow；工具包含 required project、輸入限制、read/write/execute 標記；新增 get_capabilities 與 schema_version；不支援回 CAPABILITY_UNAVAILABLE。",
       "acceptance": [
-        "原有 58 個工具保留，擴充後 72 個 tools 全數列在 coverage 表，schema/dispatcher 逐項有功能測試。",
+        "原有 58 個工具保留，擴充後 85 個 tools 全數列在 coverage 表，schema/dispatcher 逐項有功能測試。",
         "錯參數、未知專案、未知工具與後端失聯各得到不同可機械判別 error code。",
         "新版本修改破壞 API 時更新 schema_version 並保留遷移文件。"
       ],
@@ -86,7 +88,8 @@
         "ODIN-002"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-003",
-      "implementation_summary": "擴充為 72 工具，具 schema_version/get_capabilities、catalog 一致性與錯誤／policy 測試。"
+      "implementation_summary": "原 58、前版 72、本輪 85 契約；新增 13 個 IDE/inspection tools 已有 catalog/policy/dispatch/tests/docs 切片，完整真後端矩陣未驗收。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-004",
@@ -198,7 +201,8 @@
         "ODIN-004"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-007",
-      "implementation_summary": "LSP sync/capability/readiness/shutdown/restart、UTF-16/CRLF 已測；Windows 三語真後端 cross-file references/rename/rollback 已執行。"
+      "implementation_summary": "新增 completion/resolve、hover/signature、workspace/call hierarchy、inlay/resolve、semantic tokens；protocol 29 unit+22 fixtures 已測，真六語當輪因 AppControl 未啟動。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-008",
@@ -226,7 +230,8 @@
         "ODIN-007"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-008",
-      "implementation_summary": "symbol filters/depth/scope/paging/body budget 已有回歸；真實三語 cross-file references/rename consumer uses/rollback 已執行。"
+      "implementation_summary": "workspace symbols/call hierarchy 與 source/version/freshness 已有 fixtures；舊三語結果不當成本輪完整 IDE 驗收。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-009",
@@ -255,7 +260,8 @@
         "ODIN-007"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-009",
-      "implementation_summary": "有序 TextDocumentEdit/Create/Rename/Delete regular UTF-8 file 已轉 CAS 交易；unsupported operations 明確拒絕。"
+      "implementation_summary": "format_document/range formatting 的後端 edit 轉 expected-hash Transactions preview；有序 WorkspaceEdit/CAS 保留且不隱含 apply。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-010",
@@ -285,7 +291,8 @@
         "ODIN-009"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-010",
-      "implementation_summary": "Windows 真 rust-analyzer、basedpyright、TypeScript language-server 已實測 symbols、cross-file references、rename definition/consumer uses 與 rollback；完整原驗收尚未完成。"
+      "implementation_summary": "歷史三語跨檔結果保留舊 binary 範圍；本輪六語各兩專案首輪 WinError4551，實際 MCP/LSP checks=0。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-011",
@@ -341,7 +348,8 @@
         "ODIN-005"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-012",
-      "implementation_summary": "已加入環境 allowlist、Windows Job Objects／Unix process groups 與受信任固定 argv profiles；這些是程序生命週期控制。"
+      "implementation_summary": "可選Windows native MXC已實作且當輪native3測試PASS（含guard-until-reap）；revision30a957a另有MCP/MXC/analyzer30 checks PASS，final六語/跨平台仍未完成。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-013",
@@ -369,7 +377,8 @@
         "ODIN-012"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-013",
-      "implementation_summary": "DAP 狀態/session/tickets/取消已有 fixtures；最終 release binary 對 Windows debugpy 的 breakpoint/variables/evaluate/step/disconnect 已實測。"
+      "implementation_summary": "LSP/DAP 可走 host MXC；選配 immutable debug_launches 固定 payload，未設 profile 時 allow_debug 仍為 explicit privileged mode。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-014",
@@ -482,7 +491,8 @@
         "ODIN-006"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-017",
-      "implementation_summary": "版本化 pull/push diagnostics 與具 diagnostics context 的 QuickFix resolve/preview 路徑已實作及 fixture 測試。"
+      "implementation_summary": "Clippy/Ruff/ESLint providers 與 safe-fix preview 已實作；revision30a957a 真 Odin MCP→native MXC 有 30 PASS checks，symbol severity 修正另有1個targeted PASS；不等於 final 全矩陣。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-018",
@@ -510,7 +520,8 @@
         "ODIN-008"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-018",
-      "implementation_summary": "LSP TypeHierarchy primitives、明確兩方 project 的唯讀 query 與 scope deny 有實作。"
+      "implementation_summary": "TypeHierarchy 之外增加 CallHierarchy/workspace symbols 與 freshness；hierarchy 累計資源預算 review 缺口仍待修復與新 head 驗收。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-019",
@@ -538,7 +549,8 @@
         "ODIN-010"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-019",
-      "implementation_summary": "目前只有三個具真實後端報告的語言；generic LSP 設定不等於所有語言已支援。"
+      "implementation_summary": "28 語言 profile registry 是安裝/設定指引；六語兩專案 harness 首輪 0 MCP/LSP checks，不能稱 28 或 40+ 已支援。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-020",
@@ -651,7 +663,8 @@
         "ODIN-002"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-023",
-      "implementation_summary": "setup/validate/onboard/doctor 已實作；三種 generated config 的真 MCP handshake、dry-run/backup/CAS smoke 已執行。"
+      "implementation_summary": "languages registry、runtime/setup guidance 與 doctor sandbox probe 有來源；當輪真 binary/client 整合另行驗收。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-024",
@@ -679,7 +692,8 @@
         "ODIN-004"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-024",
-      "implementation_summary": "host TOML contexts/modes 依序收緊權限，data-only policy 不可授予 host 已拒絕的權限。"
+      "implementation_summary": "allow_inspections、sandbox、inspection/debug_launches 為 host 純資料政策；context/mode 只能收緊，不能自動授予權限。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-025",
@@ -761,7 +775,8 @@
         "ODIN-001"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-027",
-      "implementation_summary": "同一 clean Windows revision 的 16 個整合命令全部 exit 0，source_changed=[]；144 Rust tests/1 ignored，fixture/真後端分層並綁定 source/binary digest。"
+      "implementation_summary": "本輪另存sandbox-ide-local-validation：fe5996d的17 gates全exit0、191tests/4ignored，另opt-in native3實跑；source_changed=[]，舊144-test baseline完整保留。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-028",
@@ -872,7 +887,8 @@
         "ODIN-001"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-031",
-      "implementation_summary": "最終 Windows candidate 已執行 advisory、licenses、SBOM/pattern/allowlist 相關命令且 exit 0；新增文件與最終打包工件仍需同步 manifest。"
+      "implementation_summary": "本輪fe5996d audit/licenses/supply-chain/source/publish-policy已exit0；當前文件/最終artifact與公開revision仍需最後同步。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-032",
@@ -900,7 +916,8 @@
         "ODIN-006"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-032",
-      "implementation_summary": "core logs 記錄真 process checkpoint crash/recovery、雙程序 contention 與 Windows NTFS aliases；不以 mock FS 代替。"
+      "implementation_summary": "當輪native MXC三測試已實跑PASS，含bounded-runner abort/timeout及guard-until-reap；磁碟故障/權限/跨平台完整敵意矩陣仍未完成。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-033",
@@ -915,7 +932,7 @@
       "design": "中文需求規格、英語 API tags、每項 id/priority/source/status/deps/acceptance/test；修版時更新 machine-readable backlog 與 traceability；文件語義單一來源。",
       "acceptance": [
         "公開的 53 Serena 功能全部映射至少一項 Odin 原生需求。",
-        "原有 58 個工具名稱保留並擴充為 72 個；新增 API 必須含 schema、錯誤碼與測試。",
+        "原有 58 個工具名稱保留並擴充為 85 個；新增 API 必須含 schema、錯誤碼與測試。",
         "README 入口、ROADMAP、RELEASE_GATES 與驗收證據一致。"
       ],
       "tests": [
@@ -927,7 +944,8 @@
         "ODIN-003"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-033",
-      "implementation_summary": "40 需求／53 參考映射與 72 契約經整合 runner 檢查；Windows 16 gates 已完成，發布與最終包內文件仍由實際結果同步。"
+      "implementation_summary": "40原需求同步85契約與分層extension；fe5996d當輪17gates完成，six-language matrix與final-analyzer/review/封裝仍待實際結果，不改寫歷史proof。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-034",
@@ -955,14 +973,15 @@
         "ODIN-007"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-034",
-      "implementation_summary": "doctor --probe-lsp 與 get_capabilities 會實際 initialize，缺後端回明確錯誤；不自動執行 repo 內設定。"
+      "implementation_summary": "28 profile registry/runtime guidance 與 backend version probe 不等於 readiness 或功能通過；當輪六語真 MCP/LSP checks=0。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-035",
       "title": "純原生檢查與 Quick Fix 引擎",
       "priority": "P2",
       "phase": "M3",
-      "current": "NOT_IMPLEMENTED",
+      "current": "NATIVE_SOURCE_PARTIAL",
       "modules": [
         "diagnostics",
         "adapters"
@@ -983,7 +1002,8 @@
         "ODIN-017"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-035",
-      "implementation_summary": "有 LSP QuickFix 的安全 resolve/transaction 入口；尚無獨立 Clippy/Ruff/ESLint inspection provider 引擎。"
+      "implementation_summary": "native Clippy/Ruff/ESLint readonly sandbox、findings 正規化與 safe CAS preview/apply/rollback 已有 revision30a957a 真實30 checks PASS；hierarchy 修復後 final 重跑與私有IDE等價仍未驗收。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-036",
@@ -1010,7 +1030,8 @@
         "ODIN-013"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-036",
-      "implementation_summary": "debug_batch 是 bounded DAP session 命令序列，核對 UUID、每步 request ID/ticket/outcome，沒有 eval/Python REPL。"
+      "implementation_summary": "bounded DAP batch 新增 single/batch 共用 immutable payload 與 privileged metadata；當輪真 adapter 連續 session 未驗收。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-037",
@@ -1093,7 +1114,8 @@
         "ODIN-013"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-039",
-      "implementation_summary": "named host profiles、core env allowlist、DAP state/capability guards 與 process-tree cleanup 已接線。"
+      "implementation_summary": "可選 host debug_launches 固定 named adapter 的 launch/attach/restart payload，caller 不得擴充 env/argv；未設 profile 仍 explicit privileged，完整 adapter schema/OS matrix 未完成。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     },
     {
       "id": "ODIN-040",
@@ -1121,8 +1143,9 @@
         "ODIN-003"
       ],
       "evidence": "PARTIAL; verification/feature-evidence.json#ODIN-040",
-      "implementation_summary": "trace_id/elapsed/error、result/chunk digests、project scope、24h/128份/128MiB spill 配額與 expiry 測試已執行。"
+      "implementation_summary": "IDE/inspection 有 source hash/version/freshness/truncation 與定向回歸；歷史 trace/spool PASS 不取代本輪 final binary 與 retention 矩陣。",
+      "extension_evidence": "verification/feature-evidence.json#/extension_evidence"
     }
   ],
-  "tool_contracts": 72
+  "tool_contracts": 85
 }
