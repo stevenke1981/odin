@@ -48,6 +48,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:.claude\\settings.local.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:.github\\ISSUE_TEMPLATE\\odin_feature.yml",
       "status": "PASS",
       "detail": ""
@@ -93,6 +98,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:crates\\odin\\tests\\auto_project.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:crates\\odin-core\\Cargo.toml",
       "status": "PASS",
       "detail": ""
@@ -104,6 +114,16 @@
     },
     {
       "name": "utf8:crates\\odin-core\\src\\error.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-core\\src\\execution.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-core\\src\\languages.rs",
       "status": "PASS",
       "detail": ""
     },
@@ -128,6 +148,16 @@
       "detail": ""
     },
     {
+      "name": "utf8:crates\\odin-core\\src\\sandbox.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-core\\src\\sandbox_policy.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:crates\\odin-core\\src\\search.rs",
       "status": "PASS",
       "detail": ""
@@ -143,7 +173,32 @@
       "detail": ""
     },
     {
+      "name": "utf8:crates\\odin-core\\tests\\host_execution_policy.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-core\\tests\\os_sandbox_native.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:crates\\odin-core\\tests\\process_contention.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-core\\tests\\stdin_execution.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-core\\tests\\fixtures\\os_sandbox_workload.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-core\\tests\\fixtures\\stdin_workload.rs",
       "status": "PASS",
       "detail": ""
     },
@@ -159,6 +214,21 @@
     },
     {
       "name": "utf8:crates\\odin-engine\\src\\flow.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\src\\formatter.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\src\\ide.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\src\\inspections.rs",
       "status": "PASS",
       "detail": ""
     },
@@ -203,7 +273,67 @@
       "detail": ""
     },
     {
+      "name": "utf8:crates\\odin-engine\\src\\dispatch\\edits.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\src\\dispatch\\exec.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\src\\dispatch\\files.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\src\\dispatch\\memory.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\src\\dispatch\\meta.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\src\\dispatch\\mod.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\src\\dispatch\\semantic.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\src\\dispatch\\symbols.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\src\\dispatch\\transactions.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:crates\\odin-engine\\tests\\completion.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\tests\\debug_launch_policy.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\tests\\formatter_profiles.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\tests\\ide_tools.rs",
       "status": "PASS",
       "detail": ""
     },
@@ -214,6 +344,11 @@
     },
     {
       "name": "utf8:crates\\odin-engine\\tests\\fixtures\\dap_peer.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\tests\\fixtures\\ide_peer.py",
       "status": "PASS",
       "detail": ""
     },
@@ -278,6 +413,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:docs\\CLIENT_SETUP.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:docs\\CORE_IMPLEMENTATION.md",
       "status": "PASS",
       "detail": ""
@@ -288,7 +428,17 @@
       "detail": ""
     },
     {
+      "name": "utf8:docs\\dispatch-language-installers-v3.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:docs\\dispatch-plan.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs\\dispatch-sandbox-ide.md",
       "status": "PASS",
       "detail": ""
     },
@@ -303,6 +453,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:docs\\IDE_IMPLEMENTATION.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:docs\\IMPLEMENTATION_BACKLOG.md",
       "status": "PASS",
       "detail": ""
@@ -313,12 +468,37 @@
       "detail": ""
     },
     {
+      "name": "utf8:docs\\LANGUAGE_BACKENDS.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:docs\\LANGUAGE_SUPPORT.md",
       "status": "PASS",
       "detail": ""
     },
     {
+      "name": "utf8:docs\\NATIVE_FORMATTERS.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs\\OS_SANDBOX.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs\\PACKAGING_WINDOWS_LINUX.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:docs\\PLATFORM_IMPLEMENTATION.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs\\PROTOCOL_IDE.md",
       "status": "PASS",
       "detail": ""
     },
@@ -423,6 +603,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:examples\\odin.sandbox.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:examples\\prepare-create.json",
       "status": "PASS",
       "detail": ""
@@ -439,6 +624,16 @@
     },
     {
       "name": "utf8:examples\\rust-fixture\\src\\lib.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:packaging\\odin.host.example.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:packaging\\windows-runtime.ps1",
       "status": "PASS",
       "detail": ""
     },
@@ -493,6 +688,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:scripts\\client_setup_smoke.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:scripts\\cli_smoke.py",
       "status": "PASS",
       "detail": ""
@@ -543,6 +743,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:scripts\\package_linux.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:scripts\\package_tar.py",
       "status": "PASS",
       "detail": ""
@@ -583,6 +788,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:scripts\\verify_linux_installer.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:scripts\\verify_manifest.py",
       "status": "PASS",
       "detail": ""
@@ -594,6 +804,16 @@
     },
     {
       "name": "utf8:tests\\real_backends.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:tests\\real_ide_backends.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:tests\\real_native_inspections.py",
       "status": "PASS",
       "detail": ""
     },
@@ -623,6 +843,26 @@
       "detail": ""
     },
     {
+      "name": "utf8:verification\\client-apps-local.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\debug-candidate-appcontrol.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\delivery-status-baseline-72.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\delivery-status-before-language-installers-v3.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:verification\\delivery-status.json",
       "status": "PASS",
       "detail": ""
@@ -633,12 +873,77 @@
       "detail": ""
     },
     {
+      "name": "utf8:verification\\engine-gap-20261021T030242Z-verification.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\engine-gap-csharp-pipe-research.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\engine-gap-formatter-unit-observation.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\engine-gap-initial-verification.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\engine-gap-verify.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\engine-ide-catalog-check.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\engine-ide-handoff.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\engine-ide-prior-pass.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\engine-ide-symbol-diagnostics.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\engine-ide-verification.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\engine-ide-verify.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:verification\\engine-verification.json",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "utf8:verification\\engine-verify.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\evidence-processing.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\feature-evidence-before-language-installers-v3.json",
       "status": "PASS",
       "detail": ""
     },
@@ -658,6 +963,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:verification\\host-policy-stage.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:verification\\http-smoke-status.json",
       "status": "PASS",
       "detail": ""
@@ -673,12 +983,692 @@
       "detail": ""
     },
     {
+      "name": "utf8:verification\\language-ide-author-configuration.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-baseline-first.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-direct-configuration-first.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-dotnet-env.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-baseline-01.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-baseline-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-baseline-01.normalization.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-baseline-02.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-baseline-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-baseline-02.normalization.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-baseline-03.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-baseline-03.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-baseline-03.normalization.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-sandbox-typescript-01.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-sandbox-typescript-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-sandbox-typescript-01.normalization.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-sandbox-typescript-02.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-sandbox-typescript-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-sandbox-typescript-02.normalization.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-sandbox-typescript-03.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-sandbox-typescript-03.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-sandbox-typescript-03.normalization.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-sandbox-typescript-04.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-sandbox-typescript-04.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-sandbox-typescript-04.normalization.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-final-summary.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-go-configuration-02.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-go-configuration-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-runtime-profile-check.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-typescript-order-03.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-typescript-order-03.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-ide-typescript-order-03.normalization.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-check-continuation-preflight.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-check-linux-classification.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-clippy-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-continuation-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-continuation-preflight-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-continue.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-continued-cancellation.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-continued-cli.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-continued-http.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-continued-mcp-stdio.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-continued-native-inspections.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-continued-real-backends.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-continued-source.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-core-attempt-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-core-attempt-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-core-attempt-03.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-core-clippy-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-doc-checks-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-doc-checks-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-doc-checks-03.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-doc-source-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-doc-source-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-doc-source-03.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-enumeration-core-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-enumeration-native-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-final-host-block.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-host-codeintegrity.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-isolated-pid-protocol-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-linux-classification-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-linux-classification-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-linux-classification-03.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-native-stdin-attempt-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-public-scan-before.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-publication-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-publication-preflight-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-record-host-block.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-review-phase1.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-review-phase1.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-review-phase2.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-review-phase2.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-review-phase3.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-review-phase3.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-review-phase4.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-review-phase4.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-stdin-attempt-04.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-summarize.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-validation-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-windows-build-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-windows-build-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-windows-build-final-initial.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-windows-build-final.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-windows-protocol-final-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-windows-static-final-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-installers-v3-workspace-all-targets-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-diagnostic-01.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-diagnostic-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-diagnostic-01.normalization.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-03-integrity.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-04-integrity.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-csharp-nullpid-07.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-csharp-nullpid-07.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-csharp-omnisharp-06.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-csharp-omnisharp-06.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-diagnostic.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-go-list-06.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-go-list-06.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-go-lsp-02.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-go-lsp-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-go-lsp-03.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-go-lsp-03.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-go-lsp-04.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-go-lsp-04.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-go-packages-05.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-go-packages-05.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-java-security-02.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-java-security-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-java-security-03.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-java-security-03.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-java-security-04.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-java-security-04.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-python-runtime-cwd-02.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-python-runtime-cwd-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-python-runtime-cwd-03.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-python-runtime-cwd-03.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-python-runtime-cwd-04.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-direct-python-runtime-cwd-04.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-evidence-index-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-finalrun-plan.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-five-native-01.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-five-native-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-five-native-01.normalization.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-go-native-02.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-go-native-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-go-native-02.normalization.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-omnisharp-setup.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-python-native-02.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-python-native-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-python-native-02.normalization.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-ruff-native-01.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-ruff-native-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-ruff-native-01.normalization.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-runner.ps1",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\language-sandbox-v3-verify-evidence.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:verification\\lexical-check.json",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "utf8:verification\\license-inventory.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\linux-target-v3-setup.json",
       "status": "PASS",
       "detail": ""
     },
@@ -703,12 +1693,887 @@
       "detail": ""
     },
     {
+      "name": "utf8:verification\\local-source-check.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:verification\\local-validation.json",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "utf8:verification\\mcp-smoke-status.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\native-inspections-attempt-1.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\native-inspections-attempt-2.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\native-inspections-attempt-3.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\native-inspections-final-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\native-inspections-final.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\native-inspections-release-final-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\native-inspections-release-final.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-build-services-host-transfer-check.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-build-services-poweroff-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-build-services-shutdown-driver.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-build-services-source-http-stop.ps1",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-build-services-stop.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-build-services-upload-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-checks-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-checks-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-checks.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-collector.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-exporter-before-R4-E01.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-exporter.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-final-checks-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-final-checks-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-final-collector.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-final-exporter.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-final-first-preflight-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-final-installer-driver.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-final-owner-stage-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-evidence-outcomes-stage-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-69-cancellation-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-69-cli-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-69-diagnostic.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-69-fixture-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-69-http-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-69-mcp-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-69-native-final-build-69e769b.sh",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-69-native-final-qa-69e769b.sh",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-69-source-sha256.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-69-static-source-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-build-environment.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-build.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-clippy.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-diagnostic.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-fixture-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-fixture.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-fmt.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-focused-core.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-generated.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-publish-policy.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-release-cancellation.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-requirements.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-run-linux-candidate-v3.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-runner-summary.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-source-after-generators.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-source-preflight.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-source-sha256.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-static-source-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-static-source.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-stop-retired-d3-release.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-d3-tests.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-diagnostic-build-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-diagnostic-build.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-artifact-receiver.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-artifact-uploader.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-binary-sha256.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-build-environment.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-build-manifest.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-build.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-cancellation-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-cancellation.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-checksums.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-cli-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-cli.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-clippy.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-dpkg-build-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-elf.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-entry-package-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-export-linux-v3.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-final-checksums.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-final-package.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-final-packaging-preflight.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-fixture-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-fixture.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-fmt.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-focused-core.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-focused-protocol.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-generated.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-http-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-http.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-installer-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-installer-preflight-first-failure.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-installer-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-linux-validation.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-mcp-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-mcp.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-metadata.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-native-0fe03ba-stage.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-native-a839999-packaging-stage.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-native-final-helpers-stage.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-package-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-package.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-packaging-source-sha256.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-packaging-source-stage.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-payload-inventory.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-publish-policy.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-receiver-launcher.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-receiver-validation.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-requirements.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-run-linux-candidate-v5.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-run-linux-doc-package-v3.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-run-linux-installer-v3-before-owner-preflight.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-run-linux-installer-v3.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-runner-summary.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-source-after-generators.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-source-after-qa.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-source-preflight.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-source-sha256.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-static-source-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-static-source.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-tests.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-transfer-manifest.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final-transfer-receipt.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-final.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-02-build-manifest.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-02-dpkg-build-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-02-final-checksums.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-02-final-package.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-02-final-packaging-preflight.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-02-installer-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-02-installer-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-02-linux-validation.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-02-package-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-02-packaging-source-sha256.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-02-packaging-source-stage.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-02-payload-inventory.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-02-reuse-application-gates.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-02-transfer-manifest.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-02-transfer-receipt.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-chain-manifest-decoder.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-chain-manifest-read-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-chain-package-driver.sh",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-chain-package-launch-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-chain-poweroff-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-chain-receiver-launcher.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-chain-restart.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-chain-reuse-stage-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-chain-shutdown-driver.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-chain-source-stage-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-chain-source-stop-first.ps1",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-chain-source-stop.ps1",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-chain-source-transfer.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-chain-upload-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-final.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-notices-services-stop.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-linux-python-alias-json.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-musl-linker-diagnostic.sh",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-native-baseline-build.sh",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-native-linux-diagnostic.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-notices-evidence-checks-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-notices-evidence-checks-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-notices-evidence-collector.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-notices-evidence-outcomes-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-notices-evidence-reuse-driver.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-recipe-checks.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-toolchain-setup.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-windows-build.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-windows-candidate.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-windows-compile-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-windows-compile-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-windows-compile-03.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-windows-lifecycle-command-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-windows-lifecycle-command-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-windows-lifecycle-failed-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\package-v3-windows-lifecycle.json",
       "status": "PASS",
       "detail": ""
     },
@@ -783,12 +2648,122 @@
       "detail": ""
     },
     {
+      "name": "utf8:verification\\protocol-ide-appcontrol.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\protocol-ide-hierarchy-root-cause.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\protocol-ide-hierarchy-verification.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\protocol-ide-uri-java-probe.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\protocol-ide-uri-java-root-cause.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\protocol-ide-uri-java-verification.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\protocol-ide-uri-root-cause.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\protocol-ide-uri-verification.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\protocol-ide-verification.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:verification\\protocol-verification.json",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "utf8:verification\\public-candidate-scan.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\publication.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\python-cwd-v3-20261021T032507Z.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\python-cwd-v3-20261021T032837Z.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\python-cwd-v3-20261021T032926Z.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\python-cwd-v3-evidence-check.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\python-cwd-v3-findings.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\python-cwd-v3-private-20261021T033218Z-files.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\python-cwd-v3-private-20261021T033218Z.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\python-cwd-v3-private-20261021T033321Z-files.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\python-cwd-v3-private-20261021T033321Z.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\python-cwd-v3-private-copy.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\python-cwd-v3-probe.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\python-cwd-v3-winapi.py",
       "status": "PASS",
       "detail": ""
     },
@@ -813,7 +2788,147 @@
       "detail": ""
     },
     {
+      "name": "utf8:verification\\runtime-notices-v3-checks.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\runtime-notices-v3-reproduce.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\runtime-notices-v3-sources.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:verification\\rust-syntax-check.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-cli-feasibility.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-artifact-bindings.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-cli-smoke.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-delivery-checks.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-delivery-source-check.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-final-validation.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-http-smoke.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-local-validation.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-manifest-history.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-mcp-cancellation.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-mcp-smoke.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-publication.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-real-backends.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-release-cli-smoke.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-release-http-smoke.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-release-mcp-cancellation.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-release-mcp-smoke.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-release-real-backends.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-release-source-check.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-release-validation.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-review.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-review.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-ide-source-check.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-native-probe.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\sandbox-verification.json",
       "status": "PASS",
       "detail": ""
     },
@@ -834,6 +2949,31 @@
     },
     {
       "name": "utf8:verification\\standalone-audit.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\uri-linux-v3-verification.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\windows-final-packaging.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\windows-installer-lifecycle.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\windows-package-build.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\windows-portable-integrity.json",
       "status": "PASS",
       "detail": ""
     },
@@ -883,7 +3023,22 @@
       "detail": ""
     },
     {
+      "name": "toml:examples\\odin.sandbox.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "toml:examples\\rust-fixture\\Cargo.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "toml:packaging\\odin.host.example.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "json:.claude\\settings.local.json",
       "status": "PASS",
       "detail": ""
     },
@@ -948,6 +3103,11 @@
       "detail": ""
     },
     {
+      "name": "python_ast:crates\\odin-engine\\tests\\fixtures\\ide_peer.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "python_ast:crates\\odin-engine\\tests\\fixtures\\lsp_peer.py",
       "status": "PASS",
       "detail": ""
@@ -974,6 +3134,11 @@
     },
     {
       "name": "python_ast:scripts\\check_source.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:scripts\\client_setup_smoke.py",
       "status": "PASS",
       "detail": ""
     },
@@ -1018,6 +3183,11 @@
       "detail": ""
     },
     {
+      "name": "python_ast:scripts\\package_linux.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "python_ast:scripts\\package_tar.py",
       "status": "PASS",
       "detail": ""
@@ -1029,6 +3199,11 @@
     },
     {
       "name": "python_ast:scripts\\supply_chain.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:scripts\\verify_linux_installer.py",
       "status": "PASS",
       "detail": ""
     },
@@ -1048,12 +3223,207 @@
       "detail": ""
     },
     {
+      "name": "python_ast:tests\\real_ide_backends.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:tests\\real_native_inspections.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "python_ast:tests\\fixtures\\protocol_peer.py",
       "status": "PASS",
       "detail": ""
     },
     {
+      "name": "python_ast:verification\\engine-gap-verify.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\engine-ide-catalog-check.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\engine-ide-verify.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "python_ast:verification\\engine-verify.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\language-installers-v3-check-continuation-preflight.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\language-installers-v3-check-linux-classification.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\language-installers-v3-continue.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\language-installers-v3-record-host-block.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\language-installers-v3-summarize.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\language-sandbox-v3-direct-diagnostic.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\language-sandbox-v3-verify-evidence.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-build-services-shutdown-driver.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-evidence-outcomes-checks.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-evidence-outcomes-collector.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-evidence-outcomes-exporter-before-R4-E01.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-evidence-outcomes-exporter.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-evidence-outcomes-final-collector.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-evidence-outcomes-final-exporter.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-evidence-outcomes-final-installer-driver.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-linux-d3-run-linux-candidate-v3.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-linux-d3-stop-retired-d3-release.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-linux-final-artifact-receiver.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-linux-final-artifact-uploader.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-linux-final-export-linux-v3.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-linux-final-receiver-launcher.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-linux-final-run-linux-candidate-v5.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-linux-final-run-linux-doc-package-v3.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-linux-final-run-linux-installer-v3-before-owner-preflight.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-linux-final-run-linux-installer-v3.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-linux-notices-chain-manifest-decoder.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-linux-notices-chain-receiver-launcher.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-linux-notices-chain-shutdown-driver.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-notices-evidence-collector.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\package-v3-notices-evidence-reuse-driver.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\protocol-ide-uri-java-probe.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\python-cwd-v3-private-copy.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\python-cwd-v3-probe.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\python-cwd-v3-winapi.py",
       "status": "PASS",
       "detail": ""
     },
@@ -1168,6 +3538,16 @@
       "detail": ""
     },
     {
+      "name": "standalone_production_source:crates\\odin-core\\src\\execution.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates\\odin-core\\src\\languages.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "standalone_production_source:crates\\odin-core\\src\\lib.rs",
       "status": "PASS",
       "detail": ""
@@ -1188,6 +3568,16 @@
       "detail": ""
     },
     {
+      "name": "standalone_production_source:crates\\odin-core\\src\\sandbox.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates\\odin-core\\src\\sandbox_policy.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "standalone_production_source:crates\\odin-core\\src\\search.rs",
       "status": "PASS",
       "detail": ""
@@ -1204,6 +3594,21 @@
     },
     {
       "name": "standalone_production_source:crates\\odin-engine\\src\\flow.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates\\odin-engine\\src\\formatter.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates\\odin-engine\\src\\ide.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates\\odin-engine\\src\\inspections.rs",
       "status": "PASS",
       "detail": ""
     },
@@ -1639,6 +4044,201 @@
     },
     {
       "name": "schema_valid:code_actions",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:completion",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:completion",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:completion",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:hover",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:hover",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:hover",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:signature_help",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:signature_help",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:signature_help",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:completion_resolve",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:completion_resolve",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:completion_resolve",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:workspace_symbols",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:workspace_symbols",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:workspace_symbols",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:call_hierarchy",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:call_hierarchy",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:call_hierarchy",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:format_document",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:format_document",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:format_document",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:inlay_hints",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:inlay_hints",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:inlay_hints",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:inlay_hint_resolve",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:inlay_hint_resolve",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:inlay_hint_resolve",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:semantic_tokens",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:semantic_tokens",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:semantic_tokens",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:list_inspection_providers",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:list_inspection_providers",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:list_inspection_providers",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:run_inspections",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:run_inspections",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:run_inspections",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "scoped_contract:prepare_inspection_fix",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:prepare_inspection_fix",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "schema_valid:prepare_inspection_fix",
       "status": "PASS",
       "detail": ""
     },
@@ -2433,12 +5033,27 @@
       "detail": ""
     },
     {
+      "name": "no_stub_macro:crates\\odin\\tests\\auto_project.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "no_stub_macro:crates\\odin-core\\src\\config.rs",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "no_stub_macro:crates\\odin-core\\src\\error.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-core\\src\\execution.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-core\\src\\languages.rs",
       "status": "PASS",
       "detail": ""
     },
@@ -2463,6 +5078,16 @@
       "detail": ""
     },
     {
+      "name": "no_stub_macro:crates\\odin-core\\src\\sandbox.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-core\\src\\sandbox_policy.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "no_stub_macro:crates\\odin-core\\src\\search.rs",
       "status": "PASS",
       "detail": ""
@@ -2478,12 +5103,52 @@
       "detail": ""
     },
     {
+      "name": "no_stub_macro:crates\\odin-core\\tests\\host_execution_policy.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-core\\tests\\os_sandbox_native.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "no_stub_macro:crates\\odin-core\\tests\\process_contention.rs",
       "status": "PASS",
       "detail": ""
     },
     {
+      "name": "no_stub_macro:crates\\odin-core\\tests\\stdin_execution.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-core\\tests\\fixtures\\os_sandbox_workload.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-core\\tests\\fixtures\\stdin_workload.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "no_stub_macro:crates\\odin-engine\\src\\flow.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\formatter.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\ide.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\inspections.rs",
       "status": "PASS",
       "detail": ""
     },
@@ -2533,7 +5198,67 @@
       "detail": ""
     },
     {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\dispatch\\edits.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\dispatch\\exec.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\dispatch\\files.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\dispatch\\memory.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\dispatch\\meta.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\dispatch\\mod.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\dispatch\\semantic.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\dispatch\\symbols.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\dispatch\\transactions.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "no_stub_macro:crates\\odin-engine\\tests\\completion.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\tests\\debug_launch_policy.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\tests\\formatter_profiles.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\tests\\ide_tools.rs",
       "status": "PASS",
       "detail": ""
     },
@@ -2593,16 +5318,16 @@
       "detail": ""
     }
   ],
-  "rust_files": 34,
-  "rust_lines": 11494,
-  "rust_test_declarations": 146,
+  "rust_files": 59,
+  "rust_lines": 21524,
+  "rust_test_declarations": 275,
   "rust_tests_executed_by_this_check": 0,
   "rust_compilation": "NOT_PERFORMED_BY_STATIC_CHECK",
-  "tool_contracts": 72,
+  "tool_contracts": 85,
   "compiler_presence": {
-    "rustc": "<USERPROFILE>\\.cargo\\bin\\rustc.EXE",
-    "cargo": "<USERPROFILE>\\.cargo\\bin\\cargo.EXE",
-    "rustfmt": "<USERPROFILE>\\.cargo\\bin\\rustfmt.EXE"
+    "rustc": "C:\\Users\\steven\\.cargo\\bin\\rustc.EXE",
+    "cargo": "C:\\Users\\steven\\.cargo\\bin\\cargo.EXE",
+    "rustfmt": "C:\\Users\\steven\\.cargo\\bin\\rustfmt.EXE"
   },
   "not_proven": [
     "Rust syntax/types/linking",

@@ -1,114 +1,300 @@
 {
   "scope": "RUST_LEXICAL_DELIMITERS_ONLY",
   "rust_compilation": "NOT_RUN",
+  "scanned_path": "crates",
   "checks": [
     {
-      "path": "crates/odin/src/http.rs",
+      "path": "crates\\odin\\build.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin/src/main.rs",
+      "path": "crates\\odin\\src\\http.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin/src/mcp.rs",
+      "path": "crates\\odin\\src\\main.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-core/src/config.rs",
+      "path": "crates\\odin\\src\\mcp.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-core/src/error.rs",
+      "path": "crates\\odin\\src\\metadata.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-core/src/lib.rs",
+      "path": "crates\\odin\\src\\setup.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-core/src/memory.rs",
+      "path": "crates\\odin\\tests\\auto_project.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-core/src/paths.rs",
+      "path": "crates\\odin-core\\src\\config.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-core/src/search.rs",
+      "path": "crates\\odin-core\\src\\error.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-core/src/store.rs",
+      "path": "crates\\odin-core\\src\\execution.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-core/src/transaction.rs",
+      "path": "crates\\odin-core\\src\\languages.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-engine/src/flow.rs",
+      "path": "crates\\odin-core\\src\\lib.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-engine/src/lib.rs",
+      "path": "crates\\odin-core\\src\\memory.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-engine/src/schema.rs",
+      "path": "crates\\odin-core\\src\\paths.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-engine/src/shell.rs",
+      "path": "crates\\odin-core\\src\\process.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-engine/tests/invariants.rs",
+      "path": "crates\\odin-core\\src\\sandbox.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-protocol/src/dap.rs",
+      "path": "crates\\odin-core\\src\\sandbox_policy.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-protocol/src/lib.rs",
+      "path": "crates\\odin-core\\src\\search.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-protocol/src/lsp.rs",
+      "path": "crates\\odin-core\\src\\store.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-protocol/src/rpc.rs",
+      "path": "crates\\odin-core\\src\\transaction.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-protocol/src/text.rs",
+      "path": "crates\\odin-core\\tests\\fixtures\\os_sandbox_workload.rs",
       "status": "PASS",
       "errors": []
     },
     {
-      "path": "crates/odin-protocol/tests/fixture_protocols.rs",
+      "path": "crates\\odin-core\\tests\\fixtures\\stdin_workload.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-core\\tests\\host_execution_policy.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-core\\tests\\os_sandbox_native.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-core\\tests\\process_contention.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-core\\tests\\stdin_execution.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\dispatch\\edits.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\dispatch\\exec.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\dispatch\\files.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\dispatch\\memory.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\dispatch\\meta.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\dispatch\\mod.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\dispatch\\semantic.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\dispatch\\symbols.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\dispatch\\transactions.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\flow.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\formatter.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\ide.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\inspections.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\lib.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\occurrences.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\refactor.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\results.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\schema.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\shell.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\symbols.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\src\\text_replace.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\tests\\completion.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\tests\\debug_launch_policy.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\tests\\formatter_profiles.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\tests\\ide_tools.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-engine\\tests\\invariants.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-protocol\\src\\dap.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-protocol\\src\\lib.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-protocol\\src\\lsp.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-protocol\\src\\rpc.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-protocol\\src\\text.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-protocol\\src\\workspace.rs",
+      "status": "PASS",
+      "errors": []
+    },
+    {
+      "path": "crates\\odin-protocol\\tests\\fixture_protocols.rs",
       "status": "PASS",
       "errors": []
     }

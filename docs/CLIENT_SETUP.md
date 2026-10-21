@@ -88,9 +88,9 @@ C:\Odin\bin\odin.exe --config C:\Odin\host.toml setup --client codex --project-f
 
 ## 3. 實測狀態
 
-環境：Windows 10 Pro 10.0.19045，2026-10-21。隔離設定，未永久修改使用者設定。真實應用測試的 server 啟動目錄為專案內子目錄（`<scratch>/ws/src`），驗證 `--project-from-cwd`。來源 `0cc7d50`，binary SHA-256 `e1820f38…`（詳細紀錄：`verification/client-apps-local.json`）。
+環境：Windows 10 Pro 10.0.19045，2026-10-21。隔離設定，未永久修改使用者設定。真實應用測試的 server 啟動目錄為專案內子目錄（`<scratch>/ws/src`），驗證 `--project-from-cwd`。Claude Code 與 Codex CLI 於來源 `794371d`（binary SHA-256 `fb288ff1…`，entry 無 `\\?\` 前綴）重測；OpenCode 與 AGY 結果來自 `0cc7d50`（`e1820f38…`）。詳細紀錄：`verification/client-apps-local.json`。
 
-**本表紀錄綁定 `0cc7d50` 的 binary。** 之後的變更（entry 與註冊指令移除 `\\?\` 前綴、`default_outputs` 移除專案層級建議、`project add` 輸出欄位與 side-file 保護、`state_dir` 檢查、serve cwd 錯誤訊息）尚未以真實 client 重新執行。實測中 Claude Code、OpenCode、AGY 使用帶 `\\?\` 前綴的路徑；Codex CLI 以 `-c` 覆寫，使用去除前綴的路徑。
+**Claude Code、Codex CLI 列綁定 `794371d` binary；OpenCode、AGY 列綁定 `0cc7d50` binary**，後者未在 review 修正後重測（當時 entry 帶 `\\?\` 前綴）。
 
 | 對象 | 測試方式 | 結果 |
 |---|---|---|

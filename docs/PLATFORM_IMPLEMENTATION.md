@@ -34,7 +34,7 @@ symbolic-link output 被拒絕；setup 專用 create_new lock 防止合作中的
 
 `hook --project workspace` 產生短提示，並不自動註冊到任何代理。`hook --output <host-file>` 預覽 managed marker 區塊；明確 apply 同樣要求 CAS 與備份。`--disable` 只移除自己的完整 marker 區塊，保留前後文字；不完整或重複 marker 會拒絕。子 agent 沒有自己的 MCP 連線時，不宣稱共享工具。hook 內容沒有 shell script、eval 或 repository-supplied executable configuration。
 
-生成設定的 smoke（`scripts/client_setup_smoke.py`，七種 entry 127/127）會實際執行該 entry 的 command，完成 initialize、session default 行、tools/list 與 status 呼叫。這證明 generated argv 與 Odin 的連線；不是已在真正 client 應用中完成整合。真實應用（綁定 `0cc7d50` binary）：Claude Code、Codex CLI 工具呼叫 PASS；OpenCode、AGY 僅載入，工具呼叫 NOT_RUN；Gemini CLI、Cursor 未安裝、VS Code 未測 agent MCP，皆 NOT_RUN。詳見 CLIENT_SETUP.md §3。
+生成設定的 smoke（`scripts/client_setup_smoke.py`，七種 entry 127/127）會實際執行該 entry 的 command，完成 initialize、session default 行、tools/list 與 status 呼叫。這證明 generated argv 與 Odin 的連線；不是已在真正 client 應用中完成整合。真實應用（Claude Code／Codex 綁定 `794371d`，OpenCode／AGY 綁定 `0cc7d50` binary）：Claude Code、Codex CLI 工具呼叫 PASS；OpenCode、AGY 僅載入，工具呼叫 NOT_RUN；Gemini CLI、Cursor 未安裝、VS Code 未測 agent MCP，皆 NOT_RUN。詳見 CLIENT_SETUP.md §3。
 
 ## HTTP 與 Dashboard
 

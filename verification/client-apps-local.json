@@ -1,0 +1,89 @@
+{
+  "scope": "REAL_CLIENT_APPLICATIONS_LOAD_ODIN_WITH_ISOLATED_CONFIG",
+  "date_utc": "2026-10-21",
+  "platform": "Windows-10-10.0.19045",
+  "source_head_sha": "794371d157148479ada789321f7ef47154c19e63",
+  "binary_sha256": "fb288ff14c3c23939cbd3d3ac389d2377fa1e9b52436c913ed2f52659b8fa4b7",
+  "binary_note": "Release build of source_head_sha copied to a scratch directory. Claude Code and Codex were re-run on this binary; OpenCode and agy results come from the earlier binary noted per client.",
+  "host_config": "Fresh `odin init --root <scratch>/ws --name demo`; write/shell/debug disabled.",
+  "server_args": [
+    "--config",
+    "<host.toml>",
+    "serve",
+    "--transport",
+    "stdio",
+    "--project-from-cwd"
+  ],
+  "launch_directory": "<scratch>/ws/src (inside project demo)",
+  "prompt": "Call the odin MCP tool 'status' using the session default project announced in the odin server instructions. Reply with ONLY one line: PROJECT=<project id you passed> NAME=<name field from the result>.",
+  "user_configuration_changed": false,
+  "clients": [
+    {
+      "client": "claude",
+      "version": "2.1.306 (Claude Code)",
+      "command": "claude -p --mcp-config <generated .mcp.json content> --strict-mcp-config --allowedTools mcp__odin__status --max-turns 4 <prompt>",
+      "exit_code": 0,
+      "output": "PROJECT=demo NAME=Odin",
+      "server_loaded": "PASS",
+      "tool_call": "PASS"
+    },
+    {
+      "client": "codex",
+      "version": "codex-cli 0.163.0",
+      "command": "codex exec --skip-git-repo-check -c mcp_servers.odin.command='<binary>' -c mcp_servers.odin.args=[...server_args] <prompt>",
+      "exit_code": 0,
+      "output": "mcp: odin/status started; mcp: odin/status (completed); PROJECT=demo NAME=Odin",
+      "server_loaded": "PASS",
+      "tool_call": "PASS",
+      "note": "Entry paths no longer carry the \\?\\ prefix; an unrelated user HTTP MCP server may log errors."
+    },
+    {
+      "client": "opencode",
+      "version": "1.18.35",
+      "command": "opencode mcp list (project opencode.json written from `odin setup --client opencode --project-from-cwd` content)",
+      "exit_code": 0,
+      "output": "odin connected",
+      "server_loaded": "PASS",
+      "tool_call": "NOT_RUN",
+      "not_run_reason": "`opencode run` exited 1 with UnknownError from its model provider, also for a tool-free prompt in an unrelated directory.",
+      "tested_binary": {
+        "source_head_sha": "0cc7d501d3be684d28c93e4c2cec54ccaf01d784",
+        "binary_sha256": "e1820f3837ede237c1e53cddd2862529ecec33b8d9104a6808bc5d0915286c3a"
+      }
+    },
+    {
+      "client": "agy",
+      "version": "1.4.0",
+      "command": "agy mcp add odin -- <registration_command argv>; agy --print-timeout 240s -p <prompt>; agy mcp remove odin",
+      "exit_code": 0,
+      "output": "a tool required the \"mcp\" permission that headless mode cannot prompt for, so it was auto-denied",
+      "server_loaded": "PASS",
+      "tool_call": "NOT_RUN",
+      "not_run_reason": "Headless print mode denies MCP tool permission without an allow rule; --dangerously-skip-permissions was not used.",
+      "config_restored": "mcp_config.json SHA-256 identical to the pre-test backup",
+      "tested_binary": {
+        "source_head_sha": "0cc7d501d3be684d28c93e4c2cec54ccaf01d784",
+        "binary_sha256": "e1820f3837ede237c1e53cddd2862529ecec33b8d9104a6808bc5d0915286c3a"
+      }
+    },
+    {
+      "client": "gemini",
+      "server_loaded": "NOT_RUN",
+      "tool_call": "NOT_RUN",
+      "not_run_reason": "Gemini CLI not installed on this host."
+    },
+    {
+      "client": "cursor",
+      "server_loaded": "NOT_RUN",
+      "tool_call": "NOT_RUN",
+      "not_run_reason": "Cursor not installed on this host."
+    },
+    {
+      "client": "vscode",
+      "server_loaded": "NOT_RUN",
+      "tool_call": "NOT_RUN",
+      "not_run_reason": "VS Code installed but its agent MCP loading was not exercised."
+    }
+  ],
+  "generated_entry_launch_smoke": "scripts/client_setup_smoke.py 127/127 PASS on this binary (verification/client-setup-smoke.json; launches each written entry; does not run client applications)."
+}
