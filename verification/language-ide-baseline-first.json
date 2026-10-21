@@ -1,0 +1,330 @@
+{
+  "scope": "REAL_ODIN_MCP_SIX_LANGUAGE_IDE",
+  "mode": "baseline",
+  "status": "FAIL",
+  "platform": "win32",
+  "binary_sha256": "3491318bc59ff09c479c082e608ce4e1603ee03d99f75a7449e282f0ae601aa7",
+  "harness_sha256": "64a76d2cb9c038a8f2e0daf9cce537ee0d4d225c274c96321c413f7cc59e2582",
+  "started_utc": "2026-10-21T01:00:52Z",
+  "projects": [
+    {
+      "language": "rust",
+      "project": "rust_a",
+      "checks": [
+        {
+          "name": "project_execution",
+          "status": "FAIL",
+          "detail": "[WinError 4551] 應用程式控制原則已封鎖此檔案。"
+        }
+      ],
+      "source_sha256": {
+        "src/lib.rs": "3982a1672f9996ee60c04625edad2c670fe56b0b7d8e32aa3899f6aba25c1d93",
+        "src/consumer.rs": "1160c02aafd1289a0789f9d63995d9bd88e7bf46ba4dcf831e60fa8420428703"
+      },
+      "isolation": "baseline",
+      "status": "FAIL"
+    },
+    {
+      "language": "rust",
+      "project": "rust_b",
+      "checks": [
+        {
+          "name": "project_execution",
+          "status": "FAIL",
+          "detail": "[WinError 4551] 應用程式控制原則已封鎖此檔案。"
+        }
+      ],
+      "source_sha256": {
+        "src/lib.rs": "3982a1672f9996ee60c04625edad2c670fe56b0b7d8e32aa3899f6aba25c1d93",
+        "src/consumer.rs": "1160c02aafd1289a0789f9d63995d9bd88e7bf46ba4dcf831e60fa8420428703"
+      },
+      "isolation": "baseline",
+      "status": "FAIL"
+    },
+    {
+      "language": "python",
+      "project": "python_a",
+      "checks": [
+        {
+          "name": "project_execution",
+          "status": "FAIL",
+          "detail": "[WinError 4551] 應用程式控制原則已封鎖此檔案。"
+        }
+      ],
+      "source_sha256": {
+        "sample.py": "3633277baa2d8c27f955c0b2ba5136a47d7a013858b2b710e9fa5989fb0eadb6",
+        "consumer.py": "2225d0f87133a3f624b7e322da6848aeb4ce1b73091d0dd4bc68f2cdea551a07"
+      },
+      "isolation": "baseline",
+      "status": "FAIL"
+    },
+    {
+      "language": "python",
+      "project": "python_b",
+      "checks": [
+        {
+          "name": "project_execution",
+          "status": "FAIL",
+          "detail": "[WinError 4551] 應用程式控制原則已封鎖此檔案。"
+        }
+      ],
+      "source_sha256": {
+        "sample.py": "3633277baa2d8c27f955c0b2ba5136a47d7a013858b2b710e9fa5989fb0eadb6",
+        "consumer.py": "2225d0f87133a3f624b7e322da6848aeb4ce1b73091d0dd4bc68f2cdea551a07"
+      },
+      "isolation": "baseline",
+      "status": "FAIL"
+    },
+    {
+      "language": "typescript",
+      "project": "typescript_a",
+      "checks": [
+        {
+          "name": "project_execution",
+          "status": "FAIL",
+          "detail": "[WinError 4551] 應用程式控制原則已封鎖此檔案。"
+        }
+      ],
+      "source_sha256": {
+        "sample.ts": "d189338ba51ef8e6c3ceb37dbbb5772b7bf271e23a859b67f5aad5b6babeb18d",
+        "consumer.ts": "29f9bb3c0b618e2ba4ff3d9876d66456774971f064df855cd2bbf361b6cb2ef7"
+      },
+      "isolation": "baseline",
+      "status": "FAIL"
+    },
+    {
+      "language": "typescript",
+      "project": "typescript_b",
+      "checks": [
+        {
+          "name": "project_execution",
+          "status": "FAIL",
+          "detail": "[WinError 4551] 應用程式控制原則已封鎖此檔案。"
+        }
+      ],
+      "source_sha256": {
+        "sample.ts": "d189338ba51ef8e6c3ceb37dbbb5772b7bf271e23a859b67f5aad5b6babeb18d",
+        "consumer.ts": "29f9bb3c0b618e2ba4ff3d9876d66456774971f064df855cd2bbf361b6cb2ef7"
+      },
+      "isolation": "baseline",
+      "status": "FAIL"
+    },
+    {
+      "language": "go",
+      "project": "go_a",
+      "checks": [
+        {
+          "name": "project_execution",
+          "status": "FAIL",
+          "detail": "[WinError 4551] 應用程式控制原則已封鎖此檔案。"
+        }
+      ],
+      "source_sha256": {
+        "sample.go": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+        "consumer.go": "2bb4de9c5c3927bfa3d87c359fd4553761391fe35d7ae310be1456a23e727041"
+      },
+      "isolation": "baseline",
+      "status": "FAIL"
+    },
+    {
+      "language": "go",
+      "project": "go_b",
+      "checks": [
+        {
+          "name": "project_execution",
+          "status": "FAIL",
+          "detail": "[WinError 4551] 應用程式控制原則已封鎖此檔案。"
+        }
+      ],
+      "source_sha256": {
+        "sample.go": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+        "consumer.go": "2bb4de9c5c3927bfa3d87c359fd4553761391fe35d7ae310be1456a23e727041"
+      },
+      "isolation": "baseline",
+      "status": "FAIL"
+    },
+    {
+      "language": "java",
+      "project": "java_a",
+      "checks": [
+        {
+          "name": "project_execution",
+          "status": "FAIL",
+          "detail": "[WinError 4551] 應用程式控制原則已封鎖此檔案。"
+        }
+      ],
+      "source_sha256": {
+        "src/fixture/Greeter.java": "c237ba9235182698ee92d23ab1a690b1e34e80232cd824329cee5090350e8cab",
+        "src/fixture/Consumer.java": "a6719b9013f6853a3f56d9e55e8686379d77f525a648851f32039cb8fd8ff1b8"
+      },
+      "isolation": "baseline",
+      "status": "FAIL"
+    },
+    {
+      "language": "java",
+      "project": "java_b",
+      "checks": [
+        {
+          "name": "project_execution",
+          "status": "FAIL",
+          "detail": "[WinError 4551] 應用程式控制原則已封鎖此檔案。"
+        }
+      ],
+      "source_sha256": {
+        "src/fixture/Greeter.java": "c237ba9235182698ee92d23ab1a690b1e34e80232cd824329cee5090350e8cab",
+        "src/fixture/Consumer.java": "a6719b9013f6853a3f56d9e55e8686379d77f525a648851f32039cb8fd8ff1b8"
+      },
+      "isolation": "baseline",
+      "status": "FAIL"
+    },
+    {
+      "language": "csharp",
+      "project": "csharp_a",
+      "checks": [
+        {
+          "name": "fixture_offline_restore",
+          "status": "FAIL"
+        },
+        {
+          "name": "project_execution",
+          "status": "FAIL",
+          "detail": "fixture_offline_restore"
+        }
+      ],
+      "source_sha256": {
+        "Greeter.cs": "c511c991918b734eb5b97e4ccd8b81298568523ddf3e1e7d606558e7c51f3f1c",
+        "Consumer.cs": "969e14633ff982433f504aee64a26427ab5a74fbfc1f6f2a96cff8d7ad514782"
+      },
+      "isolation": "baseline",
+      "restore": {
+        "exit_code": 1,
+        "stdout": "  正在判斷要還原的專案...\n<tools_root>\\dotnet\\sdk\\10.0.402\\NuGet.targets(782,5): error : The type initializer for 'NuGet.Configuration.ConfigurationDefaults' threw an exception. [<fixture>\\projects\\csharp_a\\Fixture.csproj]\n<tools_root>\\dotnet\\sdk\\10.0.402\\NuGet.targets(782,5): error :   Value cannot be null. (Parameter 'path1') [<fixture>\\projects\\csharp_a\\Fixture.csproj]\n",
+        "stderr": ""
+      },
+      "status": "FAIL"
+    },
+    {
+      "language": "csharp",
+      "project": "csharp_b",
+      "checks": [
+        {
+          "name": "fixture_offline_restore",
+          "status": "FAIL"
+        },
+        {
+          "name": "project_execution",
+          "status": "FAIL",
+          "detail": "fixture_offline_restore"
+        }
+      ],
+      "source_sha256": {
+        "Greeter.cs": "c511c991918b734eb5b97e4ccd8b81298568523ddf3e1e7d606558e7c51f3f1c",
+        "Consumer.cs": "969e14633ff982433f504aee64a26427ab5a74fbfc1f6f2a96cff8d7ad514782"
+      },
+      "isolation": "baseline",
+      "restore": {
+        "exit_code": 1,
+        "stdout": "  正在判斷要還原的專案...\n<tools_root>\\dotnet\\sdk\\10.0.402\\NuGet.targets(782,5): error : The type initializer for 'NuGet.Configuration.ConfigurationDefaults' threw an exception. [<fixture>\\projects\\csharp_b\\Fixture.csproj]\n<tools_root>\\dotnet\\sdk\\10.0.402\\NuGet.targets(782,5): error :   Value cannot be null. (Parameter 'path1') [<fixture>\\projects\\csharp_b\\Fixture.csproj]\n",
+        "stderr": ""
+      },
+      "status": "FAIL"
+    }
+  ],
+  "setup_errors": [],
+  "boundary": "Baseline profiles explicitly run on the host without OS isolation",
+  "host_config_sha256": "f60ce0706ef20611ebea7e53cd5086240a2b152a88d9cbd16ea89beff06d6133",
+  "backends": {
+    "rust": {
+      "program_sha256": "6f4bef66261261fcb43131be8720bab817d403a09edec7455c371974b90bdb7e",
+      "version_argv": [
+        "C:\\Users\\steven\\.cargo\\bin\\rust-analyzer.exe",
+        "--version"
+      ],
+      "version_exit_code": 0,
+      "version_stdout": "rust-analyzer 1.90.0 (1159e78c 2025-09-14)\n",
+      "version_stderr": ""
+    },
+    "python": {
+      "program_sha256": "cf2f6100b9ea1d64cf2088204972693b91bd8c7e5fc731a86a891f22782dee77",
+      "version_argv": [
+        "<tools_root>\\python\\Scripts\\python.exe",
+        "-c",
+        "import importlib.metadata;print(importlib.metadata.version('basedpyright'))"
+      ],
+      "version_exit_code": 0,
+      "version_stdout": "1.40.2\n",
+      "version_stderr": ""
+    },
+    "typescript": {
+      "program_sha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
+      "version_argv": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "<tools_root>\\typescript\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+        "--version"
+      ],
+      "version_exit_code": 0,
+      "version_stdout": "6.0.2\n",
+      "version_stderr": ""
+    },
+    "go": {
+      "program_sha256": "73d07cc17551502d9df4c64d981e2e30239dffb74596c3338305338b3b7e3340",
+      "version_argv": [
+        "<tools_root>\\go-work\\bin\\gopls.exe",
+        "version"
+      ],
+      "version_exit_code": 0,
+      "version_stdout": "golang.org/x/tools/gopls v0.24.0\n",
+      "version_stderr": ""
+    },
+    "java": {
+      "program_sha256": "3670faa7de6af1f8656eafe15734c020496f0e934464041c3a8c57f41d5c25f2",
+      "version_argv": [
+        "<tools_root>\\jdk\\jdk-25.0.4.1+1\\bin\\java.exe",
+        "--version"
+      ],
+      "version_exit_code": 0,
+      "version_stdout": "openjdk 25.0.4.1 2026-08-18 LTS\nOpenJDK Runtime Environment Microsoft-14951867 (build 25.0.4.1+1-LTS)\nOpenJDK 64-Bit Server VM Microsoft-14951867 (build 25.0.4.1+1-LTS, mixed mode, sharing)\n",
+      "version_stderr": ""
+    },
+    "csharp": {
+      "program_sha256": "7cb2d7e69fe092b75b3ef15b061864618bff0ef4416490d49977c032f2216f8f",
+      "version_argv": [
+        "<tools_root>\\csharp-ls\\csharp-ls.exe",
+        "--version"
+      ],
+      "version_exit_code": 0,
+      "version_stdout": "csharp-ls, 0.28.0 (Klebiškis)+72671fc7fa810c158864e72485db68e8b9b25c3d\n",
+      "version_stderr": ""
+    }
+  },
+  "counts": {
+    "FAIL": 14
+  },
+  "matrix": {
+    "rust": {
+      "rust_a": "FAIL",
+      "rust_b": "FAIL"
+    },
+    "python": {
+      "python_a": "FAIL",
+      "python_b": "FAIL"
+    },
+    "typescript": {
+      "typescript_a": "FAIL",
+      "typescript_b": "FAIL"
+    },
+    "go": {
+      "go_a": "FAIL",
+      "go_b": "FAIL"
+    },
+    "java": {
+      "java_a": "FAIL",
+      "java_b": "FAIL"
+    },
+    "csharp": {
+      "csharp_a": "FAIL",
+      "csharp_b": "FAIL"
+    }
+  },
+  "transcript_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

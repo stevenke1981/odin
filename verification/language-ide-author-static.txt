@@ -1,0 +1,2 @@
+COMMAND: python -m py_compile tests/real_ide_backends.py
+EXIT_CODE=0

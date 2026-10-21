@@ -1,0 +1,22 @@
+{
+  "scope": "REAL_DOTNET_FIXTURE_CONFIGURATION_NOT_LSP",
+  "status": "PASS",
+  "command": [
+    "E:\\odin\\.odin\\validation-tools\\dotnet\\dotnet.exe",
+    "restore",
+    "Fixture.csproj",
+    "--configfile",
+    "NuGet.Config"
+  ],
+  "exit_code": 0,
+  "added_runtime_environment_keys": [
+    "ProgramFiles",
+    "ProgramFiles(x86)",
+    "ProgramW6432",
+    "ProgramData",
+    "ALLUSERSPROFILE"
+  ],
+  "stdout": "  Determining projects to restore...\n  Restored <fixture>\\Fixture.csproj (in 55 ms).\n",
+  "stderr": "",
+  "source": "Prior isolated runtime environment failure is preserved in language-ide-baseline-first.json; no OS/global environment or SDK changes."
+}

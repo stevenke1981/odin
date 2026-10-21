@@ -1,0 +1,35 @@
+{
+  "scope": "HARNESS_CONFIGURATION_ONLY_NOT_REAL_LSP",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "rust:fixture_toml_and_positions",
+      "status": "PASS"
+    },
+    {
+      "name": "python:fixture_toml_and_positions",
+      "status": "PASS"
+    },
+    {
+      "name": "typescript:fixture_toml_and_positions",
+      "status": "PASS"
+    },
+    {
+      "name": "go:fixture_toml_and_positions",
+      "status": "PASS"
+    },
+    {
+      "name": "java:fixture_toml_and_positions",
+      "status": "PASS"
+    },
+    {
+      "name": "csharp:fixture_toml_and_positions",
+      "status": "PASS"
+    }
+  ],
+  "command": "Python fixture/TOML/position configuration checks (no backend process)",
+  "exit_code": 0,
+  "source_sha256": "a80020877fab664fd869d824a98f11317f2c894e0d283615052a662e24d1ea64",
+  "real_lsp_status": "NOT_RUN: candidate WinError4551 preserved in language-ide-baseline-first.json",
+  "dotnet_configuration": "PASS: isolated environment correction in language-ide-dotnet-env.json"
+}

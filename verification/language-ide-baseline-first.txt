@@ -1,0 +1,15 @@
+rust_a:project_execution:FAIL
+rust_b:project_execution:FAIL
+python_a:project_execution:FAIL
+python_b:project_execution:FAIL
+typescript_a:project_execution:FAIL
+typescript_b:project_execution:FAIL
+go_a:project_execution:FAIL
+go_b:project_execution:FAIL
+java_a:project_execution:FAIL
+java_b:project_execution:FAIL
+csharp_a:fixture_offline_restore:FAIL
+csharp_a:project_execution:FAIL
+csharp_b:fixture_offline_restore:FAIL
+csharp_b:project_execution:FAIL
+{"status": "FAIL", "counts": {"FAIL": 14}, "matrix": {"rust": {"rust_a": "FAIL", "rust_b": "FAIL"}, "python": {"python_a": "FAIL", "python_b": "FAIL"}, "typescript": {"typescript_a": "FAIL", "typescript_b": "FAIL"}, "go": {"go_a": "FAIL", "go_b": "FAIL"}, "java": {"java_a": "FAIL", "java_b": "FAIL"}, "csharp": {"csharp_a": "FAIL", "csharp_b": "FAIL"}}}
