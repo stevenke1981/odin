@@ -45,7 +45,8 @@ def archive(name):
 def binding(name, note=None):
     value = load(name)
     result = {'report': name, 'report_sha256': sha(ROOT/name)}
-    for key in ('scope', 'status', 'binary_sha256', 'source_head_sha', 'exit_code', 'counts', 'matrix'):
+    for key in ('scope', 'status', 'binary_sha256', 'source_head_sha', 'exit_code', 'counts', 'matrix',
+                'source_review', 'documentation_evidence_review', 'release_approval'):
         if key in value:
             result[key] = value[key]
     if note:
@@ -293,6 +294,8 @@ def main():
         actual = next(item for item in evidence['requirements'] if item['id'] == entry['id'])
         entry['evidence'] = actual['status']+'; verification/feature-evidence.json#'+entry['id']
         entry['current'] = actual['implementation']
+        if entry['id'] in relevant:
+            entry['implementation_summary'] = actual['summary']
     features['note'] = 'Current v3 scope is verification/feature-evidence.json language_installers_v3; historical results do not certify the blocked final Windows candidate. No requirement is fully accepted.'
     write('verification/delivery-status.json', delivery)
     write('verification/feature-evidence.json', evidence)
