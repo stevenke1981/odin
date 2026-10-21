@@ -1,6 +1,6 @@
 # Odin 引擎補完與驗證範圍
 
-這次變更以原生工具契約、策略與可預覽修改為範圍。72 個工具由 `scripts/generate_catalog.py` 生成到兩份 `tools.json`；`scripts/generate_docs.py --api-only` 更新 API，不會改動另外管理的發布與對照文件。Odin 不載入或呼叫 Serena。
+原生工具契約、策略與可預覽修改目前共 85 個工具，由 `scripts/generate_catalog.py` 生成到兩份 `tools.json`；`scripts/generate_docs.py --api-only` 更新 API，不會改動另外管理的發布與對照文件。新增 IDE 查詢、格式化交易與 native inspections 詳見 [IDE_IMPLEMENTATION.md](IDE_IMPLEMENTATION.md)。Odin 不載入或呼叫 Serena。
 
 ## 已實作行為
 
@@ -24,7 +24,7 @@ Flow 展開引用前會以借用走訪計算 escaped JSON bytes 和節點數，�
 
 include_body 查詢於每檔 symbols RPC 前保留單一來源快照，回覆後核對現檔內容一致；RPC 期間有外部改寫便回 CONFLICT，不能把舊 range 套用到新 body。find_symbol 先跳過 offset，才擷取和複製該頁的 body，最多只保留 limit 筆及下一頁旗標；metadata 和 escaped body 在複製前累計限制 16 MiB，分組輸出會預留重複資料的預算。rename/CodeAction 的來源快照維持 64 MiB 上限，先檢查才加入 map。
 
-debug_start 回 project-scoped session UUID。debug_batch 最多 32 個 allowlisted DAP requests，核對 session ID、每步回 request ID、pending ticket 或真實錯誤；全批次有 host RPC deadline，逾時明確標示 adapter-side outcome unknown。這不是 Python REPL。host 的 allow_debug 代表授權除錯器執行 target；adapter 繼承的環境採 allowlist，launch payload 仍是具執行權限的除錯輸入，沒有 OS 沙箱保證。
+debug_start 回 project-scoped session UUID。debug_batch 最多 32 個 allowlisted DAP requests，核對 session ID、每步回 request ID、pending ticket 或真實錯誤；全批次有 host RPC deadline，逾時明確標示 adapter-side outcome unknown。這不是 Python REPL。host 的 allow_debug 代表授權除錯器執行 target；adapter 繼承環境採 allowlist。可另以 debug_launches 固定 launch/attach/restart payload，並以明確的 MXC 配置限制 OS 權限。沒有這些配置時，保留原先明示的 privileged host debug 模式。
 
 `debug_request` 的原生命令 `cancel_ticket` 接受 `arguments.ticket`，對 launch/attach ticket 請求 best-effort 取消，回 outcome_may_be_unknown，不宣稱 debuggee 一定沒啟動。debug_stop 會要求 terminateDebuggee 並收尾 adapter 程序；restart_language_server 先移除 client 再執行 shutdown/exit，沒有持 map mutex 跨 shutdown await。
 

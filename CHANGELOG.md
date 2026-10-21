@@ -1,6 +1,25 @@
 # Changelog
 
-## 0.2.0 — Windows native preview, 2026-10-21
+## 0.2.0 — Sandbox and IDE extension, 2026-10-21
+
+Expanded to 85 native tool contracts with completion/resolve, hover, signature
+help, workspace/call hierarchy queries, formatting transactions, semantic tokens
+and inlay hints. Added native Clippy/Ruff/ESLint findings and safe-fix previews.
+Inspections require an explicit sandbox and read-only project grants.
+
+Added optional hash-pinned Windows MXC ProcessContainer execution with file
+grants, network denial, private scratch and fail-closed launch. LSP, DAP and
+fixed commands share that boundary when configured. Added immutable host-owned
+debug launch payloads and 28 declarative language setup profiles. The registry
+does not assert installation or language acceptance.
+
+Independent review addressed hierarchy query budgets, cancellation cleanup and
+scoped diagnostic summaries. Source-bound Windows gates and real backend
+reports distinguish execution, unavailable capabilities and remaining gaps.
+Linux/macOS sandboxing, every-language IDE parity and all 40 original acceptance
+criteria remain separate from this Windows preview. No cloud CI was dispatched.
+
+## 0.2.0 — Windows native preview baseline, 2026-10-21 (historical)
 
 Expanded to 72 native tool contracts. Added bounded symbol filters/paging,
 occurrence selection, backend edit-only refactors, ordered resource WorkspaceEdits,

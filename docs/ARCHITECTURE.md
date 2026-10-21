@@ -144,7 +144,7 @@ Shell 只接受 host 固定 program/argv profile，輸出有界、環境 allowli
 
 ## 10. 獨立產品邊界
 
-生產 Rust 沒有 SerenaBridge／BridgeConfig／上游工具分支。MCP 只發佈自己的 72 個契約。`status` 明列 standalone／external_tool_bridge；doctor 預設 presence-only，`--probe-lsp` 才做真實 initialize，仍不把握手等同全索引完成。
+生產 Rust 沒有 SerenaBridge／BridgeConfig／上游工具分支。MCP 只發佈自己的 85 個契約。`status` 明列 standalone／external_tool_bridge；doctor 預設 presence-only，`--probe-lsp` 才做真實 initialize，`--probe-sandbox` 執行有 hash pin 的 native capability probe；握手／probe 都不等同全索引或 workload 驗收完成。
 
 `ProjectConfig` 保留 `deny_unknown_fields`；舊 bridge 設定不是靜默無效，而是載入錯誤。原生工具共用 engine、scope、policy 與 journal；外部 LSP／DAP、Shell 命令依舊需要可信任 host 設定，不是安全沙箱。
 

@@ -18,6 +18,14 @@
 
 Rust fixture tests 只驗證 Odin 的 transport client 與可控制的 peer；真實協議差異另外驗收。`cargo test -p odin-protocol --test fixture_protocols real_rust_analyzer_smoke -- --ignored --nocapture` 需已安裝 rust-analyzer，不能默認算入普通測試通過數。
 
+Native MXC 驗收另需操作者指定 executor path 與 SHA-256，執行 opt-in
+`os_sandbox_native` tests；一般 workspace 的 ignored 數不代表已執行。
+測 filesystem/network deny、descendants、取消／逾時及 policy/scratch cleanup。
+`tests/real_native_inspections.py` 必須對真實 binary、MXC 與三種 analyzer 驗證
+findings、source freshness、唯讀分析及 fix preview/apply/rollback。
+新候選可用 `scripts/final_verify.py --output ... --logs-dir ... --artifact-prefix ...`
+保存獨立紀錄，避免覆蓋歷史證據；換行先正規 LF 才計算交叉報告 digest。
+
 ## 第三層：真實後端矩陣
 
 至少 Rust/rust-analyzer、Python、TypeScript 各自記錄 OS、server version、workspace config、符號、跨檔 references、rename、diagnostics。DAP 需實際啟動 debuggee、斷點、單步、variables、退出。獨立性回歸需在未安裝 Serena 的環境執行，並檢查舊配置與舊工具明確拒絕；不得靠上游轉發通過功能驗收。
