@@ -1,0 +1,91 @@
+{
+  "scope": "EXACT_NOTICE_COLLECTOR_AND_REUSED_EXPORTER_INERT_REGRESSION",
+  "status": "PASS",
+  "finding": "R4-E01",
+  "source_fix": "Require original runner PASS without driver_error and mandatory exact v5; new collector additionally distinguishes previously executed application gates from new docs/installer work.",
+  "actual_command_exit_code": 0,
+  "native_or_backend_processes_executed": 0,
+  "inert_checks": [
+    {
+      "name": "control_complete_runner",
+      "expected_accepted": true,
+      "exporter_accepted": true,
+      "collector_accepted": true,
+      "status": "PASS"
+    },
+    {
+      "name": "all_commands_zero_but_runner_fail",
+      "expected_accepted": false,
+      "exporter_accepted": false,
+      "collector_accepted": false,
+      "status": "PASS"
+    },
+    {
+      "name": "all_commands_zero_but_runner_fail_and_error",
+      "expected_accepted": false,
+      "exporter_accepted": false,
+      "collector_accepted": false,
+      "status": "PASS"
+    },
+    {
+      "name": "all_commands_zero_but_runner_pass_with_error",
+      "expected_accepted": false,
+      "exporter_accepted": false,
+      "collector_accepted": false,
+      "status": "PASS"
+    },
+    {
+      "name": "collector_rejects_legacy_driver",
+      "expected_accepted": false,
+      "collector_accepted": false,
+      "status": "PASS"
+    },
+    {
+      "name": "collector_rejects_missing_driver",
+      "expected_accepted": false,
+      "collector_accepted": false,
+      "status": "PASS"
+    }
+  ],
+  "evidence": {
+    "collector": {
+      "path": "verification/package-v3-notices-evidence-collector.py",
+      "sha256": "823376d8b69cf5ea7aaea45c38571895678cf2652e29d645afef63a6f7fceaf8"
+    },
+    "reuse_driver": {
+      "path": "verification/package-v3-notices-evidence-reuse-driver.py",
+      "sha256": "d13dbcc972a91acb82114d8e46bc73f93396e0bc8dab53e95474c9901cc12dcf"
+    },
+    "checks": {
+      "path": "verification/package-v3-notices-evidence-checks-report.json",
+      "sha256": "4875b5828ae3d3fe53e2c1f1608bd83a7e90adb585752683b768f2f8ff1fbd22"
+    },
+    "actual_command": {
+      "path": "verification/package-v3-notices-evidence-checks-command.json",
+      "sha256": "6b474a69653f74c791d59ff815a116db83d304c822f7b436188e7225e08fbbaf"
+    },
+    "actual_log": {
+      "path": "verification/package-v3-notices-evidence-checks-log.txt",
+      "sha256": "3b51c92e124a8ab33e15e167477a8f9e933e7a02613e80b875029ae8d2a1281d",
+      "original_host_sha256": "7e11e061a26f266b5f2067f7292bda8cd38645831bf6d85509c5261ba8b9b359"
+    },
+    "exporter": {
+      "path": "verification/package-v3-linux-final-export-linux-v3.py",
+      "sha256": "150744b5682576421e0f26f4c6dbf608205e4ee4b70b6d490360c8964876114a"
+    },
+    "check_source": {
+      "path": "verification/package-v3-evidence-outcomes-checks.py",
+      "sha256": "48f1feebfb7efcad5ad3b65818394eed43874bfdb173d54ff9d0c07a9e85b91a"
+    },
+    "original_execution_report": {
+      "path": "verification/package-v3-linux-final.json",
+      "sha256": "c1a9f4a750660873c55be1294a431c048fa3f0094c6f1a314d46f448cb62af93"
+    },
+    "previous_outcome_proof": {
+      "path": "verification/package-v3-evidence-outcomes-02.json",
+      "sha256": "07fc02e8a3b57e9e74b4f59a40061cdf23d32e01ad5d49828add838b44c9aff4"
+    }
+  },
+  "original_04_and_functional_candidate_evidence_preserved": true,
+  "normalization": "Public inert stdout uses LF; the actual command receipt keeps the original host stdout digest, also retained in the actual_log reference."
+}

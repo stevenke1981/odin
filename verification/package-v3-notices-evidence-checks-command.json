@@ -1,0 +1,20 @@
+{
+  "scope": "ACTUAL_INERT_NOTICE_COLLECTOR_OUTCOME_REGRESSION",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-X",
+    "utf8",
+    "E:\\odin\\.odin\\validation-tools\\packaging-v3\\transfer\\check-linux-evidence-outcomes-v3.py",
+    "E:\\odin\\.odin\\validation-tools\\packaging-v3\\transfer\\export-linux-v3.py",
+    "E:\\odin\\.odin\\collect_linux_notices_v3.py",
+    "E:\\odin\\.odin\\validation-tools\\packaging-v3\\linux-notices-outcomes-01.json"
+  ],
+  "cwd": "E:/odin",
+  "exit_code": 0,
+  "status": "PASS",
+  "elapsed_seconds": 0.064,
+  "log": "linux-notices-outcomes-01.txt",
+  "log_sha256": "7e11e061a26f266b5f2067f7292bda8cd38645831bf6d85509c5261ba8b9b359",
+  "report": "linux-notices-outcomes-01.json",
+  "report_sha256": "4875b5828ae3d3fe53e2c1f1608bd83a7e90adb585752683b768f2f8ff1fbd22"
+}
