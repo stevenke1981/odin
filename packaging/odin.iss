@@ -16,6 +16,7 @@ AppPublisher=Odin contributors
 DefaultDirName={localappdata}\Programs\Odin
 DefaultGroupName=Odin
 PrivilegesRequired=lowest
+MinVersion=10.0
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 OutputDir={#OutputPath}

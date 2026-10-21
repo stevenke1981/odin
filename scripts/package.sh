@@ -7,4 +7,9 @@ cargo build -p odin-agent --release --locked
 target/release/odin metadata > /dev/null
 output="${1:-dist}"
 mkdir -p "$output"
-python3 scripts/package_tar.py --binary target/release/odin --output "$output"
+binary_sha="$(sha256sum target/release/odin | cut -d ' ' -f 1)"
+if [[ "$(uname -s)" == Linux ]] && target/release/odin metadata | python3 -c 'import json,sys; sys.exit(json.load(sys.stdin)["target"]!="x86_64-unknown-linux-musl")'; then
+  python3 scripts/package_linux.py --binary target/release/odin --expected-binary-sha256 "$binary_sha" --output "$output"
+else
+  python3 scripts/package_tar.py --binary target/release/odin --expected-binary-sha256 "$binary_sha" --output "$output"
+fi

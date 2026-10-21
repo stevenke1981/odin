@@ -1,0 +1,20 @@
+Microsoft Visual C++ Runtime
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+This Windows package includes unmodified, Microsoft-signed Visual C++ runtime
+DLLs from the Visual Studio 2022 VC/Redist/MSVC/<version>/x64/Microsoft.VC143.CRT
+directory, only where required by the packaged executable's PE imports.
+Their source, version, SHA-256 and signature are recorded in
+windows-runtime-dependencies.json and in the package build manifest.
+
+Microsoft runtime DLLs are proprietary Microsoft software, not covered by
+Odin's MIT license. Their use and redistribution are governed by the applicable
+Microsoft Visual Studio license terms and Distributable Code list:
+
+https://visualstudio.microsoft.com/license-terms/vs2022-ga-diagnosticbuildtools/
+https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution
+https://learn.microsoft.com/en-us/cpp/windows/redistributing-visual-cpp-files
+
+The Universal C Runtime and Windows system DLLs are supplied by the supported
+Windows operating system (Windows 10/11 x64); they are not copied into this
+package. Installing Odin does not replace Windows system runtime files.

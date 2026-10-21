@@ -1,0 +1,23 @@
+{
+  "scope": "DIAGNOSTIC_CROSS_BUILD_NOT_FINAL",
+  "status": "FAIL",
+  "source_revision": "9017908f8759de74d5c3deb89e7bdb8aedcf83fd",
+  "source_dirty": true,
+  "command": [
+    "cargo",
+    "build",
+    "-p",
+    "odin-agent",
+    "--release",
+    "--target",
+    "x86_64-unknown-linux-musl",
+    "--locked"
+  ],
+  "exit_code": 101,
+  "output": "package-v3-linux-diagnostic-build-02.txt",
+  "output_sha256": "282a6eee6f7473a7ca3fe4d5fdd019456f0e42b094f2be9fee6f336dc392ceee",
+  "target": "x86_64-unknown-linux-musl",
+  "compiler": "rustc 1.90.0",
+  "linker": "Zig 0.15.2 cc -target x86_64-linux-musl",
+  "timestamp_utc": "2026-10-21T02:48:50.522742+00:00"
+}

@@ -1,0 +1,162 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.27
+   Compiling libc v0.2.191
+   Compiling cfg-if v1.0.5
+   Compiling memchr v2.8.3
+   Compiling smallvec v1.16.3
+   Compiling pin-project-lite v0.2.17
+   Compiling serde_core v1.0.228
+   Compiling once_cell v1.21.4
+   Compiling itoa v1.0.18
+   Compiling bytes v1.12.1
+   Compiling stable_deref_trait v1.2.1
+   Compiling parking_lot_core v0.9.12
+   Compiling futures-core v0.3.34
+   Compiling scopeguard v1.2.0
+   Compiling lock_api v0.4.14
+   Compiling bitflags v2.13.2
+   Compiling log v0.4.34
+   Compiling serde v1.0.228
+   Compiling rustix v1.1.5
+   Compiling linux-raw-sys v0.12.1
+   Compiling version_check v0.9.5
+   Compiling aho-corasick v1.1.5
+   Compiling generic-array v0.14.7
+   Compiling tracing-core v0.1.36
+   Compiling litemap v0.8.3
+   Compiling errno v0.3.14
+   Compiling syn v3.0.9
+   Compiling syn v2.0.119
+   Compiling signal-hook-registry v1.4.8
+   Compiling mio v1.2.4
+   Compiling parking_lot v0.12.5
+   Compiling socket2 v0.6.5
+   Compiling regex-syntax v0.8.11
+   Compiling futures-sink v0.3.34
+   Compiling writeable v0.6.4
+   Compiling io-lifetimes v3.0.1
+   Compiling io-lifetimes v2.0.4
+   Compiling http v1.5.0
+   Compiling regex-automata v0.4.18
+   Compiling shlex v2.0.1
+   Compiling synstructure v0.14.0
+   Compiling io-extras v0.19.0
+   Compiling typenum v1.20.1
+   Compiling serde_json v1.0.145
+   Compiling icu_normalizer_data v2.3.0
+   Compiling find-msvc-tools v0.1.15
+   Compiling icu_properties_data v2.3.0
+   Compiling crossbeam-utils v0.8.23
+   Compiling getrandom v0.3.4
+   Compiling utf8_iter v1.0.4
+   Compiling ryu v1.0.23
+   Compiling tokio-macros v2.6.1
+   Compiling serde_derive v1.0.228
+   Compiling tracing-attributes v0.1.31
+   Compiling zerofrom-derive v0.1.8
+   Compiling yoke-derive v0.8.4
+   Compiling zerovec-derive v0.11.6
+   Compiling displaydoc v0.2.7
+   Compiling tokio v1.48.0
+   Compiling futures-macro v0.3.34
+   Compiling cc v1.9.0
+   Compiling zerofrom v0.1.8
+   Compiling tracing v0.1.41
+   Compiling http-body v1.1.0
+   Compiling yoke v0.8.3
+   Compiling futures-channel v0.3.34
+   Compiling crossbeam-epoch v0.9.21
+   Compiling pkg-config v0.3.34
+   Compiling slab v0.4.12
+   Compiling futures-task v0.3.34
+   Compiling futures-io v0.3.34
+   Compiling vcpkg v0.2.15
+   Compiling cap-primitives v4.0.3
+   Compiling futures-util v0.3.34
+   Compiling zerovec v0.11.8
+   Compiling zerotrie v0.2.5
+   Compiling libsqlite3-sys v0.35.0
+   Compiling fs-set-times v0.20.3
+   Compiling rustix-linux-procfs v0.1.1
+   Compiling autocfg v1.5.1
+   Compiling ipnet v2.12.2
+   Compiling thiserror v2.0.17
+   Compiling maybe-owned v0.3.4
+   Compiling foldhash v0.1.5
+   Compiling tinystr v0.8.4
+   Compiling potential_utf v0.1.6
+   Compiling ambient-authority v0.0.2
+   Compiling percent-encoding v2.3.2
+   Compiling icu_collections v2.3.0
+   Compiling icu_locale_core v2.3.0
+   Compiling cfg_aliases v0.2.2
+   Compiling crossbeam-deque v0.8.8
+   Compiling cap-std v4.0.3
+   Compiling nix v0.30.1
+   Compiling form_urlencoded v1.2.2
+   Compiling icu_provider v2.3.1
+   Compiling hashbrown v0.15.5
+   Compiling num-traits v0.2.19
+   Compiling icu_normalizer v2.3.0
+   Compiling icu_properties v2.3.0
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling thiserror-impl v2.0.17
+   Compiling bstr v1.13.1
+   Compiling winnow v1.0.4
+   Compiling same-file v1.0.6
+   Compiling cap-fs-ext v4.0.3
+   Compiling tower-service v0.3.3
+   Compiling httparse v1.10.1
+warning: libsqlite3-sys@0.35.0: error: unable to parse target query 'x86_64-unknown-linux-musl': UnknownOperatingSystem
+error: failed to run custom build command for `libsqlite3-sys v0.35.0`
+
+Caused by:
+  process didn't exit successfully: `E:\odin\.odin\validation-tools\packaging-v3\linux-target\release\build\libsqlite3-sys-0aa2da731cf9970d\build-script-build` (exit code: 1)
+  --- stdout
+  cargo:rerun-if-env-changed=LIBSQLITE3_SYS_USE_PKG_CONFIG
+  cargo:include=C:\Users\steven\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\libsqlite3-sys-0.35.0/sqlite3
+  cargo:rerun-if-changed=sqlite3/sqlite3.c
+  cargo:rerun-if-changed=sqlite3/wasm32-wasi-vfs.c
+  cargo:rerun-if-env-changed=SQLITE_MAX_VARIABLE_NUMBER
+  cargo:rerun-if-env-changed=SQLITE_MAX_EXPR_DEPTH
+  cargo:rerun-if-env-changed=SQLITE_MAX_COLUMN
+  cargo:rerun-if-env-changed=LIBSQLITE3_FLAGS
+  cargo:rerun-if-env-changed=CC_FORCE_DISABLE
+  CC_FORCE_DISABLE = None
+  cargo:rerun-if-env-changed=CC_x86_64-unknown-linux-musl
+  CC_x86_64-unknown-linux-musl = None
+  cargo:rerun-if-env-changed=CC_x86_64_unknown_linux_musl
+  CC_x86_64_unknown_linux_musl = Some(E:\odin\.odin\validation-tools\packaging-v3\zig-cc.cmd)
+  cargo:rerun-if-env-changed=CC_ENABLE_DEBUG_OUTPUT
+  cargo:rerun-if-env-changed=CPATH
+  cargo:rerun-if-env-changed=C_INCLUDE_PATH
+  cargo:rerun-if-env-changed=CPLUS_INCLUDE_PATH
+  cargo:rerun-if-env-changed=OBJC_INCLUDE_PATH
+  cargo:rerun-if-env-changed=OBJCPLUS_INCLUDE_PATH
+  cargo:rerun-if-env-changed=COMPILER_PATH
+  cargo:rerun-if-env-changed=SOURCE_DATE_EPOCH
+  cargo:rerun-if-env-changed=CCC_OVERRIDE_OPTIONS
+  cargo:rerun-if-env-changed=CLANG_NO_DEFAULT_CONFIG
+  cargo:rerun-if-env-changed=ZIG_LIB_DIR
+  cargo:rerun-if-env-changed=ZIG_LIBC
+  cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+  CRATE_CC_NO_DEFAULTS = None
+  cargo:rerun-if-env-changed=CFLAGS
+  CFLAGS = None
+  cargo:rerun-if-env-changed=TARGET_CFLAGS
+  TARGET_CFLAGS = None
+  cargo:rerun-if-env-changed=CFLAGS_x86_64_unknown_linux_musl
+  CFLAGS_x86_64_unknown_linux_musl = None
+  cargo:rerun-if-env-changed=CFLAGS_x86_64-unknown-linux-musl
+  CFLAGS_x86_64-unknown-linux-musl = None
+  cargo:warning=error: unable to parse target query 'x86_64-unknown-linux-musl': UnknownOperatingSystem
+
+  --- stderr
+
+
+  error occurred in cc-rs: command did not execute successfully (status code exit code: 1): "E:\\odin\\.odin\\validation-tools\\packaging-v3\\zig-cc.cmd" "-O3" "-ffunction-sections" "-fdata-sections" "-fPIC" "-m64" "--target=x86_64-unknown-linux-musl" "-w" "-DSQLITE_CORE" "-DSQLITE_DEFAULT_FOREIGN_KEYS=1" "-DSQLITE_ENABLE_API_ARMOR" "-DSQLITE_ENABLE_COLUMN_METADATA" "-DSQLITE_ENABLE_DBSTAT_VTAB" "-DSQLITE_ENABLE_FTS3" "-DSQLITE_ENABLE_FTS3_PARENTHESIS" "-DSQLITE_ENABLE_FTS5" "-DSQLITE_ENABLE_JSON1" "-DSQLITE_ENABLE_LOAD_EXTENSION=1" "-DSQLITE_ENABLE_MEMORY_MANAGEMENT" "-DSQLITE_ENABLE_RTREE" "-DSQLITE_ENABLE_STAT4" "-DSQLITE_SOUNDEX" "-DSQLITE_THREADSAFE=1" "-DSQLITE_USE_URI" "-DHAVE_USLEEP=1" "-DHAVE_ISNAN" "-D_POSIX_THREAD_SAFE_FUNCTIONS" "-DHAVE_LOCALTIME_R" "-o" "E:\\odin\\.odin\\validation-tools\\packaging-v3\\linux-target\\x86_64-unknown-linux-musl\\release\\build\\libsqlite3-sys-0a5623a67251940d\\out\\8017ddc1302f104c-sqlite3.o" "-c" "sqlite3/sqlite3.c"
+
+
+warning: build failed, waiting for other jobs to finish...

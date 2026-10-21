@@ -1,0 +1,67 @@
+{
+  "scope": "PACKAGING_RECIPE_SYNTAX_NOT_RUNTIME_ACCEPTANCE",
+  "status": "PASS",
+  "commands": [
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "py_compile",
+        "scripts/package_tar.py",
+        "scripts/package_linux.py",
+        "scripts/verify_linux_installer.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "powershell.exe",
+        "-NoLogo",
+        "-NoProfile",
+        "-Command",
+        "$ErrorActionPreference='Stop'; $Errors=$null; $Tokens=$null; foreach($Name in @('scripts/package.ps1','scripts/verify_installer.ps1','packaging/windows-runtime.ps1')) { [System.Management.Automation.Language.Parser]::ParseFile((Join-Path $PWD $Name),[ref]$Tokens,[ref]$Errors) | Out-Null; if($Errors.Count){throw($Errors | Out-String)} }; 'PowerShell parse PASS: 3 files'"
+      ],
+      "exit_code": 0,
+      "stdout": "PowerShell parse PASS: 3 files\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Git\\bin\\bash.exe",
+        "-n",
+        "scripts/package.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "files": {
+    "scripts/package.ps1": "7e26a6e5addf91368ec4b991e1932d38e6392c62b1a0bf88452ca6adb6030b22",
+    "scripts/package.sh": "ec477a86e167e3b6809903c78eb237acf04250013e65e564248f632bbf6a828f",
+    "scripts/package_tar.py": "1349d1966085f55b719a5a446e2763ba8e6c19a154f967c77042a6e01f5c2345",
+    "scripts/package_linux.py": "cdbed5a33ff790d3ca38cf740131e82a01c2de091bc45817f954de115b6ac3d0",
+    "scripts/verify_installer.ps1": "ab785ef4451256af64e3b51c3e8eeb55442b1fc26a7e088fa048a6a740341f1e",
+    "scripts/verify_linux_installer.py": "d8d9553b7fecfd66aa386398f18a2b6267ab089ebd8a717fe980da7214616648",
+    "packaging/windows-runtime.ps1": "1034cfcf8325b6d828f72272c78e618ad69034230ca4dd5128e7c004a7e937af",
+    "packaging/odin.iss": "cb68ecfee7b5bad21a8f39e553a0af82824142431ce1bc6df203093e3a99f29a",
+    "packaging/MICROSOFT_RUNTIME_NOTICES.txt": "bdfc73b0ab0b0547208a29aa1b2a43479c7283b5985920b3d825d5d7bbf092ae",
+    "docs/PACKAGING_WINDOWS_LINUX.md": "f2594f138103f4d64996785c9133599b38a26921fabbf10b907aad1b526e942a"
+  },
+  "installer_runtime": "NOT_RUN_UNTIL_FINAL_CANDIDATE",
+  "timestamp_utc": "2026-10-21T03:01:45.657038+00:00"
+}

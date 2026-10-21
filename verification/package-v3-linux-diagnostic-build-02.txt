@@ -1,0 +1,18 @@
+   Compiling libsqlite3-sys v0.35.0
+   Compiling anyhow v1.0.104
+   Compiling walkdir v2.5.0
+   Compiling toml_parser v1.1.5+spec-1.1.0
+   Compiling httparse v1.10.1
+   Compiling globset v0.4.18
+   Compiling thiserror v2.0.17
+   Compiling cap-fs-ext v4.0.3
+   Compiling idna_adapter v1.2.2
+   Compiling digest v0.10.7
+error: failed to run custom build command for `httparse v1.10.1`
+
+Caused by:
+  could not execute process `E:\odin\.odin\validation-tools\packaging-v3\linux-target\release\build\httparse-b2d215a196a06d7f\build-script-build` (never executed)
+
+Caused by:
+  應用程式控制原則已封鎖此檔案。 (os error 4551)
+warning: build failed, waiting for other jobs to finish...

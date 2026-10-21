@@ -1,0 +1,151 @@
+{
+  "scope": "LOCAL_USERSPACE_PACKAGE_TOOLCHAIN_SETUP",
+  "status": "PASS",
+  "windows_tools": {
+    "status": "PASS",
+    "downloads": [
+      {
+        "name": "zig.zip",
+        "source": "https://ziglang.org/download/0.15.2/zig-x86_64-windows-0.15.2.zip",
+        "sha256": "3a0ed1e8799a2f8ce2a6e6290a9ff22e6906f8227865911fb7ddedc3cc14cb0c",
+        "size": 92614574,
+        "path": "<TASK_TOOLS>\\zig.zip"
+      },
+      {
+        "name": "qemu-w64-setup-20260811.exe",
+        "source": "https://qemu.weilnetz.de/w64/qemu-w64-setup-20260811.exe",
+        "sha512": "5bcf9eed634e8575a37b74f445af41a2fe4106da512d0c30c368301d4c105037fdfab40a5287367a28a957624cddebbc8c07e16c88ab6634f554cdf3d16bf543",
+        "size": 206615928,
+        "path": "<TASK_TOOLS>\\qemu-w64-setup-20260811.exe"
+      },
+      {
+        "name": "debian-12-nocloud-amd64-20261006-2623.qcow2",
+        "source": "https://cloud.debian.org/images/cloud/bookworm/20261006-2623/debian-12-nocloud-amd64-20261006-2623.qcow2",
+        "sha512": "d586dd6eb454373c8f2f50ab4c423620c013320e22a5869a01c9fba4d9c2829dd644e3521e88421bbb43b23a995899356bdbfbee6a7e00db2833e7a211830219",
+        "size": 424345600,
+        "path": "<TASK_TOOLS>\\debian-12-nocloud-amd64-20261006-2623.qcow2"
+      },
+      {
+        "name": "7z2604-x64.exe",
+        "source": "https://github.com/ip7z/7zip/releases/download/26.04/7z2604-x64.exe",
+        "sha256": "d54bf805f9f3704d1e8db2fa3498ae7ef2df0312b40b558e7c71c734430a665d",
+        "size": 1664082,
+        "path": "<TASK_TOOLS>\\7z2604-x64.exe"
+      },
+      {
+        "name": "7zr.exe",
+        "source": "https://github.com/ip7z/7zip/releases/download/26.04/7zr.exe",
+        "sha256": "256feca8e274e5da655e2a284fabafd9f554365eb164862089dacd4e8276d282",
+        "size": 602624,
+        "path": "<TASK_TOOLS>\\7zr.exe"
+      }
+    ],
+    "commands": [
+      {
+        "command": [
+          "<TASK_TOOLS>\\zig\\zig-x86_64-windows-0.15.2\\zig.exe",
+          "version"
+        ],
+        "exit_code": 0,
+        "stdout": "0.15.2\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "<TASK_TOOLS>\\qemu\\qemu-system-x86_64.exe",
+          "--version"
+        ],
+        "exit_code": 0,
+        "stdout": "QEMU emulator version 11.1.0 (v11.1.0-12130-ge470268ff4)\nCopyright (c) 2003-2026 Fabrice Bellard and the QEMU Project developers\n",
+        "stderr": ""
+      }
+    ],
+    "global_install": false,
+    "os_features_changed": false
+  },
+  "linux_rust_components": {
+    "scope": "PINNED_NATIVE_LINUX_RUST_COMPONENTS",
+    "status": "PASS",
+    "manifest_source": "https://static.rust-lang.org/dist/channel-rust-1.90.0.toml",
+    "manifest_sha256": "489c19f20d331765ab2835661eb546de90f6446a107a8db83045e7371e45cae2",
+    "version": "1.90.0",
+    "downloads": [
+      {
+        "package": "rustc",
+        "target": "x86_64-unknown-linux-gnu",
+        "source": "https://static.rust-lang.org/dist/2025-09-18/rustc-1.90.0-x86_64-unknown-linux-gnu.tar.xz",
+        "sha256": "48c2a42de9e92fcae8c24568f5fe40d5734696a6f80e83cc6d46eef1a78f13c9",
+        "bytes": 82519204,
+        "path": "<TASK_TOOLS>\\native-rust\\rustc-1.90.0-x86_64-unknown-linux-gnu.tar.xz"
+      },
+      {
+        "package": "cargo",
+        "target": "x86_64-unknown-linux-gnu",
+        "source": "https://static.rust-lang.org/dist/2025-09-18/cargo-1.90.0-x86_64-unknown-linux-gnu.tar.xz",
+        "sha256": "9853db03d68578a30972e2755c89c66aec035fec641cf8f3a7117c81eec2578d",
+        "bytes": 10679724,
+        "path": "<TASK_TOOLS>\\native-rust\\cargo-1.90.0-x86_64-unknown-linux-gnu.tar.xz"
+      },
+      {
+        "package": "rust-std",
+        "target": "x86_64-unknown-linux-gnu",
+        "source": "https://static.rust-lang.org/dist/2025-09-18/rust-std-1.90.0-x86_64-unknown-linux-gnu.tar.xz",
+        "sha256": "663f4ab7945b392d5e5294dec1b050a66820a20e86f084ec37eeb0f2f7ff5569",
+        "bytes": 29115852,
+        "path": "<TASK_TOOLS>\\native-rust\\rust-std-1.90.0-x86_64-unknown-linux-gnu.tar.xz"
+      },
+      {
+        "package": "rustfmt-preview",
+        "target": "x86_64-unknown-linux-gnu",
+        "source": "https://static.rust-lang.org/dist/2025-09-18/rustfmt-1.90.0-x86_64-unknown-linux-gnu.tar.xz",
+        "sha256": "7f4d38b9d782e55832bf17969ef35477703c60781545bb098eb127cc8172d1c6",
+        "bytes": 2255472,
+        "path": "<TASK_TOOLS>\\native-rust\\rustfmt-1.90.0-x86_64-unknown-linux-gnu.tar.xz"
+      },
+      {
+        "package": "clippy-preview",
+        "target": "x86_64-unknown-linux-gnu",
+        "source": "https://static.rust-lang.org/dist/2025-09-18/clippy-1.90.0-x86_64-unknown-linux-gnu.tar.xz",
+        "sha256": "5b6466419693a05365827378145014a37ae74fb2948fab390d5210a524792ed8",
+        "bytes": 4544900,
+        "path": "<TASK_TOOLS>\\native-rust\\clippy-1.90.0-x86_64-unknown-linux-gnu.tar.xz"
+      },
+      {
+        "package": "rust-std",
+        "target": "x86_64-unknown-linux-musl",
+        "source": "https://static.rust-lang.org/dist/2025-09-18/rust-std-1.90.0-x86_64-unknown-linux-musl.tar.xz",
+        "sha256": "38490d575786f4688e83b357baeb022d8dde0ace2cb8c1357e060c76644fc56a",
+        "bytes": 40566096,
+        "path": "<TASK_TOOLS>\\native-rust\\rust-std-1.90.0-x86_64-unknown-linux-musl.tar.xz"
+      }
+    ]
+  },
+  "native_vm": {
+    "emulator": "QEMU 11.1.0 TCG",
+    "memory_mib": 4096,
+    "vcpus": 4,
+    "console_bind": "127.0.0.1",
+    "image": "debian-12-nocloud-amd64-20261006-2623.qcow2",
+    "base_mutated": false,
+    "windows_os_features_changed": false,
+    "global_tool_registration": false
+  },
+  "source_transfer": {
+    "base_revision": "9017908f8759de74d5c3deb89e7bdb8aedcf83fd",
+    "bundle_sha256": "f3bb017913b22b86ee616def409521e4fe46f22b09a661544a31227fc3c069ca",
+    "bundle_verify": "PASS",
+    "host_git_config_hooks_credentials_transferred": false,
+    "vendor_sha256": "6393ccfe586dce7174248e3ea99821f5c61f0a737fda0ba5edeb8ff67782aa0c",
+    "vendor_command": [
+      "cargo",
+      "vendor",
+      "--locked",
+      "--offline",
+      "<TASK_VENDOR_DIR>"
+    ]
+  },
+  "limits": [
+    "Tool setup is not final artifact or installer acceptance.",
+    "Native diagnostic source is the prior public baseline, not the current integrated candidate."
+  ]
+}
