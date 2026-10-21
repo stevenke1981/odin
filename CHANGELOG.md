@@ -1,5 +1,27 @@
 # Changelog
 
+## Unreleased — optimization and multi-client auto-load, 2026-10-21
+
+Index schema 2 links FTS5 rows to files by rowid, versions the store with
+`user_version`, refuses newer schemas untouched and migrates under an immediate
+lock while keeping audit rows. Engine dispatch is split into domain modules with
+no behaviour change; caller-supplied numbers saturate instead of truncating.
+The lexical structure checker no longer misreads `macro_rules!` repetitions.
+
+`odin setup` emits entries for Codex, Claude Code, OpenCode, Antigravity (agy),
+Gemini CLI, Cursor and VS Code, plus suggested user-scope locations and the
+native registration command (never executed). `serve --project-from-cwd` and
+`--default-project` advertise one immutable session default project in MCP
+instructions; tool schemas still require `project`. `odin project add` appends
+a project through the CAS dry-run/apply path and reports the permission change.
+
+Independent review fixes: honest `project add` output, host config side files
+denied to agents, project roots inside the state directory rejected, no
+project-scope client config suggestions, no `\\?\` prefix in client entries.
+Real clients: Claude Code and Codex called `status` (PASS); OpenCode and agy
+loaded the server but the tool call is NOT_RUN; Gemini, Cursor and VS Code are
+NOT_RUN. No cloud CI was dispatched.
+
 ## 0.2.0 — Sandbox and IDE extension, 2026-10-21
 
 Expanded to 85 native tool contracts with completion/resolve, hover, signature

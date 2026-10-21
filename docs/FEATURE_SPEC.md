@@ -678,11 +678,11 @@
 
 **Modules:** odin-agent, cli
 
-**目標：** 可一個指令安裝 Odin MCP 於 Codex、Claude Code、OpenCode 等客戶端。
+**目標：** 可一個指令安裝 Odin MCP 於 Codex、Claude Code、OpenCode、AGY、Gemini CLI、Cursor、VS Code 等七種客戶端（`setup --client`），並讓 client 啟動時自動載入（`serve --project-from-cwd`）。只建議使用者層級設定位置，不建議放入 repo 內的專案層級檔案。
 
 **設計目標：** setup 子命令可輸出/寫入受控 MCP client config，先備份並 diff；init/doctor/index/validate；提示詞描述 Odin 支援範圍，不偽稱 Serena API。
 
-**已觀察範圍：** languages registry、runtime/setup guidance 與 doctor sandbox probe 有來源；當輪真 binary/client 整合另行驗收。
+**已觀察範圍：** languages registry、runtime/setup guidance 與 doctor sandbox probe 有來源；七種 client entry 的生成與 MCP 啟動 smoke 127/127（`scripts/client_setup_smoke.py`，不啟動 client 應用）；真實應用見 A1。
 
 **原驗收條件：**
 
@@ -692,7 +692,7 @@
 
 **尚未驗收／完成：**
 
-- A1：尚未在真正 Codex/Claude/OpenCode 應用中各自完成安裝與 tools/list。
+- A1：真實應用狀態（證據 `verification/client-apps-local.json`，綁定 `0cc7d50` binary `e1820f38…`）：Codex CLI 0.163.0 與 Claude Code 2.1.306 載入並完成 `status` 工具呼叫，PASS；OpenCode 1.18.35 僅 `opencode mcp list` connected，工具呼叫 NOT_RUN（模型供應商錯誤）；AGY 1.4.0 載入 PASS，工具呼叫 NOT_RUN（headless 拒絕 MCP 權限）；Gemini CLI、Cursor 本機未安裝，VS Code 未測 agent MCP，皆 NOT_RUN。`0cc7d50` 之後的程式變更未經真實應用重測。
 - A2：歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。
 - A3：doctor 的 LSP probe 已實作；MCP transport、檔案權限、DAP health 的全分類矩陣尚未驗收。
 

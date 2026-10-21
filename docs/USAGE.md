@@ -74,3 +74,7 @@ launch / attach 回 ticket；等待 initialize event / adapter-specific 規範�
 ## HTTP
 
 只支援 loopback listener；MCP endpoint `/mcp` 及 `/api/*` 都需要 Bearer。Dashboard 是 `/`，輸入 token 後讀取資料；不在網頁自動載入外部 scripts 或字型。stdio MCP 不需要開 HTTP port。
+
+## 自動載入 Coding Agent
+
+`setup --client <c> --project-from-cwd` 產生可讓 client 啟動 `odin serve` 的 entry，預設乾跑、不寫入；加 `--output <檔> --apply --expected-sha256 <hash>` 才會寫入。`--default-project <id>` 可固定預設專案。這兩個選項只影響 MCP instructions 的建議文字，工具呼叫仍需明確 `project`。`project add --root <dir>` 可在既有 host config 追加專案，同樣預設乾跑；新增 root 會擴大權限（輸出 `host_permissions_changed: true`），root 不得位於 state 目錄內，非 ASCII 目錄名需 `--name`。只建議使用者層級的 client 設定位置，不把 Odin entry 放進 repo 內的專案層級檔。各 client 的格式、路徑與實測狀態見 [CLIENT_SETUP.md](CLIENT_SETUP.md)。

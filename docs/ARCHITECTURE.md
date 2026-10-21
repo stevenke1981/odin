@@ -50,6 +50,8 @@ LSP、DAP 依需求啟動。每個 `(project_id, language_id)` 使用各自 LSP�
 
 所有可改變專案的請求先進入 `Engine::run`。每次指定 project，沒有全程序可變的 active_project。啟動後不允許 Agent 新增任意 root；更改 host config 需重啟。不同 project 的語意範圍分開；此版未提供使用者身分／多租戶 ACL。
 
+`serve --project-from-cwd` 與 `--default-project` 只在啟動時解析一次：從 host config 已有的專案中選擇，結果僅以 MCP instructions 公告（`Session default project`）。它不建立 runtime root、不設定可變 active project、不授予任何權限；無匹配時 server 照常啟動並於 stderr 警告。見 [CLIENT_SETUP.md](CLIENT_SETUP.md)。
+
 ## 4. MCP 服務層
 
 主服務採官方 Rust SDK `rmcp`，不是自行手刻整個 MCP server。此版應用層明確協商 `2024-11-05`、`2025-03-26`、`2025-06-18`、`2025-11-25`，沒有因 SDK 支援更新規格就宣稱 Odin 全部實作更新規格。
@@ -134,6 +136,8 @@ Markdown memories 由名稱及 `mem:` 引用串接。先列名稱、再按需讀
 記憶放 host state，提供 versioned create-only import/export 與 reference-safe scope move，預覽 journal 綁定 initiating project。跨 project local 引用不能表達時拒絕。Repo-local 自動搬移與完整 ignored patterns 尚未實作。
 
 索引是 **詞彙 FTS5，不是向量／語意 RAG**。`index_build` 可重建，query 前以 live hashes 增量 reconcile 新增、修改與刪除。沒有背景 watcher，掃描成本尚未做大型 repo benchmark。
+
+索引資料表為 `index_files(id, path, hash)` 與 FTS5 `index_fts(path, body)`；`index_fts.rowid` 等於同一檔案的 `index_files.id`，變更以 id 定址。資料庫版本記於 `PRAGMA user_version`，目前為 2。低於 2 的資料庫升級時只刪除舊版 `files`／`code_fts` 表並建立空的新索引表；`audit` 保留。新表由下一次 `index_query` 的增量 refresh 填入，`index_build` 則整體重建。版本高於本版的資料庫回 `SCHEMA_TOO_NEW` 且不修改。
 
 ## 8. 原生批次介面
 

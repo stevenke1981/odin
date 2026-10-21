@@ -26,7 +26,7 @@ odin --config C:\Odin\host.toml setup --client claude --output C:\Odin\client.js
 odin --config C:\Odin\host.toml setup --client opencode --output C:\Odin\opencode.json
 ```
 
-預設回 DRY_RUN JSON，`content` 是生成的 managed entry；不顯示既有無關設定值。三種輸出分別採 Codex `mcp_servers.odin` TOML、Claude `mcpServers.odin` JSON、OpenCode `mcp.odin` local argv 陣列。argv 使用獨立字串，包含絕對 binary／host config 路徑與選定 context/mode。設定格式依 [Codex 官方文件](https://learn.chatgpt.com/docs/extend/mcp?surface=cli)、[Claude Code 官方文件](https://code.claude.com/docs/en/mcp)、[OpenCode 官方文件](https://opencode.ai/docs/mcp-servers/)。
+支援七種 client：`codex`、`claude`、`opencode`、`agy`、`gemini`、`cursor`、`vscode`。預設回 DRY_RUN JSON，`content` 是生成的 managed entry；不顯示既有無關設定值。輸出格式分別為 Codex `mcp_servers.odin` TOML、Claude／AGY／Gemini／Cursor `mcpServers.odin` JSON、VS Code `servers.odin` JSON、OpenCode `mcp.odin` local argv 陣列。argv 使用獨立字串，包含絕對 binary／host config 路徑（去除 `\\?\` 前綴）與選定 context/mode；`--project-from-cwd` 與 `--default-project` 只加入 `serve` 參數，不授予權限。`default_outputs` 只列使用者層級建議位置，不列專案層級檔案；Claude 的 `~/.claude.json` 會被 Claude Code 持續改寫，建議改用 `registration_command`（`claude mcp add --scope user`）。細節見 [CLIENT_SETUP.md](CLIENT_SETUP.md)。設定格式依 [Codex 官方文件](https://learn.chatgpt.com/docs/extend/mcp?surface=cli)、[Claude Code 官方文件](https://code.claude.com/docs/en/mcp)、[OpenCode 官方文件](https://opencode.ai/docs/mcp-servers/)。
 
 要寫入明確指定的 host file，使用 `--apply --output <path>`。新檔只允許 create_new；既有檔須指定 preview 回傳的 `--expected-sha256 <hash>`。寫入前再比對原內容，先保存 `<name>.odin-backup-<full-sha256>`，然後同目錄暫存檔＋rename。不同設定值會保留；JSON/TOML 的空白、排序、註解不保證原樣。JSONC 明確拒絕，不能先刪註解再假裝無損。寫入不會授權 Odin shell/debug/project writes。這條 host setup 路徑拒絕 configured project root 內的輸出，工作區改動仍走 Transactions。
 
@@ -34,7 +34,7 @@ symbolic-link output 被拒絕；setup 專用 create_new lock 防止合作中的
 
 `hook --project workspace` 產生短提示，並不自動註冊到任何代理。`hook --output <host-file>` 預覽 managed marker 區塊；明確 apply 同樣要求 CAS 與備份。`--disable` 只移除自己的完整 marker 區塊，保留前後文字；不完整或重複 marker 會拒絕。子 agent 沒有自己的 MCP 連線時，不宣稱共享工具。hook 內容沒有 shell script、eval 或 repository-supplied executable configuration。
 
-生成設定的 smoke 會實際執行該 entry 的 command，完成 initialize 和 tools/list。這證明 generated argv 與 Odin 的連線；不是已在真正 Codex／Claude／OpenCode 應用中完成整合。
+生成設定的 smoke（`scripts/client_setup_smoke.py`，七種 entry 127/127）會實際執行該 entry 的 command，完成 initialize、session default 行、tools/list 與 status 呼叫。這證明 generated argv 與 Odin 的連線；不是已在真正 client 應用中完成整合。真實應用（綁定 `0cc7d50` binary）：Claude Code、Codex CLI 工具呼叫 PASS；OpenCode、AGY 僅載入，工具呼叫 NOT_RUN；Gemini CLI、Cursor 未安裝、VS Code 未測 agent MCP，皆 NOT_RUN。詳見 CLIENT_SETUP.md §3。
 
 ## HTTP 與 Dashboard
 

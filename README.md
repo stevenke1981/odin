@@ -64,9 +64,19 @@ write、shell、debug。命令與除錯需操作者在可信任 host 設定明�
 .\target\release\odin.exe --config C:\Odin\host.toml doctor --probe-sandbox
 ```
 
-`setup` 支援 Codex、Claude、OpenCode。真正寫入需 `--apply --output`；
-既有檔案還需 preview hash，並保存備份。生成 entry 的 MCP handshake
-已有獨立 smoke，不表示已在每個真實 client 應用中完成安裝。
+`setup` 支援 Codex、Claude、OpenCode、AGY、Gemini CLI、Cursor、VS Code 七種 client。真正寫入需 `--apply --output`；
+既有檔案還需 preview hash，並保存備份。七種 entry 的生成與 MCP 啟動已由
+`scripts/client_setup_smoke.py` 驗證（127/127）；真實 client 應用只有 Claude Code 與
+Codex CLI 完成工具呼叫，其餘狀態見 [自動載入說明](docs/CLIENT_SETUP.md) 與 [已知限制](docs/KNOWN_LIMITATIONS.md)。
+
+### 自動載入 Coding Agent
+
+`project add` 可把更多 repo 加入 host config；新增 root 會擴大可讀範圍，`--writable` 另授予寫入，且不得位於 state 目錄內。
+`setup --client <c> --project-from-cwd` 產生 client entry，client 啟動時自行執行 `odin serve`。
+entry 只建議放在使用者層級設定；不建議放入 repo 內的專案層級檔案（agent 可能寫入）。
+agent 從 MCP instructions 得知本次 session 的預設專案，此為建議，不授予權限，每次工具呼叫仍需 `project`。
+工作目錄選擇只在 Claude Code 與 Codex CLI 實測過，不確定時改用 `--default-project <id>`。
+步驟、各 client 路徑與實測狀態見 [docs/CLIENT_SETUP.md](docs/CLIENT_SETUP.md)。
 
 ### 來源修改：先看，再寫
 
