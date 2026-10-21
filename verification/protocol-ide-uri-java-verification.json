@@ -1,0 +1,184 @@
+{
+  "task_id": "JDTLS-empty-WorkspaceEdit-alternative-and-diagnostic-URI-followup",
+  "actor_instance": "/root/protocol_implementation",
+  "base_sha": "7a677bb5d8418d4cd599cb8f7c1e56b60cc3c797",
+  "tested_code_sha": "1125e0a9f107ca6001faa9cccdec42ffa4274bbc",
+  "dependency_uri_code_sha": "73baca363c3dabbe38868e3d2ab0122c7db915b2",
+  "recorded_utc": "2026-10-21T01:33:06.198494+00:00",
+  "platform": "x86_64-pc-windows-msvc",
+  "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+  "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-protocol\\odin",
+  "cargo_target_dir": "E:/odin/target",
+  "source_hash_normalization": "UTF-8 bytes with CRLF normalized to LF",
+  "source_sha256": {
+    "crates/odin-protocol/src/lib.rs": "99a75cf5cf2f0f42c91bb5d4344fa56ca54aab6d2c0c8bc498da1a1f9b98e68c",
+    "crates/odin-protocol/src/lsp.rs": "bff9436ee2c837f0a154c51ab1ef66cdb3f6e3542359f8cb93629cee45611224",
+    "crates/odin-protocol/src/text.rs": "047329493570b965a79f93a4dd3b2f62a05147d9610547eee5ae4d38619055c2",
+    "crates/odin-protocol/src/rpc.rs": "3b8a1278025dc0a4ce5fbd13be6409b164745043e51992571bd2430ebddc99e4",
+    "crates/odin-protocol/src/dap.rs": "23236ae9bd7476136ec17793cb1b4c2a7cc8404e7c17d5e36b124221ee82b05c",
+    "crates/odin-protocol/src/workspace.rs": "259f5936b90cd502b20b1eaee20977031f973fe76febed86c03b5bf3f380db6e",
+    "crates/odin-protocol/tests/fixture_protocols.rs": "6d603bd943d9e42c07e324e37f8a887dbf1d3834440b7342af67883167f1673e",
+    "tests/fixtures/protocol_peer.py": "a7152797c2a43297ac39e363a85c519fe48804798c4b758d505fcf003d77d024",
+    "docs/PROTOCOL_IDE.md": "45a4639dfefbba13f950f56206e1cd347e9d2705d1d4c9449b8690c93e2a07bf",
+    "verification/protocol-ide-uri-java-probe.py": "eb7a5e2924b6bf58cf0e7adf0ffd3b68d3d2b2ee9d76abf20349ceff0df18800",
+    "Cargo.toml": "8a009f775d201c8199a6d6f81963bb75dde59a48dc783ae6086a6a7407e21e36",
+    "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34"
+  },
+  "test_binaries": [
+    {
+      "path": "E:\\odin\\target\\debug\\deps\\odin_protocol-b6905337e014fe48.exe",
+      "sha256": "d09e349c5ecdcd0e46895ac04eb4f3ad96142ecc9f67032a7d5a59d324d4351b"
+    },
+    {
+      "path": "E:\\odin\\target\\debug\\deps\\fixture_protocols-19f49fcd3452269d.exe",
+      "sha256": "4f887d8ba66756d2dbdcef516280f27b790c4d6a347897394594a4d0edd20ed7"
+    }
+  ],
+  "external_real_probe_inputs": {
+    "input_sha256": {
+      "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin\\tests\\real_ide_backends.py": "862bf89645e99c5110bd6d700ba8a8a16c4f796c86218dd4c20dad3d32a416bf",
+      "E:\\odin\\.odin\\validation-tools\\jdk\\jdk-25.0.4.1+1\\bin\\java.exe": "3670faa7de6af1f8656eafe15734c020496f0e934464041c3a8c57f41d5c25f2",
+      "E:\\odin\\.odin\\validation-tools\\jdtls\\config_win\\config.ini": "3ab0be4f6c4355f923c6c4278e113d28fb417fba79b3c9a0eb34d66ef998a63a",
+      "E:\\odin\\.odin\\validation-tools\\jdtls\\plugins\\org.eclipse.equinox.launcher_1.8.0.v20260804-1928.jar": "9b3b1da60813ac5fa09dd5c198f1884be7076d0a5daec54faa3f351a787e34b7",
+      "E:\\odin\\.odin\\validation-tools\\jdtls\\plugins\\org.eclipse.jdt.ls.core_1.62.0.202610131109.jar": "ec4b7672831d72c16136b344d8d71919c08b024831d811d4d5d226056069a7f8"
+    },
+    "fixture_sha256": {
+      "src/fixture/Greeter.java": "c237ba9235182698ee92d23ab1a690b1e34e80232cd824329cee5090350e8cab",
+      "src/fixture/Consumer.java": "a6719b9013f6853a3f56d9e55e8686379d77f525a648851f32039cb8fd8ff1b8",
+      ".project": "0aa4d11e6a8c502a194a302eb9e4ed028f6188c059a6b30dfdf4a7e258593eaa",
+      ".classpath": "23c9b81e40c2707e06ede0b35dfecb53f390d49433ac5507b6cff4db23215dd8"
+    },
+    "settings": {
+      "java": {
+        "signatureHelp": {
+          "enabled": true
+        },
+        "import": {
+          "maven": {
+            "enabled": false
+          },
+          "gradle": {
+            "enabled": false
+          }
+        },
+        "inlayHints": {
+          "parameterNames": {
+            "enabled": "all"
+          }
+        }
+      }
+    },
+    "initialization": {
+      "settings": {
+        "java": {
+          "signatureHelp": {
+            "enabled": true
+          },
+          "import": {
+            "maven": {
+              "enabled": false
+            },
+            "gradle": {
+              "enabled": false
+            }
+          },
+          "inlayHints": {
+            "parameterNames": {
+              "enabled": "all"
+            }
+          }
+        }
+      }
+    }
+  },
+  "checks": [
+    {
+      "status": "PASS",
+      "command": "cargo test -p odin-protocol --locked",
+      "exit_code": 0,
+      "unit_passed": 35,
+      "fixture_passed": 31,
+      "ignored": 3,
+      "log": "verification/protocol-ide-uri-java-package-tests.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "cargo clippy -p odin-protocol --all-targets --locked -- -D warnings",
+      "exit_code": 0,
+      "log": "verification/protocol-ide-uri-java-clippy.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "rustfmt --edition 2024 --check crates/odin-protocol/src/rpc.rs crates/odin-protocol/src/workspace.rs crates/odin-protocol/tests/fixture_protocols.rs",
+      "exit_code": 0,
+      "log": "verification/protocol-ide-uri-java-fmt.txt"
+    },
+    {
+      "status": "PASS",
+      "command": "python verification/protocol-ide-uri-java-probe.py --fixture-module-dir C:/Users/steven/.codex/worktrees/odin-platform/odin/tests --tools-root E:/odin/.odin/validation-tools",
+      "nested_command": "cargo test -p odin-protocol --locked real_java_rename_workspace_edit_probe -- --ignored --nocapture",
+      "exit_code": 0,
+      "log": "verification/protocol-ide-uri-java-source-bound-real.txt",
+      "acceptance": "Actual JDTLS cross-file references, raw rename, two-file Transactions apply and expected-hash rollback"
+    },
+    {
+      "status": "PASS",
+      "command": "cargo test -p odin-protocol --locked real_push_diagnostic_uri_probe -- --ignored --nocapture",
+      "environment": {
+        "ODIN_URI_PROBE_TOOLS": "E:/odin/.odin/validation-tools",
+        "ODIN_NODE": "C:/Program Files/nodejs/node.exe"
+      },
+      "exit_code": 0,
+      "log": "verification/protocol-ide-uri-java-final-uris.txt",
+      "acceptance": "Actual basedpyright and TypeScript notifications retrieved by didOpen URI; original payload/version retained"
+    },
+    {
+      "status": "NOT_RUN",
+      "command": "Final integrated binary multi-project language matrix",
+      "owner": "/root and /root/platform_implementation"
+    },
+    {
+      "status": "NOT_RUN",
+      "command": "Real rust-analyzer smoke in this repair task",
+      "reason": "Explicit Java and Python/TypeScript probes cover the observed backend defects"
+    },
+    {
+      "status": "NOT_RUN",
+      "command": "Linux/macOS native execution",
+      "reason": "Windows repair slice only"
+    }
+  ],
+  "counterexample": {
+    "log": "verification/protocol-ide-uri-java-real-before.txt",
+    "command_exit_code": 0,
+    "scope": "Observational raw capture only; planned:false was the defect, not a passing planner assertion",
+    "raw_shape": {
+      "changes": {},
+      "documentChanges": "Two actual JDTLS text-document edits, version:null"
+    },
+    "first_after_log": "verification/protocol-ide-uri-java-real-after.txt"
+  },
+  "historical_failures": [
+    {
+      "status": "FAIL",
+      "command": "initial Java probe compile",
+      "exit_code": 101,
+      "tests_executed": 0,
+      "reason": "Test helper called nonexistent locations method; corrected to public at API",
+      "log": "verification/protocol-ide-uri-java-first-compile.txt"
+    }
+  ],
+  "boundary": [
+    "Only absent/null/empty correctly typed unused alternatives are tolerated; two populated forms and malformed field types are rejected",
+    "Both real edited files retain expected source hashes; all writes and rollback used core Transactions",
+    "Actual TypeScript notification omitted version, so matching URI does not prove current/clean freshness",
+    "Direct language probes are narrower than final integrated tool-level acceptance and OS sandbox enforcement"
+  ],
+  "scope_expansion": "Root explicitly authorized workspace.rs and tests after actual Java matrix failure",
+  "os_policy_modified": false,
+  "target_path_moved": false,
+  "remote_push": false,
+  "cloud_ci": false,
+  "independent_review": "PENDING /root",
+  "next_owner": "/root integration and /root/platform_implementation binary-level matrix"
+}

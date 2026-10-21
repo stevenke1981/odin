@@ -1,0 +1,18 @@
+   Compiling odin-protocol v0.2.0 (C:\Users\steven\.codex\worktrees\odin-protocol\odin\crates\odin-protocol)
+error[E0599]: no method named `locations` found for struct `Arc<LspClient>` in the current scope
+    --> crates\odin-protocol\tests\fixture_protocols.rs:1236:14
+     |
+1235 |           let references = client
+     |  __________________________-
+1236 | |             .locations(source, position, "references")
+     | |_____________-^^^^^^^^^
+     |
+help: there is a method `actions` with a similar name, but with different arguments
+    --> C:\Users\steven\.codex\worktrees\odin-protocol\odin\crates\odin-protocol\src\lsp.rs:1051:5
+     |
+1051 |     pub async fn actions(&self, path: &str, range: Range) -> Result<Value> {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `odin-protocol` (test "fixture_protocols") due to 1 previous error
+exit_code=101

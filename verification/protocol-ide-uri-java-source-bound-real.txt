@@ -1,0 +1,26 @@
+JAVA_PROBE_SETUP {"input_sha256": {"C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin\\tests\\real_ide_backends.py": "862bf89645e99c5110bd6d700ba8a8a16c4f796c86218dd4c20dad3d32a416bf", "E:\\odin\\.odin\\validation-tools\\jdk\\jdk-25.0.4.1+1\\bin\\java.exe": "3670faa7de6af1f8656eafe15734c020496f0e934464041c3a8c57f41d5c25f2", "E:\\odin\\.odin\\validation-tools\\jdtls\\config_win\\config.ini": "3ab0be4f6c4355f923c6c4278e113d28fb417fba79b3c9a0eb34d66ef998a63a", "E:\\odin\\.odin\\validation-tools\\jdtls\\plugins\\org.eclipse.equinox.launcher_1.8.0.v20260804-1928.jar": "9b3b1da60813ac5fa09dd5c198f1884be7076d0a5daec54faa3f351a787e34b7", "E:\\odin\\.odin\\validation-tools\\jdtls\\plugins\\org.eclipse.jdt.ls.core_1.62.0.202610131109.jar": "ec4b7672831d72c16136b344d8d71919c08b024831d811d4d5d226056069a7f8"}, "fixture_sha256": {"src/fixture/Greeter.java": "c237ba9235182698ee92d23ab1a690b1e34e80232cd824329cee5090350e8cab", "src/fixture/Consumer.java": "a6719b9013f6853a3f56d9e55e8686379d77f525a648851f32039cb8fd8ff1b8", ".project": "0aa4d11e6a8c502a194a302eb9e4ed028f6188c059a6b30dfdf4a7e258593eaa", ".classpath": "23c9b81e40c2707e06ede0b35dfecb53f390d49433ac5507b6cff4db23215dd8"}, "settings": {"java": {"signatureHelp": {"enabled": true}, "import": {"maven": {"enabled": false}, "gradle": {"enabled": false}}, "inlayHints": {"parameterNames": {"enabled": "all"}}}}, "initialization": {"settings": {"java": {"signatureHelp": {"enabled": true}, "import": {"maven": {"enabled": false}, "gradle": {"enabled": false}}, "inlayHints": {"parameterNames": {"enabled": "all"}}}}}}
+    Blocking waiting for file lock on package cache
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running unittests src\lib.rs (E:\odin\target\debug\deps\odin_protocol-b6905337e014fe48.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 35 filtered out; finished in 0.00s
+
+     Running tests\fixture_protocols.rs (E:\odin\target\debug\deps\fixture_protocols-19f49fcd3452269d.exe)
+
+running 1 test
+WARNING: Using incubator modules: jdk.incubator.vector
+10�� 21, 2026 9:32:00 �W�� org.apache.aries.spifly.BaseActivator log
+��T: Registered provider ch.qos.logback.classic.spi.LogbackServiceProvider of service org.slf4j.spi.SLF4JServiceProvider in bundle ch.qos.logback.classic
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/E:/odin/.odin/validation-tools/jdtls/config_win/org.eclipse.osgi/66/0/.cp/jars/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+JAVA_RENAME_PROBE {"plan_error":null,"planned":true,"workspace_edit":{"changes":{},"documentChanges":[{"edits":[{"newText":"salute","range":{"end":{"character":74,"line":1},"start":{"character":69,"line":1}}}],"textDocument":{"uri":"file:///C:/Users/steven/AppData/Local/Temp/odin-protocol-java-probe-u2e70e4g/projects/java_a/src/fixture/Consumer.java","version":null}},{"edits":[{"newText":"salute(String name){return \"Hi \"+name;}\npublic static String run(){String message=salute","range":{"end":{"character":47,"line":3},"start":{"character":21,"line":2}}}],"textDocument":{"uri":"file:///C:/Users/steven/AppData/Local/Temp/odin-protocol-java-probe-u2e70e4g/projects/java_a/src/fixture/Greeter.java","version":null}}]}}
+JAVA_RENAME_CAS two-file rename apply and hash-guarded rollback passed
+test real_java_rename_workspace_edit_probe ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 33 filtered out; finished in 5.71s
+
+exit_code=0
