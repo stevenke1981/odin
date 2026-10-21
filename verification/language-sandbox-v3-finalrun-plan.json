@@ -1,0 +1,71 @@
+{
+  "task_id": "six-language-native-sandbox",
+  "actor_instance": "/root/platform_implementation",
+  "base_sha": "9017908f8759de74d5c3deb89e7bdb8aedcf83fd",
+  "preparation_head_sha": "ae3821982e6251e8c3cfea7f12a24506db2840f6",
+  "scope": "PREPARED_NOT_EXECUTED",
+  "status": "BLOCKED",
+  "not_an_execution_receipt": true,
+  "created_utc": "2026-10-21T03:51:17Z",
+  "candidate": {
+    "path": "E:/odin/target/release/odin.exe",
+    "expected_sha256": "83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44",
+    "source_revision_reported_by_root": "69e769b",
+    "blocker": "Root reports first metadata launch rejected by Windows AppControl 4551",
+    "observation_source": "Root validation owner message; this worker did not launch or copy the candidate",
+    "administrator_policy_allowance_confirmed": false
+  },
+  "execution": {
+    "status": "NOT_RUN",
+    "actual_driver_exit_code": null,
+    "actual_lsp_projects_initialized": 0,
+    "planned_projects": 12,
+    "planned_driver_argv": [
+      "C:\\Python314\\python.exe",
+      "-u",
+      "tests/real_ide_backends.py",
+      "--binary",
+      "E:/odin/target/release/odin.exe",
+      "--languages",
+      "rust",
+      "python",
+      "typescript",
+      "go",
+      "java",
+      "csharp",
+      "--mode",
+      "sandbox",
+      "--sandbox-executor",
+      "C:/Users/steven/AppData/Local/Programs/DevTools/mxc/node_modules/@microsoft/mxc-sdk/bin/x64/wxc-exec.exe",
+      "--sandbox-sha256",
+      "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+      "--timeout",
+      "60",
+      "--output",
+      "verification/language-sandbox-v3-six-native-final-01.json",
+      "--sandbox-allow-ui",
+      "--sandbox-typescript-init-temp",
+      "--sandbox-typescript-child-path-flags",
+      "--sandbox-enumerate-ancestors",
+      "--csharp-backend",
+      "omnisharp",
+      "--python-native-formatter-ruff",
+      "--sandbox-python-private-backend-copy"
+    ],
+    "planned_runner_command": "& ./verification/language-sandbox-v3-runner.ps1 -Binary E:/odin/target/release/odin.exe -ExpectedBinarySha256 83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44 -Output verification/language-sandbox-v3-six-native-final-01.json -Languages @('rust','python','typescript','go','java','csharp') -AllowUI -TypeScriptCompatibility -EnumerateAncestors -CsharpBackend omnisharp -PythonNativeFormatterRuff -PythonPrivateBackendCopy",
+    "output": "verification/language-sandbox-v3-six-native-final-01.json",
+    "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin"
+  },
+  "source_sha256": {
+    "tests/real_ide_backends.py": "db10f4a6cc50fc6ec80553d499c4644a999338214b5a34c69c1758ec6848e0cf",
+    "tests/protocol_harness.py": "0eab4156977d7e5195385f7bc4fb7fb8cbdd33ddb33ae70f95a832795201d50a",
+    "verification/language-sandbox-v3-runner.ps1": "ca2b4418d60101521fd1fb78d4c8da33a531e0a917b4744dd29b99c3a79a67c4"
+  },
+  "resume_condition": "Root confirms administrator policy allowance for the same path/SHA; verify source/hash preflight and run once with fresh evidence. No policy bypass, candidate copy, rename or rebuild.",
+  "remaining": [
+    "Final six-language/twelve-project native MCP matrix on this candidate",
+    "Full Csharp OmniSharp MCP symbols/refs/rename CAS/rollback/IDE acceptance after product null-PID correction",
+    "Any candidate-specific CLI/package/release validation belongs to root and packaging owners"
+  ],
+  "prior_evidence_does_not_transfer_to_this_candidate": true
+}

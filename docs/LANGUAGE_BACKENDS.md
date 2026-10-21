@@ -410,6 +410,24 @@ remained byte-identical after sandbox execution. The backend's LSP formatting
 and hint-resolve capabilities remain `UNAVAILABLE`; the separate Ruff path does
 not change those capability results.
 
+The newer Windows candidate built from `69e769b` includes the sandbox LSP
+client-PID correction. Its first metadata launch was reported by the root
+validation owner as Windows AppControl **4551**, for the unchanged file
+`E:/odin/target/release/odin.exe`, SHA-256
+`83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44`.
+The final six-language/twelve-project matrix is therefore **BLOCKED / NOT_RUN**
+for that candidate. Earlier `780c6ad` reports and direct null-PID diagnostics
+do not constitute its final acceptance. No candidate retry, copy, rename,
+rebuild or policy bypass is performed while administrator allowance remains
+unconfirmed.
+
+`verification/language-sandbox-v3-finalrun-plan.json` preserves the exact planned
+argv and source hashes; it is not an execution receipt. Resume only after the
+root validation owner confirms administrator policy allowance for that same
+file/hash, then create fresh reports with actual driver exit/stdout/transcript
+hashes. The offline evidence index verifies historical artifacts without
+launching any candidate or backend.
+
 `verification/language-sandbox-v3-runner.ps1` records the exact driver argv,
 binary/harness/runner hashes, actual exit code, raw stdout and transcript. It
 requires fresh output names, normalizes text to LF before final hash binding,
