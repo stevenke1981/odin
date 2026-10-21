@@ -7,3 +7,10 @@
 *.ps1 text eol=lf
 *.exe binary
 *.zip binary
+
+# Preserve original captured bytes for these historical SHA-bound reports.
+# Current reports are normalized to LF before their digests are bound.
+verification/debug-candidate-appcontrol.json -text whitespace=cr-at-eol
+verification/native-inspections-attempt-1.json -text whitespace=cr-at-eol
+verification/native-inspections-attempt-2.json -text whitespace=cr-at-eol
+verification/native-inspections-attempt-3.json -text whitespace=cr-at-eol

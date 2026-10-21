@@ -25,6 +25,9 @@ Native MXC 驗收另需操作者指定 executor path 與 SHA-256，執行 opt-in
 findings、source freshness、唯讀分析及 fix preview/apply/rollback。
 新候選可用 `scripts/final_verify.py --output ... --logs-dir ... --artifact-prefix ...`
 保存獨立紀錄，避免覆蓋歷史證據；換行先正規 LF 才計算交叉報告 digest。
+四份早期 raw JSON capture 已有 CRLF 原始 digest，因此由 `.gitattributes`
+逐檔保留其位元組；不得套用全域換行轉換而破壞歷史綁定。最終 manifest
+須對實際發佈的 Git bytes 核對，歷史修正紀錄見 `sandbox-ide-manifest-history.json`。
 
 ## 第三層：真實後端矩陣
 

@@ -149,7 +149,8 @@
     "licenses": "verification/license-inventory.json",
     "public_scan": "verification/public-candidate-scan.json",
     "artifact_bindings": "verification/sandbox-ide-artifact-bindings.json",
-    "final_documentation_checks": "verification/sandbox-ide-delivery-checks.json"
+    "final_documentation_checks": "verification/sandbox-ide-delivery-checks.json",
+    "manifest_history": "verification/sandbox-ide-manifest-history.json"
   },
   "gates": {
     "generated_artifacts": "PASS",
@@ -287,7 +288,7 @@
     "report_sha256": "08fa848295f27d6a8e511bc54a88e2176ed71de2e3e1e56567389f0342ab5c96",
     "note": "Original 72-tool validation, packaging and publication summary preserved without reclassification."
   },
-  "post_validation_changes": "Final language driver ordering, documentation and evidence may follow the recorded build revision. Rust/core/schema/lockfile hashes remain identical; current driver execution has its own harness hash and command receipt.",
+  "post_validation_changes": "Final language driver ordering, documentation and evidence may follow the recorded build revision. Rust/core/schema/lockfile hashes remain identical; current driver execution has its own harness hash and command receipt. Four historical raw CRLF JSON captures use explicit Git byte-preservation attributes so original evidence digests match public Git blobs; all logical results remain unchanged.",
   "incomplete_or_unverified": [
     "TypeScript/Java unversioned diagnostics cannot establish current source version; optional backend capabilities may be unavailable.",
     "Actual OS-sandbox LSP workload acceptance for Rust/Python/Go/Java/C# is NOT_RUN; the six-language baseline is host-process scope.",

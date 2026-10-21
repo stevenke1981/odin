@@ -1,0 +1,42 @@
+{
+  "scope": "Historical pre-refresh manifest check; this failure is preserved and is not the final publication gate.",
+  "command": [
+    "python",
+    "-X",
+    "utf8",
+    "scripts/verify_manifest.py"
+  ],
+  "cwd": ".",
+  "exit_code": 1,
+  "status": "FAIL",
+  "recorded_at_utc": "2026-10-21T02:13:53.617614+00:00",
+  "output": "Checked 223 manifest entries; mismatches=45\nCHANGELOG.md\nDELIVERY.zh-TW.md\nREADME.md\ncrates/odin-core/src/config.rs\ncrates/odin-core/src/lib.rs\ncrates/odin-core/src/process.rs\ncrates/odin-engine/src/lib.rs\ncrates/odin-engine/src/shell.rs\ncrates/odin-engine/tests/completion.rs\ncrates/odin-engine/tests/fixtures/dap_peer.py\ncrates/odin-engine/tests/fixtures/lsp_peer.py\ncrates/odin-engine/tools.json\ncrates/odin-protocol/src/dap.rs\ncrates/odin-protocol/src/lsp.rs\ncrates/odin-protocol/src/rpc.rs\ncrates/odin-protocol/src/text.rs\ncrates/odin-protocol/src/workspace.rs\ncrates/odin-protocol/tests/fixture_protocols.rs\ncrates/odin/src/main.rs\ndocs/API.md\ndocs/ARCHITECTURE.md\ndocs/ENGINE_IMPLEMENTATION.md\ndocs/FEATURE_SPEC.md\ndocs/IMPLEMENTATION_BACKLOG.md\ndocs/KNOWN_LIMITATIONS.md\ndocs/LANGUAGE_SUPPORT.md\ndocs/RELEASE_GATES.md\ndocs/ROADMAP.md\ndocs/SECURITY.md\ndocs/SERENA_PARITY.md\ndocs/STANDALONE.md\ndocs/serena-parity.csv\ndocs/serena-parity.json\ndocs/specs/LANGUAGE_DEBUG_INSPECTIONS.md\ndocs/specs/OPERATIONS_RELEASE.md\nrequirements/features.json\nschemas/tools.json\nscripts/cli_smoke.py\nscripts/final_verify.py\nscripts/generate_catalog.py\nscripts/generate_docs.py\ntests/fixtures/protocol_peer.py\nverification/delivery-status.json\nverification/feature-evidence.json\nverification/public-candidate-scan.json\n",
+  "cause": "Previous 223-file manifest had not been refreshed; four older raw JSON reports also used CRLF while Git normalized them. Their original evidence-bound bytes are preserved by explicit per-file attributes before regenerating the full manifest.",
+  "raw_report_byte_preservation": [
+    {
+      "path": "verification/debug-candidate-appcontrol.json",
+      "sha256": "bd1cdface4c69310ea4597ad8ebb5f0f060fce476c9fa4c5a474913123ac5fd0",
+      "staged_git_bytes_match_original": true,
+      "logical_json_unchanged": true
+    },
+    {
+      "path": "verification/native-inspections-attempt-1.json",
+      "sha256": "3650157f4ff8ebc0ddaa8014114be2775382642abfd6f58ec342697fb686b440",
+      "staged_git_bytes_match_original": true,
+      "logical_json_unchanged": true
+    },
+    {
+      "path": "verification/native-inspections-attempt-2.json",
+      "sha256": "bd0dc319e3568e308623685d9cf58a31f89eb37651644cfd8a23f071b88c3c72",
+      "staged_git_bytes_match_original": true,
+      "logical_json_unchanged": true
+    },
+    {
+      "path": "verification/native-inspections-attempt-3.json",
+      "sha256": "82bea0422a7f6574120e69c987547159bae4c039d1fe4aa698d220ea2d9035a2",
+      "staged_git_bytes_match_original": true,
+      "logical_json_unchanged": true
+    }
+  ],
+  "raw_report_byte_policy_check_status": "PASS"
+}
