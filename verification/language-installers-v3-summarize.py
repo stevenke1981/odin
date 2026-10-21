@@ -73,6 +73,7 @@ def main():
     continuation = load('verification/language-installers-v3-continuation-01.json')
     reports = {
         'windows_build': binding('verification/language-installers-v3-windows-build-final.json', 'Compile exit 0; metadata execution blocked, no runtime acceptance.'),
+        'windows_target_fmt_clippy': binding('verification/language-installers-v3-windows-static-final-01.json', 'Current Windows-target fmt and all-target strict Clippy exit 0; blocked release app hash unchanged and never executed.'),
         'windows_host_block': binding('verification/language-installers-v3-final-host-block.json'),
         'windows_workspace_attempt': binding('verification/language-installers-v3-workspace-all-targets-01.json', 'Older source: 214 passed / 5 failed / 6 ignored; five stdin workload starts blocked by host policy. Not replaced by independent continuation.'),
         'windows_independent_continuation': binding('verification/language-installers-v3-continuation-01.json', '13 independent commands exit 0 against the 780c6ad candidate; not the final 69e769b candidate.'),
