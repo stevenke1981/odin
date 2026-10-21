@@ -597,7 +597,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "c5084f4真release binary CLI/stdio/HTTP/cancellation gates均exit0；同binary原三LS/debugpy29 checks及native analyzer30 checks PASS，六語IDE矩陣另待結果。",
+      "summary": "c5084f4標準binary17gates與same-binaryanalyzer30checks PASS；六語兩專案baseline已實跑PARTIAL/exit2（260/14/12/0），TS native sandbox02仍pending。",
       "checks": [
         {
           "command": [
@@ -1223,7 +1223,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "新增completion/resolve、hover/signature、workspace/call hierarchy、inlay/resolve、semantic tokens及URI/JDTLS安全修復；c5084f4標準三LS已實跑，extended六語/TSsandbox矩陣pending，首輪0checks僅歷史。",
+      "summary": "新增IDE RPC/URI/JDTLS安全處理已實作；六語12/12真初始化、260PASS，14capability UNAVAILABLE及12診斷NOT_VERIFIED仍明列，TS沙箱另待驗收。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked",
@@ -1297,13 +1297,13 @@
           "id": "ODIN-007-A1",
           "criterion": "rust-analyzer 真實專案能索引兩個跨檔引用，檔案改動後讀到新符號。",
           "status": "PARTIAL",
-          "remaining": "新增 IDE RPC 僅有 protocol fixtures；六語兩專案當輪 Odin 啟動遭 4551，0 MCP/LSP checks。"
+          "remaining": "六語12專案已實際initialize/查詢；14缺失capabilities與12無version診斷仍未全驗收，不再是0check/僅fixture。"
         },
         {
           "id": "ODIN-007-A2",
           "criterion": "UTF-16 surrogate pair、CRLF、非 ASCII 路徑映射無 off-by-one，版本單調。",
           "status": "PARTIAL",
-          "remaining": "已涵蓋文字位置測試；非 ASCII 路徑與所有 sync server 的矩陣仍未完成。"
+          "remaining": "UTF-16/CRLF及真六語source/range已測；全部非ASCII路徑/server sync模式與跨平台矩陣未完整驗收。"
         },
         {
           "id": "ODIN-007-A3",
@@ -1316,12 +1316,12 @@
         {
           "id": "ODIN-007-A1",
           "criterion": "rust-analyzer 真實專案能索引兩個跨檔引用，檔案改動後讀到新符號。",
-          "remaining": "新增 IDE RPC 僅有 protocol fixtures；六語兩專案當輪 Odin 啟動遭 4551，0 MCP/LSP checks。"
+          "remaining": "六語12專案已實際initialize/查詢；14缺失capabilities與12無version診斷仍未全驗收，不再是0check/僅fixture。"
         },
         {
           "id": "ODIN-007-A2",
           "criterion": "UTF-16 surrogate pair、CRLF、非 ASCII 路徑映射無 off-by-one，版本單調。",
-          "remaining": "已涵蓋文字位置測試；非 ASCII 路徑與所有 sync server 的矩陣仍未完成。"
+          "remaining": "UTF-16/CRLF及真六語source/range已測；全部非ASCII路徑/server sync模式與跨平台矩陣未完整驗收。"
         },
         {
           "id": "ODIN-007-A3",
@@ -1339,7 +1339,8 @@
       "extension_evidence": {
         "status": "PARTIAL",
         "refs": [
-          "#/extension_evidence/native_ide"
+          "#/extension_evidence/native_ide",
+          "#/extension_evidence/six_language_baseline"
         ]
       }
     },
@@ -1349,7 +1350,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "symbol filters/workspace/call hierarchy、UTF-16與freshness已實作；c5084f4基本三語29checks和workspace200PASS不等於所有新增IDE能力已逐語言驗收。",
+      "summary": "真六語兩專案baseline涵蓋symbols/references/IDE與rename流程並有transcript；整體PARTIAL/exit2，不將unsupported或未version診斷當全語等價。",
       "checks": [
         {
           "command": [
@@ -1429,7 +1430,7 @@
           "id": "ODIN-008-A1",
           "criterion": "跨檔 Rust fixtures 逐項對照 rust-analyzer 輸出定位、kind、range，至少 20 個真實查詢通過。",
           "status": "PARTIAL",
-          "remaining": "20 個真 rust-analyzer 查詢對照及 workspace/call-hierarchy 真語言矩陣未完成。"
+          "remaining": "已有六語260PASS真查詢與transcript；原定20個Rust逐項對照及全部kind/range/disambiguation反例仍未單獨完整驗收。"
         },
         {
           "id": "ODIN-008-A2",
@@ -1448,7 +1449,7 @@
         {
           "id": "ODIN-008-A1",
           "criterion": "跨檔 Rust fixtures 逐項對照 rust-analyzer 輸出定位、kind、range，至少 20 個真實查詢通過。",
-          "remaining": "20 個真 rust-analyzer 查詢對照及 workspace/call-hierarchy 真語言矩陣未完成。"
+          "remaining": "已有六語260PASS真查詢與transcript；原定20個Rust逐項對照及全部kind/range/disambiguation反例仍未單獨完整驗收。"
         },
         {
           "id": "ODIN-008-A2",
@@ -1471,7 +1472,8 @@
       "extension_evidence": {
         "status": "PARTIAL",
         "refs": [
-          "#/extension_evidence/native_ide"
+          "#/extension_evidence/native_ide",
+          "#/extension_evidence/six_language_baseline"
         ]
       }
     },
@@ -1580,7 +1582,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "同c5084f4 binary三語跨檔/rename/rollback與debugpy29 checks PASS；六語首輪0屬歷史，後續已有部分真執行，最終六語IDE/TS沙箱仍pending。",
+      "summary": "同f7e57a5 binary六語各兩專案已實跑：260PASS/14UNAVAILABLE/12NOT_VERIFIED/0FAIL，12初始化；TS/Java診斷缺document version，完整原驗收仍PARTIAL。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked real_rust_analyzer_smoke -- --ignored --nocapture",
@@ -1626,13 +1628,13 @@
           "id": "ODIN-010-A1",
           "criterion": "每語言至少完成符號、跨檔 references、rename、diagnostics 的成功與失敗案例。",
           "status": "PARTIAL",
-          "remaining": "當輪原三語基本功能29checks已測；最終六語IDE/TS sandbox、diagnostics正反例及完整refactor未驗收。"
+          "remaining": "六語baseline已PARTIAL實跑；TS/Java valid/error/recovered各6項診斷因缺document version保持NOT_VERIFIED，14capabilities unavailable，不推論完整原功能成功。"
         },
         {
           "id": "ODIN-010-A2",
           "criterion": "每個語言都記錄版本、OS、commit、命令行與 stdout/stderr 原始 log。",
           "status": "PARTIAL",
-          "remaining": "當輪17gates/標準三語29checks有command/exit/source/binary/log；extended六語與TS sandbox的逐語言原始transcript及完整矩陣仍待root綁定。"
+          "remaining": "六語command exit2、binary/harness/transcript/backend/log與normalization hashes已具備；完整診斷freshness驗證及平台/版本矩陣仍未完成。"
         },
         {
           "id": "ODIN-010-A3",
@@ -1645,12 +1647,12 @@
         {
           "id": "ODIN-010-A1",
           "criterion": "每語言至少完成符號、跨檔 references、rename、diagnostics 的成功與失敗案例。",
-          "remaining": "當輪原三語基本功能29checks已測；最終六語IDE/TS sandbox、diagnostics正反例及完整refactor未驗收。"
+          "remaining": "六語baseline已PARTIAL實跑；TS/Java valid/error/recovered各6項診斷因缺document version保持NOT_VERIFIED，14capabilities unavailable，不推論完整原功能成功。"
         },
         {
           "id": "ODIN-010-A2",
           "criterion": "每個語言都記錄版本、OS、commit、命令行與 stdout/stderr 原始 log。",
-          "remaining": "當輪17gates/標準三語29checks有command/exit/source/binary/log；extended六語與TS sandbox的逐語言原始transcript及完整矩陣仍待root綁定。"
+          "remaining": "六語command exit2、binary/harness/transcript/backend/log與normalization hashes已具備；完整診斷freshness驗證及平台/版本矩陣仍未完成。"
         },
         {
           "id": "ODIN-010-A3",
@@ -1676,7 +1678,8 @@
       "extension_evidence": {
         "status": "PARTIAL",
         "refs": [
-          "#/extension_evidence/language_registry"
+          "#/extension_evidence/language_registry",
+          "#/extension_evidence/six_language_baseline"
         ]
       }
     },
@@ -1813,7 +1816,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "可選Windows native MXC已實作，c5084f4 native3測試及同binary三analyzer30 checks皆PASS；六語LSP/MXC、全DAP paths與Linux/macOS未全驗收。",
+      "summary": "Windows native3與same-binaryanalyzer30checks PASS；六語baseline為host mode，TS MXC profile01缺私有TEMP失敗、explicit bootstrap profile02仍pending，跨平台未完成。",
       "checks": [
         {
           "command": [
@@ -1865,7 +1868,7 @@
           "id": "ODIN-012-A1",
           "criterion": "受測敵意 command/process 不能更改 workspace 外檔案；子孫程序可被完整終止。",
           "status": "PARTIAL",
-          "remaining": "c5084f4 native3與三analyzer30 checks已有scoped PASS；六語LSP/MXC、全部DAP/OS資源與Linux/macOS矩陣未完成。"
+          "remaining": "nativeMXC與analyzer已PASS；六語host-baseline不等於sandbox。TS profile01因privateTEMP未建立而FAIL，profile02仍待實跑；其他OS及全資源矩陣未完成。"
         },
         {
           "id": "ODIN-012-A2",
@@ -1884,7 +1887,7 @@
         {
           "id": "ODIN-012-A1",
           "criterion": "受測敵意 command/process 不能更改 workspace 外檔案；子孫程序可被完整終止。",
-          "remaining": "c5084f4 native3與三analyzer30 checks已有scoped PASS；六語LSP/MXC、全部DAP/OS資源與Linux/macOS矩陣未完成。"
+          "remaining": "nativeMXC與analyzer已PASS；六語host-baseline不等於sandbox。TS profile01因privateTEMP未建立而FAIL，profile02仍待實跑；其他OS及全資源矩陣未完成。"
         },
         {
           "id": "ODIN-012-A2",
@@ -2409,7 +2412,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "Type/CallHierarchy與workspace symbols/freshness已實作；SIR-001累計預算及SIR-003摘要已修復並具獨立review，最終真六語/跨專案完整矩陣仍待驗收。",
+      "summary": "Type/CallHierarchy與workspace symbols/freshness已實作並有資源預算修復；六語已實測但保留14capability UNAVAILABLE，完整跨專案/依賴矩陣未完成。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked",
@@ -2461,7 +2464,7 @@
           "id": "ODIN-018-A1",
           "criterion": "Type Hierarchy 能列出 fixture 的父類、子類，並正確含跨檔。",
           "status": "PARTIAL",
-          "remaining": "Hierarchy累計預算已修復且review PASS；真後端全部Type/CallHierarchy跨檔/依賴矩陣未完成。"
+          "remaining": "已完成六語baseline中的支援查詢；14capability unavailable仍明列，全部Type/CallHierarchy與外部依賴跨專案矩陣未完整驗收。"
         },
         {
           "id": "ODIN-018-A2",
@@ -2480,7 +2483,7 @@
         {
           "id": "ODIN-018-A1",
           "criterion": "Type Hierarchy 能列出 fixture 的父類、子類，並正確含跨檔。",
-          "remaining": "Hierarchy累計預算已修復且review PASS；真後端全部Type/CallHierarchy跨檔/依賴矩陣未完成。"
+          "remaining": "已完成六語baseline中的支援查詢；14capability unavailable仍明列，全部Type/CallHierarchy與外部依賴跨專案矩陣未完整驗收。"
         },
         {
           "id": "ODIN-018-A2",
@@ -2498,7 +2501,8 @@
       "extension_evidence": {
         "status": "PARTIAL",
         "refs": [
-          "#/extension_evidence/native_ide"
+          "#/extension_evidence/native_ide",
+          "#/extension_evidence/six_language_baseline"
         ]
       }
     },
@@ -2508,7 +2512,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "28 registry entries仍是設定指引；保留首輪4551/0checks與後續部分真結果，c5084f4六語各兩專案及TS沙箱正式矩陣待root綁定。",
+      "summary": "28是registry指引；六語兩專案已實跑PARTIAL/exit2、12初始化與260PASS，14UNAVAILABLE/12NOT_VERIFIED仍保留，不稱六語全功能或28/40+已支援。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked real_rust_analyzer_smoke -- --ignored --nocapture",
@@ -2554,36 +2558,36 @@
           "id": "ODIN-019-A1",
           "criterion": "首批 6 語言可在本機安裝直接後端並通過核心查詢。",
           "status": "PARTIAL",
-          "remaining": "28是registry非支援數；最終六語兩專案與TS sandbox仍待正式report，不以部分真結果稱六語全部完成。"
+          "remaining": "六語各兩專案已實跑PARTIAL/exit2，12初始化；TS/Java診斷未version、14能力unavailable，不等於六語全功能完成。"
         },
         {
           "id": "ODIN-019-A2",
           "criterion": "每種新增語言均有 2 個以上實際專案 fixture 與反例；未驗證不得宣稱支援。",
           "status": "PARTIAL",
-          "remaining": "保留首輪0check與後續部分結果；每語兩個真fixture的完整功能/反例尚需最終矩陣確認。"
+          "remaining": "兩fixture的rename/apply/rollback真實成功包含JDTLS；完整專案多樣性、全部反例/版本/平台仍未達全部驗收。"
         },
         {
           "id": "ODIN-019-A3",
           "criterion": "支援矩陣記錄每種語言的 find/reference/rename/diagnostics/refactor 狀態與證據。",
           "status": "PARTIAL",
-          "remaining": "需逐語言／功能分 INSTALLED/CONFIGURED/VERIFIED；diagnostics/refactor/IDE 真實矩陣未完成。"
+          "remaining": "逐語言結果已列260PASS/14UNAVAILABLE/12NOT_VERIFIED/0FAIL；NOT_VERIFIED不可改PASS，28/40+語言及全refactor/IDE矩陣未完成。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-019-A1",
           "criterion": "首批 6 語言可在本機安裝直接後端並通過核心查詢。",
-          "remaining": "28是registry非支援數；最終六語兩專案與TS sandbox仍待正式report，不以部分真結果稱六語全部完成。"
+          "remaining": "六語各兩專案已實跑PARTIAL/exit2，12初始化；TS/Java診斷未version、14能力unavailable，不等於六語全功能完成。"
         },
         {
           "id": "ODIN-019-A2",
           "criterion": "每種新增語言均有 2 個以上實際專案 fixture 與反例；未驗證不得宣稱支援。",
-          "remaining": "保留首輪0check與後續部分結果；每語兩個真fixture的完整功能/反例尚需最終矩陣確認。"
+          "remaining": "兩fixture的rename/apply/rollback真實成功包含JDTLS；完整專案多樣性、全部反例/版本/平台仍未達全部驗收。"
         },
         {
           "id": "ODIN-019-A3",
           "criterion": "支援矩陣記錄每種語言的 find/reference/rename/diagnostics/refactor 狀態與證據。",
-          "remaining": "需逐語言／功能分 INSTALLED/CONFIGURED/VERIFIED；diagnostics/refactor/IDE 真實矩陣未完成。"
+          "remaining": "逐語言結果已列260PASS/14UNAVAILABLE/12NOT_VERIFIED/0FAIL；NOT_VERIFIED不可改PASS，28/40+語言及全refactor/IDE矩陣未完成。"
         }
       ],
       "supporting_reports": [
@@ -2596,7 +2600,8 @@
       "extension_evidence": {
         "status": "PARTIAL",
         "refs": [
-          "#/extension_evidence/language_registry"
+          "#/extension_evidence/language_registry",
+          "#/extension_evidence/six_language_baseline"
         ]
       }
     },
@@ -3376,7 +3381,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "當輪sandbox-ide-release-validation：c5084f4的17gates全exit0、200tests/6ignored另native3實跑；source_changed=[]。fe5996d191-test與72工具144-test歷史均保留。",
+      "summary": "17gates原始driver snapshot與200tests/6ignored+native3保留；六語新harness d47fa6…有actualexit2/PARTIAL並綁samebinary/一致productioncratehashes，不重寫舊gate。",
       "checks": [
         {
           "command": [
@@ -3609,7 +3614,7 @@
           "id": "ODIN-027-A1",
           "criterion": "從全新 checkout 執行驗收有可審計 logs；失敗 gate 阻止 release。",
           "status": "PARTIAL",
-          "remaining": "當輪17gates/source/binary/log已完成；全新checkout及完整失敗gate阻擋release的負例矩陣仍未全驗。"
+          "remaining": "17gate與新六語PARTIAL command/log/hash均已具備；全新checkout及完整故障gate負例、跨平台仍未完成。"
         },
         {
           "id": "ODIN-027-A2",
@@ -3630,7 +3635,7 @@
         {
           "id": "ODIN-027-A1",
           "criterion": "從全新 checkout 執行驗收有可審計 logs；失敗 gate 阻止 release。",
-          "remaining": "當輪17gates/source/binary/log已完成；全新checkout及完整失敗gate阻擋release的負例矩陣仍未全驗。"
+          "remaining": "17gate與新六語PARTIAL command/log/hash均已具備；全新checkout及完整故障gate負例、跨平台仍未完成。"
         }
       ],
       "supporting_reports": [],
@@ -4117,7 +4122,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "40原需求/85契約與新舊evidence分開；c5084f4的17gates及同binaryanalyzer完成，六語IDE/TS沙箱、最終包與發布另待實際結果，沒有全40接受主張。",
+      "summary": "40需求/85契約維持38PARTIAL2NOTRUN；追加六語PARTIAL真command/transcript/normalization，17gate與舊checks/digests保留，TSsandbox02/包/發布另待結果。",
       "checks": [
         {
           "command": [
@@ -4229,7 +4234,7 @@
           "id": "ODIN-033-A3",
           "criterion": "README 入口、ROADMAP、RELEASE_GATES 與驗收證據一致。",
           "status": "PARTIAL",
-          "remaining": "當輪17gates與same-binary analyzer已完成；六語/TSsandbox、最終封裝/公開revision仍待實際同步。"
+          "remaining": "17gates與六語PARTIAL已分層記錄，TSsandbox02、最終封裝/公開revision仍待實際同步。"
         }
       ],
       "unverified_acceptance": [
@@ -4246,7 +4251,7 @@
         {
           "id": "ODIN-033-A3",
           "criterion": "README 入口、ROADMAP、RELEASE_GATES 與驗收證據一致。",
-          "remaining": "當輪17gates與same-binary analyzer已完成；六語/TSsandbox、最終封裝/公開revision仍待實際同步。"
+          "remaining": "17gates與六語PARTIAL已分層記錄，TSsandbox02、最終封裝/公開revision仍待實際同步。"
         }
       ],
       "supporting_reports": [],
@@ -4264,7 +4269,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "28 registry/runtime guidance與version probes不等於功能驗收；原三LS當輪已測，六語IDE/TSsandbox矩陣pending，首輪0checks只屬歷史。",
+      "summary": "六語12/12真初始化和backends版本/log已實跑；registry/versionprobe不等於全部能力，14UNAVAILABLE與TS/Java12個診斷NOT_VERIFIED未升PASS。",
       "checks": [
         {
           "command": [
@@ -4363,7 +4368,7 @@
           "id": "ODIN-034-A1",
           "criterion": "後端缺失回 MISSING_BACKEND，版本衝突回 BACKEND_UNSUPPORTED。",
           "status": "PARTIAL",
-          "remaining": "原三LS已實際握手/操作；28registry與versionprobe仍不是六語IDE完成，正式最終矩陣及全版本相容未驗。"
+          "remaining": "六語已實際initialize，沒有把profile名字當支援；unversioned診斷、unsupported能力與所有版本/ready狀態反例仍未全驗收。"
         },
         {
           "id": "ODIN-034-A2",
@@ -4382,7 +4387,7 @@
         {
           "id": "ODIN-034-A1",
           "criterion": "後端缺失回 MISSING_BACKEND，版本衝突回 BACKEND_UNSUPPORTED。",
-          "remaining": "原三LS已實際握手/操作；28registry與versionprobe仍不是六語IDE完成，正式最終矩陣及全版本相容未驗。"
+          "remaining": "六語已實際initialize，沒有把profile名字當支援；unversioned診斷、unsupported能力與所有版本/ready狀態反例仍未全驗收。"
         },
         {
           "id": "ODIN-034-A2",
@@ -4400,7 +4405,8 @@
       "extension_evidence": {
         "status": "PARTIAL",
         "refs": [
-          "#/extension_evidence/language_registry"
+          "#/extension_evidence/language_registry",
+          "#/extension_evidence/six_language_baseline"
         ]
       }
     },
@@ -5539,7 +5545,7 @@
           "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         }
       ],
-      "remaining": "Six-language/two-project extended IDE matrix and TypeScript sandbox acceptance are pending integration-owner evidence; all_40_requirements_accepted remains false."
+      "remaining": "Same-binary six-language baseline was executed PARTIAL/exit2 with260 PASS,14 UNAVAILABLE,12 NOT_VERIFIED,0 FAIL and12 initialized projects. TypeScript sandbox profile02 remains pending; all40 requirements remain unaccepted."
     },
     "checks": {
       "sandbox_native": {
@@ -5707,8 +5713,8 @@
         "invariants_not_run": 12,
         "reason": "AppControl os error 4551 denied unchanged invariants test executable before execution. 62 tests ran and passed; 12 invariants NOT_RUN on this attempt. No policy changes or alternate-path retries."
       },
-      "review_followup": "SIR-001 cumulative hierarchy budgeting and SIR-003 summary were repaired and independently reviewed on fe5996d. URI/JDTLS security/startup fixes are in current c5084f4; root reports independent rereview PASS. New six-language/TS-sandbox runtime matrix is still pending.",
-      "real_backend_acceptance": "PARTIAL_REAL_BACKEND_EXECUTION; extended six-language IDE matrix pending.",
+      "review_followup": "SIR-001 cumulative hierarchy budgeting and SIR-003 summary were repaired and independently reviewed on fe5996d. URI/JDTLS security/startup fixes are in current c5084f4; root reports independent rereview PASS. Six-language host baseline03 was executed PARTIAL/exit2; TypeScript native-sandbox profile02 remains pending.",
+      "real_backend_acceptance": "PARTIAL_EXECUTED_SIX_LANGUAGE_BASELINE_EXIT2",
       "latest_engine_rerun_scope": "Historical author attempt; its AppControl denial remains unchanged. The latest integrated c5084f4 workspace suite passed 200 tests.",
       "standard_backend_validation": {
         "status": "PASS",
@@ -5719,7 +5725,8 @@
         "checks_passed": 29,
         "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
         "scope": "Actual Rust/Python/TypeScript symbols/references/rename/rollback and debugpy; not every added IDE capability."
-      }
+      },
+      "extended_backend_validation_ref": "#/extension_evidence/six_language_baseline"
     },
     "native_inspections": {
       "implementation": "PARTIAL",
@@ -5923,12 +5930,13 @@
         "reason": "Odin blocked before any MCP/LSP exchange. Backend probes/fixture configuration are not language acceptance."
       },
       "remaining": [
-        "Final c5084f4 six-language/two-project IDE and TypeScript sandbox matrices are pending.",
-        "Intermediate previous-binary attempts include real partial results; original zero-exchange failure remains historical.",
-        "28 registry entries do not prove 28 or40+ supported languages; unavailable backend capabilities remain explicit."
+        "Six-language two-project baseline executed PARTIAL;12 diagnostic version/freshness cases remain NOT_VERIFIED and14 capabilities UNAVAILABLE.",
+        "TypeScript MXC profile01 failed before LSP initialization because private TEMP subdirectories were missing; new explicit trusted profile02 is pending.",
+        "28 registry entries are guidance, not28 or40+ supported languages."
       ],
-      "current_matrix_status": "PENDING_FINAL_SIX_LANGUAGE_AND_TYPESCRIPT_SANDBOX_REPORTS",
-      "historical_zero_exchange_attempt_scope": "first_real_attempt is preserved historical WinError4551 evidence, not the latest executed language result."
+      "current_matrix_status": "PARTIAL_EXECUTED_SIX_LANGUAGE_BASELINE_EXIT2",
+      "historical_zero_exchange_attempt_scope": "first_real_attempt is preserved historical WinError4551 evidence, not the latest executed language result.",
+      "final_baseline_ref": "#/extension_evidence/six_language_baseline"
     },
     "immutable_debug_launches": {
       "implementation": "PARTIAL",
@@ -6334,7 +6342,733 @@
         "remaining": "Six-language two-project IDE matrix and native analyzers on this final binary remain separate pending runs; all_40_requirements_accepted stays false."
       }
     ],
-    "release_documentation_base_sha": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d"
+    "release_documentation_base_sha": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+    "six_language_baseline": {
+      "status": "PARTIAL",
+      "mode": "baseline",
+      "boundary": "Baseline profiles explicitly run on the host without OS isolation",
+      "report": "verification/language-ide-final-baseline-03.json",
+      "report_sha256": "74607775a28d75d91d5a4e045e319963fcf3e4469923b4233d97ca26b27a6847",
+      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+      "harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+      "actual_lsp_projects_initialized": 12,
+      "projects_total": 12,
+      "counts": {
+        "PASS": 260,
+        "UNAVAILABLE": 14,
+        "NOT_VERIFIED": 12,
+        "FAIL": 0
+      },
+      "per_language": {
+        "rust": {
+          "projects": [
+            {
+              "project": "rust_a",
+              "status": "PASS",
+              "report_pointer": "/projects/0"
+            },
+            {
+              "project": "rust_b",
+              "status": "PASS",
+              "report_pointer": "/projects/1"
+            }
+          ],
+          "counts": {
+            "PASS": 48,
+            "UNAVAILABLE": 0,
+            "NOT_VERIFIED": 0,
+            "FAIL": 0
+          },
+          "unavailable_checks": [],
+          "unverified_checks": []
+        },
+        "python": {
+          "projects": [
+            {
+              "project": "python_a",
+              "status": "PASS",
+              "report_pointer": "/projects/2"
+            },
+            {
+              "project": "python_b",
+              "status": "PASS",
+              "report_pointer": "/projects/3"
+            }
+          ],
+          "counts": {
+            "PASS": 40,
+            "UNAVAILABLE": 4,
+            "NOT_VERIFIED": 0,
+            "FAIL": 0
+          },
+          "unavailable_checks": [
+            "format_transaction",
+            "inlay_hint_resolve"
+          ],
+          "unverified_checks": []
+        },
+        "typescript": {
+          "projects": [
+            {
+              "project": "typescript_a",
+              "status": "PARTIAL",
+              "report_pointer": "/projects/4"
+            },
+            {
+              "project": "typescript_b",
+              "status": "PARTIAL",
+              "report_pointer": "/projects/5"
+            }
+          ],
+          "counts": {
+            "PASS": 40,
+            "UNAVAILABLE": 2,
+            "NOT_VERIFIED": 6,
+            "FAIL": 0
+          },
+          "unavailable_checks": [
+            "inlay_hint_resolve"
+          ],
+          "unverified_checks": [
+            "diagnostics_error",
+            "diagnostics_recovered",
+            "diagnostics_valid"
+          ]
+        },
+        "go": {
+          "projects": [
+            {
+              "project": "go_a",
+              "status": "PASS",
+              "report_pointer": "/projects/6"
+            },
+            {
+              "project": "go_b",
+              "status": "PASS",
+              "report_pointer": "/projects/7"
+            }
+          ],
+          "counts": {
+            "PASS": 44,
+            "UNAVAILABLE": 4,
+            "NOT_VERIFIED": 0,
+            "FAIL": 0
+          },
+          "unavailable_checks": [
+            "completion_resolve",
+            "inlay_hint_resolve"
+          ],
+          "unverified_checks": []
+        },
+        "java": {
+          "projects": [
+            {
+              "project": "java_a",
+              "status": "PARTIAL",
+              "report_pointer": "/projects/8"
+            },
+            {
+              "project": "java_b",
+              "status": "PARTIAL",
+              "report_pointer": "/projects/9"
+            }
+          ],
+          "counts": {
+            "PASS": 40,
+            "UNAVAILABLE": 2,
+            "NOT_VERIFIED": 6,
+            "FAIL": 0
+          },
+          "unavailable_checks": [
+            "inlay_hint_resolve"
+          ],
+          "unverified_checks": [
+            "diagnostics_error",
+            "diagnostics_recovered",
+            "diagnostics_valid"
+          ]
+        },
+        "csharp": {
+          "projects": [
+            {
+              "project": "csharp_a",
+              "status": "PASS",
+              "report_pointer": "/projects/10"
+            },
+            {
+              "project": "csharp_b",
+              "status": "PASS",
+              "report_pointer": "/projects/11"
+            }
+          ],
+          "counts": {
+            "PASS": 48,
+            "UNAVAILABLE": 2,
+            "NOT_VERIFIED": 0,
+            "FAIL": 0
+          },
+          "unavailable_checks": [
+            "inlay_hint_resolve"
+          ],
+          "unverified_checks": []
+        }
+      },
+      "rename_apply_rollback_checks": [
+        {
+          "language": "rust",
+          "project": "rust_a",
+          "name": "rename_preview_readonly",
+          "status": "PASS",
+          "report_pointer": "/projects/0/checks/14"
+        },
+        {
+          "language": "rust",
+          "project": "rust_a",
+          "name": "rename_definition_and_consumer",
+          "status": "PASS",
+          "report_pointer": "/projects/0/checks/15"
+        },
+        {
+          "language": "rust",
+          "project": "rust_a",
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS",
+          "report_pointer": "/projects/0/checks/16"
+        },
+        {
+          "language": "rust",
+          "project": "rust_a",
+          "name": "rename_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/0/checks/17"
+        },
+        {
+          "language": "rust",
+          "project": "rust_a",
+          "name": "format_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/0/checks/20"
+        },
+        {
+          "language": "rust",
+          "project": "rust_a",
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/0/checks/22"
+        },
+        {
+          "language": "rust",
+          "project": "rust_b",
+          "name": "rename_preview_readonly",
+          "status": "PASS",
+          "report_pointer": "/projects/1/checks/14"
+        },
+        {
+          "language": "rust",
+          "project": "rust_b",
+          "name": "rename_definition_and_consumer",
+          "status": "PASS",
+          "report_pointer": "/projects/1/checks/15"
+        },
+        {
+          "language": "rust",
+          "project": "rust_b",
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS",
+          "report_pointer": "/projects/1/checks/16"
+        },
+        {
+          "language": "rust",
+          "project": "rust_b",
+          "name": "rename_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/1/checks/17"
+        },
+        {
+          "language": "rust",
+          "project": "rust_b",
+          "name": "format_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/1/checks/20"
+        },
+        {
+          "language": "rust",
+          "project": "rust_b",
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/1/checks/22"
+        },
+        {
+          "language": "python",
+          "project": "python_a",
+          "name": "rename_preview_readonly",
+          "status": "PASS",
+          "report_pointer": "/projects/2/checks/14"
+        },
+        {
+          "language": "python",
+          "project": "python_a",
+          "name": "rename_definition_and_consumer",
+          "status": "PASS",
+          "report_pointer": "/projects/2/checks/15"
+        },
+        {
+          "language": "python",
+          "project": "python_a",
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS",
+          "report_pointer": "/projects/2/checks/16"
+        },
+        {
+          "language": "python",
+          "project": "python_a",
+          "name": "rename_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/2/checks/17"
+        },
+        {
+          "language": "python",
+          "project": "python_a",
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/2/checks/20"
+        },
+        {
+          "language": "python",
+          "project": "python_b",
+          "name": "rename_preview_readonly",
+          "status": "PASS",
+          "report_pointer": "/projects/3/checks/14"
+        },
+        {
+          "language": "python",
+          "project": "python_b",
+          "name": "rename_definition_and_consumer",
+          "status": "PASS",
+          "report_pointer": "/projects/3/checks/15"
+        },
+        {
+          "language": "python",
+          "project": "python_b",
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS",
+          "report_pointer": "/projects/3/checks/16"
+        },
+        {
+          "language": "python",
+          "project": "python_b",
+          "name": "rename_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/3/checks/17"
+        },
+        {
+          "language": "python",
+          "project": "python_b",
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/3/checks/20"
+        },
+        {
+          "language": "typescript",
+          "project": "typescript_a",
+          "name": "rename_preview_readonly",
+          "status": "PASS",
+          "report_pointer": "/projects/4/checks/14"
+        },
+        {
+          "language": "typescript",
+          "project": "typescript_a",
+          "name": "rename_definition_and_consumer",
+          "status": "PASS",
+          "report_pointer": "/projects/4/checks/15"
+        },
+        {
+          "language": "typescript",
+          "project": "typescript_a",
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS",
+          "report_pointer": "/projects/4/checks/16"
+        },
+        {
+          "language": "typescript",
+          "project": "typescript_a",
+          "name": "rename_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/4/checks/17"
+        },
+        {
+          "language": "typescript",
+          "project": "typescript_a",
+          "name": "format_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/4/checks/20"
+        },
+        {
+          "language": "typescript",
+          "project": "typescript_a",
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/4/checks/22"
+        },
+        {
+          "language": "typescript",
+          "project": "typescript_b",
+          "name": "rename_preview_readonly",
+          "status": "PASS",
+          "report_pointer": "/projects/5/checks/14"
+        },
+        {
+          "language": "typescript",
+          "project": "typescript_b",
+          "name": "rename_definition_and_consumer",
+          "status": "PASS",
+          "report_pointer": "/projects/5/checks/15"
+        },
+        {
+          "language": "typescript",
+          "project": "typescript_b",
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS",
+          "report_pointer": "/projects/5/checks/16"
+        },
+        {
+          "language": "typescript",
+          "project": "typescript_b",
+          "name": "rename_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/5/checks/17"
+        },
+        {
+          "language": "typescript",
+          "project": "typescript_b",
+          "name": "format_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/5/checks/20"
+        },
+        {
+          "language": "typescript",
+          "project": "typescript_b",
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/5/checks/22"
+        },
+        {
+          "language": "go",
+          "project": "go_a",
+          "name": "rename_preview_readonly",
+          "status": "PASS",
+          "report_pointer": "/projects/6/checks/14"
+        },
+        {
+          "language": "go",
+          "project": "go_a",
+          "name": "rename_definition_and_consumer",
+          "status": "PASS",
+          "report_pointer": "/projects/6/checks/15"
+        },
+        {
+          "language": "go",
+          "project": "go_a",
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS",
+          "report_pointer": "/projects/6/checks/16"
+        },
+        {
+          "language": "go",
+          "project": "go_a",
+          "name": "rename_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/6/checks/17"
+        },
+        {
+          "language": "go",
+          "project": "go_a",
+          "name": "format_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/6/checks/20"
+        },
+        {
+          "language": "go",
+          "project": "go_a",
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/6/checks/22"
+        },
+        {
+          "language": "go",
+          "project": "go_b",
+          "name": "rename_preview_readonly",
+          "status": "PASS",
+          "report_pointer": "/projects/7/checks/14"
+        },
+        {
+          "language": "go",
+          "project": "go_b",
+          "name": "rename_definition_and_consumer",
+          "status": "PASS",
+          "report_pointer": "/projects/7/checks/15"
+        },
+        {
+          "language": "go",
+          "project": "go_b",
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS",
+          "report_pointer": "/projects/7/checks/16"
+        },
+        {
+          "language": "go",
+          "project": "go_b",
+          "name": "rename_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/7/checks/17"
+        },
+        {
+          "language": "go",
+          "project": "go_b",
+          "name": "format_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/7/checks/20"
+        },
+        {
+          "language": "go",
+          "project": "go_b",
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/7/checks/22"
+        },
+        {
+          "language": "java",
+          "project": "java_a",
+          "name": "rename_preview_readonly",
+          "status": "PASS",
+          "report_pointer": "/projects/8/checks/14"
+        },
+        {
+          "language": "java",
+          "project": "java_a",
+          "name": "rename_definition_and_consumer",
+          "status": "PASS",
+          "report_pointer": "/projects/8/checks/15"
+        },
+        {
+          "language": "java",
+          "project": "java_a",
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS",
+          "report_pointer": "/projects/8/checks/16"
+        },
+        {
+          "language": "java",
+          "project": "java_a",
+          "name": "rename_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/8/checks/17"
+        },
+        {
+          "language": "java",
+          "project": "java_a",
+          "name": "format_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/8/checks/20"
+        },
+        {
+          "language": "java",
+          "project": "java_a",
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/8/checks/22"
+        },
+        {
+          "language": "java",
+          "project": "java_b",
+          "name": "rename_preview_readonly",
+          "status": "PASS",
+          "report_pointer": "/projects/9/checks/14"
+        },
+        {
+          "language": "java",
+          "project": "java_b",
+          "name": "rename_definition_and_consumer",
+          "status": "PASS",
+          "report_pointer": "/projects/9/checks/15"
+        },
+        {
+          "language": "java",
+          "project": "java_b",
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS",
+          "report_pointer": "/projects/9/checks/16"
+        },
+        {
+          "language": "java",
+          "project": "java_b",
+          "name": "rename_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/9/checks/17"
+        },
+        {
+          "language": "java",
+          "project": "java_b",
+          "name": "format_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/9/checks/20"
+        },
+        {
+          "language": "java",
+          "project": "java_b",
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/9/checks/22"
+        },
+        {
+          "language": "csharp",
+          "project": "csharp_a",
+          "name": "rename_preview_readonly",
+          "status": "PASS",
+          "report_pointer": "/projects/10/checks/15"
+        },
+        {
+          "language": "csharp",
+          "project": "csharp_a",
+          "name": "rename_definition_and_consumer",
+          "status": "PASS",
+          "report_pointer": "/projects/10/checks/16"
+        },
+        {
+          "language": "csharp",
+          "project": "csharp_a",
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS",
+          "report_pointer": "/projects/10/checks/17"
+        },
+        {
+          "language": "csharp",
+          "project": "csharp_a",
+          "name": "rename_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/10/checks/18"
+        },
+        {
+          "language": "csharp",
+          "project": "csharp_a",
+          "name": "format_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/10/checks/21"
+        },
+        {
+          "language": "csharp",
+          "project": "csharp_a",
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/10/checks/23"
+        },
+        {
+          "language": "csharp",
+          "project": "csharp_b",
+          "name": "rename_preview_readonly",
+          "status": "PASS",
+          "report_pointer": "/projects/11/checks/15"
+        },
+        {
+          "language": "csharp",
+          "project": "csharp_b",
+          "name": "rename_definition_and_consumer",
+          "status": "PASS",
+          "report_pointer": "/projects/11/checks/16"
+        },
+        {
+          "language": "csharp",
+          "project": "csharp_b",
+          "name": "rename_other_projects_unchanged",
+          "status": "PASS",
+          "report_pointer": "/projects/11/checks/17"
+        },
+        {
+          "language": "csharp",
+          "project": "csharp_b",
+          "name": "rename_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/11/checks/18"
+        },
+        {
+          "language": "csharp",
+          "project": "csharp_b",
+          "name": "format_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/11/checks/21"
+        },
+        {
+          "language": "csharp",
+          "project": "csharp_b",
+          "name": "diagnostic_fixture_rollback",
+          "status": "PASS",
+          "report_pointer": "/projects/11/checks/23"
+        }
+      ],
+      "command_evidence": {
+        "report": "verification/language-ide-final-baseline-03.command.json",
+        "report_sha256": "e97a533711ca0a8d5e5dbaa8ca44169496badfc3e76c4c05529ab7eadc1c9548",
+        "command_pointer": "/command",
+        "status": "PARTIAL",
+        "exit_code": 2,
+        "log": "verification/language-ide-final-baseline-03.txt",
+        "log_sha256": "3caf84a17d5d700f9f629c625f7f7fd0840823b4c40798efe7234e13692b580d",
+        "scope": "Actual driver exit2 preserves partial/unverified acceptance; it is not a zero-exit full-language PASS."
+      },
+      "transcript": {
+        "path": "verification/language-ide-final-baseline-03.requests.jsonl",
+        "sha256": "5089119c1e9b490bd71bc7dc7c371890606694271b26ab6d16d369c7ccc22641"
+      },
+      "normalization": {
+        "report": "verification/language-ide-final-baseline-03.normalization.json",
+        "report_sha256": "540d79f53cd4ce27abcf8896588e84830a20f6ed53d045fdcb6af515a0aed872",
+        "status": "PASS",
+        "scope": "LF normalization preserves all executed check results, including failures and unverified results",
+        "logical_checks_sha256_before": "1459dffbe1c076348a9f0c5fc06e24406450cc073b28e56ee6e55f16200b38d9",
+        "logical_checks_sha256_after": "1459dffbe1c076348a9f0c5fc06e24406450cc073b28e56ee6e55f16200b38d9",
+        "actual_driver_exit_code": 2,
+        "trace_payload_hash_scope": "Odin trace result_sha256 describes original unredacted payload bytes, not the later normalized/redacted JSON."
+      },
+      "source_binding": {
+        "product_revision": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+        "production_crate_files_checked": 53,
+        "production_crate_hashes_match_17_gate_snapshot": true,
+        "release_gate_harness_sha256": "862bf89645e99c5110bd6d700ba8a8a16c4f796c86218dd4c20dad3d32a416bf",
+        "six_language_harness_sha256": "d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09",
+        "criteria_review": "Root reports AST acceptance criteria unchanged; observing valid diagnostics moved before transactions. The17-gate report retains its own original QA-driver snapshot and is not rewritten."
+      },
+      "remaining": [
+        "TypeScript and Java each retain6 NOT_VERIFIED diagnostic cases because push diagnostics omit document version; no clean-build/freshness PASS is inferred.",
+        "14 unsupported capability checks remain UNAVAILABLE, not a semantic fallback or failure hidden as PASS.",
+        "28 registry entries and this Windows baseline do not prove28/40+ languages, every IDE feature, native MXC LSP route or full platform parity.",
+        "TypeScript native-sandbox profile02 is still pending; baseline language execution is explicitly host mode."
+      ],
+      "documentation_base_sha": "a254e4ee13671322041da0024a93d5c6467f8bc5"
+    },
+    "typescript_sandbox": {
+      "status": "PENDING_NEW_EXPLICIT_PROFILE_02",
+      "historical_profile01": {
+        "report": "verification/language-ide-final-sandbox-typescript-01.json",
+        "report_sha256": "d0d4961aa17190a4549909cca7139b22a8ac1421ebfaae81d0db214ef1abac4d",
+        "status": "FAIL",
+        "counts": {
+          "PASS": 2,
+          "FAIL": 4
+        },
+        "actual_lsp_projects_initialized": 0,
+        "command_report": "verification/language-ide-final-sandbox-typescript-01.command.json",
+        "command_report_sha256": "f920b48ae94f73277fcdd3bd4c6a52507401737780e287f027639778599329c8",
+        "exit_code": 1,
+        "scope": "Two Odin MCP initializations passed, actual TypeScript LSP startup failed because MXC private TEMP package directory was absent; not a zero-MCP attempt."
+      },
+      "new_profile02": {
+        "status": "PENDING",
+        "owner": "/root/platform_implementation",
+        "reported_change": "Trusted fixed external bootstrap creates its private TEMP subdirectory inside existing grants before importing the real server. No eval and no grant widening.",
+        "success_evidence": "NOT_YET_PROVIDED"
+      },
+      "baseline_is_not_sandbox": "The executed six-language baseline is explicitly host mode; it does not certify this MXC profile."
+    }
   },
   "final_integrated_candidate_scope": "Historical 72-tool baseline only; current source status is extension_evidence.latest_integrated_candidate. Historical 144-test PASS is not this extension run.",
   "baseline_evidence_scope": {

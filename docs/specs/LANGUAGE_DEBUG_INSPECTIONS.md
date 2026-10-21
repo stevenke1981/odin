@@ -1,6 +1,6 @@
 # 語言、IDE 能力與除錯規格 (RFC-INTEL-001)
 
-**地位：原驗收目標加上本輪已實作範圍；不是40項全部完成公告。** 對應 ODIN-007/008/010/013/017/018/019/034/035/036/039。本輪共85工具契約；歷史72工具的144 tests/1 ignored維持原source/binary範圍。最新c5084f4已完成17gates、200tests/6ignored，另native3實跑PASS；六語/TS sandbox矩陣另待結果。
+**地位：原驗收目標加上本輪已實作範圍；不是40項全部完成公告。** 對應 ODIN-007/008/010/013/017/018/019/034/035/036/039。本輪共85工具契約；歷史72工具的144 tests/1 ignored維持原source/binary範圍。最新c5084f4已完成17gates、200tests/6ignored，另native3實跑PASS；六語host baseline03已實跑PARTIAL（exit 2），TS native MXC profile02仍待結果。
 
 ## 直接標準協定與後端分級
 
@@ -15,7 +15,26 @@ Odin 使用自己的 Rust LSP/DAP client，不啟動 Serena/JetBrains bridge，�
 | CONFIGURED | 真initialize/capabilities/workspace log | 該次握手；未知readiness保持unknown |
 | VERIFIED | 指定OS/server/source/binary、真專案逐功能正反例 | 只有實際執行的能力；fixture另標，不與真語言合併 |
 
-語言adapter完整目標仍包括detect、resolve/version/provenance、workspace root、initialize、index readiness、health/restart/invalidate與能力矩陣；registry與通用傳輸不代表每項語言專用adapter都已完成。先完成Rust/Python/TypeScript，再擴Rust/Python/TypeScript/Go/Java/C#六語各兩專案；40+語言不得由名字數推論。
+語言adapter完整目標仍包括detect、resolve/version/provenance、workspace root、initialize、index readiness、health/restart/invalidate與能力矩陣；registry與通用傳輸不代表每項語言專用adapter都已完成。Rust/Python/TypeScript/Go/Java/C#六語各兩專案已實際初始化並執行逐功能baseline；未滿足項目仍按下表揭露，40+語言不得由名字數推論。
+
+## 六語兩專案的實測範圍
+
+[baseline03 report](../../verification/language-ide-final-baseline-03.json) 的結果為 **PARTIAL、actual exit 2**，12/12專案 initialized，合計260 PASS、14 UNAVAILABLE、12 NOT_VERIFIED、0 FAIL。這次是在host mode執行，不能作為六語native MXC驗收。每語言均包含兩個獨立專案：
+
+| 語言 | PASS | UNAVAILABLE | NOT_VERIFIED | FAIL |
+|---|---|---|---|---|
+| Rust | 48 | 0 | 0 | 0 |
+| Python | 40 | 4 | 0 | 0 |
+| TypeScript | 40 | 2 | 6 | 0 |
+| Go | 44 | 4 | 0 | 0 |
+| Java | 40 | 2 | 6 | 0 |
+| C# | 48 | 2 | 0 | 0 |
+
+真rename、Transactions apply與rollback已包括JDTLS兩專案。TypeScript/Java的valid、error、recovered diagnostics都缺document version，保持`freshness:unverified`、`clean_build_proven:false`；12項NOT_VERIFIED不得以空findings或總計0 FAIL升為clean。14項UNAVAILABLE是缺capability的明確結果，不是成功的完整IDE功能。
+
+[command](../../verification/language-ide-final-baseline-03.command.json)、[requests transcript](../../verification/language-ide-final-baseline-03.requests.jsonl)與[normalization](../../verification/language-ide-final-baseline-03.normalization.json)保留exit/log/report/transcript hashes。Normalization的PASS只證明LF處理與logical-check digest未變，不改exit 2或PARTIAL；trace result digest對應原始未遮蔽payload。Driver `d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09` 將initial-valid觀察移至mutation前，AST驗收條件經root/reviewer核對未變。17gates保留原driver快照；53個production crates來源hash與release report一致。
+
+TS native MXC profile01保留FAIL／exit 1：兩次MCP initialize PASS，但private TEMP套件目錄缺失使兩專案LSP initialize失敗（合計2 PASS、4 FAIL、0 LSP initialized）。外部trusted固定bootstrap建立private TEMP後import真server的explicit profile02仍pending；不加入eval或放寬grants。
 
 ## IDE工具的現行契約
 
@@ -58,7 +77,7 @@ Snapshot、count、raw/normalized output與累計fix長度均有配額。版本�
 - Windows MXC author兩個native tests已有PASS；guard-until-reap已由當輪native三測試實跑PASS並有持久log/exit0。詳見 [OS_SANDBOX.md](../OS_SANDBOX.md)。
 - Protocol/engine author切片及早期62+12 AppControl阻擋保留歷史；最新c5084f4 workspace200 tests PASS不抹去舊失敗，也不取代六語逐功能矩陣。
 - 最新c5084f4同release binary的真Odin MCP→MXC→Clippy/Ruff/ESLint有30 checks PASS，完整harness command exit0、log/report digests已綁定；涵蓋readonly分析、rule/range/hash/version、safeCAS preview/apply/rollback與scratch清理。舊30a957a/fe5996d成功另存歷史，仍無全規則/私有IDE等價主張。
-- 六語首輪4551/0 MCP/LSP仍為歷史失敗；後續已有部分真結果。最新c5084f4的extended六語各兩專案/TS sandbox矩陣正在整合，由root依實際report補齊，不能預填全部PASS。
-- 本輪c5084f4已完成17/17 gates、200tests/6ignored，另native3；標準三LS/debugpy29及同binary analyzer30實跑PASS。Hierarchy/summary已修復並有scoped review，URI/JDTLS最新combined review由root綁定。跨平台、extended六語/TSsandbox及完整DoD仍未完成；不改host政策或放寬grants洗綠。
+- 六語首輪4551/0 MCP/LSP保留為歷史失敗；最新baseline03已有12/12真LSP初始化與260 PASS，整體因14 UNAVAILABLE及12 NOT_VERIFIED維持PARTIAL／exit 2。TSsandbox01失敗另存，profile02尚待實測。
+- 本輪c5084f4已完成17/17 gates、200tests/6ignored，另native3；標準三LS/debugpy29及同binary analyzer30實跑PASS。Hierarchy/summary已修復並有scoped review，URI/JDTLS最新combined review由root綁定。跨平台、六語剩餘能力/診斷新鮮度、TSsandbox及完整DoD仍未完成；不改host政策或放寬grants洗綠。
 
 實際source/report pointers位於 [feature-evidence.json](../../verification/feature-evidence.json) 的extension_evidence；歷史checks/digests不改寫。完整行為見 [IDE_IMPLEMENTATION.md](../IDE_IMPLEMENTATION.md)。原acceptance與成功／失敗案例仍按 [FEATURE_SPEC.md](../FEATURE_SPEC.md) 驗收。

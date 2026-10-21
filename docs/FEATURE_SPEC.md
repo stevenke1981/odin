@@ -4,9 +4,9 @@
 
 本輪clean product revision `c5084f4947fc4a07c9ab381fa9998ba1a1e2246d` 已執行 **17/17 gates exit0、200 workspace tests PASS/6 ignored**；其中3個native測試另外opt-in實跑PASS，其餘3個真LS probe仍ignored。source_changed=[]、tracked_source_dirty=false。Release binary SHA-256為 `f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875`。
 
-同一binary的原三LS/debugpy29 checks及真MCP→nativeMXC→Clippy/Ruff/ESLint30 checks均PASS；analyzer完整command另有exit0/log/digest。Extended六語各兩專案與TypeScript sandbox矩陣仍pending，28 registry entries只是設定指引，不能推論28或40+語言通過。
+同一binary的原三LS/debugpy29 checks及真MCP→nativeMXC→Clippy/Ruff/ESLint30 checks均PASS；analyzer完整command另有exit0/log/digest。六語各兩專案的host-mode baseline已實際執行：**PARTIAL、exit 2，260 PASS／14 UNAVAILABLE／12 NOT_VERIFIED／0 FAIL，12/12 initialized**。TypeScript與Java診斷缺document version；TypeScript native MXC profile02仍待實測。28 registry entries只是設定指引，不能推論28或40+語言通過。
 
-前版72工具/144-test、fe5996d/191-test、author切片及AppControl失敗均保留原source/binary/digest，與新結果分層。六語首輪0交換仍是歷史失敗，不當作後續全部結果。Hierarchy安全預算與summary已修復；最新review/source binding由root/reviewer管理。
+前版72工具/144-test、fe5996d/191-test、author切片及AppControl失敗均保留原source/binary/digest，與新結果分層。六語首輪0交換仍是歷史失敗；本次真rename/apply/rollback涵蓋JDTLS兩專案。17gates保留當時QA driver快照；六語新driver `d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09` 將initial-valid觀察前移，root/reviewer確認AST驗收條件未變；53個production crates來源hash仍與release report相符。Hierarchy安全預算與summary已修復；最新review/source binding由root/reviewer管理。
 
 需求來源：[features.json](../requirements/features.json)；實際report/command/log/hash與未驗收條件：[feature-evidence.json](../verification/feature-evidence.json) 的extension_evidence。Serena只作開發工具；產品無bridge/fallback、不以regex冒充語意，不自動授權host政策。
 
@@ -50,7 +50,7 @@
 
 **設計目標：** 使用官方 Rust MCP SDK；JSON-RPC Initialize / initialized / tools/list / tools/call；stdio 僅允許 JSON-RPC stdout；HTTP loopback + Bearer + Host/Origin；失敗使用明確 tool error。
 
-**已觀察範圍：** c5084f4真release binary CLI/stdio/HTTP/cancellation gates均exit0；同binary原三LS/debugpy29 checks及native analyzer30 checks PASS，六語IDE矩陣另待結果。
+**已觀察範圍：** c5084f4標準binary17gates與same-binaryanalyzer30checks PASS；六語兩專案baseline已實跑PARTIAL/exit2（260/14/12/0），TS native sandbox02仍pending。
 
 **原驗收條件：**
 
@@ -200,7 +200,7 @@
 
 **設計目標：** 初始化 initialize/initialized、capabilities negotiation、document didOpen/didChange/didClose、WorkspaceFolder；單調版本、UTF-16 索引、超時/取消/重啟、子程序 stderr 分離、按語言設定 stdout framing。
 
-**已觀察範圍：** 新增completion/resolve、hover/signature、workspace/call hierarchy、inlay/resolve、semantic tokens及URI/JDTLS安全修復；c5084f4標準三LS已實跑，extended六語/TSsandbox矩陣pending，首輪0checks僅歷史。
+**已觀察範圍：** 新增IDE RPC/URI/JDTLS安全處理已實作；六語12/12真初始化、260PASS，14capability UNAVAILABLE及12診斷NOT_VERIFIED仍明列，TS沙箱另待驗收。
 
 **原驗收條件：**
 
@@ -210,8 +210,8 @@
 
 **尚未驗收／完成：**
 
-- A1：新增 IDE RPC 僅有 protocol fixtures；六語兩專案當輪 Odin 啟動遭 4551，0 MCP/LSP checks。
-- A2：已涵蓋文字位置測試；非 ASCII 路徑與所有 sync server 的矩陣仍未完成。
+- A1：六語12專案已實際initialize/查詢；14缺失capabilities與12無version診斷仍未全驗收，不再是0check/僅fixture。
+- A2：UTF-16/CRLF及真六語source/range已測；全部非ASCII路徑/server sync模式與跨平台矩陣未完整驗收。
 - A3：protocol crash/timeout/restart 有 fixture；各真實 server 的崩潰重同步矩陣未驗收。
 
 **測試案例 ID：** M1-rust-analyzer-live, M1-utf16-cases, M1-lsp-restart。 **前置需求：** ODIN-004。
@@ -230,7 +230,7 @@
 
 **設計目標：** 實作 documentSymbol/workspaceSymbol/definition/declaration/references/implementation；符號 name_path、kind、scope、depth、include_body、include/exclude kind、matches 分頁；限定只讀必要檔案。
 
-**已觀察範圍：** symbol filters/workspace/call hierarchy、UTF-16與freshness已實作；c5084f4基本三語29checks和workspace200PASS不等於所有新增IDE能力已逐語言驗收。
+**已觀察範圍：** 真六語兩專案baseline涵蓋symbols/references/IDE與rename流程並有transcript；整體PARTIAL/exit2，不將unsupported或未version診斷當全語等價。
 
 **原驗收條件：**
 
@@ -240,7 +240,7 @@
 
 **尚未驗收／完成：**
 
-- A1：20 個真 rust-analyzer 查詢對照及 workspace/call-hierarchy 真語言矩陣未完成。
+- A1：已有六語260PASS真查詢與transcript；原定20個Rust逐項對照及全部kind/range/disambiguation反例仍未單獨完整驗收。
 - A2：消歧與 filters 有 protocol fixtures；完整真實同名/註解反例矩陣未驗收。
 - A3：歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。
 
@@ -290,7 +290,7 @@
 
 **設計目標：** 首批 Rust rust-analyzer、Python basedpyright/Pyright、TypeScript typescript-language-server；固定 fixtures、backend version、安裝指令、工作區設定；公開能力矩陣。
 
-**已觀察範圍：** 同c5084f4 binary三語跨檔/rename/rollback與debugpy29 checks PASS；六語首輪0屬歷史，後續已有部分真執行，最終六語IDE/TS沙箱仍pending。
+**已觀察範圍：** 同f7e57a5 binary六語各兩專案已實跑：260PASS/14UNAVAILABLE/12NOT_VERIFIED/0FAIL，12初始化；TS/Java診斷缺document version，完整原驗收仍PARTIAL。
 
 **原驗收條件：**
 
@@ -300,8 +300,8 @@
 
 **尚未驗收／完成：**
 
-- A1：當輪原三語基本功能29checks已測；最終六語IDE/TS sandbox、diagnostics正反例及完整refactor未驗收。
-- A2：當輪17gates/標準三語29checks有command/exit/source/binary/log；extended六語與TS sandbox的逐語言原始transcript及完整矩陣仍待root綁定。
+- A1：六語baseline已PARTIAL實跑；TS/Java valid/error/recovered各6項診斷因缺document version保持NOT_VERIFIED，14capabilities unavailable，不推論完整原功能成功。
+- A2：六語command exit2、binary/harness/transcript/backend/log與normalization hashes已具備；完整診斷freshness驗證及平台/版本矩陣仍未完成。
 - A3：歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。
 
 **測試案例 ID：** M1-rust-language, M1-python-language, M1-typescript-language。 **前置需求：** ODIN-007, ODIN-008, ODIN-009。
@@ -350,7 +350,7 @@
 
 **設計目標：** 預設最小權限執行；Windows Job Objects/restricted token 視 profile；Linux seccomp/namespace or container；macOS sandbox profile；限制子程序後代、resource/time/cpu/memory；執行命令僅 allowlisted profile。
 
-**已觀察範圍：** 可選Windows native MXC已實作，c5084f4 native3測試及同binary三analyzer30 checks皆PASS；六語LSP/MXC、全DAP paths與Linux/macOS未全驗收。
+**已觀察範圍：** Windows native3與same-binaryanalyzer30checks PASS；六語baseline為host mode，TS MXC profile01缺私有TEMP失敗、explicit bootstrap profile02仍pending，跨平台未完成。
 
 **原驗收條件：**
 
@@ -360,7 +360,7 @@
 
 **尚未驗收／完成：**
 
-- A1：c5084f4 native3與三analyzer30 checks已有scoped PASS；六語LSP/MXC、全部DAP/OS資源與Linux/macOS矩陣未完成。
+- A1：nativeMXC與analyzer已PASS；六語host-baseline不等於sandbox。TS profile01因privateTEMP未建立而FAIL，profile02仍待實跑；其他OS及全資源矩陣未完成。
 - A2：MXC 已 fail closed/無 fallback；unsupported OS/full profile failure matrix 未驗收，未配置的程序沒有自動沙箱。
 - A3：native3與實際analyzer命令/log已綁定；其餘LSP/DAP完整矩陣及最新combined review由root再核對。
 
@@ -530,7 +530,7 @@
 
 **設計目標：** TypeHierarchy prepare/supertypes/subtypes；reference in dependencies；受控外部 workspace activation 與 read-only Project Server；支持 resolver 快取失效。
 
-**已觀察範圍：** Type/CallHierarchy與workspace symbols/freshness已實作；SIR-001累計預算及SIR-003摘要已修復並具獨立review，最終真六語/跨專案完整矩陣仍待驗收。
+**已觀察範圍：** Type/CallHierarchy與workspace symbols/freshness已實作並有資源預算修復；六語已實測但保留14capability UNAVAILABLE，完整跨專案/依賴矩陣未完成。
 
 **原驗收條件：**
 
@@ -540,7 +540,7 @@
 
 **尚未驗收／完成：**
 
-- A1：Hierarchy累計預算已修復且review PASS；真後端全部Type/CallHierarchy跨檔/依賴矩陣未完成。
+- A1：已完成六語baseline中的支援查詢；14capability unavailable仍明列，全部Type/CallHierarchy與外部依賴跨專案矩陣未完整驗收。
 - A2：read-only project query 已測；external workspace activation/Project Server/resolver invalidation 未完整實作。
 - A3：歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。
 
@@ -560,7 +560,7 @@
 
 **設計目標：** 語言適配介面：detect、resolve_server、environment、workspace_root、index_trigger、symbol_capabilities、healthcheck；先 Rust/Python/TypeScript，再 Go/C#/Java/JavaScript；剩餘依需求逐語言完成；將 installed/configured/verified 分級。
 
-**已觀察範圍：** 28 registry entries仍是設定指引；保留首輪4551/0checks與後續部分真結果，c5084f4六語各兩專案及TS沙箱正式矩陣待root綁定。
+**已觀察範圍：** 28是registry指引；六語兩專案已實跑PARTIAL/exit2、12初始化與260PASS，14UNAVAILABLE/12NOT_VERIFIED仍保留，不稱六語全功能或28/40+已支援。
 
 **原驗收條件：**
 
@@ -570,9 +570,9 @@
 
 **尚未驗收／完成：**
 
-- A1：28是registry非支援數；最終六語兩專案與TS sandbox仍待正式report，不以部分真結果稱六語全部完成。
-- A2：保留首輪0check與後續部分結果；每語兩個真fixture的完整功能/反例尚需最終矩陣確認。
-- A3：需逐語言／功能分 INSTALLED/CONFIGURED/VERIFIED；diagnostics/refactor/IDE 真實矩陣未完成。
+- A1：六語各兩專案已實跑PARTIAL/exit2，12初始化；TS/Java診斷未version、14能力unavailable，不等於六語全功能完成。
+- A2：兩fixture的rename/apply/rollback真實成功包含JDTLS；完整專案多樣性、全部反例/版本/平台仍未達全部驗收。
+- A3：逐語言結果已列260PASS/14UNAVAILABLE/12NOT_VERIFIED/0FAIL；NOT_VERIFIED不可改PASS，28/40+語言及全refactor/IDE矩陣未完成。
 
 **測試案例 ID：** M3-six-language-smoke, M3-language-matrix, M3-server-discovery。 **前置需求：** ODIN-010。
 
@@ -800,7 +800,7 @@
 
 **設計目標：** 手動 self-hosted first；fmt、clippy、unit、integration、security、platform workflow；上傳 test log、toolchain、commit SHA、coverage；GitHub-hosted minutes 預設不啟用。
 
-**已觀察範圍：** 當輪sandbox-ide-release-validation：c5084f4的17gates全exit0、200tests/6ignored另native3實跑；source_changed=[]。fe5996d191-test與72工具144-test歷史均保留。
+**已觀察範圍：** 17gates原始driver snapshot與200tests/6ignored+native3保留；六語新harness d47fa6…有actualexit2/PARTIAL並綁samebinary/一致productioncratehashes，不重寫舊gate。
 
 **原驗收條件：**
 
@@ -810,7 +810,7 @@
 
 **尚未驗收／完成：**
 
-- A1：當輪17gates/source/binary/log已完成；全新checkout及完整失敗gate阻擋release的負例矩陣仍未全驗。
+- A1：17gate與新六語PARTIAL command/log/hash均已具備；全新checkout及完整故障gate負例、跨平台仍未完成。
 
 **測試案例 ID：** M0-ci-selfhosted-manual, M0-evidence-manifest, M0-failure-blocks-release。 **前置需求：** ODIN-001。
 
@@ -978,7 +978,7 @@
 
 **設計目標：** 中文需求規格、英語 API tags、每項 id/priority/source/status/deps/acceptance/test；修版時更新 machine-readable backlog 與 traceability；文件語義單一來源。
 
-**已觀察範圍：** 40原需求/85契約與新舊evidence分開；c5084f4的17gates及同binaryanalyzer完成，六語IDE/TS沙箱、最終包與發布另待實際結果，沒有全40接受主張。
+**已觀察範圍：** 40需求/85契約維持38PARTIAL2NOTRUN；追加六語PARTIAL真command/transcript/normalization，17gate與舊checks/digests保留，TSsandbox02/包/發布另待結果。
 
 **原驗收條件：**
 
@@ -990,7 +990,7 @@
 
 - A1：歷史 72 工具 Windows 候選有 source/binary 綁定；當輪變更與此原條件的完整功能/正反例/平台矩陣仍需新證據。
 - A2：原 58 保留並擴為 85；schema/policy/dispatch/tests/docs 已接線，真實全工具矩陣未驗收。
-- A3：當輪17gates與same-binary analyzer已完成；六語/TSsandbox、最終封裝/公開revision仍待實際同步。
+- A3：17gates與六語PARTIAL已分層記錄，TSsandbox02、最終封裝/公開revision仍待實際同步。
 
 **測試案例 ID：** M0-spec-coverage, M0-spec-validator, M0-doc-links。 **前置需求：** ODIN-003。
 
@@ -1008,7 +1008,7 @@
 
 **設計目標：** 清楚安裝指引/可選受控 auto-install；版本 pin + hash；capability probe、workspace readiness、錯誤修復指引；不自動執行專案內不可信可執行檔。
 
-**已觀察範圍：** 28 registry/runtime guidance與version probes不等於功能驗收；原三LS當輪已測，六語IDE/TSsandbox矩陣pending，首輪0checks只屬歷史。
+**已觀察範圍：** 六語12/12真初始化和backends版本/log已實跑；registry/versionprobe不等於全部能力，14UNAVAILABLE與TS/Java12個診斷NOT_VERIFIED未升PASS。
 
 **原驗收條件：**
 
@@ -1018,7 +1018,7 @@
 
 **尚未驗收／完成：**
 
-- A1：原三LS已實際握手/操作；28registry與versionprobe仍不是六語IDE完成，正式最終矩陣及全版本相容未驗。
+- A1：六語已實際initialize，沒有把profile名字當支援；unversioned診斷、unsupported能力與所有版本/ready狀態反例仍未全驗收。
 - A2：沒有可選 hash-pinned backend auto-installer，不能宣稱安裝驗收成功。
 - A3：server 版本更換所需 index invalidation 尚未完整驗收。
 
