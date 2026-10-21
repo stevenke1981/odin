@@ -840,6 +840,711 @@
     }
   },
   {
+    "name": "completion",
+    "description": "Request native LSP completions with document freshness metadata",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object",
+          "properties": {
+            "line": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            "character": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "line",
+            "character"
+          ]
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 200,
+          "default": 50
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "position"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "hover",
+    "description": "Get native LSP hover information with UTF-16 coordinates",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object",
+          "properties": {
+            "line": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            "character": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "line",
+            "character"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "position"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "signature_help",
+    "description": "Get native LSP signature help for the current document",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object",
+          "properties": {
+            "line": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            "character": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "line",
+            "character"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "position"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "completion_resolve",
+    "description": "Resolve completion metadata against an exact source hash; never execute item commands or apply text edits",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "item": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": true
+        },
+        "expected_sha256": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "item",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "workspace_symbols",
+    "description": "Search real LSP workspace symbols for an explicit configured language; bounded local URI results",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "language": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000,
+          "default": 100
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "language",
+        "query"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "call_hierarchy",
+    "description": "Prepare and query real LSP incoming or outgoing calls; missing backend capabilities are errors",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object",
+          "properties": {
+            "line": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            "character": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "line",
+            "character"
+          ]
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "incoming",
+            "outgoing"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "position",
+        "direction"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "format_document",
+    "description": "Prepare backend formatting as a SHA-256 guarded transaction; source is unchanged until apply",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": "string"
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "tab_size": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 16,
+              "default": 4
+            },
+            "insert_spaces": {
+              "type": "boolean",
+              "default": true
+            },
+            "trim_trailing_whitespace": {
+              "type": "boolean",
+              "default": false
+            },
+            "insert_final_newline": {
+              "type": "boolean",
+              "default": false
+            },
+            "trim_final_newlines": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "range": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "object",
+              "properties": {
+                "line": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                },
+                "character": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "line",
+                "character"
+              ]
+            },
+            "end": {
+              "type": "object",
+              "properties": {
+                "line": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                },
+                "character": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "line",
+                "character"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "start",
+            "end"
+          ]
+        },
+        "request_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "inlay_hints",
+    "description": "Get bounded native LSP inlay hints with document metadata; never execute label commands",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "range": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "object",
+              "properties": {
+                "line": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                },
+                "character": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "line",
+                "character"
+              ]
+            },
+            "end": {
+              "type": "object",
+              "properties": {
+                "line": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                },
+                "character": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "line",
+                "character"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "start",
+            "end"
+          ]
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000,
+          "default": 200
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "inlay_hint_resolve",
+    "description": "Resolve an LSP inlay hint against an exact source hash without executing commands or edits",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "hint": {
+          "type": "object",
+          "properties": {},
+          "additionalProperties": true
+        },
+        "expected_sha256": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path",
+        "hint",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "semantic_tokens",
+    "description": "Get real LSP semantic tokens and legend/encoding metadata, with current document freshness",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "relative_path": {
+          "type": "string"
+        },
+        "range": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "object",
+              "properties": {
+                "line": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                },
+                "character": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "line",
+                "character"
+              ]
+            },
+            "end": {
+              "type": "object",
+              "properties": {
+                "line": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                },
+                "character": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "line",
+                "character"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "start",
+            "end"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "relative_path"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "list_inspection_providers",
+    "description": "List native provider types and configured host profile metadata without commands or secrets",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "run_inspections",
+    "description": "Run one host-fixed Clippy/Ruff/ESLint profile inside a mandatory configured OS sandbox; return bounded source-verified findings",
+    "policy": "execute",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "profile": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2000,
+          "default": 100
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "profile"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": true
+    }
+  },
+  {
+    "name": "prepare_inspection_fix",
+    "description": "Rerun an authorized native inspection and preview one current safe single-file finding fix as a hash-guarded transaction",
+    "policy": "write",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        },
+        "profile": {
+          "type": "string"
+        },
+        "finding_id": {
+          "type": "string"
+        },
+        "expected_sha256": {
+          "type": "string"
+        },
+        "request_id": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2000,
+          "default": 100
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "profile",
+        "finding_id",
+        "expected_sha256"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    }
+  },
+  {
     "name": "prepare_code_action",
     "description": "Prepare exactly one edit-only LSP code action as a CAS transaction; reject commands and ambiguous titles",
     "policy": "write",

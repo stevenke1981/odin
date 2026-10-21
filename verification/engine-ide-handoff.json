@@ -1,0 +1,40 @@
+{
+  "task_id": "native-ide-engine",
+  "actor_instance": "/root/engine_implementation",
+  "status": "PASS",
+  "base_sha": "9b71abc98b89f72cce08d2795dfb139281f6d613",
+  "branch": "feat/ide-native-tools",
+  "budget": "Not separately assigned",
+  "write_scopes": ["crates/odin-engine/src except shell.rs", "crates/odin-engine/tests", "both tools.json catalogs", "scripts/generate_catalog.py", "scripts/generate_docs.py", "docs/API.md", "docs/IDE_IMPLEMENTATION.md", "verification/engine-ide-*"],
+  "dependencies_original_commits": ["fea8b61", "b5f563e", "d6f3e50", "c7cb183", "f6e4fc9", "797ed12", "0e50a64"],
+  "acceptance": {
+    "catalog_schema_policy_dispatch_docs": "PASS: 85 mirrored tools; 13 new IDE/inspection contracts",
+    "generator_idempotence": "PASS: two consecutive regenerations are byte-identical",
+    "fmt": "PASS: cargo fmt -p odin-engine -- --check; exit 0",
+    "package_tests": "PASS: cargo test -p odin-engine --locked; exit 0; 74 tests (34 unit, 18 completion, 3 debug launch policy, 7 IDE, 12 invariants)",
+    "strict_clippy": "PASS: cargo clippy -p odin-engine --all-targets --locked -- -D warnings; exit 0",
+    "new_ide_protocol_routing": "PASS: real stdio fixture subprocesses, commands remain inert",
+    "native_output_normalization": "PASS: Clippy/Ruff/ESLint provider-shaped JSON, Unicode/BOM/CRLF, safe fixes and boundedness",
+    "immutable_debug_payloads": "PASS: single/batch policy and actual recorded adapter requests",
+    "real_language_backend_matrix": "NOT_RUN by this author; integration owner /root/platform_implementation",
+    "real_native_analyzer_sandbox_matrix": "NOT_RUN by this author; integration owner /root",
+    "workspace_gates_and_binary_smoke": "NOT_RUN by this author; integration owner /root",
+    "independent_review": "NOT_RUN by this author; review owner /root/independent_review",
+    "remote_publish_cloud_ci": "N/A: outside assigned author scope"
+  },
+  "evidence": "verification/engine-ide-verification.json includes command logs, exit codes and source/log SHA-256 values",
+  "security_boundaries": [
+    "All native source changes are CAS transaction previews; apply is separate.",
+    "Native inspections require explicit allow_inspections and configured native sandbox; no fallback.",
+    "Inspection writable/temp paths cannot overlap any source root or Odin state.",
+    "No caller argv, executable repository ESLint config lookup, server executeCommand, regex semantic fallback or Serena bridge.",
+    "Version/source/truncation failures never become empty clean reports.",
+    "Source freshness does not establish language-server index completeness or whole-project analysis coverage."
+  ],
+  "remaining_risks": [
+    "Real backend capabilities and native sandbox process execution require the separate integration matrices.",
+    "Clippy build scripts/procedural macros and host-selected ESLint plugins are executable code inside the configured OS boundary.",
+    "Without optional debug_launches policy, allow_debug remains privileged host debugging and is reported explicitly."
+  ],
+  "next_owner": "/root for integration and independent review"
+}

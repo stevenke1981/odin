@@ -1,6 +1,7 @@
 """DAP protocol peer fixture. It never launches a debuggee."""
 import json
 import sys
+from pathlib import Path
 
 def read_message():
     headers = {}
@@ -25,6 +26,9 @@ def send(message):
 
 launched = False
 while (message := read_message()) is not None:
+    if '--record' in sys.argv:
+        with Path(sys.argv[sys.argv.index('--record') + 1]).open('a', encoding='utf-8') as log:
+            log.write(json.dumps(message) + '\n')
     command = message['command']
     body = {}
     if command == 'initialize':

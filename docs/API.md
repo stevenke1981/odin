@@ -4,7 +4,7 @@
 
 所有工具以明確 `project` 範圍執行；CLI 在提供 `--project` 時可注入該欄位。`read` / `state` / `write` / `execute` 是內部策略分類，不是 OS 隔離保證。read 工具仍可能啟動語言伺服器、寫 audit/cache。
 
-`write`：來源 edits 先回 transaction preview，需另 apply；記憶 CRUD 直接經 journal commit，import/move 先回 preview。`execute`：要求相應 shell/debug 權限。本版本沒有外部工具橋接。
+`write`：來源 edits 先回 transaction preview，需另 apply；記憶 CRUD 直接經 journal commit，import/move 先回 preview。`execute`：要求相應 shell/debug/inspections 權限；native inspections 另強制使用 host 設定的 OS sandbox。本版本沒有外部工具橋接。
 
 LSP position 為 0-based UTF-16；檔案行數為 1-based inclusive。參數細節、範圍與 additionalProperties 規則請讀 JSON schema。此版 schema validator 實作契約需要的有限 JSON Schema 子集，非通用 JSON Schema 驗證器。
 
@@ -33,6 +33,19 @@ LSP position 為 0-based UTF-16；檔案行數為 1-based inclusive。參數細�
 | `get_diagnostics_for_file` | read | `project`, `relative_path` | Get pull/push diagnostics; pending or unversioned is not a clean-build proof |
 | `get_diagnostics_for_symbol` | read | `project`, `relative_path`, `name_path` | Filter file diagnostics to a symbol range |
 | `code_actions` | read | `project`, `relative_path`, `range` | List LSP code actions only; never auto-execute a server command |
+| `completion` | read | `project`, `relative_path`, `position` | Request native LSP completions with document freshness metadata |
+| `hover` | read | `project`, `relative_path`, `position` | Get native LSP hover information with UTF-16 coordinates |
+| `signature_help` | read | `project`, `relative_path`, `position` | Get native LSP signature help for the current document |
+| `completion_resolve` | read | `project`, `relative_path`, `item`, `expected_sha256` | Resolve completion metadata against an exact source hash; never execute item commands or apply text edits |
+| `workspace_symbols` | read | `project`, `language`, `query` | Search real LSP workspace symbols for an explicit configured language; bounded local URI results |
+| `call_hierarchy` | read | `project`, `relative_path`, `position`, `direction` | Prepare and query real LSP incoming or outgoing calls; missing backend capabilities are errors |
+| `format_document` | write | `project`, `relative_path`, `expected_sha256` | Prepare backend formatting as a SHA-256 guarded transaction; source is unchanged until apply |
+| `inlay_hints` | read | `project`, `relative_path` | Get bounded native LSP inlay hints with document metadata; never execute label commands |
+| `inlay_hint_resolve` | read | `project`, `relative_path`, `hint`, `expected_sha256` | Resolve an LSP inlay hint against an exact source hash without executing commands or edits |
+| `semantic_tokens` | read | `project`, `relative_path` | Get real LSP semantic tokens and legend/encoding metadata, with current document freshness |
+| `list_inspection_providers` | read | `project` | List native provider types and configured host profile metadata without commands or secrets |
+| `run_inspections` | execute | `project`, `profile` | Run one host-fixed Clippy/Ruff/ESLint profile inside a mandatory configured OS sandbox; return bounded source-verified findings |
+| `prepare_inspection_fix` | write | `project`, `profile`, `finding_id`, `expected_sha256` | Rerun an authorized native inspection and preview one current safe single-file finding fix as a hash-guarded transaction |
 | `prepare_code_action` | write | `project`, `relative_path`, `range`, `action_title`, `expected_sha256` | Prepare exactly one edit-only LSP code action as a CAS transaction; reject commands and ambiguous titles |
 | `apply_quick_fix` | write | `project`, `relative_path`, `range`, `action_title`, `expected_sha256` | Preview one real LSP quickfix WorkspaceEdit; transaction_apply is still required |
 | `move_symbol` | write | `project`, `relative_path`, `name_path`, `action_title`, `expected_sha256`, `target_path` | Preview backend-provided refactor.move edit-only code action; no text fallback or server command execution |
@@ -102,3 +115,15 @@ flow 的 namespace 依 (project, session) 各自序列化；不同 session 可�
 `debug_start` 回 session_id；debug_batch 必填該 ID，每步最多 32 個 allowlisted DAP request，回每步 request_id 和真實 outcome。launch/attach 是 pending ticket，需配置完成並 poll 才能判斷啟動完成。allow_debug 由 host 明確授權 debugger target execution；它不是 OS 沙箱，也沒有宣稱限制 launch payload 的所有除錯器特有欄位。
 
 FTS5 查詢先增量 refresh 當前檔案快照；這是詞彙搜尋，不是語意分析，也沒有 watcher 或 embeddings。詳見 [引擎實作與驗證界線](ENGINE_IMPLEMENTATION.md)。
+
+## 原生 IDE 與檢查器
+
+`completion`、`hover`、`signature_help`、`call_hierarchy`、`inlay_hints`、`semantic_tokens` 回傳 provider、來源 sha256/version、UTF-16 encoding 與 freshness。`workspace_symbols` 要求明確 configured language，限制本專案相符語言檔案與 scope；回傳的 current 不等於語言伺服器索引完整。completion/inlay resolve 需要 expected_sha256，只解析 metadata，不執行 command 或套用 edits。semantic tokens 附 tokenTypes/tokenModifiers legend。缺少 server capability 回明確錯誤。
+
+`format_document` 要求 allow_write 與 expected_sha256，將真正 LSP formatter edits 轉為 transaction preview；文件格式化與 range formatting 都使用相同 CAS 路徑。空 edit 回 changed=false。
+
+`run_inspections` 需要 allow_inspections、host 固定 profile 及 configured native sandbox；不能接受 caller argv。Clippy/Ruff/ESLint 解析各自真正 JSON，不以 regex 冒充分析器；來源以執行前後快照核對。Ruff 要求 --no-fix --no-cache，Clippy 要求 --locked，ESLint 禁止 repository executable config lookup，explicit executable config 只能來自所有專案外的 trusted host path。可寫／暫存 sandbox 路徑不得與任一專案或 Odin state 重疊。
+
+`prepare_inspection_fix` 另要求 allow_write，重新執行固定檢查器，以 current finding_id 選擇 safe Ruff、ESLint fix 或 Clippy MachineApplicable 的單檔 edits；驗證 expected_sha256 後只回交易預覽。未知版本、未完成分析、過期來源、跨檔或不安全建議不能套用。檢查結果的 summary.complete 僅表示固定 profile 的 report 完整；whole_project_verified 始終為 false，不是完整 IDE 或安全性認證。細節與證據見 [IDE_IMPLEMENTATION](IDE_IMPLEMENTATION.md)。
+
+`debug_launches[profile]` 可由 host 固定 launch/attach/restart payload；空 arguments 使用該 payload，非空必須完全相同，未配置的 attach/restart 拒絕。single request 與 batch 都在送給 adapter 前核對。未配置此限制時 allow_debug 保持 privileged host debugging，回報 unrestricted_host_debug=true。LSP/DAP 與 shell 的 host sandbox 設定會傳入共用 native launch；配置失敗不降級。

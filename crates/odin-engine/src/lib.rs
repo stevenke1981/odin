@@ -1,6 +1,8 @@
 #![forbid(unsafe_code)]
 //! Shared application service for CLI, MCP, and the read-only dashboard.
 pub mod flow;
+mod ide;
+mod inspections;
 mod occurrences;
 mod refactor;
 mod results;
@@ -47,6 +49,7 @@ pub struct Project {
 pub(crate) type FlowNamespace = Arc<Mutex<BTreeMap<String, Value>>>;
 struct DebugSession {
     id: String,
+    profile: String,
     adapter: Arc<DebugAdapter>,
 }
 pub struct Engine {
@@ -203,6 +206,11 @@ impl Engine {
                 "execute" if tool == "execute_shell_command" && !project.config.allow_shell => {
                     return Err(Fault::denied("Command execution disabled"));
                 }
+                _ if matches!(tool, "run_inspections" | "prepare_inspection_fix")
+                    && !project.config.allow_inspections =>
+                {
+                    return Err(Fault::denied("Native inspections are disabled by the host"));
+                }
                 _ => {}
             }
             match tool {
@@ -258,7 +266,7 @@ impl Engine {
     }
     pub fn project_summaries(&self) -> Value {
         json!({"projects":self.projects.iter().map(|(id,p)|json!({"id":id,"root":p.root.root(),"allow_write":p.config.allow_write,
-            "allow_shell":p.config.allow_shell,"allow_debug":p.config.allow_debug,
+            "allow_shell":p.config.allow_shell,"allow_debug":p.config.allow_debug,"allow_inspections":p.config.allow_inspections,
             "languages":p.config.languages.iter().map(|l|&l.id).collect::<Vec<_>>()})).collect::<Vec<_>>()})
     }
     fn language_for(&self, project: &Project, path: &str) -> Result<LanguageConfig> {
@@ -294,10 +302,15 @@ impl Engine {
         {
             return Ok(client);
         }
-        let client = LspClient::start(
+        let client = LspClient::start_with_sandbox(
             project.root.clone(),
             language,
             Duration::from_secs(self.config.limits.rpc_timeout_secs),
+            project
+                .config
+                .sandbox
+                .as_ref()
+                .map(|policy| (policy, project.state.as_path())),
         )
         .await
         .map_err(backend_error)?;
@@ -409,6 +422,7 @@ impl Engine {
                         Some(Ok(client)) => {
                             entry["ready"] = json!(!client.is_closed());
                             entry["capabilities"] = client.capabilities.clone();
+                            entry["status"] = client.status().map_err(backend_error)?;
                         }
                         Some(Err(error)) => entry["error"] = serde_json::to_value(error)?,
                         None => {}
@@ -421,10 +435,15 @@ impl Engine {
                     .map(|tool| {
                         let name = tool["name"].as_str().unwrap_or("");
                         let enabled = !p.config.excluded_tools.iter().any(|item| item == name)
+                            && (!matches!(name, "run_inspections" | "prepare_inspection_fix")
+                                || (p.config.allow_inspections && p.config.sandbox.is_some()))
                             && match tool["policy"].as_str() {
                                 Some("write") => p.config.allow_write,
                                 Some("execute") if name.starts_with("debug_") => {
                                     p.config.allow_debug
+                                }
+                                Some("execute") if name == "run_inspections" => {
+                                    p.config.allow_inspections
                                 }
                                 Some("execute") => p.config.allow_shell,
                                 _ => true,
@@ -435,16 +454,17 @@ impl Engine {
                 Ok(
                     json!({"project":p.id,"standalone":true,"external_tool_bridge":false,"semantic_available":languages.iter().any(|l|l["ready"]==true),"languages":languages,
                     "tools":tools,"write_allowed":p.config.allow_write,"shell_allowed":p.config.allow_shell,"debug_allowed":p.config.allow_debug,
+                    "inspections_allowed":p.config.allow_inspections,"inspection_profiles":p.config.inspections.iter().map(|(name,profile)|json!({"name":name,"provider":profile.provider,"requires_sandbox":true,"enabled":p.config.allow_inspections&&p.config.sandbox.is_some()})).collect::<Vec<_>>(),
                     "result_retention":{"ttl_ms":results::TTL_MS,"max_results":results::MAX_RESULTS,"max_bytes":results::MAX_STORAGE_BYTES}}),
                 )
             }
             "list_projects" => Ok(self.project_summaries()),
             "get_current_config" => Ok(
                 json!({"project":p.id,"root":p.root.root(),"allow_write":p.config.allow_write,
-                "allow_shell":p.config.allow_shell,"allow_debug":p.config.allow_debug,"limits":limit,
+                "allow_shell":p.config.allow_shell,"allow_debug":p.config.allow_debug,"allow_inspections":p.config.allow_inspections,"limits":limit,
                 "excluded_tools":p.config.excluded_tools,"deny_globs":p.config.deny_globs,
                 "languages":p.config.languages.iter().map(|l|json!({"id":l.id,"extensions":l.extensions})).collect::<Vec<_>>(),
-                "command_profiles":p.config.commands.keys().collect::<Vec<_>>(),"debug_profiles":p.config.debuggers.keys().collect::<Vec<_>>()}),
+                "command_profiles":p.config.commands.keys().collect::<Vec<_>>(),"debug_profiles":p.config.debuggers.keys().collect::<Vec<_>>(),"inspection_profiles":p.config.inspections.iter().map(|(name,profile)|json!({"name":name,"provider":profile.provider})).collect::<Vec<_>>()}),
             ),
             "initial_instructions" => Ok(json!({"instructions":INSTRUCTIONS})),
             "onboarding" => {
@@ -554,6 +574,12 @@ impl Engine {
                 Ok(result)
             }
             "find_symbol" => self.find_symbols(p, a).await,
+            "completion" | "completion_resolve" | "hover" | "signature_help"
+            | "workspace_symbols" | "call_hierarchy" | "format_document" | "inlay_hints"
+            | "inlay_hint_resolve" | "semantic_tokens" => ide::dispatch(self, p, tool, a).await,
+            "list_inspection_providers" | "run_inspections" | "prepare_inspection_fix" => {
+                inspections::dispatch(self, p, tool, a).await
+            }
             "find_referencing_symbols" | "find_implementations" => {
                 let path = string(a, "relative_path")?;
                 let client = self.lsp_for(p, path).await?;
@@ -620,6 +646,33 @@ impl Engine {
                             });
                         }
                     }
+                    if let Some(findings) = report["findings"].as_array_mut() {
+                        findings.retain(|finding| {
+                            serde_json::from_value::<Range>(finding["range"].clone()).is_ok_and(
+                                |range| {
+                                    range.start < symbol.range.end
+                                        && symbol.range.start <= range.end
+                                },
+                            )
+                        });
+                        let counts = (1..=4)
+                            .map(|severity| {
+                                findings
+                                    .iter()
+                                    .filter(|finding| finding["severity"] == severity)
+                                    .count()
+                            })
+                            .collect::<Vec<_>>();
+                        let total = findings.len();
+                        for (key, count) in ["errors", "warnings", "information", "hints"]
+                            .into_iter()
+                            .zip(counts)
+                        {
+                            report["summary"][key] = json!(count);
+                        }
+                        report["summary"]["total"] = json!(total);
+                    }
+                    report["scope"] = json!({"relative_path":path,"name_path":string(a,"name_path")?,"range":symbol.range});
                     report["name_path"] = symbol.name_path.into();
                 }
                 Ok(report)
@@ -914,40 +967,63 @@ impl Engine {
                     .commands
                     .get(string(a, "profile")?)
                     .ok_or_else(|| Fault::denied("Unknown command profile"))?;
-                shell::run(config, p.root.root(), limit.max_output_bytes).await
+                if let Some(sandbox) = &p.config.sandbox {
+                    shell::run_with_sandbox(
+                        config,
+                        p.root.root(),
+                        limit.max_output_bytes,
+                        Some((sandbox, p.state.as_path())),
+                    )
+                    .await
+                } else {
+                    shell::run(config, p.root.root(), limit.max_output_bytes).await
+                }
             }
             "debug_start" => {
                 if self.debuggers.lock().await.contains_key(&p.id) {
                     return Err(Fault::conflict("Debugger already running; stop it first"));
                 }
+                let profile = string(a, "profile")?;
                 let config = p
                     .config
                     .debuggers
-                    .get(string(a, "profile")?)
+                    .get(profile)
                     .ok_or_else(|| Fault::denied("Unknown debugger profile"))?;
-                let adapter = DebugAdapter::start(config, &p.root)
-                    .await
-                    .map_err(backend_error)?;
+                let adapter = DebugAdapter::start_with_sandbox(
+                    config,
+                    &p.root,
+                    p.config
+                        .sandbox
+                        .as_ref()
+                        .map(|policy| (policy, p.state.as_path())),
+                )
+                .await
+                .map_err(backend_error)?;
                 let capabilities = adapter.capabilities.clone();
                 let session_id = uuid::Uuid::new_v4().to_string();
                 self.debuggers.lock().await.insert(
                     p.id.clone(),
                     DebugSession {
                         id: session_id.clone(),
+                        profile: profile.into(),
                         adapter,
                     },
                 );
                 Ok(
-                    json!({"started":true,"session_id":session_id,"capabilities":capabilities,"debuggee_launched":false}),
+                    json!({"started":true,"session_id":session_id,"capabilities":capabilities,"debuggee_launched":false,"unrestricted_host_debug":!p.config.debug_launches.contains_key(profile),"sandbox_requested":p.config.sandbox.is_some()}),
                 )
             }
             "debug_request" | "debug_events" | "debug_stop" | "debug_batch" => {
-                let (session_id, adapter) = {
+                let (session_id, profile, adapter) = {
                     let debuggers = self.debuggers.lock().await;
                     let session = debuggers
                         .get(&p.id)
                         .ok_or_else(|| Fault::new("SESSION_CLOSED", "No active debug adapter"))?;
-                    (session.id.clone(), session.adapter.clone())
+                    (
+                        session.id.clone(),
+                        session.profile.clone(),
+                        session.adapter.clone(),
+                    )
                 };
                 if optional_string(a, "session_id").is_some_and(|id| id != session_id) {
                     return Err(Fault::denied(
@@ -967,7 +1043,10 @@ impl Engine {
                         json!({"adapter_dropped":true,"disconnect_succeeded":response.is_ok(),"cleanup_succeeded":cleanup.is_ok(),"warning":response.err().map(|e|e.to_string()),"cleanup_warning":cleanup.err().map(|e|e.to_string())}),
                     )
                 } else if tool == "debug_events" {
-                    adapter.poll().await.map_err(backend_error)
+                    let mut result = adapter.poll().await.map_err(backend_error)?;
+                    result["unrestricted_host_debug"] =
+                        json!(!p.config.debug_launches.contains_key(&profile));
+                    Ok(result)
                 } else if tool == "debug_batch" {
                     let commands = a["commands"]
                         .as_array()
@@ -982,9 +1061,25 @@ impl Engine {
                     for command in commands {
                         let request_id = uuid::Uuid::new_v4().to_string();
                         let name = string(command, "command")?;
+                        let arguments = match p.config.debug_arguments(
+                            &profile,
+                            name,
+                            &command["arguments"],
+                        ) {
+                            Ok(arguments) => arguments,
+                            Err(error) => {
+                                successful = false;
+                                outcomes.push(json!({"request_id":request_id,"command":name,"ok":false,"error":error}));
+                                if boolean(a, "stop_on_error", true) {
+                                    break;
+                                } else {
+                                    continue;
+                                }
+                            }
+                        };
                         let result = match tokio::time::timeout_at(
                             deadline,
-                            adapter.request(name, command["arguments"].clone()),
+                            adapter.request(name, arguments),
                         )
                         .await
                         {
@@ -1004,7 +1099,7 @@ impl Engine {
                         }
                     }
                     Ok(
-                        json!({"session_id":session_id,"success":successful,"steps_executed":outcomes.len(),"outcomes":outcomes,"closed":adapter.is_closed(),"language":"odin-dap-batch","sandbox":false}),
+                        json!({"session_id":session_id,"success":successful,"steps_executed":outcomes.len(),"outcomes":outcomes,"closed":adapter.is_closed(),"language":"odin-dap-batch","sandbox_requested":p.config.sandbox.is_some(),"unrestricted_host_debug":!p.config.debug_launches.contains_key(&profile)}),
                     )
                 } else {
                     let command = string(a, "command")?;
@@ -1014,8 +1109,11 @@ impl Engine {
                             .await
                             .map_err(backend_error)
                     } else {
+                        let arguments =
+                            p.config
+                                .debug_arguments(&profile, command, &a["arguments"])?;
                         adapter
-                            .request(command, a["arguments"].clone())
+                            .request(command, arguments)
                             .await
                             .map_err(backend_error)
                     }
@@ -1134,6 +1232,9 @@ impl Engine {
                     }
                 }
                 Err(error) => {
+                    if error.to_string().starts_with("CONFLICT") {
+                        return Err(backend_error(error));
+                    }
                     errors.push(json!({"path":path,"error":error.to_string()}));
                     if errors.len() >= 20 {
                         truncated = true;
@@ -1242,11 +1343,16 @@ pub fn boolean(value: &Value, key: &str, default: bool) -> bool {
 }
 fn backend_error(error: anyhow::Error) -> Fault {
     let message = error.to_string();
-    let code = if message.contains("CAPABILITY_UNAVAILABLE") {
-        "CAPABILITY_UNAVAILABLE"
-    } else {
-        "BACKEND_ERROR"
-    };
+    let code = [
+        "CAPABILITY_UNAVAILABLE",
+        "CONFLICT",
+        "LIMIT_EXCEEDED",
+        "SANDBOX_UNAVAILABLE",
+        "SANDBOX_REQUIRED",
+    ]
+    .into_iter()
+    .find(|code| message.starts_with(code))
+    .unwrap_or("BACKEND_ERROR");
     Fault::new(code, message)
 }
 fn read_expected(p: &Project, path: &str, expected: &str) -> Result<String> {

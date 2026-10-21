@@ -663,17 +663,24 @@ async fn literal_capture_memory_and_occurrence_growth_fail_before_materializing_
 
 #[tokio::test]
 async fn symbol_offset_skips_body_resolution_before_copying() {
-    let (_root, _state, old_engine) = setup_lsp();
+    let (root, _state, old_engine) = setup_lsp();
+    // Twenty valid overlapping 1 MiB symbol bodies exceed the 16 MiB page
+    // budget if copied/charged before skipping the offset. Only bar is selected.
+    std::fs::write(
+        root.path().join("source.rs"),
+        format!("{}\nfn bar() {{}}\n", "a".repeat(1048576)),
+    )
+    .unwrap();
     let mut config = old_engine.config.clone();
     config.projects.get_mut("one").unwrap().languages[0]
         .args
-        .push("--bad-first".into());
+        .push("--many-large-bodies".into());
     drop(old_engine);
     let engine = Engine::new(config).unwrap();
     let result = call(
         &engine,
         "find_symbol",
-        json!({"query":"module/*","match_mode":"glob","offset":1,"limit":1,"include_body":true}),
+        json!({"query":"module/*","match_mode":"glob","offset":20,"limit":1,"include_body":true}),
     )
     .await;
     assert_eq!(result["symbols"].as_array().unwrap().len(), 1);

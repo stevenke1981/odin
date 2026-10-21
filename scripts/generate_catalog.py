@@ -49,6 +49,21 @@ add("get_type_hierarchy","Query LSP type hierarchy if the server advertises supp
 add("get_diagnostics_for_file","Get pull/push diagnostics; pending or unversioned is not a clean-build proof","read",{"relative_path":s()},["relative_path"])
 add("get_diagnostics_for_symbol","Filter file diagnostics to a symbol range","read",{"relative_path":s(),"name_path":s()},["relative_path","name_path"])
 add("code_actions","List LSP code actions only; never auto-execute a server command","read",{"relative_path":s(),"range":RANGE},["relative_path","range"])
+for name,description in [("completion","Request native LSP completions with document freshness metadata"),("hover","Get native LSP hover information with UTF-16 coordinates"),("signature_help","Get native LSP signature help for the current document")]:
+    props={"relative_path":s(),"position":POS}
+    if name=="completion":props["limit"]=n(50,1,200)
+    add(name,description,"read",props,["relative_path","position"])
+add("completion_resolve","Resolve completion metadata against an exact source hash; never execute item commands or apply text edits","read",{"relative_path":s(),"item":obj(additional=True),"expected_sha256":s()},["relative_path","item","expected_sha256"])
+add("workspace_symbols","Search real LSP workspace symbols for an explicit configured language; bounded local URI results","read",{"language":s(),"query":s(),"relative_path":s(),"limit":n(100,1,1000)},["language","query"])
+add("call_hierarchy","Prepare and query real LSP incoming or outgoing calls; missing backend capabilities are errors","read",{"relative_path":s(),"position":POS,"direction":s(enum=["incoming","outgoing"])},["relative_path","position","direction"])
+FORMAT_OPTIONS=obj({"tab_size":n(4,1,16),"insert_spaces":b(True),"trim_trailing_whitespace":b(),"insert_final_newline":b(),"trim_final_newlines":b()})
+add("format_document","Prepare backend formatting as a SHA-256 guarded transaction; source is unchanged until apply","write",{"relative_path":s(),"expected_sha256":s(),"options":FORMAT_OPTIONS,"range":RANGE,"request_id":s()},["relative_path","expected_sha256"])
+add("inlay_hints","Get bounded native LSP inlay hints with document metadata; never execute label commands","read",{"relative_path":s(),"range":RANGE,"limit":n(200,1,1000)},["relative_path"])
+add("inlay_hint_resolve","Resolve an LSP inlay hint against an exact source hash without executing commands or edits","read",{"relative_path":s(),"hint":obj(additional=True),"expected_sha256":s()},["relative_path","hint","expected_sha256"])
+add("semantic_tokens","Get real LSP semantic tokens and legend/encoding metadata, with current document freshness","read",{"relative_path":s(),"range":RANGE},["relative_path"])
+add("list_inspection_providers","List native provider types and configured host profile metadata without commands or secrets","read")
+add("run_inspections","Run one host-fixed Clippy/Ruff/ESLint profile inside a mandatory configured OS sandbox; return bounded source-verified findings","execute",{"profile":s(),"limit":n(100,1,2000)},["profile"])
+add("prepare_inspection_fix","Rerun an authorized native inspection and preview one current safe single-file finding fix as a hash-guarded transaction","write",{"profile":s(),"finding_id":s(),"expected_sha256":s(),"request_id":s(),"limit":n(100,1,2000)},["profile","finding_id","expected_sha256"])
 ACTION={"relative_path":s(),"range":RANGE,"action_title":s(),"expected_sha256":s(),"request_id":s()}
 add("prepare_code_action","Prepare exactly one edit-only LSP code action as a CAS transaction; reject commands and ambiguous titles","write",{**ACTION,"action_kind":s()},["relative_path","range","action_title","expected_sha256"])
 add("apply_quick_fix","Preview one real LSP quickfix WorkspaceEdit; transaction_apply is still required","write",ACTION,["relative_path","range","action_title","expected_sha256"])

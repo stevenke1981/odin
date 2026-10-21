@@ -1,0 +1,8 @@
+Command: C:\Python314\python.exe C:\Users\steven\.codex\worktrees\odin-engine\odin\verification\engine-ide-catalog-check.py
+Generated 85 tool contracts
+Generated API for 85 Odin tools.
+Generated 85 tool contracts
+Generated API for 85 Odin tools.
+{"tool_count": 85, "catalog_mirrors": "PASS", "generator_idempotence": "PASS"}
+
+Exit code: 0
