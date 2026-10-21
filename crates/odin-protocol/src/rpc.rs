@@ -546,6 +546,11 @@ fn diagnostic_uri_key(uri: &str) -> Result<String> {
     {
         bail!("Invalid diagnostic URI: expected an absolute local file URI");
     }
+    // url's file parser collapses leading empty path segments. Reject the
+    // raw UNC-path form before that normalization can erase its extra slash.
+    if uri.as_bytes().get(8) == Some(&b'/') {
+        bail!("Invalid diagnostic URI: UNC paths are unsupported");
+    }
     let bytes = uri.as_bytes();
     let mut index = 0;
     while index < bytes.len() {
@@ -731,6 +736,8 @@ mod tests {
             "file://server/share/lib.rs",
             "file://localhost/C:/lib.rs",
             "file:////server/share/lib.rs",
+            "file://///server/share/lib.rs",
+            "FILE:////Server/share/lib.rs",
             "file:///C:/lib.rs?query",
             "file:///C:/lib.rs#fragment",
             "file:///C:/bad%",
