@@ -7,10 +7,11 @@ existing public repository. No cloud CI dispatch is part of this change.
 | Owner | Isolated worktree / branch | Owned implementation |
 |---|---|---|
 | root | E:/odin / feat/os-sandbox-language-ide | host configuration, shared types, language adapters, process integration, real backend acceptance and final evidence |
-| platform_implementation | odin-platform / feat/os-sandbox | native MXC preparation/guard, filesystem/network/stdio/process negative tests, OS sandbox documentation |
+| platform_implementation | odin-platform / feat/os-sandbox | native MXC preparation/guard, filesystem/network/stdio/process negative tests, then real six-language/two-project acceptance harness and runtime reports |
 | protocol_implementation | odin-protocol / feat/language-ide-protocol | capability-checked IDE LSP requests, document freshness and protocol regressions |
 | engine_implementation | odin-engine / feat/ide-native-tools | IDE tools, native inspection normalization/fix previews, schemas, paired catalogs and API documentation |
-| independent_review | independent instance, scheduled after integration | read-only correctness/security review of the actual integrated candidate |
+| independent_review | independent instance, after integration and fixes | read-only correctness/security review, source hashes, findings and re-review |
+| requirements_audit | odin-requirements / docs/os-sandbox-language-ide-evidence | requirement summaries, unchanged historical evidence bindings, explicit remaining acceptance |
 
 Shared configuration and Cargo manifests/lockfile have one owner: root.
 Changes are integrated by serialized cherry-picks, never by replacing another
