@@ -237,7 +237,7 @@ class Run:
                     return last
             except BackendError as error:
                 errors.append(error.response)
-                if any(marker in str(error) for marker in ("CAPABILITY_UNAVAILABLE", "WorkspaceEdit must", "INVALID_ARGUMENT", "PERMISSION_DENIED", "Unknown tool")):
+                if any(marker in str(error) for marker in ("CAPABILITY_UNAVAILABLE", "WorkspaceEdit must", "INVALID_ARGUMENT", "PERMISSION_DENIED", "Unknown tool", "Backend process exited")):
                     raise
             if time.monotonic() >= deadline:
                 raise TimeoutError(json.dumps({"last_result": last, "attempt_errors": errors[-4:]}))

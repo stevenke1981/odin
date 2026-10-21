@@ -1,0 +1,9 @@
+typescript_a:mcp_initialize:PASS
+typescript_a:actual_lsp_initialize:PASS
+typescript_a:actual_native_sandbox_route:PASS
+typescript_a:project_execution:FAIL
+typescript_b:mcp_initialize:PASS
+typescript_b:actual_lsp_initialize:PASS
+typescript_b:actual_native_sandbox_route:PASS
+typescript_b:project_execution:FAIL
+{"status": "FAIL", "counts": {"PASS": 6, "FAIL": 2}, "matrix": {"typescript": {"typescript_a": "FAIL", "typescript_b": "FAIL"}}}
