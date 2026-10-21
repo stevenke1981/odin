@@ -26,6 +26,12 @@ P.add_argument('--diagnostic-kind', default='clean')
 P.add_argument('--ide-malformed')
 P.add_argument('--started-marker')
 P.add_argument('--expect-language-id')
+P.add_argument('--hierarchy-prepare-count', type=int, default=1)
+P.add_argument('--hierarchy-related-count', type=int, default=1)
+P.add_argument('--hierarchy-payload-bytes', type=int, default=0)
+P.add_argument('--hierarchy-range-count', type=int, default=1)
+P.add_argument('--hierarchy-delay-ms', type=int, default=0)
+P.add_argument('--hierarchy-request-log')
 A = P.parse_args()
 if A.started_marker:
     Path(A.started_marker).write_text('fixture started', encoding='utf-8')
@@ -95,6 +101,19 @@ def diagnostic_items():
 
 def hierarchy_item(uri):
     return {'name': 'foo', 'kind': 12, 'uri': uri, 'range': rng(0, 0, 11), 'selectionRange': rng(0, 3, 6), 'data': {'keep': 'opaque'}}
+
+
+def hierarchy_request(method):
+    if A.hierarchy_request_log:
+        with Path(A.hierarchy_request_log).open('a', encoding='utf-8') as log:
+            log.write(method + '\n')
+    time.sleep(A.hierarchy_delay_ms / 1000)
+
+
+def hierarchy_related_item(item):
+    result = dict(item)
+    result['data'] = dict(item['data'], payload='x' * A.hierarchy_payload_bytes)
+    return result
 
 
 def end_position(text):
@@ -187,12 +206,18 @@ def lsp(request):
         symbols.append({'name': 'outside', 'kind': 12, 'location': {'uri': (Path.cwd().parent / 'outside.rs').as_uri(), 'range': rng(0, 0, 1)}})
         respond(request, symbols)
     elif method in ('textDocument/prepareCallHierarchy', 'textDocument/prepareTypeHierarchy'):
-        respond(request, {} if A.ide_malformed == 'hierarchy' else [hierarchy_item(params['textDocument']['uri'])])
+        hierarchy_request(method)
+        respond(request, {} if A.ide_malformed == 'hierarchy' else
+                [hierarchy_item(params['textDocument']['uri']) for _ in range(A.hierarchy_prepare_count)])
     elif method in ('callHierarchy/incomingCalls', 'callHierarchy/outgoingCalls'):
+        hierarchy_request(method)
         key = 'from' if method.endswith('incomingCalls') else 'to'
-        respond(request, [{key: params['item'], 'fromRanges': [rng(0, 3, 6)]}])
+        respond(request, [{key: hierarchy_related_item(params['item']),
+                           'fromRanges': [rng(0, 3, 6) for _ in range(A.hierarchy_range_count)]}
+                          for _ in range(A.hierarchy_related_count)])
     elif method in ('typeHierarchy/supertypes', 'typeHierarchy/subtypes'):
-        respond(request, [params['item']])
+        hierarchy_request(method)
+        respond(request, [hierarchy_related_item(params['item']) for _ in range(A.hierarchy_related_count)])
     elif method in ('textDocument/formatting', 'textDocument/rangeFormatting'):
         range_to_edit = params.get('range', rng(0, 0, 11))
         respond(request, [{'range': range_to_edit, 'newText': 'fn formatted() {}'}])

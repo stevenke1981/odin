@@ -63,6 +63,20 @@ file/directory. Hierarchy items must be project-local and have valid ranges;
 external/generated items outside the verified snapshot fail explicitly.
 Readiness and index completeness remain separate from source freshness.
 
+Call/type hierarchy queries share one configured query timeout across source
+snapshots, prepare, every related RPC, validation, and final freshness checks.
+They return `TIMEOUT` on deadline expiry. Synchronous checks run between bounded
+operations; an individual OS file read cannot be preempted by the async timer.
+Prepare is limited to 128 items, with at most 4096 related items and 8192 call
+ranges across the whole query. All prepared items are reserved before issuing a
+related RPC. Retained result JSON is limited to 4 MiB, including keys, escaping,
+and array separators; the compatible `result` and `hierarchy` copies together
+are limited to 8 MiB of encoded JSON, excluding envelope and allocator overhead.
+Counting streams into a bounded counter without allocating serialized copies.
+Quota violations return `LIMIT_EXCEEDED` before further RPCs or result cloning;
+they never become an empty successful hierarchy. Transport frame limits also
+apply to each response, including the response that crosses the total quota.
+
 Semantic token data is checked for five-integer encoding, valid legend indices
 and modifier bits, document bounds, overlap, and UTF-16 boundaries. Validation
 retains requested token boundaries and scans text once, rather than allocating

@@ -123,6 +123,13 @@ async fn real_rust_analyzer_smoke() {
 }
 
 async fn client_with(root: &std::path::Path, options: &[&str]) -> std::sync::Arc<LspClient> {
+    client_with_timeout(root, options, Duration::from_secs(3)).await
+}
+async fn client_with_timeout(
+    root: &std::path::Path,
+    options: &[&str],
+    timeout: Duration,
+) -> std::sync::Arc<LspClient> {
     let mut arguments = args("lsp");
     arguments.extend(options.iter().map(|s| s.to_string()));
     let language = LanguageConfig {
@@ -133,13 +140,9 @@ async fn client_with(root: &std::path::Path, options: &[&str]) -> std::sync::Arc
         initialization_options: serde_json::Value::Null,
         settings: serde_json::Value::Null,
     };
-    LspClient::start(
-        SafeRoot::new(root, &[], 10000).unwrap(),
-        language,
-        Duration::from_secs(3),
-    )
-    .await
-    .unwrap()
+    LspClient::start(SafeRoot::new(root, &[], 10000).unwrap(), language, timeout)
+        .await
+        .unwrap()
 }
 
 async fn wait_phase(adapter: &DebugAdapter, phase: &str) {
@@ -984,4 +987,134 @@ async fn configured_language_profile_uses_file_specific_lsp_language_id() {
     .unwrap();
     assert!(client.completion("app.tsx", ide_position()).await.is_ok());
     client.shutdown().await.unwrap();
+}
+
+#[tokio::test]
+async fn hierarchy_prepare_quota_rejects_before_any_related_rpc() {
+    for calls in [true, false] {
+        let temp = tempfile::tempdir().unwrap();
+        std::fs::write(temp.path().join("lib.rs"), "fn foo() {}").unwrap();
+        let log = temp.path().join("hierarchy.log");
+        let log_path = log.to_string_lossy();
+        let client = client_with(
+            temp.path(),
+            &[
+                "--ide",
+                "--hierarchy-prepare-count",
+                "129",
+                "--hierarchy-request-log",
+                &log_path,
+            ],
+        )
+        .await;
+        let error = if calls {
+            client
+                .call_hierarchy("lib.rs", ide_position(), "incoming")
+                .await
+        } else {
+            client.hierarchy("lib.rs", ide_position(), "super").await
+        }
+        .unwrap_err();
+        assert!(error.to_string().contains("LIMIT_EXCEEDED"), "{error:#}");
+        assert!(error.to_string().contains("128 items"), "{error:#}");
+        let requests = std::fs::read_to_string(log).unwrap();
+        assert_eq!(requests.lines().count(), 1, "{requests}");
+        assert!(requests.contains("prepare"));
+        client.shutdown().await.unwrap();
+    }
+}
+
+#[tokio::test]
+async fn hierarchy_json_quota_is_cumulative_and_stops_before_fifth_related_rpc() {
+    for calls in [true, false] {
+        let temp = tempfile::tempdir().unwrap();
+        std::fs::write(temp.path().join("lib.rs"), "fn foo() {}").unwrap();
+        let log = temp.path().join("hierarchy.log");
+        let log_path = log.to_string_lossy();
+        let client = client_with(
+            temp.path(),
+            &[
+                "--ide",
+                "--hierarchy-prepare-count",
+                "5",
+                "--hierarchy-payload-bytes",
+                "1048576",
+                "--hierarchy-request-log",
+                &log_path,
+            ],
+        )
+        .await;
+        let error = if calls {
+            client
+                .call_hierarchy("lib.rs", ide_position(), "outgoing")
+                .await
+        } else {
+            client.hierarchy("lib.rs", ide_position(), "sub").await
+        }
+        .unwrap_err();
+        assert!(error.to_string().contains("LIMIT_EXCEEDED"), "{error:#}");
+        assert!(error.to_string().contains("4194304 bytes"), "{error:#}");
+        let requests = std::fs::read_to_string(log).unwrap();
+        assert_eq!(requests.lines().count(), 5, "{requests}"); // Prepare + four related.
+        client.shutdown().await.unwrap();
+    }
+}
+
+#[tokio::test]
+async fn hierarchy_relation_and_range_counts_are_bounded_before_validation() {
+    for (option, value, expected) in [
+        ("--hierarchy-related-count", "4097", "4096 related items"),
+        ("--hierarchy-range-count", "8193", "8192 call ranges"),
+    ] {
+        let temp = tempfile::tempdir().unwrap();
+        std::fs::write(temp.path().join("lib.rs"), "fn foo() {}").unwrap();
+        let client = client_with(temp.path(), &["--ide", option, value]).await;
+        let error = client
+            .call_hierarchy("lib.rs", ide_position(), "incoming")
+            .await
+            .unwrap_err();
+        assert!(error.to_string().contains("LIMIT_EXCEEDED"), "{error:#}");
+        assert!(error.to_string().contains(expected), "{error:#}");
+        client.shutdown().await.unwrap();
+    }
+}
+
+#[tokio::test]
+async fn hierarchy_timeout_covers_prepare_and_all_related_rpcs_together() {
+    for calls in [true, false] {
+        let temp = tempfile::tempdir().unwrap();
+        std::fs::write(temp.path().join("lib.rs"), "fn foo() {}").unwrap();
+        let log = temp.path().join("hierarchy.log");
+        let log_path = log.to_string_lossy();
+        let timeout = Duration::from_millis(800);
+        let client = client_with_timeout(
+            temp.path(),
+            &[
+                "--ide",
+                "--hierarchy-prepare-count",
+                "4",
+                "--hierarchy-delay-ms",
+                "225", // Each RPC < 800 ms; the five RPCs together > 800 ms.
+                "--hierarchy-request-log",
+                &log_path,
+            ],
+            timeout,
+        )
+        .await;
+        let started = std::time::Instant::now();
+        let error = if calls {
+            client
+                .call_hierarchy("lib.rs", ide_position(), "incoming")
+                .await
+        } else {
+            client.hierarchy("lib.rs", ide_position(), "super").await
+        }
+        .unwrap_err();
+        assert!(error.to_string().contains("TIMEOUT"), "{error:#}");
+        assert!(error.to_string().contains("total deadline"), "{error:#}");
+        assert!(started.elapsed() < timeout + Duration::from_millis(500));
+        let requests = std::fs::read_to_string(log).unwrap();
+        assert!((2..5).contains(&requests.lines().count()), "{requests}");
+        client.shutdown().await.unwrap();
+    }
 }

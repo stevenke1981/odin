@@ -15,8 +15,14 @@ use std::{
     },
     time::Duration,
 };
-use tokio::sync::Mutex;
+use tokio::{sync::Mutex, time::Instant};
 use url::Url;
+
+const HIERARCHY_PREPARE_LIMIT: usize = 128;
+const HIERARCHY_RELATION_LIMIT: usize = 4096;
+const HIERARCHY_RANGE_LIMIT: usize = 8192;
+const HIERARCHY_JSON_LIMIT: usize = 4 * 1024 * 1024;
+const HIERARCHY_TIMEOUT: &str = "TIMEOUT: hierarchy query exceeded configured total deadline";
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Symbol {
@@ -53,6 +59,7 @@ pub struct LspClient {
     documents: Mutex<BTreeMap<String, OpenDocument>>,
     shutting_down: AtomicBool,
     next_version: AtomicI64,
+    timeout: Duration,
 }
 impl LspClient {
     pub async fn start(
@@ -149,6 +156,7 @@ impl LspClient {
             documents: Mutex::new(BTreeMap::new()),
             shutting_down: AtomicBool::new(false),
             next_version: AtomicI64::new(1),
+            timeout,
         }))
     }
     pub fn is_closed(&self) -> bool {
@@ -753,55 +761,101 @@ impl LspClient {
         calls: bool,
     ) -> Result<Value> {
         self.require(capability)?;
-        let before = self.workspace_hashes(None)?;
-        let snapshot = self.snapshot(path, None).await?;
-        crate::text::offset(&snapshot.content, position)?;
-        let items = self
-            .request_document(
-                &snapshot,
-                prepare,
-                json!({"textDocument":{"uri":snapshot.uri},"position":position}),
-            )
-            .await?;
-        let mut output = Vec::new();
-        for item in nullable_array(&items, "hierarchy prepare")? {
-            self.validate_hierarchy_item(item, &before)?;
-            let related = self
-                .request_document(&snapshot, method, json!({"item":item}))
+        let deadline = Instant::now()
+            .checked_add(self.timeout)
+            .ok_or_else(|| anyhow!("Invalid hierarchy query timeout"))?;
+        tokio::time::timeout_at(deadline, async {
+            let mut budget = HierarchyBudget::new(deadline);
+            budget.check_deadline()?;
+            let before = self.workspace_hashes(None)?;
+            budget.check_deadline()?;
+            let snapshot = self.snapshot(path, None).await?;
+            crate::text::offset(&snapshot.content, position)?;
+            budget.check_deadline()?;
+            let items = self
+                .request_document(
+                    &snapshot,
+                    prepare,
+                    json!({"textDocument":{"uri":snapshot.uri},"position":position}),
+                )
                 .await?;
-            for relation in nullable_array(&related, "hierarchy")? {
-                if calls {
-                    let incoming = method.ends_with("incomingCalls");
-                    let target = if incoming {
-                        &relation["from"]
-                    } else {
-                        &relation["to"]
-                    };
-                    self.validate_hierarchy_item(target, &before)?;
-                    let source = if incoming { target } else { item };
-                    let source_path = self.relative_uri(
-                        source["uri"]
-                            .as_str()
-                            .ok_or_else(|| anyhow!("Missing hierarchy URI"))?,
-                    )?;
-                    let text = self.root.read(&source_path)?;
-                    for range in relation["fromRanges"]
-                        .as_array()
-                        .ok_or_else(|| anyhow!("Invalid call hierarchy ranges"))?
-                    {
-                        validate_range(&text, range)?;
-                    }
-                } else {
-                    self.validate_hierarchy_item(relation, &before)?;
-                }
+            let prepared = match items {
+                Value::Null => Vec::new(),
+                Value::Array(items) => items,
+                _ => bail!("Invalid hierarchy prepare response; expected array or null"),
+            };
+            if prepared.len() > HIERARCHY_PREPARE_LIMIT {
+                bail!("LIMIT_EXCEEDED: hierarchy prepare exceeds {HIERARCHY_PREPARE_LIMIT} items");
             }
-            output.push(json!({"item":item,"related":related}));
-        }
-        self.verify_workspace(None, &before)?;
-        self.verify_snapshot(&snapshot).await?;
-        let mut response = self.envelope(&snapshot, json!(output));
-        response["hierarchy"] = response["result"].clone();
-        Ok(response)
+            // Reserve every prepared item before the first related request. Otherwise
+            // unprocessed items and accumulated output could each consume the quota.
+            for (index, item) in prepared.iter().enumerate() {
+                budget.reserve_item(item, index > 0)?;
+            }
+            let mut output = Vec::with_capacity(prepared.len());
+            for item in prepared {
+                budget.check_deadline()?;
+                self.validate_hierarchy_item(&item, &before)?;
+                // Check before json! clones the item into the outgoing request.
+                budget.check_deadline()?;
+                let related = self
+                    .request_document(&snapshot, method, json!({"item":item}))
+                    .await?;
+                let relations = nullable_array(&related, "hierarchy")?;
+                budget.add_relations(relations.len())?;
+                // Measure before validation or retaining/cloning the RPC response.
+                budget.accept_related(&related)?;
+                for relation in relations {
+                    budget.check_deadline()?;
+                    if calls {
+                        let incoming = method.ends_with("incomingCalls");
+                        let target = if incoming {
+                            &relation["from"]
+                        } else {
+                            &relation["to"]
+                        };
+                        self.validate_hierarchy_item(target, &before)?;
+                        budget.check_deadline()?;
+                        let source = if incoming { target } else { &item };
+                        let source_path = self.relative_uri(
+                            source["uri"]
+                                .as_str()
+                                .ok_or_else(|| anyhow!("Missing hierarchy URI"))?,
+                        )?;
+                        let ranges = relation["fromRanges"]
+                            .as_array()
+                            .ok_or_else(|| anyhow!("Invalid call hierarchy ranges"))?;
+                        budget.add_ranges(ranges.len())?;
+                        let text = self.root.read(&source_path)?;
+                        for range in ranges {
+                            budget.check_deadline()?;
+                            validate_range(&text, range)?;
+                        }
+                    } else {
+                        self.validate_hierarchy_item(relation, &before)?;
+                    }
+                }
+                budget.check_deadline()?;
+                output.push(Value::Object(serde_json::Map::from_iter([
+                    ("item".into(), item),
+                    ("related".into(), related),
+                ])));
+            }
+            budget.check_deadline()?;
+            self.verify_workspace(None, &before)?;
+            budget.check_deadline()?;
+            self.verify_snapshot(&snapshot).await?;
+            budget.check_deadline()?;
+            // Move the result into the envelope, then make only the bounded alias
+            // required by the existing API (at most 8 MiB across both fields).
+            let mut response = self.envelope(&snapshot, Value::Null);
+            response["result"] = Value::Array(output);
+            response["hierarchy"] = response["result"].clone();
+            budget.check_deadline()?;
+            Ok(response)
+        })
+        .await
+        .map_err(|_| anyhow!(HIERARCHY_TIMEOUT))?
     }
     fn validate_hierarchy_item(
         &self,
@@ -1033,6 +1087,106 @@ impl LspClient {
             .collect();
         Planner::new(&self.root, snapshots, &versions).plan(workspace_edit)
     }
+}
+struct HierarchyBudget {
+    deadline: Instant,
+    retained_bytes: usize,
+    relations: usize,
+    ranges: usize,
+}
+#[derive(Serialize)]
+struct HierarchyEntry<'a> {
+    item: &'a Value,
+    related: &'a Value,
+}
+impl HierarchyBudget {
+    fn new(deadline: Instant) -> Self {
+        Self {
+            deadline,
+            retained_bytes: 2, // The result array's brackets.
+            relations: 0,
+            ranges: 0,
+        }
+    }
+    fn check_deadline(&self) -> Result<()> {
+        if Instant::now() >= self.deadline {
+            bail!(HIERARCHY_TIMEOUT);
+        }
+        Ok(())
+    }
+    fn reserve_item(&mut self, item: &Value, separator: bool) -> Result<()> {
+        self.check_deadline()?;
+        let remaining = HIERARCHY_JSON_LIMIT
+            .checked_sub(self.retained_bytes + usize::from(separator))
+            .ok_or_else(hierarchy_json_limit)?;
+        let size = hierarchy_json_size(
+            &HierarchyEntry {
+                item,
+                related: &Value::Null,
+            },
+            remaining,
+            self.deadline,
+        )?;
+        self.retained_bytes += size + usize::from(separator);
+        Ok(())
+    }
+    fn accept_related(&mut self, related: &Value) -> Result<()> {
+        self.check_deadline()?;
+        // Replace this item's four-byte reserved `null` without allocating JSON.
+        let base = self.retained_bytes - 4;
+        let size = hierarchy_json_size(related, HIERARCHY_JSON_LIMIT - base, self.deadline)?;
+        self.retained_bytes = base + size;
+        Ok(())
+    }
+    fn add_relations(&mut self, count: usize) -> Result<()> {
+        if count > HIERARCHY_RELATION_LIMIT - self.relations {
+            bail!("LIMIT_EXCEEDED: hierarchy exceeds {HIERARCHY_RELATION_LIMIT} related items");
+        }
+        self.relations += count;
+        Ok(())
+    }
+    fn add_ranges(&mut self, count: usize) -> Result<()> {
+        if count > HIERARCHY_RANGE_LIMIT - self.ranges {
+            bail!("LIMIT_EXCEEDED: hierarchy exceeds {HIERARCHY_RANGE_LIMIT} call ranges");
+        }
+        self.ranges += count;
+        Ok(())
+    }
+}
+fn hierarchy_json_limit() -> anyhow::Error {
+    anyhow!("LIMIT_EXCEEDED: hierarchy retained JSON exceeds {HIERARCHY_JSON_LIMIT} bytes")
+}
+fn hierarchy_json_size(value: &impl Serialize, limit: usize, deadline: Instant) -> Result<usize> {
+    struct Counter {
+        bytes: usize,
+        limit: usize,
+        deadline: Instant,
+    }
+    impl std::io::Write for Counter {
+        fn write(&mut self, bytes: &[u8]) -> std::io::Result<usize> {
+            if Instant::now() >= self.deadline {
+                return Err(std::io::Error::new(
+                    std::io::ErrorKind::TimedOut,
+                    HIERARCHY_TIMEOUT,
+                ));
+            }
+            if bytes.len() > self.limit - self.bytes {
+                return Err(std::io::Error::other(hierarchy_json_limit()));
+            }
+            self.bytes += bytes.len();
+            Ok(bytes.len())
+        }
+        fn flush(&mut self) -> std::io::Result<()> {
+            Ok(())
+        }
+    }
+    let mut counter = Counter {
+        bytes: 0,
+        limit,
+        deadline,
+    };
+    serde_json::to_writer(&mut counter, value)?;
+    Ok(counter.bytes)
 }
 fn nullable_array<'a>(value: &'a Value, kind: &str) -> Result<&'a [Value]> {
     if value.is_null() {
@@ -1349,6 +1503,45 @@ fn flatten_symbol(value: &Value, path: &str, parent: &str, output: &mut Vec<Symb
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn hierarchy_budget_counts_escaped_utf8_and_all_retained_fields() {
+        let item = json!({"data":"\"\\\n😀"});
+        let related = json!([{"data":"\t世界"}]);
+        let mut budget = HierarchyBudget::new(Instant::now() + Duration::from_secs(1));
+        budget.reserve_item(&item, false).unwrap();
+        budget.reserve_item(&item, true).unwrap();
+        budget.accept_related(&related).unwrap();
+        budget.accept_related(&Value::Null).unwrap();
+        let result = json!([
+            {"item":item,"related":related},
+            {"item":item,"related":null},
+        ]);
+        assert_eq!(
+            budget.retained_bytes,
+            serde_json::to_vec(&result).unwrap().len()
+        );
+        assert!(budget.retained_bytes * 2 <= HIERARCHY_JSON_LIMIT * 2);
+        let oversized = json!({"data":"x".repeat(HIERARCHY_JSON_LIMIT)});
+        assert!(
+            budget
+                .reserve_item(&oversized, true)
+                .unwrap_err()
+                .to_string()
+                .contains("LIMIT_EXCEEDED")
+        );
+        budget.add_relations(HIERARCHY_RELATION_LIMIT / 2).unwrap();
+        budget.add_relations(HIERARCHY_RELATION_LIMIT / 2).unwrap();
+        assert!(budget.add_relations(1).is_err());
+        budget.add_ranges(HIERARCHY_RANGE_LIMIT).unwrap();
+        assert!(budget.add_ranges(1).is_err());
+    }
+    #[test]
+    fn hierarchy_budget_rejects_expired_synchronous_serialization() {
+        let expired = Instant::now() - Duration::from_millis(1);
+        let error = hierarchy_json_size(&json!({"data":"x"}), 100, expired).unwrap_err();
+        assert!(error.to_string().contains("TIMEOUT"));
+        assert!(HierarchyBudget::new(expired).check_deadline().is_err());
+    }
     #[test]
     fn semantic_tokens_reject_surrogate_splits_overlaps_and_bad_legends() {
         let legend = json!({"tokenTypes":["function"],"tokenModifiers":["declaration"]});
