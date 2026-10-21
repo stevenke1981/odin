@@ -1,0 +1,76 @@
+{
+  "task_id": "ODIN-AUTO-PROJECT",
+  "kind": "INDEPENDENT_SOURCE_REVIEW_AND_EXECUTED_EVIDENCE_AUDIT",
+  "result": "PASS",
+  "simulation": false,
+  "base_sha": "8f2c264ff1900dff61b81bec88e0eca466adf168",
+  "head_sha_note": "Pre-commit working files identified below, not a claim that base Git tree contains the changes.",
+  "reviewed_sha256": {
+    "crates/odin-core/src/config.rs": "6154cfe86dd16c8488b7d2ab1527a6b57bf3f390abac04a012b755cd01699292",
+    "crates/odin-core/src/workspace.rs": "9dc48edc55e5ba810b2e62aff41e1ec4bd6b027b11f4d51f5f7d73b726932c81",
+    "crates/odin-core/tests/workspace_binding.rs": "ae8591703a277bb1755498effc78e0532f6ef5851d4458fe351b94e6a4919902",
+    "crates/odin-engine/src/lib.rs": "08393affb482164c5e64055d6e44981ee1a1703cc85fc589e814ea147844bce8",
+    "crates/odin-engine/src/analysis.rs": "1e89b65bf75397b799353fcc5cda2984f0adb70cc4becac438f089443e473442",
+    "crates/odin-engine/tests/project_analysis.rs": "779a9e07f7c46ec091f2f699a9185478e46b52fd59a54fcde99301c79884e2b9",
+    "crates/odin/src/main.rs": "87f49f0644c68ee2b4da474b46f6060a499ff8f51bb90b393526499a6a5ae107",
+    "crates/odin/src/setup.rs": "2aebc30744024e809335a9b4215d03b296407b3fdabe1e2d51646fadd71791a1",
+    "scripts/workspace_smoke.py": "38061f6cb6c3a909af8e3a279c3415c9ec7aa1e3c3ac17906a147e70fb804820",
+    "schemas/tools.json": "a7621dc80de4829edfe171cf6848ab2c48071eaf6575a9dce2462f5731768cba",
+    "crates/odin-engine/tools.json": "a7621dc80de4829edfe171cf6848ab2c48071eaf6575a9dce2462f5731768cba"
+  },
+  "source_review": {
+    "actor_instance": "/root/project_binding_audit",
+    "result": "PASS",
+    "findings_resolved": [
+      "P1 Unicode state ID collision",
+      "P2 partial-extension false backend coverage"
+    ],
+    "remaining_blockers": [],
+    "runtime_checks_by_this_reviewer": "NOT_RUN",
+    "evidence": "Actual separate agent source-read/hash handoff in this task"
+  },
+  "quality_review": {
+    "actor_instance": "/root/validation_audit",
+    "result": "PASS",
+    "findings_resolved": [
+      "P1 unselected root setup/hook overwrite path",
+      "P1 protected state descendant root"
+    ],
+    "remaining_blockers": [],
+    "evidence_audit": {
+      "status": "PASS",
+      "raw_gate_log_hashes_verified": 39,
+      "raw_smoke_log_hashes_verified": 5,
+      "final_runtime_source_hashes_verified": 61,
+      "final_commands_exit_code": 0,
+      "rust_test_counts": {
+        "passed": 233,
+        "failed": 0,
+        "ignored": 6
+      },
+      "smoke_check_counts": {
+        "workspace": 35,
+        "cli": 64,
+        "stdio": 24,
+        "http": 36,
+        "cancellation": 8
+      },
+      "real_installed_entry_checks": 6,
+      "real_rust_document_symbols": 20,
+      "binary_sha256": "f4dda81380390c4cad2ff3b985abd2b845e207f0cef17ce6e72272aea6b30bad",
+      "raw_private_receipt_hashes": {
+        "gates.json": "38657352c2d009ad89f11bdb26b02e8ab52dc73e371a61bda4506794519b5e45",
+        "smokes.json": "5e801a4fd8e1ffea3d26679c006191bbff749a3be96c1652b02747ccec07e628",
+        "installed-entry-probe.json": "6c09e8357c5f66e58e7161dee97c32b4b6d02cdb9566474c121ffde42f07bab9"
+      },
+      "note": "Published receipts/logs redact local paths and normalize newlines, so their published hashes differ from these independently audited raw receipts. Published checks carry the corresponding published log hashes."
+    },
+    "builds_rerun_by_this_reviewer": false,
+    "files_written_by_this_reviewer": false
+  },
+  "observed_at_utc": "2026-10-21T18:03:15.585584+00:00",
+  "limits": [
+    "Separate agent instances are independent source reviews, not different human GitHub approvers or OS security boundaries.",
+    "Real client UI restart remains NOT_RUN; actual configured command was independently MCP-handshaked."
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "scope": "REAL_INSTALLED_CODEX_ENTRY_AND_RUST_DOCUMENT_SYMBOLS",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "one_project_odin",
+      "status": "PASS"
+    },
+    {
+      "name": "odin_selected",
+      "status": "PASS"
+    },
+    {
+      "name": "analysis_current_root",
+      "status": "PASS"
+    },
+    {
+      "name": "real_rust_lsp_symbols",
+      "status": "PASS"
+    },
+    {
+      "name": "one_project_sigma-current",
+      "status": "PASS"
+    },
+    {
+      "name": "registered_sigma_selected",
+      "status": "PASS"
+    }
+  ],
+  "full_language_parity": false,
+  "real_client_ui_restarted": false,
+  "symbol_count": 20,
+  "symbols_backend": "lsp",
+  "binary_sha256": "f4dda81380390c4cad2ff3b985abd2b845e207f0cef17ce6e72272aea6b30bad",
+  "metadata": {
+    "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "external_tool_bridge": false,
+    "model_token_usage": "UNKNOWN",
+    "name": "Odin",
+    "profile": "release",
+    "revision": "8f2c264ff1900dff61b81bec88e0eca466adf168",
+    "schema_version": 1,
+    "standalone": true,
+    "target": "x86_64-pc-windows-msvc",
+    "tracked_source_dirty": true,
+    "version": "0.2.0"
+  }
+}

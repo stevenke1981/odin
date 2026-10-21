@@ -1,0 +1,16 @@
+Generated 86 tool contracts
+Generated API for 86 Odin tools and parity for 53 Serena tools.
+{
+  "scope": "EXECUTED_GENERATOR_IDEMPOTENCE",
+  "status": "PASS",
+  "changed": [],
+  "sha256": {
+    "schemas/tools.json": "a7621dc80de4829edfe171cf6848ab2c48071eaf6575a9dce2462f5731768cba",
+    "crates/odin-engine/tools.json": "a7621dc80de4829edfe171cf6848ab2c48071eaf6575a9dce2462f5731768cba",
+    "docs/API.md": "b0257b4b7d6ecb46bd2efacefb914212d9b65b351ae120eac4bb67f0d3bf7ad4",
+    "docs/SERENA_PARITY.md": "247f75449cb9188af64a625cbcbe88afc36abd5dfe423780ea9d2b7a31014f05",
+    "docs/serena-parity.csv": "e2beb7db815f3355179de261eeb07379bc5c1c2749e4489a869435b8974f847a",
+    "docs/serena-parity.json": "e5c5a1b3e17c5b665432f23916adf3d44c66327cb023b4e1997e7836fee848da",
+    "docs/DEPENDENCIES.md": "4e11b5a504eaf17d6cc169543fde5307bcdf93c91729fdd8a1be5ae403a4cab4"
+  }
+}

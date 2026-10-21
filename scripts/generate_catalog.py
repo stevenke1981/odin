@@ -33,6 +33,7 @@ add("list_projects","List operator-registered projects without changing a global
 add("get_current_config","Redacted effective host configuration","read")
 add("initial_instructions","Return Odin's project and transaction usage instructions","read")
 add("onboarding","Inspect project files and return evidence and memory guidance; never invent build results","read")
+add("project_analysis","Analyze live project structure, language hints and host backend gaps without executing repository commands or starting backends","read",{"max_evidence":n(20,1,64),"sample_files":n(20,0,100)})
 add("list_dir","List project files respecting ignore rules and path policy","read",{"relative_path":s(),"recursive":b(True)})
 add("find_file","Find paths using a glob, respecting ignore rules","read",{"file_mask":s()},["file_mask"])
 add("read_file","Read bounded UTF-8 text; start/end lines are 1-based and inclusive","read",{"relative_path":s(),"start_line":n(1,1),"end_line":n(None,1)},["relative_path"])

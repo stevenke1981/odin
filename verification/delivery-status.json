@@ -5,7 +5,7 @@
   "generated_at_utc": "2026-10-21T05:57:56.839778+00:00",
   "architecture": "Independent Rust toolkit with direct LSP/DAP; no Serena bridge",
   "workspace_crates": 4,
-  "tool_contracts": 85,
+  "tool_contracts": 86,
   "serena_comparison_entries": 53,
   "serena_dependency": false,
   "proven_faster_than_serena": false,
@@ -689,7 +689,8 @@
     "Enumeration reveals directory names only with explicit host configuration; no implicit readable coverage or source write grants.",
     "Python QA uses per-project pinned private writable backend copies to handle native SetCurrentDirectory behavior. Never execute these mutable copies unsandboxed, promote them to trusted installed tools, or redistribute them.",
     "Csharp uses explicit OmniSharp selection; sandbox LSP initializes processId=null because the native lifetime owns cleanup. No host-PID monitoring across isolation.",
-    "Linux native execution/packaging does not establish Linux OS sandbox support. Inno Setup packages Windows; Linux uses deb and portable tar."
+    "Linux native execution/packaging does not establish Linux OS sandbox support. Inno Setup packages Windows; Linux uses deb and portable tar.",
+    "Current-workspace launch requires an absolute external trusted host config and registered/host-allowed canonical root. New roots are read-only, cannot be inside private state, and retain all roots for setup/hook protection. No runtime root registration or repository executable config."
   ],
   "incomplete_or_unverified": [
     "Final Windows metadata, six-language/twelve-project MCP matrix and final installer await administrator policy allowance for the unchanged candidate.",
@@ -697,5 +698,20 @@
     "TypeScript/Java unversioned diagnostics remain NOT_VERIFIED; unadvertised capabilities remain UNAVAILABLE. Csharp direct symbols are not full MCP acceptance.",
     "Linux/macOS sandbox support, macOS native builds, complete resource/device isolation, and OS-sandbox DAP debuggee matrix remain unverified or unimplemented.",
     "All-language IDE parity, every rule/refactor, clean Windows machine, cross-version/interrupted installation, signatures, benchmarks and formal security audit remain incomplete."
-  ]
+  ],
+  "latest_source_change": {
+    "task_id": "ODIN-AUTO-PROJECT",
+    "scope": "CURRENT_WORKSPACE_BINDING_LIVE_STRUCTURE_ANALYSIS_WINDOWS",
+    "status": "PASS",
+    "report": "verification/current-workspace-validation.json",
+    "report_sha256": "c5a29d926c9d56b8d5e3af91cb24f988a0008f7f1fd42615a466ab62b8874d87",
+    "binary_sha256": "f4dda81380390c4cad2ff3b985abd2b845e207f0cef17ce6e72272aea6b30bad",
+    "rust_test_counts": {
+      "passed": 233,
+      "failed": 0,
+      "ignored": 6
+    },
+    "current_client_restart": "NOT_RUN",
+    "note": "The pre-existing current_extension/evidence/publication entries are retained historical language-installer receipts. This change has its own executed Windows evidence and source hashes; all-language and other platform limitations remain."
+  }
 }

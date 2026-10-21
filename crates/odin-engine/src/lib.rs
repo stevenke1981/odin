@@ -1,5 +1,6 @@
 #![forbid(unsafe_code)]
 //! Shared application service for CLI, MCP, and the read-only dashboard.
+mod analysis;
 pub mod flow;
 mod formatter;
 mod ide;
@@ -469,6 +470,7 @@ impl Engine {
                 "command_profiles":p.config.commands.keys().collect::<Vec<_>>(),"debug_profiles":p.config.debuggers.keys().collect::<Vec<_>>(),"inspection_profiles":p.config.inspections.iter().map(|(name,profile)|json!({"name":name,"provider":profile.provider})).collect::<Vec<_>>()}),
             ),
             "initial_instructions" => Ok(json!({"instructions":INSTRUCTIONS})),
+            "project_analysis" => analysis::analyze(self, p, a),
             "onboarding" => {
                 let files = search::files(&p.root, limit.max_files)?;
                 let recognized = [
@@ -482,7 +484,7 @@ impl Engine {
                 ];
                 let evidence=recognized.iter().filter_map(|path|p.root.read(path).ok().map(|body|json!({"path":path,"sha256":sha256(body.as_bytes()),"content":body}))).collect::<Vec<_>>();
                 Ok(
-                    json!({"files":files,"evidence":evidence,"memories":self.memories.list(&p.id)?,
+                    json!({"files":files,"evidence":evidence,"analysis":analysis::analyze_listing(self, p, a, &files)?,"memories":self.memories.list(&p.id)?,
                     "guidance":"Read evidence; record architecture, conventions and verified build commands in separate Markdown memories. Do not claim any test ran during onboarding."}),
                 )
             }
@@ -1403,7 +1405,7 @@ fn line_edit(text: &str, start: usize, end: usize, content: &str, insert: bool) 
     result.replace_range(begin..finish, content);
     Ok(result)
 }
-pub const INSTRUCTIONS: &str = "Odin is a local Rust code-intelligence service. Every call is scoped to a configured project ID; there is no process-global active project. Start with get_symbols_overview/find_symbol; read bodies only when needed. LSP positions use zero-based lines and UTF-16 columns; read_file/line edits use one-based inclusive lines. Read the SHA-256 first. All native source edits return an immutable transaction preview; use transaction_apply only after reviewing it. Successful application is NOT a passing build: run an authorized build/test profile and inspect its actual exit status. Native JSON flow is a bounded dataflow, not Python eval. This standalone build has no external tool bridge. Semantic operations connect directly to configured language servers; debugging connects directly to configured DAP adapters. Missing features have no hidden fallback. Missing capabilities are errors, never fabricated successful results.";
+pub const INSTRUCTIONS: &str = "Odin is a local Rust code-intelligence service. Every call is scoped to a configured project ID; there is no process-global active project. Start with project_analysis for live project structure and backend gaps, then get_symbols_overview/find_symbol; read bodies only when needed. LSP positions use zero-based lines and UTF-16 columns; read_file/line edits use one-based inclusive lines. Read the SHA-256 first. All native source edits return an immutable transaction preview; use transaction_apply only after reviewing it. Successful application is NOT a passing build: run an authorized build/test profile and inspect its actual exit status. Native JSON flow is a bounded dataflow, not Python eval. This standalone build has no external tool bridge. Semantic operations connect directly to configured language servers; debugging connects directly to configured DAP adapters. Missing features have no hidden fallback. Missing capabilities are errors, never fabricated successful results.";
 
 #[cfg(test)]
 mod tests {

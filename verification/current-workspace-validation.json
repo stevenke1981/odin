@@ -1,0 +1,767 @@
+{
+  "task_id": "ODIN-AUTO-PROJECT",
+  "scope": "CURRENT_WORKSPACE_BINDING_LIVE_STRUCTURE_ANALYSIS_WINDOWS",
+  "status": "PASS",
+  "observed_at_utc": "2026-10-21T18:01:46.767934+00:00",
+  "base_sha": "8f2c264ff1900dff61b81bec88e0eca466adf168",
+  "branch": "feat/current-workspace-analysis",
+  "source_snapshot_note": "Executed candidate working files are bound by hashes. The binary metadata names base HEAD with tracked_source_dirty=true; final documentation/evidence commit SHA differs. This is not a binary release.",
+  "binary_sha256": "f4dda81380390c4cad2ff3b985abd2b845e207f0cef17ce6e72272aea6b30bad",
+  "target": "x86_64-pc-windows-msvc",
+  "runtime_source_sha256": {
+    "crates/odin/build.rs": "c901d4e9601890336248e1e5c20d600c2c837390e54d8dc5c7bb7704b5c2dabe",
+    "crates/odin/Cargo.toml": "d2ddaeb92e112540734b2b56c5ffe608a150677aa21b378ff8e81ec74b929993",
+    "crates/odin/src/http.rs": "72746cbb15551b4a6b865e2a583ac3fdadb478fcd6041b5696c7b79069f0f275",
+    "crates/odin/src/main.rs": "87f49f0644c68ee2b4da474b46f6060a499ff8f51bb90b393526499a6a5ae107",
+    "crates/odin/src/mcp.rs": "16ac2886ea5003b116f025ae48b8368700dd10b9fb59520d4f96e999c3c1ba95",
+    "crates/odin/src/metadata.rs": "6010f496c4af39edc2523362ddcb9b3398cfe8ae996ac916e19aaf833d4d4063",
+    "crates/odin/src/setup.rs": "2aebc30744024e809335a9b4215d03b296407b3fdabe1e2d51646fadd71791a1",
+    "crates/odin-core/Cargo.toml": "666ad092614df526ed1b8d3253eb2565cc42c4876bb457d62734d0eb2e52f1bf",
+    "crates/odin-core/src/config.rs": "6154cfe86dd16c8488b7d2ab1527a6b57bf3f390abac04a012b755cd01699292",
+    "crates/odin-core/src/error.rs": "f01697b5eec32006f7ea676833d30b52030a8ebd5f45974b9f33d67a6d34e90e",
+    "crates/odin-core/src/execution.rs": "155dfc311d0119f2460b7024f12911745e48729199dd9539ceffefca8c4bba88",
+    "crates/odin-core/src/languages.rs": "064cff38c7056babb767490a20100797ca7a9bcb1948c22c633c16f4bdc73d6e",
+    "crates/odin-core/src/lib.rs": "c6ebd10fb8e3ae005fe932f9db226fa094e869c383b438b33555c060d3c0eee5",
+    "crates/odin-core/src/memory.rs": "2b613b41174cc41f6778cc4ddc0350eaa2cd0753b2f6b881c1ff4b7b96f7abf4",
+    "crates/odin-core/src/paths.rs": "7ff6f57fc9315732bc1b32732503af9f8358b51353baf04049c3580de8c02cd9",
+    "crates/odin-core/src/process.rs": "b69e2cf89c9cf96b79f01b85ea67ad41a1f6dcdd89d5e9bedd6167062fb84fa8",
+    "crates/odin-core/src/sandbox.rs": "18be5bd8c1794375fbfd79f6ffe1d226167b0942614110c86d6cd4e92ea5f5d5",
+    "crates/odin-core/src/sandbox_policy.rs": "76fa4355780c363c1524b17713076a3a08b66384053916c1da22cbe0c05eb27a",
+    "crates/odin-core/src/search.rs": "fb9697e493a278593076982e243245b8d331ba71e18229b8796eac979c508274",
+    "crates/odin-core/src/store.rs": "326482e786fd8de8f02654dfc4682d160ddd70f61923788ea3503212b6f6f5fd",
+    "crates/odin-core/src/transaction.rs": "495b5344b6d68e8c1c2b82195fb532883fde9bf3484ac6401740eb7956fb52bb",
+    "crates/odin-core/src/workspace.rs": "9dc48edc55e5ba810b2e62aff41e1ec4bd6b027b11f4d51f5f7d73b726932c81",
+    "crates/odin-core/tests/fixtures/os_sandbox_workload.rs": "7e8d8905257adfdee5e0b9b195e3d4d99306bae752cf7bf7f11136c0d9d6a09c",
+    "crates/odin-core/tests/fixtures/stdin_workload.rs": "93f2a2c2ccd2e9db54bf34b93723a4beeb8a86a60df9ce1a3ec66fd00dc53a86",
+    "crates/odin-core/tests/host_execution_policy.rs": "ba34311478079eca7d43a7904b228fa2d9c17697214cf26be162d6cb4302421a",
+    "crates/odin-core/tests/os_sandbox_native.rs": "5923210fc19435d8ad8a6ea2145c45c2b58a44e23ba42bf411fb32c133ff30a2",
+    "crates/odin-core/tests/process_contention.rs": "acde589bdadca4f41290883543f49a1a6b0710a607ea40cd06b33cf8ce1ac301",
+    "crates/odin-core/tests/stdin_execution.rs": "9d80ac47146314c2b7ab043b91a19391ec090f4819862131fb836c06ea3b1a31",
+    "crates/odin-core/tests/workspace_binding.rs": "ae8591703a277bb1755498effc78e0532f6ef5851d4458fe351b94e6a4919902",
+    "crates/odin-engine/Cargo.toml": "68752a97bc3317afd4b125f406bdff03c236cfd948ca6a9fe441211e54c4150d",
+    "crates/odin-engine/src/analysis.rs": "1e89b65bf75397b799353fcc5cda2984f0adb70cc4becac438f089443e473442",
+    "crates/odin-engine/src/flow.rs": "b82de18dd48b805c0c542f94d3b2c0c90ff64052ab69b61646a69b47125d206c",
+    "crates/odin-engine/src/formatter.rs": "79cd591119294b25a3624ccb4d97d349856abc57039a530f93a8c2f517fc7ecb",
+    "crates/odin-engine/src/ide.rs": "e2712e30f060d31acfd5ded6ac6e4e4d9f50071951df50638d84e104a4aaf5f1",
+    "crates/odin-engine/src/inspections.rs": "b01820e8ceb56194f69b6ff71caa2640ef88d25dfd328e3a69addecebf62a720",
+    "crates/odin-engine/src/lib.rs": "08393affb482164c5e64055d6e44981ee1a1703cc85fc589e814ea147844bce8",
+    "crates/odin-engine/src/occurrences.rs": "9c5dacae294dea17cf1d14a729d57810d27f1492ac43292f98eb8331aff6b155",
+    "crates/odin-engine/src/refactor.rs": "41b8c8b9154b52118d2c47bd5df863330333818ff0d4b01efc0f707a115a5869",
+    "crates/odin-engine/src/results.rs": "d7b89fbaa048e8b1ec587a8596201e6c3292c6ab849df5d64ab2548be8747492",
+    "crates/odin-engine/src/schema.rs": "310e6e561a37a4b5f5f91c75185ac5332149503f2db72c8387b01f8cb11c8724",
+    "crates/odin-engine/src/shell.rs": "0d1e84f741657bcd01c62b8f0dd24527023e9491c7503f71d019a2766e68e751",
+    "crates/odin-engine/src/symbols.rs": "69056444f324be2bfdb7049b22adb9a490523bec98ff500168ee15f97c544c0f",
+    "crates/odin-engine/src/text_replace.rs": "8fa26da714905d4363ccfe60bc77196906b124a2322a8dcfdd15b035db4f654c",
+    "crates/odin-engine/tests/completion.rs": "3dddfde2c36edffaddc440c95d8181c3b09b9c131f93a7ce9a58d80eab4678af",
+    "crates/odin-engine/tests/debug_launch_policy.rs": "6d89bfab59065cfdeb68303b952fe8056a9b4a45068aa58558d01b5edf8ceb52",
+    "crates/odin-engine/tests/formatter_profiles.rs": "74db7ea48c617788acd7d7434d71c1fd46eb3483a8e894cc2322bb055a1d2a6e",
+    "crates/odin-engine/tests/ide_tools.rs": "6bfc26c527616e97f1b636902d3b7962a42d4445cc33e3270a48db4449a0e0d5",
+    "crates/odin-engine/tests/invariants.rs": "0c90fa06597051f18876611409092a4ec482e9b2041c4cc65267d2a517dca879",
+    "crates/odin-engine/tests/project_analysis.rs": "779a9e07f7c46ec091f2f699a9185478e46b52fd59a54fcde99301c79884e2b9",
+    "crates/odin-engine/tools.json": "a7621dc80de4829edfe171cf6848ab2c48071eaf6575a9dce2462f5731768cba",
+    "crates/odin-protocol/Cargo.toml": "b89d0deb8c21224da781ccfa7549fe34f536c3561115750d9eb230accbef81fc",
+    "crates/odin-protocol/src/dap.rs": "23236ae9bd7476136ec17793cb1b4c2a7cc8404e7c17d5e36b124221ee82b05c",
+    "crates/odin-protocol/src/lib.rs": "99a75cf5cf2f0f42c91bb5d4344fa56ca54aab6d2c0c8bc498da1a1f9b98e68c",
+    "crates/odin-protocol/src/lsp.rs": "6f3272bef7d3455bec13e4c2e7657756e9255dbc41e739495bdc7437fccab12b",
+    "crates/odin-protocol/src/rpc.rs": "286f820bffcb014f8e7ac169c2d591ccfc622a1de6c794ef60a315cc6b313b12",
+    "crates/odin-protocol/src/text.rs": "047329493570b965a79f93a4dd3b2f62a05147d9610547eee5ae4d38619055c2",
+    "crates/odin-protocol/src/workspace.rs": "259f5936b90cd502b20b1eaee20977031f973fe76febed86c03b5bf3f380db6e",
+    "crates/odin-protocol/tests/fixture_protocols.rs": "ab32f1520a3db1cc4b80861ee61b638d898712e7cec766fecb1370a27a35f0dc",
+    "Cargo.toml": "8a009f775d201c8199a6d6f81963bb75dde59a48dc783ae6086a6a7407e21e36",
+    "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34",
+    "rust-toolchain.toml": "c33d1f0b1b8fda448bea32d7dc867aa64947c87169fd9de7122ffccad1dd80f9"
+  },
+  "checks": [
+    {
+      "name": "fmt",
+      "argv": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.413,
+      "log": "verification/current-workspace-log-fmt-3.txt",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_at_utc": "2026-10-21T17:55:43.434161+00:00"
+    },
+    {
+      "name": "workspace-tests",
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--locked"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 32.408,
+      "log": "verification/current-workspace-log-workspace-tests-3.txt",
+      "log_sha256": "5e6361b4dc9e1f8243f5f5c1684ec9f1a645725d47e34674859a9f93ca4dbbe6",
+      "observed_at_utc": "2026-10-21T17:56:15.851262+00:00"
+    },
+    {
+      "name": "clippy",
+      "argv": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--locked",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 2.693,
+      "log": "verification/current-workspace-log-clippy-3.txt",
+      "log_sha256": "095a1b270b2c80efc082d4c909b8201c5dfdb8993770539453d284c7921c6cca",
+      "observed_at_utc": "2026-10-21T17:56:18.559679+00:00"
+    },
+    {
+      "name": "release-build",
+      "argv": [
+        "cargo",
+        "build",
+        "--workspace",
+        "--release",
+        "--locked"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 111.707,
+      "log": "verification/current-workspace-log-release-build-3.txt",
+      "log_sha256": "5ceb8a4870dadaf74480f7479724b67869442bfb4f71f3d71ea5750659385e37",
+      "observed_at_utc": "2026-10-21T17:58:10.276461+00:00"
+    },
+    {
+      "name": "generated-idempotence",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "<TASK_TEMP>\\idempotence\\scripts\\check_generated.py"
+      ],
+      "cwd": "<TASK_TEMP>\\idempotence",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.313,
+      "log": "verification/current-workspace-log-generated-idempotence-1.txt",
+      "log_sha256": "5bc2ace9b67da795bd5c30342b788629ab8ef78d72294c2e200a244cd88cffc6",
+      "observed_at_utc": "2026-10-21T17:56:27.444706+00:00"
+    },
+    {
+      "name": "static-source",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/check_source.py",
+        "--output",
+        "<TASK_TEMP>\\source-check.json"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 3.664,
+      "log": "verification/current-workspace-log-static-source-1.txt",
+      "log_sha256": "37c383784f374e13e969d36d154b6bc559f540047cff4001195363ebe37c7a81",
+      "observed_at_utc": "2026-10-21T17:56:31.117332+00:00"
+    },
+    {
+      "name": "requirements",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/check_requirements.py"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.153,
+      "log": "verification/current-workspace-log-requirements-1.txt",
+      "log_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2",
+      "observed_at_utc": "2026-10-21T17:56:31.283711+00:00"
+    },
+    {
+      "name": "publish-policy",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/check_publish_policy.py"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.053,
+      "log": "verification/current-workspace-log-publish-policy-1.txt",
+      "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983",
+      "observed_at_utc": "2026-10-21T17:56:31.349014+00:00"
+    },
+    {
+      "name": "diff-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.04,
+      "log": "verification/current-workspace-log-diff-whitespace-1.txt",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_at_utc": "2026-10-21T17:56:31.402422+00:00"
+    },
+    {
+      "name": "workspace-smoke",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/workspace_smoke.py",
+        "--binary",
+        "target/release/odin.exe",
+        "--output",
+        "<TASK_TEMP>\\workspace-smoke.json"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 1.093,
+      "log": "verification/current-workspace-log-workspace-smoke-1.txt",
+      "log_sha256": "bf2ad8a82b72e37c0cd5977407f98b2371f91968b675d5723c9f1bc99db13943",
+      "observed_at_utc": "2026-10-21T17:58:38.823582+00:00"
+    },
+    {
+      "name": "cli-smoke",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/cli_smoke.py",
+        "--binary",
+        "target/release/odin.exe",
+        "--output",
+        "<TASK_TEMP>\\cli-smoke.json"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.85,
+      "log": "verification/current-workspace-log-cli-smoke-1.txt",
+      "log_sha256": "fdfb81c7114f13bb67ce99d99a8409e6b6e12df679d71be95db84d5115ff91e3",
+      "observed_at_utc": "2026-10-21T17:58:39.683683+00:00"
+    },
+    {
+      "name": "mcp-smoke",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/mcp_smoke.py",
+        "--binary",
+        "target/release/odin.exe",
+        "--output",
+        "<TASK_TEMP>\\mcp-smoke.json"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.528,
+      "log": "verification/current-workspace-log-mcp-smoke-1.txt",
+      "log_sha256": "3556f37fbd7cce13e00e1f6608a592441e450f43736ecdd99b5ae24c43d926eb",
+      "observed_at_utc": "2026-10-21T17:58:40.220403+00:00"
+    },
+    {
+      "name": "http-smoke",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/http_smoke.py",
+        "--binary",
+        "target/release/odin.exe",
+        "--output",
+        "<TASK_TEMP>\\http-smoke.json"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.946,
+      "log": "verification/current-workspace-log-http-smoke-1.txt",
+      "log_sha256": "9a62a524f43bc18a452169b7134da3227fb26e8888691ff8d9fa853583a65ade",
+      "observed_at_utc": "2026-10-21T17:58:41.175504+00:00"
+    },
+    {
+      "name": "cancellation-smoke",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/mcp_cancel_smoke.py",
+        "--binary",
+        "target/release/odin.exe",
+        "--output",
+        "<TASK_TEMP>\\cancellation-smoke.json"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.547,
+      "log": "verification/current-workspace-log-cancellation-smoke-1.txt",
+      "log_sha256": "647bfc76627d21f83de70cc951ca8f6f738bb5abc09af95d9695bcee6e355ec4",
+      "observed_at_utc": "2026-10-21T17:58:41.731868+00:00"
+    }
+  ],
+  "rust_test_counts": {
+    "passed": 233,
+    "failed": 0,
+    "ignored": 6
+  },
+  "tool_contracts": 86,
+  "cloud_ci_started": false,
+  "binary_release_created": false,
+  "independent_source_reviews": [
+    {
+      "actor_instance": "/root/project_binding_audit",
+      "result": "PASS",
+      "scope": "Independent source review; final canonical root identity, partial-extension coverage and isolation fixes; Cargo/binary checks by reviewer NOT_RUN"
+    },
+    {
+      "actor_instance": "/root/validation_audit",
+      "result": "PASS",
+      "scope": "Independent source review; output guard and private state fixes, AST/catalog check exit 0; final command evidence audit is separate",
+      "evidence_audit": "PASS: 61 runtime source hashes, final command/log hashes, 233/0/6 counts, matching binary receipts, installed host/client CAS backups"
+    }
+  ],
+  "resolved_review_findings": [
+    {
+      "severity": "P1",
+      "problem": "Runtime project selection discarded other roots from setup/hook output protection",
+      "resolution": "Non-configurable complete protected root list and real CLI/MCP smoke negative cases"
+    },
+    {
+      "severity": "P1",
+      "problem": "Workspace inside private state could read journals/memories",
+      "resolution": "Reject canonical root at/below state, tested with real state descendants"
+    },
+    {
+      "severity": "P1",
+      "problem": "Unicode lowercasing merged different Windows roots into one state ID",
+      "resolution": "Hash unmodified canonical UTF-8; actual Windows distinct Unicode directory and case-alias tests"
+    },
+    {
+      "severity": "P2",
+      "problem": "Language profile ID or partial extensions hid backend gaps",
+      "resolution": "Check each observed extension and test ts-only profile versus tsx source"
+    }
+  ],
+  "transactions": [
+    {
+      "transaction_id": "061ef847-19dd-469f-8627-b9c73518bb81",
+      "files": [
+        {
+          "path": "scripts/workspace_smoke.py",
+          "before_sha256": null,
+          "after_sha256": "0eecba942110de81c0fedabb14cc7edf7b2a2fdbbcfac9fa52dcc74ed9ae2541"
+        }
+      ],
+      "apply_result": "committed"
+    },
+    {
+      "transaction_id": "074fea6c-261c-4628-9cec-74ad4cd02d81",
+      "files": [
+        {
+          "path": "crates/odin-engine/src/lib.rs",
+          "before_sha256": "faa522453d4380f4db8ebfa79d54691c9d22b6088426632a999e69204b1b0bdb",
+          "after_sha256": "08393affb482164c5e64055d6e44981ee1a1703cc85fc589e814ea147844bce8"
+        },
+        {
+          "path": "crates/odin-engine/src/analysis.rs",
+          "before_sha256": null,
+          "after_sha256": "061668ff677619fd8733fff0a972e8b19438831a7ebcc193c05bf5cc1b6a72a2"
+        },
+        {
+          "path": "scripts/generate_catalog.py",
+          "before_sha256": "1c761b53433ac1bc00e9c4972f36a7bf610f6a1e0ffea17d2fbce1f97d56befd",
+          "after_sha256": "58f815a8a1721bebf1a29574056c44a86c548b45a5f60c9e4e2afe7fc54ebdaf"
+        }
+      ],
+      "apply_result": "committed"
+    },
+    {
+      "transaction_id": "1165a23d-cbb8-419f-9549-6928f20ef134",
+      "files": [
+        {
+          "path": "crates/odin-engine/tests/project_analysis.rs",
+          "before_sha256": "fbe53bf1e5579b09e622ae45e5814653b867ef7b2663252070248f88fb031f9e",
+          "after_sha256": "3807e19b9c3572a0478e5546aca3949745890d2537b870905ce4eabc36add636"
+        },
+        {
+          "path": "crates/odin-core/src/config.rs",
+          "before_sha256": "e8d8a109f21b18ca56f3bf52de6eae35258c19419989ab111b6547ba1677d872",
+          "after_sha256": "0fce80ba3bd000e83997bcef02fcfffedae31157cc2255d95b3bfa96cbc479c3"
+        },
+        {
+          "path": "crates/odin/src/main.rs",
+          "before_sha256": "e78d0e6b564b6863476cd40f80010641e7fb6704f6fd461e1e7d01767d60da52",
+          "after_sha256": "dd961330233822063ca2b5576bb55c463879f1f2ce51f3bf948ae9afb0de1f87"
+        },
+        {
+          "path": "crates/odin-core/tests/workspace_binding.rs",
+          "before_sha256": "8b2043e743e6c80e21729401216814996c90e8477515dbe486ce84a517aa5683",
+          "after_sha256": "337579c95ce115e56071610cb58a07fd0bccd6c6c03f0bad65b62dc5bcf3dadd"
+        },
+        {
+          "path": "examples/odin.workspace.toml",
+          "before_sha256": null,
+          "after_sha256": "90c4149c78634f289527372adb0d2a5c07262f250a2ad9322ce6fa9564ea4eca"
+        },
+        {
+          "path": "docs/CURRENT_WORKSPACE.md",
+          "before_sha256": null,
+          "after_sha256": "68bdf5998f9f0d28dc0fd076e626f9a27980150efab029cb2a2d5ed78f46902a"
+        },
+        {
+          "path": "README.md",
+          "before_sha256": "abc9f9012883760c198537863d75ee8d5efdfe7871b4b9739daf2af88ff08134",
+          "after_sha256": "558d40462f22cfc7da81baf9b5b94c8c0f46e3f7e9c1b43b47872f2caa65bd2c"
+        },
+        {
+          "path": "docs/ARCHITECTURE.md",
+          "before_sha256": "fe7d449980bf1f70b8e3bd882ebf0ef484997ed33e6b49333da79c8e325d0d7c",
+          "after_sha256": "ed5af7a86a0dba27546bcbc79f373d7bc6f92004b6601da9d543397bab05f20f"
+        },
+        {
+          "path": "docs/KNOWN_LIMITATIONS.md",
+          "before_sha256": "70f3760a390fc2a9ae61d73fe70d42ae5caa99ac0daee3f9841b1adf83dab7dc",
+          "after_sha256": "7862d94a8624792c4fb7bcaafb6e131d5dea43d541a149ae9b2bc8e427858c44"
+        },
+        {
+          "path": "docs/SECURITY.md",
+          "before_sha256": "7db2f289b8562e8be3bc201a8dc789eb11fe2a71dda0a594f892f6dfaaa0a339",
+          "after_sha256": "3a771cc166ec8d7afde525656e5e40b954e32b119710d1bfb52d4270ac4024a5"
+        },
+        {
+          "path": "scripts/generate_docs.py",
+          "before_sha256": "040c59868d593039902e04d0978820882061c690a7b8e98758c3605215f853c2",
+          "after_sha256": "65c3d58a2f6470211d43616f585ebccfa1b6ac7e746098e776900af17fdba4ee"
+        }
+      ],
+      "apply_result": "committed"
+    },
+    {
+      "transaction_id": "1c18099c-2d27-4ac5-b48e-8931d36e02e4",
+      "files": [
+        {
+          "path": "crates/odin-core/src/workspace.rs",
+          "before_sha256": "9dc48edc55e5ba810b2e62aff41e1ec4bd6b027b11f4d51f5f7d73b726932c81",
+          "after_sha256": "9dc48edc55e5ba810b2e62aff41e1ec4bd6b027b11f4d51f5f7d73b726932c81"
+        },
+        {
+          "path": "crates/odin-core/tests/workspace_binding.rs",
+          "before_sha256": "fe5987b09ac2413ca4fc03c505c87218932d6e12f2066f249109b0614ab58728",
+          "after_sha256": "ae8591703a277bb1755498effc78e0532f6ef5851d4458fe351b94e6a4919902"
+        },
+        {
+          "path": "crates/odin-engine/src/analysis.rs",
+          "before_sha256": "1e89b65bf75397b799353fcc5cda2984f0adb70cc4becac438f089443e473442",
+          "after_sha256": "1e89b65bf75397b799353fcc5cda2984f0adb70cc4becac438f089443e473442"
+        },
+        {
+          "path": "crates/odin-engine/tests/project_analysis.rs",
+          "before_sha256": "779a9e07f7c46ec091f2f699a9185478e46b52fd59a54fcde99301c79884e2b9",
+          "after_sha256": "779a9e07f7c46ec091f2f699a9185478e46b52fd59a54fcde99301c79884e2b9"
+        },
+        {
+          "path": "crates/odin-core/src/config.rs",
+          "before_sha256": "6154cfe86dd16c8488b7d2ab1527a6b57bf3f390abac04a012b755cd01699292",
+          "after_sha256": "6154cfe86dd16c8488b7d2ab1527a6b57bf3f390abac04a012b755cd01699292"
+        },
+        {
+          "path": "crates/odin-core/src/lib.rs",
+          "before_sha256": "c6ebd10fb8e3ae005fe932f9db226fa094e869c383b438b33555c060d3c0eee5",
+          "after_sha256": "c6ebd10fb8e3ae005fe932f9db226fa094e869c383b438b33555c060d3c0eee5"
+        },
+        {
+          "path": "crates/odin-engine/src/lib.rs",
+          "before_sha256": "08393affb482164c5e64055d6e44981ee1a1703cc85fc589e814ea147844bce8",
+          "after_sha256": "08393affb482164c5e64055d6e44981ee1a1703cc85fc589e814ea147844bce8"
+        },
+        {
+          "path": "crates/odin/src/main.rs",
+          "before_sha256": "87f49f0644c68ee2b4da474b46f6060a499ff8f51bb90b393526499a6a5ae107",
+          "after_sha256": "87f49f0644c68ee2b4da474b46f6060a499ff8f51bb90b393526499a6a5ae107"
+        },
+        {
+          "path": "crates/odin/src/setup.rs",
+          "before_sha256": "2aebc30744024e809335a9b4215d03b296407b3fdabe1e2d51646fadd71791a1",
+          "after_sha256": "2aebc30744024e809335a9b4215d03b296407b3fdabe1e2d51646fadd71791a1"
+        }
+      ],
+      "apply_result": "committed"
+    },
+    {
+      "transaction_id": "211a3224-5834-4d6d-8e15-07fedf32a10e",
+      "files": [
+        {
+          "path": "crates/odin-core/src/config.rs",
+          "before_sha256": "9527874d019ab8a3244919b9419d29c9eb13795c932054fe8527ff0edd359c9a",
+          "after_sha256": "d35c679f95ae01518272ef212708a0bf7aaaa659ee8945016265cd9320e90a11"
+        },
+        {
+          "path": "crates/odin-core/src/workspace.rs",
+          "before_sha256": "7cf5fe24cf8870690fbd9f1072a76fb54ea84555417f3e7b3df6895ffa86a775",
+          "after_sha256": "05f10ca6c1b36919f39e06fe6780bbd4467fba7319bec48593156b66c3d9dd62"
+        },
+        {
+          "path": "crates/odin/src/main.rs",
+          "before_sha256": "cb54dcc3f31207df18ef055191275080b4b732adfda8acb08b4e86b51ba3b913",
+          "after_sha256": "87f49f0644c68ee2b4da474b46f6060a499ff8f51bb90b393526499a6a5ae107"
+        },
+        {
+          "path": "crates/odin-engine/src/analysis.rs",
+          "before_sha256": "4d6098db336c3ca652607a09aacddffcefaf18b5816382ea27a5cf08a9149a08",
+          "after_sha256": "b2a5d53defac1f101e7b268e67c46cb13a9991c3aed41fe4aeb64e90f0aeb42d"
+        },
+        {
+          "path": "crates/odin-core/tests/workspace_binding.rs",
+          "before_sha256": "9ae0029fbc0e0405c1cb01fa71ad092eec577a95283d220306beed8d7765ba70",
+          "after_sha256": "9834dd350fafeaebde3f8a8b573ae20549cc83d947e0c592aedadd2472be7a15"
+        },
+        {
+          "path": "crates/odin-engine/tests/project_analysis.rs",
+          "before_sha256": "04030e032e0b6b7a5aa87660eac0e0f3547746633182a7f76f6c23edeb3bea97",
+          "after_sha256": "799f92c54fdf6a02952cfc79d690d9bb1bc43a941a1793a088d6cc3512029eb0"
+        },
+        {
+          "path": "scripts/workspace_smoke.py",
+          "before_sha256": "0eecba942110de81c0fedabb14cc7edf7b2a2fdbbcfac9fa52dcc74ed9ae2541",
+          "after_sha256": "38061f6cb6c3a909af8e3a279c3415c9ec7aa1e3c3ac17906a147e70fb804820"
+        },
+        {
+          "path": "docs/ENGINE_IMPLEMENTATION.md",
+          "before_sha256": "5307caffa17de61f3f004f7189f245c91a42308f69d41f0e6a2199fae8c66985",
+          "after_sha256": "5381bd75a582ef6612d307d8ad4cdad45a76cec1686b7f12fab34d820cb1d369"
+        },
+        {
+          "path": "docs/CURRENT_WORKSPACE.md",
+          "before_sha256": "68bdf5998f9f0d28dc0fd076e626f9a27980150efab029cb2a2d5ed78f46902a",
+          "after_sha256": "9ca52b7715c3b5ec82668acab01faab39184a7996a2258c9afd70942b9cdee35"
+        }
+      ],
+      "apply_result": "committed"
+    },
+    {
+      "transaction_id": "3f11d592-7a78-44f4-844c-c42bc48f357d",
+      "files": [
+        {
+          "path": "crates/odin-core/src/workspace.rs",
+          "before_sha256": "15ee00bacd491ad1528ba2d19f6e0a982d374628db140160ded88def6733a73c",
+          "after_sha256": "7cf5fe24cf8870690fbd9f1072a76fb54ea84555417f3e7b3df6895ffa86a775"
+        },
+        {
+          "path": "crates/odin-core/tests/workspace_binding.rs",
+          "before_sha256": "337579c95ce115e56071610cb58a07fd0bccd6c6c03f0bad65b62dc5bcf3dadd",
+          "after_sha256": "9ae0029fbc0e0405c1cb01fa71ad092eec577a95283d220306beed8d7765ba70"
+        },
+        {
+          "path": "crates/odin-engine/src/analysis.rs",
+          "before_sha256": "6dcf9a23fab829505b517c3fdb658b59730fea3d52563dac99364e45d4912b40",
+          "after_sha256": "4d6098db336c3ca652607a09aacddffcefaf18b5816382ea27a5cf08a9149a08"
+        },
+        {
+          "path": "crates/odin-engine/tests/project_analysis.rs",
+          "before_sha256": "3807e19b9c3572a0478e5546aca3949745890d2537b870905ce4eabc36add636",
+          "after_sha256": "04030e032e0b6b7a5aa87660eac0e0f3547746633182a7f76f6c23edeb3bea97"
+        },
+        {
+          "path": "crates/odin-core/src/config.rs",
+          "before_sha256": "0fce80ba3bd000e83997bcef02fcfffedae31157cc2255d95b3bfa96cbc479c3",
+          "after_sha256": "9527874d019ab8a3244919b9419d29c9eb13795c932054fe8527ff0edd359c9a"
+        },
+        {
+          "path": "crates/odin-core/src/lib.rs",
+          "before_sha256": "c6ebd10fb8e3ae005fe932f9db226fa094e869c383b438b33555c060d3c0eee5",
+          "after_sha256": "c6ebd10fb8e3ae005fe932f9db226fa094e869c383b438b33555c060d3c0eee5"
+        },
+        {
+          "path": "crates/odin-engine/src/lib.rs",
+          "before_sha256": "08393affb482164c5e64055d6e44981ee1a1703cc85fc589e814ea147844bce8",
+          "after_sha256": "08393affb482164c5e64055d6e44981ee1a1703cc85fc589e814ea147844bce8"
+        },
+        {
+          "path": "crates/odin/src/main.rs",
+          "before_sha256": "dd961330233822063ca2b5576bb55c463879f1f2ce51f3bf948ae9afb0de1f87",
+          "after_sha256": "cb54dcc3f31207df18ef055191275080b4b732adfda8acb08b4e86b51ba3b913"
+        },
+        {
+          "path": "crates/odin/src/setup.rs",
+          "before_sha256": "dd9366d3d049c62738313aef1270ec8ce7e69eac275be9b7094ddfa6a53bc030",
+          "after_sha256": "2aebc30744024e809335a9b4215d03b296407b3fdabe1e2d51646fadd71791a1"
+        }
+      ],
+      "apply_result": "committed"
+    },
+    {
+      "transaction_id": "4f6505dc-ab79-4e49-b8d7-42362c134057",
+      "files": [
+        {
+          "path": "crates/odin-core/src/workspace.rs",
+          "before_sha256": "41edbf2df849898a59a52c9459de82989b5a95a6d9e6b4e9fcc30190a96667fb",
+          "after_sha256": "9dc48edc55e5ba810b2e62aff41e1ec4bd6b027b11f4d51f5f7d73b726932c81"
+        },
+        {
+          "path": "crates/odin-core/tests/workspace_binding.rs",
+          "before_sha256": "45011a986ec55a078b837f080cdbe4ab6cda5995077401ce5d8c93fd87fc97ae",
+          "after_sha256": "fe5987b09ac2413ca4fc03c505c87218932d6e12f2066f249109b0614ab58728"
+        }
+      ],
+      "apply_result": "committed"
+    },
+    {
+      "transaction_id": "7c009759-7756-41b2-80b5-4461a965ef80",
+      "files": [
+        {
+          "path": "crates/odin-engine/tools.json",
+          "before_sha256": "d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea",
+          "after_sha256": "a7621dc80de4829edfe171cf6848ab2c48071eaf6575a9dce2462f5731768cba"
+        },
+        {
+          "path": "schemas/tools.json",
+          "before_sha256": "d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea",
+          "after_sha256": "a7621dc80de4829edfe171cf6848ab2c48071eaf6575a9dce2462f5731768cba"
+        },
+        {
+          "path": "docs/API.md",
+          "before_sha256": "4255709bd3d0a2abfe73b5060cc0257047703d4d1c305001f9626a0440201c5b",
+          "after_sha256": "b0257b4b7d6ecb46bd2efacefb914212d9b65b351ae120eac4bb67f0d3bf7ad4"
+        }
+      ],
+      "apply_result": "committed"
+    },
+    {
+      "transaction_id": "b991038d-edc3-4723-ac42-e1888d18f2f0",
+      "files": [
+        {
+          "path": "crates/odin-core/src/workspace.rs",
+          "before_sha256": "05f10ca6c1b36919f39e06fe6780bbd4467fba7319bec48593156b66c3d9dd62",
+          "after_sha256": "41edbf2df849898a59a52c9459de82989b5a95a6d9e6b4e9fcc30190a96667fb"
+        },
+        {
+          "path": "crates/odin-core/tests/workspace_binding.rs",
+          "before_sha256": "9834dd350fafeaebde3f8a8b573ae20549cc83d947e0c592aedadd2472be7a15",
+          "after_sha256": "45011a986ec55a078b837f080cdbe4ab6cda5995077401ce5d8c93fd87fc97ae"
+        },
+        {
+          "path": "crates/odin-engine/src/analysis.rs",
+          "before_sha256": "b2a5d53defac1f101e7b268e67c46cb13a9991c3aed41fe4aeb64e90f0aeb42d",
+          "after_sha256": "1e89b65bf75397b799353fcc5cda2984f0adb70cc4becac438f089443e473442"
+        },
+        {
+          "path": "crates/odin-engine/tests/project_analysis.rs",
+          "before_sha256": "799f92c54fdf6a02952cfc79d690d9bb1bc43a941a1793a088d6cc3512029eb0",
+          "after_sha256": "779a9e07f7c46ec091f2f699a9185478e46b52fd59a54fcde99301c79884e2b9"
+        },
+        {
+          "path": "crates/odin-core/src/config.rs",
+          "before_sha256": "d35c679f95ae01518272ef212708a0bf7aaaa659ee8945016265cd9320e90a11",
+          "after_sha256": "6154cfe86dd16c8488b7d2ab1527a6b57bf3f390abac04a012b755cd01699292"
+        },
+        {
+          "path": "crates/odin-core/src/lib.rs",
+          "before_sha256": "c6ebd10fb8e3ae005fe932f9db226fa094e869c383b438b33555c060d3c0eee5",
+          "after_sha256": "c6ebd10fb8e3ae005fe932f9db226fa094e869c383b438b33555c060d3c0eee5"
+        },
+        {
+          "path": "crates/odin-engine/src/lib.rs",
+          "before_sha256": "08393affb482164c5e64055d6e44981ee1a1703cc85fc589e814ea147844bce8",
+          "after_sha256": "08393affb482164c5e64055d6e44981ee1a1703cc85fc589e814ea147844bce8"
+        },
+        {
+          "path": "crates/odin/src/main.rs",
+          "before_sha256": "87f49f0644c68ee2b4da474b46f6060a499ff8f51bb90b393526499a6a5ae107",
+          "after_sha256": "87f49f0644c68ee2b4da474b46f6060a499ff8f51bb90b393526499a6a5ae107"
+        },
+        {
+          "path": "crates/odin/src/setup.rs",
+          "before_sha256": "2aebc30744024e809335a9b4215d03b296407b3fdabe1e2d51646fadd71791a1",
+          "after_sha256": "2aebc30744024e809335a9b4215d03b296407b3fdabe1e2d51646fadd71791a1"
+        }
+      ],
+      "apply_result": "committed"
+    },
+    {
+      "transaction_id": "c7558883-cde5-4ef1-9b9f-582388ab37b5",
+      "files": [
+        {
+          "path": "docs/dispatch-current-workspace.md",
+          "before_sha256": null,
+          "after_sha256": "4f52b492680e50354de52896fb7db191fb3141f99fc820fd3ab118898ff2e4b8"
+        },
+        {
+          "path": "crates/odin-core/src/config.rs",
+          "before_sha256": "0b35cd97b09bb64bd1adc3a4a72dff803c6e7d484cd5f48b972deac1a2a12675",
+          "after_sha256": "e8d8a109f21b18ca56f3bf52de6eae35258c19419989ab111b6547ba1677d872"
+        },
+        {
+          "path": "crates/odin-core/src/lib.rs",
+          "before_sha256": "93046231f7ca483d76e7546528b67d9211e6252c8b8dd38ae64164171d301b8f",
+          "after_sha256": "c6ebd10fb8e3ae005fe932f9db226fa094e869c383b438b33555c060d3c0eee5"
+        },
+        {
+          "path": "crates/odin-core/src/workspace.rs",
+          "before_sha256": null,
+          "after_sha256": "15ee00bacd491ad1528ba2d19f6e0a982d374628db140160ded88def6733a73c"
+        },
+        {
+          "path": "crates/odin/src/main.rs",
+          "before_sha256": "bbbe29e409786c8bf2915895ffeb2a958aa1da0a9f2ad2a3589f53ccd80e0108",
+          "after_sha256": "e78d0e6b564b6863476cd40f80010641e7fb6704f6fd461e1e7d01767d60da52"
+        },
+        {
+          "path": "crates/odin/src/setup.rs",
+          "before_sha256": "350cbcfabe792f342d4aebb8170a6265b9d6cfa70f3cea9fe341411fdadb40e4",
+          "after_sha256": "4cba5e8ef735e336c46afd097eacde52224ac9d8dc3b356de352ba49cbe24e27"
+        }
+      ],
+      "apply_result": "committed"
+    },
+    {
+      "transaction_id": "e0380d26-816a-42e5-824a-921761f68532",
+      "files": [
+        {
+          "path": "crates/odin-core/tests/workspace_binding.rs",
+          "before_sha256": null,
+          "after_sha256": "8b2043e743e6c80e21729401216814996c90e8477515dbe486ce84a517aa5683"
+        },
+        {
+          "path": "crates/odin-engine/tests/project_analysis.rs",
+          "before_sha256": null,
+          "after_sha256": "fbe53bf1e5579b09e622ae45e5814653b867ef7b2663252070248f88fb031f9e"
+        },
+        {
+          "path": "crates/odin/src/setup.rs",
+          "before_sha256": "4cba5e8ef735e336c46afd097eacde52224ac9d8dc3b356de352ba49cbe24e27",
+          "after_sha256": "dd9366d3d049c62738313aef1270ec8ce7e69eac275be9b7094ddfa6a53bc030"
+        },
+        {
+          "path": "crates/odin-engine/src/analysis.rs",
+          "before_sha256": "061668ff677619fd8733fff0a972e8b19438831a7ebcc193c05bf5cc1b6a72a2",
+          "after_sha256": "6dcf9a23fab829505b517c3fdb658b59730fea3d52563dac99364e45d4912b40"
+        }
+      ],
+      "apply_result": "committed"
+    }
+  ],
+  "limitations": [
+    "Exact startup root, no ancestor guessing or mid-session root registration; client must launch with the correct cwd.",
+    "Current Codex in-process connection remains old until a new session/server launch; actual UI restart NOT_RUN. Generated and installed entry independently MCP-handshaked.",
+    "Live structural hints are not semantic/dependency analysis; bounded, non-atomic and no background watcher.",
+    "Six optional real-backend/native-sandbox tests remain ignored; one real Rust documentSymbol probe does not establish all-language parity.",
+    "This Windows change does not replace historical language/installer/platform acceptance or assert all 40 requirements complete."
+  ],
+  "external_side_effects": {
+    "commit_push_authorized": true,
+    "local_host_configuration_updated": true,
+    "remote_push": "NOT_RUN_AT_REPORT_CREATION",
+    "cloud_ci_dispatched": false
+  },
+  "independent_review_report": {
+    "path": "verification/current-workspace-review.json",
+    "sha256": "da845a13679a657877a88ff9205037b7a9af06ac4d14b8ece9c37d9740d87a4f"
+  }
+}

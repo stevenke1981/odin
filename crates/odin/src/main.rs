@@ -25,6 +25,9 @@ use std::{
 struct Cli {
     #[arg(long, global = true, default_value = "odin.toml")]
     config: PathBuf,
+    /// Select this startup workspace (use . to follow the client's launch cwd).
+    #[arg(long, global = true)]
+    workspace: Option<PathBuf>,
     #[arg(long, global = true)]
     context: Option<String>,
     #[arg(long, global = true)]
@@ -79,6 +82,11 @@ enum Commands {
     },
     /// Gather read-only project evidence and instructions; never executes repository instructions.
     Onboard {
+        #[arg(long)]
+        project: Option<String>,
+    },
+    /// Analyze live project structure without executing repository commands.
+    Analyze {
         #[arg(long)]
         project: Option<String>,
     },
@@ -158,8 +166,11 @@ async fn main() -> Result<()> {
         } => return init(&cli.config, root, name, *writable),
         _ => {}
     }
-    let config =
-        Config::load(&cli.config)?.with_policy(cli.context.as_deref(), cli.mode.as_deref())?;
+    if cli.workspace.is_some() && !cli.config.is_absolute() {
+        bail!("--workspace requires an absolute --config path to trusted host configuration");
+    }
+    let config = Config::load_with_workspace(&cli.config, cli.workspace.as_deref())?
+        .with_policy(cli.context.as_deref(), cli.mode.as_deref())?;
     match &cli.command {
         Commands::Languages { project: Some(id) } => {
             let project = config.projects.get(id).context("Unknown project")?;
@@ -195,6 +206,7 @@ async fn main() -> Result<()> {
                 before.as_deref(),
                 cli.context.as_deref(),
                 cli.mode.as_deref(),
+                cli.workspace.as_deref(),
             )?;
             let fragment = setup::client_config(
                 *client,
@@ -203,6 +215,7 @@ async fn main() -> Result<()> {
                 None,
                 cli.context.as_deref(),
                 cli.mode.as_deref(),
+                cli.workspace.as_deref(),
             )?;
             return print_json(&setup::emit_or_apply(
                 output.as_deref(),
@@ -229,8 +242,14 @@ async fn main() -> Result<()> {
                 .map(setup::read_output)
                 .transpose()?
                 .flatten();
-            let content = setup::hook_content(before.as_deref().unwrap_or(""), &project, *disable)?;
-            let fragment = setup::hook_content("", &project, *disable)?;
+            let guidance_project = if cli.workspace.is_some() {
+                None
+            } else {
+                Some(project.as_str())
+            };
+            let content =
+                setup::hook_content(before.as_deref().unwrap_or(""), guidance_project, *disable)?;
+            let fragment = setup::hook_content("", guidance_project, *disable)?;
             return print_json(&setup::emit_or_apply(
                 output.as_deref(),
                 before.as_deref(),
@@ -260,6 +279,16 @@ async fn main() -> Result<()> {
             if failed {
                 bail!("Doctor detected unavailable configured backends; see structured checks");
             }
+        }
+        Commands::Analyze { project } => {
+            let project = project
+                .map(Ok)
+                .unwrap_or_else(|| engine.default_project())?;
+            print_json(
+                &engine
+                    .call(project, "project_analysis".into(), json!({}))
+                    .await?,
+            )?;
         }
         Commands::Onboard { project } => {
             let project = project
@@ -357,11 +386,7 @@ fn ensure_host_output(config: &Config, output: Option<&Path>) -> Result<()> {
         .unwrap_or(Path::new("."))
         .canonicalize()?;
     let output = parent.join(output.file_name().context("Missing output filename")?);
-    if config
-        .projects
-        .values()
-        .any(|project| output.starts_with(&project.root))
-    {
+    if config.contains_workspace_path(&output) {
         bail!(
             "--output must be outside configured project roots; use native Transactions for workspace edits"
         );

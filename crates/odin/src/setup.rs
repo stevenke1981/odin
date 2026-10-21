@@ -59,6 +59,7 @@ pub fn client_config(
     before: Option<&str>,
     context: Option<&str>,
     mode: Option<&str>,
+    workspace: Option<&Path>,
 ) -> Result<String> {
     let binary = binary
         .to_str()
@@ -72,6 +73,12 @@ pub fn client_config(
     }
     if let Some(mode) = mode {
         args.extend(["--mode", mode]);
+    }
+    if let Some(workspace) = workspace {
+        args.extend([
+            "--workspace",
+            workspace.to_str().context("Workspace path must be UTF-8")?,
+        ]);
     }
     args.extend(["serve", "--transport", "stdio"]);
     if matches!(client, Client::Codex) {
@@ -113,7 +120,7 @@ pub fn client_config(
     Ok(serde_json::to_string_pretty(&document)? + "\n")
 }
 
-pub fn hook_content(before: &str, project: &str, disable: bool) -> Result<String> {
+pub fn hook_content(before: &str, project: Option<&str>, disable: bool) -> Result<String> {
     let begins = before.matches(HOOK_BEGIN).count();
     let ends = before.matches(HOOK_END).count();
     if begins > 1 || ends != begins {
@@ -132,8 +139,10 @@ pub fn hook_content(before: &str, project: &str, disable: bool) -> Result<String
     if disable {
         return Ok(cleaned);
     }
+    let scope = project.map(|id| format!("Use Odin with explicit project {id}."))
+        .unwrap_or_else(|| "Use the workspace project ID reported by this Odin server's initial instructions or list_projects; do not reuse an ID from another workspace.".into());
     let guidance = format!(
-        "{HOOK_BEGIN}\nUse Odin with explicit project {project}. Check get_capabilities before semantic work. Read symbols/references before editing when supported. Prepare changes with expected SHA-256, review the transaction, then apply. Report actual command exit codes. Missing backend capability must remain explicit. Child agents need their own MCP connection; no shared tools are implied.\n{HOOK_END}"
+        "{HOOK_BEGIN}\n{scope} Start with project_analysis for live structure and backend gaps. Check get_capabilities before semantic work. Read symbols/references before editing when supported. Prepare changes with expected SHA-256, review the transaction, then apply. Report actual command exit codes. Missing backend capability must remain explicit. Child agents need their own MCP connection; no shared tools are implied.\n{HOOK_END}"
     );
     Ok(format!("{cleaned}{guidance}"))
 }
@@ -247,6 +256,7 @@ mod tests {
             Some(r#"{"theme":"dark","mcpServers":{"other":{"command":"else"}}}"#),
             None,
             None,
+            None,
         )
         .unwrap();
         let value: Value = serde_json::from_str(&json).unwrap();
@@ -257,6 +267,7 @@ mod tests {
             Path::new("odin"),
             Path::new("host.toml"),
             Some("model = 'existing'\n[mcp_servers.other]\ncommand = 'else'\n"),
+            None,
             None,
             None,
         )
@@ -271,10 +282,16 @@ mod tests {
     #[test]
     fn hooks_are_idempotent_and_disable_restores_surroundings() {
         let original = "Host-owned instructions.\n";
-        let enabled = hook_content(original, "workspace", false).unwrap();
-        assert_eq!(hook_content(&enabled, "workspace", false).unwrap(), enabled);
-        assert_eq!(hook_content(&enabled, "workspace", true).unwrap(), original);
-        assert!(hook_content(HOOK_BEGIN, "workspace", false).is_err());
+        let enabled = hook_content(original, Some("workspace"), false).unwrap();
+        assert_eq!(
+            hook_content(&enabled, Some("workspace"), false).unwrap(),
+            enabled
+        );
+        assert_eq!(
+            hook_content(&enabled, Some("workspace"), true).unwrap(),
+            original
+        );
+        assert!(hook_content(HOOK_BEGIN, Some("workspace"), false).is_err());
     }
     #[test]
     fn malformed_sections_are_rejected() {
@@ -286,6 +303,7 @@ mod tests {
                 Some(r#"{"mcpServers":[]}"#),
                 None,
                 None,
+                None,
             )
             .is_err()
         );
@@ -295,6 +313,7 @@ mod tests {
                 Path::new("odin"),
                 Path::new("host.toml"),
                 Some("// comment"),
+                None,
                 None,
                 None,
             )
@@ -310,6 +329,7 @@ mod tests {
             None,
             Some("reviewer"),
             Some("readonly"),
+            None,
         )
         .unwrap();
         let value: Value = serde_json::from_str(&text).unwrap();
@@ -328,5 +348,42 @@ mod tests {
                 "stdio"
             ])
         );
+    }
+    #[test]
+    fn workspace_setup_and_guidance_do_not_pin_setup_directory() {
+        for client in [Client::Codex, Client::Claude, Client::Opencode] {
+            let text = client_config(
+                client,
+                Path::new("odin"),
+                Path::new("host.toml"),
+                None,
+                None,
+                None,
+                Some(Path::new(".")),
+            )
+            .unwrap();
+            let args: Value = match client {
+                Client::Codex => serde_json::to_value(
+                    toml::from_str::<toml::Value>(&text).unwrap()["mcp_servers"]["odin"]["args"]
+                        .clone(),
+                )
+                .unwrap(),
+                Client::Claude => {
+                    serde_json::from_str::<Value>(&text).unwrap()["mcpServers"]["odin"]["args"]
+                        .clone()
+                }
+                Client::Opencode => {
+                    serde_json::from_str::<Value>(&text).unwrap()["mcp"]["odin"]["command"].clone()
+                }
+            };
+            let args = args.as_array().unwrap();
+            assert!(
+                args.windows(2)
+                    .any(|pair| pair == [json!("--workspace"), json!(".")])
+            );
+        }
+        let text = hook_content("", None, false).unwrap();
+        assert!(text.contains("list_projects") && text.contains("project_analysis"));
+        assert!(!text.contains("sigma") && !text.contains("ws_"));
     }
 }

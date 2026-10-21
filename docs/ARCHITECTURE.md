@@ -48,7 +48,7 @@ flowchart TB
 
 LSP、DAP 依需求啟動。每個 `(project_id, language_id)` 使用各自 LSP；每個 project 有自己的 DAP session。關閉時先嘗試標準 shutdown/disconnect，再清理 RPC task 與 process tree。Windows Job Objects／Unix groups 管理生命週期；選用 MXC 的 workload 在執行前進入 OS 邊界，policy/scratch guard 保留至 tree close 與 parent reap。未選用 MXC 的程序只有原生命週期控制。
 
-所有可改變專案的請求先進入 `Engine::run`。每次指定 project，沒有全程序可變的 active_project。啟動後不允許 Agent 新增任意 root；更改 host config 需重啟。不同 project 的語意範圍分開；此版未提供使用者身分／多租戶 ACL。
+所有可改變專案的請求先進入 `Engine::run`。每次指定 project，沒有全程序可變的 active_project。啟動後不允許 Agent 新增任意 root；更改 host config 需重啟。`--workspace PATH` 在 Engine 建立前從 host 註冊 root 或 workspace.allowed_roots 綁定單一 immutable project；新 root 唯讀，state ID 以 canonical root hash 隔離，沒有 process-global active_project。workspace 模式只讀專案外的絕對 host config；細節見 [當前專案](CURRENT_WORKSPACE.md)。不同 project 的語意範圍分開；此版未提供使用者身分／多租戶 ACL。
 
 ## 4. MCP 服務層
 
@@ -151,7 +151,7 @@ Shell 只接受 host 固定 program/argv profile，輸出有界、環境 allowli
 
 ## 10. 獨立產品邊界
 
-生產 Rust 沒有 SerenaBridge／BridgeConfig／上游工具分支。MCP 只發佈自己的 85 個契約。`status` 明列 standalone／external_tool_bridge；doctor 預設 presence-only，`--probe-lsp` 才做真實 initialize，`--probe-sandbox` 執行有 hash pin 的 native capability probe；握手／probe 都不等同全索引或 workload 驗收完成。
+生產 Rust 沒有 SerenaBridge／BridgeConfig／上游工具分支。MCP 只發佈自己的 86 個契約。`status` 明列 standalone／external_tool_bridge；doctor 預設 presence-only，`--probe-lsp` 才做真實 initialize，`--probe-sandbox` 執行有 hash pin 的 native capability probe；握手／probe 都不等同全索引或 workload 驗收完成。
 
 `ProjectConfig` 保留 `deny_unknown_fields`；舊 bridge 設定不是靜默無效，而是載入錯誤。原生工具共用 engine、scope、policy 與 journal；外部 LSP／DAP、Shell 命令依舊需要可信任 host 設定，不是安全沙箱。
 

@@ -18,6 +18,7 @@ LSP position 為 0-based UTF-16；檔案行數為 1-based inclusive。參數細�
 | `get_current_config` | read | `project` | Redacted effective host configuration |
 | `initial_instructions` | read | `project` | Return Odin's project and transaction usage instructions |
 | `onboarding` | read | `project` | Inspect project files and return evidence and memory guidance; never invent build results |
+| `project_analysis` | read | `project` | Analyze live project structure, language hints and host backend gaps without executing repository commands or starting backends |
 | `list_dir` | read | `project` | List project files respecting ignore rules and path policy |
 | `find_file` | read | `project`, `file_mask` | Find paths using a glob, respecting ignore rules |
 | `read_file` | read | `project`, `relative_path` | Read bounded UTF-8 text; start/end lines are 1-based and inclusive |
@@ -135,3 +136,5 @@ FTS5 查詢先增量 refresh 當前檔案快照；這是詞彙搜尋，不是語
 原生 profile 僅格式化整份文件，range 與非空 options 明確回 CAPABILITY_UNAVAILABLE，不忽略 caller 的選項。成功必須有 success=true、stdin_complete=true 與零退出碼；stdin 有 16 MiB 上限。timeout、輸入未完整送達、缺少完成旗標、非零退出、截斷、無效 UTF-8 stdout、過大輸出或來源衝突均不建立交易；無變更回 changed=false。成功只回 provider=ruff、source=native_formatter、profile、來源／結果 digest 及 transaction preview；另需 transaction_apply。get_capabilities 與 get_current_config 僅列 profile metadata，不輸出 executable/argv。
 
 LSP line/character 的 schema 使用 uinteger 範圍 0..2147483647，實際位置仍必須存在於該文件且符合 UTF-16 邊界；大於 100000 的合法行／欄不再因 schema 被拒絕。count、page、match 與輸出預算維持各自原有限制。
+
+`project_analysis` 是即時結構/設定分析，回傳語言 hints、有界 evidence SHA-256、讀取錯誤及截斷欄位；不啟動 backend、不執行 repository 指令，tests 維持 NOT_RUN。structure_sha256 不涵蓋全部來源內容。啟動時 `--workspace .` 的 host 邊界、setup 與 client 生命週期見 [CURRENT_WORKSPACE.md](CURRENT_WORKSPACE.md)。

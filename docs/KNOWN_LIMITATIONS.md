@@ -21,6 +21,8 @@ Windows 建置與真實後端測試已執行；以 verification 最新報告為�
 16. Native inspections 目前解析 Clippy、Ruff、ESLint。必須有 inspection host grant 與唯讀來源的 native sandbox；fix 僅先回 CAS preview。報告只描述固定 profile 的範圍，不保證全專案／全部規則覆蓋。見 IDE_IMPLEMENTATION.md。
 17. Native Ruff formatting 需另外明確的 host formatter/write grants、固定 stdin profile 與唯讀來源 sandbox；不自動回退，也不支援 caller range／format options。Windows AppControl 擋住的編譯測試不算通過；真實後端測試不能替代被擋住的完整 Rust gate。
 
+18. `--workspace .` 依 server 啟動 cwd 綁定，不是 session 中途任意切 root。client 若固定 cwd，需明確指定 root/重啟。新 workspace 僅唯讀、需 host allowed_roots；不向上推測 repository 根。`project_analysis` 是每次掃描的結構/設定 hints，不是語意分析、依賴 parser 或背景 watcher；有掃描/evidence 限額，structure digest 不涵蓋所有來源內容，讀取非原子。所有真實 client 生命週期與 Linux/macOS 新功能仍需個別驗收。見 CURRENT_WORKSPACE.md。
+
 Transaction before/after snapshots 總量上限 32 MiB；來源快照、記憶與結果另有
 配額。超限應縮小操作，不可覆寫衝突或移除配額取得成功。
 逐需求狀態見 `verification/feature-evidence.json`。

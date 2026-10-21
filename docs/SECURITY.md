@@ -47,3 +47,14 @@ journal 包含完整 before/after；FTS、spool、Markdown memories 也可能敏
 timeout／取消可能代表「操作已完成但回覆遺失」，不能對修改型工具自動重試。MCP 取消會丟棄仍在等待 gate／backend 的 future；已進入同步 apply 時維持 unknown-outcome，不假裝 rollback。原生寫入使用 journal/idempotency；外部工具不共享此保證。恢復發現第三方修改時保留 RecoveryRequired，不覆寫衝突。
 
 詳見 `KNOWN_LIMITATIONS.md` 及 `RELEASE_GATES.md`。任何安全主張都須在實際目標系統驗證。
+
+## Current workspace 的啟動邊界
+
+`--workspace PATH` 僅供可信 host 的 CLI/client entry 在啟動時指定，不是 MCP
+root 註冊工具。workspace 模式要求絕對且在專案外的 host config，拒絕把專案
+內的 odin.toml 當 host policy；不讀 manifest/scripts 建立 argv 或提升 grants。
+未登記的 root 必須在 host workspace.allowed_roots 之內，canonicalize 後
+驗證，產生僅讀專案；設定內所有既有專案仍驗證重疊，最後只服務選中的專案。
+host state/secret-file denial 與 expected-hash Transactions 規則持續生效。
+語言 profile 只能由 host 明確提供；project_analysis 不啟動任何 backend，
+只回結構 hints、設定缺口、來源 hash 與明確 NOT_RUN，不是語意解析。

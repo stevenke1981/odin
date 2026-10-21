@@ -1,0 +1,151 @@
+{
+  "scope": "REAL_WINDOWS_OR_NATIVE_BINARY_WORKSPACE_CLI_AND_MCP",
+  "status": "PASS",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "binary_sha256": "f4dda81380390c4cad2ff3b985abd2b845e207f0cef17ce6e72272aea6b30bad",
+  "checks": [
+    {
+      "name": "cli_exit:. analyze",
+      "status": "PASS"
+    },
+    {
+      "name": "analysis_live_no_execution",
+      "status": "PASS"
+    },
+    {
+      "name": "no_grants",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_exit:. analyze",
+      "status": "PASS"
+    },
+    {
+      "name": "absolute_host_required",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_exit:. analyze",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_exit:. analyze",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_exit:--client codex",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_keeps_literal_dot",
+      "status": "PASS"
+    },
+    {
+      "name": "initialize",
+      "status": "PASS"
+    },
+    {
+      "name": "initialize",
+      "status": "PASS"
+    },
+    {
+      "name": "tool:list_projects",
+      "status": "PASS"
+    },
+    {
+      "name": "tool:list_projects",
+      "status": "PASS"
+    },
+    {
+      "name": "one_launch_project",
+      "status": "PASS"
+    },
+    {
+      "name": "distinct_stable_ids",
+      "status": "PASS"
+    },
+    {
+      "name": "tool:read_file",
+      "status": "PASS"
+    },
+    {
+      "name": "cwd_alpha",
+      "status": "PASS"
+    },
+    {
+      "name": "tool:read_file",
+      "status": "PASS"
+    },
+    {
+      "name": "cwd_beta",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy_not_selected",
+      "status": "PASS"
+    },
+    {
+      "name": "tool:read_file",
+      "status": "PASS"
+    },
+    {
+      "name": "tool:create_text_file",
+      "status": "PASS"
+    },
+    {
+      "name": "tool:project_analysis",
+      "status": "PASS"
+    },
+    {
+      "name": "tool:project_analysis",
+      "status": "PASS"
+    },
+    {
+      "name": "live_add_delete",
+      "status": "PASS"
+    },
+    {
+      "name": "live_manifest_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "backend_gap",
+      "status": "PASS"
+    },
+    {
+      "name": "tool:project_analysis",
+      "status": "PASS"
+    },
+    {
+      "name": "state_namespaces",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_exit:<USERPROFILE>\\AppData\\Local\\Temp\\odin-workspace-8q7vw14v\\beta\\client.toml --apply",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_exit:<USERPROFILE>\\AppData\\Local\\Temp\\odin-workspace-8q7vw14v\\sigma\\AGENTS.md --apply",
+      "status": "PASS"
+    },
+    {
+      "name": "other_roots_not_written",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_exit:<USERPROFILE>\\AppData\\Local\\Temp\\odin-workspace-8q7vw14v\\state\\projects\\ws_acb204e006158e76c88529245527f8157ae7c5f51d15b712\\transactions analyze",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_exit:. analyze",
+      "status": "PASS"
+    },
+    {
+      "name": "registered_selection",
+      "status": "PASS"
+    }
+  ],
+  "error": null,
+  "real_lsp_dap_tested": false,
+  "timestamp_unix": 1792605518.8089004
+}

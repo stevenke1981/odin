@@ -1,6 +1,6 @@
 # Odin 引擎補完與驗證範圍
 
-原生工具契約、策略與可預覽修改目前共 85 個工具，由 `scripts/generate_catalog.py` 生成到兩份 `tools.json`；`scripts/generate_docs.py --api-only` 更新 API，不會改動另外管理的發布與對照文件。新增 IDE 查詢、格式化交易與 native inspections 詳見 [IDE_IMPLEMENTATION.md](IDE_IMPLEMENTATION.md)。Odin 不載入或呼叫 Serena。
+原生工具契約、策略與可預覽修改目前共 86 個工具，由 `scripts/generate_catalog.py` 生成到兩份 `tools.json`；`scripts/generate_docs.py --api-only` 更新 API，不會改動另外管理的發布與對照文件。新增 IDE 查詢、格式化交易與 native inspections 詳見 [IDE_IMPLEMENTATION.md](IDE_IMPLEMENTATION.md)。Odin 不載入或呼叫 Serena。
 
 ## 已實作行為
 

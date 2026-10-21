@@ -2,14 +2,15 @@
 
 ## 獨立 Rust 程式碼工具服務 · 原生預覽 0.2.0
 
-Odin 提供 **85 個原生工具契約**，以 MCP stdio、本機 HTTP 或 CLI 供 Coding
+Odin 提供 **86 個原生工具契約**，以 MCP stdio、本機 HTTP 或 CLI 供 Coding
 Agent 使用。四個 Rust crates 共用專案政策、SHA-256 交易、直接 LSP／DAP、
 Markdown 記憶與受限 JSON 流程。產品沒有 Serena bridge、Python REPL、
 任意 eval 或自動上游 fallback。
 
 Linux x86-64 已完成本機 VM 的正式編譯、完整 workspace 測試，以及 `.deb`／tar
-的安裝、重裝與移除。Windows 最終候選受主機 AppControl 阻擋，六語最終矩陣
-仍待驗收。**40 項規格尚未全數驗收；目前不是跨平台穩定版。** 最新命令、
+的安裝、重裝與移除。歷史 Windows 候選曾受主機 AppControl 阻擋，六語最終矩陣
+仍待驗收。本次當前專案功能已完成 Windows 全 workspace gates 與 binary smoke，
+見 [本次驗收](verification/current-workspace-validation.json)；不替代其他語言／平台驗收。**40 項規格尚未全數驗收；目前不是跨平台穩定版。** 最新命令、
 exit code、來源／binary hash 以 [交付狀態](verification/delivery-status.json)、
 [Linux 本機驗收](verification/package-v3-linux-notices-final.json)、
 [歷史 Windows 驗收](verification/sandbox-ide-release-validation.json) 與
@@ -67,6 +68,15 @@ write、shell、debug。命令與除錯需操作者在可信任 host 設定明�
 `setup` 支援 Codex、Claude、OpenCode。真正寫入需 `--apply --output`；
 既有檔案還需 preview hash，並保存備份。生成 entry 的 MCP handshake
 已有獨立 smoke，不表示已在每個真實 client 應用中完成安裝。
+
+### 依當前專案使用
+
+同一 client entry 可加入 `--workspace .`，依每次啟動的 cwd 選用專案，
+不再固定 sigma。新 root 必須在可信 host 的 `workspace.allowed_roots` 內，
+預設唯讀；不自動開啟寫入、shell 或 debug。`odin ... analyze` 與 MCP
+`project_analysis` 每次提供即時結構、語言 hints、backend 缺口及 evidence hash；
+不執行 repository 指令、不以副檔名冒充語意分析。設定、client 生命週期及限制
+見 [當前專案使用方式](docs/CURRENT_WORKSPACE.md)。
 
 ### 來源修改：先看，再寫
 

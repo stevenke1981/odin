@@ -1,0 +1,75 @@
+{
+  "task_id": "ODIN-AUTO-PROJECT",
+  "scope": "LOCAL_HOST_AND_CODEX_ENTRY_UPDATE",
+  "binary_sha256": "f4dda81380390c4cad2ff3b985abd2b845e207f0cef17ce6e72272aea6b30bad",
+  "installed_binary": "<USERPROFILE>\\.local\\share\\Odin\\workspace-f4dda8138039\\odin.exe",
+  "host_grant_decision": {
+    "allowed_roots": [
+      "E:/",
+      "D:/"
+    ],
+    "dynamic_write": false,
+    "dynamic_shell": false,
+    "dynamic_debug": false,
+    "language_servers": [
+      "rust-analyzer"
+    ],
+    "build_scripts": false,
+    "proc_macros": false
+  },
+  "host": {
+    "before_sha256": "b71fa6f5b48d7bad3d6beb0a2ae15de9a9f56def01e05bb3dad15746669e05e9",
+    "after_sha256": "b7ab2dadb9b1fcb095fa81008101c12075f7c4aad2ffb6483f88794a513ebf93",
+    "backup": "<USERPROFILE>\\.config\\odin\\host.toml.odin-backup-b71fa6f5b48d7bad3d6beb0a2ae15de9a9f56def01e05bb3dad15746669e05e9"
+  },
+  "current_inprocess_mcp_reloaded": false,
+  "real_client_ui_restart": "NOT_RUN",
+  "codex_entry": {
+    "before_sha256": "e5c748530996edb7db732166167edc018d118d1311aed2603058447b05a57e73",
+    "after_sha256": "807e81586263f8ea8b0d269450f5f6e8d5519a6131470502cc4090bd8836c3e7",
+    "backup": "<USERPROFILE>\\.codex\\config.toml.odin-backup-e5c748530996edb7db732166167edc018d118d1311aed2603058447b05a57e73"
+  },
+  "entry": {
+    "command": "\\\\?\\<USERPROFILE>\\.local\\share\\Odin\\workspace-f4dda8138039\\odin.exe",
+    "args": [
+      "--config",
+      "\\\\?\\<USERPROFILE>\\.config\\odin\\host.toml",
+      "--workspace",
+      ".",
+      "serve",
+      "--transport",
+      "stdio"
+    ],
+    "startup_timeout_sec": 60
+  },
+  "projects": [
+    {
+      "cwd": "<WORKSPACE>",
+      "project": "ws_e81c9bc0804543c514cb6e002d7d90574122eb6ef92c6910",
+      "root": "\\\\?\\<WORKSPACE>",
+      "file_count": 932,
+      "tests": "NOT_RUN",
+      "permissions": {
+        "debug": false,
+        "formatters": false,
+        "inspections": false,
+        "shell": false,
+        "write": false
+      }
+    },
+    {
+      "cwd": "E:\\Codex\\2026-10-18\\task-2\\sigma-current",
+      "project": "sigma",
+      "root": "\\\\?\\E:\\Codex\\2026-10-18\\task-2\\sigma-current",
+      "file_count": 701,
+      "tests": "NOT_RUN",
+      "permissions": {
+        "debug": false,
+        "formatters": false,
+        "inspections": false,
+        "shell": false,
+        "write": false
+      }
+    }
+  ]
+}

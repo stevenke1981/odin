@@ -13,6 +13,7 @@ pub mod sandbox_policy;
 pub mod search;
 pub mod store;
 pub mod transaction;
+pub mod workspace;
 
 pub use error::{Fault, Result};
 

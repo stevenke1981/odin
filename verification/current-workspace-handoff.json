@@ -1,0 +1,275 @@
+{
+  "task_id": "ODIN-AUTO-PROJECT",
+  "base_sha": "8f2c264ff1900dff61b81bec88e0eca466adf168",
+  "head_sha": "8f2c264ff1900dff61b81bec88e0eca466adf168",
+  "actor_instance": "/root",
+  "receiver_instance": "user",
+  "kind": "handoff",
+  "result": "PASS",
+  "simulation": false,
+  "observed_at": "2026-10-21T18:01:46.767934+00:00",
+  "acceptance_ids": [
+    "STARTUP-CWD",
+    "ROOT-ISOLATION",
+    "LIVE-ANALYSIS",
+    "HOST-BOUNDARIES",
+    "REAL-WINDOWS-GATES",
+    "INDEPENDENT-REVIEW"
+  ],
+  "artifact": {
+    "path": "verification/current-workspace-validation.json",
+    "sha256": "c5a29d926c9d56b8d5e3af91cb24f988a0008f7f1fd42615a466ab62b8874d87"
+  },
+  "checks": [
+    {
+      "name": "fmt",
+      "argv": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.413,
+      "log": "verification/current-workspace-log-fmt-3.txt",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_at_utc": "2026-10-21T17:55:43.434161+00:00"
+    },
+    {
+      "name": "workspace-tests",
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--locked"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 32.408,
+      "log": "verification/current-workspace-log-workspace-tests-3.txt",
+      "log_sha256": "5e6361b4dc9e1f8243f5f5c1684ec9f1a645725d47e34674859a9f93ca4dbbe6",
+      "observed_at_utc": "2026-10-21T17:56:15.851262+00:00"
+    },
+    {
+      "name": "clippy",
+      "argv": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--locked",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 2.693,
+      "log": "verification/current-workspace-log-clippy-3.txt",
+      "log_sha256": "095a1b270b2c80efc082d4c909b8201c5dfdb8993770539453d284c7921c6cca",
+      "observed_at_utc": "2026-10-21T17:56:18.559679+00:00"
+    },
+    {
+      "name": "release-build",
+      "argv": [
+        "cargo",
+        "build",
+        "--workspace",
+        "--release",
+        "--locked"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 111.707,
+      "log": "verification/current-workspace-log-release-build-3.txt",
+      "log_sha256": "5ceb8a4870dadaf74480f7479724b67869442bfb4f71f3d71ea5750659385e37",
+      "observed_at_utc": "2026-10-21T17:58:10.276461+00:00"
+    },
+    {
+      "name": "generated-idempotence",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "<TASK_TEMP>\\idempotence\\scripts\\check_generated.py"
+      ],
+      "cwd": "<TASK_TEMP>\\idempotence",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.313,
+      "log": "verification/current-workspace-log-generated-idempotence-1.txt",
+      "log_sha256": "5bc2ace9b67da795bd5c30342b788629ab8ef78d72294c2e200a244cd88cffc6",
+      "observed_at_utc": "2026-10-21T17:56:27.444706+00:00"
+    },
+    {
+      "name": "static-source",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/check_source.py",
+        "--output",
+        "<TASK_TEMP>\\source-check.json"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 3.664,
+      "log": "verification/current-workspace-log-static-source-1.txt",
+      "log_sha256": "37c383784f374e13e969d36d154b6bc559f540047cff4001195363ebe37c7a81",
+      "observed_at_utc": "2026-10-21T17:56:31.117332+00:00"
+    },
+    {
+      "name": "requirements",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/check_requirements.py"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.153,
+      "log": "verification/current-workspace-log-requirements-1.txt",
+      "log_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2",
+      "observed_at_utc": "2026-10-21T17:56:31.283711+00:00"
+    },
+    {
+      "name": "publish-policy",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/check_publish_policy.py"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.053,
+      "log": "verification/current-workspace-log-publish-policy-1.txt",
+      "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983",
+      "observed_at_utc": "2026-10-21T17:56:31.349014+00:00"
+    },
+    {
+      "name": "diff-whitespace",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.04,
+      "log": "verification/current-workspace-log-diff-whitespace-1.txt",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed_at_utc": "2026-10-21T17:56:31.402422+00:00"
+    },
+    {
+      "name": "workspace-smoke",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/workspace_smoke.py",
+        "--binary",
+        "target/release/odin.exe",
+        "--output",
+        "<TASK_TEMP>\\workspace-smoke.json"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 1.093,
+      "log": "verification/current-workspace-log-workspace-smoke-1.txt",
+      "log_sha256": "bf2ad8a82b72e37c0cd5977407f98b2371f91968b675d5723c9f1bc99db13943",
+      "observed_at_utc": "2026-10-21T17:58:38.823582+00:00"
+    },
+    {
+      "name": "cli-smoke",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/cli_smoke.py",
+        "--binary",
+        "target/release/odin.exe",
+        "--output",
+        "<TASK_TEMP>\\cli-smoke.json"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.85,
+      "log": "verification/current-workspace-log-cli-smoke-1.txt",
+      "log_sha256": "fdfb81c7114f13bb67ce99d99a8409e6b6e12df679d71be95db84d5115ff91e3",
+      "observed_at_utc": "2026-10-21T17:58:39.683683+00:00"
+    },
+    {
+      "name": "mcp-smoke",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/mcp_smoke.py",
+        "--binary",
+        "target/release/odin.exe",
+        "--output",
+        "<TASK_TEMP>\\mcp-smoke.json"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.528,
+      "log": "verification/current-workspace-log-mcp-smoke-1.txt",
+      "log_sha256": "3556f37fbd7cce13e00e1f6608a592441e450f43736ecdd99b5ae24c43d926eb",
+      "observed_at_utc": "2026-10-21T17:58:40.220403+00:00"
+    },
+    {
+      "name": "http-smoke",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/http_smoke.py",
+        "--binary",
+        "target/release/odin.exe",
+        "--output",
+        "<TASK_TEMP>\\http-smoke.json"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.946,
+      "log": "verification/current-workspace-log-http-smoke-1.txt",
+      "log_sha256": "9a62a524f43bc18a452169b7134da3227fb26e8888691ff8d9fa853583a65ade",
+      "observed_at_utc": "2026-10-21T17:58:41.175504+00:00"
+    },
+    {
+      "name": "cancellation-smoke",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "scripts/mcp_cancel_smoke.py",
+        "--binary",
+        "target/release/odin.exe",
+        "--output",
+        "<TASK_TEMP>\\cancellation-smoke.json"
+      ],
+      "cwd": "<WORKSPACE>",
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.547,
+      "log": "verification/current-workspace-log-cancellation-smoke-1.txt",
+      "log_sha256": "647bfc76627d21f83de70cc951ca8f6f738bb5abc09af95d9695bcee6e355ec4",
+      "observed_at_utc": "2026-10-21T17:58:41.731868+00:00"
+    }
+  ],
+  "unresolved": [
+    "Exact startup root, no ancestor guessing or mid-session root registration; client must launch with the correct cwd.",
+    "Current Codex in-process connection remains old until a new session/server launch; actual UI restart NOT_RUN. Generated and installed entry independently MCP-handshaked.",
+    "Live structural hints are not semantic/dependency analysis; bounded, non-atomic and no background watcher.",
+    "Six optional real-backend/native-sandbox tests remain ignored; one real Rust documentSymbol probe does not establish all-language parity.",
+    "This Windows change does not replace historical language/installer/platform acceptance or assert all 40 requirements complete."
+  ],
+  "next_action": "Commit and push the reviewed source; start a new Codex workspace session to use the updated installed MCP entry.",
+  "external_side_effects": {
+    "authorized": true,
+    "performed": true,
+    "scope": "local host and Codex entry updated; push remains pending at this receipt"
+  },
+  "independent_review": {
+    "path": "verification/current-workspace-review.json",
+    "sha256": "da845a13679a657877a88ff9205037b7a9af06ac4d14b8ece9c37d9740d87a4f"
+  }
+}

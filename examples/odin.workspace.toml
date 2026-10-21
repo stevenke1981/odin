@@ -1,0 +1,18 @@
+# Trusted HOST file: store outside all selected project roots.
+# Paths below are examples; replace with explicitly authorized directories.
+state_dir = "./workspace-state"
+
+[workspace]
+allowed_roots = ["C:/Projects"]
+deny_globs = ["**/secrets/**"]
+
+# Explicit host backend selection; detection never installs/starts a server.
+[[workspace.languages]]
+id = "rust"
+extensions = ["rs"]
+program = "rust-analyzer"
+args = []
+
+# [projects.fixed] registrations remain supported. --workspace selects one
+# matching registration with its existing permissions, or creates a read-only
+# workspace profile. No automatic write/shell/debug/inspection/formatter grants.

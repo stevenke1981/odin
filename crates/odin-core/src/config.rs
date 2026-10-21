@@ -12,7 +12,14 @@ pub struct Config {
     pub state_dir: PathBuf,
     #[serde(default)]
     pub limits: Limits,
+    #[serde(default)]
     pub projects: BTreeMap<String, ProjectConfig>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub workspace: Option<crate::workspace::WorkspaceConfig>,
+    /// Complete host-output protection survives selecting one runtime project.
+    /// Not configurable by TOML/JSON and never an additional runtime project.
+    #[serde(skip)]
+    protected_project_roots: Vec<PathBuf>,
     #[serde(default)]
     pub memory_read_only_patterns: Vec<String>,
     #[serde(default)]
@@ -316,6 +323,15 @@ pub struct LanguageConfig {
     pub settings: serde_json::Value,
 }
 impl Config {
+    pub fn contains_workspace_path(&self, path: &Path) -> bool {
+        self.protected_project_roots
+            .iter()
+            .any(|root| path.starts_with(root))
+            || self
+                .projects
+                .values()
+                .any(|project| path.starts_with(&project.root))
+    }
     pub fn with_policy(mut self, context: Option<&str>, mode: Option<&str>) -> Result<Self> {
         for (name, policies) in [(context, &self.contexts), (mode, &self.modes)] {
             if let Some(name) = name {
@@ -340,7 +356,20 @@ impl Config {
         Ok(self)
     }
     pub fn load(path: &Path) -> Result<Self> {
+        Self::load_with_workspace(path, None)
+    }
+    /// Bind only an operator-selected startup directory, before normal root,
+    /// storage and permission validation. MCP callers cannot change this binding.
+    pub fn load_with_workspace(path: &Path, workspace: Option<&Path>) -> Result<Self> {
         let path = path.canonicalize()?;
+        if let Some(workspace) = workspace {
+            let root = workspace.canonicalize()?;
+            if path.starts_with(root) {
+                return Err(Fault::denied(
+                    "Workspace mode requires trusted host configuration outside the selected workspace",
+                ));
+            }
+        }
         let raw = std::fs::read_to_string(&path)?;
         let mut config: Self = toml::from_str(&raw).map_err(|e| Fault::invalid(e.to_string()))?;
         let parent = path
@@ -350,8 +379,16 @@ impl Config {
             config.state_dir = parent.join(&config.state_dir);
         }
         config.state_dir = canonical_storage_path(&normalize_absolute(&config.state_dir))?;
+        if let Some(template) = config.workspace.as_mut() {
+            template.normalize(parent)?;
+        }
+        let selected = workspace
+            .map(|root| crate::workspace::bind(&mut config, root, parent))
+            .transpose()?;
         if config.projects.is_empty() {
-            return Err(Fault::invalid("At least one project is required"));
+            return Err(Fault::invalid(
+                "At least one project is required; workspace templates require --workspace PATH",
+            ));
         }
         #[cfg(windows)]
         {
@@ -395,6 +432,16 @@ impl Config {
             project.root = project.root.canonicalize()?;
             if !project.root.is_dir() {
                 return Err(Fault::invalid(format!("Project {id} is not a directory")));
+            }
+            if project.root.starts_with(&config.state_dir) {
+                return Err(Fault::denied(
+                    "Project root must not be inside protected host state",
+                ));
+            }
+            if selected.as_ref() == Some(id) && path.starts_with(&project.root) {
+                return Err(Fault::denied(
+                    "Workspace mode requires trusted host configuration outside the bound project",
+                ));
             }
             // Configuration and state are host-owned, even when stored under a
             // workspace. An agent must not rewrite its permissions on restart.
@@ -470,6 +517,19 @@ impl Config {
         }
         for name in config.contexts.keys().chain(config.modes.keys()) {
             validate_id(name)?;
+        }
+        config.protected_project_roots = config
+            .projects
+            .values()
+            .map(|project| project.root.clone())
+            .collect();
+        if let Some(template) = &config.workspace {
+            config
+                .protected_project_roots
+                .extend(template.allowed_roots.iter().cloned());
+        }
+        if let Some(selected) = selected {
+            config.projects.retain(|id, _| id == &selected);
         }
         Ok(config)
     }
