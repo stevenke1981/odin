@@ -10,9 +10,9 @@ Odin 是讓既有 LLM / Coding Agent 使用的工具服務，不是自行訓練�
 
 | crate | 實作責任 | 不負責 |
 |---|---|---|
-| `odin-core` | host config、路徑規則、檔案搜尋、FTS5、交易日誌、Markdown memories | MCP、LLM 推理、語言解析 |
+| `odin-core` | host config、路徑規則、檔案搜尋、FTS5、交易日誌、Markdown memories、MXC launch、受限程序執行 | MCP、LLM 推理、語言解析 |
 | `odin-protocol` | subprocess RPC、LSP / UTF-16、DAP；不含外部 MCP 工具代理 | 策略授權、UI、宣稱 IDE 特例全覆蓋 |
-| `odin-engine` | 72 個契約、授權、project gate、工具分派、flow、結果分塊、命令 profile | 網路 listener、平台 OS 沙箱 |
+| `odin-engine` | 工具契約、授權、project gate、工具分派、flow、結果分塊、命令與 inspection profile | 網路 listener、平台隔離實作 |
 | `odin-agent` / binary `odin` | CLI、官方 rmcp MCP server、Axum HTTP、Dashboard | 直接繞過 engine 寫檔 |
 
 核心沒有 Serena 或 Python runtime 相依。Python 只用於交付檢查／測試 fixture；自行選用的 LSP／DAP 後端仍可能有自己的 runtime 要求。
@@ -40,13 +40,13 @@ flowchart TB
   H --> UI[Read-only dashboard]
 ```
 
-沒有 Serena 分支或執行失敗後的上游 fallback。LSP／DAP 是直接後端；它們仍是具備主機程序權限的外部程式，Rust API 的路徑政策不等於作業系統沙箱。
+沒有 Serena 分支或執行失敗後的上游 fallback。LSP／DAP 是直接後端；host 未配置 sandbox 時仍具主機程序權限。配置 native MXC 後，LSP、DAP、固定命令與 inspection 經相同的 fail-closed ProcessContainer launch；Rust API 的路徑政策另行生效。見 [OS 沙箱](OS_SANDBOX.md)。
 
 ## 3. 啟動與生命週期
 
 `Config::load` 讀 host TOML，canonicalize 根目錄、檢查 ID、limits、命令與重疊根目錄；若 config/state 在 workspace 內，自動加入原生路徑保護。`Engine::new` 建立 private state、每個專案的 journal/store 及共用 memory service。CLI 選擇 stdio 或 loopback HTTP；沒有背景 daemon 自動安裝，也不修改使用者的全域 MCP 設定。
 
-LSP、DAP 依需求啟動。每個 `(project_id, language_id)` 使用各自 LSP；每個 project 有自己的 DAP session。關閉時先嘗試標準 shutdown/disconnect，再清理 RPC task 與 process tree。Windows Job Objects／Unix groups 管理生命週期；spawn 後指派的窗口與 OS sandbox 缺口仍存在。
+LSP、DAP 依需求啟動。每個 `(project_id, language_id)` 使用各自 LSP；每個 project 有自己的 DAP session。關閉時先嘗試標準 shutdown/disconnect，再清理 RPC task 與 process tree。Windows Job Objects／Unix groups 管理生命週期；選用 MXC 的 workload 在執行前進入 OS 邊界，policy/scratch guard 保留至 tree close 與 parent reap。未選用 MXC 的程序只有原生命週期控制。
 
 所有可改變專案的請求先進入 `Engine::run`。每次指定 project，沒有全程序可變的 active_project。啟動後不允許 Agent 新增任意 root；更改 host config 需重啟。不同 project 的語意範圍分開；此版未提供使用者身分／多租戶 ACL。
 
@@ -78,7 +78,7 @@ sequenceDiagram
   Engine-->>Agent: bounded JSON or result_id
 ```
 
-符號結構保留 name、kind、階層 name_path、file、range 與 selection_range。定位函式使用 definition / declaration；引用使用 references；實作用 implementation；type hierarchy / code actions 在對端宣告支援時才呼叫。缺少 capability 會回 `CAPABILITY_UNAVAILABLE`。
+符號結構保留 name、kind、階層 name_path、file、range 與 selection_range。定位函式使用 definition / declaration；引用使用 references；實作用 implementation；type hierarchy / code actions 在對端宣告支援時才呼叫。IDE 查詢包含 completion/resolve、hover、signature、workspace symbols、call hierarchy、semantic tokens 與 inlay/resolve。格式化 edit 轉成 expected-hash transaction。缺少 capability 會回 `CAPABILITY_UNAVAILABLE`，回覆附來源 hash/version 與 freshness。見 [IDE](IDE_IMPLEMENTATION.md)。
 
 文件變更以 SHA-256 決定是否同步，version 單調遞增。與 LSP 的位置統一 **UTF-16、0-based**；轉 Rust UTF-8 byte offset 時拒絕切在 surrogate pair 中間，並處理 CRLF。文字行工具則採 1-based inclusive，兩者不混用。
 

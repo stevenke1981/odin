@@ -1,0 +1,35 @@
+# Copy into a trusted host directory outside every registered project.
+# Replace paths and pin with the SHA-256 of your verified native Microsoft MXC
+# executor. This example grants no shell/debug/write/inspection permissions.
+state_dir = 'C:\Odin\state'
+
+[projects.workspace]
+root = 'C:\Work\project'
+allow_write = false
+allow_shell = false
+allow_debug = false
+allow_inspections = false
+
+[projects.workspace.sandbox]
+executor = 'C:\Tools\mxc\wxc-exec.exe'
+executor_sha256 = '0000000000000000000000000000000000000000000000000000000000000000'
+readonly_paths = ['C:\Work\project', 'C:\Tools\rust']
+readwrite_paths = ['C:\Odin\analyzer-cache']
+denied_paths = []
+temp_root = 'C:\Odin\sandbox-scratch'
+allow_ui = false
+
+[[projects.workspace.languages]]
+id = 'rust'
+extensions = ['rs']
+program = 'C:\Tools\rust\bin\rust-analyzer.exe'
+args = []
+
+[projects.workspace.inspections.clippy]
+provider = 'clippy'
+version_args = ['clippy', '--version']
+
+[projects.workspace.inspections.clippy.command]
+program = 'C:\Tools\rust\bin\cargo.exe'
+args = ['clippy', '--locked', '--offline', '--message-format=json', '--target-dir', 'C:\Odin\analyzer-cache']
+timeout_secs = 120

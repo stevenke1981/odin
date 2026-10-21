@@ -4,7 +4,7 @@
 
 ## 可信任的範圍
 
-主機、使用者、MCP client、host config、工具相依及被分析的程式碼庫應受信任。Odin 不是多租戶服務。不同 project 的識別碼是範圍控制，不是不同使用者之間的認證或保密隔離。
+主機、使用者、MCP client、host config 與工具相依屬於信任邊界。未選用 OS 沙箱時，被分析程式碼庫也必須受信任。Odin 不是多租戶服務。不同 project 的識別碼是範圍控制，不是不同使用者之間的認證或保密隔離。
 
 CLI 載入設定時拒絕重疊 root。作為 library 使用 `Engine::new(Config)` 時，呼叫方必須提供已驗證的 trusted Config；不要把未經檢查的 API payload 當作設定傳入。
 
@@ -16,7 +16,7 @@ CLI 載入設定時拒絕重疊 root。作為 library 使用 `Engine::new(Config
 
 ## 不提供的保證
 
-沒有 Linux namespace / seccomp、macOS sandbox profile、Windows AppContainer／restricted-token 隔離。Windows Job Objects 與 Unix process groups 管理生命週期，並清除繼承環境中的非 allowlist 變數；它們不是安全沙箱，spawn→job 指派有窗口。Junction、hardlink、大小寫與真實 NTFS 8.3 有原生回歸；不宣稱全部 reparse／外部 inode 移動競態都已涵蓋。
+沒有 Linux namespace / seccomp 或 macOS sandbox profile。Windows 可明確選用 MXC ProcessContainer：executor SHA-256、當前 probe、無 DACL mutation fallback、network deny、明確 filesystem grants 與每次執行私有 scratch。配置失敗不回退到未隔離執行。Job Objects／Unix process groups 另管生命週期；未選沙箱的路徑仍有 spawn→job 指派窗口。Junction、hardlink、大小寫與真實 NTFS 8.3 有原生回歸；不宣稱全部 reparse／外部 inode 移動競態都已涵蓋。見 [具體沙箱邊界及未驗收資源](OS_SANDBOX.md)。
 
 對不可信任 repository，請在獨立 VM / container / 低權限帳號中執行，僅掛載必要路徑，限制網路與 credentials。設定 deny_globs 不能取代 OS 隔離。
 
@@ -24,7 +24,9 @@ CLI 載入設定時拒絕重疊 root。作為 library 使用 `Engine::new(Config
 
 Serena 橋接已移除，也沒有由工具名稱觸發的上游 fallback。這縮小了一條任意上游工具執行路徑，**不代表 Odin 已被沙箱化**。
 
-LSP／DAP 與允許執行的命令仍是外部程式；它們的內部檔案操作不經 Odin journal。可信任操作者也可能把任意程式填進 host profile，Odin 不對任意子程序提供 OS 權限隔離。不得因移除 Serena 就把外部後端視為安全。
+LSP／DAP 與允許執行的命令仍是外部程式；它們的內部檔案操作不經 Odin journal。配置 MXC 後限制在 host 授權的 OS grants；寫入 source grant 仍可能產生外部副作用。Native inspections 強制要求沙箱與所有配置 project 唯讀，保留外部 cache grants，修正全部轉成原生 Transactions。不得因移除 Serena 就把外部後端視為安全。
+
+`debug_launches.<profile>` 可由 host 固定 launch、attach、restart JSON payload；空 arguments 使用固定值，非空須完全相等。缺少指定 command payload 時拒絕。有意保留舊 host allow_debug 的 privileged 模式時，metadata 明列 unrestricted_host_debug。evaluate 仍可在 debuggee 的權限內執行語言運算；不得把它當任意不可信運算的純資料工具。
 
 ## 網路
 
