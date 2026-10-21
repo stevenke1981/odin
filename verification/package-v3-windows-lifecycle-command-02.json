@@ -1,0 +1,28 @@
+{
+  "scope": "SELECTED_WINDOWS_INSTALLER_CANDIDATE_QA",
+  "command": [
+    "powershell.exe",
+    "-NoLogo",
+    "-NoProfile",
+    "-NonInteractive",
+    "-File",
+    "<PACKAGING_WORKTREE>\\scripts\\verify_installer.ps1",
+    "-Installer",
+    "<WORKSPACE>\\dist\\package-v3-windows-780c6ad-03\\odin-0.2.0-windows-x64-setup.exe",
+    "-Portable",
+    "<WORKSPACE>\\dist\\package-v3-windows-780c6ad-03\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+    "-ExpectedBinarySha256",
+    "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451"
+  ],
+  "exit_code": 0,
+  "status": "PASS",
+  "output": "installer-command-02.txt",
+  "output_sha256": "29b24e1286caba5318796f745dda36290f87419f5a40138c0f6d574dfbaf5a2e",
+  "timestamp_utc": "2026-10-21T03:22:18.587746+00:00",
+  "original_local_sha256": "6dce5651c3cef59bfdbbbcfc9231afacd2b98504f8427bf7b5e0902ac77c7182",
+  "public_copy_processing": "Task paths labeled; logical results unchanged. UTF-8 LF public copy; raw text line trailing whitespace trimmed.",
+  "public_output": {
+    "path": "verification/package-v3-windows-lifecycle-command-02.txt",
+    "sha256": "29b24e1286caba5318796f745dda36290f87419f5a40138c0f6d574dfbaf5a2e"
+  }
+}

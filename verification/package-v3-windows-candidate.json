@@ -1,0 +1,256 @@
+{
+  "task_id": "windows-linux-native-installers",
+  "actor_instance": "packaging_implementation",
+  "scope": "SELECTED_780C6AD_WINDOWS_CANDIDATE_PACKAGING_AND_INSTALLER_QA",
+  "status": "PASS",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+  "build": {
+    "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "external_tool_bridge": false,
+    "model_token_usage": "UNKNOWN",
+    "name": "Odin",
+    "profile": "release",
+    "revision": "780c6adf7de71a6d96d3af12314dcbe9b526ad8b",
+    "schema_version": 1,
+    "standalone": true,
+    "target": "x86_64-pc-windows-msvc",
+    "tracked_source_dirty": false,
+    "version": "0.2.0"
+  },
+  "compiler": {
+    "path": "C:\\Program Files\\Inno Setup 7\\ISCC.exe",
+    "version": "7.1.0",
+    "sha256": "d06ebd38f38e3cee60a3c50cc45bd449d77e0bc6a5cabc607ea9886808e4de1a"
+  },
+  "signed": false,
+  "artifacts": [
+    {
+      "path": "<WORKSPACE>\\dist\\package-v3-windows-780c6ad-03\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+      "sha256": "f05f29a60322220908ffce2b9775f0a6f6619a055c57e374fae2ec29ab833d62"
+    },
+    {
+      "path": "<WORKSPACE>\\dist\\package-v3-windows-780c6ad-03\\odin-0.2.0-windows-x64-setup.exe",
+      "sha256": "822c74947a3001f62293050c42d27db74127c28981cac1d6e4c31c72c870bd20"
+    }
+  ],
+  "runtime_dependencies": {
+    "minimum_os": "Windows 10 x64 or Windows 11 x64 with OS-provided UCRT",
+    "app_local": [
+      {
+        "path": "vcruntime140.dll",
+        "source": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Redist\\MSVC\\14.44.35112\\x64\\Microsoft.VC143.CRT\\vcruntime140.dll",
+        "version": "14.44.35211.0",
+        "sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "authenticode": "Valid",
+        "signer": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "redistribution": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution"
+      }
+    ],
+    "os_provided": [
+      "api-ms-win-core-synch-l1-2-0.dll",
+      "api-ms-win-crt-convert-l1-1-0.dll",
+      "api-ms-win-crt-heap-l1-1-0.dll",
+      "api-ms-win-crt-locale-l1-1-0.dll",
+      "api-ms-win-crt-math-l1-1-0.dll",
+      "api-ms-win-crt-runtime-l1-1-0.dll",
+      "api-ms-win-crt-stdio-l1-1-0.dll",
+      "api-ms-win-crt-string-l1-1-0.dll",
+      "api-ms-win-crt-time-l1-1-0.dll",
+      "api-ms-win-crt-utility-l1-1-0.dll",
+      "bcryptprimitives.dll",
+      "kernel32.dll",
+      "ntdll.dll",
+      "userenv.dll",
+      "ws2_32.dll"
+    ],
+    "global_runtime_installation": false
+  },
+  "installer_checks": [
+    {
+      "name": "portable_safe_member_paths",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_inventory_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_binary_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "installer_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_binary_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_metadata_matches_portable",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_inventory_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_tools_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_tool_contracts",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_runtime_signature:vcruntime140.dll",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_runtime_loaded_app_local",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_safe_default_configuration",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_preserves_user_file",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_inventory_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "uninstaller_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "owned_binary_removed",
+      "status": "PASS"
+    },
+    {
+      "name": "owned_inventory_payload_removed",
+      "status": "PASS"
+    },
+    {
+      "name": "uninstall_preserves_user_file",
+      "status": "PASS"
+    },
+    {
+      "name": "operator_path_unchanged",
+      "status": "PASS"
+    }
+  ],
+  "installer_commands": [
+    {
+      "name": "install",
+      "exit_code": 0,
+      "log": "install.log"
+    },
+    {
+      "name": "reinstall",
+      "exit_code": 0,
+      "log": "reinstall.log"
+    },
+    {
+      "name": "uninstall",
+      "exit_code": 0,
+      "log": "uninstall.log"
+    }
+  ],
+  "inventory_files": 50,
+  "source_failures_preserved": [
+    "PS5 utility function autoload missing before artifact creation.",
+    "PS5 security module autoload failed before archive/installer creation.",
+    "PS5 JSON array wrapping in verification, before executing installer."
+  ],
+  "packaging_source_revision": "8db3048105a8b2f681aebb11cce00f4d47260aed",
+  "verifier_source_sha256": "762a9236a2f8bf883527f50fc8f1d4a28047f125c447ab799832fa4961b40770",
+  "evidence": {
+    "verification/package-v3-windows-build.json": {
+      "sha256": "9a23e311d2f7ecc42df3f34973ce5656003ace3bda54f01dc674aa1a41fb7b21",
+      "original_local_sha256": "3d37cbb4b91e4ae682b84351da1bfe2e7fb13a11227548ea38091734173d63e8"
+    },
+    "verification/package-v3-windows-lifecycle.json": {
+      "sha256": "bbe72dd35832f93108dd95beab8714f735ad103779e9080c01fda922c90f2fb5",
+      "original_local_sha256": "3d82f7ea027296d02d8ec119712ee49cf3f086e9d5128a0000a46a295ca54b2f"
+    },
+    "verification/package-v3-windows-lifecycle-failed-01.json": {
+      "sha256": "1f55fc71a55d50e935f1207873e5982be27cf2aea007ebbf8a5106e986beefec",
+      "original_local_sha256": "93ec79dad8b2548ca67dcb730d88c1c1932cf96b69dc10171f1bce5ba16ce57c"
+    },
+    "verification/package-v3-windows-compile-01.json": {
+      "sha256": "bc00771deb49a9d41181f0b0b06c97e78ee69052e789bef4f25919ae73adea41",
+      "original_local_sha256": "b221c6570b5b5aa039486e4c6bc2c1296fd0e496b3216c7f76f87c0c0c69973c"
+    },
+    "verification/package-v3-windows-compile-01.txt": {
+      "sha256": "4615fb31cc403cd96e106ba66662fe7116fc49a9dc76a29a9a90cb2bd69a6eb0",
+      "original_local_sha256": "e5045a2cf01eb732e8f739421d9482e0683550b99be5dac729f04ce66c13ecd3"
+    },
+    "verification/package-v3-windows-compile-02.json": {
+      "sha256": "187b5d1cc2432fc2216807736d9c307970421937d0285502f31d742f330b2c29",
+      "original_local_sha256": "e24433af70ed199f74d14a90ba816cf8f510105bf4ea68700ed7b171b843c3dc"
+    },
+    "verification/package-v3-windows-compile-02.txt": {
+      "sha256": "42d5cb8266cf0b210e579c9ebee7c90d89de71b31c5505100977dd6f12a6fdcd",
+      "original_local_sha256": "6e27f21dbb4ece4773d2be2cda13c6fe7c7e3166d402a3f9be16e666eded016b"
+    },
+    "verification/package-v3-windows-compile-03.json": {
+      "sha256": "16c18eecef53c27074120c42115dad65cb0e5f0e2f18c60abb8ff7fe61715d38",
+      "original_local_sha256": "a8897427d2202bf591badfd6d337d53278fca351ec9eb42dc6e30c93ba50836f"
+    },
+    "verification/package-v3-windows-compile-03.txt": {
+      "sha256": "f7ff721fcf67204c9c7b39d70637c27e3c82a08a3f2af8af99641d793db05f06",
+      "original_local_sha256": "f7ff721fcf67204c9c7b39d70637c27e3c82a08a3f2af8af99641d793db05f06"
+    },
+    "verification/package-v3-windows-lifecycle-command-01.json": {
+      "sha256": "00f4f5b338bab4371c1794c624007f43b2ae3e5d210d30c6c4c9e46c26cf9483",
+      "original_local_sha256": "b5157fd3beeb3a093f6a32c09c8e0cbebb79390ceefac38e0fd80232716b15ba"
+    },
+    "verification/package-v3-windows-lifecycle-command-01.txt": {
+      "sha256": "bd2f16ca712132465080f2ffe6dc23d6a188322b8fe27ba7a0ab561f5179f993",
+      "original_local_sha256": "094b1c6dd02f09c764eba6f2c3102caba3fbe60533d37695153a19d9fa993d9a"
+    },
+    "verification/package-v3-windows-lifecycle-command-02.json": {
+      "sha256": "602aa856843f883148a718df75e304e01a94d596ec8c1ca7d9b1e2828046e8d3",
+      "original_local_sha256": "6dce5651c3cef59bfdbbbcfc9231afacd2b98504f8427bf7b5e0902ac77c7182"
+    },
+    "verification/package-v3-windows-lifecycle-command-02.txt": {
+      "sha256": "29b24e1286caba5318796f745dda36290f87419f5a40138c0f6d574dfbaf5a2e",
+      "original_local_sha256": "29b24e1286caba5318796f745dda36290f87419f5a40138c0f6d574dfbaf5a2e"
+    },
+    "verification/package-v3-windows-install.txt": {
+      "sha256": "bb08f3be892c8833eca4719c25be394f4feb5c8a7f3ce77bb651bc1294b2bba3",
+      "original_local_sha256": "397f9df335926b48f326814a3b8e6b8d383897151ce2fca7fe169f8d9c815d21"
+    },
+    "verification/package-v3-windows-reinstall.txt": {
+      "sha256": "26d75577b85b1861c1ab3b788a84f8dd51c9af31862d872da15b804129e14bd4",
+      "original_local_sha256": "4ddccb988583b8230ccc27b666c4945739f2dd090c3e214f50cfde5292e0bb0b"
+    },
+    "verification/package-v3-windows-uninstall.txt": {
+      "sha256": "b7100e011f1883466a05221e83baf8bf3d806e46b233816375e6a892d9a5b681",
+      "original_local_sha256": "05546ee050c3bfe0d11d6e3bcb6e94fd7d703762482e083f4cb2a38040945337"
+    }
+  },
+  "limits": [
+    "Candidate packaging PASS is not complete release acceptance.",
+    "Windows native workspace/sandbox/language gates are tracked independently by root.",
+    "Clean Windows machine, interrupted install and cross-version upgrade NOT_RUN.",
+    "Linux candidate work is still in progress; this report makes no Linux claim."
+  ]
+}

@@ -1,0 +1,297 @@
+2026-10-21 11:22:12.718   Log opened. (Time zone: UTC+08:00)
+2026-10-21 11:22:12.718   Setup version: Inno Setup version 7.1.0 (32-bit)
+2026-10-21 11:22:12.718   Original Setup EXE: <WORKSPACE>\dist\package-v3-windows-780c6ad-03\odin-0.2.0-windows-x64-setup.exe
+2026-10-21 11:22:12.718   Setup command line: /SL5="$6E0696,4697925,890880,<WORKSPACE>\dist\package-v3-windows-780c6ad-03\odin-0.2.0-windows-x64-setup.exe" "/VERYSILENT" "/SUPPRESSMSGBOXES" "/NORESTART" "/SP-" "/NOICONS" "/ODIN_QA=1" "/DIR=<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app" "/LOG=<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\install.log"
+2026-10-21 11:22:12.718   Windows version: 10.0.26300
+2026-10-21 11:22:12.718   Windows architecture: x64 (64-bit)
+2026-10-21 11:22:12.718   Machine types supported by system: x86 x64
+2026-10-21 11:22:12.718   User privileges: None
+2026-10-21 11:22:12.721   Administrative install mode: No
+2026-10-21 11:22:12.721   Install mode root key: HKEY_CURRENT_USER
+2026-10-21 11:22:12.721   64-bit install mode: Yes
+2026-10-21 11:22:12.721   RedirectionGuard status for current process: Enabled in enforcing mode
+2026-10-21 11:22:12.722   Created temporary directory: C:\Users\steven\AppData\Local\Temp\is-NKQP0OAX9O.tmp
+2026-10-21 11:22:12.924   Found 2 files to register with RestartManager.
+2026-10-21 11:22:12.924   Calling RestartManager's RmGetList.
+2026-10-21 11:22:12.935   RmGetList finished successfully.
+2026-10-21 11:22:12.935   RestartManager found no applications using one of our files.
+2026-10-21 11:22:12.940   Starting the installation process.
+2026-10-21 11:22:12.942   Creating directory: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app
+2026-10-21 11:22:12.942   Directory for uninstall files: <PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app
+2026-10-21 11:22:12.942   Creating new uninstall log: <PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\unins000.dat
+2026-10-21 11:22:12.958   -- File entry --
+2026-10-21 11:22:12.959   Dest filename: <PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\unins000.exe
+2026-10-21 11:22:12.959   Non-default bitness: 32-bit
+2026-10-21 11:22:12.973   Time stamp of our file: 2026-10-21T03:22:12.525Z
+2026-10-21 11:22:12.973   Installing the file.
+2026-10-21 11:22:12.979   Successfully installed the file.
+2026-10-21 11:22:12.980   -- File entry --
+2026-10-21 11:22:12.980   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\build-metadata.json
+2026-10-21 11:22:12.980   Time stamp of our file: 2026-10-21T03:21:06.000Z
+2026-10-21 11:22:12.980   Installing the file.
+2026-10-21 11:22:12.981   Successfully installed the file.
+2026-10-21 11:22:12.981   -- File entry --
+2026-10-21 11:22:12.981   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\LICENSE
+2026-10-21 11:22:12.981   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:12.981   Installing the file.
+2026-10-21 11:22:12.982   Successfully installed the file.
+2026-10-21 11:22:12.982   -- File entry --
+2026-10-21 11:22:12.982   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\MICROSOFT_RUNTIME_NOTICES.txt
+2026-10-21 11:22:12.982   Time stamp of our file: 2026-10-21T02:59:20.000Z
+2026-10-21 11:22:12.982   Installing the file.
+2026-10-21 11:22:12.983   Successfully installed the file.
+2026-10-21 11:22:12.983   -- File entry --
+2026-10-21 11:22:12.983   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\odin.example.toml
+2026-10-21 11:22:12.983   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:12.983   Installing the file.
+2026-10-21 11:22:12.984   Successfully installed the file.
+2026-10-21 11:22:12.984   -- File entry --
+2026-10-21 11:22:12.984   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\odin.exe
+2026-10-21 11:22:12.984   Time stamp of our file: 2026-10-21T03:15:40.000Z
+2026-10-21 11:22:12.984   Installing the file.
+2026-10-21 11:22:13.242   Successfully installed the file.
+2026-10-21 11:22:13.242   -- File entry --
+2026-10-21 11:22:13.242   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\README.md
+2026-10-21 11:22:13.242   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.242   Installing the file.
+2026-10-21 11:22:13.242   Successfully installed the file.
+2026-10-21 11:22:13.242   -- File entry --
+2026-10-21 11:22:13.243   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\SHA256SUMS.json
+2026-10-21 11:22:13.243   Time stamp of our file: 2026-10-21T03:21:06.000Z
+2026-10-21 11:22:13.243   Installing the file.
+2026-10-21 11:22:13.244   Successfully installed the file.
+2026-10-21 11:22:13.244   -- File entry --
+2026-10-21 11:22:13.244   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\THIRD_PARTY_NOTICES.md
+2026-10-21 11:22:13.244   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.244   Installing the file.
+2026-10-21 11:22:13.245   Successfully installed the file.
+2026-10-21 11:22:13.245   -- File entry --
+2026-10-21 11:22:13.245   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\vcruntime140.dll
+2026-10-21 11:22:13.245   Time stamp of our file: 2026-10-09T00:53:56.000Z
+2026-10-21 11:22:13.245   Installing the file.
+2026-10-21 11:22:13.250   Successfully installed the file.
+2026-10-21 11:22:13.250   -- File entry --
+2026-10-21 11:22:13.250   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\windows-runtime-dependencies.json
+2026-10-21 11:22:13.250   Time stamp of our file: 2026-10-21T03:21:06.000Z
+2026-10-21 11:22:13.250   Installing the file.
+2026-10-21 11:22:13.251   Successfully installed the file.
+2026-10-21 11:22:13.251   -- File entry --
+2026-10-21 11:22:13.251   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\API.md
+2026-10-21 11:22:13.251   Time stamp of our file: 2026-10-21T03:14:20.000Z
+2026-10-21 11:22:13.251   Installing the file.
+2026-10-21 11:22:13.251   Creating directory: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs
+2026-10-21 11:22:13.252   Successfully installed the file.
+2026-10-21 11:22:13.252   -- File entry --
+2026-10-21 11:22:13.252   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\ARCHITECTURE.md
+2026-10-21 11:22:13.252   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.252   Installing the file.
+2026-10-21 11:22:13.253   Successfully installed the file.
+2026-10-21 11:22:13.253   -- File entry --
+2026-10-21 11:22:13.254   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\CORE_IMPLEMENTATION.md
+2026-10-21 11:22:13.254   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.254   Installing the file.
+2026-10-21 11:22:13.254   Successfully installed the file.
+2026-10-21 11:22:13.254   -- File entry --
+2026-10-21 11:22:13.254   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\DEPENDENCIES.md
+2026-10-21 11:22:13.255   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.255   Installing the file.
+2026-10-21 11:22:13.255   Successfully installed the file.
+2026-10-21 11:22:13.255   -- File entry --
+2026-10-21 11:22:13.256   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\dispatch-language-installers-v3.md
+2026-10-21 11:22:13.256   Time stamp of our file: 2026-10-21T03:14:20.000Z
+2026-10-21 11:22:13.256   Installing the file.
+2026-10-21 11:22:13.256   Successfully installed the file.
+2026-10-21 11:22:13.256   -- File entry --
+2026-10-21 11:22:13.257   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\dispatch-plan.md
+2026-10-21 11:22:13.257   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.257   Installing the file.
+2026-10-21 11:22:13.258   Successfully installed the file.
+2026-10-21 11:22:13.258   -- File entry --
+2026-10-21 11:22:13.258   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\dispatch-sandbox-ide.md
+2026-10-21 11:22:13.258   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.258   Installing the file.
+2026-10-21 11:22:13.258   Successfully installed the file.
+2026-10-21 11:22:13.258   -- File entry --
+2026-10-21 11:22:13.259   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\ENGINE_IMPLEMENTATION.md
+2026-10-21 11:22:13.259   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.259   Installing the file.
+2026-10-21 11:22:13.259   Successfully installed the file.
+2026-10-21 11:22:13.260   -- File entry --
+2026-10-21 11:22:13.260   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\FEATURE_SPEC.md
+2026-10-21 11:22:13.260   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.260   Installing the file.
+2026-10-21 11:22:13.261   Successfully installed the file.
+2026-10-21 11:22:13.261   -- File entry --
+2026-10-21 11:22:13.261   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\IDE_IMPLEMENTATION.md
+2026-10-21 11:22:13.261   Time stamp of our file: 2026-10-21T03:14:20.000Z
+2026-10-21 11:22:13.261   Installing the file.
+2026-10-21 11:22:13.262   Successfully installed the file.
+2026-10-21 11:22:13.262   -- File entry --
+2026-10-21 11:22:13.262   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\IMPLEMENTATION_BACKLOG.md
+2026-10-21 11:22:13.263   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.263   Installing the file.
+2026-10-21 11:22:13.263   Successfully installed the file.
+2026-10-21 11:22:13.263   -- File entry --
+2026-10-21 11:22:13.264   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\KNOWN_LIMITATIONS.md
+2026-10-21 11:22:13.264   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.264   Installing the file.
+2026-10-21 11:22:13.264   Successfully installed the file.
+2026-10-21 11:22:13.264   -- File entry --
+2026-10-21 11:22:13.264   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\LANGUAGE_BACKENDS.md
+2026-10-21 11:22:13.264   Time stamp of our file: 2026-10-21T03:14:20.000Z
+2026-10-21 11:22:13.264   Installing the file.
+2026-10-21 11:22:13.266   Successfully installed the file.
+2026-10-21 11:22:13.266   -- File entry --
+2026-10-21 11:22:13.266   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\LANGUAGE_SUPPORT.md
+2026-10-21 11:22:13.267   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.267   Installing the file.
+2026-10-21 11:22:13.267   Successfully installed the file.
+2026-10-21 11:22:13.267   -- File entry --
+2026-10-21 11:22:13.268   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\NATIVE_FORMATTERS.md
+2026-10-21 11:22:13.268   Time stamp of our file: 2026-10-21T03:14:20.000Z
+2026-10-21 11:22:13.268   Installing the file.
+2026-10-21 11:22:13.268   Successfully installed the file.
+2026-10-21 11:22:13.268   -- File entry --
+2026-10-21 11:22:13.269   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\OS_SANDBOX.md
+2026-10-21 11:22:13.269   Time stamp of our file: 2026-10-21T03:14:20.000Z
+2026-10-21 11:22:13.269   Installing the file.
+2026-10-21 11:22:13.270   Successfully installed the file.
+2026-10-21 11:22:13.270   -- File entry --
+2026-10-21 11:22:13.270   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\PACKAGING_WINDOWS_LINUX.md
+2026-10-21 11:22:13.270   Time stamp of our file: 2026-10-21T03:04:48.000Z
+2026-10-21 11:22:13.270   Installing the file.
+2026-10-21 11:22:13.271   Successfully installed the file.
+2026-10-21 11:22:13.271   -- File entry --
+2026-10-21 11:22:13.271   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\PLATFORM_IMPLEMENTATION.md
+2026-10-21 11:22:13.271   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.271   Installing the file.
+2026-10-21 11:22:13.272   Successfully installed the file.
+2026-10-21 11:22:13.272   -- File entry --
+2026-10-21 11:22:13.272   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\PROTOCOL_IDE.md
+2026-10-21 11:22:13.272   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.272   Installing the file.
+2026-10-21 11:22:13.273   Successfully installed the file.
+2026-10-21 11:22:13.273   -- File entry --
+2026-10-21 11:22:13.273   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\PROTOCOL_IMPLEMENTATION.md
+2026-10-21 11:22:13.273   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.273   Installing the file.
+2026-10-21 11:22:13.274   Successfully installed the file.
+2026-10-21 11:22:13.274   -- File entry --
+2026-10-21 11:22:13.274   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\PUBLISH_GITHUB.md
+2026-10-21 11:22:13.274   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.274   Installing the file.
+2026-10-21 11:22:13.274   Successfully installed the file.
+2026-10-21 11:22:13.274   -- File entry --
+2026-10-21 11:22:13.275   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\RELEASE_GATES.md
+2026-10-21 11:22:13.275   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.275   Installing the file.
+2026-10-21 11:22:13.276   Successfully installed the file.
+2026-10-21 11:22:13.276   -- File entry --
+2026-10-21 11:22:13.276   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\ROADMAP.md
+2026-10-21 11:22:13.276   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.276   Installing the file.
+2026-10-21 11:22:13.276   Successfully installed the file.
+2026-10-21 11:22:13.276   -- File entry --
+2026-10-21 11:22:13.277   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\SECURITY.md
+2026-10-21 11:22:13.277   Time stamp of our file: 2026-10-21T03:14:20.000Z
+2026-10-21 11:22:13.277   Installing the file.
+2026-10-21 11:22:13.277   Successfully installed the file.
+2026-10-21 11:22:13.278   -- File entry --
+2026-10-21 11:22:13.278   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\serena-parity.csv
+2026-10-21 11:22:13.278   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.278   Installing the file.
+2026-10-21 11:22:13.278   Successfully installed the file.
+2026-10-21 11:22:13.279   -- File entry --
+2026-10-21 11:22:13.279   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\serena-parity.json
+2026-10-21 11:22:13.279   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.279   Installing the file.
+2026-10-21 11:22:13.280   Successfully installed the file.
+2026-10-21 11:22:13.280   -- File entry --
+2026-10-21 11:22:13.280   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\SERENA_COVERAGE_PLAN.md
+2026-10-21 11:22:13.280   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.280   Installing the file.
+2026-10-21 11:22:13.281   Successfully installed the file.
+2026-10-21 11:22:13.281   -- File entry --
+2026-10-21 11:22:13.281   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\SERENA_PARITY.md
+2026-10-21 11:22:13.281   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.281   Installing the file.
+2026-10-21 11:22:13.282   Successfully installed the file.
+2026-10-21 11:22:13.282   -- File entry --
+2026-10-21 11:22:13.282   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\SOURCES.md
+2026-10-21 11:22:13.282   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.282   Installing the file.
+2026-10-21 11:22:13.283   Successfully installed the file.
+2026-10-21 11:22:13.283   -- File entry --
+2026-10-21 11:22:13.283   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\STANDALONE.md
+2026-10-21 11:22:13.283   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.283   Installing the file.
+2026-10-21 11:22:13.285   Successfully installed the file.
+2026-10-21 11:22:13.285   -- File entry --
+2026-10-21 11:22:13.285   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\THIRD_PARTY_LICENSES.txt
+2026-10-21 11:22:13.285   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.285   Installing the file.
+2026-10-21 11:22:13.304   Successfully installed the file.
+2026-10-21 11:22:13.304   -- File entry --
+2026-10-21 11:22:13.304   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\USAGE.md
+2026-10-21 11:22:13.304   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.304   Installing the file.
+2026-10-21 11:22:13.306   Successfully installed the file.
+2026-10-21 11:22:13.306   -- File entry --
+2026-10-21 11:22:13.306   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\dependency-licenses\index.json
+2026-10-21 11:22:13.306   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.306   Installing the file.
+2026-10-21 11:22:13.306   Creating directory: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\dependency-licenses
+2026-10-21 11:22:13.307   Successfully installed the file.
+2026-10-21 11:22:13.307   -- File entry --
+2026-10-21 11:22:13.307   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\dependency-licenses\valuable-0.1.1-MIT.txt
+2026-10-21 11:22:13.308   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.308   Installing the file.
+2026-10-21 11:22:13.308   Successfully installed the file.
+2026-10-21 11:22:13.308   -- File entry --
+2026-10-21 11:22:13.309   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\dependency-licenses\winapi-0.4.0-MIT.txt
+2026-10-21 11:22:13.309   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.309   Installing the file.
+2026-10-21 11:22:13.309   Successfully installed the file.
+2026-10-21 11:22:13.310   -- File entry --
+2026-10-21 11:22:13.310   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\specs\CORE_PROTOCOL.md
+2026-10-21 11:22:13.310   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.310   Installing the file.
+2026-10-21 11:22:13.310   Creating directory: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\specs
+2026-10-21 11:22:13.311   Successfully installed the file.
+2026-10-21 11:22:13.311   -- File entry --
+2026-10-21 11:22:13.311   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\specs\LANGUAGE_DEBUG_INSPECTIONS.md
+2026-10-21 11:22:13.311   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.311   Installing the file.
+2026-10-21 11:22:13.312   Successfully installed the file.
+2026-10-21 11:22:13.312   -- File entry --
+2026-10-21 11:22:13.312   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\specs\OPERATIONS_RELEASE.md
+2026-10-21 11:22:13.312   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.312   Installing the file.
+2026-10-21 11:22:13.313   Successfully installed the file.
+2026-10-21 11:22:13.313   -- File entry --
+2026-10-21 11:22:13.313   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\docs\specs\REFACTOR_TRANSACTION.md
+2026-10-21 11:22:13.313   Time stamp of our file: 2026-10-21T02:36:10.000Z
+2026-10-21 11:22:13.313   Installing the file.
+2026-10-21 11:22:13.314   Successfully installed the file.
+2026-10-21 11:22:13.314   -- File entry --
+2026-10-21 11:22:13.314   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\schemas\tools.json
+2026-10-21 11:22:13.314   Time stamp of our file: 2026-10-21T03:14:20.000Z
+2026-10-21 11:22:13.314   Installing the file.
+2026-10-21 11:22:13.314   Creating directory: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\schemas
+2026-10-21 11:22:13.316   Successfully installed the file.
+2026-10-21 11:22:13.316   -- File entry --
+2026-10-21 11:22:13.316   Dest filename: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\verification\sbom.cdx.json
+2026-10-21 11:22:13.316   Time stamp of our file: 2026-10-21T02:36:12.000Z
+2026-10-21 11:22:13.316   Installing the file.
+2026-10-21 11:22:13.316   Creating directory: \\?\<PACKAGING_WORKTREE>\dist\installer-qa-0a56171f7e2b46418929db05ff450a62\app\verification
+2026-10-21 11:22:13.318   Successfully installed the file.
+2026-10-21 11:22:13.318   -- Icon entry --
+2026-10-21 11:22:13.318   Dest filename: C:\Users\steven\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Odin\Odin documentation.lnk
+2026-10-21 11:22:13.319   Creating directory: C:\Users\steven\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Odin
+2026-10-21 11:22:13.347   Creating the icon.
+2026-10-21 11:22:13.460   Successfully created the icon.
+2026-10-21 11:22:13.475   Saving uninstall information.
+2026-10-21 11:22:13.478   Installation process succeeded.
+2026-10-21 11:22:13.478   Need to restart Windows? No
+2026-10-21 11:22:13.481   Deinitializing Setup.
+2026-10-21 11:22:13.486   Log closed.

@@ -1,0 +1,134 @@
+{
+  "scope": "ISOLATED_WINDOWS_INSTALL_REINSTALL_UNINSTALL",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "portable_safe_member_paths",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_inventory_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_binary_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "installer_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_binary_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_metadata_matches_portable",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_inventory_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_tools_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_tool_contracts",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_runtime_signature:vcruntime140.dll",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_runtime_loaded_app_local",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_safe_default_configuration",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_preserves_user_file",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_inventory_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "uninstaller_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "owned_binary_removed",
+      "status": "PASS"
+    },
+    {
+      "name": "owned_inventory_payload_removed",
+      "status": "PASS"
+    },
+    {
+      "name": "uninstall_preserves_user_file",
+      "status": "PASS"
+    },
+    {
+      "name": "operator_path_unchanged",
+      "status": "PASS"
+    }
+  ],
+  "commands": [
+    {
+      "name": "install",
+      "exit_code": 0,
+      "log": "install.log"
+    },
+    {
+      "name": "reinstall",
+      "exit_code": 0,
+      "log": "reinstall.log"
+    },
+    {
+      "name": "uninstall",
+      "exit_code": 0,
+      "log": "uninstall.log"
+    }
+  ],
+  "error": null,
+  "installer_sha256": "822c74947a3001f62293050c42d27db74127c28981cac1d6e4c31c72c870bd20",
+  "portable_sha256": "f05f29a60322220908ffce2b9775f0a6f6619a055c57e374fae2ec29ab833d62",
+  "build": {
+    "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "external_tool_bridge": false,
+    "model_token_usage": "UNKNOWN",
+    "name": "Odin",
+    "profile": "release",
+    "revision": "780c6adf7de71a6d96d3af12314dcbe9b526ad8b",
+    "schema_version": 1,
+    "standalone": true,
+    "target": "x86_64-pc-windows-msvc",
+    "tracked_source_dirty": false,
+    "version": "0.2.0"
+  },
+  "inventory_files": 50,
+  "qa_directory": "<PACKAGING_WORKTREE>\\dist\\installer-qa-0a56171f7e2b46418929db05ff450a62",
+  "interruption_rollback": "NOT_RUN",
+  "cross_version_upgrade": "NOT_RUN",
+  "native_binary_expected_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+  "original_local_sha256": "3d82f7ea027296d02d8ec119712ee49cf3f086e9d5128a0000a46a295ca54b2f",
+  "public_copy_processing": "Task paths labeled; logical results unchanged. UTF-8 LF public copy; raw text line trailing whitespace trimmed."
+}

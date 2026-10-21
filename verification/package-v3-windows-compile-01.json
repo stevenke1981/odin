@@ -1,0 +1,33 @@
+{
+  "scope": "SELECTED_WINDOWS_CANDIDATE_PACKAGING",
+  "command": [
+    "powershell.exe",
+    "-NoLogo",
+    "-NoProfile",
+    "-NonInteractive",
+    "-File",
+    "<PACKAGING_WORKTREE>\\scripts\\package.ps1",
+    "-SkipBuild",
+    "-Binary",
+    "<WORKSPACE>\\.odin\\candidates\\v3-780c6ad\\odin.exe",
+    "-ExpectedBinarySha256",
+    "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+    "-Iscc",
+    "C:\\Program Files\\Inno Setup 7\\ISCC.exe",
+    "-OutputDirectory",
+    "<WORKSPACE>\\dist\\package-v3-windows-780c6ad-01"
+  ],
+  "exit_code": 1,
+  "status": "FAIL",
+  "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+  "source_revision": "780c6adf7de71a6d96d3af12314dcbe9b526ad8b",
+  "output": "package-command.txt",
+  "output_sha256": "e5045a2cf01eb732e8f739421d9482e0683550b99be5dac729f04ce66c13ecd3",
+  "timestamp_utc": "2026-10-21T03:18:37.468326+00:00",
+  "original_local_sha256": "b221c6570b5b5aa039486e4c6bc2c1296fd0e496b3216c7f76f87c0c0c69973c",
+  "public_copy_processing": "Task paths labeled; logical results unchanged. UTF-8 LF public copy; raw text line trailing whitespace trimmed.",
+  "public_output": {
+    "path": "verification/package-v3-windows-compile-01.txt",
+    "sha256": "4615fb31cc403cd96e106ba66662fe7116fc49a9dc76a29a9a90cb2bd69a6eb0"
+  }
+}

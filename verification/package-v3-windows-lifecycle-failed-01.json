@@ -1,0 +1,22 @@
+{
+  "scope": "ISOLATED_WINDOWS_INSTALL_REINSTALL_UNINSTALL",
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "portable_safe_member_paths",
+      "status": "PASS"
+    }
+  ],
+  "commands": [],
+  "error": "Cannot convert 'System.Object[]' to the type 'System.String' required by parameter 'ChildPath'. Specified method is not supported.",
+  "installer_sha256": "822c74947a3001f62293050c42d27db74127c28981cac1d6e4c31c72c870bd20",
+  "portable_sha256": "f05f29a60322220908ffce2b9775f0a6f6619a055c57e374fae2ec29ab833d62",
+  "build": null,
+  "inventory_files": 0,
+  "qa_directory": "<PACKAGING_WORKTREE>\\dist\\installer-qa-566a20de231943ad97bab87e1baa1a8d",
+  "interruption_rollback": "NOT_RUN",
+  "cross_version_upgrade": "NOT_RUN",
+  "native_binary_expected_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+  "original_local_sha256": "93ec79dad8b2548ca67dcb730d88c1c1932cf96b69dc10171f1bce5ba16ce57c",
+  "public_copy_processing": "Task paths labeled; logical results unchanged. UTF-8 LF public copy; raw text line trailing whitespace trimmed."
+}

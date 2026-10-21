@@ -1,0 +1,73 @@
+{
+  "scope": "WINDOWS_NATIVE_PACKAGE",
+  "portable": "PASS",
+  "installer_compile": "PASS",
+  "installer_lifecycle": "NOT_RUN",
+  "binary_sha256": "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451",
+  "build": {
+    "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "external_tool_bridge": false,
+    "model_token_usage": "UNKNOWN",
+    "name": "Odin",
+    "profile": "release",
+    "revision": "780c6adf7de71a6d96d3af12314dcbe9b526ad8b",
+    "schema_version": 1,
+    "standalone": true,
+    "target": "x86_64-pc-windows-msvc",
+    "tracked_source_dirty": false,
+    "version": "0.2.0"
+  },
+  "staging": "<WORKSPACE>\\dist\\package-v3-windows-780c6ad-03\\.stage-9351b41f09a6477294b8986c9a92f17a",
+  "artifacts": [
+    {
+      "path": "<WORKSPACE>\\dist\\package-v3-windows-780c6ad-03\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+      "sha256": "f05f29a60322220908ffce2b9775f0a6f6619a055c57e374fae2ec29ab833d62"
+    },
+    {
+      "path": "<WORKSPACE>\\dist\\package-v3-windows-780c6ad-03\\odin-0.2.0-windows-x64-setup.exe",
+      "sha256": "822c74947a3001f62293050c42d27db74127c28981cac1d6e4c31c72c870bd20"
+    }
+  ],
+  "signed": false,
+  "linux_macos_native": "NOT_RUN",
+  "compiler": {
+    "path": "C:\\Program Files\\Inno Setup 7\\ISCC.exe",
+    "version": "7.1.0",
+    "sha256": "d06ebd38f38e3cee60a3c50cc45bd449d77e0bc6a5cabc607ea9886808e4de1a"
+  },
+  "runtime_dependencies": {
+    "minimum_os": "Windows 10 x64 or Windows 11 x64 with OS-provided UCRT",
+    "app_local": [
+      {
+        "path": "vcruntime140.dll",
+        "source": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Redist\\MSVC\\14.44.35112\\x64\\Microsoft.VC143.CRT\\vcruntime140.dll",
+        "version": "14.44.35211.0",
+        "sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "authenticode": "Valid",
+        "signer": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "redistribution": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution"
+      }
+    ],
+    "os_provided": [
+      "api-ms-win-core-synch-l1-2-0.dll",
+      "api-ms-win-crt-convert-l1-1-0.dll",
+      "api-ms-win-crt-heap-l1-1-0.dll",
+      "api-ms-win-crt-locale-l1-1-0.dll",
+      "api-ms-win-crt-math-l1-1-0.dll",
+      "api-ms-win-crt-runtime-l1-1-0.dll",
+      "api-ms-win-crt-stdio-l1-1-0.dll",
+      "api-ms-win-crt-string-l1-1-0.dll",
+      "api-ms-win-crt-time-l1-1-0.dll",
+      "api-ms-win-crt-utility-l1-1-0.dll",
+      "bcryptprimitives.dll",
+      "kernel32.dll",
+      "ntdll.dll",
+      "userenv.dll",
+      "ws2_32.dll"
+    ],
+    "global_runtime_installation": false
+  },
+  "packaging_source_revision": "8db3048105a8b2f681aebb11cce00f4d47260aed",
+  "original_local_sha256": "3d37cbb4b91e4ae682b84351da1bfe2e7fb13a11227548ea38091734173d63e8",
+  "public_copy_processing": "Task paths labeled; logical results unchanged. UTF-8 LF public copy; raw text line trailing whitespace trimmed."
+}

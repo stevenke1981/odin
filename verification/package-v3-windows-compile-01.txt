@@ -1,0 +1,7 @@
+Get-FileHash : The term 'Get-FileHash' is not recognized as the name of a cmdlet, function, script file, or operable pr
+ogram. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At <PACKAGING_WORKTREE>\scripts\package.ps1:17 char:20
++     $BinaryHash = (Get-FileHash -LiteralPath $Binary -Algorithm SHA25 ...
++                    ~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Get-FileHash:String) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : CommandNotFoundException

@@ -1,0 +1,30 @@
+{
+    "scope":  "ISOLATED_WINDOWS_INSTALL_REINSTALL_UNINSTALL",
+    "status":  "FAIL",
+    "checks":  [
+                   {
+                       "name":  "portable_safe_member_paths",
+                       "status":  "PASS"
+                   }
+               ],
+    "commands":  [
+
+                 ],
+    "error":  "Cannot convert \u0027System.Object[]\u0027 to the type \u0027System.String\u0027 required by parameter \u0027ChildPath\u0027. Specified method is not supported.",
+    "installer_sha256":  "822c74947a3001f62293050c42d27db74127c28981cac1d6e4c31c72c870bd20",
+    "portable_sha256":  "f05f29a60322220908ffce2b9775f0a6f6619a055c57e374fae2ec29ab833d62",
+    "build":  null,
+    "inventory_files":  0,
+    "qa_directory":  "C:\\Users\\steven\\.codex\\worktrees\\odin-packaging\\odin\\dist\\installer-qa-566a20de231943ad97bab87e1baa1a8d",
+    "interruption_rollback":  "NOT_RUN",
+    "cross_version_upgrade":  "NOT_RUN",
+    "native_binary_expected_sha256":  "371d4fbd36fffa334b0ef052d4d1157c1c799562a3dd8fd619eebfefe2b12451"
+}
+Cannot convert 'System.Object[]' to the type 'System.String' required by parameter 'ChildPath'. Specified method is not
+ supported.
+At <PACKAGING_WORKTREE>\scripts\verify_installer.ps1:155 char:17
++ if ($Failure) { throw $Failure }
++                 ~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Cannot convert ... not supported.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Cannot convert 'System.Object[]' to the type 'System.String' required by parameter 'Chil
+   dPath'. Specified method is not supported.
