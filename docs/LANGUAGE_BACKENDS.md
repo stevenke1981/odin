@@ -382,6 +382,24 @@ returned exit 1 during shadow-copy-directory cleanup, recorded independently
 from the server's successful response and exit. A product LSP PID correction
 requires a new binary and complete MCP retest.
 
+The explicit `--sandbox-python-private-backend-copy` QA profile addresses the
+observed MXC read-only-directory `chdir` restriction with a fresh, per-project
+private copy of basedpyright 1.40.2 assets. It first checks the pinned installed
+metadata and complete 5,427-file SHA-256 manifest, copies and rehashes every
+asset, and later verifies that those assets stayed unchanged during acceptance.
+Original Node, Python and installed SDK assets remain read-only. Only that
+project's external backend cache and private scratch are writable; all other
+project sources/caches/scratch and host state are denied. Ancestor enumeration
+never includes a writable grant itself.
+
+This is an explicit host QA compatibility profile, without automatic fallback
+or a language-server semantic patch. The backend can modify its own private
+runtime assets: never execute or reuse the copy outside the sandbox, or publish
+it as a trusted SDK. Recreate it from the pinned installation for every run.
+The original read-only-runtime failures remain preserved. Native boundary
+diagnostics establish the path behavior; full LSP semantics still require a new
+Odin/MCP report using this profile.
+
 `verification/language-sandbox-v3-runner.ps1` records the exact driver argv,
 binary/harness/runner hashes, actual exit code, raw stdout and transcript. It
 requires fresh output names, normalizes text to LF before final hash binding,

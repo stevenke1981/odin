@@ -94,6 +94,8 @@ class Fixture:
     environment: dict[str, str] = field(default_factory=dict)
     profile_info: dict = field(default_factory=dict)
     diagnostic_files: list[Path] = field(default_factory=list)
+    private_asset_root: Path | None = None
+    private_asset_hashes: dict[str, str] = field(default_factory=dict)
 
     def hashes(self):
         return {name: digest((self.root / name).read_bytes()) for name in (self.source, self.consumer)}
@@ -204,7 +206,19 @@ def fixture(base, tools, language, tag, csharp_backend="csharp-ls"):
     return item
 
 
-def configure_sandbox_fixture(base, tools, item, environment):
+def asset_hashes(root):
+    files = {}
+    for path in sorted(root.rglob("*")):
+        if path.is_symlink() or getattr(path, "is_junction", lambda: False)():
+            raise ValueError("Private QA runtime assets cannot contain links")
+        if path.is_file():
+            if not path.resolve(strict=True).is_relative_to(root.resolve(strict=True)):
+                raise ValueError("Private QA runtime asset escaped its pinned root")
+            files[path.relative_to(root).as_posix()] = digest(path.read_bytes())
+    return files
+
+
+def configure_sandbox_fixture(base, tools, item, environment, python_private_backend_copy=False):
     """Host-authored fixed profiles; source grants never become writable."""
     readonly = [item.root, item.program.parent]
     writable = []
@@ -245,6 +259,29 @@ def configure_sandbox_fixture(base, tools, item, environment):
         readonly = [item.root, tools / "python", home]
         item.profile_info = {"entry_module": str(entry), "entry_module_sha256": digest(entry.read_bytes()),
                              "installed_launcher_equivalent": "basedpyright.run_node -> nodejs_wheel.executable.node"}
+        if python_private_backend_copy:
+            origin = entry.parent
+            metadata = installed(tools, "python/Lib/site-packages/basedpyright-*.dist-info/METADATA")
+            origin_files = asset_hashes(origin)
+            manifest_sha = digest(json.dumps(origin_files, sort_keys=True, separators=(",", ":")).encode())
+            if (digest(metadata.read_bytes()) != "913fdc12587d87d82fb487ecc3e5a209dabab7be28982168f86d04c8518b7b8c"
+                    or manifest_sha != "fd843dd81461dd6e6af7cfe8f84c110bb766d2dec0b3cdbb1887b3272b51f243"):
+                raise ValueError("Pinned basedpyright 1.40.2 QA assets changed")
+            cache.mkdir(parents=True, exist_ok=True)
+            private = cache / "basedpyright"
+            shutil.copytree(origin, private)
+            copied_files = asset_hashes(private)
+            if copied_files != origin_files:
+                raise ValueError("Fresh private QA backend copy differs from pinned assets")
+            item.private_asset_root, item.private_asset_hashes = private, copied_files
+            entry = private / "langserver.index.js"
+            item.argv = ["--preserve-symlinks", "--preserve-symlinks-main", str(entry), "--stdio"]
+            item.profile_info.update(entry_module=str(entry), entry_module_sha256=digest(entry.read_bytes()),
+                private_backend_copy=True, copy_origin=str(origin), pinned_version="1.40.2",
+                origin_metadata_sha256=digest(metadata.read_bytes()), asset_manifest_sha256=manifest_sha,
+                asset_file_count=len(copied_files), original_assets_readonly=True, fallback=False,
+                risk="Backend may modify its own private QA assets; never execute or reuse this copy outside the sandbox, or publish it as a trusted SDK")
+            writable = [cache]
     elif item.language == "typescript":
         readonly.append(tools / "typescript")
     elif item.language == "go":
@@ -519,6 +556,12 @@ class Run:
                 self.current["stderr"] = self.sanitize(self.peer.errors)
         self.current["backend_logs"] = {str(path.relative_to(self.base)): self.sanitize(path.read_text(encoding="utf-8", errors="replace")[-12000:])
                                         for path in fixture.diagnostic_files if path.is_file()}
+        if fixture.private_asset_root:
+            try:
+                self.record("private_backend_assets_unchanged", "PASS" if asset_hashes(fixture.private_asset_root) == fixture.private_asset_hashes else "FAIL",
+                            {"files": len(fixture.private_asset_hashes), "scope": "Fresh QA assets after sandbox execution; no host execution of copied code"})
+            except Exception as error:
+                self.record("private_backend_assets_unchanged", "FAIL", str(error))
         self.current["status"] = aggregate(self.current["checks"])
 
     def formatter_project(self, fixture, fixtures, config, environment):
@@ -652,6 +695,8 @@ def main():
                         help="Enable the explicit host Ruff stdin formatter profile in addition to the independent LSP route")
     parser.add_argument("--native-formatter-only", action="store_true",
                         help="Test only native Python formatter/MCP/CAS; never initialize or claim LSP support")
+    parser.add_argument("--sandbox-python-private-backend-copy", action="store_true",
+                        help="Explicit QA-only fresh hash-pinned per-project RW basedpyright assets; source/original SDK stay RO, never host-execute the copy")
     parser.add_argument("--timeout", type=float, default=60)
     args = parser.parse_args()
     args.binary, args.output, args.tools_root = args.binary.resolve(), args.output.resolve(), args.tools_root.resolve()
@@ -673,6 +718,9 @@ def main():
         parser.error("The explicit Ruff profile requires Python in sandbox mode")
     if args.native_formatter_only and (not args.python_native_formatter_ruff or args.languages != ["python"]):
         parser.error("Native formatter only requires --languages python --python-native-formatter-ruff")
+    if args.sandbox_python_private_backend_copy and (args.mode != "sandbox" or "python" not in args.languages
+                                                    or not args.sandbox_enumerate_ancestors or args.native_formatter_only):
+        parser.error("Private Python QA assets require Python LSP sandbox mode with explicit ancestor enumeration")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     report = {"scope": "REAL_ODIN_MCP_NATIVE_FORMATTER_ONLY" if args.native_formatter_only else "REAL_ODIN_MCP_SIX_LANGUAGE_IDE", "mode": args.mode, "status": "NOT_RUN", "platform": sys.platform,
               "binary_sha256": digest(args.binary.read_bytes()), "harness_sha256": digest(Path(__file__).read_bytes()),
@@ -706,14 +754,23 @@ def main():
                         item.original = item.original.replace("name: str", "name:str").replace(" -> str:", "->str:")
                         (item.root / item.source).write_text(item.original, encoding="utf-8", newline="\n")
                     if args.mode == "sandbox":
-                        readonly, writable = configure_sandbox_fixture(base, args.tools_root, item, environment)
+                        readonly, writable = configure_sandbox_fixture(base, args.tools_root, item, environment,
+                            python_private_backend_copy=args.sandbox_python_private_backend_copy and language == "python")
                         item.profile_info["readonly_paths"] = [str(path.resolve(strict=True)) for path in readonly]
                         item.profile_info["readwrite_paths"] = [str(path.resolve(strict=True)) for path in writable]
                     fixtures.append(item)
+                    if item.private_asset_root:
+                        report.setdefault("private_python_asset_manifests", []).append({"project": item.project,
+                            "version": "1.40.2", "copy_root": str(item.private_asset_root.relative_to(base)),
+                            "files": item.private_asset_hashes, "manifest_sha256": item.profile_info["asset_manifest_sha256"]})
                 except Exception as error:
                     report["setup_errors"].append({"language": language, "project": f"{language}_{tag}", "status": "FAIL", "error": str(error)})
         lines = [f"state_dir = {toml(str(base / 'state'))}", "[limits]", f"rpc_timeout_secs = {int(args.timeout)}"]
         extensions = {"rust": "rs", "python": "py", "typescript": "ts", "go": "go", "java": "java", "csharp": "cs"}
+        if args.sandbox_python_private_backend_copy:
+            (base / "state").mkdir()
+            for item in fixtures:
+                (base / "scratch" / item.project).mkdir(parents=True)
         for item in fixtures:
             bootstrap = None
             if args.sandbox_typescript_init_temp and item.language == "typescript":
@@ -759,13 +816,21 @@ def main():
                       f"program = {toml(str(item.program))}", f"args = {toml(item.argv)}", f"initialization_options = {toml(item.initialization)}", f"settings = {toml(item.settings)}"]
             if args.mode == "sandbox":
                 scratch = base / "scratch" / item.project
-                scratch.mkdir(parents=True)
+                scratch.mkdir(parents=True, exist_ok=True)
                 grants = [Path(path) for path in item.profile_info["readonly_paths"]]
                 if bootstrap:
                     grants.append(bootstrap)
                 unique_grants = sorted({str(path.resolve()) for path in grants if path.exists()})
-                enumerate_grants = sorted({str(parent) for path in grants for parent in path.resolve(strict=True).parents}) if args.sandbox_enumerate_ancestors else []
                 writable_grants = list(item.profile_info["readwrite_paths"])
+                writable_roots = [Path(path).resolve(strict=True) for path in writable_grants]
+                enumerate_grants = sorted({str(parent) for path in [*grants, *writable_roots]
+                    for parent in path.resolve(strict=True).parents
+                    if not any(parent == writable or writable in parent.parents for writable in writable_roots)}) if args.sandbox_enumerate_ancestors else []
+                denied_grants = []
+                if args.sandbox_python_private_backend_copy:
+                    denied_grants = sorted({str(path.resolve(strict=True)) for other in fixtures if other.project != item.project
+                        for path in [other.root, base / "scratch" / other.project,
+                                     *[Path(grant) for grant in other.profile_info["readwrite_paths"]]]} | {str((base / "state").resolve())})
                 safe_profile = lambda value: json.loads(json.dumps(value).replace(json.dumps(str(base))[1:-1], "<fixture>"))
                 report.setdefault("sandbox_profiles", []).append({
                     "project": item.project, "program": str(item.program),
@@ -774,6 +839,7 @@ def main():
                     "readwrite_paths": [path.replace(str(base), "<fixture>") for path in writable_grants],
                     "enumerate_paths": [path.replace(str(base), "<fixture>") for path in enumerate_grants],
                     "enumerate_paths_do_not_grant_file_contents": True,
+                    "denied_paths": [path.replace(str(base), "<fixture>") for path in denied_grants],
                     "environment_overrides": safe_profile(item.environment), "profile_details": safe_profile(item.profile_info),
                     "initialization_options": safe_profile(item.initialization), "settings": safe_profile(item.settings),
                     "private_scratch": str(scratch.relative_to(base)),
@@ -783,7 +849,7 @@ def main():
                 })
                 lines += [f"[projects.{item.project}.sandbox]", f"executor = {toml(str(args.sandbox_executor.resolve()))}",
                           f"executor_sha256 = {toml(args.sandbox_sha256)}", f"readonly_paths = {toml(unique_grants)}",
-                          f"readwrite_paths = {toml(writable_grants)}", "denied_paths = []", f"temp_root = {toml(str(scratch))}", f"allow_ui = {toml(args.sandbox_allow_ui)}"]
+                          f"readwrite_paths = {toml(writable_grants)}", f"denied_paths = {toml(denied_grants)}", f"temp_root = {toml(str(scratch))}", f"allow_ui = {toml(args.sandbox_allow_ui)}"]
                 if args.sandbox_enumerate_ancestors:
                     lines += [f"enumerate_paths = {toml(enumerate_grants)}"]
         config = base / "host.toml"

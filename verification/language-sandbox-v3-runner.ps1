@@ -11,6 +11,7 @@ param(
     [ValidateSet('csharp-ls','omnisharp')][string]$CsharpBackend = 'csharp-ls',
     [switch]$PythonNativeFormatterRuff,
     [switch]$NativeFormatterOnly,
+    [switch]$PythonPrivateBackendCopy,
     [int]$Timeout = 60
 )
 $ErrorActionPreference = 'Stop'
@@ -33,6 +34,7 @@ if ($EnumerateAncestors) { $driverArgs += '--sandbox-enumerate-ancestors' }
 if ($CsharpBackend -ne 'csharp-ls') { $driverArgs += @('--csharp-backend', $CsharpBackend) }
 if ($PythonNativeFormatterRuff) { $driverArgs += '--python-native-formatter-ruff' }
 if ($NativeFormatterOnly) { $driverArgs += '--native-formatter-only' }
+if ($PythonPrivateBackendCopy) { $driverArgs += '--sandbox-python-private-backend-copy' }
 $started = (Get-Date).ToUniversalTime().ToString('o')
 & $python @driverArgs 2>&1 | Tee-Object -FilePath $logPath
 $driverExit = $LASTEXITCODE
