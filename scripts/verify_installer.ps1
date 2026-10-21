@@ -1,6 +1,8 @@
 # Isolated per-user installer smoke, with app files directed to a new dist/installer-qa-* path.
 param([Parameter(Mandatory)][string]$Installer, [Parameter(Mandatory)][string]$ExpectedBinarySha256, [string]$Portable = '')
 $ErrorActionPreference = 'Stop'
+[Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
+$OutputEncoding = [Console]::OutputEncoding
 $Root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $Installer = (Resolve-Path -LiteralPath $Installer).Path
 if ($ExpectedBinarySha256 -notmatch '^[a-fA-F0-9]{64}$') { throw 'Provide the packaged binary SHA-256.' }

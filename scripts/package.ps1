@@ -1,6 +1,8 @@
 # Produce a portable archive and, if detected or supplied, an Inno Setup installer.
 param([switch]$SkipBuild, [switch]$SkipInstaller, [string]$Binary = '', [string]$ExpectedBinarySha256 = '', [string]$Iscc = '', [string]$RuntimeDirectory = '', [string]$OutputDirectory = '')
 $ErrorActionPreference = 'Stop'
+[Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
+$OutputEncoding = [Console]::OutputEncoding
 $Root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 function Write-Utf8([string]$Path, [string]$Text) { [IO.File]::WriteAllText($Path, $Text, [Text.UTF8Encoding]::new($false)) }
 Push-Location $Root

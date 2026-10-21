@@ -51,11 +51,11 @@
     }
   ],
   "files": {
-    "scripts/package.ps1": "7e26a6e5addf91368ec4b991e1932d38e6392c62b1a0bf88452ca6adb6030b22",
+    "scripts/package.ps1": "fa4ef4178694dac71333385b3ffc2c54d8516aa02b4f169e6342e7cbcf7c01d2",
     "scripts/package.sh": "c9787a8cb48a686aa68e8a50e2280436c31790b7401870e2b3a131835d0f2535",
     "scripts/package_tar.py": "1349d1966085f55b719a5a446e2763ba8e6c19a154f967c77042a6e01f5c2345",
     "scripts/package_linux.py": "cdbed5a33ff790d3ca38cf740131e82a01c2de091bc45817f954de115b6ac3d0",
-    "scripts/verify_installer.ps1": "c45be8e978436d481f8d07361c8194435024b6fba9c21582e3730bef66e0963a",
+    "scripts/verify_installer.ps1": "d0afdf0cf1da9e7d11063cd4dd617a13a6aa2053863464aaf13102faeb2f5672",
     "scripts/verify_linux_installer.py": "bd9708326bcee09807bc99f85f45538780a4b1b67923a96fd6e86b45bbe5770e",
     "packaging/windows-runtime.ps1": "1034cfcf8325b6d828f72272c78e618ad69034230ca4dd5128e7c004a7e937af",
     "packaging/odin.iss": "cb68ecfee7b5bad21a8f39e553a0af82824142431ce1bc6df203093e3a99f29a",
@@ -63,5 +63,5 @@
     "docs/PACKAGING_WINDOWS_LINUX.md": "8e4615093f8a36d4242aa7dd6ee8ba4bd0943b7d1f55b3d49f9f6c9dbd3950a7"
   },
   "installer_runtime": "NOT_RUN_UNTIL_FINAL_CANDIDATE",
-  "timestamp_utc": "2026-10-21T03:04:49.941531+00:00"
+  "timestamp_utc": "2026-10-21T03:05:41.284736+00:00"
 }
