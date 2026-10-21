@@ -712,6 +712,12 @@
       "ignored": 6
     },
     "current_client_restart": "NOT_RUN",
-    "note": "The pre-existing current_extension/evidence/publication entries are retained historical language-installer receipts. This change has its own executed Windows evidence and source hashes; all-language and other platform limitations remain."
+    "note": "The pre-existing current_extension/evidence/publication entries are retained historical language-installer receipts. This change has its own executed Windows evidence and source hashes; all-language and other platform limitations remain.",
+    "publication": {
+      "status": "PASS",
+      "source_commit": "e90395303951fd58f81d096cdaa0d77698cbec10",
+      "report": "verification/current-workspace-publication.json",
+      "report_sha256": "6336f31aa81e17db2689e5c5cd81f6049885478ada19006d39baa089811028e8"
+    }
   }
 }

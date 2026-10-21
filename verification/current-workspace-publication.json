@@ -1,0 +1,19 @@
+{
+  "task_id": "ODIN-AUTO-PROJECT",
+  "status": "PASS",
+  "scope": "PUBLIC_REVIEWED_SOURCE_PUSH_AND_REMOTE_VERIFICATION",
+  "repo": "https://github.com/stevenke1981/odin",
+  "branch": "main",
+  "published_source_commit": "e90395303951fd58f81d096cdaa0d77698cbec10",
+  "verified_commit_url": "https://github.com/stevenke1981/odin/commit/e90395303951fd58f81d096cdaa0d77698cbec10",
+  "local_matches_remote_at_publication": true,
+  "github_connector_commit_metadata_verified": true,
+  "anonymous_http_status": 200,
+  "actions_total_for_published_source_head": 0,
+  "cloud_ci_dispatched": false,
+  "binary_release_created": false,
+  "observed_at_utc": "2026-10-21T18:05:48.032364+00:00",
+  "runtime_source_hashes_verified": 61,
+  "binary_sha256": "f4dda81380390c4cad2ff3b985abd2b845e207f0cef17ce6e72272aea6b30bad",
+  "note": "This immutable receipt records publication of the reviewed feature commit. A subsequent documentation-only commit attaches this receipt and updates MANIFEST/delivery references; final main HEAD is checked separately to avoid a self-referential receipt."
+}
