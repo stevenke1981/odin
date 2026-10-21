@@ -1,6 +1,7 @@
 # Produce a portable archive and, if detected or supplied, an Inno Setup installer.
 param([switch]$SkipBuild, [switch]$SkipInstaller, [string]$Binary = '', [string]$ExpectedBinarySha256 = '', [string]$Iscc = '', [string]$RuntimeDirectory = '', [string]$OutputDirectory = '')
 $ErrorActionPreference = 'Stop'
+Import-Module (Join-Path $PSHOME 'Modules/Microsoft.PowerShell.Utility/Microsoft.PowerShell.Utility.psd1') -ErrorAction Stop
 [Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
 $OutputEncoding = [Console]::OutputEncoding
 $Root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
