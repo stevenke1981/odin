@@ -136,7 +136,7 @@ def fixture(base, tools, language, tag):
         caller = 'import { greet } from "./sample";\nexport const message=greet("Caller");\n'
         broken = '\nexport const odin_broken: number = "wrong";\n'
         program = Path(shutil.which("node") or "C:/Program Files/nodejs/node.exe").resolve()
-        argv = ["--preserve-symlinks-main", str(installed(tools, "typescript/node_modules/typescript-language-server/lib/cli.mjs")), "--stdio"]
+        argv = ["--preserve-symlinks", "--preserve-symlinks-main", str(installed(tools, "typescript/node_modules/typescript-language-server/lib/cli.mjs")), "--stdio"]
         initialization = {"tsserver": {"path": str(installed(tools, "typescript/node_modules/typescript/lib/tsserver.js"))},
                           "preferences": {"includeInlayParameterNameHints": "all", "includeInlayVariableTypeHints": True,
                                           "includeInlayFunctionLikeReturnTypeHints": True}}
@@ -531,7 +531,7 @@ def main():
                 if item.language == "python":
                     command = [str(args.tools_root / "python/Scripts/python.exe"), "-c", "import importlib.metadata;print(importlib.metadata.version('basedpyright'))"]
                 elif item.language == "typescript":
-                    command = [str(item.program), "--preserve-symlinks-main", str(installed(args.tools_root, "typescript/node_modules/typescript-language-server/lib/cli.mjs")), "--version"]
+                    command = [str(item.program), "--preserve-symlinks", "--preserve-symlinks-main", str(installed(args.tools_root, "typescript/node_modules/typescript-language-server/lib/cli.mjs")), "--version"]
                 else:
                     command = [str(item.program), "version" if item.language == "go" else "--version"]
                 try:

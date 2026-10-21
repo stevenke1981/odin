@@ -29,7 +29,7 @@ configuration. Its default tools root is `E:/odin/.odin/validation-tools`,
 overridable with `--tools-root`. Rust and Node are resolved from the selected
 host PATH; all other paths are under that tools root. Runtime program hashes
 and actual version-command outputs are captured in the report.
-The Node profile explicitly uses `--preserve-symlinks-main`, avoiding a main
+The Node profile explicitly uses `--preserve-symlinks` and `--preserve-symlinks-main`, avoiding a main
 entrypoint resolution walk that can require an ungranted drive root. Rust
 sandbox profiles explicitly retain the selected host Rustup/Cargo homes while
 the ordinary HOME directory remains private; the matching toolchain paths are
