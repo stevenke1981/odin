@@ -214,7 +214,8 @@ captured stderr did not directly identify an `EPERM` cause. These are actual
 Odin/MCP/LSP results under the native MXC route. OS denial and child-lifecycle
 tests provide separate boundary evidence; handshake/semantic success and the
 route metadata do not set `os_boundary_verified=true` or prove full UI isolation.
-Actual sandboxed LSP workloads for the other five languages remain `NOT_RUN`.
+At the time of that report, actual sandboxed LSP workloads for the other five
+languages were `NOT_RUN`. The later v3 attempts below preserve their own scope.
 
 The baseline used harness SHA-256
 `d47fa6daa7c96aa8d5bc7b7c2603755b4047c4e3ed0c3d740b358f9e931a6e09`;
@@ -225,6 +226,49 @@ fail-fast handling of permanent backend exits. The completed baseline was not
 reclassified or rerun. All failed attempts remain preserved alongside the
 final reports. Their companion raw stdout, command receipts, transcripts and LF
 normalization receipts bind the actual exit codes and artifact hashes.
+
+## Windows native profiles: v3
+
+The explicit sandbox profiles now select the actual installed toolchain/runtime
+and give each project its own external backend cache. Source directories remain
+read-only. All profiles retain MXC's network denial, no-fallback policy and
+private scratch. `--sandbox-allow-ui` remains an explicit host choice, not a retry
+after an isolation failure or proof of full UI isolation.
+
+| Profile | Read-only runtime grants | Explicit writable cache |
+|---|---|---|
+| Rust | actual selected Rust toolchain, avoiding the Rustup proxy | private Cargo home and analyzer target directory |
+| Python | installed venv, bundled Node and base Python installation | none beyond private scratch |
+| Go | gopls and Go SDK | per-project GOPATH, GOCACHE and GOMODCACHE |
+| Java | JDK and JDT LS installation | fresh Equinox configuration, workspace, home and JVM temporary directory |
+| C# | csharp-ls and .NET SDK | separate CLI home, NuGet cache and MSBuild obj/bin directories |
+
+Rust's host-authored settings request `--locked --offline` for Cargo, disable
+build scripts/proc macros and select the external target directory, using the
+[documented analyzer configuration](https://rust-analyzer.github.io/book/configuration).
+The C# fixture's trusted `Directory.Build.props` sets the
+[MSBuild output and intermediate paths](https://learn.microsoft.com/en-us/visualstudio/msbuild/common-msbuild-project-properties).
+The fixture contains no third-party package sources. Java uses a fresh copy of
+the installed `config.ini`, external `-configuration`/`-data`, headless JVM
+settings and disabled automatic builds. These are host-selected test profiles;
+they are not executable configuration discovered from an untrusted repository.
+
+The [first v3 diagnostic attempt](../verification/language-sandbox-v3-diagnostic-01.json)
+used the previous frozen executable, SHA-256 `f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875`.
+It actually returned exit **1**, **68 PASS / 12 FAIL**. Both Rust projects passed
+all 25 checks each, including live semantic operations, cross-file CAS rename,
+format transactions and versioned diagnostics. Python failed during the
+installed server's `chdir` with `EPERM`. Go initialized but reported `no views`;
+Java failed while initializing `sun.security.jca.Providers`. C# initialized and
+identified the installed SDK, but Roslyn's BuildHost named-pipe connection threw
+`UnauthorizedAccessException`. Those four languages did not pass semantic
+acceptance in this attempt. Later fixes and candidate runs require new reports;
+these failures remain unchanged.
+
+`verification/language-sandbox-v3-runner.ps1` records the exact driver argv,
+binary/harness/runner hashes, actual exit code, raw stdout and transcript. It
+requires fresh output names, normalizes text to LF before final hash binding,
+and verifies that normalization preserves every logical check result.
 
 ## Evidence boundary
 

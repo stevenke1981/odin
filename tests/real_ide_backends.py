@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import hashlib
 import json
 import os
@@ -18,6 +18,7 @@ import sys
 import tempfile
 import time
 import zipfile
+from xml.sax.saxutils import escape as xml_escape
 
 from protocol_harness import Peer
 
@@ -90,6 +91,9 @@ class Fixture:
     argv: list[str]
     initialization: dict
     settings: dict
+    environment: dict[str, str] = field(default_factory=dict)
+    profile_info: dict = field(default_factory=dict)
+    diagnostic_files: list[Path] = field(default_factory=list)
 
     def hashes(self):
         return {name: digest((self.root / name).read_bytes()) for name in (self.source, self.consumer)}
@@ -182,6 +186,101 @@ def fixture(base, tools, language, tag):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content, encoding="utf-8", newline="\n")
     return Fixture(language, project, root, source, consumer, text, caller, broken, program, argv, initialization, settings)
+
+
+def configure_sandbox_fixture(base, tools, item, environment):
+    """Host-authored fixed profiles; source grants never become writable."""
+    readonly = [item.root, item.program.parent]
+    writable = []
+    cache = base / "backend-cache" / item.project
+
+    def directory(name):
+        path = cache / name
+        path.mkdir(parents=True, exist_ok=True)
+        return path
+
+    if item.language == "rust":
+        rustup = shutil.which("rustup")
+        if not rustup:
+            raise FileNotFoundError("Host Rustup selector is unavailable")
+        selection = subprocess.run([rustup, "which", "rust-analyzer"], env=environment,
+                                   capture_output=True, text=True, encoding="utf-8", timeout=20)
+        if selection.returncode:
+            raise RuntimeError(f"Host Rust toolchain selection failed: {selection.stderr}")
+        item.program = Path(selection.stdout.strip()).resolve(strict=True)
+        toolchain = item.program.parent.parent
+        readonly = [item.root, toolchain]
+        item.environment = {"CARGO_HOME": str(directory("cargo-home")),
+                            "PATH": str(toolchain / "bin") + os.pathsep + environment.get("PATH", "")}
+        item.initialization["cargo"].update({"targetDir": str(directory("target")),
+                                             "extraArgs": ["--locked", "--offline"]})
+        item.profile_info = {"selection_argv": [rustup, "which", "rust-analyzer"],
+                             "selection_exit_code": selection.returncode,
+                             "selection_stdout": selection.stdout, "selection_stderr": selection.stderr,
+                             "build_scripts": False, "proc_macros": False, "cargo_locked_offline": True}
+        writable = [cache]
+    elif item.language == "python":
+        # The installed basedpyright console script delegates to this bundled Node.
+        # Select the same installed module directly with explicit path flags.
+        item.program = installed(tools, "python/Lib/site-packages/nodejs_wheel/node.exe")
+        entry = installed(tools, "python/Lib/site-packages/basedpyright/langserver.index.js")
+        item.argv = ["--preserve-symlinks", "--preserve-symlinks-main", str(entry), "--stdio"]
+        home = Path((tools / "python/pyvenv.cfg").read_text(encoding="utf-8").split("home = ", 1)[1].splitlines()[0])
+        readonly = [item.root, tools / "python", home]
+        item.profile_info = {"entry_module": str(entry), "entry_module_sha256": digest(entry.read_bytes()),
+                             "installed_launcher_equivalent": "basedpyright.run_node -> nodejs_wheel.executable.node"}
+    elif item.language == "typescript":
+        readonly.append(tools / "typescript")
+    elif item.language == "go":
+        readonly.append(tools / "go/go")
+        item.environment = {"GOROOT": str(tools / "go/go"), "GOPATH": str(directory("go-path")),
+                            "GOCACHE": str(directory("go-cache")), "GOMODCACHE": str(directory("go-modules")),
+                            "GOTOOLCHAIN": "local", "GOTELEMETRY": "off"}
+        item.initialization["env"] = {**item.environment, "GOPROXY": "off", "GOSUMDB": "off"}
+        item.settings["gopls"]["env"] = dict(item.initialization["env"])
+        writable = [cache]
+    elif item.language == "java":
+        readonly = [item.root, item.program.parent.parent, tools / "jdtls"]
+        configuration = directory("configuration")
+        configuration_seed = tools / "jdtls/config_win/config.ini"
+        shutil.copyfile(configuration_seed, configuration / "config.ini")
+        workspace, temporary, home = directory("workspace"), directory("tmp"), directory("home")
+        item.argv[item.argv.index("-configuration") + 1] = str(configuration)
+        item.argv[item.argv.index("-data") + 1] = str(workspace)
+        item.argv[:0] = [f"-Dosgi.install.area={(tools / 'jdtls').as_uri()}/",
+                         f"-Djava.io.tmpdir={temporary}", f"-Duser.home={home}", "-Djava.awt.headless=true"]
+        item.settings["java"].update({"autobuild": {"enabled": False},
+                                      "configuration": {"updateBuildConfiguration": "disabled"}})
+        item.settings["java"]["import"]["generatesMetadataFilesAtProjectRoot"] = False
+        item.profile_info = {"configuration_seed_sha256": digest(configuration_seed.read_bytes()),
+                             "autobuild": False, "external_configuration_and_workspace": True}
+        item.diagnostic_files = [workspace / ".metadata/.log"]
+        writable = [cache]
+    elif item.language == "csharp":
+        readonly.append(tools / "dotnet")
+        item.environment = {"DOTNET_ROOT": str(tools / "dotnet"),
+                            "DOTNET_CLI_HOME": str(directory("dotnet-home")),
+                            "NUGET_PACKAGES": str(directory("nuget")),
+                            "DOTNET_CLI_TELEMETRY_OPTOUT": "1", "DOTNET_GENERATE_ASPNET_CERTIFICATE": "false"}
+        obj, output = directory("obj"), directory("bin")
+        props = item.root / "Directory.Build.props"
+        props.write_text("<Project><PropertyGroup>"
+                         f"<BaseIntermediateOutputPath>{xml_escape(obj.as_posix())}/</BaseIntermediateOutputPath>"
+                         f"<MSBuildProjectExtensionsPath>{xml_escape(obj.as_posix())}/</MSBuildProjectExtensionsPath>"
+                         f"<BaseOutputPath>{xml_escape(output.as_posix())}/</BaseOutputPath>"
+                         "</PropertyGroup></Project>\n", encoding="utf-8", newline="\n")
+        item.profile_info = {"host_fixture_props_sha256": digest(props.read_bytes()),
+                             "external_msbuild_intermediate_and_output": True, "restore_package_sources": []}
+        writable = [cache]
+    else:
+        raise ValueError("No explicit sandbox profile exists for this language")
+    for path in writable:
+        path.mkdir(parents=True, exist_ok=True)
+        resolved = path.resolve(strict=True)
+        source = item.root.resolve(strict=True)
+        if resolved == source or source in resolved.parents or resolved in source.parents:
+            raise ValueError("Writable backend cache overlaps source")
+    return readonly, writable
 
 
 class Run:
@@ -296,6 +395,7 @@ class Run:
             self.record(name, "FAIL", str(error))
 
     def project(self, fixture, fixtures, config, environment):
+        environment = {**environment, **fixture.environment}
         self.peer = None
         self.current = {"language": fixture.language, "project": fixture.project, "checks": [],
                         "source_sha256": fixture.hashes(), "isolation": self.args.mode}
@@ -390,6 +490,8 @@ class Run:
             self.record("project_execution", "FAIL", str(error))
             if self.peer:
                 self.current["stderr"] = self.sanitize(self.peer.errors)
+        self.current["backend_logs"] = {str(path.relative_to(self.base)): self.sanitize(path.read_text(encoding="utf-8", errors="replace")[-12000:])
+                                        for path in fixture.diagnostic_files if path.is_file()}
         self.current["status"] = aggregate(self.current["checks"])
 
     def rename(self, fixture, fixtures, name_path):
@@ -468,10 +570,8 @@ def main():
         parser.error("Timeout must be between 1 and 300 seconds")
     if args.mode == "sandbox" and (not args.sandbox_executor or not args.sandbox_sha256):
         parser.error("Sandbox mode requires explicit trusted --sandbox-executor and --sandbox-sha256")
-    if args.mode == "sandbox" and set(args.languages) - {"rust", "python", "typescript"}:
-        parser.error("Select an explicitly tested sandbox language with --languages rust/python/typescript")
-    if args.sandbox_typescript_init_temp and (args.mode != "sandbox" or args.languages != ["typescript"]):
-        parser.error("The fixed TypeScript temp bootstrap requires --mode sandbox --languages typescript")
+    if args.sandbox_typescript_init_temp and (args.mode != "sandbox" or "typescript" not in args.languages):
+        parser.error("The fixed TypeScript temp bootstrap requires --mode sandbox with TypeScript selected")
     if args.sandbox_typescript_child_path_flags and not args.sandbox_typescript_init_temp:
         parser.error("Fixed TypeScript child path flags require --sandbox-typescript-init-temp")
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -502,14 +602,19 @@ def main():
         for language in args.languages:
             for tag in ("a", "b"):
                 try:
-                    fixtures.append(fixture(base, args.tools_root, language, tag))
+                    item = fixture(base, args.tools_root, language, tag)
+                    if args.mode == "sandbox":
+                        readonly, writable = configure_sandbox_fixture(base, args.tools_root, item, environment)
+                        item.profile_info["readonly_paths"] = [str(path.resolve(strict=True)) for path in readonly]
+                        item.profile_info["readwrite_paths"] = [str(path.resolve(strict=True)) for path in writable]
+                    fixtures.append(item)
                 except Exception as error:
                     report["setup_errors"].append({"language": language, "project": f"{language}_{tag}", "status": "FAIL", "error": str(error)})
         lines = [f"state_dir = {toml(str(base / 'state'))}", "[limits]", f"rpc_timeout_secs = {int(args.timeout)}"]
         extensions = {"rust": "rs", "python": "py", "typescript": "ts", "go": "go", "java": "java", "csharp": "cs"}
         for item in fixtures:
             bootstrap = None
-            if args.sandbox_typescript_init_temp:
+            if args.sandbox_typescript_init_temp and item.language == "typescript":
                 entry = installed(args.tools_root, "typescript/node_modules/typescript-language-server/lib/cli.mjs")
                 entry_sha256 = digest(entry.read_bytes())
                 bootstrap = base / "host-support" / item.project / "typescript-bootstrap.mjs"
@@ -546,29 +651,27 @@ def main():
             if args.mode == "sandbox":
                 scratch = base / "scratch" / item.project
                 scratch.mkdir(parents=True)
-                grants = [item.root, item.program.parent]
-                if item.language == "typescript":
-                    grants.append(args.tools_root / "typescript")
-                    if bootstrap:
-                        grants.append(bootstrap)
-                elif item.language == "python":
-                    grants.append(args.tools_root / "python")
-                    grants.append(Path((args.tools_root / "python/pyvenv.cfg").read_text(encoding="utf-8").split("home = ", 1)[1].splitlines()[0]))
-                elif item.language == "rust":
-                    grants += [Path(os.environ["RUSTUP_HOME"]) if "RUSTUP_HOME" in os.environ else Path.home() / ".rustup", Path.home() / ".cargo"]
+                grants = [Path(path) for path in item.profile_info["readonly_paths"]]
+                if bootstrap:
+                    grants.append(bootstrap)
                 unique_grants = sorted({str(path.resolve()) for path in grants if path.exists()})
+                writable_grants = list(item.profile_info["readwrite_paths"])
+                safe_profile = lambda value: json.loads(json.dumps(value).replace(json.dumps(str(base))[1:-1], "<fixture>"))
                 report.setdefault("sandbox_profiles", []).append({
                     "project": item.project, "program": str(item.program),
                     "argv": [arg.replace(str(base), "<fixture>") for arg in item.argv],
                     "readonly_paths": [path.replace(str(base), "<fixture>") for path in unique_grants],
-                    "readwrite_paths": [], "private_scratch": str(scratch.relative_to(base)),
+                    "readwrite_paths": [path.replace(str(base), "<fixture>") for path in writable_grants],
+                    "environment_overrides": safe_profile(item.environment), "profile_details": safe_profile(item.profile_info),
+                    "initialization_options": safe_profile(item.initialization), "settings": safe_profile(item.settings),
+                    "private_scratch": str(scratch.relative_to(base)),
                     "allow_ui": args.sandbox_allow_ui, "clipboard": "none", "injection": False,
                     "requested_network_policy": "deny_all", "bootstrap_is_readonly_file": bootstrap is not None,
                     "fixed_descendant_node_options": fixed_node_options if bootstrap else None,
                 })
                 lines += [f"[projects.{item.project}.sandbox]", f"executor = {toml(str(args.sandbox_executor.resolve()))}",
                           f"executor_sha256 = {toml(args.sandbox_sha256)}", f"readonly_paths = {toml(unique_grants)}",
-                          "readwrite_paths = []", "denied_paths = []", f"temp_root = {toml(str(scratch))}", f"allow_ui = {toml(args.sandbox_allow_ui)}"]
+                          f"readwrite_paths = {toml(writable_grants)}", "denied_paths = []", f"temp_root = {toml(str(scratch))}", f"allow_ui = {toml(args.sandbox_allow_ui)}"]
         config = base / "host.toml"
         config.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
         report["host_config_sha256"] = digest(config.read_bytes())
@@ -594,7 +697,7 @@ def main():
                 else:
                     command = [str(item.program), "version" if item.language == "go" else "--version"]
                 try:
-                    version = subprocess.run(command, env=environment, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=20)
+                    version = subprocess.run(command, env={**environment, **item.environment}, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=20)
                     report["backends"][item.language] = {"program_sha256": digest(item.program.read_bytes()),
                         "version_argv": run.sanitize(command), "version_exit_code": version.returncode,
                         "version_stdout": run.sanitize(version.stdout), "version_stderr": run.sanitize(version.stderr)}
