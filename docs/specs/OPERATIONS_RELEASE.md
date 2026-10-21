@@ -30,12 +30,12 @@ Linux/macOS sandbox、BFS/AppContainer fallback、VM backend、完整UI/registry
 |---|---|---|
 | 歷史72工具snapshot | 16 gates、144 Rust tests/1 ignored、三語29 checks；保留原revision/digest | 本輪85工具或新依賴已通過 |
 | Sandbox author module | 真native Windows MXC兩測試、具名denyfs/network/descendant/timeout/scratch案例 | 所有Odin dispatch或所有OS資源已隔離 |
-| Protocol/engine slices | 29+22 protocol fixtures、先前74 engine tests、最新62執行+12 AppControl未執行、symbol targeted1 | 真六語/完整新binary驗收 |
-| Native inspections revision30a957a | 真MCP/MXC/Clippy/Ruff/ESLint 30 checks PASS；readonly、safeCAS、cleanup | hierarchy修復後final binary、全部規則/IDE等價 |
+| 歷史Protocol/engine slices | 29+22 fixtures、author74/62+12blocked與symbol targeted1保留原source | 不等於最新c5084f4全套或六語逐功能驗收 |
+| Native inspections currentc5084f4 | 與17gates相同binary的真MCP/MXC三provider30checks，完整command exit0/log/hash；readonly/safeCAS/cleanup | 不證明全部規則、所有OS或JetBrains-private等價 |
 | 六語兩專案首輪 | 4551阻擋於Odin啟動；0 MCP/LSP checks | 版本存在、harness生成即是六語支援 |
-| 當輪final candidate | `sandbox-ide-local-validation.json`的17gates、191tests/4ignored與native3已實跑PASS | 不可用舊local-validation覆寫新狀態 |
+| 當輪release candidate | `sandbox-ide-release-validation.json`的17gates、200tests/6ignored與另native3已PASS；標準三LS/debugpy29PASS | 六語/TSsandbox另待正式矩陣，不可覆寫舊baseline |
 
-Root的guard-until-reap已包含在當輪native三測試實跑，command/exit0及log/hash記在sandbox-ide-local-validation.json的/commands/4。Analyzer attempt1、attempt2與AppControl拒絕應保留；第三次成功是修正實質harness/runtime flags，不是降低grants或重試相同假設洗綠。
+Root的guard-until-reap已包含在c5084f4當輪native三測試實跑，command/exit0及log/hash記在sandbox-ide-release-validation.json的/commands/4。Analyzer attempt1、attempt2與AppControl拒絕應保留；第三次成功是修正實質harness/runtime flags，不是降低grants或重試相同假設洗綠。
 
 每個PASS要有command、exit code、OS/toolchain、source SHA/hash、backend/version、binary digest與原始log。報告source binding不同就分開記；後續文件commit不必等於binary revision，但受測source hashes必須吻合。Public日誌可遮蔽本機路徑並記processing方式，不能改結果或重寫歷史digest。詳見 [feature-evidence.json](../../verification/feature-evidence.json)。
 
@@ -55,3 +55,5 @@ Root的guard-until-reap已包含在當輪native三測試實跑，command/exit0�
 Client setup/hook先dry-run、diff與備份，既有host檔案需expected hash；只動授權entry，不讀repository設定當執行權限。Generated MCP argv handshake與真Codex/Claude/OpenCode app整合分開；uninstall只回復自有設定。
 
 對外發布前完成同候選review、gates與artifact manifest。已有公開舊source repo不代表本輪已push或binary release；只有實際操作後的public visibility、remote HEAD、URL及artifact digest才可宣稱相應完成。
+
+目前產品revision為`c5084f4947fc4a07c9ab381fa9998ba1a1e2246d`，binary SHA-256為`f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875`；metadata為clean。6個workspace ignored中有3個native已另行opt-in跑過，其餘3個真LS probes仍ignored。六語/TSsandbox、打包與發布不由這份17gate報告推定完成。

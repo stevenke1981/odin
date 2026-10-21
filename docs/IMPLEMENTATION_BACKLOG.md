@@ -1,8 +1,10 @@
 # Odin 實作與驗收看板
 
-**現行85契約；38 PARTIAL、2 NOT_RUN。** 本輪原生 OS sandbox/language/IDE 來源已整合，但完整40需求未完成。原58工具保留，前版72再新增13。需求及原DoD見 [FEATURE_SPEC.md](FEATURE_SPEC.md)，實際範圍見 [feature-evidence.json](../verification/feature-evidence.json)。
+**現行85契約；38 PARTIAL、2 NOT_RUN。** 原58保留、前版72再新增13。完整原DoD與相依見 [FEATURE_SPEC.md](FEATURE_SPEC.md)，source-bound結果見 [feature-evidence.json](../verification/feature-evidence.json)。
 
-前版72工具的144 tests/1 ignored只屬其 source-bound baseline。本輪 native MXC author2測試PASS、protocol29+22、engine prior74／latest62+12 blocked、symbol targeted1；實際三 analyzer 的30 checks PASS綁revision30a957a，早於hierarchy修復。六語首輪0 MCP/LSP checks，不能稱六語或28語言已驗收。當輪fe5996d已完成17gates、191tests/4ignored，另native3實跑；六語矩陣及final analyzer replay仍pending，不用舊成功覆蓋。
+最新c5084f4 clean候選：17/17命令exit0、200workspace tests PASS/6 ignored，另native3 opt-in PASS；同binary標準三LS/debugpy29與真MXC/analyzer30 checks PASS。Extended六語兩專案及TS sandbox仍pending；不能把28 registry entries或通用gate當完整語言/IDE等價。
+
+歷史72工具144-test、fe5996d191-test、author74/62+12blocked與首輪0checks保留原scope；本輪新結果不改寫它們。SIR-001 hierarchy及SIR-003 summary已修復/有獨立review；URI/JDTLS修復的最新combined review binding由root/reviewer管理。
 
 ## M0 · 12 個需求
 
@@ -64,14 +66,13 @@
 | [ODIN-036](FEATURE_SPEC.md#odin-036) | P2 | 持久式除錯命令會話（非 Python REPL） | `PARTIAL` | ODIN-013 |
 | [ODIN-037](FEATURE_SPEC.md#odin-037) | P2 | 記憶 schema 升級與 import/export | `PARTIAL` | ODIN-020 |
 
-## 當輪後續切片與唯一 owner
+## 剩餘切片與唯一owner
 
 | Owner | Write scope | 驗收與停止條件 |
 |---|---|---|
-| protocol author | protocol hierarchy 累計預算與對應測試 | 修復 SIR-001 的累計bytes/requests/deadline；以新 immutable head 獨立 review |
-| root integration | shared core/engine 整合、專屬當輪 report/logs | 17gates、191tests/4ignored、native3及standard binary smoke已完成；補六語/final analyzer replay、review與package，記新SHA/digest，不覆蓋baseline |
-| platform author | 六語各兩專案 harness／證據 | 原4551嘗試保留FAIL/0checks；有實際握手與功能結果才升相應能力；不改host安全政策取得綠燈 |
-| independent reviewer | immutable diff與唯讀檢查 | 作者不自我核准；未解阻擋發現不發布；fixture不當真語言證據 |
-| root release | 候選docs/artifact manifest與已授權發布 | 完成新候選所有適用gate再打包、核對remote/public；本輪未執行的發布及cloudCI不預填成功 |
+| root integration | 專屬當輪runtime report/logs與shared整合 | c5084f4的17gates和same-binary analyzer已完成；補六語/TSsandbox矩陣及最終report/log digests，不覆蓋baseline |
+| platform author | 六語各兩專案/TSsandbox harness及證據 | 保存AppControl與中間失敗；逐功能分PASS/UNAVAILABLE/FAIL，版本或harness存在不等於成功 |
+| independent reviewer | immutable source/diff與review證據 | 保留已解finding的歷史；URI/JDTLS及最終combined source須正確綁定，作者不自我核准 |
+| root release | 封裝、artifact manifest、公開revision | 完成新候選適用review/runtime才打包/發布；舊公開repo與舊installer不代表此binary已發布 |
 
-只有實際對應全部原acceptance才可把需求升PASS；來源已實作、profile registry、後端版本存在、準備好harness都不等於驗收。共有檔案序列整合，一位作者一個worktree，不覆寫衝突取得綠燈。Linux/macOS、全語言／IDE等價、完整安裝升級／故障矩陣、benchmark仍未完成。
+每切片唯一owner、明確write scope；共有檔案序列整合，不覆寫衝突取得綠燈。Linux/macOS、全語言/IDE私有等價、完整installer升級/故障矩陣、benchmark仍未完成。只有全部原acceptance具適用實證才升整項PASS。

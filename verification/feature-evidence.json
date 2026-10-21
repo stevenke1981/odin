@@ -4,7 +4,7 @@
   "version": "0.2.0",
   "release_class": "WINDOWS_NATIVE_PREVIEW",
   "observed_date": "2026-10-21",
-  "source_head_sha_at_documentation_review": "6fc1bd54c84f074f5e324b8670522d1d74471b73",
+  "source_head_sha_at_documentation_review": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
   "scope": "Current 85-tool OS sandbox/language/IDE assessment with preserved historical 72-tool Windows proof. Documentation does not execute product tests.",
   "tool_contracts": 85,
   "requirements_total": 40,
@@ -371,7 +371,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "本輪fe5996d候選17/17 gates exit0，workspace191 passed/4 ignored；另opt-in native MXC3 passed。release binary為c4f55861…、dirty=false，跨平台/全新checkout仍未完整驗收。",
+      "summary": "當輪c5084f4 clean release候選17/17 gates exit0、workspace200 passed/6 ignored，另native opt-in3 PASS；其餘3真LS probe仍ignored，跨平台與完整40需求未驗收。",
       "checks": [
         {
           "command": [
@@ -529,7 +529,7 @@
           "id": "ODIN-001-A1",
           "criterion": "在全新工作樹執行 cargo generate-lockfile、cargo build --workspace --locked 成功且 Cargo.lock 納入 Git。",
           "status": "PARTIAL",
-          "remaining": "當輪clean revision已locked build及metadata驗收；全新checkout重建、Linux/macOS native matrix仍未完成。"
+          "remaining": "c5084f4 locked build/clean metadata已驗；全新checkout重建與Linux/macOS native matrix未完成。"
         },
         {
           "id": "ODIN-001-A2",
@@ -550,7 +550,7 @@
         {
           "id": "ODIN-001-A1",
           "criterion": "在全新工作樹執行 cargo generate-lockfile、cargo build --workspace --locked 成功且 Cargo.lock 納入 Git。",
-          "remaining": "當輪clean revision已locked build及metadata驗收；全新checkout重建、Linux/macOS native matrix仍未完成。"
+          "remaining": "c5084f4 locked build/clean metadata已驗；全新checkout重建與Linux/macOS native matrix未完成。"
         }
       ],
       "supporting_reports": [
@@ -597,7 +597,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "本輪真release binary CLI/stdio/HTTP/cancellation gates皆exit0；六語IDE與final analyzer replay仍是另項，不沿用前版144測試。",
+      "summary": "c5084f4真release binary CLI/stdio/HTTP/cancellation gates均exit0；同binary原三LS/debugpy29 checks及native analyzer30 checks PASS，六語IDE矩陣另待結果。",
       "checks": [
         {
           "command": [
@@ -1223,7 +1223,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "新增 completion/resolve、hover/signature、workspace/call hierarchy、inlay/resolve、semantic tokens；protocol 29 unit+22 fixtures 已測，真六語當輪因 AppControl 未啟動。",
+      "summary": "新增completion/resolve、hover/signature、workspace/call hierarchy、inlay/resolve、semantic tokens及URI/JDTLS安全修復；c5084f4標準三LS已實跑，extended六語/TSsandbox矩陣pending，首輪0checks僅歷史。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked",
@@ -1349,7 +1349,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "workspace symbols/call hierarchy 與 source/version/freshness 已有 fixtures；舊三語結果不當成本輪完整 IDE 驗收。",
+      "summary": "symbol filters/workspace/call hierarchy、UTF-16與freshness已實作；c5084f4基本三語29checks和workspace200PASS不等於所有新增IDE能力已逐語言驗收。",
       "checks": [
         {
           "command": [
@@ -1580,7 +1580,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "歷史三語跨檔結果保留舊 binary 範圍；本輪六語各兩專案首輪 WinError4551，實際 MCP/LSP checks=0。",
+      "summary": "同c5084f4 binary三語跨檔/rename/rollback與debugpy29 checks PASS；六語首輪0屬歷史，後續已有部分真執行，最終六語IDE/TS沙箱仍pending。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked real_rust_analyzer_smoke -- --ignored --nocapture",
@@ -1626,13 +1626,13 @@
           "id": "ODIN-010-A1",
           "criterion": "每語言至少完成符號、跨檔 references、rename、diagnostics 的成功與失敗案例。",
           "status": "PARTIAL",
-          "remaining": "當輪六語 0 MCP/LSP checks；diagnostics 正反例與全 refactor 仍未完成。"
+          "remaining": "當輪原三語基本功能29checks已測；最終六語IDE/TS sandbox、diagnostics正反例及完整refactor未驗收。"
         },
         {
           "id": "ODIN-010-A2",
           "criterion": "每個語言都記錄版本、OS、commit、命令行與 stdout/stderr 原始 log。",
           "status": "PARTIAL",
-          "remaining": "新增 harness 記錄 version/config/source/transcript hash；首輪空 transcript 不能當成功語言執行 log。"
+          "remaining": "當輪17gates/標準三語29checks有command/exit/source/binary/log；extended六語與TS sandbox的逐語言原始transcript及完整矩陣仍待root綁定。"
         },
         {
           "id": "ODIN-010-A3",
@@ -1645,12 +1645,12 @@
         {
           "id": "ODIN-010-A1",
           "criterion": "每語言至少完成符號、跨檔 references、rename、diagnostics 的成功與失敗案例。",
-          "remaining": "當輪六語 0 MCP/LSP checks；diagnostics 正反例與全 refactor 仍未完成。"
+          "remaining": "當輪原三語基本功能29checks已測；最終六語IDE/TS sandbox、diagnostics正反例及完整refactor未驗收。"
         },
         {
           "id": "ODIN-010-A2",
           "criterion": "每個語言都記錄版本、OS、commit、命令行與 stdout/stderr 原始 log。",
-          "remaining": "新增 harness 記錄 version/config/source/transcript hash；首輪空 transcript 不能當成功語言執行 log。"
+          "remaining": "當輪17gates/標準三語29checks有command/exit/source/binary/log；extended六語與TS sandbox的逐語言原始transcript及完整矩陣仍待root綁定。"
         },
         {
           "id": "ODIN-010-A3",
@@ -1813,7 +1813,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "可選Windows native MXC已實作且當輪native3測試PASS（含guard-until-reap）；revision30a957a另有MCP/MXC/analyzer30 checks PASS，final六語/跨平台仍未完成。",
+      "summary": "可選Windows native MXC已實作，c5084f4 native3測試及同binary三analyzer30 checks皆PASS；六語LSP/MXC、全DAP paths與Linux/macOS未全驗收。",
       "checks": [
         {
           "command": [
@@ -1865,7 +1865,7 @@
           "id": "ODIN-012-A1",
           "criterion": "受測敵意 command/process 不能更改 workspace 外檔案；子孫程序可被完整終止。",
           "status": "PARTIAL",
-          "remaining": "當輪Windows native MXC三測試與scoped analyzer整合已有PASS；六語final LSP/MXC、Linux/macOS和完整OS資源矩陣未驗收。"
+          "remaining": "c5084f4 native3與三analyzer30 checks已有scoped PASS；六語LSP/MXC、全部DAP/OS資源與Linux/macOS矩陣未完成。"
         },
         {
           "id": "ODIN-012-A2",
@@ -1877,14 +1877,14 @@
           "id": "ODIN-012-A3",
           "criterion": "Shell、DAP launch、LSP executable 的信任邊界文件及 deny/allow tests 齊備。",
           "status": "PARTIAL",
-          "remaining": "正式native3測試log已提供；final六語/所有DAP/inspection paths與新head獨立review仍待完成。"
+          "remaining": "native3與實際analyzer命令/log已綁定；其餘LSP/DAP完整矩陣及最新combined review由root再核對。"
         }
       ],
       "unverified_acceptance": [
         {
           "id": "ODIN-012-A1",
           "criterion": "受測敵意 command/process 不能更改 workspace 外檔案；子孫程序可被完整終止。",
-          "remaining": "當輪Windows native MXC三測試與scoped analyzer整合已有PASS；六語final LSP/MXC、Linux/macOS和完整OS資源矩陣未驗收。"
+          "remaining": "c5084f4 native3與三analyzer30 checks已有scoped PASS；六語LSP/MXC、全部DAP/OS資源與Linux/macOS矩陣未完成。"
         },
         {
           "id": "ODIN-012-A2",
@@ -1894,7 +1894,7 @@
         {
           "id": "ODIN-012-A3",
           "criterion": "Shell、DAP launch、LSP executable 的信任邊界文件及 deny/allow tests 齊備。",
-          "remaining": "正式native3測試log已提供；final六語/所有DAP/inspection paths與新head獨立review仍待完成。"
+          "remaining": "native3與實際analyzer命令/log已綁定；其餘LSP/DAP完整矩陣及最新combined review由root再核對。"
         }
       ],
       "supporting_reports": [
@@ -2309,7 +2309,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "Clippy/Ruff/ESLint providers 與 safe-fix preview 已實作；revision30a957a 真 Odin MCP→native MXC 有 30 PASS checks，symbol severity 修正另有1個targeted PASS；不等於 final 全矩陣。",
+      "summary": "Clippy/Ruff/ESLint provider與safe CAS已實作；c5084f4同binary30 checks/實際harness exit0，normalized rule/range/hash/version、readonly、preview/apply/rollback與scratch清理通過，完整去重/規則矩陣未完成。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked",
@@ -2361,7 +2361,7 @@
           "id": "ODIN-017-A1",
           "criterion": "同一缺陷從 LSP 與 clippy 匯入可去重但保留來源。",
           "status": "PARTIAL",
-          "remaining": "真三 analyzer/MXC 已有30 checks PASS；LSP+native 同缺陷去重與最終新head矩陣未驗收。"
+          "remaining": "當輪三provider真分析/修復已PASS；LSP+native同缺陷去重與所有規則覆蓋未驗收。"
         },
         {
           "id": "ODIN-017-A2",
@@ -2380,7 +2380,7 @@
         {
           "id": "ODIN-017-A1",
           "criterion": "同一缺陷從 LSP 與 clippy 匯入可去重但保留來源。",
-          "remaining": "真三 analyzer/MXC 已有30 checks PASS；LSP+native 同缺陷去重與最終新head矩陣未驗收。"
+          "remaining": "當輪三provider真分析/修復已PASS；LSP+native同缺陷去重與所有規則覆蓋未驗收。"
         },
         {
           "id": "ODIN-017-A2",
@@ -2409,7 +2409,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "TypeHierarchy 之外增加 CallHierarchy/workspace symbols 與 freshness；hierarchy 累計資源預算 review 缺口仍待修復與新 head 驗收。",
+      "summary": "Type/CallHierarchy與workspace symbols/freshness已實作；SIR-001累計預算及SIR-003摘要已修復並具獨立review，最終真六語/跨專案完整矩陣仍待驗收。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked",
@@ -2461,7 +2461,7 @@
           "id": "ODIN-018-A1",
           "criterion": "Type Hierarchy 能列出 fixture 的父類、子類，並正確含跨檔。",
           "status": "PARTIAL",
-          "remaining": "真 Type/CallHierarchy 跨檔矩陣未驗收；累計 query budget review 缺口仍待修復確認。"
+          "remaining": "Hierarchy累計預算已修復且review PASS；真後端全部Type/CallHierarchy跨檔/依賴矩陣未完成。"
         },
         {
           "id": "ODIN-018-A2",
@@ -2480,7 +2480,7 @@
         {
           "id": "ODIN-018-A1",
           "criterion": "Type Hierarchy 能列出 fixture 的父類、子類，並正確含跨檔。",
-          "remaining": "真 Type/CallHierarchy 跨檔矩陣未驗收；累計 query budget review 缺口仍待修復確認。"
+          "remaining": "Hierarchy累計預算已修復且review PASS；真後端全部Type/CallHierarchy跨檔/依賴矩陣未完成。"
         },
         {
           "id": "ODIN-018-A2",
@@ -2508,7 +2508,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "28 語言 profile registry 是安裝/設定指引；六語兩專案 harness 首輪 0 MCP/LSP checks，不能稱 28 或 40+ 已支援。",
+      "summary": "28 registry entries仍是設定指引；保留首輪4551/0checks與後續部分真結果，c5084f4六語各兩專案及TS沙箱正式矩陣待root綁定。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked real_rust_analyzer_smoke -- --ignored --nocapture",
@@ -2554,13 +2554,13 @@
           "id": "ODIN-019-A1",
           "criterion": "首批 6 語言可在本機安裝直接後端並通過核心查詢。",
           "status": "PARTIAL",
-          "remaining": "28 registry entries 只是設定指引；Rust/Python/TypeScript/Go/Java/C# 兩專案首輪是 0 MCP/LSP checks。"
+          "remaining": "28是registry非支援數；最終六語兩專案與TS sandbox仍待正式report，不以部分真結果稱六語全部完成。"
         },
         {
           "id": "ODIN-019-A2",
           "criterion": "每種新增語言均有 2 個以上實際專案 fixture 與反例；未驗證不得宣稱支援。",
           "status": "PARTIAL",
-          "remaining": "harness 建立專案不等於驗收；本輪受 AppControl 阻擋，40+ 語言無完整證據。"
+          "remaining": "保留首輪0check與後續部分結果；每語兩個真fixture的完整功能/反例尚需最終矩陣確認。"
         },
         {
           "id": "ODIN-019-A3",
@@ -2573,12 +2573,12 @@
         {
           "id": "ODIN-019-A1",
           "criterion": "首批 6 語言可在本機安裝直接後端並通過核心查詢。",
-          "remaining": "28 registry entries 只是設定指引；Rust/Python/TypeScript/Go/Java/C# 兩專案首輪是 0 MCP/LSP checks。"
+          "remaining": "28是registry非支援數；最終六語兩專案與TS sandbox仍待正式report，不以部分真結果稱六語全部完成。"
         },
         {
           "id": "ODIN-019-A2",
           "criterion": "每種新增語言均有 2 個以上實際專案 fixture 與反例；未驗證不得宣稱支援。",
-          "remaining": "harness 建立專案不等於驗收；本輪受 AppControl 阻擋，40+ 語言無完整證據。"
+          "remaining": "保留首輪0check與後續部分結果；每語兩個真fixture的完整功能/反例尚需最終矩陣確認。"
         },
         {
           "id": "ODIN-019-A3",
@@ -3376,7 +3376,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "本輪另存sandbox-ide-local-validation：fe5996d的17 gates全exit0、191tests/4ignored，另opt-in native3實跑；source_changed=[]，舊144-test baseline完整保留。",
+      "summary": "當輪sandbox-ide-release-validation：c5084f4的17gates全exit0、200tests/6ignored另native3實跑；source_changed=[]。fe5996d191-test與72工具144-test歷史均保留。",
       "checks": [
         {
           "command": [
@@ -3609,7 +3609,7 @@
           "id": "ODIN-027-A1",
           "criterion": "從全新 checkout 執行驗收有可審計 logs；失敗 gate 阻止 release。",
           "status": "PARTIAL",
-          "remaining": "當輪17gate命令/log/hash已完成；全新checkout與完整故障gate阻擋release負例矩陣仍待驗收。"
+          "remaining": "當輪17gates/source/binary/log已完成；全新checkout及完整失敗gate阻擋release的負例矩陣仍未全驗。"
         },
         {
           "id": "ODIN-027-A2",
@@ -3630,7 +3630,7 @@
         {
           "id": "ODIN-027-A1",
           "criterion": "從全新 checkout 執行驗收有可審計 logs；失敗 gate 阻止 release。",
-          "remaining": "當輪17gate命令/log/hash已完成；全新checkout與完整故障gate阻擋release負例矩陣仍待驗收。"
+          "remaining": "當輪17gates/source/binary/log已完成；全新checkout及完整失敗gate阻擋release的負例矩陣仍未全驗。"
         }
       ],
       "supporting_reports": [],
@@ -3827,7 +3827,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "本輪fe5996d audit/licenses/supply-chain/source/publish-policy已exit0；當前文件/最終artifact與公開revision仍需最後同步。",
+      "summary": "c5084f4 audit/licenses/supply-chain/source/publish-policy均exit0；最新文件、最終封裝manifest與公開revision仍需據實同步。",
       "checks": [
         {
           "command": [
@@ -3937,7 +3937,7 @@
           "id": "ODIN-031-A1",
           "criterion": "公開候選 repo 目錄通過 secret scan、license scanner 與 artifact allowlist。",
           "status": "PARTIAL",
-          "remaining": "當輪candidate依賴/來源掃描已執行；本次文件修改、最終package及artifact allowlist/manifest須最後核對。"
+          "remaining": "當輪candidate掃描已完成；本次新增文件與最終package/artifact allowlist/manifest須最後核對。"
         },
         {
           "id": "ODIN-031-A2",
@@ -3956,7 +3956,7 @@
         {
           "id": "ODIN-031-A1",
           "criterion": "公開候選 repo 目錄通過 secret scan、license scanner 與 artifact allowlist。",
-          "remaining": "當輪candidate依賴/來源掃描已執行；本次文件修改、最終package及artifact allowlist/manifest須最後核對。"
+          "remaining": "當輪candidate掃描已完成；本次新增文件與最終package/artifact allowlist/manifest須最後核對。"
         },
         {
           "id": "ODIN-031-A2",
@@ -4001,7 +4001,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "當輪native MXC三測試已實跑PASS，含bounded-runner abort/timeout及guard-until-reap；磁碟故障/權限/跨平台完整敵意矩陣仍未完成。",
+      "summary": "c5084f4 native3測試具持久log/exit0，含guard-until-reap與abort/timeout後代清理；完整磁碟/權限/跨OS敵意矩陣未完成。",
       "checks": [
         {
           "command": "cargo test -p odin-protocol --locked",
@@ -4117,7 +4117,7 @@
       "priority": "P0",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "40原需求同步85契約與分層extension；fe5996d當輪17gates完成，six-language matrix與final-analyzer/review/封裝仍待實際結果，不改寫歷史proof。",
+      "summary": "40原需求/85契約與新舊evidence分開；c5084f4的17gates及同binaryanalyzer完成，六語IDE/TS沙箱、最終包與發布另待實際結果，沒有全40接受主張。",
       "checks": [
         {
           "command": [
@@ -4229,7 +4229,7 @@
           "id": "ODIN-033-A3",
           "criterion": "README 入口、ROADMAP、RELEASE_GATES 與驗收證據一致。",
           "status": "PARTIAL",
-          "remaining": "當輪17gates完成並綁source/binary；six-language matrix、final analyzer replay、獨立review與當輪封裝/發布仍待同步。"
+          "remaining": "當輪17gates與same-binary analyzer已完成；六語/TSsandbox、最終封裝/公開revision仍待實際同步。"
         }
       ],
       "unverified_acceptance": [
@@ -4246,7 +4246,7 @@
         {
           "id": "ODIN-033-A3",
           "criterion": "README 入口、ROADMAP、RELEASE_GATES 與驗收證據一致。",
-          "remaining": "當輪17gates完成並綁source/binary；six-language matrix、final analyzer replay、獨立review與當輪封裝/發布仍待同步。"
+          "remaining": "當輪17gates與same-binary analyzer已完成；六語/TSsandbox、最終封裝/公開revision仍待實際同步。"
         }
       ],
       "supporting_reports": [],
@@ -4264,7 +4264,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "28 profile registry/runtime guidance 與 backend version probe 不等於 readiness 或功能通過；當輪六語真 MCP/LSP checks=0。",
+      "summary": "28 registry/runtime guidance與version probes不等於功能驗收；原三LS當輪已測，六語IDE/TSsandbox矩陣pending，首輪0checks只屬歷史。",
       "checks": [
         {
           "command": [
@@ -4363,7 +4363,7 @@
           "id": "ODIN-034-A1",
           "criterion": "後端缺失回 MISSING_BACKEND，版本衝突回 BACKEND_UNSUPPORTED。",
           "status": "PARTIAL",
-          "remaining": "registry/runtime guidance 與 version probes 不等於握手；當輪六語 MCP/LSP=0，版本相容矩陣未完成。"
+          "remaining": "原三LS已實際握手/操作；28registry與versionprobe仍不是六語IDE完成，正式最終矩陣及全版本相容未驗。"
         },
         {
           "id": "ODIN-034-A2",
@@ -4382,7 +4382,7 @@
         {
           "id": "ODIN-034-A1",
           "criterion": "後端缺失回 MISSING_BACKEND，版本衝突回 BACKEND_UNSUPPORTED。",
-          "remaining": "registry/runtime guidance 與 version probes 不等於握手；當輪六語 MCP/LSP=0，版本相容矩陣未完成。"
+          "remaining": "原三LS已實際握手/操作；28registry與versionprobe仍不是六語IDE完成，正式最終矩陣及全版本相容未驗。"
         },
         {
           "id": "ODIN-034-A2",
@@ -4410,7 +4410,7 @@
       "priority": "P2",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "native Clippy/Ruff/ESLint readonly sandbox、findings 正規化與 safe CAS preview/apply/rollback 已有 revision30a957a 真實30 checks PASS；hierarchy 修復後 final 重跑與私有IDE等價仍未驗收。",
+      "summary": "c5084f4同binary真Clippy/Ruff/ESLint經nativeMXC的30 checks/commandexit0，涵蓋findings、readonly、safeCASpreview/apply/rollback與scratch清理；全規則/私有IDE等價未驗收。",
       "checks": [
         {
           "command": [
@@ -4452,7 +4452,7 @@
           "id": "ODIN-035-A1",
           "criterion": "能在 Rust/Python/TypeScript fixture 取得 rule、location 與可預覽 quick fix。",
           "status": "PARTIAL",
-          "remaining": "真 Clippy/Ruff/ESLint 固定 profiles 已有 rule/location/safe-fix 全流程 PASS；僅適用 revision30a957a binary，最終 hierarchy 修復後候選尚待重跑。"
+          "remaining": "c5084f4三個真provider已驗rule/location/safe preview；完整多專案/規則/版本/平台矩陣仍待驗收。"
         },
         {
           "id": "ODIN-035-A2",
@@ -4471,7 +4471,7 @@
         {
           "id": "ODIN-035-A1",
           "criterion": "能在 Rust/Python/TypeScript fixture 取得 rule、location 與可預覽 quick fix。",
-          "remaining": "真 Clippy/Ruff/ESLint 固定 profiles 已有 rule/location/safe-fix 全流程 PASS；僅適用 revision30a957a binary，最終 hierarchy 修復後候選尚待重跑。"
+          "remaining": "c5084f4三個真provider已驗rule/location/safe preview；完整多專案/規則/版本/平台矩陣仍待驗收。"
         },
         {
           "id": "ODIN-035-A2",
@@ -4939,7 +4939,7 @@
       "priority": "P1",
       "status": "PARTIAL",
       "implementation": "NATIVE_SOURCE_PARTIAL",
-      "summary": "IDE/inspection 有 source hash/version/freshness/truncation 與定向回歸；歷史 trace/spool PASS 不取代本輪 final binary 與 retention 矩陣。",
+      "summary": "c5084f4標準binary/三LS/analyzer與200tests已具source/hash綁定；全面backend provenance、retention/encryption/backup仍未完成。",
       "checks": [
         {
           "command": [
@@ -5179,18 +5179,18 @@
     "latest_integrated_candidate": {
       "status": "PASS",
       "owner": "/root",
-      "report": "verification/sandbox-ide-local-validation.json",
-      "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
-      "availability": "ROOT_OWNER_REPORT_AFTER_DOCUMENTATION_BASE",
-      "source_head_sha": "fe5996dc5793b64cb68a5f2d1139fb696cff32cf",
-      "binary_sha256": "c4f558615ec1930d991963c282acdcfe5df804e109c04cf2fb398fd78c650122",
+      "report": "verification/sandbox-ide-release-validation.json",
+      "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
+      "availability": "ROOT_REPORT_AFTER_DOCUMENTATION_BASE",
+      "source_head_sha": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+      "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
       "binary_metadata": {
         "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
         "external_tool_bridge": false,
         "model_token_usage": "UNKNOWN",
         "name": "Odin",
         "profile": "release",
-        "revision": "fe5996dc5793b64cb68a5f2d1139fb696cff32cf",
+        "revision": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
         "schema_version": 1,
         "standalone": true,
         "target": "x86_64-pc-windows-msvc",
@@ -5198,13 +5198,13 @@
         "version": "0.2.0"
       },
       "commands_executed": 17,
-      "rust_tests_passed": 191,
-      "rust_tests_ignored_in_workspace": 4,
+      "rust_tests_passed": 200,
+      "rust_tests_ignored_in_workspace": 6,
       "native_opt_in_tests_passed": 3,
       "native_opt_in_tests_ignored": 0,
-      "remaining_unexecuted_ignored_case": "Real rust-analyzer ignored smoke is not included by selecting only native_sandbox tests.",
+      "remaining_unexecuted_ignored_cases": "Three real-language probes remain ignored; the other three workspace-ignored cases were executed separately by the native opt-in command.",
       "source_changed_during_validation": [],
-      "completed_at_utc": "2026-10-21T01:15:20.950394+00:00",
+      "completed_at_utc": "2026-10-21T01:43:02.395945+00:00",
       "checks": [
         {
           "name": "generated_artifacts",
@@ -5215,12 +5215,12 @@
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/generated_artifacts.txt",
-          "log_sha256": "5598031b41f8cb954727f46de5c3e6af5f4e768a3cfe1eda4c30bc0b9f56c204",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "log": "verification/sandbox-ide-release-logs/generated_artifacts.txt",
+          "log_sha256": "a6ec063d424daf109c8806ed7c53ecb3aac46f11ea001b462f6d94d0777b282a",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/0",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "fmt",
@@ -5234,12 +5234,12 @@
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/fmt.txt",
+          "log": "verification/sandbox-ide-release-logs/fmt.txt",
           "log_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/1",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "workspace_tests",
@@ -5252,12 +5252,12 @@
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/workspace_tests.txt",
-          "log_sha256": "730b81ffd35fedf6f6ff5a5a3b8249f480ef7bb5002c6d6b070e04ff878dafc7",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "log": "verification/sandbox-ide-release-logs/workspace_tests.txt",
+          "log_sha256": "d5cf4dbd5d33dd62de1525fc59d41bd71c8fb0fa31a3ea36b9ff8a7a099dc409",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/2",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "clippy",
@@ -5274,12 +5274,12 @@
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/clippy.txt",
-          "log_sha256": "5af82ac7d20683edb7b8226855fea1cc0d1918c7562304467fe6fd5e1d97bfef",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "log": "verification/sandbox-ide-release-logs/clippy.txt",
+          "log_sha256": "8b2f6948c6b6ead26148d49873c13560c901fe7c37383faf17424163a4a0950d",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/3",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "native_sandbox",
@@ -5299,12 +5299,12 @@
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/native_sandbox.txt",
-          "log_sha256": "c14351901da025793a3f3d226d79dd8bf7b1cb4e9bf948bac982e30f679dbe83",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "log": "verification/sandbox-ide-release-logs/native_sandbox.txt",
+          "log_sha256": "ab8f853d50df80d3c1366ae9577cfa480e06903d33cbebf4ad825943b5231924",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/4",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "release_build",
@@ -5318,12 +5318,12 @@
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/release_build.txt",
-          "log_sha256": "7e27650bc038ef717464efecb3328fd3b19ea84de6437d83a7b4778016c5e9f3",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "log": "verification/sandbox-ide-release-logs/release_build.txt",
+          "log_sha256": "1c1ffa2362f95c4bca7937083c8567f2975813da9880a3c50a1da61c090a56c6",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/5",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "cli",
@@ -5333,17 +5333,17 @@
             "--binary",
             "target/release/odin.exe",
             "--output",
-            "verification/sandbox-ide-cli-smoke.json"
+            "verification/sandbox-ide-release-cli-smoke.json"
           ],
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/cli.txt",
-          "log_sha256": "d01bcdf43fadaff2d809b94a0e78df4111879842b11d9c230a49ad78aa824f88",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "log": "verification/sandbox-ide-release-logs/cli.txt",
+          "log_sha256": "02dbcf5e800217e5a65d34865ad8d3c71186e7fc1209979c84e11c1104266ec5",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/6",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "mcp_stdio",
@@ -5353,17 +5353,17 @@
             "--binary",
             "target/release/odin.exe",
             "--output",
-            "verification/sandbox-ide-mcp-smoke.json"
+            "verification/sandbox-ide-release-mcp-smoke.json"
           ],
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/mcp_stdio.txt",
-          "log_sha256": "1ce056e5cd0c004488da090e9ead7b883933f5e1ac6aadef2f54626778830e6f",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "log": "verification/sandbox-ide-release-logs/mcp_stdio.txt",
+          "log_sha256": "f8c882bb1e88b88aad907e4d092aa773ac4a2308b3814506d843a8f5ab4717a4",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/7",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "mcp_http",
@@ -5373,17 +5373,17 @@
             "--binary",
             "target/release/odin.exe",
             "--output",
-            "verification/sandbox-ide-http-smoke.json"
+            "verification/sandbox-ide-release-http-smoke.json"
           ],
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/mcp_http.txt",
-          "log_sha256": "ffc4b603b228fce5a5fa7473dc5753b24dde7fca6729bbf22a768f64b4ac0b56",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "log": "verification/sandbox-ide-release-logs/mcp_http.txt",
+          "log_sha256": "ef8dd0a52f77e72d1986004facd46c9bb1059ad147cf8a433a238576b6841e85",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/8",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "mcp_cancellation",
@@ -5393,17 +5393,17 @@
             "--binary",
             "target/release/odin.exe",
             "--output",
-            "verification/sandbox-ide-mcp-cancellation.json"
+            "verification/sandbox-ide-release-mcp-cancellation.json"
           ],
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/mcp_cancellation.txt",
-          "log_sha256": "8373f0053f7f756e0b1fb289ca68274fe68de4af15d0414c47de2299bc1967f5",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "log": "verification/sandbox-ide-release-logs/mcp_cancellation.txt",
+          "log_sha256": "904d73be0f9f8af3e1da11bab6fc4f1707dc3db3e2e5a6b773a8402a6f42f0cb",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/9",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "real_backends",
@@ -5421,17 +5421,17 @@
             "--node",
             "C:/Program Files/nodejs/node.exe",
             "--output",
-            "verification/sandbox-ide-real-backends.json"
+            "verification/sandbox-ide-release-real-backends.json"
           ],
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/real_backends.txt",
-          "log_sha256": "613bece8d99a2f6a1cdf215389e96c400aeb150e54104f4338816ad733b8b4e7",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "log": "verification/sandbox-ide-release-logs/real_backends.txt",
+          "log_sha256": "cfbfeb47accf7085d25be742408411da27065dca7a0235613c132ddb6317c530",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/10",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "dependency_audit",
@@ -5445,12 +5445,12 @@
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/dependency_audit.txt",
+          "log": "verification/sandbox-ide-release-logs/dependency_audit.txt",
           "log_sha256": "9254d5c1ca8495ae225f2289fdc4394683abe266961f0dbfa231771c6eb2658f",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/11",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "licenses",
@@ -5465,12 +5465,12 @@
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/licenses.txt",
+          "log": "verification/sandbox-ide-release-logs/licenses.txt",
           "log_sha256": "b87ff50d7cc1bf36ebb4295f2e6f418c52149ab1d889a4a9cfddcffae397ad39",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/12",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "supply_chain",
@@ -5481,12 +5481,12 @@
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/supply_chain.txt",
-          "log_sha256": "657ba85e6169c53404de3707e9bad9e37ca44a35b3765ac90fecdaa446eff413",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "log": "verification/sandbox-ide-release-logs/supply_chain.txt",
+          "log_sha256": "d771e404c96be72267fdf27992e39aa7148d8284778a69bda6ef4208f861a236",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/13",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "static_source",
@@ -5494,17 +5494,17 @@
             "python",
             "scripts/check_source.py",
             "--output",
-            "verification/sandbox-ide-source-check.json"
+            "verification/sandbox-ide-release-source-check.json"
           ],
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/static_source.txt",
-          "log_sha256": "3564bef62647d72bfc320c2897da14e1ea0b395a7a7d5d9d61aca1592c411181",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "log": "verification/sandbox-ide-release-logs/static_source.txt",
+          "log_sha256": "3c1dd6992da3dfb9732e4e82b8c88bdd17e870518e2f38d73d39262bc39c2345",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/14",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "requirements",
@@ -5515,12 +5515,12 @@
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/requirements.txt",
-          "log_sha256": "2dbe10df21500c7ad3cf92009d5477aeb449be2ce90c3a92af2f663eda9b3a8d",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "log": "verification/sandbox-ide-release-logs/requirements.txt",
+          "log_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/15",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         },
         {
           "name": "publish_policy",
@@ -5531,15 +5531,15 @@
           "cwd": ".",
           "status": "PASS",
           "exit_code": 0,
-          "log": "verification/sandbox-ide-logs/publish_policy.txt",
+          "log": "verification/sandbox-ide-release-logs/publish_policy.txt",
           "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983",
-          "report": "verification/sandbox-ide-local-validation.json",
-          "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+          "report": "verification/sandbox-ide-release-validation.json",
+          "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
           "report_pointer": "/commands/16",
-          "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          "scope": "Executed clean Windows c5084f4 product release gate; six-language extended IDE/TS sandbox matrix and full 40-requirement acceptance remain separate."
         }
       ],
-      "remaining": "Six-language two-project IDE matrix and native analyzers on this final binary remain separate pending runs; all_40_requirements_accepted stays false."
+      "remaining": "Six-language/two-project extended IDE matrix and TypeScript sandbox acceptance are pending integration-owner evidence; all_40_requirements_accepted remains false."
     },
     "checks": {
       "sandbox_native": {
@@ -5661,18 +5661,17 @@
       ],
       "lifecycle_followup": {
         "status": "PASS",
-        "report": "verification/sandbox-ide-local-validation.json",
+        "report": "verification/sandbox-ide-release-validation.json",
         "report_pointer": "/commands/4",
-        "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+        "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
         "exit_code": 0,
-        "log": "verification/sandbox-ide-logs/native_sandbox.txt",
-        "log_sha256": "c14351901da025793a3f3d226d79dd8bf7b1cb4e9bf948bac982e30f679dbe83",
+        "log": "verification/sandbox-ide-release-logs/native_sandbox.txt",
+        "log_sha256": "ab8f853d50df80d3c1366ae9577cfa480e06903d33cbebf4ad825943b5231924",
         "native_tests_passed": 3,
-        "scope": "Actual integrated native MXC enforcement, abort/timeout descendant cleanup and guard-until-reap regression.",
-        "earlier_root_reported_single_regression": "Preserved as historical context; now backed by the persisted three-test native command."
+        "scope": "Actual current c5084f4 native enforcement, abort/timeout descendant cleanup and guard-until-reap regression."
       },
       "remaining": [
-        "Integrated fe5996d native three-test suite and standard binary gates passed; final six-language LSP/MXC matrix and final-binary analyzer replay remain pending.",
+        "Current native three-test suite, standard binary gates and actual native analyzer profiles passed; six-language LSP/MXC matrix, all DAP paths and cross-platform resources remain incomplete.",
         "Linux/macOS isolation, BFS/AppContainer fallback, UI/registry/devices/external-internet/ingress matrix are not accepted.",
         "Without sandbox configuration, LSP/DAP/commands have lifecycle guards only; inspections refuse execution."
       ]
@@ -5708,8 +5707,19 @@
         "invariants_not_run": 12,
         "reason": "AppControl os error 4551 denied unchanged invariants test executable before execution. 62 tests ran and passed; 12 invariants NOT_RUN on this attempt. No policy changes or alternate-path retries."
       },
-      "review_followup": "Hierarchy cumulative-budget correction is in the integrated fe5996d product candidate; its new immutable-head independent rereview remains separate. Symbol summary correction also has its targeted PASS.",
-      "real_backend_acceptance": "NOT_RUN_FOR_CURRENT_EXTENSION"
+      "review_followup": "SIR-001 cumulative hierarchy budgeting and SIR-003 summary were repaired and independently reviewed on fe5996d. URI/JDTLS security/startup fixes are in current c5084f4; root reports independent rereview PASS. New six-language/TS-sandbox runtime matrix is still pending.",
+      "real_backend_acceptance": "PARTIAL_REAL_BACKEND_EXECUTION; extended six-language IDE matrix pending.",
+      "latest_engine_rerun_scope": "Historical author attempt; its AppControl denial remains unchanged. The latest integrated c5084f4 workspace suite passed 200 tests.",
+      "standard_backend_validation": {
+        "status": "PASS",
+        "report": "verification/sandbox-ide-release-validation.json",
+        "report_pointer": "/commands/10",
+        "report_sha256": "1c969d31cf3a97a90e96a9934adb4279b598fee40ec0cb2ef59bde34648c8b31",
+        "exit_code": 0,
+        "checks_passed": 29,
+        "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+        "scope": "Actual Rust/Python/TypeScript symbols/references/rename/rollback and debugpy; not every added IDE capability."
+      }
     },
     "native_inspections": {
       "implementation": "PARTIAL",
@@ -5724,24 +5734,23 @@
       "host_policy": "Requires allow_inspections, fixed analyzer/version argv, actual native sandbox and read-only sources. Writable caches/temp cannot overlap any project or Odin state; no unsandboxed retry.",
       "safe_fix_policy": "Re-analyze exact finding_id and expected source hash. Only bounded single-file non-overlapping Clippy MachineApplicable/Ruff safe/ESLint direct edits become Transactions preview; apply is separate.",
       "remaining": [
-        "Final hierarchy-repaired source/binary must rerun analyzer integration.",
-        "host_fixed_profile does not prove whole-project coverage or JetBrains private rule parity; cross-file fixes remain unsupported.",
-        "All versions, stale/truncated/malformed output, provider failures and OS combinations are not exhaustively accepted."
+        "Current c5084f4 fixed-profile native analyzer integration is PASS; broader rules/version/failure matrix remains incomplete.",
+        "Cross-file suggestions and JetBrains-private inspection parity are not accepted."
       ],
       "actual_success": {
-        "report": "verification/native-inspections-attempt-3.json",
-        "report_sha256": "82bea0422a7f6574120e69c987547159bae4c039d1fe4aa698d220ea2d9035a2",
-        "availability": "ROOT_OWNER_REPORT_AFTER_DOCUMENTATION_BASE",
+        "report": "verification/native-inspections-release-final.json",
+        "report_sha256": "1b2bb92f2dd8b906146f9ecf13bee79c721f2face3bb79ece40ecbdf497a7775",
+        "availability": "ROOT_REPORT_AFTER_DOCUMENTATION_BASE",
         "source_status": "PASS",
         "checks_passed": 30,
-        "binary_sha256": "cb0097266da19e2be25136a56ce1b60e8f02dc8f7eb8f33b282aae045251e014",
+        "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
         "binary_metadata": {
           "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
           "external_tool_bridge": false,
           "model_token_usage": "UNKNOWN",
           "name": "Odin",
           "profile": "release",
-          "revision": "30a957a95bd39d1dbbe631d2649593dbf54e6250",
+          "revision": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
           "schema_version": 1,
           "standalone": true,
           "target": "x86_64-pc-windows-msvc",
@@ -5749,7 +5758,6 @@
           "version": "0.2.0"
         },
         "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
-        "scope": "Actual Odin MCP -> native MXC -> Clippy/Ruff/ESLint; read-only analysis, normalized rule/range/hash/version, safe CAS preview/apply/rollback and private scratch cleanup.",
         "check_pointers": [
           "/checks/0",
           "/checks/1",
@@ -5782,9 +5790,18 @@
           "/checks/28",
           "/checks/29"
         ],
-        "runner_exit_code_reported_by_root": 0,
-        "exit_provenance": "Actual tool execution reported by /root. This report persists metadata/fixture-lock command exits, not the complete harness argv/exit; final runner manifest will supply that binding.",
-        "final_candidate_scope": "Release revision30a957a precedes hierarchy review repair; not final integrated new-head acceptance."
+        "command_evidence": {
+          "report": "verification/native-inspections-release-final-command.json",
+          "report_sha256": "b25ffb7343f01a188bf0cfdb76b705df52560b0ebb94b39d18e277fc75e962db",
+          "command_pointer": "/command",
+          "status": "PASS",
+          "exit_code": 0,
+          "log": "verification/native-inspections-release-final-command.txt",
+          "log_sha256": "7708d93f9a10d830cb035947028c123b254ade119c62b3a5364a15769ee94c0b",
+          "scope": "Actual persisted full analyzer harness command; not inferred from metadata or fixture-lock exits."
+        },
+        "scope": "Actual same c5084f4 release binary -> Odin MCP -> native MXC -> Clippy/Ruff/ESLint: normalized rule/range/current hash/version, readonly analysis, safe CAS preview/apply/rollback and scratch cleanup.",
+        "remaining": "Fixed profiles/Windows only; not whole-project/all-rule, all-OS or JetBrains-private equivalence."
       },
       "failed_attempts": [
         {
@@ -5803,6 +5820,77 @@
           "report": "verification/native-inspections-attempt-2.json",
           "source_status": "FAIL",
           "scope": "Rust/Python passed before ESLint version invocation failed EPERM; harness added explicit preserve-symlinks-main flags, grants not broadened."
+        }
+      ],
+      "successful_attempt_history": [
+        {
+          "report": "verification/native-inspections-attempt-3.json",
+          "report_sha256": "82bea0422a7f6574120e69c987547159bae4c039d1fe4aa698d220ea2d9035a2",
+          "availability": "ROOT_OWNER_REPORT_AFTER_DOCUMENTATION_BASE",
+          "source_status": "PASS",
+          "checks_passed": 30,
+          "binary_sha256": "cb0097266da19e2be25136a56ce1b60e8f02dc8f7eb8f33b282aae045251e014",
+          "binary_metadata": {
+            "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+            "external_tool_bridge": false,
+            "model_token_usage": "UNKNOWN",
+            "name": "Odin",
+            "profile": "release",
+            "revision": "30a957a95bd39d1dbbe631d2649593dbf54e6250",
+            "schema_version": 1,
+            "standalone": true,
+            "target": "x86_64-pc-windows-msvc",
+            "tracked_source_dirty": false,
+            "version": "0.2.0"
+          },
+          "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+          "scope": "Actual Odin MCP -> native MXC -> Clippy/Ruff/ESLint; read-only analysis, normalized rule/range/hash/version, safe CAS preview/apply/rollback and private scratch cleanup.",
+          "check_pointers": [
+            "/checks/0",
+            "/checks/1",
+            "/checks/2",
+            "/checks/3",
+            "/checks/4",
+            "/checks/5",
+            "/checks/6",
+            "/checks/7",
+            "/checks/8",
+            "/checks/9",
+            "/checks/10",
+            "/checks/11",
+            "/checks/12",
+            "/checks/13",
+            "/checks/14",
+            "/checks/15",
+            "/checks/16",
+            "/checks/17",
+            "/checks/18",
+            "/checks/19",
+            "/checks/20",
+            "/checks/21",
+            "/checks/22",
+            "/checks/23",
+            "/checks/24",
+            "/checks/25",
+            "/checks/26",
+            "/checks/27",
+            "/checks/28",
+            "/checks/29"
+          ],
+          "runner_exit_code_reported_by_root": 0,
+          "exit_provenance": "Actual tool execution reported by /root. This report persists metadata/fixture-lock command exits, not the complete harness argv/exit; final runner manifest will supply that binding.",
+          "final_candidate_scope": "Release revision30a957a precedes hierarchy review repair; not final integrated new-head acceptance."
+        },
+        {
+          "report": "verification/native-inspections-final.json",
+          "report_sha256": "6046bf0d4514e7bf501082909e6f8e975eeade35ed5abf89dadee58b0c0b926f",
+          "command_report": "verification/native-inspections-final-command.json",
+          "command_report_sha256": "9cbf52735715d549633c8fcafb12d4bf2c808761bacfeb26a5dffd4df24af0dd",
+          "status": "PASS",
+          "checks_passed": 30,
+          "exit_code": 0,
+          "binary_sha256": "c4f558615ec1930d991963c282acdcfe5df804e109c04cf2fb398fd78c650122",
+          "scope": "Historical fe5996d scoped native analyzer replay; superseded by the separately bound c5084f4 report."
         }
       ]
     },
@@ -5835,10 +5923,12 @@
         "reason": "Odin blocked before any MCP/LSP exchange. Backend probes/fixture configuration are not language acceptance."
       },
       "remaining": [
-        "No current six-language/two-project IDE PASS.",
-        "Historical three-language results retain earlier binary scope.",
-        "28 entries do not mean 28 or 40+ supported languages."
-      ]
+        "Final c5084f4 six-language/two-project IDE and TypeScript sandbox matrices are pending.",
+        "Intermediate previous-binary attempts include real partial results; original zero-exchange failure remains historical.",
+        "28 registry entries do not prove 28 or40+ supported languages; unavailable backend capabilities remain explicit."
+      ],
+      "current_matrix_status": "PENDING_FINAL_SIX_LANGUAGE_AND_TYPESCRIPT_SANDBOX_REPORTS",
+      "historical_zero_exchange_attempt_scope": "first_real_attempt is preserved historical WinError4551 evidence, not the latest executed language result."
     },
     "immutable_debug_launches": {
       "implementation": "PARTIAL",
@@ -5852,8 +5942,8 @@
     "review_and_release": {
       "latest_observed_review_source": "5e4cf035222cff82b1bc95d74c54ceb894195796",
       "symbol_summary_fix": "6fc1bd54c84f074f5e324b8670522d1d74471b73",
-      "independent_rereview": "PENDING_ON_INTEGRATED_HEAD",
-      "current_release_binary_smoke": "PASS_IN_17_GATE_REPORT",
+      "independent_rereview": "SCOPED_REVIEW_PASS_WITH_LATEST_COMBINED_BINDING_OWNED_BY_ROOT",
+      "current_release_binary_smoke": "PASS_IN_C5084F4_17_GATE_REPORT",
       "current_packaging": "NOT_RUN_FOR_THIS_EXTENSION",
       "current_remote_publication": "NOT_RUN",
       "cloud_ci_executed": false,
@@ -5862,9 +5952,389 @@
         "Do not relabel zero-MCP/LSP or AppControl-blocked attempts PASS.",
         "Do not weaken host policy, move a denied unchanged binary, broaden source grants or add fallback to obtain green results."
       ],
-      "integrated_product_source": "fe5996dc5793b64cb68a5f2d1139fb696cff32cf"
+      "integrated_product_source": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+      "scoped_review_history": {
+        "report": "verification/sandbox-ide-review.json",
+        "report_sha256": "41000330a68a1c2039dc480ca9cd7fcdff4f4bafe5772abdd1f2acb9bc51c6b2",
+        "result": "PASS",
+        "reviewed_head_sha": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d",
+        "scope": "Persisted earlier integrated review; not automatically approval of later URI/JDTLS source."
+      },
+      "uri_jdtls_rereview": {
+        "reported_by": "/root",
+        "result_reported": "PASS",
+        "scope": "Root reports independent rereview of URI/JDTLS/startup repair; latest combined review artifact is owned by the review/root actors."
+      }
     },
-    "all_40_requirements_accepted": false
+    "all_40_requirements_accepted": false,
+    "integrated_candidate_history": [
+      {
+        "status": "PASS",
+        "owner": "/root",
+        "report": "verification/sandbox-ide-local-validation.json",
+        "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+        "availability": "ROOT_OWNER_REPORT_AFTER_DOCUMENTATION_BASE",
+        "source_head_sha": "fe5996dc5793b64cb68a5f2d1139fb696cff32cf",
+        "binary_sha256": "c4f558615ec1930d991963c282acdcfe5df804e109c04cf2fb398fd78c650122",
+        "binary_metadata": {
+          "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+          "external_tool_bridge": false,
+          "model_token_usage": "UNKNOWN",
+          "name": "Odin",
+          "profile": "release",
+          "revision": "fe5996dc5793b64cb68a5f2d1139fb696cff32cf",
+          "schema_version": 1,
+          "standalone": true,
+          "target": "x86_64-pc-windows-msvc",
+          "tracked_source_dirty": false,
+          "version": "0.2.0"
+        },
+        "commands_executed": 17,
+        "rust_tests_passed": 191,
+        "rust_tests_ignored_in_workspace": 4,
+        "native_opt_in_tests_passed": 3,
+        "native_opt_in_tests_ignored": 0,
+        "remaining_unexecuted_ignored_case": "Real rust-analyzer ignored smoke is not included by selecting only native_sandbox tests.",
+        "source_changed_during_validation": [],
+        "completed_at_utc": "2026-10-21T01:15:20.950394+00:00",
+        "checks": [
+          {
+            "name": "generated_artifacts",
+            "argv": [
+              "python",
+              "scripts/check_generated.py"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/generated_artifacts.txt",
+            "log_sha256": "5598031b41f8cb954727f46de5c3e6af5f4e768a3cfe1eda4c30bc0b9f56c204",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/0",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "fmt",
+            "argv": [
+              "cargo",
+              "fmt",
+              "--all",
+              "--",
+              "--check"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/fmt.txt",
+            "log_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/1",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "workspace_tests",
+            "argv": [
+              "cargo",
+              "test",
+              "--workspace",
+              "--locked"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/workspace_tests.txt",
+            "log_sha256": "730b81ffd35fedf6f6ff5a5a3b8249f480ef7bb5002c6d6b070e04ff878dafc7",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/2",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "clippy",
+            "argv": [
+              "cargo",
+              "clippy",
+              "--workspace",
+              "--all-targets",
+              "--locked",
+              "--",
+              "-D",
+              "warnings"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/clippy.txt",
+            "log_sha256": "5af82ac7d20683edb7b8226855fea1cc0d1918c7562304467fe6fd5e1d97bfef",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/3",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "native_sandbox",
+            "argv": [
+              "cargo",
+              "test",
+              "-p",
+              "odin-core",
+              "--test",
+              "os_sandbox_native",
+              "--locked",
+              "--",
+              "--ignored",
+              "--test-threads=1",
+              "--nocapture"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/native_sandbox.txt",
+            "log_sha256": "c14351901da025793a3f3d226d79dd8bf7b1cb4e9bf948bac982e30f679dbe83",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/4",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "release_build",
+            "argv": [
+              "cargo",
+              "build",
+              "--workspace",
+              "--release",
+              "--locked"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/release_build.txt",
+            "log_sha256": "7e27650bc038ef717464efecb3328fd3b19ea84de6437d83a7b4778016c5e9f3",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/5",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "cli",
+            "argv": [
+              "python",
+              "scripts/cli_smoke.py",
+              "--binary",
+              "target/release/odin.exe",
+              "--output",
+              "verification/sandbox-ide-cli-smoke.json"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/cli.txt",
+            "log_sha256": "d01bcdf43fadaff2d809b94a0e78df4111879842b11d9c230a49ad78aa824f88",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/6",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "mcp_stdio",
+            "argv": [
+              "python",
+              "scripts/mcp_smoke.py",
+              "--binary",
+              "target/release/odin.exe",
+              "--output",
+              "verification/sandbox-ide-mcp-smoke.json"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/mcp_stdio.txt",
+            "log_sha256": "1ce056e5cd0c004488da090e9ead7b883933f5e1ac6aadef2f54626778830e6f",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/7",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "mcp_http",
+            "argv": [
+              "python",
+              "scripts/http_smoke.py",
+              "--binary",
+              "target/release/odin.exe",
+              "--output",
+              "verification/sandbox-ide-http-smoke.json"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/mcp_http.txt",
+            "log_sha256": "ffc4b603b228fce5a5fa7473dc5753b24dde7fca6729bbf22a768f64b4ac0b56",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/8",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "mcp_cancellation",
+            "argv": [
+              "python",
+              "scripts/mcp_cancel_smoke.py",
+              "--binary",
+              "target/release/odin.exe",
+              "--output",
+              "verification/sandbox-ide-mcp-cancellation.json"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/mcp_cancellation.txt",
+            "log_sha256": "8373f0053f7f756e0b1fb289ca68274fe68de4af15d0414c47de2299bc1967f5",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/9",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "real_backends",
+            "argv": [
+              "python",
+              "tests/real_backends.py",
+              "--binary",
+              "target/release/odin.exe",
+              "--python",
+              ".odin/validation-tools/python/Scripts/python.exe",
+              "--python-lsp",
+              ".odin/validation-tools/python/Scripts/basedpyright-langserver.exe",
+              "--typescript-lsp",
+              ".odin/validation-tools/typescript/node_modules/typescript-language-server/lib/cli.mjs",
+              "--node",
+              "C:/Program Files/nodejs/node.exe",
+              "--output",
+              "verification/sandbox-ide-real-backends.json"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/real_backends.txt",
+            "log_sha256": "613bece8d99a2f6a1cdf215389e96c400aeb150e54104f4338816ad733b8b4e7",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/10",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "dependency_audit",
+            "argv": [
+              "cargo",
+              "audit",
+              "--deny",
+              "warnings",
+              "--json"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/dependency_audit.txt",
+            "log_sha256": "9254d5c1ca8495ae225f2289fdc4394683abe266961f0dbfa231771c6eb2658f",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/11",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "licenses",
+            "argv": [
+              "cargo",
+              "deny",
+              "--format",
+              "json",
+              "check",
+              "licenses"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/licenses.txt",
+            "log_sha256": "b87ff50d7cc1bf36ebb4295f2e6f418c52149ab1d889a4a9cfddcffae397ad39",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/12",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "supply_chain",
+            "argv": [
+              "python",
+              "scripts/supply_chain.py"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/supply_chain.txt",
+            "log_sha256": "657ba85e6169c53404de3707e9bad9e37ca44a35b3765ac90fecdaa446eff413",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/13",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "static_source",
+            "argv": [
+              "python",
+              "scripts/check_source.py",
+              "--output",
+              "verification/sandbox-ide-source-check.json"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/static_source.txt",
+            "log_sha256": "3564bef62647d72bfc320c2897da14e1ea0b395a7a7d5d9d61aca1592c411181",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/14",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "requirements",
+            "argv": [
+              "python",
+              "scripts/check_requirements.py"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/requirements.txt",
+            "log_sha256": "2dbe10df21500c7ad3cf92009d5477aeb449be2ce90c3a92af2f663eda9b3a8d",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/15",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          },
+          {
+            "name": "publish_policy",
+            "argv": [
+              "python",
+              "scripts/check_publish_policy.py"
+            ],
+            "cwd": ".",
+            "status": "PASS",
+            "exit_code": 0,
+            "log": "verification/sandbox-ide-logs/publish_policy.txt",
+            "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983",
+            "report": "verification/sandbox-ide-local-validation.json",
+            "report_sha256": "ce5a83bb3319799849669341613481e8632c584afaa8faad896dbf448576e13c",
+            "report_pointer": "/commands/16",
+            "scope": "Actual integrated Windows revision fe5996d gate; not full acceptance of 40 requirements or six-language IDE/analyzer-final replay."
+          }
+        ],
+        "remaining": "Six-language two-project IDE matrix and native analyzers on this final binary remain separate pending runs; all_40_requirements_accepted stays false."
+      }
+    ],
+    "release_documentation_base_sha": "c5084f4947fc4a07c9ab381fa9998ba1a1e2246d"
   },
   "final_integrated_candidate_scope": "Historical 72-tool baseline only; current source status is extension_evidence.latest_integrated_candidate. Historical 144-test PASS is not this extension run.",
   "baseline_evidence_scope": {

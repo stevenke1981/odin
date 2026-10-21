@@ -1,6 +1,6 @@
 # 語言、IDE 能力與除錯規格 (RFC-INTEL-001)
 
-**地位：原驗收目標加上本輪已實作範圍；不是40項全部完成公告。** 對應 ODIN-007/008/010/013/017/018/019/034/035/036/039。本輪共85工具契約；歷史72工具的144 tests/1 ignored維持原source/binary範圍，不能替代本輪final gates。
+**地位：原驗收目標加上本輪已實作範圍；不是40項全部完成公告。** 對應 ODIN-007/008/010/013/017/018/019/034/035/036/039。本輪共85工具契約；歷史72工具的144 tests/1 ignored維持原source/binary範圍。最新c5084f4已完成17gates、200tests/6ignored，另native3實跑PASS；六語/TS sandbox矩陣另待結果。
 
 ## 直接標準協定與後端分級
 
@@ -56,9 +56,9 @@ Snapshot、count、raw/normalized output與累計fix長度均有配額。版本�
 ## 本輪證據與未驗收
 
 - Windows MXC author兩個native tests已有PASS；guard-until-reap已由當輪native三測試實跑PASS並有持久log/exit0。詳見 [OS_SANDBOX.md](../OS_SANDBOX.md)。
-- Protocol29 unit+22 fixtures、engine先前74測試成功另存；最新engine rerun為62通過、12因AppControl未執行。Symbol severity/status修正有一個targeted PASS。它們不是真六語證據。
-- revision30a957a的真Odin MCP→MXC→Clippy/Ruff/ESLint有30 checks PASS，涵蓋readonly analysis、rule/range/hash/version、CAS preview/apply/rollback與scratch清理；只適用該binary，早於hierarchy review修復，不是final gate。
-- 六語各兩專案的首輪candidate在Odin啟動前被Application Control 4551阻擋，實際MCP/LSP checks=0。Version probe與fixture生成成功不得升為語言支援。
-- 本輪fe5996d已完成17gates、191tests/4ignored，另native3實跑PASS；hierarchy修復後的新head獨立review、六語矩陣/final analyzer replay與跨平台仍待完成。不得改host安全政策、移動被拒的相同binary、放寬grants或加fallback取得PASS。
+- Protocol/engine author切片及早期62+12 AppControl阻擋保留歷史；最新c5084f4 workspace200 tests PASS不抹去舊失敗，也不取代六語逐功能矩陣。
+- 最新c5084f4同release binary的真Odin MCP→MXC→Clippy/Ruff/ESLint有30 checks PASS，完整harness command exit0、log/report digests已綁定；涵蓋readonly分析、rule/range/hash/version、safeCAS preview/apply/rollback與scratch清理。舊30a957a/fe5996d成功另存歷史，仍無全規則/私有IDE等價主張。
+- 六語首輪4551/0 MCP/LSP仍為歷史失敗；後續已有部分真結果。最新c5084f4的extended六語各兩專案/TS sandbox矩陣正在整合，由root依實際report補齊，不能預填全部PASS。
+- 本輪c5084f4已完成17/17 gates、200tests/6ignored，另native3；標準三LS/debugpy29及同binary analyzer30實跑PASS。Hierarchy/summary已修復並有scoped review，URI/JDTLS最新combined review由root綁定。跨平台、extended六語/TSsandbox及完整DoD仍未完成；不改host政策或放寬grants洗綠。
 
 實際source/report pointers位於 [feature-evidence.json](../../verification/feature-evidence.json) 的extension_evidence；歷史checks/digests不改寫。完整行為見 [IDE_IMPLEMENTATION.md](../IDE_IMPLEMENTATION.md)。原acceptance與成功／失敗案例仍按 [FEATURE_SPEC.md](../FEATURE_SPEC.md) 驗收。
