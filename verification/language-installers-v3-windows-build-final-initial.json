@@ -1,0 +1,12 @@
+{
+  "command": "cargo build --workspace --release --locked",
+  "source_head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+  "started_utc": "2026-10-21T03:41:34.2084948Z",
+  "finished_utc": "2026-10-21T03:42:57.8200091Z",
+  "exit_code": 0,
+  "status": "PASS",
+  "output": "   Compiling odin-agent v0.2.0 (E:\\odin\\crates\\odin)\n   Compiling odin-protocol v0.2.0 (E:\\odin\\crates\\odin-protocol)\n   Compiling odin-engine v0.2.0 (E:\\odin\\crates\\odin-engine)\n    Finished `release` profile [optimized] target(s) in 1m 23s\n",
+  "binary_sha256": "83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44",
+  "metadata_exit_code": 0,
+  "metadata_output": ""
+}

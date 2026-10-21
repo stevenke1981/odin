@@ -1,0 +1,32 @@
+[
+  {
+    "TimeCreated": "2026-10-21T11:45:10.562105+08:00",
+    "Id": 3077,
+    "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Python314\\python.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\release\\odin.exe that did not meet the Enterprise signing level requirements or violated code integrity policy (Policy ID:{0283ac0f-fff1-49ae-ada1-8a933130cad6})."
+  },
+  {
+    "TimeCreated": "2026-10-21T11:45:10.5156412+08:00",
+    "Id": 3033,
+    "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Python314\\python.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\release\\odin.exe that did not meet the Enterprise signing level requirements."
+  },
+  {
+    "TimeCreated": "2026-10-21T11:43:01.0265035+08:00",
+    "Id": 3077,
+    "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\release\\odin.exe that did not meet the Enterprise signing level requirements or violated code integrity policy (Policy ID:{0283ac0f-fff1-49ae-ada1-8a933130cad6})."
+  },
+  {
+    "TimeCreated": "2026-10-21T11:43:00.9848954+08:00",
+    "Id": 3033,
+    "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\release\\odin.exe that did not meet the Enterprise signing level requirements."
+  },
+  {
+    "TimeCreated": "2026-10-21T11:42:59.5097961+08:00",
+    "Id": 3077,
+    "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\release\\odin.exe that did not meet the Enterprise signing level requirements or violated code integrity policy (Policy ID:{0283ac0f-fff1-49ae-ada1-8a933130cad6})."
+  },
+  {
+    "TimeCreated": "2026-10-21T11:42:59.4666089+08:00",
+    "Id": 3033,
+    "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Users\\steven\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\release\\odin.exe that did not meet the Enterprise signing level requirements."
+  }
+]

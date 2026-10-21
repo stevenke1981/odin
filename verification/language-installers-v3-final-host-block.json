@@ -1,0 +1,40 @@
+{
+  "scope": "PRESERVED_WINDOWS_RELEASE_BUILD_AND_FAILED_HOST_EXECUTION_OBSERVATIONS",
+  "status": "BLOCKED",
+  "recorded_utc": "2026-10-21T03:49:10.788998+00:00",
+  "binary_path": "E:\\odin\\target\\release\\odin.exe",
+  "binary_sha256": "83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44",
+  "compiled_source_head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+  "native_command_attempted": [
+    "E:\\odin\\target\\release\\odin.exe",
+    "metadata"
+  ],
+  "native_command_executed": false,
+  "native_exit_code": null,
+  "observations": [
+    {
+      "driver": "PowerShell native invocation after successful cargo build",
+      "error": "StandardOutputEncoding is only supported when standard output is redirected.",
+      "result": "INVOCATION_ERROR_BEFORE_NATIVE_EXECUTION",
+      "incorrect_stale_LASTEXITCODE": 0,
+      "metadata_stdout": ""
+    },
+    {
+      "driver": "C:/Python314/python.exe subprocess.run(capture_output=True, timeout=30)",
+      "error": "OSError [WinError 4551]: application control policy blocked this file",
+      "result": "CREATEPROCESS_DENIED_BEFORE_NATIVE_EXECUTION",
+      "winerror": 4551
+    }
+  ],
+  "correction": "The original build exited zero. Its metadata_exit_code=0 came from stale PowerShell LASTEXITCODE after an invocation error and is not a native result. That original report is preserved verbatim; the canonical build report marks metadata blocked/unexecuted.",
+  "original_report": "verification/language-installers-v3-windows-build-final-initial.json",
+  "original_report_sha256": "33939a1f4be5bca82f6aca28c175bc638d30ca750bb70eaabf3a5b6c5f563bd8",
+  "host_event_log": "verification/language-installers-v3-host-codeintegrity.json",
+  "host_event_log_sha256": "0783b05aeac0c4ed659de728c9343e17b7994857a68c416ef522df80077592ce",
+  "user_response": "User will ask the administrator to allow this candidate under the existing policy.",
+  "administrator_state_change_confirmed": false,
+  "policy_modified_by_agent": false,
+  "candidate_copied_after_block": false,
+  "windows_final_metadata_native_matrix_and_installer": "BLOCKED",
+  "linux_guest_work": "CONTINUES_INDEPENDENTLY"
+}

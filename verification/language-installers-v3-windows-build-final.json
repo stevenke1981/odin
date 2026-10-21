@@ -1,0 +1,17 @@
+{
+  "command": "cargo build --workspace --release --locked",
+  "source_head_sha": "69e769be9baa4e825139b72ce1a9b48bf8143114",
+  "started_utc": "2026-10-21T03:41:34.2084948Z",
+  "finished_utc": "2026-10-21T03:42:57.8200091Z",
+  "exit_code": 0,
+  "status": "PASS",
+  "output": "   Compiling odin-agent v0.2.0 (E:\\odin\\crates\\odin)\n   Compiling odin-protocol v0.2.0 (E:\\odin\\crates\\odin-protocol)\n   Compiling odin-engine v0.2.0 (E:\\odin\\crates\\odin-engine)\n    Finished `release` profile [optimized] target(s) in 1m 23s\n",
+  "binary_sha256": "83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44",
+  "metadata_exit_code": null,
+  "metadata_output": "",
+  "metadata_status": "BLOCKED_BEFORE_EXECUTION",
+  "metadata_observation_report": "verification/language-installers-v3-final-host-block.json",
+  "metadata_observation_report_sha256": "f9a732fe58edc2f9cf97e6a688bddd511fd84ae4421d744fb6c6a1b094986d58",
+  "original_observation_report": "verification/language-installers-v3-windows-build-final-initial.json",
+  "original_observation_report_sha256": "33939a1f4be5bca82f6aca28c175bc638d30ca750bb70eaabf3a5b6c5f563bd8"
+}

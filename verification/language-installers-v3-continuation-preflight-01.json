@@ -1,0 +1,48 @@
+{
+  "scope": "INERT_QA_EVIDENCE_PREFLIGHT_NOT_PRODUCT_OR_NATIVE_ACCEPTANCE",
+  "observed_utc": "2026-10-21T03:55:24.491205+00:00",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "verification/language-installers-v3-check-continuation-preflight.py"
+  ],
+  "exit_code": 0,
+  "status": "PASS",
+  "stdout": "{\"scope\": \"INERT_QA_RUNNER_PREFLIGHT_ONLY\", \"status\": \"PASS\", \"checks\": [{\"name\": \"existing_child_report\", \"status\": \"PASS\", \"native_process_calls\": 0}, {\"name\": \"existing_summary\", \"status\": \"PASS\", \"native_process_calls\": 0}, {\"name\": \"existing_log_path\", \"status\": \"PASS\", \"native_process_calls\": 0}, {\"name\": \"invalid_prefix\", \"status\": \"PASS\", \"native_process_calls\": 0}, {\"name\": \"summary_child_collision\", \"status\": \"PASS\", \"native_process_calls\": 0}]}\n",
+  "stderr": "",
+  "result": {
+    "scope": "INERT_QA_RUNNER_PREFLIGHT_ONLY",
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "existing_child_report",
+        "status": "PASS",
+        "native_process_calls": 0
+      },
+      {
+        "name": "existing_summary",
+        "status": "PASS",
+        "native_process_calls": 0
+      },
+      {
+        "name": "existing_log_path",
+        "status": "PASS",
+        "native_process_calls": 0
+      },
+      {
+        "name": "invalid_prefix",
+        "status": "PASS",
+        "native_process_calls": 0
+      },
+      {
+        "name": "summary_child_collision",
+        "status": "PASS",
+        "native_process_calls": 0
+      }
+    ]
+  },
+  "source_sha256": {
+    "verification/language-installers-v3-continue.py": "70c07000525d2bb5b8e0896dbfe3e2a5a14e053d3e84fd4ff3628acb23aa0fff",
+    "verification/language-installers-v3-check-continuation-preflight.py": "354e8fc8dee27c415c77510c6d47ae77e2fcb99988a532dd1c1ef85336006a7e"
+  },
+  "blocked_candidate_executed": false
+}

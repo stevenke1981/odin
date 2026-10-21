@@ -9,6 +9,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 import time
@@ -26,19 +27,21 @@ def main():
     parser.add_argument('--expected-binary-sha256', required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--logs', type=Path, required=True)
+    parser.add_argument('--artifact-prefix', default='language-installers-v3-continued',
+                        help='Fresh filename prefix under verification; previous reports are never overwritten')
     args = parser.parse_args()
+    if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', args.artifact_prefix) or len(args.artifact_prefix) > 96:
+        parser.error('--artifact-prefix must be a lowercase filename prefix of at most 96 characters')
+    args.output = args.output.resolve()
+    args.logs = args.logs.resolve()
+    args.output.relative_to(ROOT)
+    args.logs.relative_to(ROOT)
     binary = args.binary.resolve(strict=True)
     if os.name != 'nt' or digest(binary) != args.expected_binary_sha256.lower():
         raise ValueError('Select the actual Windows candidate by SHA-256')
-    if args.output.exists() or args.logs.exists():
-        raise FileExistsError('Use fresh evidence paths; previous attempts are immutable')
-    args.logs.mkdir(parents=True)
-    metadata = json.loads(subprocess.check_output([str(binary), 'metadata'], cwd=ROOT))
     executor = Path('C:/Users/steven/AppData/Local/Programs/DevTools/mxc/node_modules/@microsoft/mxc-sdk/bin/x64/wxc-exec.exe')
     executor_sha = '8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259'
-    if digest(executor) != executor_sha:
-        raise ValueError('Native executor differs from the explicitly selected pin')
-    prefix = 'verification/language-installers-v3-continued-'
+    prefix = 'verification/' + args.artifact_prefix + '-'
     artifact = lambda name: prefix + name + '.json'
     commands = [
         ('engine_protocol_units', ['cargo', 'test', '-p', 'odin-engine', '-p', 'odin-protocol', '--lib', '--locked']),
@@ -62,6 +65,17 @@ def main():
         ('requirements', [sys.executable, 'scripts/check_requirements.py']),
         ('publish_policy', [sys.executable, 'scripts/check_publish_policy.py']),
     ]
+    artifact_paths = [ROOT/command[command.index('--output')+1]
+                      for _, command in commands if '--output' in command]
+    if args.output in artifact_paths or len(set(artifact_paths)) != len(artifact_paths):
+        raise ValueError('Each evidence report must have a distinct destination')
+    if any(path.exists() for path in [args.output, args.logs, *artifact_paths]):
+        raise FileExistsError('Use fresh evidence paths and artifact prefix; previous attempts are immutable')
+    if digest(executor) != executor_sha:
+        raise ValueError('Native executor differs from the explicitly selected pin')
+    # Preflight every child report before starting a native process or creating logs.
+    metadata = json.loads(subprocess.check_output([str(binary), 'metadata'], cwd=ROOT))
+    args.logs.mkdir(parents=True)
     tracked = subprocess.check_output(['git', 'ls-files', '-z'], cwd=ROOT).decode().split('\0')
     sources = [name for name in tracked if name.startswith(('crates/', 'scripts/', 'tests/', 'schemas/')) or name in ('Cargo.lock', 'Cargo.toml')]
     sources.append(Path(__file__).resolve().relative_to(ROOT).as_posix())
@@ -69,6 +83,7 @@ def main():
     report = {
         'scope': 'INDEPENDENT_WINDOWS_CONTINUATION_NOT_A_WORKSPACE_GATE_REPLACEMENT',
         'status': 'NOT_RUN', 'binary_sha256': digest(binary), 'binary_metadata': metadata,
+        'artifact_prefix': args.artifact_prefix,
         'source_head_sha': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
         'source_sha256': source_hashes,
         'failed_workspace_gate': 'verification/language-installers-v3-validation-01.json',
