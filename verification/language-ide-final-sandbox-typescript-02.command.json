@@ -1,0 +1,32 @@
+{
+  "command": [
+    "python",
+    "-u",
+    "tests/real_ide_backends.py",
+    "--binary",
+    "E:/odin/target/release/odin.exe",
+    "--languages",
+    "typescript",
+    "--mode",
+    "sandbox",
+    "--sandbox-executor",
+    "C:/Users/steven/AppData/Local/Programs/DevTools/mxc/node_modules/@microsoft/mxc-sdk/bin/x64/wxc-exec.exe",
+    "--sandbox-sha256",
+    "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+    "--sandbox-allow-ui",
+    "--sandbox-typescript-init-temp",
+    "--output",
+    "verification/language-ide-final-sandbox-typescript-02.json"
+  ],
+  "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin",
+  "started_utc": "2026-10-21T01:53:41.1782526Z",
+  "finished_utc": "2026-10-21T01:55:42.4483064Z",
+  "exit_code": 1,
+  "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+  "harness_sha256": "9b8fef9ac15b89e2ccf88e58b587aa4b95933390c147030c45eab6c43cd99146",
+  "sandbox_executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+  "raw_stdout_log": "verification/language-ide-final-sandbox-typescript-02.txt",
+  "log_sha256": "ff153607164408afbe0af56210e9fe0d4c4194e95320119bfe207f6a6a479556",
+  "report_sha256": "15499683050bbeef3a1aad4196e546c1b864157ad7dcbdf2bdec1292901b97e6",
+  "line_endings_normalized_before_hash_binding": true
+}

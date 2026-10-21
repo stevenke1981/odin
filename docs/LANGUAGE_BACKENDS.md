@@ -127,6 +127,7 @@ python tests/real_ide_backends.py --binary E:/odin/target/release/odin.exe `
   --languages typescript --mode sandbox `
   --sandbox-executor '<absolute trusted wxc-exec.exe>' `
   --sandbox-sha256 '<verified SHA-256>' --sandbox-allow-ui `
+  --sandbox-typescript-init-temp `
   --output verification/language-ide-sandbox-typescript-01.json
 ```
 
@@ -139,6 +140,23 @@ checks `status.transport.isolation` for the actual MXC route and expected
 executor pin; it does not change `os_boundary_verified` to true. Actual OS
 denial/lifecycle evidence belongs to the native tests described in
 [OS_SANDBOX.md](OS_SANDBOX.md). A successful LSP handshake alone is not that proof.
+
+The explicit `--sandbox-typescript-init-temp` profile generates a fixed module
+under the external trusted `host-support/<project>` directory. It creates
+`os.tmpdir()` inside MXC's existing private scratch grant, verifies the selected
+TSLS module SHA-256, sets argv to that module and `--stdio`, and imports it. The
+server path and expected hash are constants generated from the host-selected
+installation; the bootstrap accepts no caller or repository target. The report
+retains its complete source/hash, server path/hash and profile argv. Only that
+bootstrap file receives an additional read-only grant; source/runtime grants,
+private scratch writes and network denial retain their original scopes.
+
+Without this explicit profile, `language-ide-final-sandbox-typescript-01`
+preserves the actual startup failure: TSLS calls `realpath(os.tmpdir())` before
+MXC's package-specific `AC/Temp` exists. The fixed bootstrap is test host setup,
+separate from Odin's native runtime. It uses ordinary module loading, keeps stdio
+unchanged and performs no fallback or permission retry. Its generated source is
+a reproducible example in the report's `host_support` entries.
 
 ## Evidence boundary
 

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "scope": "LF normalization preserves executed checks, including tsserver child failures",
+  "line_endings_normalized_before_hash_binding": true,
+  "logical_checks_sha256_before": "badd0b344b14e8587e7d541b271b1e876c25c60f43c9b3de0e43136e23af9ea8",
+  "logical_checks_sha256_after": "badd0b344b14e8587e7d541b271b1e876c25c60f43c9b3de0e43136e23af9ea8",
+  "actual_driver_exit_code": 1,
+  "binary_sha256": "f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875",
+  "harness_sha256": "9b8fef9ac15b89e2ccf88e58b587aa4b95933390c147030c45eab6c43cd99146",
+  "artifacts": [
+    {
+      "path": "verification/language-ide-final-sandbox-typescript-02.json",
+      "sha256": "15499683050bbeef3a1aad4196e546c1b864157ad7dcbdf2bdec1292901b97e6"
+    },
+    {
+      "path": "verification/language-ide-final-sandbox-typescript-02.requests.jsonl",
+      "sha256": "fbeed2529214c1111c8870d1eb7f8cdfe035595a51e3655b3f3e0e5fe625445f"
+    },
+    {
+      "path": "verification/language-ide-final-sandbox-typescript-02.txt",
+      "sha256": "ff153607164408afbe0af56210e9fe0d4c4194e95320119bfe207f6a6a479556"
+    },
+    {
+      "path": "verification/language-ide-final-sandbox-typescript-02.command.json",
+      "sha256": "1603487bd8da2f7aac85f36b6fed7da4b76f22e00ee8abad207a0879ffe70eb3"
+    }
+  ]
+}

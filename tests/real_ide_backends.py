@@ -453,6 +453,8 @@ def main():
     parser.add_argument("--sandbox-executor", type=Path)
     parser.add_argument("--sandbox-sha256")
     parser.add_argument("--sandbox-allow-ui", action="store_true")
+    parser.add_argument("--sandbox-typescript-init-temp", action="store_true",
+                        help="Use a fixed host-owned bootstrap to initialize MXC's private temp before the pinned TSLS module")
     parser.add_argument("--timeout", type=float, default=60)
     args = parser.parse_args()
     args.binary, args.output, args.tools_root = args.binary.resolve(), args.output.resolve(), args.tools_root.resolve()
@@ -466,6 +468,8 @@ def main():
         parser.error("Sandbox mode requires explicit trusted --sandbox-executor and --sandbox-sha256")
     if args.mode == "sandbox" and set(args.languages) - {"rust", "python", "typescript"}:
         parser.error("Select an explicitly tested sandbox language with --languages rust/python/typescript")
+    if args.sandbox_typescript_init_temp and (args.mode != "sandbox" or args.languages != ["typescript"]):
+        parser.error("The fixed TypeScript temp bootstrap requires --mode sandbox --languages typescript")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     report = {"scope": "REAL_ODIN_MCP_SIX_LANGUAGE_IDE", "mode": args.mode, "status": "NOT_RUN", "platform": sys.platform,
               "binary_sha256": digest(args.binary.read_bytes()), "harness_sha256": digest(Path(__file__).read_bytes()),
@@ -500,6 +504,35 @@ def main():
         lines = [f"state_dir = {toml(str(base / 'state'))}", "[limits]", f"rpc_timeout_secs = {int(args.timeout)}"]
         extensions = {"rust": "rs", "python": "py", "typescript": "ts", "go": "go", "java": "java", "csharp": "cs"}
         for item in fixtures:
+            bootstrap = None
+            if args.sandbox_typescript_init_temp:
+                entry = installed(args.tools_root, "typescript/node_modules/typescript-language-server/lib/cli.mjs")
+                entry_sha256 = digest(entry.read_bytes())
+                bootstrap = base / "host-support" / item.project / "typescript-bootstrap.mjs"
+                bootstrap.parent.mkdir(parents=True)
+                bootstrap_source = (
+                    "import { mkdirSync, readFileSync } from 'node:fs';\n"
+                    "import { tmpdir } from 'node:os';\n"
+                    "import { pathToFileURL } from 'node:url';\n"
+                    "import { createHash } from 'node:crypto';\n"
+                    f"const server = {json.dumps(str(entry))};\n"
+                    f"const expectedSha256 = {json.dumps(entry_sha256)};\n"
+                    "mkdirSync(tmpdir(), { recursive: true });\n"
+                    "if (createHash('sha256').update(readFileSync(server)).digest('hex') !== expectedSha256) {\n"
+                    "  throw new Error('Trusted TypeScript server module hash mismatch');\n"
+                    "}\n"
+                    "process.argv = [process.execPath, server, '--stdio'];\n"
+                    "await import(pathToFileURL(server).href);\n"
+                )
+                bootstrap.write_text(bootstrap_source, encoding="utf-8", newline="\n")
+                item.argv = ["--preserve-symlinks", "--preserve-symlinks-main", str(bootstrap)]
+                report.setdefault("host_support", []).append({
+                    "project": item.project, "kind": "explicit_fixed_typescript_private_temp_bootstrap",
+                    "relative_path": bootstrap.relative_to(base).as_posix(), "source": bootstrap_source,
+                    "source_sha256": digest(bootstrap.read_bytes()), "server_module": str(entry),
+                    "server_module_sha256": entry_sha256, "server_argv": [str(item.program), str(entry), "--stdio"],
+                    "caller_or_repository_target": False, "fallback": False,
+                })
             lines += [f"[projects.{item.project}]", f"root = {toml(str(item.root))}", "allow_write = true", "allow_debug = false", "allow_shell = false",
                       f"[[projects.{item.project}.languages]]", f"id = {toml(item.language)}", f"extensions = [{toml(extensions[item.language])}]",
                       f"program = {toml(str(item.program))}", f"args = {toml(item.argv)}", f"initialization_options = {toml(item.initialization)}", f"settings = {toml(item.settings)}"]
@@ -509,12 +542,22 @@ def main():
                 grants = [item.root, item.program.parent]
                 if item.language == "typescript":
                     grants.append(args.tools_root / "typescript")
+                    if bootstrap:
+                        grants.append(bootstrap)
                 elif item.language == "python":
                     grants.append(args.tools_root / "python")
                     grants.append(Path((args.tools_root / "python/pyvenv.cfg").read_text(encoding="utf-8").split("home = ", 1)[1].splitlines()[0]))
                 elif item.language == "rust":
                     grants += [Path(os.environ["RUSTUP_HOME"]) if "RUSTUP_HOME" in os.environ else Path.home() / ".rustup", Path.home() / ".cargo"]
                 unique_grants = sorted({str(path.resolve()) for path in grants if path.exists()})
+                report.setdefault("sandbox_profiles", []).append({
+                    "project": item.project, "program": str(item.program),
+                    "argv": [arg.replace(str(base), "<fixture>") for arg in item.argv],
+                    "readonly_paths": [path.replace(str(base), "<fixture>") for path in unique_grants],
+                    "readwrite_paths": [], "private_scratch": str(scratch.relative_to(base)),
+                    "allow_ui": args.sandbox_allow_ui, "clipboard": "none", "injection": False,
+                    "requested_network_policy": "deny_all", "bootstrap_is_readonly_file": bootstrap is not None,
+                })
                 lines += [f"[projects.{item.project}.sandbox]", f"executor = {toml(str(args.sandbox_executor.resolve()))}",
                           f"executor_sha256 = {toml(args.sandbox_sha256)}", f"readonly_paths = {toml(unique_grants)}",
                           "readwrite_paths = []", "denied_paths = []", f"temp_root = {toml(str(scratch))}", f"allow_ui = {toml(args.sandbox_allow_ui)}"]
