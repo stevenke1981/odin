@@ -1,0 +1,20 @@
+{
+  "name": "final-package",
+  "argv": [
+    "python3",
+    "scripts/package_linux.py",
+    "--binary",
+    "/opt/odin-delivery/v3-notices-02/odin",
+    "--expected-binary-sha256",
+    "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+    "--output",
+    "/opt/odin-packaging-notices-02/dist/linux-notices-02"
+  ],
+  "cwd": "/opt/odin-packaging-notices-02",
+  "uid": 1000,
+  "exit_code": 0,
+  "status": "PASS",
+  "elapsed_seconds": 40.851,
+  "log": "final-package.log",
+  "log_sha256": "11b284d6d5d4db2b241fd8bbe9a69aba087ed33f3b93cdc31fca2a284df3b995"
+}

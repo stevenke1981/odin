@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "app_build_revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+  "packaging_revision": "f5878bfa725db8c0dcab7e45ca3cf89159508975",
+  "packaging_files_checked": 868,
+  "product_files_equal": 99,
+  "runtime_notice_sha256": "3909eadeb6220801da62ebfe18b7335639dcc2ebb49c1f05d916cc91d575f246",
+  "app_binary_rebuilt": false
+}

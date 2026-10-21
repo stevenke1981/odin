@@ -1,0 +1,832 @@
+{
+  "scope": "ACTUAL_LINUX_VM_BUILD_WORKSPACE_GATES_SMOKES_AND_INSTALLERS",
+  "status": "PASS",
+  "source_revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+  "app_build_revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+  "packaging_revision": "f5878bfa725db8c0dcab7e45ca3cf89159508975",
+  "bundled_docs_revision": "f5878bfa725db8c0dcab7e45ca3cf89159508975",
+  "source_transfer_bundle_sha256": "a760cec2ecf064d80a801f18e11a6024cf9bf336124fc8f4a8386f1d5c687900",
+  "packaging_transfer_bundle_sha256": "40c85c21a1079b0f5d5bd6dc7339989f64b4a55b7e30b409ccd9166086c7518b",
+  "build_metadata": {
+    "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "external_tool_bridge": false,
+    "model_token_usage": "UNKNOWN",
+    "name": "Odin",
+    "profile": "release",
+    "revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+    "schema_version": 1,
+    "standalone": true,
+    "target": "x86_64-unknown-linux-musl",
+    "tracked_source_dirty": false,
+    "version": "0.2.0"
+  },
+  "binary_sha256": "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+  "linux_target": "x86_64-unknown-linux-musl",
+  "elf": {
+    "format": "ELF64_X86_64",
+    "pt_interp": null,
+    "static_pie": true
+  },
+  "execution": "NATIVE_COMPILE_AND_NATIVE_ELF_EXECUTION_IN_LOCAL_QEMU_TCG_DEBIAN_12_X86_64",
+  "build_tests_smoke_user": "odin-qa uid=1000",
+  "installer_package_management_user": "root in disposable guest",
+  "source_manifest": {
+    "path": "source-sha256.json",
+    "sha256": "260ba0d539ebf4ab9a3bc0df4ac21343348ca08d6769fb1606b3d98e2df3cbff",
+    "checked_files": 688
+  },
+  "packaging_source_manifest": {
+    "path": "packaging-source-sha256.json",
+    "sha256": "fa6aa33f6b0b9a473a30c0ec8d339bbbd7427f8e0c230960e0039c3fe63ad1cc",
+    "checked_files": 868
+  },
+  "product_equivalence": {
+    "status": "PASS",
+    "compared_files": 99,
+    "scope": [
+      "crates/",
+      "schemas/",
+      "dashboard/",
+      "scripts/",
+      "packaging/",
+      "tests/",
+      "Cargo.toml",
+      "Cargo.lock",
+      "rust-toolchain.toml"
+    ],
+    "note": "Pre-build app source and the separate clean packaging tree were compared file by file; packaging uses the same selected ELF without recompilation."
+  },
+  "rust": "1.90.0",
+  "rust_linker": "cc",
+  "c_compiler": "musl-gcc",
+  "original_release_profile_preserved": true,
+  "commands": [
+    {
+      "name": "generated",
+      "argv": [
+        "python3",
+        "scripts/check_generated.py"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "generated.log",
+      "elapsed_seconds": 1.134,
+      "log_sha256": "0bcc5c510237297d634065069ed630e38871d94d920bdeda00c939ef36100698"
+    },
+    {
+      "name": "static-source",
+      "argv": [
+        "python3",
+        "scripts/check_source.py",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/static-source-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "static-source.log",
+      "elapsed_seconds": 2.321,
+      "log_sha256": "bed941713f75d31f2994d5ab754e6efc5781067d15d99df20721b4ea7224055a"
+    },
+    {
+      "name": "fixture",
+      "argv": [
+        "python3",
+        "scripts/fixture_selftest.py",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/fixture-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "fixture.log",
+      "elapsed_seconds": 1.672,
+      "log_sha256": "c2a21db936c942535df1de9f87a8832081058bcc3636c2a903e77b4867391dc8"
+    },
+    {
+      "name": "requirements",
+      "argv": [
+        "python3",
+        "scripts/check_requirements.py"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "requirements.log",
+      "elapsed_seconds": 1.863,
+      "log_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2"
+    },
+    {
+      "name": "publish-policy",
+      "argv": [
+        "python3",
+        "scripts/check_publish_policy.py"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "publish-policy.log",
+      "elapsed_seconds": 0.278,
+      "log_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983"
+    },
+    {
+      "name": "fmt",
+      "argv": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "fmt.log",
+      "elapsed_seconds": 4.648,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "focused-core",
+      "argv": [
+        "cargo",
+        "test",
+        "-p",
+        "odin-core",
+        "--lib",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "focused-core.log",
+      "elapsed_seconds": 93.731,
+      "log_sha256": "4c485b323b38e10ca77233d8eb2c63b61260baf110df06c55b2ad838d2c45515"
+    },
+    {
+      "name": "focused-protocol",
+      "argv": [
+        "cargo",
+        "test",
+        "-p",
+        "odin-protocol",
+        "--lib",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "focused-protocol.log",
+      "elapsed_seconds": 148.301,
+      "log_sha256": "e3719f166b56262983d521de075e9c0f19d7904aa2456a8fd7b46c452d6cb4bb"
+    },
+    {
+      "name": "tests",
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--no-fail-fast",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline",
+        "--",
+        "--test-threads=1"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "tests.log",
+      "elapsed_seconds": 534.0,
+      "log_sha256": "fc6ba479850eae6ade39da0aa1c276e11427394508f51ee17c59e96129df17c9"
+    },
+    {
+      "name": "clippy",
+      "argv": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "clippy.log",
+      "elapsed_seconds": 66.978,
+      "log_sha256": "32a17a31902cc6a7a0b3a8fad4b107a04481e12a305c14df8843f1b3a547fd35"
+    },
+    {
+      "name": "build",
+      "argv": [
+        "cargo",
+        "build",
+        "-p",
+        "odin-agent",
+        "--release",
+        "--target",
+        "x86_64-unknown-linux-musl",
+        "--locked",
+        "--offline"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "build.log",
+      "elapsed_seconds": 757.051,
+      "log_sha256": "8967ce4d60cadc152f9e0c0938fdc3746da3d0759615f44e0abaadfc5e7fd260"
+    },
+    {
+      "name": "metadata",
+      "argv": [
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "metadata"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "metadata.log",
+      "elapsed_seconds": 0.098,
+      "log_sha256": "4d39375d134233aaef6aa441bd130cf91c048057619e10938403a2fa3413d9f3"
+    },
+    {
+      "name": "elf",
+      "argv": [
+        "readelf",
+        "-l",
+        "-d",
+        "/opt/odin-delivery/v3-0fe03ba/odin"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "elf.log",
+      "elapsed_seconds": 0.038,
+      "log_sha256": "d5a8f5bedf0bde367e65fe4f6660f2cd5b4c24f6fbce54a8d31ed11ba4401703"
+    },
+    {
+      "name": "cli",
+      "argv": [
+        "python3",
+        "scripts/cli_smoke.py",
+        "--binary",
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/cli-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "cli.log",
+      "elapsed_seconds": 2.693,
+      "log_sha256": "c695fb9a1f26a217c038ad2bb9e326fa35bd8766cef1a277db1ab3c9aaec90cb"
+    },
+    {
+      "name": "mcp",
+      "argv": [
+        "python3",
+        "scripts/mcp_smoke.py",
+        "--binary",
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/mcp-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "mcp.log",
+      "elapsed_seconds": 1.387,
+      "log_sha256": "a5780f7b5e7951b5460c99ebcc92725479e5e28f70e716d7617393f48c1070d3"
+    },
+    {
+      "name": "http",
+      "argv": [
+        "python3",
+        "scripts/http_smoke.py",
+        "--binary",
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/http-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "http.log",
+      "elapsed_seconds": 1.361,
+      "log_sha256": "dba8f18bfb96cabb0c63806f02f6b7ca041092aa1d9cfefa7086fd6f0183f965"
+    },
+    {
+      "name": "cancellation",
+      "argv": [
+        "python3",
+        "scripts/mcp_cancel_smoke.py",
+        "--binary",
+        "/opt/odin-delivery/v3-0fe03ba/odin",
+        "--output",
+        "/opt/odin-delivery/v3-0fe03ba/cancellation-report.json"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "cancellation.log",
+      "elapsed_seconds": 1.526,
+      "log_sha256": "9bab41a3dab132d003b3a4c5a162005d1148baae06143da756b9e0d2187c6aba"
+    },
+    {
+      "name": "package",
+      "argv": [
+        "bash",
+        "scripts/package.sh",
+        "dist/linux-candidate"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "package.log",
+      "elapsed_seconds": 36.646,
+      "log_sha256": "f6fe6081ba78057e37c655f3a2b99033b791c7d62120eac73dafac4339f0d089"
+    },
+    {
+      "name": "checksums",
+      "argv": [
+        "sha256sum",
+        "--check",
+        "SHA256SUMS"
+      ],
+      "cwd": "/opt/odin-linux-0fe03ba/dist/linux-candidate",
+      "uid": 1000,
+      "status": "PASS",
+      "exit_code": 0,
+      "log": "checksums.log",
+      "elapsed_seconds": 0.162,
+      "log_sha256": "f01a5c178ca78612231c390e511dfc722626824d111d82415d3af8f8810b27ca"
+    },
+    {
+      "name": "final-package",
+      "argv": [
+        "python3",
+        "scripts/package_linux.py",
+        "--binary",
+        "/opt/odin-delivery/v3-notices-02/odin",
+        "--expected-binary-sha256",
+        "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+        "--output",
+        "/opt/odin-packaging-notices-02/dist/linux-notices-02"
+      ],
+      "cwd": "/opt/odin-packaging-notices-02",
+      "uid": 1000,
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 40.851,
+      "log": "final-package.log",
+      "log_sha256": "11b284d6d5d4db2b241fd8bbe9a69aba087ed33f3b93cdc31fca2a284df3b995"
+    },
+    {
+      "name": "final-checksums",
+      "argv": [
+        "sha256sum",
+        "--check",
+        "SHA256SUMS"
+      ],
+      "cwd": "/opt/odin-packaging-notices-02/dist/linux-notices-02",
+      "uid": 1000,
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 0.182,
+      "log": "final-checksums.log",
+      "log_sha256": "f01a5c178ca78612231c390e511dfc722626824d111d82415d3af8f8810b27ca"
+    },
+    {
+      "name": "installer_lifecycle",
+      "scope": "ACTUAL_DISPOSABLE_GUEST_INSTALLER_QA_COMMAND",
+      "argv": [
+        "python3",
+        "scripts/verify_linux_installer.py",
+        "--package",
+        "/opt/odin-packaging-notices-02/dist/linux-notices-02/odin-agent_0.2.0_amd64.deb",
+        "--portable",
+        "/opt/odin-packaging-notices-02/dist/linux-notices-02/odin-0.2.0-x86_64-unknown-linux-musl.tar.gz",
+        "--expected-binary-sha256",
+        "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+        "--output",
+        "/opt/odin-delivery/v3-notices-02/installer-qa",
+        "--disposable-vm"
+      ],
+      "cwd": "/opt/odin-packaging-notices-02",
+      "uid": 0,
+      "exit_code": 0,
+      "status": "PASS",
+      "elapsed_seconds": 10.462,
+      "binary_sha256": "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+      "app_build_revision": "0fe03ba30da9600c25588d506d7e094df89cf56f",
+      "packaging_revision": "f5878bfa725db8c0dcab7e45ca3cf89159508975",
+      "packaging_files_checked_before_install": 868,
+      "log": "installer-command.log",
+      "log_sha256": "aa8fd59282d41a3abc9b71efbfd0916336333aa0fdcdc9402d84d05ffd333d85"
+    }
+  ],
+  "workspace_tests": {
+    "passed": 211,
+    "failed": 0,
+    "ignored": 3,
+    "suites": [
+      {
+        "suite": "Running unittests src/main.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin-065cb807be46dd46)",
+        "result": "ok",
+        "passed": 6,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.17
+      },
+      {
+        "suite": "Running unittests src/lib.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin_core-0c54b3919272c1b6)",
+        "result": "ok",
+        "passed": 39,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 36.44
+      },
+      {
+        "suite": "Running tests/host_execution_policy.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/host_execution_policy-ba64541467317a85)",
+        "result": "ok",
+        "passed": 8,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.34
+      },
+      {
+        "suite": "Running tests/os_sandbox_native.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/os_sandbox_native-640c48812c5f32be)",
+        "result": "ok",
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.0
+      },
+      {
+        "suite": "Running tests/process_contention.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/process_contention-79aecff78accf8e0)",
+        "result": "ok",
+        "passed": 2,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.27
+      },
+      {
+        "suite": "Running tests/stdin_execution.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/stdin_execution-1a240c4be5a76f9e)",
+        "result": "ok",
+        "passed": 6,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 3.99
+      },
+      {
+        "suite": "Running unittests src/lib.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin_engine-223a18175d9fa8aa)",
+        "result": "ok",
+        "passed": 38,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 2.97
+      },
+      {
+        "suite": "Running tests/completion.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/completion-de085fde3ec1d11c)",
+        "result": "ok",
+        "passed": 19,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 158.66
+      },
+      {
+        "suite": "Running tests/debug_launch_policy.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/debug_launch_policy-d9047625b35d06fc)",
+        "result": "ok",
+        "passed": 3,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 2.75
+      },
+      {
+        "suite": "Running tests/formatter_profiles.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/formatter_profiles-1033a4ac20984d6e)",
+        "result": "ok",
+        "passed": 4,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 1.94
+      },
+      {
+        "suite": "Running tests/ide_tools.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/ide_tools-350c3ff0ac5e6e45)",
+        "result": "ok",
+        "passed": 8,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 8.16
+      },
+      {
+        "suite": "Running tests/invariants.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/invariants-1368bec61f17bb2e)",
+        "result": "ok",
+        "passed": 12,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 4.41
+      },
+      {
+        "suite": "Running unittests src/lib.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin_protocol-1bcd64d528506d80)",
+        "result": "ok",
+        "passed": 35,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.93
+      },
+      {
+        "suite": "Running tests/fixture_protocols.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/fixture_protocols-7eb661ab47df6214)",
+        "result": "ok",
+        "passed": 31,
+        "failed": 0,
+        "ignored": 3,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 40.35
+      },
+      {
+        "suite": "Doc-tests odin_core",
+        "result": "ok",
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.0
+      },
+      {
+        "suite": "Doc-tests odin_engine",
+        "result": "ok",
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.0
+      },
+      {
+        "suite": "Doc-tests odin_protocol",
+        "result": "ok",
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 0.0
+      }
+    ],
+    "status": "PASS",
+    "exit_code": 0
+  },
+  "focused_core": {
+    "passed": 39,
+    "failed": 0,
+    "ignored": 0,
+    "suites": [
+      {
+        "suite": "Running unittests src/lib.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin_core-5d5ba187b0932aec)",
+        "result": "ok",
+        "passed": 39,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 40.47
+      }
+    ],
+    "status": "PASS",
+    "exit_code": 0
+  },
+  "focused_protocol": {
+    "passed": 35,
+    "failed": 0,
+    "ignored": 0,
+    "suites": [
+      {
+        "suite": "Running unittests src/lib.rs (/root/odin-linux-target/x86_64-unknown-linux-musl/debug/deps/odin_protocol-b1ac6992125ec576)",
+        "result": "ok",
+        "passed": 35,
+        "failed": 0,
+        "ignored": 0,
+        "measured": 0,
+        "filtered_out": 0,
+        "elapsed_seconds": 1.57
+      }
+    ],
+    "status": "PASS",
+    "exit_code": 0
+  },
+  "smokes": {
+    "cli": {
+      "status": "PASS",
+      "passed_checks": 64,
+      "failed_checks": 0
+    },
+    "mcp": {
+      "status": "PASS",
+      "passed_checks": 24,
+      "failed_checks": 0
+    },
+    "http": {
+      "status": "PASS",
+      "passed_checks": 36,
+      "failed_checks": 0
+    },
+    "cancellation": {
+      "status": "PASS",
+      "passed_checks": 8,
+      "failed_checks": 0
+    }
+  },
+  "artifacts": [
+    {
+      "path": "odin-0.2.0-x86_64-unknown-linux-musl.tar.gz",
+      "sha256": "1a0afa762e48f9ee119e79629cc6fffb2ee997c74af129b824dfb3547f8c6d42",
+      "bytes": 6050609
+    },
+    {
+      "path": "odin-agent_0.2.0_amd64.deb",
+      "sha256": "a09930cfe415117e92757171c4502d0baac8669a93bee6bb76f31f1e7aa9e3a4",
+      "bytes": 4374116
+    },
+    {
+      "path": "odin",
+      "sha256": "e64c9a9e575b8d430f83acabd9a1b7503c9a1e7ed88ecd6215a0ca1bf33fba42",
+      "bytes": 14550736
+    }
+  ],
+  "payload_inventory": {
+    "path": "payload-inventory.json",
+    "sha256": "c261e96845f4d3c88a663f7ca8fb730a2539309c59e2edde394a32ac97751943",
+    "entries": 48
+  },
+  "installer_lifecycle": {
+    "status": "PASS",
+    "report": {
+      "path": "installer-report.json",
+      "sha256": "7605585d14e9babed5d7212b3b753ba5d6410d4960530098f5ddcd029badc403"
+    },
+    "install_exit_code": 0,
+    "reinstall_exit_code": 0,
+    "uninstall_exit_code": 0,
+    "checks": [
+      {
+        "name": "fresh_guest_has_no_odin_package",
+        "status": "PASS"
+      },
+      {
+        "name": "no_unmanaged_odin_binary",
+        "status": "PASS"
+      },
+      {
+        "name": "native_debian_package_identity",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_regular_files_only",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_single_safe_prefix",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_inventory_has_exact_payload",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_inventory_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_selected_binary_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "shipped_template_permissions_disabled",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_native_metadata",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_binary_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_native_metadata_matches_portable",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_payload_matches_inventory",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_tool_contracts",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_language_registry",
+        "status": "PASS"
+      },
+      {
+        "name": "same_version_reinstall_binary_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "reinstall_retains_operator_file",
+        "status": "PASS"
+      },
+      {
+        "name": "uninstall_removes_owned_binary",
+        "status": "PASS"
+      },
+      {
+        "name": "uninstall_removes_owned_payload",
+        "status": "PASS"
+      },
+      {
+        "name": "uninstall_retains_operator_file",
+        "status": "PASS"
+      }
+    ]
+  },
+  "package_manifest_note": "The packaging recipe writes its own NOT_RUN lifecycle/test fields because it does not execute those commands; this companion binds separately executed gates and lifecycle QA to the same binary/artifacts.",
+  "signed": false,
+  "linux_native_os_sandbox": "NOT_IMPLEMENTED",
+  "signal_shutdown_acceptance": {
+    "requirement": "ODIN-029-A2",
+    "status": "NOT_RUN",
+    "reason": "No dedicated SIGTERM/SIGINT descendant and journal acceptance was executed."
+  },
+  "not_run": [
+    "physical_linux_host",
+    "cross_version_upgrade",
+    "interruption_rollback",
+    "macOS_runtime",
+    "Linux_real_language_servers_and_debuggers"
+  ],
+  "windows_acceptance": "SEPARATE_EVIDENCE_REQUIRED"
+}

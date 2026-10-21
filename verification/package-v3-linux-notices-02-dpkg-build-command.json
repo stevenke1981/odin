@@ -1,0 +1,12 @@
+{
+  "command": [
+    "dpkg-deb",
+    "--root-owner-group",
+    "--build",
+    "/opt/odin-packaging-notices-02/dist/linux-notices-02/.deb-stage-1what1dv",
+    "/opt/odin-packaging-notices-02/dist/linux-notices-02/odin-agent_0.2.0_amd64.deb"
+  ],
+  "exit_code": 0,
+  "stdout": "dpkg-deb: building package 'odin-agent' in '/opt/odin-packaging-notices-02/dist/linux-notices-02/odin-agent_0.2.0_amd64.deb'.\n",
+  "stderr": ""
+}

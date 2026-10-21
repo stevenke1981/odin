@@ -1,0 +1,15 @@
+{
+  "name": "final-checksums",
+  "argv": [
+    "sha256sum",
+    "--check",
+    "SHA256SUMS"
+  ],
+  "cwd": "/opt/odin-packaging-notices-02/dist/linux-notices-02",
+  "uid": 1000,
+  "exit_code": 0,
+  "status": "PASS",
+  "elapsed_seconds": 0.182,
+  "log": "final-checksums.log",
+  "log_sha256": "f01a5c178ca78612231c390e511dfc722626824d111d82415d3af8f8810b27ca"
+}
