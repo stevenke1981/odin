@@ -1,0 +1,1 @@
+{"status": "OBSERVED", "scope": "DIRECT_NATIVE_BACKEND_DIAGNOSTIC_ONLY", "native_exit_code": 0, "report_sha256": "ef3e6a52ddbb45ca43132c8e8d5fdfb84e5ba6ab6bd2a1b6a6b6d1ba2ca279e1"}

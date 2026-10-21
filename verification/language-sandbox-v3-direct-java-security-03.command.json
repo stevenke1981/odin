@@ -1,0 +1,22 @@
+{
+  "command": [
+    "python",
+    "-u",
+    "verification/language-sandbox-v3-direct-diagnostic.py",
+    "--probe",
+    "java-security",
+    "--enumerate-runtime-ancestors",
+    "--output",
+    "verification/language-sandbox-v3-direct-java-security-03.json"
+  ],
+  "cwd": "C:\\Users\\steven\\.codex\\worktrees\\odin-platform\\odin",
+  "started_utc": "2026-10-21T03:05:22.5369589Z",
+  "finished_utc": "2026-10-21T03:05:25.4632259Z",
+  "exit_code": 0,
+  "scope": "DIRECT_NATIVE_BACKEND_DIAGNOSTIC_ONLY",
+  "driver_sha256": "db36c5281d1362912489212ce7dda7802dbdcea0729e089c06fc71ec03163863",
+  "harness_sha256": "21f0ddfb07eaecdc1da49cb9730d102e63b7cf1157abf0b73a93b2d361f6324b",
+  "report_sha256": "ef3e6a52ddbb45ca43132c8e8d5fdfb84e5ba6ab6bd2a1b6a6b6d1ba2ca279e1",
+  "stdout_sha256": "5cf94234140926025620d25d31204e05575454a4c89e572cdd48e1312f873640",
+  "line_endings_normalized_before_hash_binding": true
+}

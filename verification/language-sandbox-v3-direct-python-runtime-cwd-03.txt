@@ -1,0 +1,1 @@
+{"status": "OBSERVED_FAILURE", "scope": "DIRECT_NATIVE_BACKEND_DIAGNOSTIC_ONLY", "native_exit_code": 1, "report_sha256": "2c91bbdacf7a6473e2f9a9d58c80864728c3f9e13dbc35f92960e027bfe18f06"}

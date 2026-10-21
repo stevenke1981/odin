@@ -1,0 +1,52 @@
+{
+  "scope": "OFFLINE_EVIDENCE_INTEGRITY_NOT_NEW_BACKEND_ACCEPTANCE",
+  "result": "PASS",
+  "reports": [
+    {
+      "probe": "go-lsp",
+      "report": "verification/language-sandbox-v3-direct-go-lsp-03.json",
+      "report_sha256": "781230d19b902273285eb502ceab8a5041acd57c2cdee351dc2d8677ccaff11a",
+      "command_receipt_sha256": "d2c26ad6713a6c005aa844e5cb8414d634a1c62d89c497e640849e07e53a48dd",
+      "stdout_sha256": "b39a326e13e7d170f65a6738d71e44290cc6e83fe271e7c8e27f8491111eae18",
+      "actual_driver_exit_code": 0,
+      "native_backend_exit_code": 0,
+      "boundary_checks": 9,
+      "boundary_status": "PASS",
+      "boundary_source_sha256_verified": "73b39f09626d53185ae07357ae282b6856f360f7202aa6de896a3e12635008ef",
+      "policy_sha256_scope": "actual original executed policy before fixture-path redaction",
+      "checks_sha256": "d6aec6c26ebb5d78123a0377ab6a5f0c382796a79f564797d589af5afdbccd18"
+    },
+    {
+      "probe": "java-security",
+      "report": "verification/language-sandbox-v3-direct-java-security-03.json",
+      "report_sha256": "ef3e6a52ddbb45ca43132c8e8d5fdfb84e5ba6ab6bd2a1b6a6b6d1ba2ca279e1",
+      "command_receipt_sha256": "c19b3e754d5429f953d954eeb0b9817d87997d94400f02b1a9c526a633ba97fa",
+      "stdout_sha256": "5cf94234140926025620d25d31204e05575454a4c89e572cdd48e1312f873640",
+      "actual_driver_exit_code": 0,
+      "native_backend_exit_code": 0,
+      "boundary_checks": 9,
+      "boundary_status": "PASS",
+      "boundary_source_sha256_verified": "b7063e08097e53cd0d32c972cd7df290e62f19017251521610372392d1896629",
+      "policy_sha256_scope": "actual original executed policy before fixture-path redaction",
+      "checks_sha256": "d6aec6c26ebb5d78123a0377ab6a5f0c382796a79f564797d589af5afdbccd18"
+    },
+    {
+      "probe": "python-runtime-cwd",
+      "report": "verification/language-sandbox-v3-direct-python-runtime-cwd-03.json",
+      "report_sha256": "2c91bbdacf7a6473e2f9a9d58c80864728c3f9e13dbc35f92960e027bfe18f06",
+      "command_receipt_sha256": "fbd6075d408c528734646f4ab1cbd900e5667abb11b47b650871db286f0daa50",
+      "stdout_sha256": "f5a4a98f8941e0101226ba3de6e7bf0bc5a34303c3c0f3d2d11064ea226582b7",
+      "actual_driver_exit_code": 0,
+      "native_backend_exit_code": 1,
+      "boundary_checks": 9,
+      "boundary_status": "PASS",
+      "boundary_source_sha256_verified": "4a5dad2726680b7477879d80c00efc5de8d8eae83f1914d0624f5089f22fe038",
+      "policy_sha256_scope": "actual original executed policy before fixture-path redaction",
+      "checks_sha256": "d6aec6c26ebb5d78123a0377ab6a5f0c382796a79f564797d589af5afdbccd18"
+    }
+  ],
+  "boundary_checks_pass": 27,
+  "odin_mcp_checks": 0,
+  "line_endings_verified": "LF",
+  "historical_reports_modified": false
+}

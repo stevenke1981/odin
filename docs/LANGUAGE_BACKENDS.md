@@ -276,6 +276,24 @@ change was added. The first direct Go probe omitted the SDK PATH prefix, so its
 cause of the Odin run's `no views` failure. C#'s captured named-pipe denial is
 also distinct from missing writable filesystem caches.
 
+The separate `language-sandbox-v3-direct-*-03` reports tested an explicit
+metadata-only `processContainer.filesystem.enumeratePaths` profile. The native
+probe confirmed support before launch. Each of the three runs passed all nine
+real boundary checks: permitted source reads/private writes, denied outside
+content/overwrites and source writes, protected policy reads, volume metadata
+query, and denied loopback with zero host connections. Existing read-only
+content grants were not broadened. The [MXC schema](https://github.com/microsoft/mxc/blob/main/docs/schema.md)
+distinguishes this enumeration permission from file-content access.
+
+Those runs enumerated E: runtime ancestors only. Java's security initialization
+then exited successfully; this is not JDT LS or Odin semantic acceptance. Go's
+corrected SDK PATH exposed an explicit workspace-path access denial on the C:
+fixture drive. Python still failed its installed runtime's `chdir`. C: ancestor
+enumeration requires a separate explicit profile and fresh evidence. The
+companion `language-sandbox-v3-direct-03-integrity.json` verifies the preserved
+report/log/source hashes and all 27 boundary results. These diagnostic runs
+still contain zero Odin/MCP acceptance checks.
+
 `verification/language-sandbox-v3-runner.ps1` records the exact driver argv,
 binary/harness/runner hashes, actual exit code, raw stdout and transcript. It
 requires fresh output names, normalizes text to LF before final hash binding,
