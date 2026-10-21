@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "task_id": "language-sandbox-installers-v3",
+  "revision": 1,
+  "actor_instance": "/root/independent_review_v3",
+  "receiver_instance": "/root",
+  "role_id": "independent_reviewer",
+  "kind": "handoff",
+  "simulation": false,
+  "observed_at_utc": "2026-10-21 03:15:38 UTC",
+  "base_sha": "9017908f8759de74d5c3deb89e7bdb8aedcf83fd",
+  "head_sha": "780c6adf7de71a6d96d3af12314dcbe9b526ad8b",
+  "scope": "Independent source review and executed read-only checks; phase 1, final evidence pending",
+  "write_scopes": [
+    "verification/language-installers-v3-review-phase1.json",
+    "verification/language-installers-v3-review-phase1.md"
+  ],
+  "status": "NOT_RUN",
+  "source_review": "PASS",
+  "release_approval": "NOT_RUN",
+  "findings": [],
+  "artifact": {
+    "path": "verification/language-installers-v3-review-phase1.md",
+    "sha256": "4d20f3a4b032bc5271aa8ad268a75207258911a3eba3f8c4b071645c616b5ec6"
+  },
+  "source_sha256": {
+    "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34",
+    "Cargo.toml": "8a009f775d201c8199a6d6f81963bb75dde59a48dc783ae6086a6a7407e21e36",
+    "crates/odin-core/src/config.rs": "0b35cd97b09bb64bd1adc3a4a72dff803c6e7d484cd5f48b972deac1a2a12675",
+    "crates/odin-core/src/execution.rs": "155dfc311d0119f2460b7024f12911745e48729199dd9539ceffefca8c4bba88",
+    "crates/odin-core/src/process.rs": "b69e2cf89c9cf96b79f01b85ea67ad41a1f6dcdd89d5e9bedd6167062fb84fa8",
+    "crates/odin-core/src/sandbox.rs": "18be5bd8c1794375fbfd79f6ffe1d226167b0942614110c86d6cd4e92ea5f5d5",
+    "crates/odin-core/src/sandbox_policy.rs": "76fa4355780c363c1524b17713076a3a08b66384053916c1da22cbe0c05eb27a",
+    "crates/odin-core/src/transaction.rs": "495b5344b6d68e8c1c2b82195fb532883fde9bf3484ac6401740eb7956fb52bb",
+    "crates/odin-core/tests/fixtures/stdin_workload.rs": "93f2a2c2ccd2e9db54bf34b93723a4beeb8a86a60df9ce1a3ec66fd00dc53a86",
+    "crates/odin-core/tests/host_execution_policy.rs": "ba34311478079eca7d43a7904b228fa2d9c17697214cf26be162d6cb4302421a",
+    "crates/odin-core/tests/os_sandbox_native.rs": "5923210fc19435d8ad8a6ea2145c45c2b58a44e23ba42bf411fb32c133ff30a2",
+    "crates/odin-core/tests/stdin_execution.rs": "9d80ac47146314c2b7ab043b91a19391ec090f4819862131fb836c06ea3b1a31",
+    "crates/odin-engine/src/formatter.rs": "79cd591119294b25a3624ccb4d97d349856abc57039a530f93a8c2f517fc7ecb",
+    "crates/odin-engine/src/ide.rs": "e2712e30f060d31acfd5ded6ac6e4e4d9f50071951df50638d84e104a4aaf5f1",
+    "crates/odin-engine/src/inspections.rs": "b01820e8ceb56194f69b6ff71caa2640ef88d25dfd328e3a69addecebf62a720",
+    "crates/odin-engine/src/lib.rs": "faa522453d4380f4db8ebfa79d54691c9d22b6088426632a999e69204b1b0bdb",
+    "crates/odin-engine/tests/fixtures/ide_peer.py": "2feab3f5012217bce061bc0c73a78a9cf1afbcb47e087db02aec15ece2e72beb",
+    "crates/odin-engine/tests/formatter_profiles.rs": "74db7ea48c617788acd7d7434d71c1fd46eb3483a8e894cc2322bb055a1d2a6e",
+    "crates/odin-engine/tests/ide_tools.rs": "6bfc26c527616e97f1b636902d3b7962a42d4445cc33e3270a48db4449a0e0d5",
+    "crates/odin-engine/tools.json": "d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea",
+    "crates/odin-protocol/tests/fixture_protocols.rs": "ab32f1520a3db1cc4b80861ee61b638d898712e7cec766fecb1370a27a35f0dc",
+    "crates/odin/build.rs": "c901d4e9601890336248e1e5c20d600c2c837390e54d8dc5c7bb7704b5c2dabe",
+    "docs/API.md": "4255709bd3d0a2abfe73b5060cc0257047703d4d1c305001f9626a0440201c5b",
+    "docs/IDE_IMPLEMENTATION.md": "3eaf432c4b65486fffcd1f9d5522b8785e1775ac8acae69cd7a6d20572542f21",
+    "docs/LANGUAGE_BACKENDS.md": "6a381a7bfef1168bf55af5f3caacab4fa4fbc1b7477be877195c4dfb38b4eacc",
+    "docs/NATIVE_FORMATTERS.md": "70280f5c8414c92b9efb7b334937e75380a95f44f0607e0363a840fa369f5b01",
+    "docs/OS_SANDBOX.md": "f63cda8518988a1177c1d23347edb3e5432fe21de728df167a86a6eeab07c7c3",
+    "docs/PACKAGING_WINDOWS_LINUX.md": "8e4615093f8a36d4242aa7dd6ee8ba4bd0943b7d1f55b3d49f9f6c9dbd3950a7",
+    "docs/SECURITY.md": "7db2f289b8562e8be3bc201a8dc789eb11fe2a71dda0a594f892f6dfaaa0a339",
+    "docs/dispatch-language-installers-v3.md": "ab620a154bba54a28abaf3a5927a1347840e452f06bb430be6ff730db7c55268",
+    "packaging/MICROSOFT_RUNTIME_NOTICES.txt": "bdfc73b0ab0b0547208a29aa1b2a43479c7283b5985920b3d825d5d7bbf092ae",
+    "packaging/odin.iss": "cb68ecfee7b5bad21a8f39e553a0af82824142431ce1bc6df203093e3a99f29a",
+    "packaging/windows-runtime.ps1": "1034cfcf8325b6d828f72272c78e618ad69034230ca4dd5128e7c004a7e937af",
+    "rust-toolchain.toml": "c33d1f0b1b8fda448bea32d7dc867aa64947c87169fd9de7122ffccad1dd80f9",
+    "schemas/tools.json": "d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea",
+    "scripts/generate_catalog.py": "1c761b53433ac1bc00e9c4972f36a7bf610f6a1e0ffea17d2fbce1f97d56befd",
+    "scripts/generate_docs.py": "040c59868d593039902e04d0978820882061c690a7b8e98758c3605215f853c2",
+    "scripts/package.ps1": "fa4ef4178694dac71333385b3ffc2c54d8516aa02b4f169e6342e7cbcf7c01d2",
+    "scripts/package.sh": "c9787a8cb48a686aa68e8a50e2280436c31790b7401870e2b3a131835d0f2535",
+    "scripts/package_linux.py": "cdbed5a33ff790d3ca38cf740131e82a01c2de091bc45817f954de115b6ac3d0",
+    "scripts/package_tar.py": "1349d1966085f55b719a5a446e2763ba8e6c19a154f967c77042a6e01f5c2345",
+    "scripts/verify_installer.ps1": "d0afdf0cf1da9e7d11063cd4dd617a13a6aa2053863464aaf13102faeb2f5672",
+    "scripts/verify_linux_installer.py": "bd9708326bcee09807bc99f85f45538780a4b1b67923a96fd6e86b45bbe5770e",
+    "tests/real_ide_backends.py": "21f0ddfb07eaecdc1da49cb9730d102e63b7cf1157abf0b73a93b2d361f6324b"
+  },
+  "checks": [
+    {
+      "name": "trusted_host_formatter_policy_and_argv",
+      "status": "PASS",
+      "method": "SOURCE_REVIEW",
+      "paths": [
+        "crates/odin-core/src/config.rs",
+        "docs/NATIVE_FORMATTERS.md"
+      ],
+      "result": "Explicit false-default write/formatter grants; policy only reduces permissions; exact isolated stdin grammar and absolute SafeRoot filename."
+    },
+    {
+      "name": "bounded_stdin_flush_cancellation_and_capture",
+      "status": "PASS",
+      "method": "SOURCE_REVIEW",
+      "paths": [
+        "crates/odin-core/src/execution.rs"
+      ],
+      "result": "Concurrent drains/feed and deadline; observes queued-write errors; capture tasks abort on cancellation; process-tree lifetime retains policy/scratch until parent reap. This is not final kernel execution proof."
+    },
+    {
+      "name": "formatter_output_expected_hash_and_transactions",
+      "status": "PASS",
+      "method": "SOURCE_REVIEW",
+      "paths": [
+        "crates/odin-engine/src/formatter.rs",
+        "crates/odin-engine/src/ide.rs",
+        "crates/odin-engine/src/inspections.rs"
+      ],
+      "result": "No automatic fallback. Failed/truncated/invalid-UTF8 or incomplete-stdin results cannot stage source. Rejects caller range/options and source/state writable grants; rechecks source and prepares normal CAS transaction."
+    },
+    {
+      "name": "typed_enumeration_only_contract",
+      "status": "PASS",
+      "method": "SOURCE_REVIEW_AND_PRIMARY_SOURCE_COMPARISON",
+      "paths": [
+        "crates/odin-core/src/sandbox_policy.rs",
+        "crates/odin-core/src/sandbox.rs",
+        "crates/odin-core/src/config.rs",
+        "docs/OS_SANDBOX.md"
+      ],
+      "result": "Default empty, bounded explicit existing directories; metadata root distinct from content grants; positive native capability required in health/prepare; enumeration never covers executable/cwd. Native final test remains blocked."
+    },
+    {
+      "name": "windows_packaging_runtime_and_installer",
+      "status": "PASS",
+      "method": "SOURCE_REVIEW",
+      "paths": [
+        "packaging/windows-runtime.ps1",
+        "packaging/odin.iss",
+        "scripts/package.ps1",
+        "scripts/verify_installer.ps1"
+      ],
+      "result": "Explicit official signed app-local CRT; fail on unknown/delay-load imports; per-user installer, hidden isolated QA, source-bound inventory and operator-file retention. New runtime/lifecycle execution pending."
+    },
+    {
+      "name": "linux_packaging_and_verifier",
+      "status": "PASS",
+      "method": "SOURCE_REVIEW",
+      "paths": [
+        "scripts/package_linux.py",
+        "scripts/package_tar.py",
+        "scripts/verify_linux_installer.py"
+      ],
+      "result": "Requires matching selected binary digest, actual target metadata execution and clean-source release. ELF musl .deb and tar ownership explicit; guest-only install/remove. Final artifact/CLI/MCP/HTTP acceptance pending."
+    },
+    {
+      "name": "format_and_catalog_static_checks",
+      "status": "PASS",
+      "method": "EXECUTED",
+      "command_indices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "name": "historical_language_receipt_integrity",
+      "status": "PASS",
+      "method": "EXECUTED",
+      "result": "68 PASS /12 FAIL old-binary diagnostic retained as FAIL; report/log/transcript hashes match receipt. Normalization PASS is not language acceptance."
+    },
+    {
+      "name": "current_windows_core_test_gate",
+      "status": "BLOCKED",
+      "method": "AUTHOR_COMMAND_LOG_REVIEW",
+      "source": "verification/language-installers-v3-enumeration-core-01.json",
+      "exit_code": 101,
+      "result": "8 host policy tests passed; stdin test executable never executed due to AppControl os error4551. Whole command is not PASS."
+    },
+    {
+      "name": "current_windows_native_kernel_gate",
+      "status": "BLOCKED",
+      "method": "AUTHOR_COMMAND_LOG_REVIEW",
+      "source": "verification/language-installers-v3-enumeration-native-01.json",
+      "exit_code": 101,
+      "result": "Native test executable never executed due to AppControl4551. Earlier native PASS is historical."
+    },
+    {
+      "name": "final_windows_candidate_language_matrix_and_protocol_smokes",
+      "status": "NOT_RUN",
+      "reason": "Awaiting final integrated candidate and new candidate-bound reports."
+    },
+    {
+      "name": "final_windows_package_lifecycle",
+      "status": "NOT_RUN",
+      "reason": "Awaiting final Inno/portable artifacts and actual lifecycle report."
+    },
+    {
+      "name": "final_linux_build_target_execution_and_package_lifecycle",
+      "status": "NOT_RUN",
+      "reason": "Awaiting final guest build/execution and actual deb/tar install/reinstall/remove report. Historical Windows cross build exited101."
+    },
+    {
+      "name": "cloud_ci_execution",
+      "status": "N/A",
+      "reason": "Not requested; reviewer executed no CI. Source workflow remains manual self-hosted only."
+    }
+  ],
+  "commands": [
+    {
+      "command": "cargo fmt --all -- --check",
+      "cwd": "C:/Users/steven/.codex/worktrees/odin-review-v3/odin",
+      "head_sha": "418124e2086b6c13ce690c354ef15554fb65f762",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": "$OdinReviewCheck = @'\nimport ast, hashlib, json, pathlib, subprocess\nroot=pathlib.Path.cwd()\nresults=[]\ndef check(name, passed, detail=None):\n    results.append({'name':name,'status':'PASS' if passed else 'FAIL','detail':detail})\n    if not passed: raise AssertionError(name)\na=root/'crates/odin-engine/tools.json'; b=root/'schemas/tools.json'\ncheck('paired_catalog_bytes',a.read_bytes()==b.read_bytes(),hashlib.sha256(a.read_bytes()).hexdigest())\ncat=json.loads(a.read_text(encoding='utf-8')); check('native_catalog_count',len(cat)==85,len(cat))\nfmt=next(t for t in cat if t['name']=='format_document'); check('formatter_explicit_schema',fmt['inputSchema']['properties']['formatter_profile']['type']=='string')\ncheck('formatter_write_policy',fmt.get('policy')=='write',fmt.get('policy'))\npositions=[]\ndef walk(v):\n    if isinstance(v,dict):\n        if set(v.get('properties',{}))=={'line','character'}:\n            for key in ('line','character'):\n                positions.append(v['properties'][key])\n        for item in v.values(): walk(item)\n    elif isinstance(v,list):\n        for item in v: walk(item)\nwalk(cat)\ncheck('lsp_integer_positions_max',len(positions)>0 and all(x.get('minimum')==0 and x.get('maximum')==2147483647 for x in positions),len(positions))\ncompletion=next(t for t in cat if t['name']=='completion'); check('completion_count_budget_unchanged',completion['inputSchema']['properties']['limit']['maximum']==200)\nfor name in ('scripts/package_linux.py','scripts/package_tar.py','scripts/verify_linux_installer.py','tests/real_ide_backends.py','scripts/generate_catalog.py'):\n    ast.parse((root/name).read_text(encoding='utf-8'),filename=name); check('python_ast:'+name,True)\nworkflows=list((root/'.github/workflows').glob('*'))\ncheck('manual_self_hosted_workflows_only',bool(workflows) and all('workflow_dispatch:' in p.read_text(encoding='utf-8') and 'self-hosted' in p.read_text(encoding='utf-8') and 'push:' not in p.read_text(encoding='utf-8') and 'pull_request:' not in p.read_text(encoding='utf-8') for p in workflows),[p.name for p in workflows])\ncheck('rust_lockfile_unchanged_from_base',subprocess.run(['git','diff','--exit-code','9017908f8759de74d5c3deb89e7bdb8aedcf83fd','HEAD','--','Cargo.lock','Cargo.toml','rust-toolchain.toml'],capture_output=True).returncode==0)\nprint(json.dumps({'status':'PASS','checks':results},ensure_ascii=False))\n'@\n$OdinReviewCheck | python -",
+      "cwd": "C:/Users/steven/.codex/worktrees/odin-review-v3/odin",
+      "head_sha": "418124e2086b6c13ce690c354ef15554fb65f762",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"status\": \"PASS\", \"checks\": [{\"name\": \"paired_catalog_bytes\", \"status\": \"PASS\", \"detail\": \"d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea\"}, {\"name\": \"native_catalog_count\", \"status\": \"PASS\", \"detail\": 85}, {\"name\": \"formatter_explicit_schema\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"formatter_write_policy\", \"status\": \"PASS\", \"detail\": \"write\"}, {\"name\": \"lsp_integer_positions_max\", \"status\": \"PASS\", \"detail\": 34}, {\"name\": \"completion_count_budget_unchanged\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"python_ast:scripts/package_linux.py\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"python_ast:scripts/package_tar.py\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"python_ast:scripts/verify_linux_installer.py\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"python_ast:tests/real_ide_backends.py\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"python_ast:scripts/generate_catalog.py\", \"status\": \"PASS\", \"detail\": null}, {\"name\": \"manual_self_hosted_workflows_only\", \"status\": \"PASS\", \"detail\": [\"manual-local.yml\"]}, {\"name\": \"rust_lockfile_unchanged_from_base\", \"status\": \"PASS\", \"detail\": null}]}\r\n"
+    },
+    {
+      "command": "$OdinReviewEvidence = @'\nimport hashlib, json, pathlib\nroot=pathlib.Path.cwd(); evidence=[]\nfor name in ('verification/language-sandbox-v3-diagnostic-01.json','verification/language-sandbox-v3-diagnostic-01.command.json','verification/language-sandbox-v3-diagnostic-01.normalization.json','verification/package-v3-recipe-checks.json','verification/package-v3-linux-diagnostic-build-02.json','verification/engine-gap-20261021T030242Z-verification.json'):\n    path=root/name; data=path.read_bytes(); obj=json.loads(data)\n    evidence.append({'path':name,'sha256':hashlib.sha256(data).hexdigest(),'status':obj.get('status'),'exit_code':obj.get('exit_code'),'binary_sha256':obj.get('binary_sha256'),'counts':obj.get('counts'),'build':obj.get('build'),'final_runtime':obj.get('installer_runtime')})\nreport=json.loads((root/'verification/language-sandbox-v3-diagnostic-01.json').read_text(encoding='utf-8'))\nreceipt=json.loads((root/'verification/language-sandbox-v3-diagnostic-01.command.json').read_text(encoding='utf-8'))\nassert report['counts']=={'PASS':68,'FAIL':12}\nassert receipt['exit_code']==1\nfor key,path in [('report_sha256','verification/language-sandbox-v3-diagnostic-01.json'),('log_sha256','verification/language-sandbox-v3-diagnostic-01.txt')]:\n    assert receipt[key]==hashlib.sha256((root/path).read_bytes()).hexdigest(),key\nassert report['transcript_sha256']==hashlib.sha256((root/'verification/language-sandbox-v3-diagnostic-01.requests.jsonl').read_bytes()).hexdigest()\nassert report['binary_sha256']=='f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875'\nprint(json.dumps({'status':'PASS','scope':'historical diagnostic receipts preserve failed/partial scope, not final acceptance','evidence':evidence},ensure_ascii=False))\n'@\n$OdinReviewEvidence | python -",
+      "cwd": "C:/Users/steven/.codex/worktrees/odin-review-v3/odin",
+      "head_sha": "418124e2086b6c13ce690c354ef15554fb65f762",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"status\": \"PASS\", \"scope\": \"historical diagnostic receipts preserve failed/partial scope, not final acceptance\", \"evidence\": [{\"path\": \"verification/language-sandbox-v3-diagnostic-01.json\", \"sha256\": \"b38ac18fffb4f803d4c1bd353e1c3876a27a75f8eaac1ce0eb817ec43e935fed\", \"status\": \"FAIL\", \"exit_code\": null, \"binary_sha256\": \"f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875\", \"counts\": {\"PASS\": 68, \"FAIL\": 12}, \"build\": null, \"final_runtime\": null}, {\"path\": \"verification/language-sandbox-v3-diagnostic-01.command.json\", \"sha256\": \"a03f4310f393541624553d36a27c1ef708629f80940c5260a5bf09df165cd1da\", \"status\": null, \"exit_code\": 1, \"binary_sha256\": \"f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875\", \"counts\": null, \"build\": null, \"final_runtime\": null}, {\"path\": \"verification/language-sandbox-v3-diagnostic-01.normalization.json\", \"sha256\": \"9206f47d0df0d68044ee1ed9d0d58efc7661358a348c86a0b2670cc26efb0d9c\", \"status\": \"PASS\", \"exit_code\": null, \"binary_sha256\": \"f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875\", \"counts\": null, \"build\": null, \"final_runtime\": null}, {\"path\": \"verification/package-v3-recipe-checks.json\", \"sha256\": \"d68f48c7bf5d1837b916e53bb327453f235c80273e19196dea5089f7daaa9458\", \"status\": \"PASS\", \"exit_code\": null, \"binary_sha256\": null, \"counts\": null, \"build\": null, \"final_runtime\": \"NOT_RUN_UNTIL_FINAL_CANDIDATE\"}, {\"path\": \"verification/package-v3-linux-diagnostic-build-02.json\", \"sha256\": \"cd79191b02f7c20269156a5b3f1322e4dd18567fee062a66df38cb3d34b6cda9\", \"status\": \"FAIL\", \"exit_code\": 101, \"binary_sha256\": null, \"counts\": null, \"build\": null, \"final_runtime\": null}, {\"path\": \"verification/engine-gap-20261021T030242Z-verification.json\", \"sha256\": \"e86d4850fb04f9a355df4223ffcf5cd011f396b123e80e9e73f23865d041bfac\", \"status\": \"BLOCKED\", \"exit_code\": null, \"binary_sha256\": null, \"counts\": null, \"build\": null, \"final_runtime\": null}]}\r\n"
+    },
+    {
+      "command": "cargo fmt --all -- --check",
+      "cwd": "C:/Users/steven/.codex/worktrees/odin-review-v3/odin",
+      "head_sha": "780c6adf7de71a6d96d3af12314dcbe9b526ad8b",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": ""
+    },
+    {
+      "command": "$OdinReviewHash = @'\nimport hashlib,json,pathlib,subprocess\nroot=pathlib.Path.cwd(); paths=subprocess.check_output(['git','diff','--name-only','9017908f8759de74d5c3deb89e7bdb8aedcf83fd','HEAD'],text=True,encoding='utf-8').splitlines()\npaths=[x for x in paths if not x.startswith('verification/')]+['Cargo.lock','Cargo.toml','rust-toolchain.toml','crates/odin/build.rs','crates/odin-core/src/process.rs','crates/odin-core/src/transaction.rs']\nresult={p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in sorted(set(paths)) if (root/p).is_file()}\nprint(json.dumps(result,sort_keys=True))\n'@\n$OdinReviewHash | python -",
+      "cwd": "C:/Users/steven/.codex/worktrees/odin-review-v3/odin",
+      "head_sha": "780c6adf7de71a6d96d3af12314dcbe9b526ad8b",
+      "exit_code": 0,
+      "status": "PASS",
+      "output": "{\"Cargo.lock\": \"14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34\", \"Cargo.toml\": \"8a009f775d201c8199a6d6f81963bb75dde59a48dc783ae6086a6a7407e21e36\", \"crates/odin-core/src/config.rs\": \"0b35cd97b09bb64bd1adc3a4a72dff803c6e7d484cd5f48b972deac1a2a12675\", \"crates/odin-core/src/execution.rs\": \"155dfc311d0119f2460b7024f12911745e48729199dd9539ceffefca8c4bba88\", \"crates/odin-core/src/process.rs\": \"b69e2cf89c9cf96b79f01b85ea67ad41a1f6dcdd89d5e9bedd6167062fb84fa8\", \"crates/odin-core/src/sandbox.rs\": \"18be5bd8c1794375fbfd79f6ffe1d226167b0942614110c86d6cd4e92ea5f5d5\", \"crates/odin-core/src/sandbox_policy.rs\": \"76fa4355780c363c1524b17713076a3a08b66384053916c1da22cbe0c05eb27a\", \"crates/odin-core/src/transaction.rs\": \"495b5344b6d68e8c1c2b82195fb532883fde9bf3484ac6401740eb7956fb52bb\", \"crates/odin-core/tests/fixtures/stdin_workload.rs\": \"93f2a2c2ccd2e9db54bf34b93723a4beeb8a86a60df9ce1a3ec66fd00dc53a86\", \"crates/odin-core/tests/host_execution_policy.rs\": \"ba34311478079eca7d43a7904b228fa2d9c17697214cf26be162d6cb4302421a\", \"crates/odin-core/tests/os_sandbox_native.rs\": \"5923210fc19435d8ad8a6ea2145c45c2b58a44e23ba42bf411fb32c133ff30a2\", \"crates/odin-core/tests/stdin_execution.rs\": \"9d80ac47146314c2b7ab043b91a19391ec090f4819862131fb836c06ea3b1a31\", \"crates/odin-engine/src/formatter.rs\": \"79cd591119294b25a3624ccb4d97d349856abc57039a530f93a8c2f517fc7ecb\", \"crates/odin-engine/src/ide.rs\": \"e2712e30f060d31acfd5ded6ac6e4e4d9f50071951df50638d84e104a4aaf5f1\", \"crates/odin-engine/src/inspections.rs\": \"b01820e8ceb56194f69b6ff71caa2640ef88d25dfd328e3a69addecebf62a720\", \"crates/odin-engine/src/lib.rs\": \"faa522453d4380f4db8ebfa79d54691c9d22b6088426632a999e69204b1b0bdb\", \"crates/odin-engine/tests/fixtures/ide_peer.py\": \"2feab3f5012217bce061bc0c73a78a9cf1afbcb47e087db02aec15ece2e72beb\", \"crates/odin-engine/tests/formatter_profiles.rs\": \"74db7ea48c617788acd7d7434d71c1fd46eb3483a8e894cc2322bb055a1d2a6e\", \"crates/odin-engine/tests/ide_tools.rs\": \"6bfc26c527616e97f1b636902d3b7962a42d4445cc33e3270a48db4449a0e0d5\", \"crates/odin-engine/tools.json\": \"d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea\", \"crates/odin-protocol/tests/fixture_protocols.rs\": \"ab32f1520a3db1cc4b80861ee61b638d898712e7cec766fecb1370a27a35f0dc\", \"crates/odin/build.rs\": \"c901d4e9601890336248e1e5c20d600c2c837390e54d8dc5c7bb7704b5c2dabe\", \"docs/API.md\": \"4255709bd3d0a2abfe73b5060cc0257047703d4d1c305001f9626a0440201c5b\", \"docs/IDE_IMPLEMENTATION.md\": \"3eaf432c4b65486fffcd1f9d5522b8785e1775ac8acae69cd7a6d20572542f21\", \"docs/LANGUAGE_BACKENDS.md\": \"6a381a7bfef1168bf55af5f3caacab4fa4fbc1b7477be877195c4dfb38b4eacc\", \"docs/NATIVE_FORMATTERS.md\": \"70280f5c8414c92b9efb7b334937e75380a95f44f0607e0363a840fa369f5b01\", \"docs/OS_SANDBOX.md\": \"f63cda8518988a1177c1d23347edb3e5432fe21de728df167a86a6eeab07c7c3\", \"docs/PACKAGING_WINDOWS_LINUX.md\": \"8e4615093f8a36d4242aa7dd6ee8ba4bd0943b7d1f55b3d49f9f6c9dbd3950a7\", \"docs/SECURITY.md\": \"7db2f289b8562e8be3bc201a8dc789eb11fe2a71dda0a594f892f6dfaaa0a339\", \"docs/dispatch-language-installers-v3.md\": \"ab620a154bba54a28abaf3a5927a1347840e452f06bb430be6ff730db7c55268\", \"packaging/MICROSOFT_RUNTIME_NOTICES.txt\": \"bdfc73b0ab0b0547208a29aa1b2a43479c7283b5985920b3d825d5d7bbf092ae\", \"packaging/odin.iss\": \"cb68ecfee7b5bad21a8f39e553a0af82824142431ce1bc6df203093e3a99f29a\", \"packaging/windows-runtime.ps1\": \"1034cfcf8325b6d828f72272c78e618ad69034230ca4dd5128e7c004a7e937af\", \"rust-toolchain.toml\": \"c33d1f0b1b8fda448bea32d7dc867aa64947c87169fd9de7122ffccad1dd80f9\", \"schemas/tools.json\": \"d544240ce1d34c44921a8ed0e5fe72d43082b5a455d3e597b6c590bc84bbc3ea\", \"scripts/generate_catalog.py\": \"1c761b53433ac1bc00e9c4972f36a7bf610f6a1e0ffea17d2fbce1f97d56befd\", \"scripts/generate_docs.py\": \"040c59868d593039902e04d0978820882061c690a7b8e98758c3605215f853c2\", \"scripts/package.ps1\": \"fa4ef4178694dac71333385b3ffc2c54d8516aa02b4f169e6342e7cbcf7c01d2\", \"scripts/package.sh\": \"c9787a8cb48a686aa68e8a50e2280436c31790b7401870e2b3a131835d0f2535\", \"scripts/package_linux.py\": \"cdbed5a33ff790d3ca38cf740131e82a01c2de091bc45817f954de115b6ac3d0\", \"scripts/package_tar.py\": \"1349d1966085f55b719a5a446e2763ba8e6c19a154f967c77042a6e01f5c2345\", \"scripts/verify_installer.ps1\": \"d0afdf0cf1da9e7d11063cd4dd617a13a6aa2053863464aaf13102faeb2f5672\", \"scripts/verify_linux_installer.py\": \"bd9708326bcee09807bc99f85f45538780a4b1b67923a96fd6e86b45bbe5770e\", \"tests/real_ide_backends.py\": \"21f0ddfb07eaecdc1da49cb9730d102e63b7cf1157abf0b73a93b2d361f6324b\"}\r\n"
+    }
+  ],
+  "activity_notes": [
+    {
+      "status": "FAIL",
+      "scope": "REVIEWER_READ_ONLY_LOOKUP",
+      "detail": "An initial .github/workflows/verify.yml read returned exit1 because actual file is manual-local.yml; subsequent actual workflow inspection/check passed. This is not a product test failure."
+    },
+    {
+      "status": "FAIL",
+      "scope": "REVIEWER_READ_ONLY_LOOKUP",
+      "detail": "An initial crates/odin-agent/build.rs read returned exit1 because actual binary crate is crates/odin; corrected source binding uses crates/odin/build.rs."
+    },
+    {
+      "status": "NOT_RUN",
+      "scope": "REVIEWER_TEST_EXECUTION",
+      "detail": "Reviewer did not rerun known-blocked Rust executables, replace/copy a blocked candidate, alter OS/ACLs, run installer lifecycle, connect to the packaging serial console, or publish."
+    },
+    {
+      "status": "FAIL",
+      "scope": "REVIEW_OUTPUT_WHITESPACE",
+      "detail": "The first staged git diff --check exited1 for an extra EOF blank line in the two owned review files. Only those review files were normalized and digest bindings updated before commit; no product source changed."
+    }
+  ],
+  "primary_sources": [
+    {
+      "url": "https://github.com/microsoft/mxc/blob/main/schemas/stable/mxc-config.schema.1.0.0.json",
+      "purpose": "Stable processContainer.filesystem.enumeratePaths placement and content-read distinction."
+    },
+    {
+      "url": "https://github.com/microsoft/mxc/blob/main/docs/process-container/os-version-support.md",
+      "purpose": "PSEC1.1 native enumeration capability; fail closed rather than fallback."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution",
+      "purpose": "Microsoft VC/Redist unmodified redistribution list, subject to applicable license."
+    },
+    {
+      "url": "https://jrsoftware.org/isinfo.php",
+      "purpose": "Inno builds Windows installers; Linux requires its own format/target validation."
+    }
+  ],
+  "unresolved": [
+    "Final Windows locked workspace test command and native kernel tests have not passed for this source; observed AppControl4551 remains.",
+    "Final six-language/two-project sandbox semantics and native Ruff formatting are not accepted by this phase1 report.",
+    "New Windows/Linux package artifacts, target protocol smokes and lifecycle evidence are pending.",
+    "Backend-unadvertised resolve capabilities, unversioned diagnostics, full40 requirements, Linux sandbox and formal security audit remain outside any PASS claimed here."
+  ],
+  "next_owner": "root",
+  "next_action": "Provide final source SHA, candidate binary digests and actual build/protocol/language/package receipts; request revalidation by this same independent reviewer before final release/publication decision.",
+  "external_side_effects": {
+    "authorized": false,
+    "performed": false
+  },
+  "budget": "Inherited; no explicit token/time budget was supplied."
+}
