@@ -294,7 +294,7 @@ impl LspClient {
                 }
                 document.version = version;
                 document.hash = hash;
-                document.content = content.clone();
+                document.content.clone_from(&content);
             }
             _ => {}
         }
@@ -388,7 +388,7 @@ impl LspClient {
         }
         Ok(())
     }
-    fn envelope(&self, snapshot: &DocumentSnapshot, result: Value) -> Value {
+    fn envelope(&self, snapshot: &DocumentSnapshot, result: &Value) -> Value {
         json!({"result":result,"provider":self.language.id,"source":"lsp","document":snapshot.metadata(),
             "position_encoding":"utf-16","freshness":"current","commands_executed":false,"edits_applied":false,"index_complete_proven":false})
     }
@@ -449,7 +449,7 @@ impl LspClient {
                 validate_completion(item, &snapshot.content)?;
             }
         }
-        Ok(self.envelope(&snapshot, result))
+        Ok(self.envelope(&snapshot, &result))
     }
     pub async fn resolve_completion(
         &self,
@@ -466,7 +466,7 @@ impl LspClient {
             .request_document(&snapshot, "completionItem/resolve", item.clone())
             .await?;
         validate_completion(&result, &snapshot.content)?;
-        Ok(self.envelope(&snapshot, result))
+        Ok(self.envelope(&snapshot, &result))
     }
     pub async fn hover(&self, path: &str, position: Position) -> Result<Value> {
         let (snapshot, result) = self
@@ -480,7 +480,7 @@ impl LspClient {
                 validate_range(&snapshot.content, range)?;
             }
         }
-        Ok(self.envelope(&snapshot, result))
+        Ok(self.envelope(&snapshot, &result))
     }
     pub async fn signature_help(&self, path: &str, position: Position) -> Result<Value> {
         let (snapshot, result) = self
@@ -509,7 +509,7 @@ impl LspClient {
                 }
             }
         }
-        Ok(self.envelope(&snapshot, result))
+        Ok(self.envelope(&snapshot, &result))
     }
     /// Returns an inert WorkspaceEdit. Only engine/core Transactions can apply it.
     pub async fn formatting(
@@ -578,7 +578,7 @@ impl LspClient {
                 validate_hint(hint, &snapshot.content)?;
             }
         }
-        Ok(self.envelope(&snapshot, result))
+        Ok(self.envelope(&snapshot, &result))
     }
     pub async fn resolve_inlay_hint(
         &self,
@@ -595,7 +595,7 @@ impl LspClient {
             .request_document(&snapshot, "inlayHint/resolve", hint.clone())
             .await?;
         validate_hint(&result, &snapshot.content)?;
-        Ok(self.envelope(&snapshot, result))
+        Ok(self.envelope(&snapshot, &result))
     }
     pub async fn semantic_tokens(&self, path: &str, range: Option<Range>) -> Result<Value> {
         self.require("semanticTokensProvider")?;
@@ -618,7 +618,7 @@ impl LspClient {
             )
             .await?;
         validate_semantic_tokens(&snapshot.content, &result, &provider["legend"])?;
-        let mut output = self.envelope(&snapshot, result);
+        let mut output = self.envelope(&snapshot, &result);
         output["legend"] = provider["legend"].clone();
         Ok(output)
     }
@@ -851,7 +851,7 @@ impl LspClient {
             budget.check_deadline()?;
             // Move the result into the envelope, then make only the bounded alias
             // required by the existing API (at most 8 MiB across both fields).
-            let mut response = self.envelope(&snapshot, Value::Null);
+            let mut response = self.envelope(&snapshot, &Value::Null);
             response["result"] = Value::Array(output);
             response["hierarchy"] = response["result"].clone();
             budget.check_deadline()?;
@@ -1273,7 +1273,7 @@ fn validate_hint(hint: &Value, content: &str) -> Result<()> {
         if parts.is_empty()
             || parts
                 .iter()
-                .any(|part| part["value"].as_str().is_none_or(|value| value.is_empty()))
+                .any(|part| part["value"].as_str().is_none_or(str::is_empty))
         {
             bail!("Invalid inlay hint label parts");
         }
@@ -1319,8 +1319,8 @@ fn validate_semantic_tokens(content: &str, result: &Value, legend: &Value) -> Re
             *out = value
                 .as_u64()
                 .filter(|n| *n <= i32::MAX as u64)
-                .ok_or_else(|| anyhow!("Invalid semantic token integer"))?
-                as u32;
+                .and_then(|n| u32::try_from(n).ok())
+                .ok_or_else(|| anyhow!("Invalid semantic token integer"))?;
         }
         line = line
             .checked_add(token[0])

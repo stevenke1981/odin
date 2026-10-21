@@ -10,6 +10,7 @@ use serde_json::{Value, json};
 use std::{
     collections::BTreeSet,
     path::{Path, PathBuf},
+    sync::LazyLock,
 };
 
 #[derive(serde::Serialize, serde::Deserialize)]
@@ -259,7 +260,7 @@ impl Memories {
             });
         }
         for note in &bundle.notes {
-            for cap in reference_regex()?.captures_iter(&note.content) {
+            for cap in reference_regex().captures_iter(&note.content) {
                 let target = &cap[1];
                 if note.name.starts_with("global/") && !target.starts_with("global/") {
                     return Err(Fault::invalid(
@@ -308,7 +309,7 @@ impl Memories {
         let target_global = destination_name.starts_with("global/");
         let changes_scope = target_global || project != destination_project;
         if changes_scope {
-            for cap in reference_regex()?.captures_iter(&content) {
+            for cap in reference_regex().captures_iter(&content) {
                 let target = &cap[1];
                 if target != name && !target.starts_with("global/") {
                     return Err(Fault::new(
@@ -344,7 +345,7 @@ impl Memories {
                 continue;
             }
             let before = self.root.read(&path)?;
-            if !reference_regex()?
+            if !reference_regex()
                 .captures_iter(&before)
                 .any(|cap| &cap[1] == name)
             {
@@ -490,7 +491,7 @@ impl Memories {
         )
     }
     pub fn check(&self, project: &str) -> Result<Value> {
-        let refs = reference_regex()?;
+        let refs = reference_regex();
         let mut missing = Vec::new();
         for path in self.all_paths()? {
             let (scope, name) = self.path_name(&path)?;
@@ -546,8 +547,11 @@ impl Memories {
         self.root.root().to_path_buf()
     }
 }
-fn reference_regex() -> Result<regex::Regex> {
-    Ok(regex::Regex::new(r"mem:([\p{L}\p{N}_/.-]+)")?)
+fn reference_regex() -> &'static regex::Regex {
+    static REFERENCE: LazyLock<regex::Regex> = LazyLock::new(|| {
+        regex::Regex::new(r"mem:([\p{L}\p{N}_/.-]+)").expect("static mem reference pattern")
+    });
+    &REFERENCE
 }
 pub fn validate_name(name: &str) -> Result<()> {
     if name.is_empty()
@@ -567,7 +571,7 @@ pub fn validate_name(name: &str) -> Result<()> {
     Ok(())
 }
 fn rewrite_refs(content: &str, old: &str, new: &str, limit: usize) -> Result<String> {
-    let re = reference_regex()?;
+    let re = reference_regex();
     let mut size = content.len();
     for captures in re.captures_iter(content) {
         if &captures[1] == old {
@@ -623,6 +627,10 @@ fn check_change_budget(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn reference_regex_is_compiled_once() {
+        assert!(std::ptr::eq(reference_regex(), reference_regex()));
+    }
     #[test]
     fn reference_replacement_is_exact() {
         assert_eq!(

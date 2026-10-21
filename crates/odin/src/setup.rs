@@ -173,7 +173,7 @@ pub fn emit_or_apply(
     let parent = output
         .parent()
         .filter(|p| !p.as_os_str().is_empty())
-        .unwrap_or(Path::new("."))
+        .unwrap_or_else(|| Path::new("."))
         .canonicalize()?;
     let name = output.file_name().context("Missing output filename")?;
     let output = parent.join(name);

@@ -84,7 +84,7 @@ pub async fn serve(engine: Arc<Engine>, address: SocketAddr, token: String) -> R
                 let engine = audit_engine.clone();
                 async move {
                     match engine.project(&project).and_then(|p| p.store.recent(100)) {
-                        Ok(value) => (StatusCode::OK, Json(redact_audit(value))),
+                        Ok(value) => (StatusCode::OK, Json(redact_audit(&value))),
                         Err(error) => (
                             StatusCode::BAD_REQUEST,
                             Json(json!({"error":{"code":error.code}})),
@@ -100,7 +100,7 @@ pub async fn serve(engine: Arc<Engine>, address: SocketAddr, token: String) -> R
                 async move {
                     match engine.project(&project).and_then(|p| p.store.recent(100)) {
                         Ok(value) => {
-                            let records = redact_audit(value)["entries"]
+                            let records = redact_audit(&value)["entries"]
                                 .as_array()
                                 .cloned()
                                 .unwrap_or_default();
@@ -176,7 +176,7 @@ async fn status_snapshot(engine: &Arc<Engine>) -> Value {
     json!({"build":crate::metadata::build_metadata(),"projects":projects,"tool_count":engine.tools().len(),
         "model_token_usage":"UNKNOWN","resource_usage":"UNKNOWN","backends_probed":false,"dashboard_read_only":true})
 }
-fn redact_audit(value: Value) -> Value {
+fn redact_audit(value: &Value) -> Value {
     let entries = value["entries"]
         .as_array()
         .map(|items| {
@@ -272,7 +272,7 @@ mod tests {
     #[test]
     fn audit_export_uses_a_metadata_allowlist() {
         let clean = redact_audit(
-            json!({"entries":[{"tool":"read_file","ok":true,"elapsed_ms":3,"content":"secret", "arguments":{"token":"secret"}, "input_sha256":"fingerprint"}]}),
+            &json!({"entries":[{"tool":"read_file","ok":true,"elapsed_ms":3,"content":"secret", "arguments":{"token":"secret"}, "input_sha256":"fingerprint"}]}),
         );
         assert_eq!(clean["entries"][0]["tool"], "read_file");
         assert!(clean["entries"][0].get("content").is_none());

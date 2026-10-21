@@ -1,5 +1,5 @@
 //! Native Clippy/Ruff/ESLint inspection output adapters. No shell text or regex semantics.
-use crate::{Engine, Project, number, optional_string, string, text_replace::json_string_bytes};
+use crate::{Engine, Project, optional_string, string, text_replace::json_string_bytes};
 use odin_core::{Fault, Result, paths::SafeRoot, search, sha256, transaction::Change};
 use odin_protocol::text::{Position, Range, TextEdit, offset, position_from_offset};
 use serde_json::{Value, json};
@@ -87,7 +87,7 @@ impl<'a> Normalizer<'a> {
         rule: &str,
         message: &str,
         severity: u64,
-        source: Option<(String, &str)>,
+        source: &Option<(String, &str)>,
         range: Option<Range>,
         edits: Vec<TextEdit>,
     ) -> Result<()> {
@@ -184,7 +184,7 @@ impl<'a> Normalizer<'a> {
                     .unwrap_or("ruff/unknown"),
                 required(item, "message")?,
                 severity,
-                source,
+                &source,
                 range,
                 edits,
             )?;
@@ -233,7 +233,7 @@ impl<'a> Normalizer<'a> {
                     message["ruleId"].as_str().unwrap_or("eslint/parse"),
                     required(message, "message")?,
                     severity,
-                    source.clone(),
+                    &source,
                     range,
                     edits,
                 )?;
@@ -279,7 +279,7 @@ impl<'a> Normalizer<'a> {
                     message["code"]["code"].as_str().unwrap_or("rustc"),
                     required(message, "message")?,
                     severity,
-                    None,
+                    &None,
                     None,
                     Vec::new(),
                 )?;
@@ -352,7 +352,7 @@ impl<'a> Normalizer<'a> {
                     message["code"]["code"].as_str().unwrap_or("rustc"),
                     required(message, "message")?,
                     severity,
-                    source,
+                    &source,
                     range,
                     edits,
                 )?;
@@ -859,7 +859,7 @@ async fn analyze(engine: &Arc<Engine>, project: &Arc<Project>, args: &Value) -> 
     validate_sandbox(engine, sandbox)?;
     let before = snapshots(project, provider, engine.config.limits.max_files)?;
     let mut version_command = profile.command.clone();
-    version_command.args = profile.version_args.clone();
+    version_command.args.clone_from(&profile.version_args);
     version_command.timeout_secs = version_command.timeout_secs.min(10);
     let version_result = odin_core::execution::run(
         &version_command,
@@ -914,7 +914,7 @@ async fn analyze(engine: &Arc<Engine>, project: &Arc<Project>, args: &Value) -> 
             .ok_or_else(|| invalid("Missing analyzer stdout"))?,
         &version,
         (
-            (number(args, "limit", 100) as usize).min(engine.config.limits.max_matches),
+            crate::number_usize(args, "limit", 100).min(engine.config.limits.max_matches),
             engine.config.limits.max_output_bytes,
         ),
     )?;

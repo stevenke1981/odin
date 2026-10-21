@@ -265,7 +265,7 @@ impl ProjectConfig {
             _ => return Ok(caller.clone()),
         }
         .ok_or_else(|| Fault::denied("DAP command has no immutable host launch payload"))?;
-        let empty = caller.is_null() || caller.as_object().is_some_and(|map| map.is_empty());
+        let empty = caller.is_null() || caller.as_object().is_some_and(serde_json::Map::is_empty);
         if !empty && caller != configured {
             return Err(Fault::denied(
                 "DAP launch arguments differ from the immutable host payload",

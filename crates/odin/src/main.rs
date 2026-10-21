@@ -354,7 +354,7 @@ fn ensure_host_output(config: &Config, output: Option<&Path>) -> Result<()> {
     let parent = output
         .parent()
         .filter(|p| !p.as_os_str().is_empty())
-        .unwrap_or(Path::new("."))
+        .unwrap_or_else(|| Path::new("."))
         .canonicalize()?;
     let output = parent.join(output.file_name().context("Missing output filename")?);
     if config
@@ -449,7 +449,7 @@ fn init(path: &Path, root: &Path, name: &str, writable: bool) -> Result<()> {
     let parent = path
         .parent()
         .filter(|p| !p.as_os_str().is_empty())
-        .unwrap_or(Path::new("."))
+        .unwrap_or_else(|| Path::new("."))
         .canonicalize()?;
     let mut projects = serde_json::Map::new();
     projects.insert(name.into(), json!({"root":root,"allow_write":writable,"allow_shell":false,"allow_debug":false,

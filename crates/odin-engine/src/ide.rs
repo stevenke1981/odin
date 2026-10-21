@@ -36,7 +36,7 @@ pub async fn dispatch(
             .workspace_symbols_scoped(
                 query,
                 optional_string(args, "relative_path"),
-                number(args, "limit", 100) as usize,
+                crate::number_usize(args, "limit", 100),
             )
             .await
             .map_err(backend_error);
@@ -49,7 +49,7 @@ pub async fn dispatch(
                 .completion(path, position(args)?)
                 .await
                 .map_err(backend_error)?;
-            let maximum = number(args, "limit", 50) as usize;
+            let maximum = crate::number_usize(args, "limit", 50);
             let items = if result["result"].is_array() {
                 result["result"].as_array_mut()
             } else {
@@ -102,7 +102,7 @@ pub async fn dispatch(
                 .await
                 .map_err(backend_error)?;
             if let Some(items) = result["result"].as_array_mut() {
-                let maximum = number(args, "limit", 200) as usize;
+                let maximum = crate::number_usize(args, "limit", 200);
                 let truncated = items.len() > maximum;
                 items.truncate(maximum);
                 result["truncated"] = json!(truncated);
