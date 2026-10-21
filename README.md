@@ -2,7 +2,7 @@
 
 ## 獨立 Rust 程式碼工具服務 · Windows 原生預覽 0.2.0
 
-Odin 提供 **72 個原生工具契約**，以 MCP stdio、本機 HTTP 或 CLI 供 Coding
+Odin 提供 **85 個原生工具契約**，以 MCP stdio、本機 HTTP 或 CLI 供 Coding
 Agent 使用。四個 Rust crates 共用專案政策、SHA-256 交易、直接 LSP／DAP、
 Markdown 記憶與受限 JSON 流程。產品沒有 Serena bridge、Python REPL、
 任意 eval 或自動上游 fallback。
@@ -22,6 +22,9 @@ exit code、來源／binary hash 以 [交付狀態](verification/delivery-status
 - Markdown 記憶、引用維護、版本化匯出／匯入、受權限及引用完整性保護的 scope move。
 - 查詢前增量更新的 FTS5 詞彙索引；按 session 隔離、有配額的 JSON map/filter/reduce 流程。
 - 具狀態與 session 檢查的 DAP、非阻塞 launch/restart、取消與固定 host argv 命令。
+- Completion、hover、signature、呼叫階層、semantic tokens、inlay hints；格式化先產生 CAS 交易。
+- 可選 Windows MXC OS 沙箱，固定 executor hash／檔案授權／網路封鎖，配置失敗就拒絕執行。
+- 強制沙箱的 Clippy／Ruff／ESLint findings 與 safe fix preview；來源修改一律經 Transactions。
 - 收緊權限的 context/mode、client setup 乾跑／備份、doctor、唯讀 Dashboard、trace 與期限結果分塊。
 
 Move／Inline 是真正 LSP edit 的安全入口；後端未提供對應 action 時明確拒絕。
@@ -38,6 +41,7 @@ Python 僅用於開發驗收；Odin 的檔案／記憶功能不需要 Python 或
 ```powershell
 cargo build --workspace --release --locked
 .\target\release\odin.exe metadata
+.\target\release\odin.exe languages
 .\target\release\odin.exe --config C:\Odin\host.toml init --root . --name workspace
 .\target\release\odin.exe --config C:\Odin\host.toml validate
 .\target\release\odin.exe --config C:\Odin\host.toml serve --transport stdio
@@ -51,6 +55,7 @@ write、shell、debug。命令與除錯需操作者在可信任 host 設定明�
 # 只輸出設定預覽，不修改現有 client 設定。
 .\target\release\odin.exe --config C:\Odin\host.toml setup --client codex
 .\target\release\odin.exe --config C:\Odin\host.toml doctor --probe-lsp
+.\target\release\odin.exe --config C:\Odin\host.toml doctor --probe-sandbox
 ```
 
 `setup` 支援 Codex、Claude、OpenCode。真正寫入需 `--apply --output`；
@@ -83,9 +88,11 @@ project。交易是逐檔原子替換與可恢復日誌，沒有多檔瞬間原�
 ```
 
 驗收包含 fmt、workspace tests、嚴格 Clippy、release build、CLI、stdio、HTTP
-與 MCP 取消。另有三種真實 LSP 及 debugpy 端到端驗收；使用
+與 MCP 取消。原有三種真實 LSP 及 debugpy 端到端驗收可使用
 `tests/real_backends.py --help` 指定已安裝後端重跑。TypeScript language-server
-6.x 需搭配 TypeScript 6 的 tsserver。後端版本及 binary digest 記在驗收報告。
+6.x 需搭配 TypeScript 6 的 tsserver。新增 `tests/real_ide_backends.py` 提供六語、
+每語兩專案的獨立驗收，`tests/real_native_inspections.py` 測實際 MXC 與三種
+analyzer。提供測試程式不代表測試通過；後端版本、範圍及 binary digest 記在驗收報告。
 
 Windows 提供 portable ZIP 與 Inno Setup recipe。安裝、同版重裝、卸載有隔離
 smoke；乾淨主機、跨版升級、Defender/CFA、取消回復另行驗收。Linux/macOS
@@ -93,10 +100,12 @@ smoke；乾淨主機、跨版升級、Defender/CFA、取消回復另行驗收。
 
 ### 邊界與後續工作
 
-Windows Job Object／Unix process group 用於程序清理，**不是 OS 安全沙箱**。
-Job 在 spawn 後指派，有啟動窗口。不可信任程式庫或後端仍需外部受限帳號／
-VM／容器。進階語言適配、自有 inspection providers、動態 safe delete、完整
-watcher、跨平台／客戶端與 benchmark 矩陣未被標成全部完成。
+Windows OS 沙箱需明確配置 native MXC 與最小檔案授權；見
+[設定範例](examples/odin.sandbox.toml) 與 [沙箱邊界](docs/OS_SANDBOX.md)。
+未配置的外部程序只有 Job／process group 清理。`odin languages` 的 28 個
+profile 是設定指引，不是 28 語驗收成功。IDE 功能依 backend capabilities
+回傳支援或明確錯誤；參見 [IDE 契約](docs/IDE_IMPLEMENTATION.md)。
+動態 safe delete、完整 watcher、跨平台／客戶端與 benchmark 矩陣仍有缺口。
 
 [已知限制](docs/KNOWN_LIMITATIONS.md) · [安全邊界](docs/SECURITY.md) ·
 [架構](docs/ARCHITECTURE.md) · [40 項規格](docs/FEATURE_SPEC.md) ·
