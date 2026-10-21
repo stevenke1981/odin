@@ -44,6 +44,11 @@ def main():
 
     try:
         check('executor_integrity', report['executor_sha256'] == args.executor_sha256.lower())
+        identity = subprocess.run([str(args.binary.resolve()),'metadata'],capture_output=True,timeout=15)
+        report['commands'].append({'argv':['odin','metadata'],'exit_code':identity.returncode,
+                                   'output':(identity.stdout+identity.stderr).decode('utf-8',errors='replace')})
+        check('real_binary_metadata',identity.returncode == 0)
+        report['binary_metadata'] = json.loads(identity.stdout)
         with tempfile.TemporaryDirectory(prefix='odin-native-ide-') as temporary:
             base = Path(temporary)
             for directory in ['rust/src','python','typescript','state','scratch','clippy-cache','cargo-home','trusted']:
@@ -131,6 +136,10 @@ def main():
                     report['status'] = 'PASS'
                 finally:
                     report['backend_stderr'] = list(peer.errors)
+    except OSError as error:
+        report['status']='BLOCKED' if getattr(error,'winerror',None)==4551 else 'FAIL'
+        report['error']=str(error)
+        report['win32_error']=getattr(error,'winerror',None)
     except Exception as error:
         report['status']='FAIL'
         report['error']=str(error)

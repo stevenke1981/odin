@@ -1,0 +1,52 @@
+{
+  "status": "BLOCKED",
+  "scope": "DEBUG_CANDIDATE_LAUNCH",
+  "observed_at": "2026-10-21T09:04:42.0173295+08:00",
+  "binary": "target/debug/odin.exe",
+  "sha256": "3491318bc59ff09c479c082e608ce4e1603ee03d99f75a7449e282f0ae601aa7",
+  "win32_error": 4551,
+  "tests_executed": 0,
+  "events": [
+    {
+      "time": "2026-10-21T09:01:08.9003293+08:00",
+      "Id": 3077,
+      "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Python314\\python.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\debug\\odin.exe that did not meet the Enterprise signing level requirements or violated code integrity policy (Policy ID:{0283ac0f-fff1-49ae-ada1-8a933130cad6})."
+    },
+    {
+      "time": "2026-10-21T09:01:08.8124686+08:00",
+      "Id": 3033,
+      "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Python314\\python.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\debug\\odin.exe that did not meet the Enterprise signing level requirements."
+    },
+    {
+      "time": "2026-10-21T09:01:07.8834213+08:00",
+      "Id": 3077,
+      "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Python314\\python.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\debug\\odin.exe that did not meet the Enterprise signing level requirements or violated code integrity policy (Policy ID:{0283ac0f-fff1-49ae-ada1-8a933130cad6})."
+    },
+    {
+      "time": "2026-10-21T09:01:07.7967635+08:00",
+      "Id": 3033,
+      "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Python314\\python.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\debug\\odin.exe that did not meet the Enterprise signing level requirements."
+    },
+    {
+      "time": "2026-10-21T09:01:06.8704449+08:00",
+      "Id": 3077,
+      "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Python314\\python.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\debug\\odin.exe that did not meet the Enterprise signing level requirements or violated code integrity policy (Policy ID:{0283ac0f-fff1-49ae-ada1-8a933130cad6})."
+    },
+    {
+      "time": "2026-10-21T09:01:06.7833777+08:00",
+      "Id": 3033,
+      "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Python314\\python.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\debug\\odin.exe that did not meet the Enterprise signing level requirements."
+    },
+    {
+      "time": "2026-10-21T09:01:05.8555823+08:00",
+      "Id": 3077,
+      "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Python314\\python.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\debug\\odin.exe that did not meet the Enterprise signing level requirements or violated code integrity policy (Policy ID:{0283ac0f-fff1-49ae-ada1-8a933130cad6})."
+    },
+    {
+      "time": "2026-10-21T09:01:05.7681571+08:00",
+      "Id": 3033,
+      "Message": "Code Integrity determined that a process (\\Device\\HarddiskVolume3\\Python314\\python.exe) attempted to load \\Device\\HarddiskVolume6\\odin\\target\\debug\\odin.exe that did not meet the Enterprise signing level requirements."
+    }
+  ],
+  "security_policy_changed": false
+}

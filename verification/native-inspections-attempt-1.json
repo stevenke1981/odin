@@ -1,0 +1,34 @@
+{
+  "status": "FAIL",
+  "scope": "REAL_ODIN_MCP_MXC_ANALYZERS",
+  "started_at_utc": "2026-10-21T01:00:51.483733+00:00",
+  "binary_sha256": "3491318bc59ff09c479c082e608ce4e1603ee03d99f75a7449e282f0ae601aa7",
+  "executor_sha256": "8a6d1db4dd1846981127d9014741be18b094d07be967765dff6754bda1d40259",
+  "checks": [
+    {
+      "name": "executor_integrity",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "real_fixture_lockfile",
+      "status": "PASS",
+      "detail": null
+    }
+  ],
+  "responses": {},
+  "backend_stderr": [],
+  "commands": [
+    {
+      "argv": [
+        "cargo",
+        "generate-lockfile",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "error": "[WinError 4551] 應用程式控制原則已封鎖此檔案。",
+  "completed_at_utc": "2026-10-21T01:00:55.915263+00:00"
+}
