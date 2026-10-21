@@ -40,7 +40,7 @@ function ConvertTo-OdinCanonical($Value) {
 }
 function Verify-Payload([string]$Directory) {
     $Manifest = Join-Path $Directory 'SHA256SUMS.json'
-    $Rows = @(Get-Content -LiteralPath $Manifest -Raw -Encoding UTF8 | ConvertFrom-Json)
+    $Rows = Get-Content -LiteralPath $Manifest -Raw -Encoding UTF8 | ConvertFrom-Json
     foreach ($Row in $Rows) {
         $Resolved = [IO.Path]::GetFullPath((Join-Path $Directory $Row.path))
         if ($Row.sha256 -notmatch '^[a-fA-F0-9]{64}$' -or -not $Resolved.StartsWith($Directory + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) { throw 'Invalid packaged inventory path or digest.' }
@@ -76,9 +76,9 @@ try {
     if ($Portable) { Assert-Check 'installed_metadata_matches_portable' ((ConvertTo-OdinCanonical $Metadata | ConvertTo-Json -Depth 100 -Compress) -ceq (ConvertTo-OdinCanonical $PortableMetadata | ConvertTo-Json -Depth 100 -Compress)) }
     $Inventory = @(Verify-Payload $App)
     Assert-Check 'installed_inventory_sha256' ($Inventory.Count -gt 0)
-    $InstalledTools = @(& $Binary tools | ConvertFrom-Json)
+    $InstalledTools = & $Binary tools | ConvertFrom-Json
     Assert-Check 'installed_tools_exit' ($LASTEXITCODE -eq 0)
-    $Catalog = @(Get-Content -LiteralPath (Join-Path $App 'schemas/tools.json') -Raw -Encoding UTF8 | ConvertFrom-Json)
+    $Catalog = Get-Content -LiteralPath (Join-Path $App 'schemas/tools.json') -Raw -Encoding UTF8 | ConvertFrom-Json
     Assert-Check 'installed_tool_contracts' ((ConvertTo-OdinCanonical $InstalledTools | ConvertTo-Json -Depth 100 -Compress) -ceq (ConvertTo-OdinCanonical $Catalog | ConvertTo-Json -Depth 100 -Compress))
     $Runtime = Get-Content -LiteralPath (Join-Path $App 'windows-runtime-dependencies.json') -Raw -Encoding UTF8 | ConvertFrom-Json
     foreach ($Entry in $Runtime.app_local) {
