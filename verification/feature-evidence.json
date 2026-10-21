@@ -4,7 +4,7 @@
   "version": "0.2.0",
   "release_class": "NATIVE_PREVIEW_WITH_WINDOWS_HOST_BLOCK",
   "observed_date": "2026-10-21",
-  "source_head_sha_at_documentation_review": "c3bcb292f8c78520fd2ccb98410f87c32d78d160",
+  "source_head_sha_at_documentation_review": "f4aeb233c957ae6e322b9a4457654c034645b3f1",
   "scope": "Current v3 extension below; prior source-bound checks remain historical and do not certify the blocked final Windows candidate.",
   "tool_contracts": 85,
   "requirements_total": 40,
@@ -7098,8 +7098,8 @@
       "bundled_docs_revision": "f5878bfa725db8c0dcab7e45ca3cf89159508975"
     },
     "independent_review": {
-      "report": "verification/language-installers-v3-review-phase3.json",
-      "report_sha256": "2d4bac2d9f625cf9b5c1aee8e16f14f29641543c7369539682808ad0695bb480",
+      "report": "verification/language-installers-v3-review-phase4.json",
+      "report_sha256": "4de467df63e8b23c230a8e16d0347c80164a165565671c6c22b3e73120180517",
       "status": "BLOCKED",
       "source_review": "PASS",
       "documentation_evidence_review": "PASS_FOR_PRESENT_RECEIPTS",

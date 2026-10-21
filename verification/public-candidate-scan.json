@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "scope": "Git-tracked current public candidate only",
-  "files_checked": 728,
+  "files_checked": 922,
   "findings": [],
   "license_inventory_packages": 260,
   "missing_license_metadata_or_text": [],
