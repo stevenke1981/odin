@@ -1,0 +1,4400 @@
+[
+  {
+    "language": "lua",
+    "tool": "list_projects",
+    "arguments": {},
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"projects\":[{\"allow_debug\":false,\"allow_inspections\":false,\"allow_shell\":false,\"allow_write\":false,\"id\":\"ws_1ce351ff65d0a1299c8cf5d2572f71310a4e2e2dbc798af2\",\"languages\":[\"rust\",\"python\",\"go\",\"csharp\",\"lua\",\"javascript\",\"typescript\",\"bash\"],\"root\":\"\\\\\\\\?\\\\C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\\\final-installed-languages-v3.fixtures\\\\\u5c08\u6848 lua_a\"}],\"trace\":{\"elapsed_ms\":0,\"id\":\"9fa4a9b6-8fdc-475d-a96c-773af261b137\",\"result_bytes\":401,\"result_sha256\":\"c6f8102c622678fd74cb0d695b48ae260b966e928858da7cadfb5f9e85254cf0\"}}"
+          }
+        ],
+        "structuredContent": {
+          "projects": [
+            {
+              "allow_debug": false,
+              "allow_inspections": false,
+              "allow_shell": false,
+              "allow_write": false,
+              "id": "ws_1ce351ff65d0a1299c8cf5d2572f71310a4e2e2dbc798af2",
+              "languages": [
+                "rust",
+                "python",
+                "go",
+                "csharp",
+                "lua",
+                "javascript",
+                "typescript",
+                "bash"
+              ],
+              "root": "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-installed-languages-v3.fixtures\\\u5c08\u6848 lua_a"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "9fa4a9b6-8fdc-475d-a96c-773af261b137",
+            "result_bytes": 401,
+            "result_sha256": "c6f8102c622678fd74cb0d695b48ae260b966e928858da7cadfb5f9e85254cf0"
+          }
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "read_file",
+    "arguments": {
+      "relative_path": "sentinel.txt"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\":\"lua_a\",\"end_line\":1,\"line_base\":1,\"relative_path\":\"sentinel.txt\",\"sha256\":\"00a4906d86a8db92a99879c6d3459ae7968df41af6a186dd6e9de8ceba31bcae\",\"start_line\":1,\"total_lines\":1,\"trace\":{\"elapsed_ms\":4,\"id\":\"d3fea97c-c48e-40ae-8fc4-c2593d3dd80e\",\"result_bytes\":184,\"result_sha256\":\"8b82318dd40b71e4c0911fdbbf3facabbc05a2ea2545aaa4cd022876440c2379\"}}"
+          }
+        ],
+        "structuredContent": {
+          "content": "lua_a",
+          "end_line": 1,
+          "line_base": 1,
+          "relative_path": "sentinel.txt",
+          "sha256": "00a4906d86a8db92a99879c6d3459ae7968df41af6a186dd6e9de8ceba31bcae",
+          "start_line": 1,
+          "total_lines": 1,
+          "trace": {
+            "elapsed_ms": 4,
+            "id": "d3fea97c-c48e-40ae-8fc4-c2593d3dd80e",
+            "result_bytes": 184,
+            "result_sha256": "8b82318dd40b71e4c0911fdbbf3facabbc05a2ea2545aaa4cd022876440c2379"
+          }
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "project_analysis",
+    "arguments": {},
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"analysis_kind\":\"LIVE_STRUCTURE_AND_CONFIGURATION\",\"backends_started\":false,\"configured_backends\":[{\"extensions\":[\"rs\"],\"id\":\"rust\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"py\",\"pyi\"],\"id\":\"python\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"go\"],\"id\":\"go\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"cs\"],\"id\":\"csharp\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"lua\"],\"id\":\"lua\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"js\",\"jsx\",\"mjs\",\"cjs\"],\"id\":\"javascript\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"ts\",\"tsx\",\"mts\",\"cts\"],\"id\":\"typescript\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"sh\",\"bash\"],\"id\":\"bash\",\"probe\":\"NOT_RUN\"}],\"directories_truncated\":false,\"evidence\":[],\"evidence_truncated\":false,\"extensions\":{\"lua\":2,\"txt\":1},\"file_count\":3,\"inspections\":\"NOT_RUN\",\"language_hints\":[{\"backend_probe\":\"NOT_RUN\",\"detection\":\"EXTENSION_HINT\",\"host_backend_configured\":true,\"id\":\"lua\",\"marker_hints\":[],\"observed_extensions\":[\"lua\"],\"source_file_count\":2,\"suggested_server\":\"lua-language-server\",\"unconfigured_extensions\":[]}],\"limitations\":[\"Structural hints are not semantic symbol analysis or dependency parsing.\",\"Ignore rules, path policy and scan/evidence limits restrict visibility; absent evidence is not proof of absence.\",\"No background watcher or atomic multi-file snapshot. structure_sha256 covers paths and returned evidence only.\",\"No repository commands/configuration executed and no backend installed or probed. Semantic work requires a host-configured LSP.\"],\"next_steps\":[{\"probe\":false,\"project\":\"ws_1ce351ff65d0a1299c8cf5d2572f71310a4e2e2dbc798af2\",\"tool\":\"get_capabilities\"},{\"project\":\"ws_1ce351ff65d0a1299c8cf5d2572f71310a4e2e2dbc798af2\",\"relative_path\":\"consumer.lua\",\"tool\":\"get_symbols_overview\"}],\"permissions\":{\"debug\":false,\"formatters\":false,\"inspections\":false,\"shell\":false,\"write\":false},\"project\":\"ws_1ce351ff65d0a1299c8cf5d2572f71310a4e2e2dbc798af2\",\"root\":\"\\\\\\\\?\\\\C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\\\final-installed-languages-v3.fixtures\\\\\u5c08\u6848 lua_a\",\"sample_files\":[\"consumer.lua\",\"sample.lua\",\"sentinel.txt\"],\"scan_limit\":10000,\"scan_truncated\":false,\"snapshot\":\"LIVE_NON_ATOMIC\",\"structure_sha256\":\"bdd5e031f57ff8a108d5e94173a7ac4be22b4085d74a61b3f6316410bdea5526\",\"tests\":\"NOT_RUN\",\"top_level_directories\":[],\"trace\":{\"elapsed_ms\":1,\"id\":\"54787e33-da29-4fd4-b699-6042b140a75d\",\"result_bytes\":2289,\"result_sha256\":\"c1adbd20cd4004225d02f5e232393c6d8aa0cf3c869ba6958b92f4fe75dcdc0a\"},\"unconfigured_language_hints\":[]}"
+          }
+        ],
+        "structuredContent": {
+          "analysis_kind": "LIVE_STRUCTURE_AND_CONFIGURATION",
+          "backends_started": false,
+          "configured_backends": [
+            {
+              "extensions": [
+                "rs"
+              ],
+              "id": "rust",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "py",
+                "pyi"
+              ],
+              "id": "python",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "go"
+              ],
+              "id": "go",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "cs"
+              ],
+              "id": "csharp",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "lua"
+              ],
+              "id": "lua",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "js",
+                "jsx",
+                "mjs",
+                "cjs"
+              ],
+              "id": "javascript",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "ts",
+                "tsx",
+                "mts",
+                "cts"
+              ],
+              "id": "typescript",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "sh",
+                "bash"
+              ],
+              "id": "bash",
+              "probe": "NOT_RUN"
+            }
+          ],
+          "directories_truncated": false,
+          "evidence": [],
+          "evidence_truncated": false,
+          "extensions": {
+            "lua": 2,
+            "txt": 1
+          },
+          "file_count": 3,
+          "inspections": "NOT_RUN",
+          "language_hints": [
+            {
+              "backend_probe": "NOT_RUN",
+              "detection": "EXTENSION_HINT",
+              "host_backend_configured": true,
+              "id": "lua",
+              "marker_hints": [],
+              "observed_extensions": [
+                "lua"
+              ],
+              "source_file_count": 2,
+              "suggested_server": "lua-language-server",
+              "unconfigured_extensions": []
+            }
+          ],
+          "limitations": [
+            "Structural hints are not semantic symbol analysis or dependency parsing.",
+            "Ignore rules, path policy and scan/evidence limits restrict visibility; absent evidence is not proof of absence.",
+            "No background watcher or atomic multi-file snapshot. structure_sha256 covers paths and returned evidence only.",
+            "No repository commands/configuration executed and no backend installed or probed. Semantic work requires a host-configured LSP."
+          ],
+          "next_steps": [
+            {
+              "probe": false,
+              "project": "ws_1ce351ff65d0a1299c8cf5d2572f71310a4e2e2dbc798af2",
+              "tool": "get_capabilities"
+            },
+            {
+              "project": "ws_1ce351ff65d0a1299c8cf5d2572f71310a4e2e2dbc798af2",
+              "relative_path": "consumer.lua",
+              "tool": "get_symbols_overview"
+            }
+          ],
+          "permissions": {
+            "debug": false,
+            "formatters": false,
+            "inspections": false,
+            "shell": false,
+            "write": false
+          },
+          "project": "ws_1ce351ff65d0a1299c8cf5d2572f71310a4e2e2dbc798af2",
+          "root": "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-installed-languages-v3.fixtures\\\u5c08\u6848 lua_a",
+          "sample_files": [
+            "consumer.lua",
+            "sample.lua",
+            "sentinel.txt"
+          ],
+          "scan_limit": 10000,
+          "scan_truncated": false,
+          "snapshot": "LIVE_NON_ATOMIC",
+          "structure_sha256": "bdd5e031f57ff8a108d5e94173a7ac4be22b4085d74a61b3f6316410bdea5526",
+          "tests": "NOT_RUN",
+          "top_level_directories": [],
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "54787e33-da29-4fd4-b699-6042b140a75d",
+            "result_bytes": 2289,
+            "result_sha256": "c1adbd20cd4004225d02f5e232393c6d8aa0cf3c869ba6958b92f4fe75dcdc0a"
+          },
+          "unconfigured_language_hints": []
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "get_capabilities",
+    "arguments": {
+      "probe": true,
+      "language": "lua"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"debug_allowed\":false,\"external_tool_bridge\":false,\"formatter_profiles\":[],\"formatters_allowed\":false,\"inspection_profiles\":[],\"inspections_allowed\":false,\"languages\":[{\"capabilities\":{\"codeActionProvider\":{\"codeActionKinds\":[\"\",\"quickfix\",\"refactor.rewrite\",\"refactor.extract\"],\"resolveProvider\":false},\"codeLensProvider\":{\"resolveProvider\":true},\"colorProvider\":true,\"completionProvider\":{\"resolveProvider\":true,\"triggerCharacters\":[\"\\t\",\"\\n\",\".\",\":\",\"(\",\"'\",\"\\\"\",\"[\",\",\",\"#\",\"*\",\"@\",\"|\",\"=\",\"-\",\"{\",\" \",\"+\",\"?\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentOnTypeFormattingProvider\":{\"firstTriggerCharacter\":\"\\n\"},\"documentRangeFormattingProvider\":true,\"documentSymbolProvider\":true,\"executeCommandProvider\":{\"commands\":[\"lua.removeSpace\",\"lua.solve\",\"lua.jsonToLua\",\"lua.setConfig\",\"lua.getConfig\",\"lua.autoRequire\"]},\"foldingRangeProvider\":true,\"hoverProvider\":true,\"implementationProvider\":true,\"inlayHintProvider\":{\"resolveProvider\":true},\"offsetEncoding\":\"utf-16\",\"referencesProvider\":true,\"renameProvider\":{\"prepareProvider\":true},\"semanticTokensProvider\":{\"full\":true,\"legend\":{\"tokenModifiers\":[\"declaration\",\"definition\",\"readonly\",\"static\",\"deprecated\",\"abstract\",\"async\",\"modification\",\"documentation\",\"defaultLibrary\",\"global\"],\"tokenTypes\":[\"namespace\",\"type\",\"class\",\"enum\",\"interface\",\"struct\",\"typeParameter\",\"parameter\",\"variable\",\"property\",\"enumMember\",\"event\",\"function\",\"method\",\"macro\",\"keyword\",\"modifier\",\"comment\",\"string\",\"number\",\"regexp\",\"operator\",\"decorator\"]},\"range\":true},\"signatureHelpProvider\":{\"triggerCharacters\":[\"(\",\",\"]},\"textDocumentSync\":{\"change\":2,\"openClose\":true,\"save\":{\"includeText\":false}},\"typeDefinitionProvider\":true,\"workspace\":{\"fileOperations\":{\"didRename\":{\"filters\":[{\"pattern\":{\"glob\":\"C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/\u5c08\u6848 lua_a//**\",\"options\":{\"ignoreCase\":true}}}]}},\"workspaceFolders\":{\"changeNotifications\":true,\"supported\":true}},\"workspaceSymbolProvider\":true},\"configured\":true,\"extensions\":[\"lua\"],\"id\":\"lua\",\"probed\":true,\"ready\":true,\"status\":{\"capabilities\":{\"codeActionProvider\":{\"codeActionKinds\":[\"\",\"quickfix\",\"refactor.rewrite\",\"refactor.extract\"],\"resolveProvider\":false},\"codeLensProvider\":{\"resolveProvider\":true},\"colorProvider\":true,\"completionProvider\":{\"resolveProvider\":true,\"triggerCharacters\":[\"\\t\",\"\\n\",\".\",\":\",\"(\",\"'\",\"\\\"\",\"[\",\",\",\"#\",\"*\",\"@\",\"|\",\"=\",\"-\",\"{\",\" \",\"+\",\"?\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentOnTypeFormattingProvider\":{\"firstTriggerCharacter\":\"\\n\"},\"documentRangeFormattingProvider\":true,\"documentSymbolProvider\":true,\"executeCommandProvider\":{\"commands\":[\"lua.removeSpace\",\"lua.solve\",\"lua.jsonToLua\",\"lua.setConfig\",\"lua.getConfig\",\"lua.autoRequire\"]},\"foldingRangeProvider\":true,\"hoverProvider\":true,\"implementationProvider\":true,\"inlayHintProvider\":{\"resolveProvider\":true},\"offsetEncoding\":\"utf-16\",\"referencesProvider\":true,\"renameProvider\":{\"prepareProvider\":true},\"semanticTokensProvider\":{\"full\":true,\"legend\":{\"tokenModifiers\":[\"declaration\",\"definition\",\"readonly\",\"static\",\"deprecated\",\"abstract\",\"async\",\"modification\",\"documentation\",\"defaultLibrary\",\"global\"],\"tokenTypes\":[\"namespace\",\"type\",\"class\",\"enum\",\"interface\",\"struct\",\"typeParameter\",\"parameter\",\"variable\",\"property\",\"enumMember\",\"event\",\"function\",\"method\",\"macro\",\"keyword\",\"modifier\",\"comment\",\"string\",\"number\",\"regexp\",\"operator\",\"decorator\"]},\"range\":true},\"signatureHelpProvider\":{\"triggerCharacters\":[\"(\",\",\"]},\"textDocumentSync\":{\"change\":2,\"openClose\":true,\"save\":{\"includeText\":false}},\"typeDefinitionProvider\":true,\"workspace\":{\"fileOperations\":{\"didRename\":{\"filters\":[{\"pattern\":{\"glob\":\"C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/\u5c08\u6848 lua_a//**\",\"options\":{\"ignoreCase\":true}}}]}},\"workspaceFolders\":{\"changeNotifications\":true,\"supported\":true}},\"workspaceSymbolProvider\":true},\"index_complete_proven\":false,\"initialized\":true,\"readiness\":\"unknown\",\"transport\":{\"active_progress\":{},\"closed\":false,\"isolation\":{\"launch_route\":\"host_process\",\"os_boundary_verified\":false,\"requested\":false},\"pending_requests\":0,\"server_status\":null}}}],\"project\":\"ws_1ce351ff65d0a1299c8cf5d2572f71310a4e2e2dbc798af2\",\"result_retention\":{\"max_bytes\":134217728,\"max_results\":128,\"ttl_ms\":86400000},\"semantic_available\":true,\"shell_allowed\":false,\"standalone\":true,\"tools\":[{\"enabled\":true,\"name\":\"status\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_version\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_schemas\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_capabilities\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_projects\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_current_config\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"initial_instructions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"onboarding\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"project_analysis\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_dir\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_for_pattern\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"index_build\",\"policy\":\"state\"},{\"enabled\":true,\"name\":\"index_query\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_symbols_overview\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_referencing_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_implementations\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_declaration\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_type_hierarchy\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"code_actions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"hover\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"signature_help\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"workspace_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"call_hierarchy\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"format_document\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"inlay_hints\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"inlay_hint_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"semantic_tokens\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_inspection_providers\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"run_inspections\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"prepare_inspection_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"prepare_code_action\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"apply_quick_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"move_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"inline_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"restart_language_server\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"transaction_prepare\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_apply\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"transaction_rollback\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_list\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_recover\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"create_text_file\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_content\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"replacement_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"replace_in_files\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_at_line\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_symbol_body\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_before_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_after_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"safe_delete_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"list_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_memory\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"write_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"edit_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_memory\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_export\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_import\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"memory_move_scope\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_transaction_apply\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"check_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_memories\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"recover_memories\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"query_project\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_run\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_vars\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_clear\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"execute_shell_command\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_start\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_request\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_events\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_stop\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_batch\",\"policy\":\"execute\"},{\"enabled\":true,\"name\":\"result_read\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"audit_log\",\"policy\":\"read\"}],\"trace\":{\"elapsed_ms\":214,\"id\":\"10ef789a-51aa-4671-9a45-3fd39b1a4ba0\",\"result_bytes\":9647,\"result_sha256\":\"bbec2b6ad476867a5d4283cccc7c83a4ad9762c4d83705e06dfc3f6bf53275a1\"},\"write_allowed\":false}"
+          }
+        ],
+        "structuredContent": {
+          "debug_allowed": false,
+          "external_tool_bridge": false,
+          "formatter_profiles": [],
+          "formatters_allowed": false,
+          "inspection_profiles": [],
+          "inspections_allowed": false,
+          "languages": [
+            {
+              "capabilities": {
+                "codeActionProvider": {
+                  "codeActionKinds": [
+                    "",
+                    "quickfix",
+                    "refactor.rewrite",
+                    "refactor.extract"
+                  ],
+                  "resolveProvider": false
+                },
+                "codeLensProvider": {
+                  "resolveProvider": true
+                },
+                "colorProvider": true,
+                "completionProvider": {
+                  "resolveProvider": true,
+                  "triggerCharacters": [
+                    "\t",
+                    "\n",
+                    ".",
+                    ":",
+                    "(",
+                    "'",
+                    "\"",
+                    "[",
+                    ",",
+                    "#",
+                    "*",
+                    "@",
+                    "|",
+                    "=",
+                    "-",
+                    "{",
+                    " ",
+                    "+",
+                    "?"
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentOnTypeFormattingProvider": {
+                  "firstTriggerCharacter": "\n"
+                },
+                "documentRangeFormattingProvider": true,
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "lua.removeSpace",
+                    "lua.solve",
+                    "lua.jsonToLua",
+                    "lua.setConfig",
+                    "lua.getConfig",
+                    "lua.autoRequire"
+                  ]
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": {
+                  "resolveProvider": true
+                },
+                "offsetEncoding": "utf-16",
+                "referencesProvider": true,
+                "renameProvider": {
+                  "prepareProvider": true
+                },
+                "semanticTokensProvider": {
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "declaration",
+                      "definition",
+                      "readonly",
+                      "static",
+                      "deprecated",
+                      "abstract",
+                      "async",
+                      "modification",
+                      "documentation",
+                      "defaultLibrary",
+                      "global"
+                    ],
+                    "tokenTypes": [
+                      "namespace",
+                      "type",
+                      "class",
+                      "enum",
+                      "interface",
+                      "struct",
+                      "typeParameter",
+                      "parameter",
+                      "variable",
+                      "property",
+                      "enumMember",
+                      "event",
+                      "function",
+                      "method",
+                      "macro",
+                      "keyword",
+                      "modifier",
+                      "comment",
+                      "string",
+                      "number",
+                      "regexp",
+                      "operator",
+                      "decorator"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "triggerCharacters": [
+                    "(",
+                    ","
+                  ]
+                },
+                "textDocumentSync": {
+                  "change": 2,
+                  "openClose": true,
+                  "save": {
+                    "includeText": false
+                  }
+                },
+                "typeDefinitionProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "didRename": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/\u5c08\u6848 lua_a//**",
+                            "options": {
+                              "ignoreCase": true
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "workspaceFolders": {
+                    "changeNotifications": true,
+                    "supported": true
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "configured": true,
+              "extensions": [
+                "lua"
+              ],
+              "id": "lua",
+              "probed": true,
+              "ready": true,
+              "status": {
+                "capabilities": {
+                  "codeActionProvider": {
+                    "codeActionKinds": [
+                      "",
+                      "quickfix",
+                      "refactor.rewrite",
+                      "refactor.extract"
+                    ],
+                    "resolveProvider": false
+                  },
+                  "codeLensProvider": {
+                    "resolveProvider": true
+                  },
+                  "colorProvider": true,
+                  "completionProvider": {
+                    "resolveProvider": true,
+                    "triggerCharacters": [
+                      "\t",
+                      "\n",
+                      ".",
+                      ":",
+                      "(",
+                      "'",
+                      "\"",
+                      "[",
+                      ",",
+                      "#",
+                      "*",
+                      "@",
+                      "|",
+                      "=",
+                      "-",
+                      "{",
+                      " ",
+                      "+",
+                      "?"
+                    ]
+                  },
+                  "definitionProvider": true,
+                  "documentFormattingProvider": true,
+                  "documentHighlightProvider": true,
+                  "documentOnTypeFormattingProvider": {
+                    "firstTriggerCharacter": "\n"
+                  },
+                  "documentRangeFormattingProvider": true,
+                  "documentSymbolProvider": true,
+                  "executeCommandProvider": {
+                    "commands": [
+                      "lua.removeSpace",
+                      "lua.solve",
+                      "lua.jsonToLua",
+                      "lua.setConfig",
+                      "lua.getConfig",
+                      "lua.autoRequire"
+                    ]
+                  },
+                  "foldingRangeProvider": true,
+                  "hoverProvider": true,
+                  "implementationProvider": true,
+                  "inlayHintProvider": {
+                    "resolveProvider": true
+                  },
+                  "offsetEncoding": "utf-16",
+                  "referencesProvider": true,
+                  "renameProvider": {
+                    "prepareProvider": true
+                  },
+                  "semanticTokensProvider": {
+                    "full": true,
+                    "legend": {
+                      "tokenModifiers": [
+                        "declaration",
+                        "definition",
+                        "readonly",
+                        "static",
+                        "deprecated",
+                        "abstract",
+                        "async",
+                        "modification",
+                        "documentation",
+                        "defaultLibrary",
+                        "global"
+                      ],
+                      "tokenTypes": [
+                        "namespace",
+                        "type",
+                        "class",
+                        "enum",
+                        "interface",
+                        "struct",
+                        "typeParameter",
+                        "parameter",
+                        "variable",
+                        "property",
+                        "enumMember",
+                        "event",
+                        "function",
+                        "method",
+                        "macro",
+                        "keyword",
+                        "modifier",
+                        "comment",
+                        "string",
+                        "number",
+                        "regexp",
+                        "operator",
+                        "decorator"
+                      ]
+                    },
+                    "range": true
+                  },
+                  "signatureHelpProvider": {
+                    "triggerCharacters": [
+                      "(",
+                      ","
+                    ]
+                  },
+                  "textDocumentSync": {
+                    "change": 2,
+                    "openClose": true,
+                    "save": {
+                      "includeText": false
+                    }
+                  },
+                  "typeDefinitionProvider": true,
+                  "workspace": {
+                    "fileOperations": {
+                      "didRename": {
+                        "filters": [
+                          {
+                            "pattern": {
+                              "glob": "C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/\u5c08\u6848 lua_a//**",
+                              "options": {
+                                "ignoreCase": true
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "workspaceFolders": {
+                      "changeNotifications": true,
+                      "supported": true
+                    }
+                  },
+                  "workspaceSymbolProvider": true
+                },
+                "index_complete_proven": false,
+                "initialized": true,
+                "readiness": "unknown",
+                "transport": {
+                  "active_progress": {},
+                  "closed": false,
+                  "isolation": {
+                    "launch_route": "host_process",
+                    "os_boundary_verified": false,
+                    "requested": false
+                  },
+                  "pending_requests": 0,
+                  "server_status": null
+                }
+              }
+            }
+          ],
+          "project": "ws_1ce351ff65d0a1299c8cf5d2572f71310a4e2e2dbc798af2",
+          "result_retention": {
+            "max_bytes": 134217728,
+            "max_results": 128,
+            "ttl_ms": 86400000
+          },
+          "semantic_available": true,
+          "shell_allowed": false,
+          "standalone": true,
+          "tools": [
+            {
+              "enabled": true,
+              "name": "status",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_version",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_schemas",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_capabilities",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_projects",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_current_config",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "initial_instructions",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "onboarding",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "project_analysis",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_dir",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "read_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "search_for_pattern",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "index_build",
+              "policy": "state"
+            },
+            {
+              "enabled": true,
+              "name": "index_query",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_symbols_overview",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_symbol",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_referencing_symbols",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_implementations",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_declaration",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_type_hierarchy",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_diagnostics_for_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_diagnostics_for_symbol",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "code_actions",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "completion",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "hover",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "signature_help",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "completion_resolve",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "workspace_symbols",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "call_hierarchy",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "format_document",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "inlay_hints",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "inlay_hint_resolve",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "semantic_tokens",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_inspection_providers",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "run_inspections",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "prepare_inspection_fix",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "prepare_code_action",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "apply_quick_fix",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "move_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "inline_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "restart_language_server",
+              "policy": "state"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_prepare",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "transaction_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_apply",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_rollback",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "transaction_list",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_recover",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "create_text_file",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_content",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "replacement_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "replace_in_files",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_lines",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "delete_lines",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_at_line",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_symbol_body",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_before_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_after_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "rename_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "safe_delete_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "list_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "read_memory",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "write_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "edit_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "delete_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "rename_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "memory_export",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "memory_import",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "memory_move_scope",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "memory_transaction_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "memory_transaction_apply",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "check_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "search_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "recover_memories",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "query_project",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_run",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_vars",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_clear",
+              "policy": "state"
+            },
+            {
+              "enabled": false,
+              "name": "execute_shell_command",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_start",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_request",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_events",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_stop",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_batch",
+              "policy": "execute"
+            },
+            {
+              "enabled": true,
+              "name": "result_read",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "audit_log",
+              "policy": "read"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 214,
+            "id": "10ef789a-51aa-4671-9a45-3fd39b1a4ba0",
+            "result_bytes": 9647,
+            "result_sha256": "bbec2b6ad476867a5d4283cccc7c83a4ad9762c4d83705e06dfc3f6bf53275a1"
+          },
+          "write_allowed": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "sample.lua"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"lua\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":12,\"name\":\"greet\",\"name_path\":\"greet\",\"range\":{\"end\":{\"character\":3,\"line\":2},\"start\":{\"character\":0,\"line\":0}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":14,\"line\":0},\"start\":{\"character\":9,\"line\":0}}},{\"kind\":14,\"name\":\"name\",\"name_path\":\"greet/name\",\"range\":{\"end\":{\"character\":19,\"line\":0},\"start\":{\"character\":15,\"line\":0}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":19,\"line\":0},\"start\":{\"character\":15,\"line\":0}}},{\"kind\":12,\"name\":\"run\",\"name_path\":\"run\",\"range\":{\"end\":{\"character\":3,\"line\":7},\"start\":{\"character\":0,\"line\":4}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":12,\"line\":4},\"start\":{\"character\":9,\"line\":4}}},{\"kind\":13,\"name\":\"message\",\"name_path\":\"run/message\",\"range\":{\"end\":{\"character\":33,\"line\":5},\"start\":{\"character\":10,\"line\":5}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":17,\"line\":5},\"start\":{\"character\":10,\"line\":5}}}],\"trace\":{\"elapsed_ms\":626,\"id\":\"90222c58-fa8c-43ea-a4e6-0f05ac304b53\",\"result_bytes\":1048,\"result_sha256\":\"764e4ad6b75d2f0fc2dde70b1e39c3617d82c5a9f0187f4c9eff80661522e424\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "lua",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 3,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 14,
+                  "line": 0
+                },
+                "start": {
+                  "character": 9,
+                  "line": 0
+                }
+              }
+            },
+            {
+              "kind": 14,
+              "name": "name",
+              "name_path": "greet/name",
+              "range": {
+                "end": {
+                  "character": 19,
+                  "line": 0
+                },
+                "start": {
+                  "character": 15,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 19,
+                  "line": 0
+                },
+                "start": {
+                  "character": 15,
+                  "line": 0
+                }
+              }
+            },
+            {
+              "kind": 12,
+              "name": "run",
+              "name_path": "run",
+              "range": {
+                "end": {
+                  "character": 3,
+                  "line": 7
+                },
+                "start": {
+                  "character": 0,
+                  "line": 4
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 12,
+                  "line": 4
+                },
+                "start": {
+                  "character": 9,
+                  "line": 4
+                }
+              }
+            },
+            {
+              "kind": 13,
+              "name": "message",
+              "name_path": "run/message",
+              "range": {
+                "end": {
+                  "character": 33,
+                  "line": 5
+                },
+                "start": {
+                  "character": 10,
+                  "line": 5
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 17,
+                  "line": 5
+                },
+                "start": {
+                  "character": 10,
+                  "line": 5
+                }
+              }
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 626,
+            "id": "90222c58-fa8c-43ea-a4e6-0f05ac304b53",
+            "result_bytes": 1048,
+            "result_sha256": "764e4ad6b75d2f0fc2dde70b1e39c3617d82c5a9f0187f4c9eff80661522e424"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "create_text_file",
+    "arguments": {
+      "relative_path": "forbidden.txt",
+      "content": "denied",
+      "expected_sha256": null
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\":{\"code\":\"PERMISSION_DENIED\",\"message\":\"Project writes are disabled\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "PERMISSION_DENIED",
+            "message": "Project writes are disabled"
+          }
+        },
+        "isError": true
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "list_projects",
+    "arguments": {},
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"projects\":[{\"allow_debug\":false,\"allow_inspections\":false,\"allow_shell\":false,\"allow_write\":false,\"id\":\"ws_8779a34769d504b3573c3e2b379b61ebfb4064dda57efdb7\",\"languages\":[\"rust\",\"python\",\"go\",\"csharp\",\"lua\",\"javascript\",\"typescript\",\"bash\"],\"root\":\"\\\\\\\\?\\\\C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\\\final-installed-languages-v3.fixtures\\\\lua_b\"}],\"trace\":{\"elapsed_ms\":0,\"id\":\"a267ad26-3a4f-4112-941d-00cdccb08926\",\"result_bytes\":394,\"result_sha256\":\"25cde3e016d4228d3c87b13493103fae9c088aed6b1144022744c793eb8f06e6\"}}"
+          }
+        ],
+        "structuredContent": {
+          "projects": [
+            {
+              "allow_debug": false,
+              "allow_inspections": false,
+              "allow_shell": false,
+              "allow_write": false,
+              "id": "ws_8779a34769d504b3573c3e2b379b61ebfb4064dda57efdb7",
+              "languages": [
+                "rust",
+                "python",
+                "go",
+                "csharp",
+                "lua",
+                "javascript",
+                "typescript",
+                "bash"
+              ],
+              "root": "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-installed-languages-v3.fixtures\\lua_b"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "a267ad26-3a4f-4112-941d-00cdccb08926",
+            "result_bytes": 394,
+            "result_sha256": "25cde3e016d4228d3c87b13493103fae9c088aed6b1144022744c793eb8f06e6"
+          }
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "read_file",
+    "arguments": {
+      "relative_path": "sentinel.txt"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\":\"lua_b\",\"end_line\":1,\"line_base\":1,\"relative_path\":\"sentinel.txt\",\"sha256\":\"3c781ad735b67a452d7f534aaaf4e87fde9a663e08742ab329efeaf18e3b8f7d\",\"start_line\":1,\"total_lines\":1,\"trace\":{\"elapsed_ms\":4,\"id\":\"c051b725-4561-4d3e-8605-3753df864a01\",\"result_bytes\":184,\"result_sha256\":\"f7f469116e09c7ec589264fbd675d3b56eae8507c5ff1ded588b5738e15dc60c\"}}"
+          }
+        ],
+        "structuredContent": {
+          "content": "lua_b",
+          "end_line": 1,
+          "line_base": 1,
+          "relative_path": "sentinel.txt",
+          "sha256": "3c781ad735b67a452d7f534aaaf4e87fde9a663e08742ab329efeaf18e3b8f7d",
+          "start_line": 1,
+          "total_lines": 1,
+          "trace": {
+            "elapsed_ms": 4,
+            "id": "c051b725-4561-4d3e-8605-3753df864a01",
+            "result_bytes": 184,
+            "result_sha256": "f7f469116e09c7ec589264fbd675d3b56eae8507c5ff1ded588b5738e15dc60c"
+          }
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "project_analysis",
+    "arguments": {},
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"analysis_kind\":\"LIVE_STRUCTURE_AND_CONFIGURATION\",\"backends_started\":false,\"configured_backends\":[{\"extensions\":[\"rs\"],\"id\":\"rust\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"py\",\"pyi\"],\"id\":\"python\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"go\"],\"id\":\"go\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"cs\"],\"id\":\"csharp\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"lua\"],\"id\":\"lua\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"js\",\"jsx\",\"mjs\",\"cjs\"],\"id\":\"javascript\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"ts\",\"tsx\",\"mts\",\"cts\"],\"id\":\"typescript\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"sh\",\"bash\"],\"id\":\"bash\",\"probe\":\"NOT_RUN\"}],\"directories_truncated\":false,\"evidence\":[],\"evidence_truncated\":false,\"extensions\":{\"lua\":2,\"txt\":1},\"file_count\":3,\"inspections\":\"NOT_RUN\",\"language_hints\":[{\"backend_probe\":\"NOT_RUN\",\"detection\":\"EXTENSION_HINT\",\"host_backend_configured\":true,\"id\":\"lua\",\"marker_hints\":[],\"observed_extensions\":[\"lua\"],\"source_file_count\":2,\"suggested_server\":\"lua-language-server\",\"unconfigured_extensions\":[]}],\"limitations\":[\"Structural hints are not semantic symbol analysis or dependency parsing.\",\"Ignore rules, path policy and scan/evidence limits restrict visibility; absent evidence is not proof of absence.\",\"No background watcher or atomic multi-file snapshot. structure_sha256 covers paths and returned evidence only.\",\"No repository commands/configuration executed and no backend installed or probed. Semantic work requires a host-configured LSP.\"],\"next_steps\":[{\"probe\":false,\"project\":\"ws_8779a34769d504b3573c3e2b379b61ebfb4064dda57efdb7\",\"tool\":\"get_capabilities\"},{\"project\":\"ws_8779a34769d504b3573c3e2b379b61ebfb4064dda57efdb7\",\"relative_path\":\"consumer.lua\",\"tool\":\"get_symbols_overview\"}],\"permissions\":{\"debug\":false,\"formatters\":false,\"inspections\":false,\"shell\":false,\"write\":false},\"project\":\"ws_8779a34769d504b3573c3e2b379b61ebfb4064dda57efdb7\",\"root\":\"\\\\\\\\?\\\\C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\\\final-installed-languages-v3.fixtures\\\\lua_b\",\"sample_files\":[\"consumer.lua\",\"sample.lua\",\"sentinel.txt\"],\"scan_limit\":10000,\"scan_truncated\":false,\"snapshot\":\"LIVE_NON_ATOMIC\",\"structure_sha256\":\"bdd5e031f57ff8a108d5e94173a7ac4be22b4085d74a61b3f6316410bdea5526\",\"tests\":\"NOT_RUN\",\"top_level_directories\":[],\"trace\":{\"elapsed_ms\":1,\"id\":\"d70664ea-333c-4a94-883e-c1ee56e57ce1\",\"result_bytes\":2282,\"result_sha256\":\"21d320dfa0a6165fd2f54edd89cf7d2a87d9979ad2fa42e27d40979ae1490072\"},\"unconfigured_language_hints\":[]}"
+          }
+        ],
+        "structuredContent": {
+          "analysis_kind": "LIVE_STRUCTURE_AND_CONFIGURATION",
+          "backends_started": false,
+          "configured_backends": [
+            {
+              "extensions": [
+                "rs"
+              ],
+              "id": "rust",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "py",
+                "pyi"
+              ],
+              "id": "python",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "go"
+              ],
+              "id": "go",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "cs"
+              ],
+              "id": "csharp",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "lua"
+              ],
+              "id": "lua",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "js",
+                "jsx",
+                "mjs",
+                "cjs"
+              ],
+              "id": "javascript",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "ts",
+                "tsx",
+                "mts",
+                "cts"
+              ],
+              "id": "typescript",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "sh",
+                "bash"
+              ],
+              "id": "bash",
+              "probe": "NOT_RUN"
+            }
+          ],
+          "directories_truncated": false,
+          "evidence": [],
+          "evidence_truncated": false,
+          "extensions": {
+            "lua": 2,
+            "txt": 1
+          },
+          "file_count": 3,
+          "inspections": "NOT_RUN",
+          "language_hints": [
+            {
+              "backend_probe": "NOT_RUN",
+              "detection": "EXTENSION_HINT",
+              "host_backend_configured": true,
+              "id": "lua",
+              "marker_hints": [],
+              "observed_extensions": [
+                "lua"
+              ],
+              "source_file_count": 2,
+              "suggested_server": "lua-language-server",
+              "unconfigured_extensions": []
+            }
+          ],
+          "limitations": [
+            "Structural hints are not semantic symbol analysis or dependency parsing.",
+            "Ignore rules, path policy and scan/evidence limits restrict visibility; absent evidence is not proof of absence.",
+            "No background watcher or atomic multi-file snapshot. structure_sha256 covers paths and returned evidence only.",
+            "No repository commands/configuration executed and no backend installed or probed. Semantic work requires a host-configured LSP."
+          ],
+          "next_steps": [
+            {
+              "probe": false,
+              "project": "ws_8779a34769d504b3573c3e2b379b61ebfb4064dda57efdb7",
+              "tool": "get_capabilities"
+            },
+            {
+              "project": "ws_8779a34769d504b3573c3e2b379b61ebfb4064dda57efdb7",
+              "relative_path": "consumer.lua",
+              "tool": "get_symbols_overview"
+            }
+          ],
+          "permissions": {
+            "debug": false,
+            "formatters": false,
+            "inspections": false,
+            "shell": false,
+            "write": false
+          },
+          "project": "ws_8779a34769d504b3573c3e2b379b61ebfb4064dda57efdb7",
+          "root": "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-installed-languages-v3.fixtures\\lua_b",
+          "sample_files": [
+            "consumer.lua",
+            "sample.lua",
+            "sentinel.txt"
+          ],
+          "scan_limit": 10000,
+          "scan_truncated": false,
+          "snapshot": "LIVE_NON_ATOMIC",
+          "structure_sha256": "bdd5e031f57ff8a108d5e94173a7ac4be22b4085d74a61b3f6316410bdea5526",
+          "tests": "NOT_RUN",
+          "top_level_directories": [],
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "d70664ea-333c-4a94-883e-c1ee56e57ce1",
+            "result_bytes": 2282,
+            "result_sha256": "21d320dfa0a6165fd2f54edd89cf7d2a87d9979ad2fa42e27d40979ae1490072"
+          },
+          "unconfigured_language_hints": []
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "get_capabilities",
+    "arguments": {
+      "probe": true,
+      "language": "lua"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"debug_allowed\":false,\"external_tool_bridge\":false,\"formatter_profiles\":[],\"formatters_allowed\":false,\"inspection_profiles\":[],\"inspections_allowed\":false,\"languages\":[{\"capabilities\":{\"codeActionProvider\":{\"codeActionKinds\":[\"\",\"quickfix\",\"refactor.rewrite\",\"refactor.extract\"],\"resolveProvider\":false},\"codeLensProvider\":{\"resolveProvider\":true},\"colorProvider\":true,\"completionProvider\":{\"resolveProvider\":true,\"triggerCharacters\":[\"\\t\",\"\\n\",\".\",\":\",\"(\",\"'\",\"\\\"\",\"[\",\",\",\"#\",\"*\",\"@\",\"|\",\"=\",\"-\",\"{\",\" \",\"+\",\"?\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentOnTypeFormattingProvider\":{\"firstTriggerCharacter\":\"\\n\"},\"documentRangeFormattingProvider\":true,\"documentSymbolProvider\":true,\"executeCommandProvider\":{\"commands\":[\"lua.removeSpace\",\"lua.solve\",\"lua.jsonToLua\",\"lua.setConfig\",\"lua.getConfig\",\"lua.autoRequire\"]},\"foldingRangeProvider\":true,\"hoverProvider\":true,\"implementationProvider\":true,\"inlayHintProvider\":{\"resolveProvider\":true},\"offsetEncoding\":\"utf-16\",\"referencesProvider\":true,\"renameProvider\":{\"prepareProvider\":true},\"semanticTokensProvider\":{\"full\":true,\"legend\":{\"tokenModifiers\":[\"declaration\",\"definition\",\"readonly\",\"static\",\"deprecated\",\"abstract\",\"async\",\"modification\",\"documentation\",\"defaultLibrary\",\"global\"],\"tokenTypes\":[\"namespace\",\"type\",\"class\",\"enum\",\"interface\",\"struct\",\"typeParameter\",\"parameter\",\"variable\",\"property\",\"enumMember\",\"event\",\"function\",\"method\",\"macro\",\"keyword\",\"modifier\",\"comment\",\"string\",\"number\",\"regexp\",\"operator\",\"decorator\"]},\"range\":true},\"signatureHelpProvider\":{\"triggerCharacters\":[\"(\",\",\"]},\"textDocumentSync\":{\"change\":2,\"openClose\":true,\"save\":{\"includeText\":false}},\"typeDefinitionProvider\":true,\"workspace\":{\"fileOperations\":{\"didRename\":{\"filters\":[{\"pattern\":{\"glob\":\"C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/lua_b//**\",\"options\":{\"ignoreCase\":true}}}]}},\"workspaceFolders\":{\"changeNotifications\":true,\"supported\":true}},\"workspaceSymbolProvider\":true},\"configured\":true,\"extensions\":[\"lua\"],\"id\":\"lua\",\"probed\":true,\"ready\":true,\"status\":{\"capabilities\":{\"codeActionProvider\":{\"codeActionKinds\":[\"\",\"quickfix\",\"refactor.rewrite\",\"refactor.extract\"],\"resolveProvider\":false},\"codeLensProvider\":{\"resolveProvider\":true},\"colorProvider\":true,\"completionProvider\":{\"resolveProvider\":true,\"triggerCharacters\":[\"\\t\",\"\\n\",\".\",\":\",\"(\",\"'\",\"\\\"\",\"[\",\",\",\"#\",\"*\",\"@\",\"|\",\"=\",\"-\",\"{\",\" \",\"+\",\"?\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentOnTypeFormattingProvider\":{\"firstTriggerCharacter\":\"\\n\"},\"documentRangeFormattingProvider\":true,\"documentSymbolProvider\":true,\"executeCommandProvider\":{\"commands\":[\"lua.removeSpace\",\"lua.solve\",\"lua.jsonToLua\",\"lua.setConfig\",\"lua.getConfig\",\"lua.autoRequire\"]},\"foldingRangeProvider\":true,\"hoverProvider\":true,\"implementationProvider\":true,\"inlayHintProvider\":{\"resolveProvider\":true},\"offsetEncoding\":\"utf-16\",\"referencesProvider\":true,\"renameProvider\":{\"prepareProvider\":true},\"semanticTokensProvider\":{\"full\":true,\"legend\":{\"tokenModifiers\":[\"declaration\",\"definition\",\"readonly\",\"static\",\"deprecated\",\"abstract\",\"async\",\"modification\",\"documentation\",\"defaultLibrary\",\"global\"],\"tokenTypes\":[\"namespace\",\"type\",\"class\",\"enum\",\"interface\",\"struct\",\"typeParameter\",\"parameter\",\"variable\",\"property\",\"enumMember\",\"event\",\"function\",\"method\",\"macro\",\"keyword\",\"modifier\",\"comment\",\"string\",\"number\",\"regexp\",\"operator\",\"decorator\"]},\"range\":true},\"signatureHelpProvider\":{\"triggerCharacters\":[\"(\",\",\"]},\"textDocumentSync\":{\"change\":2,\"openClose\":true,\"save\":{\"includeText\":false}},\"typeDefinitionProvider\":true,\"workspace\":{\"fileOperations\":{\"didRename\":{\"filters\":[{\"pattern\":{\"glob\":\"C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/lua_b//**\",\"options\":{\"ignoreCase\":true}}}]}},\"workspaceFolders\":{\"changeNotifications\":true,\"supported\":true}},\"workspaceSymbolProvider\":true},\"index_complete_proven\":false,\"initialized\":true,\"readiness\":\"unknown\",\"transport\":{\"active_progress\":{},\"closed\":false,\"isolation\":{\"launch_route\":\"host_process\",\"os_boundary_verified\":false,\"requested\":false},\"pending_requests\":0,\"server_status\":null}}}],\"project\":\"ws_8779a34769d504b3573c3e2b379b61ebfb4064dda57efdb7\",\"result_retention\":{\"max_bytes\":134217728,\"max_results\":128,\"ttl_ms\":86400000},\"semantic_available\":true,\"shell_allowed\":false,\"standalone\":true,\"tools\":[{\"enabled\":true,\"name\":\"status\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_version\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_schemas\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_capabilities\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_projects\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_current_config\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"initial_instructions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"onboarding\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"project_analysis\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_dir\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_for_pattern\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"index_build\",\"policy\":\"state\"},{\"enabled\":true,\"name\":\"index_query\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_symbols_overview\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_referencing_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_implementations\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_declaration\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_type_hierarchy\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"code_actions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"hover\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"signature_help\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"workspace_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"call_hierarchy\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"format_document\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"inlay_hints\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"inlay_hint_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"semantic_tokens\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_inspection_providers\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"run_inspections\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"prepare_inspection_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"prepare_code_action\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"apply_quick_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"move_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"inline_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"restart_language_server\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"transaction_prepare\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_apply\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"transaction_rollback\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_list\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_recover\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"create_text_file\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_content\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"replacement_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"replace_in_files\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_at_line\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_symbol_body\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_before_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_after_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"safe_delete_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"list_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_memory\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"write_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"edit_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_memory\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_export\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_import\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"memory_move_scope\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_transaction_apply\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"check_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_memories\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"recover_memories\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"query_project\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_run\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_vars\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_clear\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"execute_shell_command\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_start\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_request\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_events\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_stop\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_batch\",\"policy\":\"execute\"},{\"enabled\":true,\"name\":\"result_read\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"audit_log\",\"policy\":\"read\"}],\"trace\":{\"elapsed_ms\":220,\"id\":\"6cf841a7-a537-4efe-bcff-189e253a4782\",\"result_bytes\":9633,\"result_sha256\":\"459dfc7c255c852bfabdee57399a65f65b2373cb3df01e6a6a11fb4a02a7810c\"},\"write_allowed\":false}"
+          }
+        ],
+        "structuredContent": {
+          "debug_allowed": false,
+          "external_tool_bridge": false,
+          "formatter_profiles": [],
+          "formatters_allowed": false,
+          "inspection_profiles": [],
+          "inspections_allowed": false,
+          "languages": [
+            {
+              "capabilities": {
+                "codeActionProvider": {
+                  "codeActionKinds": [
+                    "",
+                    "quickfix",
+                    "refactor.rewrite",
+                    "refactor.extract"
+                  ],
+                  "resolveProvider": false
+                },
+                "codeLensProvider": {
+                  "resolveProvider": true
+                },
+                "colorProvider": true,
+                "completionProvider": {
+                  "resolveProvider": true,
+                  "triggerCharacters": [
+                    "\t",
+                    "\n",
+                    ".",
+                    ":",
+                    "(",
+                    "'",
+                    "\"",
+                    "[",
+                    ",",
+                    "#",
+                    "*",
+                    "@",
+                    "|",
+                    "=",
+                    "-",
+                    "{",
+                    " ",
+                    "+",
+                    "?"
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentOnTypeFormattingProvider": {
+                  "firstTriggerCharacter": "\n"
+                },
+                "documentRangeFormattingProvider": true,
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "lua.removeSpace",
+                    "lua.solve",
+                    "lua.jsonToLua",
+                    "lua.setConfig",
+                    "lua.getConfig",
+                    "lua.autoRequire"
+                  ]
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": {
+                  "resolveProvider": true
+                },
+                "offsetEncoding": "utf-16",
+                "referencesProvider": true,
+                "renameProvider": {
+                  "prepareProvider": true
+                },
+                "semanticTokensProvider": {
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "declaration",
+                      "definition",
+                      "readonly",
+                      "static",
+                      "deprecated",
+                      "abstract",
+                      "async",
+                      "modification",
+                      "documentation",
+                      "defaultLibrary",
+                      "global"
+                    ],
+                    "tokenTypes": [
+                      "namespace",
+                      "type",
+                      "class",
+                      "enum",
+                      "interface",
+                      "struct",
+                      "typeParameter",
+                      "parameter",
+                      "variable",
+                      "property",
+                      "enumMember",
+                      "event",
+                      "function",
+                      "method",
+                      "macro",
+                      "keyword",
+                      "modifier",
+                      "comment",
+                      "string",
+                      "number",
+                      "regexp",
+                      "operator",
+                      "decorator"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "triggerCharacters": [
+                    "(",
+                    ","
+                  ]
+                },
+                "textDocumentSync": {
+                  "change": 2,
+                  "openClose": true,
+                  "save": {
+                    "includeText": false
+                  }
+                },
+                "typeDefinitionProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "didRename": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/lua_b//**",
+                            "options": {
+                              "ignoreCase": true
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "workspaceFolders": {
+                    "changeNotifications": true,
+                    "supported": true
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "configured": true,
+              "extensions": [
+                "lua"
+              ],
+              "id": "lua",
+              "probed": true,
+              "ready": true,
+              "status": {
+                "capabilities": {
+                  "codeActionProvider": {
+                    "codeActionKinds": [
+                      "",
+                      "quickfix",
+                      "refactor.rewrite",
+                      "refactor.extract"
+                    ],
+                    "resolveProvider": false
+                  },
+                  "codeLensProvider": {
+                    "resolveProvider": true
+                  },
+                  "colorProvider": true,
+                  "completionProvider": {
+                    "resolveProvider": true,
+                    "triggerCharacters": [
+                      "\t",
+                      "\n",
+                      ".",
+                      ":",
+                      "(",
+                      "'",
+                      "\"",
+                      "[",
+                      ",",
+                      "#",
+                      "*",
+                      "@",
+                      "|",
+                      "=",
+                      "-",
+                      "{",
+                      " ",
+                      "+",
+                      "?"
+                    ]
+                  },
+                  "definitionProvider": true,
+                  "documentFormattingProvider": true,
+                  "documentHighlightProvider": true,
+                  "documentOnTypeFormattingProvider": {
+                    "firstTriggerCharacter": "\n"
+                  },
+                  "documentRangeFormattingProvider": true,
+                  "documentSymbolProvider": true,
+                  "executeCommandProvider": {
+                    "commands": [
+                      "lua.removeSpace",
+                      "lua.solve",
+                      "lua.jsonToLua",
+                      "lua.setConfig",
+                      "lua.getConfig",
+                      "lua.autoRequire"
+                    ]
+                  },
+                  "foldingRangeProvider": true,
+                  "hoverProvider": true,
+                  "implementationProvider": true,
+                  "inlayHintProvider": {
+                    "resolveProvider": true
+                  },
+                  "offsetEncoding": "utf-16",
+                  "referencesProvider": true,
+                  "renameProvider": {
+                    "prepareProvider": true
+                  },
+                  "semanticTokensProvider": {
+                    "full": true,
+                    "legend": {
+                      "tokenModifiers": [
+                        "declaration",
+                        "definition",
+                        "readonly",
+                        "static",
+                        "deprecated",
+                        "abstract",
+                        "async",
+                        "modification",
+                        "documentation",
+                        "defaultLibrary",
+                        "global"
+                      ],
+                      "tokenTypes": [
+                        "namespace",
+                        "type",
+                        "class",
+                        "enum",
+                        "interface",
+                        "struct",
+                        "typeParameter",
+                        "parameter",
+                        "variable",
+                        "property",
+                        "enumMember",
+                        "event",
+                        "function",
+                        "method",
+                        "macro",
+                        "keyword",
+                        "modifier",
+                        "comment",
+                        "string",
+                        "number",
+                        "regexp",
+                        "operator",
+                        "decorator"
+                      ]
+                    },
+                    "range": true
+                  },
+                  "signatureHelpProvider": {
+                    "triggerCharacters": [
+                      "(",
+                      ","
+                    ]
+                  },
+                  "textDocumentSync": {
+                    "change": 2,
+                    "openClose": true,
+                    "save": {
+                      "includeText": false
+                    }
+                  },
+                  "typeDefinitionProvider": true,
+                  "workspace": {
+                    "fileOperations": {
+                      "didRename": {
+                        "filters": [
+                          {
+                            "pattern": {
+                              "glob": "C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/lua_b//**",
+                              "options": {
+                                "ignoreCase": true
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "workspaceFolders": {
+                      "changeNotifications": true,
+                      "supported": true
+                    }
+                  },
+                  "workspaceSymbolProvider": true
+                },
+                "index_complete_proven": false,
+                "initialized": true,
+                "readiness": "unknown",
+                "transport": {
+                  "active_progress": {},
+                  "closed": false,
+                  "isolation": {
+                    "launch_route": "host_process",
+                    "os_boundary_verified": false,
+                    "requested": false
+                  },
+                  "pending_requests": 0,
+                  "server_status": null
+                }
+              }
+            }
+          ],
+          "project": "ws_8779a34769d504b3573c3e2b379b61ebfb4064dda57efdb7",
+          "result_retention": {
+            "max_bytes": 134217728,
+            "max_results": 128,
+            "ttl_ms": 86400000
+          },
+          "semantic_available": true,
+          "shell_allowed": false,
+          "standalone": true,
+          "tools": [
+            {
+              "enabled": true,
+              "name": "status",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_version",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_schemas",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_capabilities",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_projects",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_current_config",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "initial_instructions",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "onboarding",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "project_analysis",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_dir",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "read_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "search_for_pattern",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "index_build",
+              "policy": "state"
+            },
+            {
+              "enabled": true,
+              "name": "index_query",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_symbols_overview",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_symbol",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_referencing_symbols",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_implementations",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_declaration",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_type_hierarchy",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_diagnostics_for_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_diagnostics_for_symbol",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "code_actions",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "completion",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "hover",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "signature_help",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "completion_resolve",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "workspace_symbols",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "call_hierarchy",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "format_document",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "inlay_hints",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "inlay_hint_resolve",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "semantic_tokens",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_inspection_providers",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "run_inspections",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "prepare_inspection_fix",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "prepare_code_action",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "apply_quick_fix",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "move_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "inline_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "restart_language_server",
+              "policy": "state"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_prepare",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "transaction_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_apply",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_rollback",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "transaction_list",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_recover",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "create_text_file",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_content",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "replacement_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "replace_in_files",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_lines",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "delete_lines",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_at_line",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_symbol_body",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_before_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_after_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "rename_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "safe_delete_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "list_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "read_memory",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "write_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "edit_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "delete_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "rename_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "memory_export",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "memory_import",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "memory_move_scope",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "memory_transaction_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "memory_transaction_apply",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "check_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "search_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "recover_memories",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "query_project",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_run",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_vars",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_clear",
+              "policy": "state"
+            },
+            {
+              "enabled": false,
+              "name": "execute_shell_command",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_start",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_request",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_events",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_stop",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_batch",
+              "policy": "execute"
+            },
+            {
+              "enabled": true,
+              "name": "result_read",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "audit_log",
+              "policy": "read"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 220,
+            "id": "6cf841a7-a537-4efe-bcff-189e253a4782",
+            "result_bytes": 9633,
+            "result_sha256": "459dfc7c255c852bfabdee57399a65f65b2373cb3df01e6a6a11fb4a02a7810c"
+          },
+          "write_allowed": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "sample.lua"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"lua\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":12,\"name\":\"greet\",\"name_path\":\"greet\",\"range\":{\"end\":{\"character\":3,\"line\":2},\"start\":{\"character\":0,\"line\":0}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":14,\"line\":0},\"start\":{\"character\":9,\"line\":0}}},{\"kind\":14,\"name\":\"name\",\"name_path\":\"greet/name\",\"range\":{\"end\":{\"character\":19,\"line\":0},\"start\":{\"character\":15,\"line\":0}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":19,\"line\":0},\"start\":{\"character\":15,\"line\":0}}},{\"kind\":12,\"name\":\"run\",\"name_path\":\"run\",\"range\":{\"end\":{\"character\":3,\"line\":7},\"start\":{\"character\":0,\"line\":4}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":12,\"line\":4},\"start\":{\"character\":9,\"line\":4}}},{\"kind\":13,\"name\":\"message\",\"name_path\":\"run/message\",\"range\":{\"end\":{\"character\":33,\"line\":5},\"start\":{\"character\":10,\"line\":5}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":17,\"line\":5},\"start\":{\"character\":10,\"line\":5}}}],\"trace\":{\"elapsed_ms\":718,\"id\":\"945c3411-8126-40e3-9aa9-3b2246956c74\",\"result_bytes\":1048,\"result_sha256\":\"764e4ad6b75d2f0fc2dde70b1e39c3617d82c5a9f0187f4c9eff80661522e424\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "lua",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 3,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 14,
+                  "line": 0
+                },
+                "start": {
+                  "character": 9,
+                  "line": 0
+                }
+              }
+            },
+            {
+              "kind": 14,
+              "name": "name",
+              "name_path": "greet/name",
+              "range": {
+                "end": {
+                  "character": 19,
+                  "line": 0
+                },
+                "start": {
+                  "character": 15,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 19,
+                  "line": 0
+                },
+                "start": {
+                  "character": 15,
+                  "line": 0
+                }
+              }
+            },
+            {
+              "kind": 12,
+              "name": "run",
+              "name_path": "run",
+              "range": {
+                "end": {
+                  "character": 3,
+                  "line": 7
+                },
+                "start": {
+                  "character": 0,
+                  "line": 4
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 12,
+                  "line": 4
+                },
+                "start": {
+                  "character": 9,
+                  "line": 4
+                }
+              }
+            },
+            {
+              "kind": 13,
+              "name": "message",
+              "name_path": "run/message",
+              "range": {
+                "end": {
+                  "character": 33,
+                  "line": 5
+                },
+                "start": {
+                  "character": 10,
+                  "line": 5
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 17,
+                  "line": 5
+                },
+                "start": {
+                  "character": 10,
+                  "line": 5
+                }
+              }
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 718,
+            "id": "945c3411-8126-40e3-9aa9-3b2246956c74",
+            "result_bytes": 1048,
+            "result_sha256": "764e4ad6b75d2f0fc2dde70b1e39c3617d82c5a9f0187f4c9eff80661522e424"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "create_text_file",
+    "arguments": {
+      "relative_path": "forbidden.txt",
+      "content": "denied",
+      "expected_sha256": null
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\":{\"code\":\"PERMISSION_DENIED\",\"message\":\"Project writes are disabled\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "PERMISSION_DENIED",
+            "message": "Project writes are disabled"
+          }
+        },
+        "isError": true
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "read_file",
+    "arguments": {
+      "project": "ws_1ce351ff65d0a1299c8cf5d2572f71310a4e2e2dbc798af2",
+      "relative_path": "sample.lua"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 8,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\":{\"code\":\"INVALID_ARGUMENT\",\"message\":\"Unknown configured project: ws_1ce351ff65d0a1299c8cf5d2572f71310a4e2e2dbc798af2\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "INVALID_ARGUMENT",
+            "message": "Unknown configured project: ws_1ce351ff65d0a1299c8cf5d2572f71310a4e2e2dbc798af2"
+          }
+        },
+        "isError": true
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "sample.lua"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"lua\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":12,\"name\":\"greet\",\"name_path\":\"greet\",\"range\":{\"end\":{\"character\":3,\"line\":2},\"start\":{\"character\":0,\"line\":0}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":14,\"line\":0},\"start\":{\"character\":9,\"line\":0}}},{\"kind\":14,\"name\":\"name\",\"name_path\":\"greet/name\",\"range\":{\"end\":{\"character\":19,\"line\":0},\"start\":{\"character\":15,\"line\":0}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":19,\"line\":0},\"start\":{\"character\":15,\"line\":0}}},{\"kind\":12,\"name\":\"run\",\"name_path\":\"run\",\"range\":{\"end\":{\"character\":3,\"line\":7},\"start\":{\"character\":0,\"line\":4}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":12,\"line\":4},\"start\":{\"character\":9,\"line\":4}}},{\"kind\":13,\"name\":\"message\",\"name_path\":\"run/message\",\"range\":{\"end\":{\"character\":33,\"line\":5},\"start\":{\"character\":10,\"line\":5}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":17,\"line\":5},\"start\":{\"character\":10,\"line\":5}}}],\"trace\":{\"elapsed_ms\":939,\"id\":\"17416012-715f-4981-b0c2-47a7aa7b0631\",\"result_bytes\":1048,\"result_sha256\":\"764e4ad6b75d2f0fc2dde70b1e39c3617d82c5a9f0187f4c9eff80661522e424\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "lua",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 3,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 14,
+                  "line": 0
+                },
+                "start": {
+                  "character": 9,
+                  "line": 0
+                }
+              }
+            },
+            {
+              "kind": 14,
+              "name": "name",
+              "name_path": "greet/name",
+              "range": {
+                "end": {
+                  "character": 19,
+                  "line": 0
+                },
+                "start": {
+                  "character": 15,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 19,
+                  "line": 0
+                },
+                "start": {
+                  "character": 15,
+                  "line": 0
+                }
+              }
+            },
+            {
+              "kind": 12,
+              "name": "run",
+              "name_path": "run",
+              "range": {
+                "end": {
+                  "character": 3,
+                  "line": 7
+                },
+                "start": {
+                  "character": 0,
+                  "line": 4
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 12,
+                  "line": 4
+                },
+                "start": {
+                  "character": 9,
+                  "line": 4
+                }
+              }
+            },
+            {
+              "kind": 13,
+              "name": "message",
+              "name_path": "run/message",
+              "range": {
+                "end": {
+                  "character": 33,
+                  "line": 5
+                },
+                "start": {
+                  "character": 10,
+                  "line": 5
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 17,
+                  "line": 5
+                },
+                "start": {
+                  "character": 10,
+                  "line": 5
+                }
+              }
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 939,
+            "id": "17416012-715f-4981-b0c2-47a7aa7b0631",
+            "result_bytes": 1048,
+            "result_sha256": "764e4ad6b75d2f0fc2dde70b1e39c3617d82c5a9f0187f4c9eff80661522e424"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "consumer.lua"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"lua\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":13,\"name\":\"message\",\"name_path\":\"message\",\"range\":{\"end\":{\"character\":31,\"line\":0},\"start\":{\"character\":6,\"line\":0}},\"relative_path\":\"consumer.lua\",\"selection_range\":{\"end\":{\"character\":13,\"line\":0},\"start\":{\"character\":6,\"line\":0}}}],\"trace\":{\"elapsed_ms\":2,\"id\":\"63901928-c810-4f90-aa8b-1a2120a4c70c\",\"result_bytes\":336,\"result_sha256\":\"9cd80a5620582e882b04419f04cc699fa6a06d26d3b5c6bd873eb921ca9c22f2\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "lua",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [
+            {
+              "kind": 13,
+              "name": "message",
+              "name_path": "message",
+              "range": {
+                "end": {
+                  "character": 31,
+                  "line": 0
+                },
+                "start": {
+                  "character": 6,
+                  "line": 0
+                }
+              },
+              "relative_path": "consumer.lua",
+              "selection_range": {
+                "end": {
+                  "character": 13,
+                  "line": 0
+                },
+                "start": {
+                  "character": 6,
+                  "line": 0
+                }
+              }
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 2,
+            "id": "63901928-c810-4f90-aa8b-1a2120a4c70c",
+            "result_bytes": 336,
+            "result_sha256": "9cd80a5620582e882b04419f04cc699fa6a06d26d3b5c6bd873eb921ca9c22f2"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "find_referencing_symbols",
+    "arguments": {
+      "relative_path": "sample.lua",
+      "name_path": "greet"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"locations\":[{\"enclosing_symbol\":{\"kind\":13,\"name\":\"message\",\"name_path\":\"message\",\"range\":{\"end\":{\"character\":31,\"line\":0},\"start\":{\"character\":6,\"line\":0}},\"relative_path\":\"consumer.lua\",\"selection_range\":{\"end\":{\"character\":13,\"line\":0},\"start\":{\"character\":6,\"line\":0}}},\"external\":false,\"location\":{\"range\":{\"end\":{\"character\":21,\"line\":0},\"start\":{\"character\":16,\"line\":0}},\"uri\":\"file:///c%3A/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/consumer.lua\"},\"relative_path\":\"consumer.lua\"},{\"enclosing_symbol\":{\"kind\":13,\"name\":\"message\",\"name_path\":\"run/message\",\"range\":{\"end\":{\"character\":33,\"line\":5},\"start\":{\"character\":10,\"line\":5}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":17,\"line\":5},\"start\":{\"character\":10,\"line\":5}}},\"external\":false,\"location\":{\"range\":{\"end\":{\"character\":25,\"line\":5},\"start\":{\"character\":20,\"line\":5}},\"uri\":\"file:///c%3A/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua\"},\"relative_path\":\"sample.lua\"}],\"trace\":{\"elapsed_ms\":8,\"id\":\"2259bb5f-b16e-411a-84a3-985cd2052c46\",\"result_bytes\":1189,\"result_sha256\":\"b7d40759922a542a51ea4e6e4c34f080748afc4a22f9f6e74267b276b1164da6\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "locations": [
+            {
+              "enclosing_symbol": {
+                "kind": 13,
+                "name": "message",
+                "name_path": "message",
+                "range": {
+                  "end": {
+                    "character": 31,
+                    "line": 0
+                  },
+                  "start": {
+                    "character": 6,
+                    "line": 0
+                  }
+                },
+                "relative_path": "consumer.lua",
+                "selection_range": {
+                  "end": {
+                    "character": 13,
+                    "line": 0
+                  },
+                  "start": {
+                    "character": 6,
+                    "line": 0
+                  }
+                }
+              },
+              "external": false,
+              "location": {
+                "range": {
+                  "end": {
+                    "character": 21,
+                    "line": 0
+                  },
+                  "start": {
+                    "character": 16,
+                    "line": 0
+                  }
+                },
+                "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/consumer.lua"
+              },
+              "relative_path": "consumer.lua"
+            },
+            {
+              "enclosing_symbol": {
+                "kind": 13,
+                "name": "message",
+                "name_path": "run/message",
+                "range": {
+                  "end": {
+                    "character": 33,
+                    "line": 5
+                  },
+                  "start": {
+                    "character": 10,
+                    "line": 5
+                  }
+                },
+                "relative_path": "sample.lua",
+                "selection_range": {
+                  "end": {
+                    "character": 17,
+                    "line": 5
+                  },
+                  "start": {
+                    "character": 10,
+                    "line": 5
+                  }
+                }
+              },
+              "external": false,
+              "location": {
+                "range": {
+                  "end": {
+                    "character": 25,
+                    "line": 5
+                  },
+                  "start": {
+                    "character": 20,
+                    "line": 5
+                  }
+                },
+                "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua"
+              },
+              "relative_path": "sample.lua"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 8,
+            "id": "2259bb5f-b16e-411a-84a3-985cd2052c46",
+            "result_bytes": 1189,
+            "result_sha256": "b7d40759922a542a51ea4e6e4c34f080748afc4a22f9f6e74267b276b1164da6"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "find_declaration",
+    "arguments": {
+      "relative_path": "sample.lua",
+      "position": {
+        "line": 5,
+        "character": 21
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"locations\":[{\"enclosing_symbol\":{\"kind\":12,\"name\":\"greet\",\"name_path\":\"greet\",\"range\":{\"end\":{\"character\":3,\"line\":2},\"start\":{\"character\":0,\"line\":0}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":14,\"line\":0},\"start\":{\"character\":9,\"line\":0}}},\"external\":false,\"location\":{\"range\":{\"end\":{\"character\":14,\"line\":0},\"start\":{\"character\":9,\"line\":0}},\"uri\":\"file:///c%3A/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua\"},\"relative_path\":\"sample.lua\"}],\"trace\":{\"elapsed_ms\":3,\"id\":\"2aedfe5f-f554-4e93-9528-ccde72600cd9\",\"result_bytes\":599,\"result_sha256\":\"33b23838b0ca3839f8816b13481e291486d467d8966934010b2f5ac24c601f68\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "locations": [
+            {
+              "enclosing_symbol": {
+                "kind": 12,
+                "name": "greet",
+                "name_path": "greet",
+                "range": {
+                  "end": {
+                    "character": 3,
+                    "line": 2
+                  },
+                  "start": {
+                    "character": 0,
+                    "line": 0
+                  }
+                },
+                "relative_path": "sample.lua",
+                "selection_range": {
+                  "end": {
+                    "character": 14,
+                    "line": 0
+                  },
+                  "start": {
+                    "character": 9,
+                    "line": 0
+                  }
+                }
+              },
+              "external": false,
+              "location": {
+                "range": {
+                  "end": {
+                    "character": 14,
+                    "line": 0
+                  },
+                  "start": {
+                    "character": 9,
+                    "line": 0
+                  }
+                },
+                "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua"
+              },
+              "relative_path": "sample.lua"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 3,
+            "id": "2aedfe5f-f554-4e93-9528-ccde72600cd9",
+            "result_bytes": 599,
+            "result_sha256": "33b23838b0ca3839f8816b13481e291486d467d8966934010b2f5ac24c601f68"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "completion",
+    "arguments": {
+      "relative_path": "sample.lua",
+      "position": {
+        "line": 5,
+        "character": 23
+      },
+      "limit": 200
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"commands_executed\":false,\"document\":{\"path\":\"sample.lua\",\"sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua\",\"version\":1},\"edits_applied\":false,\"freshness\":\"current\",\"index_complete_proven\":false,\"position_encoding\":\"utf-16\",\"provider\":\"lua\",\"result\":{\"isIncomplete\":false,\"items\":[{\"data\":{\"id\":1,\"uri\":\"file:///c%3A/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua\"},\"insertText\":\"greet\",\"insertTextFormat\":1,\"kind\":3,\"label\":\"greet(name)\",\"sortText\":\"0001\"}]},\"source\":\"lsp\",\"trace\":{\"elapsed_ms\":6,\"id\":\"494935ef-594b-4e92-9815-dfac315dad8f\",\"result_bytes\":802,\"result_sha256\":\"be37eac8d6de045eed879737bd6bb0d5b16f0a5fad827147919cf2973d9db829\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "commands_executed": false,
+          "document": {
+            "path": "sample.lua",
+            "sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua",
+            "version": 1
+          },
+          "edits_applied": false,
+          "freshness": "current",
+          "index_complete_proven": false,
+          "position_encoding": "utf-16",
+          "provider": "lua",
+          "result": {
+            "isIncomplete": false,
+            "items": [
+              {
+                "data": {
+                  "id": 1,
+                  "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua"
+                },
+                "insertText": "greet",
+                "insertTextFormat": 1,
+                "kind": 3,
+                "label": "greet(name)",
+                "sortText": "0001"
+              }
+            ]
+          },
+          "source": "lsp",
+          "trace": {
+            "elapsed_ms": 6,
+            "id": "494935ef-594b-4e92-9815-dfac315dad8f",
+            "result_bytes": 802,
+            "result_sha256": "be37eac8d6de045eed879737bd6bb0d5b16f0a5fad827147919cf2973d9db829"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "hover",
+    "arguments": {
+      "relative_path": "sample.lua",
+      "position": {
+        "line": 5,
+        "character": 21
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"commands_executed\":false,\"document\":{\"path\":\"sample.lua\",\"sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua\",\"version\":1},\"edits_applied\":false,\"freshness\":\"current\",\"index_complete_proven\":false,\"position_encoding\":\"utf-16\",\"provider\":\"lua\",\"result\":{\"contents\":{\"kind\":\"markdown\",\"value\":\"```lua\\nfunction greet(name: any)\\n  -> unknown\\n```\"},\"maxLevel\":0,\"range\":{\"end\":{\"character\":25,\"line\":5},\"start\":{\"character\":20,\"line\":5}}},\"source\":\"lsp\",\"trace\":{\"elapsed_ms\":1,\"id\":\"dabf7dc2-a114-4a78-8376-3381c8f21dde\",\"result_bytes\":651,\"result_sha256\":\"453a2a70f698516e3fdc51015675723bc24db3184b1c0f50f37f2ffe99576956\"}}"
+          }
+        ],
+        "structuredContent": {
+          "commands_executed": false,
+          "document": {
+            "path": "sample.lua",
+            "sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua",
+            "version": 1
+          },
+          "edits_applied": false,
+          "freshness": "current",
+          "index_complete_proven": false,
+          "position_encoding": "utf-16",
+          "provider": "lua",
+          "result": {
+            "contents": {
+              "kind": "markdown",
+              "value": "```lua\nfunction greet(name: any)\n  -> unknown\n```"
+            },
+            "maxLevel": 0,
+            "range": {
+              "end": {
+                "character": 25,
+                "line": 5
+              },
+              "start": {
+                "character": 20,
+                "line": 5
+              }
+            }
+          },
+          "source": "lsp",
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "dabf7dc2-a114-4a78-8376-3381c8f21dde",
+            "result_bytes": 651,
+            "result_sha256": "453a2a70f698516e3fdc51015675723bc24db3184b1c0f50f37f2ffe99576956"
+          }
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "get_diagnostics_for_file",
+    "arguments": {
+      "relative_path": "sample.lua"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 8,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"available\":true,\"clean_build_proven\":false,\"current_version\":1,\"document\":{\"path\":\"sample.lua\",\"sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua\",\"version\":1},\"findings\":[{\"document_version\":1,\"lsp_severity\":3,\"message\":\"Global variable in lowercase initial, Did you miss `local` or misspell it?\",\"provider\":\"lua\",\"range\":{\"end\":{\"character\":14,\"line\":0},\"start\":{\"character\":9,\"line\":0}},\"relative_path\":\"sample.lua\",\"rule_id\":\"lowercase-global\",\"severity\":\"information\",\"source\":\"Lua Diagnostics.\",\"source_sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"status\":\"current\"},{\"document_version\":1,\"lsp_severity\":3,\"message\":\"Global variable in lowercase initial, Did you miss `local` or misspell it?\",\"provider\":\"lua\",\"range\":{\"end\":{\"character\":12,\"line\":4},\"start\":{\"character\":9,\"line\":4}},\"relative_path\":\"sample.lua\",\"rule_id\":\"lowercase-global\",\"severity\":\"information\",\"source\":\"Lua Diagnostics.\",\"source_sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"status\":\"current\"}],\"freshness\":\"current\",\"pending\":false,\"position_encoding\":\"utf-16\",\"provider\":\"lua\",\"reason\":null,\"report\":{\"diagnostics\":[{\"code\":\"lowercase-global\",\"message\":\"Global variable in lowercase initial, Did you miss `local` or misspell it?\",\"range\":{\"end\":{\"character\":14,\"line\":0},\"start\":{\"character\":9,\"line\":0}},\"severity\":3,\"source\":\"Lua Diagnostics.\"},{\"code\":\"lowercase-global\",\"message\":\"Global variable in lowercase initial, Did you miss `local` or misspell it?\",\"range\":{\"end\":{\"character\":12,\"line\":4},\"start\":{\"character\":9,\"line\":4}},\"severity\":3,\"source\":\"Lua Diagnostics.\"}],\"uri\":\"file:///c%3A/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua\",\"version\":1},\"reported_version\":1,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"findings\",\"summary\":{\"complete\":true,\"errors\":0,\"hints\":0,\"information\":2,\"scope\":\"document\",\"total\":2,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":0,\"id\":\"aa095e78-78ee-4e27-9500-f89842d4ceb4\",\"result_bytes\":2230,\"result_sha256\":\"cdbcbdf8b0f283df4fdb0ce065e8be0ace3092780d4eea47da692cbbd7dbb91c\"},\"version_verified\":true}"
+          }
+        ],
+        "structuredContent": {
+          "available": true,
+          "clean_build_proven": false,
+          "current_version": 1,
+          "document": {
+            "path": "sample.lua",
+            "sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua",
+            "version": 1
+          },
+          "findings": [
+            {
+              "document_version": 1,
+              "lsp_severity": 3,
+              "message": "Global variable in lowercase initial, Did you miss `local` or misspell it?",
+              "provider": "lua",
+              "range": {
+                "end": {
+                  "character": 14,
+                  "line": 0
+                },
+                "start": {
+                  "character": 9,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.lua",
+              "rule_id": "lowercase-global",
+              "severity": "information",
+              "source": "Lua Diagnostics.",
+              "source_sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+              "status": "current"
+            },
+            {
+              "document_version": 1,
+              "lsp_severity": 3,
+              "message": "Global variable in lowercase initial, Did you miss `local` or misspell it?",
+              "provider": "lua",
+              "range": {
+                "end": {
+                  "character": 12,
+                  "line": 4
+                },
+                "start": {
+                  "character": 9,
+                  "line": 4
+                }
+              },
+              "relative_path": "sample.lua",
+              "rule_id": "lowercase-global",
+              "severity": "information",
+              "source": "Lua Diagnostics.",
+              "source_sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+              "status": "current"
+            }
+          ],
+          "freshness": "current",
+          "pending": false,
+          "position_encoding": "utf-16",
+          "provider": "lua",
+          "reason": null,
+          "report": {
+            "diagnostics": [
+              {
+                "code": "lowercase-global",
+                "message": "Global variable in lowercase initial, Did you miss `local` or misspell it?",
+                "range": {
+                  "end": {
+                    "character": 14,
+                    "line": 0
+                  },
+                  "start": {
+                    "character": 9,
+                    "line": 0
+                  }
+                },
+                "severity": 3,
+                "source": "Lua Diagnostics."
+              },
+              {
+                "code": "lowercase-global",
+                "message": "Global variable in lowercase initial, Did you miss `local` or misspell it?",
+                "range": {
+                  "end": {
+                    "character": 12,
+                    "line": 4
+                  },
+                  "start": {
+                    "character": 9,
+                    "line": 4
+                  }
+                },
+                "severity": 3,
+                "source": "Lua Diagnostics."
+              }
+            ],
+            "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua",
+            "version": 1
+          },
+          "reported_version": 1,
+          "source": "lsp_push",
+          "stale": false,
+          "status": "findings",
+          "summary": {
+            "complete": true,
+            "errors": 0,
+            "hints": 0,
+            "information": 2,
+            "scope": "document",
+            "total": 2,
+            "unknown": 0,
+            "warnings": 0
+          },
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "aa095e78-78ee-4e27-9500-f89842d4ceb4",
+            "result_bytes": 2230,
+            "result_sha256": "cdbcbdf8b0f283df4fdb0ce065e8be0ace3092780d4eea47da692cbbd7dbb91c"
+          },
+          "version_verified": true
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "rename_symbol",
+    "arguments": {
+      "relative_path": "sample.lua",
+      "name_path": "greet",
+      "new_name": "salute"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 9,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"e14401adf9053134357815d8eeaf7e27cc717a39bac0a9a791870f973fcd30b6\",\"before_sha256\":\"5056df5d1250ed0416e9c74cd933fe744b6399747a22fb2c09e7c05c346f0be4\",\"diff\":\"--- a/consumer.lua\\n+++ b/consumer.lua\\n@@ -1 +1 @@\\n-local message = greet(\\\"Caller\\\")\\n+local message = salute(\\\"Caller\\\")\\n\",\"path\":\"consumer.lua\"},{\"after_sha256\":\"6ac0fee1ba44243363d3de5c307d39411b92b8fc1e17b85db55634a2de280dfa\",\"before_sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"diff\":\"--- a/sample.lua\\n+++ b/sample.lua\\n@@ -1,8 +1,8 @@\\n-function greet(name)\\n+function salute(name)\\n     return \\\"Hi \\\" .. name\\n end\\n \\n function run()\\n-    local message = greet(\\\"Odin\\\")\\n+    local message = salute(\\\"Odin\\\")\\n     return message\\n end\\n\",\"path\":\"sample.lua\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":222,\"id\":\"93246163-fa9a-4608-9831-2796229ef06c\",\"result_bytes\":948,\"result_sha256\":\"9c0cc7d697bdaec129c734cec4406d55fb546740334c6ea4d1afcef22fa1d7e4\"},\"transaction_id\":\"92af0c74-f2cc-4076-ba19-d467174fd272\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "e14401adf9053134357815d8eeaf7e27cc717a39bac0a9a791870f973fcd30b6",
+              "before_sha256": "5056df5d1250ed0416e9c74cd933fe744b6399747a22fb2c09e7c05c346f0be4",
+              "diff": "--- a/consumer.lua\n+++ b/consumer.lua\n@@ -1 +1 @@\n-local message = greet(\"Caller\")\n+local message = salute(\"Caller\")\n",
+              "path": "consumer.lua"
+            },
+            {
+              "after_sha256": "6ac0fee1ba44243363d3de5c307d39411b92b8fc1e17b85db55634a2de280dfa",
+              "before_sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+              "diff": "--- a/sample.lua\n+++ b/sample.lua\n@@ -1,8 +1,8 @@\n-function greet(name)\n+function salute(name)\n     return \"Hi \" .. name\n end\n \n function run()\n-    local message = greet(\"Odin\")\n+    local message = salute(\"Odin\")\n     return message\n end\n",
+              "path": "sample.lua"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 222,
+            "id": "93246163-fa9a-4608-9831-2796229ef06c",
+            "result_bytes": 948,
+            "result_sha256": "9c0cc7d697bdaec129c734cec4406d55fb546740334c6ea4d1afcef22fa1d7e4"
+          },
+          "transaction_id": "92af0c74-f2cc-4076-ba19-d467174fd272"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "transaction_preview",
+    "arguments": {
+      "transaction_id": "92af0c74-f2cc-4076-ba19-d467174fd272"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 10,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"e14401adf9053134357815d8eeaf7e27cc717a39bac0a9a791870f973fcd30b6\",\"before_sha256\":\"5056df5d1250ed0416e9c74cd933fe744b6399747a22fb2c09e7c05c346f0be4\",\"diff\":\"--- a/consumer.lua\\n+++ b/consumer.lua\\n@@ -1 +1 @@\\n-local message = greet(\\\"Caller\\\")\\n+local message = salute(\\\"Caller\\\")\\n\",\"path\":\"consumer.lua\"},{\"after_sha256\":\"6ac0fee1ba44243363d3de5c307d39411b92b8fc1e17b85db55634a2de280dfa\",\"before_sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"diff\":\"--- a/sample.lua\\n+++ b/sample.lua\\n@@ -1,8 +1,8 @@\\n-function greet(name)\\n+function salute(name)\\n     return \\\"Hi \\\" .. name\\n end\\n \\n function run()\\n-    local message = greet(\\\"Odin\\\")\\n+    local message = salute(\\\"Odin\\\")\\n     return message\\n end\\n\",\"path\":\"sample.lua\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":0,\"id\":\"5e359029-982e-4933-b027-b9d8bb7ce661\",\"result_bytes\":948,\"result_sha256\":\"9c0cc7d697bdaec129c734cec4406d55fb546740334c6ea4d1afcef22fa1d7e4\"},\"transaction_id\":\"92af0c74-f2cc-4076-ba19-d467174fd272\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "e14401adf9053134357815d8eeaf7e27cc717a39bac0a9a791870f973fcd30b6",
+              "before_sha256": "5056df5d1250ed0416e9c74cd933fe744b6399747a22fb2c09e7c05c346f0be4",
+              "diff": "--- a/consumer.lua\n+++ b/consumer.lua\n@@ -1 +1 @@\n-local message = greet(\"Caller\")\n+local message = salute(\"Caller\")\n",
+              "path": "consumer.lua"
+            },
+            {
+              "after_sha256": "6ac0fee1ba44243363d3de5c307d39411b92b8fc1e17b85db55634a2de280dfa",
+              "before_sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+              "diff": "--- a/sample.lua\n+++ b/sample.lua\n@@ -1,8 +1,8 @@\n-function greet(name)\n+function salute(name)\n     return \"Hi \" .. name\n end\n \n function run()\n-    local message = greet(\"Odin\")\n+    local message = salute(\"Odin\")\n     return message\n end\n",
+              "path": "sample.lua"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "5e359029-982e-4933-b027-b9d8bb7ce661",
+            "result_bytes": 948,
+            "result_sha256": "9c0cc7d697bdaec129c734cec4406d55fb546740334c6ea4d1afcef22fa1d7e4"
+          },
+          "transaction_id": "92af0c74-f2cc-4076-ba19-d467174fd272"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "transaction_prepare",
+    "arguments": {
+      "changes": [
+        {
+          "path": "sample.lua",
+          "expected_sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+          "content": "function greet(name)\n    return \"Hi \" .. name\nend\n\nfunction run()\n    local message = greet(\"Odin\")\n    return message\nend\n\n-- independent edit\n"
+        }
+      ]
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 11,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"4f40f15cca5e10aba38bb44c2f4afa30c67b2fd737f47168baa9be2854573c38\",\"before_sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"diff\":\"--- a/sample.lua\\n+++ b/sample.lua\\n@@ -6,3 +6,5 @@\\n     local message = greet(\\\"Odin\\\")\\n     return message\\n end\\n+\\n+-- independent edit\\n\",\"path\":\"sample.lua\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":5,\"id\":\"fa1e3f35-eac0-4eda-ab72-2820b797f78c\",\"result_bytes\":507,\"result_sha256\":\"fbdb4144dc65d95a35986ba1a2f3c4d0d550389a93e72c190b708cf6ebf2bae5\"},\"transaction_id\":\"d8d6f00d-ae33-4a14-a54c-69accaeffe28\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "4f40f15cca5e10aba38bb44c2f4afa30c67b2fd737f47168baa9be2854573c38",
+              "before_sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+              "diff": "--- a/sample.lua\n+++ b/sample.lua\n@@ -6,3 +6,5 @@\n     local message = greet(\"Odin\")\n     return message\n end\n+\n+-- independent edit\n",
+              "path": "sample.lua"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 5,
+            "id": "fa1e3f35-eac0-4eda-ab72-2820b797f78c",
+            "result_bytes": 507,
+            "result_sha256": "fbdb4144dc65d95a35986ba1a2f3c4d0d550389a93e72c190b708cf6ebf2bae5"
+          },
+          "transaction_id": "d8d6f00d-ae33-4a14-a54c-69accaeffe28"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "transaction_preview",
+    "arguments": {
+      "transaction_id": "d8d6f00d-ae33-4a14-a54c-69accaeffe28"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 12,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"4f40f15cca5e10aba38bb44c2f4afa30c67b2fd737f47168baa9be2854573c38\",\"before_sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"diff\":\"--- a/sample.lua\\n+++ b/sample.lua\\n@@ -6,3 +6,5 @@\\n     local message = greet(\\\"Odin\\\")\\n     return message\\n end\\n+\\n+-- independent edit\\n\",\"path\":\"sample.lua\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":0,\"id\":\"34476643-6a55-432b-9258-c29a877cd2d8\",\"result_bytes\":507,\"result_sha256\":\"fbdb4144dc65d95a35986ba1a2f3c4d0d550389a93e72c190b708cf6ebf2bae5\"},\"transaction_id\":\"d8d6f00d-ae33-4a14-a54c-69accaeffe28\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "4f40f15cca5e10aba38bb44c2f4afa30c67b2fd737f47168baa9be2854573c38",
+              "before_sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+              "diff": "--- a/sample.lua\n+++ b/sample.lua\n@@ -6,3 +6,5 @@\n     local message = greet(\"Odin\")\n     return message\n end\n+\n+-- independent edit\n",
+              "path": "sample.lua"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "34476643-6a55-432b-9258-c29a877cd2d8",
+            "result_bytes": 507,
+            "result_sha256": "fbdb4144dc65d95a35986ba1a2f3c4d0d550389a93e72c190b708cf6ebf2bae5"
+          },
+          "transaction_id": "d8d6f00d-ae33-4a14-a54c-69accaeffe28"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "transaction_apply",
+    "arguments": {
+      "transaction_id": "d8d6f00d-ae33-4a14-a54c-69accaeffe28"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 13,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":1,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":23,\"id\":\"c87b5578-3b50-4498-80dc-105d8691b738\",\"result_bytes\":114,\"result_sha256\":\"bd982afe8a0186abaa2f70ccae77ca28f1bd785cb3da7ac3078e0991eba21cfb\"},\"transaction_id\":\"d8d6f00d-ae33-4a14-a54c-69accaeffe28\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 1,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 23,
+            "id": "c87b5578-3b50-4498-80dc-105d8691b738",
+            "result_bytes": 114,
+            "result_sha256": "bd982afe8a0186abaa2f70ccae77ca28f1bd785cb3da7ac3078e0991eba21cfb"
+          },
+          "transaction_id": "d8d6f00d-ae33-4a14-a54c-69accaeffe28"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "transaction_apply",
+    "arguments": {
+      "transaction_id": "92af0c74-f2cc-4076-ba19-d467174fd272"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 14,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\":{\"code\":\"CONFLICT\",\"message\":\"File changed after preview: sample.lua\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "CONFLICT",
+            "message": "File changed after preview: sample.lua"
+          }
+        },
+        "isError": true
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "transaction_rollback",
+    "arguments": {
+      "transaction_id": "d8d6f00d-ae33-4a14-a54c-69accaeffe28"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 15,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":1,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":34,\"id\":\"4d2c9416-e3bf-4908-b076-12607afc4adf\",\"result_bytes\":163,\"result_sha256\":\"94cc031e32f1929c2ad48322cd6d19041563bce61773a3c135ac563978a4e5a5\"},\"transaction_id\":\"41c95d5c-f660-4838-b376-1d4fee946390\",\"undo_of\":\"d8d6f00d-ae33-4a14-a54c-69accaeffe28\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 1,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 34,
+            "id": "4d2c9416-e3bf-4908-b076-12607afc4adf",
+            "result_bytes": 163,
+            "result_sha256": "94cc031e32f1929c2ad48322cd6d19041563bce61773a3c135ac563978a4e5a5"
+          },
+          "transaction_id": "41c95d5c-f660-4838-b376-1d4fee946390",
+          "undo_of": "d8d6f00d-ae33-4a14-a54c-69accaeffe28"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "sample.lua"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 16,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"lua\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":12,\"name\":\"greet\",\"name_path\":\"greet\",\"range\":{\"end\":{\"character\":3,\"line\":2},\"start\":{\"character\":0,\"line\":0}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":14,\"line\":0},\"start\":{\"character\":9,\"line\":0}}},{\"kind\":14,\"name\":\"name\",\"name_path\":\"greet/name\",\"range\":{\"end\":{\"character\":19,\"line\":0},\"start\":{\"character\":15,\"line\":0}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":19,\"line\":0},\"start\":{\"character\":15,\"line\":0}}},{\"kind\":12,\"name\":\"run\",\"name_path\":\"run\",\"range\":{\"end\":{\"character\":3,\"line\":7},\"start\":{\"character\":0,\"line\":4}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":12,\"line\":4},\"start\":{\"character\":9,\"line\":4}}},{\"kind\":13,\"name\":\"message\",\"name_path\":\"run/message\",\"range\":{\"end\":{\"character\":33,\"line\":5},\"start\":{\"character\":10,\"line\":5}},\"relative_path\":\"sample.lua\",\"selection_range\":{\"end\":{\"character\":17,\"line\":5},\"start\":{\"character\":10,\"line\":5}}}],\"trace\":{\"elapsed_ms\":2,\"id\":\"7039c4c9-4906-4a09-9dd4-f97b6053dd89\",\"result_bytes\":1048,\"result_sha256\":\"764e4ad6b75d2f0fc2dde70b1e39c3617d82c5a9f0187f4c9eff80661522e424\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "lua",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 3,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 14,
+                  "line": 0
+                },
+                "start": {
+                  "character": 9,
+                  "line": 0
+                }
+              }
+            },
+            {
+              "kind": 14,
+              "name": "name",
+              "name_path": "greet/name",
+              "range": {
+                "end": {
+                  "character": 19,
+                  "line": 0
+                },
+                "start": {
+                  "character": 15,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 19,
+                  "line": 0
+                },
+                "start": {
+                  "character": 15,
+                  "line": 0
+                }
+              }
+            },
+            {
+              "kind": 12,
+              "name": "run",
+              "name_path": "run",
+              "range": {
+                "end": {
+                  "character": 3,
+                  "line": 7
+                },
+                "start": {
+                  "character": 0,
+                  "line": 4
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 12,
+                  "line": 4
+                },
+                "start": {
+                  "character": 9,
+                  "line": 4
+                }
+              }
+            },
+            {
+              "kind": 13,
+              "name": "message",
+              "name_path": "run/message",
+              "range": {
+                "end": {
+                  "character": 33,
+                  "line": 5
+                },
+                "start": {
+                  "character": 10,
+                  "line": 5
+                }
+              },
+              "relative_path": "sample.lua",
+              "selection_range": {
+                "end": {
+                  "character": 17,
+                  "line": 5
+                },
+                "start": {
+                  "character": 10,
+                  "line": 5
+                }
+              }
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 2,
+            "id": "7039c4c9-4906-4a09-9dd4-f97b6053dd89",
+            "result_bytes": 1048,
+            "result_sha256": "764e4ad6b75d2f0fc2dde70b1e39c3617d82c5a9f0187f4c9eff80661522e424"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "rename_symbol",
+    "arguments": {
+      "relative_path": "sample.lua",
+      "name_path": "greet",
+      "new_name": "salute"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 17,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"e14401adf9053134357815d8eeaf7e27cc717a39bac0a9a791870f973fcd30b6\",\"before_sha256\":\"5056df5d1250ed0416e9c74cd933fe744b6399747a22fb2c09e7c05c346f0be4\",\"diff\":\"--- a/consumer.lua\\n+++ b/consumer.lua\\n@@ -1 +1 @@\\n-local message = greet(\\\"Caller\\\")\\n+local message = salute(\\\"Caller\\\")\\n\",\"path\":\"consumer.lua\"},{\"after_sha256\":\"6ac0fee1ba44243363d3de5c307d39411b92b8fc1e17b85db55634a2de280dfa\",\"before_sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"diff\":\"--- a/sample.lua\\n+++ b/sample.lua\\n@@ -1,8 +1,8 @@\\n-function greet(name)\\n+function salute(name)\\n     return \\\"Hi \\\" .. name\\n end\\n \\n function run()\\n-    local message = greet(\\\"Odin\\\")\\n+    local message = salute(\\\"Odin\\\")\\n     return message\\n end\\n\",\"path\":\"sample.lua\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":13,\"id\":\"506743e4-dfce-490c-96e2-fdb287fc8a32\",\"result_bytes\":948,\"result_sha256\":\"eb6c6a63cabf05824513ab4684aec36f420923459230df014485454a967f80a0\"},\"transaction_id\":\"89394e14-f120-434d-b162-a0a12266f3b1\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "e14401adf9053134357815d8eeaf7e27cc717a39bac0a9a791870f973fcd30b6",
+              "before_sha256": "5056df5d1250ed0416e9c74cd933fe744b6399747a22fb2c09e7c05c346f0be4",
+              "diff": "--- a/consumer.lua\n+++ b/consumer.lua\n@@ -1 +1 @@\n-local message = greet(\"Caller\")\n+local message = salute(\"Caller\")\n",
+              "path": "consumer.lua"
+            },
+            {
+              "after_sha256": "6ac0fee1ba44243363d3de5c307d39411b92b8fc1e17b85db55634a2de280dfa",
+              "before_sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+              "diff": "--- a/sample.lua\n+++ b/sample.lua\n@@ -1,8 +1,8 @@\n-function greet(name)\n+function salute(name)\n     return \"Hi \" .. name\n end\n \n function run()\n-    local message = greet(\"Odin\")\n+    local message = salute(\"Odin\")\n     return message\n end\n",
+              "path": "sample.lua"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 13,
+            "id": "506743e4-dfce-490c-96e2-fdb287fc8a32",
+            "result_bytes": 948,
+            "result_sha256": "eb6c6a63cabf05824513ab4684aec36f420923459230df014485454a967f80a0"
+          },
+          "transaction_id": "89394e14-f120-434d-b162-a0a12266f3b1"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "transaction_preview",
+    "arguments": {
+      "transaction_id": "89394e14-f120-434d-b162-a0a12266f3b1"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 18,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"e14401adf9053134357815d8eeaf7e27cc717a39bac0a9a791870f973fcd30b6\",\"before_sha256\":\"5056df5d1250ed0416e9c74cd933fe744b6399747a22fb2c09e7c05c346f0be4\",\"diff\":\"--- a/consumer.lua\\n+++ b/consumer.lua\\n@@ -1 +1 @@\\n-local message = greet(\\\"Caller\\\")\\n+local message = salute(\\\"Caller\\\")\\n\",\"path\":\"consumer.lua\"},{\"after_sha256\":\"6ac0fee1ba44243363d3de5c307d39411b92b8fc1e17b85db55634a2de280dfa\",\"before_sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"diff\":\"--- a/sample.lua\\n+++ b/sample.lua\\n@@ -1,8 +1,8 @@\\n-function greet(name)\\n+function salute(name)\\n     return \\\"Hi \\\" .. name\\n end\\n \\n function run()\\n-    local message = greet(\\\"Odin\\\")\\n+    local message = salute(\\\"Odin\\\")\\n     return message\\n end\\n\",\"path\":\"sample.lua\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":0,\"id\":\"6047d09a-4753-4670-ba6f-b88b96b9c168\",\"result_bytes\":948,\"result_sha256\":\"eb6c6a63cabf05824513ab4684aec36f420923459230df014485454a967f80a0\"},\"transaction_id\":\"89394e14-f120-434d-b162-a0a12266f3b1\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "e14401adf9053134357815d8eeaf7e27cc717a39bac0a9a791870f973fcd30b6",
+              "before_sha256": "5056df5d1250ed0416e9c74cd933fe744b6399747a22fb2c09e7c05c346f0be4",
+              "diff": "--- a/consumer.lua\n+++ b/consumer.lua\n@@ -1 +1 @@\n-local message = greet(\"Caller\")\n+local message = salute(\"Caller\")\n",
+              "path": "consumer.lua"
+            },
+            {
+              "after_sha256": "6ac0fee1ba44243363d3de5c307d39411b92b8fc1e17b85db55634a2de280dfa",
+              "before_sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+              "diff": "--- a/sample.lua\n+++ b/sample.lua\n@@ -1,8 +1,8 @@\n-function greet(name)\n+function salute(name)\n     return \"Hi \" .. name\n end\n \n function run()\n-    local message = greet(\"Odin\")\n+    local message = salute(\"Odin\")\n     return message\n end\n",
+              "path": "sample.lua"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "6047d09a-4753-4670-ba6f-b88b96b9c168",
+            "result_bytes": 948,
+            "result_sha256": "eb6c6a63cabf05824513ab4684aec36f420923459230df014485454a967f80a0"
+          },
+          "transaction_id": "89394e14-f120-434d-b162-a0a12266f3b1"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "transaction_apply",
+    "arguments": {
+      "transaction_id": "89394e14-f120-434d-b162-a0a12266f3b1"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 19,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":2,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":25,\"id\":\"7cedcfee-faf9-411a-b34a-1d68a5e14e82\",\"result_bytes\":114,\"result_sha256\":\"b48a1ab7fb097d5f833e698307b4ae1c8f51feb87580bf95c793e8527bc828eb\"},\"transaction_id\":\"89394e14-f120-434d-b162-a0a12266f3b1\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 2,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 25,
+            "id": "7cedcfee-faf9-411a-b34a-1d68a5e14e82",
+            "result_bytes": 114,
+            "result_sha256": "b48a1ab7fb097d5f833e698307b4ae1c8f51feb87580bf95c793e8527bc828eb"
+          },
+          "transaction_id": "89394e14-f120-434d-b162-a0a12266f3b1"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "transaction_rollback",
+    "arguments": {
+      "transaction_id": "89394e14-f120-434d-b162-a0a12266f3b1"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 20,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":2,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":35,\"id\":\"76e826f5-a727-4429-8cb7-5b897b1942d7\",\"result_bytes\":163,\"result_sha256\":\"63a799006f980f1e418b4f4dc7345fef13255b09340cd9f1166ae4ba4a1b7b8e\"},\"transaction_id\":\"e95aeae4-80a6-4df5-9d39-8d97cf726d7a\",\"undo_of\":\"89394e14-f120-434d-b162-a0a12266f3b1\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 2,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 35,
+            "id": "76e826f5-a727-4429-8cb7-5b897b1942d7",
+            "result_bytes": 163,
+            "result_sha256": "63a799006f980f1e418b4f4dc7345fef13255b09340cd9f1166ae4ba4a1b7b8e"
+          },
+          "transaction_id": "e95aeae4-80a6-4df5-9d39-8d97cf726d7a",
+          "undo_of": "89394e14-f120-434d-b162-a0a12266f3b1"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "transaction_prepare",
+    "arguments": {
+      "changes": [
+        {
+          "path": "sample.lua",
+          "expected_sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+          "content": "function greet(name)\n    return \"Hi \" .. name\nend\n\nfunction run()\n    local message = greet(\"Odin\")\n    return message\nend\n\nfunction odin_broken(\n"
+        }
+      ]
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 21,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd\",\"before_sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"diff\":\"--- a/sample.lua\\n+++ b/sample.lua\\n@@ -6,3 +6,5 @@\\n     local message = greet(\\\"Odin\\\")\\n     return message\\n end\\n+\\n+function odin_broken(\\n\",\"path\":\"sample.lua\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":6,\"id\":\"1fb43e95-ce48-420b-ac2c-2dfd08306b5a\",\"result_bytes\":509,\"result_sha256\":\"0f3789e330f8e44c69c804245a912c8b447e9823ac67e7ddc61c24438c20c942\"},\"transaction_id\":\"6492a842-5565-4586-9bf4-c32849e8fdf5\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd",
+              "before_sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+              "diff": "--- a/sample.lua\n+++ b/sample.lua\n@@ -6,3 +6,5 @@\n     local message = greet(\"Odin\")\n     return message\n end\n+\n+function odin_broken(\n",
+              "path": "sample.lua"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 6,
+            "id": "1fb43e95-ce48-420b-ac2c-2dfd08306b5a",
+            "result_bytes": 509,
+            "result_sha256": "0f3789e330f8e44c69c804245a912c8b447e9823ac67e7ddc61c24438c20c942"
+          },
+          "transaction_id": "6492a842-5565-4586-9bf4-c32849e8fdf5"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "transaction_preview",
+    "arguments": {
+      "transaction_id": "6492a842-5565-4586-9bf4-c32849e8fdf5"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 22,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd\",\"before_sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"diff\":\"--- a/sample.lua\\n+++ b/sample.lua\\n@@ -6,3 +6,5 @@\\n     local message = greet(\\\"Odin\\\")\\n     return message\\n end\\n+\\n+function odin_broken(\\n\",\"path\":\"sample.lua\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":0,\"id\":\"dd5d6adc-e1ac-45b2-8aca-9b67bd2329c9\",\"result_bytes\":509,\"result_sha256\":\"0f3789e330f8e44c69c804245a912c8b447e9823ac67e7ddc61c24438c20c942\"},\"transaction_id\":\"6492a842-5565-4586-9bf4-c32849e8fdf5\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd",
+              "before_sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+              "diff": "--- a/sample.lua\n+++ b/sample.lua\n@@ -6,3 +6,5 @@\n     local message = greet(\"Odin\")\n     return message\n end\n+\n+function odin_broken(\n",
+              "path": "sample.lua"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "dd5d6adc-e1ac-45b2-8aca-9b67bd2329c9",
+            "result_bytes": 509,
+            "result_sha256": "0f3789e330f8e44c69c804245a912c8b447e9823ac67e7ddc61c24438c20c942"
+          },
+          "transaction_id": "6492a842-5565-4586-9bf4-c32849e8fdf5"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "transaction_apply",
+    "arguments": {
+      "transaction_id": "6492a842-5565-4586-9bf4-c32849e8fdf5"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 23,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":1,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":24,\"id\":\"0532cab6-2256-4269-8d48-9399b7c78e8e\",\"result_bytes\":114,\"result_sha256\":\"58562ffa416d0256b13a636e7c8a15d359727ded826f07d2046dec498d16b0ae\"},\"transaction_id\":\"6492a842-5565-4586-9bf4-c32849e8fdf5\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 1,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 24,
+            "id": "0532cab6-2256-4269-8d48-9399b7c78e8e",
+            "result_bytes": 114,
+            "result_sha256": "58562ffa416d0256b13a636e7c8a15d359727ded826f07d2046dec498d16b0ae"
+          },
+          "transaction_id": "6492a842-5565-4586-9bf4-c32849e8fdf5"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "get_diagnostics_for_file",
+    "arguments": {
+      "relative_path": "sample.lua"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 24,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"available\":false,\"clean_build_proven\":false,\"current_version\":9,\"document\":{\"path\":\"sample.lua\",\"sha256\":\"ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua\",\"version\":9},\"findings\":[],\"freshness\":\"pending\",\"pending\":true,\"position_encoding\":\"utf-16\",\"provider\":\"lua\",\"reason\":\"No current diagnostics received; this does not prove zero errors\",\"report\":null,\"reported_version\":null,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"pending\",\"summary\":{\"complete\":false,\"errors\":0,\"hints\":0,\"information\":0,\"scope\":\"document\",\"total\":0,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":0,\"id\":\"49e05c5e-bda7-4a08-b125-109d1300ed7f\",\"result_bytes\":770,\"result_sha256\":\"df08cae8fe447e3ef454557915556bea69d535f5ad5bf07ba84b6188a8839a1e\"},\"version_verified\":false}"
+          }
+        ],
+        "structuredContent": {
+          "available": false,
+          "clean_build_proven": false,
+          "current_version": 9,
+          "document": {
+            "path": "sample.lua",
+            "sha256": "ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua",
+            "version": 9
+          },
+          "findings": [],
+          "freshness": "pending",
+          "pending": true,
+          "position_encoding": "utf-16",
+          "provider": "lua",
+          "reason": "No current diagnostics received; this does not prove zero errors",
+          "report": null,
+          "reported_version": null,
+          "source": "lsp_push",
+          "stale": false,
+          "status": "pending",
+          "summary": {
+            "complete": false,
+            "errors": 0,
+            "hints": 0,
+            "information": 0,
+            "scope": "document",
+            "total": 0,
+            "unknown": 0,
+            "warnings": 0
+          },
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "49e05c5e-bda7-4a08-b125-109d1300ed7f",
+            "result_bytes": 770,
+            "result_sha256": "df08cae8fe447e3ef454557915556bea69d535f5ad5bf07ba84b6188a8839a1e"
+          },
+          "version_verified": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "get_diagnostics_for_file",
+    "arguments": {
+      "relative_path": "sample.lua"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 25,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"available\":true,\"clean_build_proven\":false,\"current_version\":9,\"document\":{\"path\":\"sample.lua\",\"sha256\":\"ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua\",\"version\":9},\"findings\":[{\"document_version\":9,\"lsp_severity\":1,\"message\":\"Missed symbol `)`.\",\"provider\":\"lua\",\"range\":{\"end\":{\"character\":21,\"line\":9},\"start\":{\"character\":21,\"line\":9}},\"relative_path\":\"sample.lua\",\"rule_id\":\"miss-symbol\",\"severity\":\"error\",\"source\":\"Lua Syntax Check.\",\"source_sha256\":\"ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd\",\"status\":\"current\"},{\"document_version\":9,\"lsp_severity\":1,\"message\":\"Miss corresponding `end` .\",\"provider\":\"lua\",\"range\":{\"end\":{\"character\":8,\"line\":9},\"start\":{\"character\":0,\"line\":9}},\"relative_path\":\"sample.lua\",\"rule_id\":\"miss-end\",\"severity\":\"error\",\"source\":\"Lua Syntax Check.\",\"source_sha256\":\"ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd\",\"status\":\"current\"},{\"document_version\":9,\"lsp_severity\":3,\"message\":\"Global variable in lowercase initial, Did you miss `local` or misspell it?\",\"provider\":\"lua\",\"range\":{\"end\":{\"character\":14,\"line\":0},\"start\":{\"character\":9,\"line\":0}},\"relative_path\":\"sample.lua\",\"rule_id\":\"lowercase-global\",\"severity\":\"information\",\"source\":\"Lua Diagnostics.\",\"source_sha256\":\"ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd\",\"status\":\"current\"},{\"document_version\":9,\"lsp_severity\":3,\"message\":\"Global variable in lowercase initial, Did you miss `local` or misspell it?\",\"provider\":\"lua\",\"range\":{\"end\":{\"character\":12,\"line\":4},\"start\":{\"character\":9,\"line\":4}},\"relative_path\":\"sample.lua\",\"rule_id\":\"lowercase-global\",\"severity\":\"information\",\"source\":\"Lua Diagnostics.\",\"source_sha256\":\"ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd\",\"status\":\"current\"},{\"document_version\":9,\"lsp_severity\":3,\"message\":\"Global variable in lowercase initial, Did you miss `local` or misspell it?\",\"provider\":\"lua\",\"range\":{\"end\":{\"character\":20,\"line\":9},\"start\":{\"character\":9,\"line\":9}},\"relative_path\":\"sample.lua\",\"rule_id\":\"lowercase-global\",\"severity\":\"information\",\"source\":\"Lua Diagnostics.\",\"source_sha256\":\"ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd\",\"status\":\"current\"}],\"freshness\":\"current\",\"pending\":false,\"position_encoding\":\"utf-16\",\"provider\":\"lua\",\"reason\":null,\"report\":{\"diagnostics\":[{\"code\":\"miss-symbol\",\"data\":\"syntax\",\"message\":\"Missed symbol `)`.\",\"range\":{\"end\":{\"character\":21,\"line\":9},\"start\":{\"character\":21,\"line\":9}},\"severity\":1,\"source\":\"Lua Syntax Check.\"},{\"code\":\"miss-end\",\"data\":\"syntax\",\"message\":\"Miss corresponding `end` .\",\"range\":{\"end\":{\"character\":8,\"line\":9},\"start\":{\"character\":0,\"line\":9}},\"severity\":1,\"source\":\"Lua Syntax Check.\"},{\"code\":\"lowercase-global\",\"message\":\"Global variable in lowercase initial, Did you miss `local` or misspell it?\",\"range\":{\"end\":{\"character\":14,\"line\":0},\"start\":{\"character\":9,\"line\":0}},\"severity\":3,\"source\":\"Lua Diagnostics.\"},{\"code\":\"lowercase-global\",\"message\":\"Global variable in lowercase initial, Did you miss `local` or misspell it?\",\"range\":{\"end\":{\"character\":12,\"line\":4},\"start\":{\"character\":9,\"line\":4}},\"severity\":3,\"source\":\"Lua Diagnostics.\"},{\"code\":\"lowercase-global\",\"message\":\"Global variable in lowercase initial, Did you miss `local` or misspell it?\",\"range\":{\"end\":{\"character\":20,\"line\":9},\"start\":{\"character\":9,\"line\":9}},\"severity\":3,\"source\":\"Lua Diagnostics.\"}],\"uri\":\"file:///c%3A/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua\",\"version\":9},\"reported_version\":9,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"errors\",\"summary\":{\"complete\":true,\"errors\":2,\"hints\":0,\"information\":3,\"scope\":\"document\",\"total\":5,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":1,\"id\":\"82a63ee5-bc32-41d7-8b51-6223690af7a9\",\"result_bytes\":4007,\"result_sha256\":\"77a0c90d22421088eba8ea5274b48d1e4b4a00f3bbd440bbd0eb851c630e6866\"},\"version_verified\":true}"
+          }
+        ],
+        "structuredContent": {
+          "available": true,
+          "clean_build_proven": false,
+          "current_version": 9,
+          "document": {
+            "path": "sample.lua",
+            "sha256": "ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua",
+            "version": 9
+          },
+          "findings": [
+            {
+              "document_version": 9,
+              "lsp_severity": 1,
+              "message": "Missed symbol `)`.",
+              "provider": "lua",
+              "range": {
+                "end": {
+                  "character": 21,
+                  "line": 9
+                },
+                "start": {
+                  "character": 21,
+                  "line": 9
+                }
+              },
+              "relative_path": "sample.lua",
+              "rule_id": "miss-symbol",
+              "severity": "error",
+              "source": "Lua Syntax Check.",
+              "source_sha256": "ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd",
+              "status": "current"
+            },
+            {
+              "document_version": 9,
+              "lsp_severity": 1,
+              "message": "Miss corresponding `end` .",
+              "provider": "lua",
+              "range": {
+                "end": {
+                  "character": 8,
+                  "line": 9
+                },
+                "start": {
+                  "character": 0,
+                  "line": 9
+                }
+              },
+              "relative_path": "sample.lua",
+              "rule_id": "miss-end",
+              "severity": "error",
+              "source": "Lua Syntax Check.",
+              "source_sha256": "ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd",
+              "status": "current"
+            },
+            {
+              "document_version": 9,
+              "lsp_severity": 3,
+              "message": "Global variable in lowercase initial, Did you miss `local` or misspell it?",
+              "provider": "lua",
+              "range": {
+                "end": {
+                  "character": 14,
+                  "line": 0
+                },
+                "start": {
+                  "character": 9,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.lua",
+              "rule_id": "lowercase-global",
+              "severity": "information",
+              "source": "Lua Diagnostics.",
+              "source_sha256": "ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd",
+              "status": "current"
+            },
+            {
+              "document_version": 9,
+              "lsp_severity": 3,
+              "message": "Global variable in lowercase initial, Did you miss `local` or misspell it?",
+              "provider": "lua",
+              "range": {
+                "end": {
+                  "character": 12,
+                  "line": 4
+                },
+                "start": {
+                  "character": 9,
+                  "line": 4
+                }
+              },
+              "relative_path": "sample.lua",
+              "rule_id": "lowercase-global",
+              "severity": "information",
+              "source": "Lua Diagnostics.",
+              "source_sha256": "ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd",
+              "status": "current"
+            },
+            {
+              "document_version": 9,
+              "lsp_severity": 3,
+              "message": "Global variable in lowercase initial, Did you miss `local` or misspell it?",
+              "provider": "lua",
+              "range": {
+                "end": {
+                  "character": 20,
+                  "line": 9
+                },
+                "start": {
+                  "character": 9,
+                  "line": 9
+                }
+              },
+              "relative_path": "sample.lua",
+              "rule_id": "lowercase-global",
+              "severity": "information",
+              "source": "Lua Diagnostics.",
+              "source_sha256": "ea99031080c040df78b210c64628ac299b809d2ddd0e6bb096fe59320086d6fd",
+              "status": "current"
+            }
+          ],
+          "freshness": "current",
+          "pending": false,
+          "position_encoding": "utf-16",
+          "provider": "lua",
+          "reason": null,
+          "report": {
+            "diagnostics": [
+              {
+                "code": "miss-symbol",
+                "data": "syntax",
+                "message": "Missed symbol `)`.",
+                "range": {
+                  "end": {
+                    "character": 21,
+                    "line": 9
+                  },
+                  "start": {
+                    "character": 21,
+                    "line": 9
+                  }
+                },
+                "severity": 1,
+                "source": "Lua Syntax Check."
+              },
+              {
+                "code": "miss-end",
+                "data": "syntax",
+                "message": "Miss corresponding `end` .",
+                "range": {
+                  "end": {
+                    "character": 8,
+                    "line": 9
+                  },
+                  "start": {
+                    "character": 0,
+                    "line": 9
+                  }
+                },
+                "severity": 1,
+                "source": "Lua Syntax Check."
+              },
+              {
+                "code": "lowercase-global",
+                "message": "Global variable in lowercase initial, Did you miss `local` or misspell it?",
+                "range": {
+                  "end": {
+                    "character": 14,
+                    "line": 0
+                  },
+                  "start": {
+                    "character": 9,
+                    "line": 0
+                  }
+                },
+                "severity": 3,
+                "source": "Lua Diagnostics."
+              },
+              {
+                "code": "lowercase-global",
+                "message": "Global variable in lowercase initial, Did you miss `local` or misspell it?",
+                "range": {
+                  "end": {
+                    "character": 12,
+                    "line": 4
+                  },
+                  "start": {
+                    "character": 9,
+                    "line": 4
+                  }
+                },
+                "severity": 3,
+                "source": "Lua Diagnostics."
+              },
+              {
+                "code": "lowercase-global",
+                "message": "Global variable in lowercase initial, Did you miss `local` or misspell it?",
+                "range": {
+                  "end": {
+                    "character": 20,
+                    "line": 9
+                  },
+                  "start": {
+                    "character": 9,
+                    "line": 9
+                  }
+                },
+                "severity": 3,
+                "source": "Lua Diagnostics."
+              }
+            ],
+            "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua",
+            "version": 9
+          },
+          "reported_version": 9,
+          "source": "lsp_push",
+          "stale": false,
+          "status": "errors",
+          "summary": {
+            "complete": true,
+            "errors": 2,
+            "hints": 0,
+            "information": 3,
+            "scope": "document",
+            "total": 5,
+            "unknown": 0,
+            "warnings": 0
+          },
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "82a63ee5-bc32-41d7-8b51-6223690af7a9",
+            "result_bytes": 4007,
+            "result_sha256": "77a0c90d22421088eba8ea5274b48d1e4b4a00f3bbd440bbd0eb851c630e6866"
+          },
+          "version_verified": true
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "transaction_rollback",
+    "arguments": {
+      "transaction_id": "6492a842-5565-4586-9bf4-c32849e8fdf5"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 26,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":1,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":44,\"id\":\"b9a7bb84-3751-40c0-b445-e4166c12d345\",\"result_bytes\":163,\"result_sha256\":\"9b71f5c43feaf60ce179c342f6691842e905281185cf3b7f708c780751a2291e\"},\"transaction_id\":\"ba00d6e9-a3b8-4886-aed2-38984cfabc61\",\"undo_of\":\"6492a842-5565-4586-9bf4-c32849e8fdf5\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 1,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 44,
+            "id": "b9a7bb84-3751-40c0-b445-e4166c12d345",
+            "result_bytes": 163,
+            "result_sha256": "9b71f5c43feaf60ce179c342f6691842e905281185cf3b7f708c780751a2291e"
+          },
+          "transaction_id": "ba00d6e9-a3b8-4886-aed2-38984cfabc61",
+          "undo_of": "6492a842-5565-4586-9bf4-c32849e8fdf5"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "get_diagnostics_for_file",
+    "arguments": {
+      "relative_path": "sample.lua"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 27,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"available\":false,\"clean_build_proven\":false,\"current_version\":10,\"document\":{\"path\":\"sample.lua\",\"sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua\",\"version\":10},\"findings\":[],\"freshness\":\"pending\",\"pending\":true,\"position_encoding\":\"utf-16\",\"provider\":\"lua\",\"reason\":\"No current diagnostics received; this does not prove zero errors\",\"report\":null,\"reported_version\":null,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"pending\",\"summary\":{\"complete\":false,\"errors\":0,\"hints\":0,\"information\":0,\"scope\":\"document\",\"total\":0,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":1,\"id\":\"24751df7-facb-4176-ba9a-cc1c1cbb1f75\",\"result_bytes\":772,\"result_sha256\":\"058a0d0332de106d8c2204d110c7bd30b3b1a86c7c23863e6c1442ffb10971f0\"},\"version_verified\":false}"
+          }
+        ],
+        "structuredContent": {
+          "available": false,
+          "clean_build_proven": false,
+          "current_version": 10,
+          "document": {
+            "path": "sample.lua",
+            "sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua",
+            "version": 10
+          },
+          "findings": [],
+          "freshness": "pending",
+          "pending": true,
+          "position_encoding": "utf-16",
+          "provider": "lua",
+          "reason": "No current diagnostics received; this does not prove zero errors",
+          "report": null,
+          "reported_version": null,
+          "source": "lsp_push",
+          "stale": false,
+          "status": "pending",
+          "summary": {
+            "complete": false,
+            "errors": 0,
+            "hints": 0,
+            "information": 0,
+            "scope": "document",
+            "total": 0,
+            "unknown": 0,
+            "warnings": 0
+          },
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "24751df7-facb-4176-ba9a-cc1c1cbb1f75",
+            "result_bytes": 772,
+            "result_sha256": "058a0d0332de106d8c2204d110c7bd30b3b1a86c7c23863e6c1442ffb10971f0"
+          },
+          "version_verified": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "get_diagnostics_for_file",
+    "arguments": {
+      "relative_path": "sample.lua"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 28,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"available\":false,\"clean_build_proven\":false,\"current_version\":10,\"document\":{\"path\":\"sample.lua\",\"sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua\",\"version\":10},\"findings\":[],\"freshness\":\"pending\",\"pending\":true,\"position_encoding\":\"utf-16\",\"provider\":\"lua\",\"reason\":\"No current diagnostics received; this does not prove zero errors\",\"report\":null,\"reported_version\":null,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"pending\",\"summary\":{\"complete\":false,\"errors\":0,\"hints\":0,\"information\":0,\"scope\":\"document\",\"total\":0,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":1,\"id\":\"6dded057-1fb6-436f-b837-2704dca7b050\",\"result_bytes\":772,\"result_sha256\":\"058a0d0332de106d8c2204d110c7bd30b3b1a86c7c23863e6c1442ffb10971f0\"},\"version_verified\":false}"
+          }
+        ],
+        "structuredContent": {
+          "available": false,
+          "clean_build_proven": false,
+          "current_version": 10,
+          "document": {
+            "path": "sample.lua",
+            "sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua",
+            "version": 10
+          },
+          "findings": [],
+          "freshness": "pending",
+          "pending": true,
+          "position_encoding": "utf-16",
+          "provider": "lua",
+          "reason": "No current diagnostics received; this does not prove zero errors",
+          "report": null,
+          "reported_version": null,
+          "source": "lsp_push",
+          "stale": false,
+          "status": "pending",
+          "summary": {
+            "complete": false,
+            "errors": 0,
+            "hints": 0,
+            "information": 0,
+            "scope": "document",
+            "total": 0,
+            "unknown": 0,
+            "warnings": 0
+          },
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "6dded057-1fb6-436f-b837-2704dca7b050",
+            "result_bytes": 772,
+            "result_sha256": "058a0d0332de106d8c2204d110c7bd30b3b1a86c7c23863e6c1442ffb10971f0"
+          },
+          "version_verified": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "lua",
+    "tool": "get_diagnostics_for_file",
+    "arguments": {
+      "relative_path": "sample.lua"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 29,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"available\":true,\"clean_build_proven\":false,\"current_version\":10,\"document\":{\"path\":\"sample.lua\",\"sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua\",\"version\":10},\"findings\":[{\"document_version\":10,\"lsp_severity\":3,\"message\":\"Global variable in lowercase initial, Did you miss `local` or misspell it?\",\"provider\":\"lua\",\"range\":{\"end\":{\"character\":14,\"line\":0},\"start\":{\"character\":9,\"line\":0}},\"relative_path\":\"sample.lua\",\"rule_id\":\"lowercase-global\",\"severity\":\"information\",\"source\":\"Lua Diagnostics.\",\"source_sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"status\":\"current\"},{\"document_version\":10,\"lsp_severity\":3,\"message\":\"Global variable in lowercase initial, Did you miss `local` or misspell it?\",\"provider\":\"lua\",\"range\":{\"end\":{\"character\":12,\"line\":4},\"start\":{\"character\":9,\"line\":4}},\"relative_path\":\"sample.lua\",\"rule_id\":\"lowercase-global\",\"severity\":\"information\",\"source\":\"Lua Diagnostics.\",\"source_sha256\":\"c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf\",\"status\":\"current\"}],\"freshness\":\"current\",\"pending\":false,\"position_encoding\":\"utf-16\",\"provider\":\"lua\",\"reason\":null,\"report\":{\"diagnostics\":[{\"code\":\"lowercase-global\",\"message\":\"Global variable in lowercase initial, Did you miss `local` or misspell it?\",\"range\":{\"end\":{\"character\":14,\"line\":0},\"start\":{\"character\":9,\"line\":0}},\"severity\":3,\"source\":\"Lua Diagnostics.\"},{\"code\":\"lowercase-global\",\"message\":\"Global variable in lowercase initial, Did you miss `local` or misspell it?\",\"range\":{\"end\":{\"character\":12,\"line\":4},\"start\":{\"character\":9,\"line\":4}},\"severity\":3,\"source\":\"Lua Diagnostics.\"}],\"uri\":\"file:///c%3A/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua\",\"version\":10},\"reported_version\":10,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"findings\",\"summary\":{\"complete\":true,\"errors\":0,\"hints\":0,\"information\":2,\"scope\":\"document\",\"total\":2,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":1,\"id\":\"bb20a5d5-fe8c-4f31-859a-8c976233cd1e\",\"result_bytes\":2236,\"result_sha256\":\"96bbf6a8c1e2549595cadee4aa899eb4cf3531184c5669a62cfdf9d26e6eece5\"},\"version_verified\":true}"
+          }
+        ],
+        "structuredContent": {
+          "available": true,
+          "clean_build_proven": false,
+          "current_version": 10,
+          "document": {
+            "path": "sample.lua",
+            "sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua",
+            "version": 10
+          },
+          "findings": [
+            {
+              "document_version": 10,
+              "lsp_severity": 3,
+              "message": "Global variable in lowercase initial, Did you miss `local` or misspell it?",
+              "provider": "lua",
+              "range": {
+                "end": {
+                  "character": 14,
+                  "line": 0
+                },
+                "start": {
+                  "character": 9,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.lua",
+              "rule_id": "lowercase-global",
+              "severity": "information",
+              "source": "Lua Diagnostics.",
+              "source_sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+              "status": "current"
+            },
+            {
+              "document_version": 10,
+              "lsp_severity": 3,
+              "message": "Global variable in lowercase initial, Did you miss `local` or misspell it?",
+              "provider": "lua",
+              "range": {
+                "end": {
+                  "character": 12,
+                  "line": 4
+                },
+                "start": {
+                  "character": 9,
+                  "line": 4
+                }
+              },
+              "relative_path": "sample.lua",
+              "rule_id": "lowercase-global",
+              "severity": "information",
+              "source": "Lua Diagnostics.",
+              "source_sha256": "c5ca678069c26fa38ef0ba8f038fe371b039a8e0762410590b7a9df6818727bf",
+              "status": "current"
+            }
+          ],
+          "freshness": "current",
+          "pending": false,
+          "position_encoding": "utf-16",
+          "provider": "lua",
+          "reason": null,
+          "report": {
+            "diagnostics": [
+              {
+                "code": "lowercase-global",
+                "message": "Global variable in lowercase initial, Did you miss `local` or misspell it?",
+                "range": {
+                  "end": {
+                    "character": 14,
+                    "line": 0
+                  },
+                  "start": {
+                    "character": 9,
+                    "line": 0
+                  }
+                },
+                "severity": 3,
+                "source": "Lua Diagnostics."
+              },
+              {
+                "code": "lowercase-global",
+                "message": "Global variable in lowercase initial, Did you miss `local` or misspell it?",
+                "range": {
+                  "end": {
+                    "character": 12,
+                    "line": 4
+                  },
+                  "start": {
+                    "character": 9,
+                    "line": 4
+                  }
+                },
+                "severity": 3,
+                "source": "Lua Diagnostics."
+              }
+            ],
+            "uri": "file:///c%3A/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20lua_a/sample.lua",
+            "version": 10
+          },
+          "reported_version": 10,
+          "source": "lsp_push",
+          "stale": false,
+          "status": "findings",
+          "summary": {
+            "complete": true,
+            "errors": 0,
+            "hints": 0,
+            "information": 2,
+            "scope": "document",
+            "total": 2,
+            "unknown": 0,
+            "warnings": 0
+          },
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "bb20a5d5-fe8c-4f31-859a-8c976233cd1e",
+            "result_bytes": 2236,
+            "result_sha256": "96bbf6a8c1e2549595cadee4aa899eb4cf3531184c5669a62cfdf9d26e6eece5"
+          },
+          "version_verified": true
+        },
+        "isError": false
+      }
+    }
+  }
+]

@@ -2,8 +2,8 @@
   "schema_version": 1,
   "task_id": "ODIN-BUNDLED-LSP",
   "scope": "SEVEN_ADDED_LANGUAGE_PROFILES_AND_OFFLINE_WINDOWS_LSP_INSTALLATION",
-  "observed_at_utc": "2026-10-22T01:30:05.743362+00:00",
-  "status": "IMPLEMENTED_PENDING_INSTALLATION_ACCEPTANCE",
+  "observed_at_utc": "2026-10-22T02:20:47.583059+00:00",
+  "status": "PASS_WITH_DOCUMENTED_FEATURE_GAPS",
   "new_languages": [
     "python",
     "go",
@@ -29,7 +29,12 @@
     "tests/real_installed_languages.py": "280a756f953d859bf742e5a1b084923c8e390d3671973cd394124088719c794f",
     "tests/lsp_installer.test.mjs": "04874c19636b6202987102a81e3ff0dcad6fe13f58f329acf49380bcf8393ee4",
     "tests/test_lsp_payload_builder.py": "cca10f71290dff88b82d50fce271b8f1e35109eb76fbdf28ec7ed3cc8dc99d33",
-    "tests/inno_argv_probe.py": "b583611faa95c9f862949b69d97ed0e34fd0ac5cc275fe89b5b79faefd8a4504"
+    "tests/inno_argv_probe.py": "b583611faa95c9f862949b69d97ed0e34fd0ac5cc275fe89b5b79faefd8a4504",
+    "docs/PACKAGING_WINDOWS_LINUX.md": "bd2c124e0db21dd32d43699a7e453808f6ee5d552db1443424166dc0786846db",
+    "docs/LSP_PAYLOAD_BUILDER.md": "728c7fd79ad84932cd63c3c88c48cc8c3777cfb8b45805bb06f95fcb4db5d56e",
+    "docs/KNOWN_LIMITATIONS.md": "b82baf980c4f04449603e6e0ed505b1af3c77eb82a3f0f9df631f912bab2f021",
+    "README.md": "e26c675a3a7d1cd1a36f84b90a04c74abd09600e8b75484c71313ed5f9e295b7",
+    "docs/dispatch-four-lsp.md": "c2f0954fb578cf26ebc38966af635d91368039741508009b6d68060f76953a3a"
   },
   "commands": [
     {
@@ -122,11 +127,854 @@
     "ignored": 6
   },
   "binary_smokes": {
-    "workspace-smoke": "PASS",
-    "cli_smoke": "PASS",
-    "mcp_smoke": "PASS",
-    "http_smoke": "PASS",
-    "mcp_cancel_smoke": "PASS"
+    "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+    "selected_clean_release": [
+      {
+        "name": "workspace",
+        "argv": [
+          "C:\\Python314\\python.exe",
+          "scripts/workspace_smoke.py",
+          "--binary",
+          "target/release/odin.exe",
+          "--output",
+          "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-workspace-smoke.json"
+        ],
+        "exit_code": 0,
+        "report": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-workspace-smoke.json",
+        "log": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-workspace-smoke.log",
+        "log_sha256": "3b491529c536fd33fd3a1ccef2ae2e69e1d3e54d10306e181e70bdc6a2c50317",
+        "report_sha256": "4317eab502bbb1f763928fd5891d302c33b5ae8611745390f340fc3361ce9c07",
+        "result": {
+          "scope": "REAL_WINDOWS_OR_NATIVE_BINARY_WORKSPACE_CLI_AND_MCP",
+          "status": "PASS",
+          "platform": "Windows-11-10.0.26300-SP0",
+          "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+          "checks": [
+            {
+              "name": "cli_exit:. analyze",
+              "status": "PASS"
+            },
+            {
+              "name": "analysis_live_no_execution",
+              "status": "PASS"
+            },
+            {
+              "name": "no_grants",
+              "status": "PASS"
+            },
+            {
+              "name": "cli_exit:. analyze",
+              "status": "PASS"
+            },
+            {
+              "name": "absolute_host_required",
+              "status": "PASS"
+            },
+            {
+              "name": "cli_exit:. analyze",
+              "status": "PASS"
+            },
+            {
+              "name": "cli_exit:. analyze",
+              "status": "PASS"
+            },
+            {
+              "name": "cli_exit:--client codex",
+              "status": "PASS"
+            },
+            {
+              "name": "setup_keeps_literal_dot",
+              "status": "PASS"
+            },
+            {
+              "name": "initialize",
+              "status": "PASS"
+            },
+            {
+              "name": "initialize",
+              "status": "PASS"
+            },
+            {
+              "name": "tool:list_projects",
+              "status": "PASS"
+            },
+            {
+              "name": "tool:list_projects",
+              "status": "PASS"
+            },
+            {
+              "name": "one_launch_project",
+              "status": "PASS"
+            },
+            {
+              "name": "distinct_stable_ids",
+              "status": "PASS"
+            },
+            {
+              "name": "tool:read_file",
+              "status": "PASS"
+            },
+            {
+              "name": "cwd_alpha",
+              "status": "PASS"
+            },
+            {
+              "name": "tool:read_file",
+              "status": "PASS"
+            },
+            {
+              "name": "cwd_beta",
+              "status": "PASS"
+            },
+            {
+              "name": "legacy_not_selected",
+              "status": "PASS"
+            },
+            {
+              "name": "tool:read_file",
+              "status": "PASS"
+            },
+            {
+              "name": "tool:create_text_file",
+              "status": "PASS"
+            },
+            {
+              "name": "tool:project_analysis",
+              "status": "PASS"
+            },
+            {
+              "name": "tool:project_analysis",
+              "status": "PASS"
+            },
+            {
+              "name": "live_add_delete",
+              "status": "PASS"
+            },
+            {
+              "name": "live_manifest_hash",
+              "status": "PASS"
+            },
+            {
+              "name": "backend_gap",
+              "status": "PASS"
+            },
+            {
+              "name": "tool:project_analysis",
+              "status": "PASS"
+            },
+            {
+              "name": "state_namespaces",
+              "status": "PASS"
+            },
+            {
+              "name": "cli_exit:C:\\Users\\steven\\AppData\\Local\\Temp\\odin-workspace-si56med9\\beta\\client.toml --apply",
+              "status": "PASS"
+            },
+            {
+              "name": "cli_exit:C:\\Users\\steven\\AppData\\Local\\Temp\\odin-workspace-si56med9\\sigma\\AGENTS.md --apply",
+              "status": "PASS"
+            },
+            {
+              "name": "other_roots_not_written",
+              "status": "PASS"
+            },
+            {
+              "name": "cli_exit:C:\\Users\\steven\\AppData\\Local\\Temp\\odin-workspace-si56med9\\state\\projects\\ws_f75b7218e4eaf5a75fddb6416ed5de97dfa811b0ef06cdd0\\transactions analyze",
+              "status": "PASS"
+            },
+            {
+              "name": "cli_exit:. analyze",
+              "status": "PASS"
+            },
+            {
+              "name": "registered_selection",
+              "status": "PASS"
+            }
+          ],
+          "error": null,
+          "real_lsp_dap_tested": false,
+          "timestamp_unix": 1792631709.3225822
+        }
+      },
+      {
+        "name": "cli",
+        "argv": [
+          "C:\\Python314\\python.exe",
+          "scripts/cli_smoke.py",
+          "--binary",
+          "target/release/odin.exe",
+          "--output",
+          "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-cli-smoke.json"
+        ],
+        "exit_code": 0,
+        "report": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-cli-smoke.json",
+        "log": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-cli-smoke.log",
+        "log_sha256": "e2161ed0366d4f835362e0eface38f2e3386a30fe85fbdad4215aa1e5b232b09",
+        "report_sha256": "efbfa9c3ebc1287196ae0a5a4d6125db37a7cb960b38d363df1427942c5dfb48",
+        "result": {
+          "scope": "REAL_ODIN_BINARY_CLI_AND_GENERATED_MCP_CONFIG",
+          "status": "PASS",
+          "binary": "E:\\odin\\target\\release\\odin.exe",
+          "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+          "platform": "Windows-11-10.0.26300-SP0",
+          "checks": [
+            {
+              "name": "exit:metadata",
+              "status": "PASS"
+            },
+            {
+              "name": "build_identity",
+              "status": "PASS"
+            },
+            {
+              "name": "tools_without_config",
+              "status": "PASS"
+            },
+            {
+              "name": "language_guidance_without_config",
+              "status": "PASS"
+            },
+            {
+              "name": "language_guidance_is_not_acceptance",
+              "status": "PASS"
+            },
+            {
+              "name": "language_profiles_cover_six_targets",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:languages",
+              "status": "PASS"
+            },
+            {
+              "name": "language_guidance_preserves_state_and_permissions",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:validate",
+              "status": "PASS"
+            },
+            {
+              "name": "validate_does_not_create_state",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:setup",
+              "status": "PASS"
+            },
+            {
+              "name": "setup_dry_run:codex",
+              "status": "PASS"
+            },
+            {
+              "name": "preview_omits_unrelated_values:codex",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:setup",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:setup",
+              "status": "PASS"
+            },
+            {
+              "name": "conflict_preserves_original:codex",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:setup",
+              "status": "PASS"
+            },
+            {
+              "name": "setup_backup:codex",
+              "status": "PASS"
+            },
+            {
+              "name": "codex_preserves_unrelated",
+              "status": "PASS"
+            },
+            {
+              "name": "generated_config_initialize:codex",
+              "status": "PASS"
+            },
+            {
+              "name": "generated_config_tools_list:codex",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:setup",
+              "status": "PASS"
+            },
+            {
+              "name": "setup_idempotent:codex",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:setup",
+              "status": "PASS"
+            },
+            {
+              "name": "setup_dry_run:claude",
+              "status": "PASS"
+            },
+            {
+              "name": "preview_omits_unrelated_values:claude",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:setup",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:setup",
+              "status": "PASS"
+            },
+            {
+              "name": "conflict_preserves_original:claude",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:setup",
+              "status": "PASS"
+            },
+            {
+              "name": "setup_backup:claude",
+              "status": "PASS"
+            },
+            {
+              "name": "claude_preserves_unrelated",
+              "status": "PASS"
+            },
+            {
+              "name": "generated_config_initialize:claude",
+              "status": "PASS"
+            },
+            {
+              "name": "generated_config_tools_list:claude",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:setup",
+              "status": "PASS"
+            },
+            {
+              "name": "setup_idempotent:claude",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:setup",
+              "status": "PASS"
+            },
+            {
+              "name": "setup_dry_run:opencode",
+              "status": "PASS"
+            },
+            {
+              "name": "preview_omits_unrelated_values:opencode",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:setup",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:setup",
+              "status": "PASS"
+            },
+            {
+              "name": "conflict_preserves_original:opencode",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:setup",
+              "status": "PASS"
+            },
+            {
+              "name": "setup_backup:opencode",
+              "status": "PASS"
+            },
+            {
+              "name": "opencode_preserves_unrelated",
+              "status": "PASS"
+            },
+            {
+              "name": "generated_config_initialize:opencode",
+              "status": "PASS"
+            },
+            {
+              "name": "generated_config_tools_list:opencode",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:setup",
+              "status": "PASS"
+            },
+            {
+              "name": "setup_idempotent:opencode",
+              "status": "PASS"
+            },
+            {
+              "name": "setup_lock_cleanup",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:hook",
+              "status": "PASS"
+            },
+            {
+              "name": "hook_dry_run",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:hook",
+              "status": "PASS"
+            },
+            {
+              "name": "hook_backup",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:hook",
+              "status": "PASS"
+            },
+            {
+              "name": "hook_disable_restores_original",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:hook",
+              "status": "PASS"
+            },
+            {
+              "name": "workspace_mutations_require_transactions",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:onboard",
+              "status": "PASS"
+            },
+            {
+              "name": "onboarding_evidence",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:doctor",
+              "status": "PASS"
+            },
+            {
+              "name": "sandbox_probe_does_not_enable_isolation",
+              "status": "PASS"
+            },
+            {
+              "name": "exit:doctor",
+              "status": "PASS"
+            },
+            {
+              "name": "doctor_missing_backend_not_pass",
+              "status": "PASS"
+            }
+          ],
+          "error": null,
+          "actual_codex_claude_opencode_applications_tested": false,
+          "timestamp_unix": 1792631710.0248923
+        }
+      },
+      {
+        "name": "mcp",
+        "argv": [
+          "C:\\Python314\\python.exe",
+          "scripts/mcp_smoke.py",
+          "--binary",
+          "target/release/odin.exe",
+          "--output",
+          "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-mcp-smoke.json"
+        ],
+        "exit_code": 0,
+        "report": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-mcp-smoke.json",
+        "log": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-mcp-smoke.log",
+        "log_sha256": "065ed2afab0b3fcee3b59ccd0895c302f19c7d101aa6524fd468564a72cc811f",
+        "report_sha256": "9a7379aea21bf3306c7612b6c5109c37078725e8079e18356676a960a1a8a5d9",
+        "result": {
+          "scope": "REAL_ODIN_BINARY_STDIO_SMOKE",
+          "status": "PASS",
+          "binary": "E:\\odin\\target\\release\\odin.exe",
+          "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+          "platform": "Windows-11-10.0.26300-SP0",
+          "checks": [
+            {
+              "name": "initialize",
+              "status": "PASS"
+            },
+            {
+              "name": "catalog_copies_equal",
+              "status": "PASS"
+            },
+            {
+              "name": "catalog_names_match",
+              "status": "PASS"
+            },
+            {
+              "name": "catalog_contracts_match",
+              "status": "PASS"
+            },
+            {
+              "name": "no_upstream_bridge_tools",
+              "status": "PASS"
+            },
+            {
+              "name": "tool_result:read_file",
+              "status": "PASS"
+            },
+            {
+              "name": "tool_result:read_file",
+              "status": "PASS"
+            },
+            {
+              "name": "read_sha",
+              "status": "PASS"
+            },
+            {
+              "name": "tool_result:create_text_file",
+              "status": "PASS"
+            },
+            {
+              "name": "tool_result:replace_content",
+              "status": "PASS"
+            },
+            {
+              "name": "preview_does_not_mutate",
+              "status": "PASS"
+            },
+            {
+              "name": "tool_result:transaction_apply",
+              "status": "PASS"
+            },
+            {
+              "name": "apply_changes_file",
+              "status": "PASS"
+            },
+            {
+              "name": "tool_result:transaction_rollback",
+              "status": "PASS"
+            },
+            {
+              "name": "rollback_restores_file",
+              "status": "PASS"
+            },
+            {
+              "name": "tool_result:write_memory",
+              "status": "PASS"
+            },
+            {
+              "name": "tool_result:read_memory",
+              "status": "PASS"
+            },
+            {
+              "name": "memory_content",
+              "status": "PASS"
+            },
+            {
+              "name": "tool_result:flow_run",
+              "status": "PASS"
+            },
+            {
+              "name": "flow_result",
+              "status": "PASS"
+            },
+            {
+              "name": "tool_result:status",
+              "status": "PASS"
+            },
+            {
+              "name": "standalone_status",
+              "status": "PASS"
+            },
+            {
+              "name": "removed_tool:serena_tools",
+              "status": "PASS"
+            },
+            {
+              "name": "removed_tool:serena_call",
+              "status": "PASS"
+            }
+          ],
+          "error": null,
+          "real_lsp_dap_tested": false,
+          "timestamp_unix": 1792631710.5232983
+        }
+      },
+      {
+        "name": "http",
+        "argv": [
+          "C:\\Python314\\python.exe",
+          "scripts/http_smoke.py",
+          "--binary",
+          "target/release/odin.exe",
+          "--output",
+          "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-http-smoke.json"
+        ],
+        "exit_code": 0,
+        "report": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-http-smoke.json",
+        "log": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-http-smoke.log",
+        "log_sha256": "f12c8637893e60dbd41f10436cb200af8823461113df8d4ed910ef456c52d83d",
+        "report_sha256": "0ece3ecc900fc19803bd51a9efd743b5d315cf204fbbca6437faf577de3345b1",
+        "result": {
+          "scope": "REAL_ODIN_BINARY_LOOPBACK_HTTP_AND_MCP_SMOKE",
+          "status": "PASS",
+          "binary": "E:\\odin\\target\\release\\odin.exe",
+          "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+          "platform": "Windows-11-10.0.26300-SP0",
+          "checks": [
+            {
+              "name": "server_starts",
+              "status": "PASS"
+            },
+            {
+              "name": "unauthenticated_rejected:/api/projects",
+              "status": "PASS"
+            },
+            {
+              "name": "unauthenticated_rejected:/api/status",
+              "status": "PASS"
+            },
+            {
+              "name": "unauthenticated_rejected:/api/metadata",
+              "status": "PASS"
+            },
+            {
+              "name": "unauthenticated_rejected:/api/audit/demo",
+              "status": "PASS"
+            },
+            {
+              "name": "unauthenticated_rejected:/api/audit/demo/export",
+              "status": "PASS"
+            },
+            {
+              "name": "unauthenticated_rejected:/mcp",
+              "status": "PASS"
+            },
+            {
+              "name": "authenticated_projects",
+              "status": "PASS"
+            },
+            {
+              "name": "no_store_api",
+              "status": "PASS"
+            },
+            {
+              "name": "host_header_rejected",
+              "status": "PASS"
+            },
+            {
+              "name": "cross_origin_rejected",
+              "status": "PASS"
+            },
+            {
+              "name": "wrong_token_rejected",
+              "status": "PASS"
+            },
+            {
+              "name": "dashboard_csp",
+              "status": "PASS"
+            },
+            {
+              "name": "build_metadata",
+              "status": "PASS"
+            },
+            {
+              "name": "readonly_status",
+              "status": "PASS"
+            },
+            {
+              "name": "api_methods_readonly",
+              "status": "PASS"
+            },
+            {
+              "name": "mcp_http_status:initialize",
+              "status": "PASS"
+            },
+            {
+              "name": "mcp_response:initialize",
+              "status": "PASS"
+            },
+            {
+              "name": "mcp_initialize",
+              "status": "PASS"
+            },
+            {
+              "name": "mcp_notification_accepted",
+              "status": "PASS"
+            },
+            {
+              "name": "mcp_http_status:tools/list",
+              "status": "PASS"
+            },
+            {
+              "name": "mcp_response:tools/list",
+              "status": "PASS"
+            },
+            {
+              "name": "mcp_catalog_names",
+              "status": "PASS"
+            },
+            {
+              "name": "mcp_catalog_schemas",
+              "status": "PASS"
+            },
+            {
+              "name": "mcp_http_status:tools/call",
+              "status": "PASS"
+            },
+            {
+              "name": "mcp_response:tools/call",
+              "status": "PASS"
+            },
+            {
+              "name": "mcp_real_tool_call",
+              "status": "PASS"
+            },
+            {
+              "name": "api_no_raw_content_or_token:/api/projects",
+              "status": "PASS"
+            },
+            {
+              "name": "api_no_raw_content_or_token:/api/status",
+              "status": "PASS"
+            },
+            {
+              "name": "api_no_raw_content_or_token:/api/metadata",
+              "status": "PASS"
+            },
+            {
+              "name": "api_no_raw_content_or_token:/api/audit/demo",
+              "status": "PASS"
+            },
+            {
+              "name": "api_no_raw_content_or_token:/api/audit/demo/export",
+              "status": "PASS"
+            },
+            {
+              "name": "audit_records_real_tool",
+              "status": "PASS"
+            },
+            {
+              "name": "audit_metadata_allowlist",
+              "status": "PASS"
+            },
+            {
+              "name": "audit_jsonl_export",
+              "status": "PASS"
+            },
+            {
+              "name": "no_token_in_server_log",
+              "status": "PASS"
+            }
+          ],
+          "error": null,
+          "full_mcp_http_conformance": false,
+          "timestamp_unix": 1792631711.4470248
+        }
+      },
+      {
+        "name": "cancellation",
+        "argv": [
+          "C:\\Python314\\python.exe",
+          "scripts/mcp_cancel_smoke.py",
+          "--binary",
+          "target/release/odin.exe",
+          "--output",
+          "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-cancellation-smoke.json"
+        ],
+        "exit_code": 0,
+        "report": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-cancellation-smoke.json",
+        "log": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-cancellation-smoke.log",
+        "log_sha256": "4f43843433e2a10cb92e8f18b4fb4e2ac9d5580e9c50249f631c43daacef469a",
+        "report_sha256": "4efe95bc3cd822b9394a98b5ac0a00b36e7ec41f72bfade3fcca3ee8ce6ebc5e",
+        "result": {
+          "scope": "REAL_BINARY_MCP_CANCELLATION_WITH_PROTOCOL_FIXTURE",
+          "status": "PASS",
+          "binary": "E:\\odin\\target\\release\\odin.exe",
+          "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+          "platform": "Windows-11-10.0.26300-SP0",
+          "checks": [
+            {
+              "name": "real_binary_initialize",
+              "status": "PASS"
+            },
+            {
+              "name": "slow_backend_holds_project_gate",
+              "status": "PASS"
+            },
+            {
+              "name": "earlier_backend_request_completes",
+              "status": "PASS"
+            },
+            {
+              "name": "cancelled_queued_write_never_applied",
+              "status": "PASS"
+            },
+            {
+              "name": "cancelled_transaction_remains_draft",
+              "status": "PASS"
+            },
+            {
+              "name": "pending_backend_receives_protocol_cancellation",
+              "status": "PASS"
+            },
+            {
+              "name": "cancelled_pending_backend_releases_gate",
+              "status": "PASS"
+            },
+            {
+              "name": "backend_transport_usable_after_cancel",
+              "status": "PASS"
+            }
+          ],
+          "observations": {
+            "queued_write_source_sha256": "ef00998678cc4f84733e80f0cff82163b01e89ff0bf311daed29ce44e50e5182",
+            "original_sha256": "ef00998678cc4f84733e80f0cff82163b01e89ff0bf311daed29ce44e50e5182",
+            "transaction_phase_after_cancel": "draft",
+            "gate_release_after_cancel_seconds": 0.012343000002147164,
+            "fixture_events": [
+              {
+                "kind": "slow_started",
+                "id": 2
+              },
+              {
+                "kind": "released",
+                "id": 2
+              },
+              {
+                "kind": "slow_started",
+                "id": 3
+              },
+              {
+                "kind": "cancel_received",
+                "id": 3
+              },
+              {
+                "kind": "cancel_processed",
+                "id": 3
+              },
+              {
+                "kind": "slow_started",
+                "id": 4
+              },
+              {
+                "kind": "released",
+                "id": 4
+              }
+            ]
+          },
+          "error": null,
+          "fixture_is_real_language_server": false,
+          "real_language_semantics_tested": false,
+          "sdk_cancelled_response_behavior": "rmcp 3.6 suppresses wire responses for cancelled request IDs",
+          "timestamp_unix": 1792631711.9304152
+        }
+      }
+    ]
   },
   "static_checks": {
     "checks": [
@@ -140,7 +988,7 @@
         "name": "source",
         "exit_code": 0,
         "log": "source-check.log",
-        "log_sha256": "9043af287d5801bc3a2b8d85897271e84859680db1ab5ffaa7734160bae5543e"
+        "log_sha256": "a8ccce4a7a177f68621405d04c7a2bddac55db28dbd4191c3f764f4030f51323"
       },
       {
         "name": "requirements",
@@ -1190,9 +2038,511 @@
       ]
     }
   ],
-  "installer_lifecycle": "NOT_RUN",
-  "installed_semantic_matrix": "NOT_RUN",
-  "production_host_setup": "NOT_RUN",
+  "installer_lifecycle": {
+    "scope": "ISOLATED_WINDOWS_INSTALL_REINSTALL_UNINSTALL",
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "portable_safe_member_paths",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_inventory_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_binary_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_metadata",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_lsp_setup_exit",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_setup_result:portable-lsp-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_health:portable-lsp-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_languages:portable-lsp-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_generated_host_validates",
+        "status": "PASS"
+      },
+      {
+        "name": "installer_exit",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_binary_hash",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_metadata",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_metadata_matches_portable",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_inventory_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_setup_result:lsp-install-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_health:lsp-install-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_languages:lsp-install-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_generated_host_validates",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_fresh_host_has_no_elevated_grants",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_installed_bundle_manifest_matches",
+        "status": "PASS"
+      },
+      {
+        "name": "shipped_template_permissions_disabled",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_tools_exit",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_tool_contracts",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_runtime_signature:vcruntime140.dll",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_runtime_loaded_app_local",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_safe_default_configuration",
+        "status": "PASS"
+      },
+      {
+        "name": "reinstall_exit",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_setup_result:lsp-reinstall-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_health:lsp-reinstall-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_languages:lsp-reinstall-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "reinstall_preserves_host_content",
+        "status": "PASS"
+      },
+      {
+        "name": "reinstall_preserves_user_file",
+        "status": "PASS"
+      },
+      {
+        "name": "reinstall_inventory_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "uninstaller_exit",
+        "status": "PASS"
+      },
+      {
+        "name": "owned_binary_removed",
+        "status": "PASS"
+      },
+      {
+        "name": "owned_inventory_payload_removed",
+        "status": "PASS"
+      },
+      {
+        "name": "uninstall_preserves_user_file",
+        "status": "PASS"
+      },
+      {
+        "name": "uninstall_preserves_external_host",
+        "status": "PASS"
+      },
+      {
+        "name": "operator_path_unchanged",
+        "status": "PASS"
+      }
+    ],
+    "commands": [
+      {
+        "name": "portable_lsp_setup",
+        "exit_code": 0,
+        "receipt": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable-lsp-receipt.json"
+      },
+      {
+        "name": "portable_host_validate",
+        "exit_code": 0
+      },
+      {
+        "name": "install",
+        "exit_code": 0,
+        "log": "install.log"
+      },
+      {
+        "name": "installed_host_validate",
+        "exit_code": 0
+      },
+      {
+        "name": "reinstall",
+        "exit_code": 0,
+        "log": "reinstall.log"
+      },
+      {
+        "name": "uninstall",
+        "exit_code": 0,
+        "log": "uninstall.log"
+      }
+    ],
+    "operator_path_observations": [
+      {
+        "phase": "before",
+        "observed_at_utc": "2026-10-22T02:06:04.6185173Z",
+        "user_path_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "user_path_raw_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "process_path_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809"
+      },
+      {
+        "phase": "after_portable",
+        "observed_at_utc": "2026-10-22T02:12:10.0912250Z",
+        "user_path_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "user_path_raw_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "process_path_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809"
+      },
+      {
+        "phase": "after_install",
+        "observed_at_utc": "2026-10-22T02:13:41.9051947Z",
+        "user_path_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "user_path_raw_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "process_path_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809"
+      },
+      {
+        "phase": "after_reinstall",
+        "observed_at_utc": "2026-10-22T02:15:50.9640388Z",
+        "user_path_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "user_path_raw_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "process_path_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809"
+      },
+      {
+        "phase": "after_uninstall",
+        "observed_at_utc": "2026-10-22T02:16:37.1194158Z",
+        "user_path_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "user_path_raw_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "process_path_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809"
+      }
+    ],
+    "error": null,
+    "installer_sha256": "c3f7452c0af8868657b8efc3be89dbc9aceffbd6904553f561060b7bfca8b448",
+    "portable_sha256": "8846c09773edc784a486bc014cdbddd38f99b0964125351fb1fc7781b615b756",
+    "build": {
+      "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+      "external_tool_bridge": false,
+      "model_token_usage": "UNKNOWN",
+      "name": "Odin",
+      "profile": "release",
+      "revision": "5c08e65a41a1e272470a938e5e3cd79185aee4ee",
+      "schema_version": 1,
+      "standalone": true,
+      "target": "x86_64-pc-windows-msvc",
+      "tracked_source_dirty": false,
+      "version": "0.2.0"
+    },
+    "inventory_files": 32787,
+    "qa_directory": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89",
+    "interruption_rollback": "NOT_RUN",
+    "cross_version_upgrade": "NOT_RUN",
+    "lsp_semantic_acceptance": "NOT_RUN",
+    "lsp_version_health": "See source-bound install receipts",
+    "native_binary_expected_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+    "operator_path_evidence_note": "Actual raw/expanded registry and process PATH snapshots are retained privately; public view exposes UTF-8 SHA256 for each observation."
+  },
+  "installed_semantic_matrix": {
+    "report": "verification/bundled-lsp-semantic-matrix.json",
+    "sha256": "509922e9c33435a2945fa9ebf62d56867d42ab4338544454753c7b213d01839e",
+    "raw_report": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-installed-languages-v3.json",
+    "raw_sha256": "57de73b3dd13aa109afcbfed2e714bfd60cd8693908134e0c36a7ac48e05cf39",
+    "public_view_note": "UTF-8/LF, persistent user PATH values replaced with UTF-8 SHA256; MCP transcript split into per-language files with hashes; all response data and checks unchanged. This stays within the existing native per-file quota.",
+    "status": "PASS",
+    "optional_status": "PARTIAL",
+    "outer_command": {
+      "argv": [
+        "C:/Python314/python.exe",
+        "tests/real_installed_languages.py",
+        "--binary",
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--host-config",
+        "C:\\Users\\steven\\.config\\odin\\host.toml",
+        "--install-root",
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin",
+        "--output",
+        "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-installed-languages-v3.json"
+      ],
+      "exit_code": 0,
+      "seconds": 108.69,
+      "log_sha256": "c0fc9defeab6167d43eaf654a02de4555cc3dde026c98fdb6b0268ce37745a80"
+    },
+    "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+    "required_checks_passed": 203,
+    "independent_source_projects": 14,
+    "persistent_user_path_unchanged": "PASS"
+  },
+  "production_host_setup": {
+    "status": "PASS",
+    "install": {
+      "argv": [
+        "C:\\OdinQA\\p-b3c57a8d\\odin-0.2.0-windows-x64-setup.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/SP-",
+        "/NOICONS",
+        "/DIR=C:\\Users\\steven\\AppData\\Local\\Programs\\Odin",
+        "/ODIN_HOST_CONFIG=C:\\Users\\steven\\.config\\odin\\host.toml",
+        "/ODIN_SETUP_RECEIPT=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production-v3-lsp-receipt.json",
+        "/LOG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production-v3-install.log"
+      ],
+      "exit_code": 0,
+      "seconds": 337.16,
+      "log_sha256": "711ae1413f6fbf22c3c5d31ebded1f69eeb8de367e5b1a185ccfde967cf8792d"
+    },
+    "installer_sha256": "c3f7452c0af8868657b8efc3be89dbc9aceffbd6904553f561060b7bfca8b448",
+    "app": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin",
+    "host_config": "C:\\Users\\steven\\.config\\odin\\host.toml",
+    "before_host_sha256": "87c7559eb24ded23c6688f6f111f7ec37da47934bb77a22b8a666d5835871a2a",
+    "existing_project_settings_and_grants_preserved": true,
+    "allowed_roots_preserved": true,
+    "host_bytes_unchanged": true,
+    "host_sha256": "87c7559eb24ded23c6688f6f111f7ec37da47934bb77a22b8a666d5835871a2a",
+    "workspace_language_ids": [
+      "rust",
+      "python",
+      "go",
+      "csharp",
+      "lua",
+      "javascript",
+      "typescript",
+      "bash"
+    ],
+    "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+    "setup_script_sha256": "094a036f50057d3ea74355d38348b240c8c079eeaf6aa102d8c37dbc907a9634",
+    "bundle_manifest_sha256": "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55",
+    "validate_exit_code": 0,
+    "client_config_unchanged": true,
+    "client_entry": {
+      "startup_timeout_sec": 60,
+      "args": [
+        "--config",
+        "\\\\?\\C:\\Users\\steven\\.config\\odin\\host.toml",
+        "--workspace",
+        ".",
+        "serve",
+        "--transport",
+        "stdio"
+      ],
+      "command": "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe"
+    },
+    "current_client_process_restarted": "NOT_RUN",
+    "persistent_user_path_unchanged": true,
+    "user_path_before_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+    "user_path_after_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+    "receipt": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production-v3-lsp-receipt.json",
+    "receipt_sha256": "69e3651d0472cbd41e828b719bfb7413bd7e79a3f51c16a42c338cdb7048efd0",
+    "health": {
+      "scope": "BUNDLED_BACKEND_VERSION_EXECUTION_NOT_SEMANTIC_ACCEPTANCE",
+      "status": "PASS",
+      "bundle_manifest_sha256": "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55",
+      "checks": [
+        {
+          "component": "node",
+          "status": "PASS",
+          "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+          "args": [
+            "--version"
+          ],
+          "expected_version": "24.21.0",
+          "exit_code": 0,
+          "signal": null,
+          "stdout": "v24.21.0\r\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "component": "basedpyright",
+          "status": "PASS",
+          "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+          "args": [
+            "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\basedpyright\\index.js",
+            "--version"
+          ],
+          "expected_version": "1.40.2",
+          "exit_code": 0,
+          "signal": null,
+          "stdout": "basedpyright 1.40.2\nbased on pyright 1.40.2\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "component": "typescript-language-server",
+          "status": "PASS",
+          "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+          "args": [
+            "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+            "--version"
+          ],
+          "expected_version": "6.0.2",
+          "exit_code": 0,
+          "signal": null,
+          "stdout": "6.0.2\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "component": "typescript",
+          "status": "PASS",
+          "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+          "args": [
+            "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\typescript\\lib\\tsc.js",
+            "--version"
+          ],
+          "expected_version": "6.0.3",
+          "exit_code": 0,
+          "signal": null,
+          "stdout": "Version 6.0.3\r\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "component": "bash-language-server",
+          "status": "PASS",
+          "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+          "args": [
+            "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\bash-language-server\\out\\cli.js",
+            "--version"
+          ],
+          "expected_version": "5.8.1",
+          "exit_code": 0,
+          "signal": null,
+          "stdout": "5.8.1\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "component": "go",
+          "status": "PASS",
+          "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\go\\bin\\go.exe",
+          "args": [
+            "version"
+          ],
+          "expected_version": "1.27.3",
+          "exit_code": 0,
+          "signal": null,
+          "stdout": "go version go1.27.3 windows/amd64\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "component": "gopls",
+          "status": "PASS",
+          "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\gopls\\gopls.exe",
+          "args": [
+            "version"
+          ],
+          "expected_version": "0.24.0",
+          "exit_code": 0,
+          "signal": null,
+          "stdout": "golang.org/x/tools/gopls v0.24.0\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "component": "dotnet",
+          "status": "PASS",
+          "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\dotnet\\dotnet.exe",
+          "args": [
+            "--version"
+          ],
+          "expected_version": "10.0.402",
+          "exit_code": 0,
+          "signal": null,
+          "stdout": "10.0.402\r\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "component": "csharp-ls",
+          "status": "PASS",
+          "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\dotnet\\dotnet.exe",
+          "args": [
+            "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\csharp\\CSharpLanguageServer.dll",
+            "--version"
+          ],
+          "expected_version": "0.28.0",
+          "exit_code": 0,
+          "signal": null,
+          "stdout": "csharp-ls, 0.28.0 (Klebi?kis)+72671fc7fa810c158864e72485db68e8b9b25c3d\r\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "component": "lua-language-server",
+          "status": "PASS",
+          "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\lua\\bin\\lua-language-server.exe",
+          "args": [
+            "--configpath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-BTwDyM\\lua-settings.json",
+            "--logpath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-BTwDyM\\lua\\log",
+            "--metapath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-BTwDyM\\lua\\meta",
+            "--version"
+          ],
+          "expected_version": "3.19.2",
+          "exit_code": 0,
+          "signal": null,
+          "stdout": "3.19.2\r\n",
+          "stderr": "",
+          "error": null
+        }
+      ],
+      "post_health_integrity": {
+        "status": "PASS",
+        "manifest_sha256": "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55"
+      },
+      "semantic_acceptance": "NOT_RUN"
+    }
+  },
   "publication": "NOT_RUN",
   "known_gaps": [
     "JavaScript and TypeScript unversioned diagnostics are NOT_VERIFIED; never clean-build proof.",
@@ -1217,6 +2567,26 @@
       "report": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production\\backends.build-receipt.json",
       "sha256": "43ff6f63e6f1b22dd4e5f81392beed2388a78ccf4024fd0da36bacecf112817a",
       "reason": "npm macOS optional fsevents absent on Windows; now skip only explicitly incompatible optional packages."
+    },
+    {
+      "report": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\attempt1-final-installer-lifecycle.json",
+      "sha256": "8f76368f0192051bcca2f7d49a5fe4798d2a71c6a5991d372912d2c7be1ade5c",
+      "reason": "Candidate2 lifecycle38 checks passed, final user PATH check failed due concurrent direct C# fixture SDK first-use side effect; not accepted."
+    },
+    {
+      "report": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\attempt2-lifecycle-cancellation.json",
+      "sha256": "e182f760655cdee0213a82d92acace19ad3d166e4e1e21de441981a31ffc890c",
+      "reason": "A retry was stopped during portable extraction before installation after the SDK side effect was identified."
+    },
+    {
+      "report": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\attempt1-production-install-summary.json",
+      "sha256": "6c5af5dfa41e59fb85312d93a48a72a61984a6e63141699629a766b32afb18da",
+      "reason": "Existing-host optional root page refused empty root before copy; fixed by Inno optional-root change and actual argv probe."
+    },
+    {
+      "report": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\attempt1-package-v3-command.json",
+      "sha256": "ee6395375c00a7f4f01251d4670ec39243a1af3835f3ff7fb6596f5d3f484952",
+      "reason": "Windows PowerShell Copy-Item hit the deep TEMP output path limit; command failed before archive creation. Same reviewed package script rerun from short external output path."
     }
   ],
   "payload_build_command": {
@@ -1237,5 +2607,1243 @@
     "before_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
     "after_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34"
   },
-  "dotnet_first_use_correction": "verification/bundled-lsp-dotnet-first-use.json"
+  "dotnet_first_use_correction": "verification/bundled-lsp-dotnet-first-use.json",
+  "clean_release_build": {
+    "argv": [
+      "cargo",
+      "build",
+      "-p",
+      "odin-agent",
+      "--release",
+      "--locked"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 77.06,
+    "log_sha256": "b721ec2c499f740e146b45a68c302ffca1cb536e64e793e8c38c6c866a0dacf0",
+    "metadata": {
+      "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+      "external_tool_bridge": false,
+      "model_token_usage": "UNKNOWN",
+      "name": "Odin",
+      "profile": "release",
+      "revision": "5c08e65a41a1e272470a938e5e3cd79185aee4ee",
+      "schema_version": 1,
+      "standalone": true,
+      "target": "x86_64-pc-windows-msvc",
+      "tracked_source_dirty": false,
+      "version": "0.2.0"
+    },
+    "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8"
+  },
+  "package": {
+    "scope": "WINDOWS_NATIVE_PACKAGE",
+    "portable": "PASS",
+    "installer_compile": "PASS",
+    "installer_lifecycle": "NOT_RUN",
+    "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+    "build": {
+      "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+      "external_tool_bridge": false,
+      "model_token_usage": "UNKNOWN",
+      "name": "Odin",
+      "profile": "release",
+      "revision": "5c08e65a41a1e272470a938e5e3cd79185aee4ee",
+      "schema_version": 1,
+      "standalone": true,
+      "target": "x86_64-pc-windows-msvc",
+      "tracked_source_dirty": false,
+      "version": "0.2.0"
+    },
+    "staging": "C:\\OdinQA\\p-b3c57a8d\\.stage-3c44eccacd7e43b3b6c34030f46b71a8",
+    "artifacts": [
+      {
+        "path": "C:\\OdinQA\\p-b3c57a8d\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+        "sha256": "8846c09773edc784a486bc014cdbddd38f99b0964125351fb1fc7781b615b756"
+      },
+      {
+        "path": "C:\\OdinQA\\p-b3c57a8d\\odin-0.2.0-windows-x64-setup.exe",
+        "sha256": "c3f7452c0af8868657b8efc3be89dbc9aceffbd6904553f561060b7bfca8b448"
+      }
+    ],
+    "signed": false,
+    "linux_macos_native": "NOT_RUN",
+    "compiler": {
+      "path": "C:\\Program Files\\Inno Setup 7\\ISCC.exe",
+      "version": "7.1.0",
+      "sha256": "d06ebd38f38e3cee60a3c50cc45bd449d77e0bc6a5cabc607ea9886808e4de1a"
+    },
+    "runtime_dependencies": {
+      "minimum_os": "Windows 10 x64 or Windows 11 x64 with OS-provided UCRT",
+      "app_local": [
+        {
+          "path": "vcruntime140.dll",
+          "source": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Redist\\MSVC\\14.44.35112\\x64\\Microsoft.VC143.CRT\\vcruntime140.dll",
+          "version": "14.44.35211.0",
+          "sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+          "authenticode": "Valid",
+          "signer": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+          "redistribution": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution"
+        }
+      ],
+      "os_provided": [
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "api-ms-win-crt-convert-l1-1-0.dll",
+        "api-ms-win-crt-heap-l1-1-0.dll",
+        "api-ms-win-crt-locale-l1-1-0.dll",
+        "api-ms-win-crt-math-l1-1-0.dll",
+        "api-ms-win-crt-runtime-l1-1-0.dll",
+        "api-ms-win-crt-stdio-l1-1-0.dll",
+        "api-ms-win-crt-string-l1-1-0.dll",
+        "api-ms-win-crt-time-l1-1-0.dll",
+        "api-ms-win-crt-utility-l1-1-0.dll",
+        "bcryptprimitives.dll",
+        "kernel32.dll",
+        "ntdll.dll",
+        "userenv.dll",
+        "ws2_32.dll"
+      ],
+      "global_runtime_installation": false
+    },
+    "lsp_payload": {
+      "manifest_sha256": "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55",
+      "files": 32730,
+      "components": [
+        {
+          "id": "basedpyright",
+          "integrity": "sha512-9uld8+5tZC2Gxf8nIynyunK0N4xn01W1ApzLMXDAcuA8uJq2QSfldYn9gSbxn9MWR8wmHDo7GaEHLhlnLFHaJA==",
+          "source": "https://registry.npmjs.org/basedpyright/-/basedpyright-1.40.2.tgz",
+          "version": "1.40.2"
+        },
+        {
+          "id": "bash-language-server",
+          "integrity": "sha512-F3g0hKZhCiKbLUf9wkrST6+ZypsHvJqaJxw/+J7WK2ywhFyc8+7jSHSTU1UDYncZkyWgbKV6+eZy5qWTZtoXww==",
+          "source": "https://registry.npmjs.org/bash-language-server/-/bash-language-server-5.8.1.tgz",
+          "version": "5.8.1"
+        },
+        {
+          "id": "csharp-ls",
+          "sha256": "8f815e4f22674106a8244beba07e4b4b062e31528e404aa8489312effb8c0e0c",
+          "source": "https://api.nuget.org/v3-flatcontainer/csharp-ls/0.28.0/csharp-ls.0.28.0.nupkg",
+          "version": "0.28.0"
+        },
+        {
+          "id": "dotnet",
+          "sha256": "24d057ab968986a9d7c7a01606b2a0192cbe6485221ba38e9c685522e93d8798",
+          "source": "https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.402/dotnet-sdk-10.0.402-win-x64.zip",
+          "version": "10.0.402"
+        },
+        {
+          "id": "go",
+          "sha256": "f26081f438319757f8a1b46d7d0b2c5ec7583d4038e485e0aa725cfde7885fff",
+          "source": "https://go.dev/dl/go1.27.3.windows-amd64.zip",
+          "version": "1.27.3"
+        },
+        {
+          "id": "gopls",
+          "sha256": "df2f78d456011cc1618ced854769ff8a07914549291cc519ac4293dbcadb4e14",
+          "source": "https://proxy.golang.org/golang.org/x/tools/gopls/@v/v0.24.0.info",
+          "version": "0.24.0"
+        },
+        {
+          "id": "lua-language-server",
+          "sha256": "4a3dc851b3b31e7b75a23f645d1ba4a2137579a55f5fa4edbb17a3e2a6254044",
+          "source": "https://github.com/LuaLS/lua-language-server/releases/download/3.19.2/lua-language-server-3.19.2-win32-x64.zip",
+          "version": "3.19.2"
+        },
+        {
+          "id": "node",
+          "sha256": "158f7685b44de51f6c0df1d153526cbcd3e1bc739a8dfc607721cef75de9e541",
+          "source": "https://nodejs.org/dist/v24.21.0/node-v24.21.0-win-x64.zip",
+          "version": "24.21.0"
+        },
+        {
+          "id": "smol-toml",
+          "integrity": "sha512-j7WyPdf0CJoutMzMoPLF/bVXHtKZIT9Rb4eGeEbWw8X2t5oirjPgpL+OpaENZrILYaXqYwnVH+qgUwVbl+pUJQ==",
+          "source": "https://registry.npmjs.org/smol-toml/-/smol-toml-1.9.1.tgz",
+          "version": "1.9.1"
+        },
+        {
+          "id": "typescript",
+          "integrity": "sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==",
+          "source": "https://registry.npmjs.org/typescript/-/typescript-6.0.3.tgz",
+          "version": "6.0.3"
+        },
+        {
+          "id": "typescript-language-server",
+          "integrity": "sha512-Ph7Ql+xkUJvMamnkh1h+aKP6HxLR7lrWIYkPn9/LZBkJdJZgtIj7OoVhkDYtQ7zFPTPmqZHOVXaUKGyz9M2q1Q==",
+          "source": "https://registry.npmjs.org/typescript-language-server/-/typescript-language-server-6.0.2.tgz",
+          "version": "6.0.2"
+        }
+      ],
+      "integrity": "PASS",
+      "backend_health": "NOT_RUN",
+      "semantic_acceptance": "NOT_RUN"
+    },
+    "packaging_source_revision": "1cf8f991d7ab1d90711c820ea027a461a2f1e677",
+    "packaging_source_sha256": {
+      "scripts/package.ps1": "af0822134976d5182938a68118220fcb23e372e3247c2f263d2d6cb31680f1f2",
+      "packaging/odin.iss": "a0fa3c46d85d1ee16bc6b4dce8e5df1da2e5d1c86937f2b3c7386bfa2540c37a",
+      "packaging/setup-lsps.mjs": "094a036f50057d3ea74355d38348b240c8c079eeaf6aa102d8c37dbc907a9634",
+      "scripts/prepare_lsp_payload.py": "c027c38fa7189bd477616e8c2710d2e53d3ccc2f4faf57b7671fcd00a9fe9643",
+      "scripts/verify_installer.ps1": "d800723d5995ec65301bafcefd00894e9d8bd8811caa8923c3ed5323c1559fa8",
+      "tests/real_installed_languages.py": "280a756f953d859bf742e5a1b084923c8e390d3671973cd394124088719c794f"
+    },
+    "runtime_source_note": "The selected clean-release binary source is 5c08e65. All59 Rust/Cargo runtime source hashes are unchanged through packaging source 1cf8f99; later commits only change packaging, SDK process environment, tests/docs/evidence."
+  },
+  "package_command": {
+    "argv": [
+      "powershell.exe",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      "E:\\odin\\scripts\\package.ps1",
+      "-SkipBuild",
+      "-Binary",
+      "E:\\odin\\target\\release\\odin.exe",
+      "-ExpectedBinarySha256",
+      "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+      "-LspPayload",
+      "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\backends",
+      "-Iscc",
+      "C:/Program Files/Inno Setup 7/ISCC.exe",
+      "-OutputDirectory",
+      "C:\\OdinQA\\p-b3c57a8d"
+    ],
+    "exit_code": 0,
+    "seconds": 466.02,
+    "log_sha256": "ecfd0fe07dd2d6fd2765b88a2f26ce98b824d1f3ca957c98701efffefe5fcd02",
+    "packaging_source_revision": "1cf8f991d7ab1d90711c820ea027a461a2f1e677",
+    "source_sha256": {
+      "scripts/package.ps1": "af0822134976d5182938a68118220fcb23e372e3247c2f263d2d6cb31680f1f2",
+      "packaging/odin.iss": "a0fa3c46d85d1ee16bc6b4dce8e5df1da2e5d1c86937f2b3c7386bfa2540c37a",
+      "packaging/setup-lsps.mjs": "094a036f50057d3ea74355d38348b240c8c079eeaf6aa102d8c37dbc907a9634",
+      "scripts/prepare_lsp_payload.py": "c027c38fa7189bd477616e8c2710d2e53d3ccc2f4faf57b7671fcd00a9fe9643",
+      "scripts/verify_installer.ps1": "d800723d5995ec65301bafcefd00894e9d8bd8811caa8923c3ed5323c1559fa8",
+      "tests/real_installed_languages.py": "280a756f953d859bf742e5a1b084923c8e390d3671973cd394124088719c794f"
+    }
+  },
+  "installer_lifecycle_raw_report_sha256": "9ef4aaddee76b5f9619847df732bb9e9f4c6230b35e4d1f30989223a17a0bc5f",
+  "installer_lifecycle_command": {
+    "argv": [
+      "powershell.exe",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      "C:\\OdinQA\\q-37352da7\\scripts\\verify_installer.ps1",
+      "-Installer",
+      "C:\\OdinQA\\p-b3c57a8d\\odin-0.2.0-windows-x64-setup.exe",
+      "-Portable",
+      "C:\\OdinQA\\p-b3c57a8d\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+      "-ExpectedBinarySha256",
+      "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8"
+    ],
+    "started_at_utc": "2026-10-22T02:06:04.288840+00:00",
+    "script_sha256": "d800723d5995ec65301bafcefd00894e9d8bd8811caa8923c3ed5323c1559fa8",
+    "exit_code": 0,
+    "seconds": 644.09,
+    "log_sha256": "aacbaeb3f178d61a247de450aec02951a23a8c4c9d0c16f90f43f349781c8086"
+  },
+  "actual_client_entry": {
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "selected_runtime",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_binary_hash",
+        "status": "PASS"
+      },
+      {
+        "name": "actual_entry_initialize",
+        "status": "PASS"
+      },
+      {
+        "name": "cwd_binding",
+        "status": "PASS"
+      },
+      {
+        "name": "eight_profiles",
+        "status": "PASS"
+      },
+      {
+        "name": "tool_version",
+        "status": "PASS"
+      },
+      {
+        "name": "real_rust_retained",
+        "status": "PASS"
+      }
+    ],
+    "entry": {
+      "startup_timeout_sec": 60,
+      "args": [
+        "--config",
+        "\\\\?\\C:\\Users\\steven\\.config\\odin\\host.toml",
+        "--workspace",
+        ".",
+        "serve",
+        "--transport",
+        "stdio"
+      ],
+      "command": "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe"
+    },
+    "projects": [
+      {
+        "allow_debug": false,
+        "allow_inspections": false,
+        "allow_shell": false,
+        "allow_write": false,
+        "id": "ws_e81c9bc0804543c514cb6e002d7d90574122eb6ef92c6910",
+        "languages": [
+          "rust",
+          "python",
+          "go",
+          "csharp",
+          "lua",
+          "javascript",
+          "typescript",
+          "bash"
+        ],
+        "root": "\\\\?\\E:\\odin"
+      }
+    ],
+    "tool_version": {
+      "name": "Odin",
+      "schema_version": 1,
+      "standalone": true,
+      "trace": {
+        "elapsed_ms": 0,
+        "id": "f78de340-cd7a-4739-98c7-bc8767bff528",
+        "result_bytes": 70,
+        "result_sha256": "56962aba324858cc3f3306c0c5e6854072861e96a2c79ef23586e0d3de4e050b"
+      },
+      "version": "0.2.0"
+    },
+    "metadata": {
+      "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+      "external_tool_bridge": false,
+      "model_token_usage": "UNKNOWN",
+      "name": "Odin",
+      "profile": "release",
+      "revision": "5c08e65a41a1e272470a938e5e3cd79185aee4ee",
+      "schema_version": 1,
+      "standalone": true,
+      "target": "x86_64-pc-windows-msvc",
+      "tracked_source_dirty": false,
+      "version": "0.2.0"
+    },
+    "metadata_command_exit_code": 0,
+    "rust_symbol_count": 13,
+    "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+    "setup_script_sha256": "094a036f50057d3ea74355d38348b240c8c079eeaf6aa102d8c37dbc907a9634",
+    "bundle_manifest_sha256": "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55",
+    "seconds": 0.13,
+    "current_codex_process_restarted": "NOT_RUN",
+    "prior_probe_harness_correction": "MCP get_version exposes API version; revision is provided by the metadata CLI. Prior incorrect revision-field assertion did not change the product."
+  },
+  "actual_client_entry_command": {
+    "argv": [
+      "C:/Python314/python.exe",
+      "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final_entry_v3_probe.py"
+    ],
+    "script_sha256": "eb737b4ef667611be9137ab45de250747ba92388d690e91c73973436680b63d7",
+    "exit_code": 0,
+    "seconds": 0.22,
+    "log_sha256": "adde1ed92acc3ece04fd588809bcbaafaaedc776b11b4c0b9bff8bd5fa8936d1"
+  },
+  "delivery_artifacts": {
+    "status": "PASS",
+    "artifacts": [
+      {
+        "path": "E:\\odin\\dist\\windows-lsp-20261022-accepted\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+        "sha256": "8846c09773edc784a486bc014cdbddd38f99b0964125351fb1fc7781b615b756",
+        "bytes": 488261857,
+        "tested_artifact": "C:\\OdinQA\\p-b3c57a8d\\odin-0.2.0-x86_64-pc-windows-msvc.zip"
+      },
+      {
+        "path": "E:\\odin\\dist\\windows-lsp-20261022-accepted\\odin-0.2.0-windows-x64-setup.exe",
+        "sha256": "c3f7452c0af8868657b8efc3be89dbc9aceffbd6904553f561060b7bfca8b448",
+        "bytes": 306871871,
+        "tested_artifact": "C:\\OdinQA\\p-b3c57a8d\\odin-0.2.0-windows-x64-setup.exe"
+      }
+    ],
+    "package_report_sha256": "8d98956f7a008acb44d006ecab81eac7bd61d9502dd5c4e9b52fc5470b38fc6f",
+    "note": "Byte-identical copies of final candidate 3 used for production install and final isolated lifecycle; source/package report retains original tested paths."
+  },
+  "preliminary_static_checks": {
+    "checks": [
+      {
+        "name": "generated",
+        "exit_code": 0,
+        "log": "generated-check.log",
+        "log_sha256": "9b32876060f522dab834f51929d61842c5c163bdbd717351267868d562cb1126"
+      },
+      {
+        "name": "source",
+        "exit_code": 0,
+        "log": "source-check.log",
+        "log_sha256": "9043af287d5801bc3a2b8d85897271e84859680db1ab5ffaa7734160bae5543e"
+      },
+      {
+        "name": "requirements",
+        "exit_code": 0,
+        "log": "requirements-check.log",
+        "log_sha256": "425fa3eefc6462c16c6ef4592d6c0e8a7a3dc05dc0fd7fed2654ca074b28a7e1"
+      },
+      {
+        "name": "publish-policy",
+        "exit_code": 0,
+        "log": "publish-policy-check.log",
+        "log_sha256": "59dd0830a2619aa31d85fad5025dff893243990bd80fb3fa64ddf7c747e9650c"
+      },
+      {
+        "name": "whitespace",
+        "exit_code": 0,
+        "log": "whitespace-check.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "independent_unit_tests": {
+    "actor_instance": "/root/validation_audit",
+    "node": {
+      "passed": 22,
+      "failed": 0,
+      "argv": [
+        "C:/Users/steven/.local/share/Odin/backends/node-24.21.0/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "tests/lsp_installer.test.mjs"
+      ],
+      "exit_code": 0,
+      "log": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\independent-dotnet-node-94128137767c470aa62010e416511191.log",
+      "log_sha256": "4a125de14653095d490078c40ba83ac6782a6b45cfc5ce91d0bcab726e0a6d41"
+    },
+    "payload_builder": {
+      "passed": 19,
+      "failed": 0,
+      "argv": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_lsp_payload_builder.py"
+      ],
+      "exit_code": 0,
+      "log": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\independent-dotnet-builder-94128137767c470aa62010e416511191.log",
+      "log_sha256": "439d06e3965e2a0d88876e107b75a5b68e1553b98f3af8c8102c4987269fb60d"
+    },
+    "source_sha256": {
+      "scripts/prepare_lsp_payload.py": "c027c38fa7189bd477616e8c2710d2e53d3ccc2f4faf57b7671fcd00a9fe9643",
+      "scripts/verify_installer.ps1": "d800723d5995ec65301bafcefd00894e9d8bd8811caa8923c3ed5323c1559fa8",
+      "tests/test_lsp_payload_builder.py": "cca10f71290dff88b82d50fce271b8f1e35109eb76fbdf28ec7ed3cc8dc99d33",
+      "packaging/setup-lsps.mjs": "094a036f50057d3ea74355d38348b240c8c079eeaf6aa102d8c37dbc907a9634",
+      "tests/real_installed_languages.py": "280a756f953d859bf742e5a1b084923c8e390d3671973cd394124088719c794f",
+      "tests/lsp_installer.test.mjs": "04874c19636b6202987102a81e3ff0dcad6fe13f58f329acf49380bcf8393ee4"
+    }
+  },
+  "preliminary_binary_smokes": {
+    "workspace-smoke": "PASS",
+    "cli_smoke": "PASS",
+    "mcp_smoke": "PASS",
+    "http_smoke": "PASS",
+    "mcp_cancel_smoke": "PASS"
+  },
+  "lifecycle_backend_receipts": [
+    {
+      "raw_path": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable-lsp-receipt.json",
+      "raw_sha256": "62a21f02d065be218ba82479eac35aab5593c065c588c6e15508ea8c9681d330",
+      "health": {
+        "scope": "BUNDLED_BACKEND_VERSION_EXECUTION_NOT_SEMANTIC_ACCEPTANCE",
+        "status": "PASS",
+        "bundle_manifest_sha256": "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55",
+        "checks": [
+          {
+            "component": "node",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable\\backends\\node\\node.exe",
+            "args": [
+              "--version"
+            ],
+            "expected_version": "24.21.0",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "v24.21.0\r\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "basedpyright",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable\\backends\\node\\node.exe",
+            "args": [
+              "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable\\backends\\node_modules\\basedpyright\\index.js",
+              "--version"
+            ],
+            "expected_version": "1.40.2",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "basedpyright 1.40.2\nbased on pyright 1.40.2\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "typescript-language-server",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable\\backends\\node\\node.exe",
+            "args": [
+              "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable\\backends\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+              "--version"
+            ],
+            "expected_version": "6.0.2",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "6.0.2\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "typescript",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable\\backends\\node\\node.exe",
+            "args": [
+              "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable\\backends\\node_modules\\typescript\\lib\\tsc.js",
+              "--version"
+            ],
+            "expected_version": "6.0.3",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "Version 6.0.3\r\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "bash-language-server",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable\\backends\\node\\node.exe",
+            "args": [
+              "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable\\backends\\node_modules\\bash-language-server\\out\\cli.js",
+              "--version"
+            ],
+            "expected_version": "5.8.1",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "5.8.1\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "go",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable\\backends\\go\\bin\\go.exe",
+            "args": [
+              "version"
+            ],
+            "expected_version": "1.27.3",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "go version go1.27.3 windows/amd64\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "gopls",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable\\backends\\gopls\\gopls.exe",
+            "args": [
+              "version"
+            ],
+            "expected_version": "0.24.0",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "golang.org/x/tools/gopls v0.24.0\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "dotnet",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable\\backends\\dotnet\\dotnet.exe",
+            "args": [
+              "--version"
+            ],
+            "expected_version": "10.0.402",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "10.0.402\r\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "csharp-ls",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable\\backends\\dotnet\\dotnet.exe",
+            "args": [
+              "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable\\backends\\csharp\\CSharpLanguageServer.dll",
+              "--version"
+            ],
+            "expected_version": "0.28.0",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "csharp-ls, 0.28.0 (Klebi?kis)+72671fc7fa810c158864e72485db68e8b9b25c3d\r\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "lua-language-server",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable\\backends\\lua\\bin\\lua-language-server.exe",
+            "args": [
+              "--configpath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-oFPQqU\\lua-settings.json",
+              "--logpath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-oFPQqU\\lua\\log",
+              "--metapath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-oFPQqU\\lua\\meta",
+              "--version"
+            ],
+            "expected_version": "3.19.2",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "3.19.2\r\n",
+            "stderr": "",
+            "error": null
+          }
+        ],
+        "post_health_integrity": {
+          "status": "PASS",
+          "manifest_sha256": "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55"
+        },
+        "semantic_acceptance": "NOT_RUN"
+      },
+      "result": {
+        "status": "PASS",
+        "host_config": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable-host\\host.toml",
+        "before_sha256": "absent",
+        "after_sha256": "261a31a9066216402be7bb8eae0a93a255bc45df50105e2002de819756cc82d5",
+        "backups": [],
+        "languages": [
+          "python",
+          "go",
+          "csharp",
+          "lua",
+          "javascript",
+          "typescript",
+          "bash"
+        ],
+        "bundle_manifest_sha256": "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55",
+        "setup_semantics": "Host-file CAS with backups; no multi-file atomicity or OS-global CAS claimed"
+      }
+    },
+    {
+      "raw_path": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\lsp-install-receipt.json",
+      "raw_sha256": "2c869a63f3c73a0f2b762952566395e33e42ee59f647045bffe140c3bff99e0a",
+      "health": {
+        "scope": "BUNDLED_BACKEND_VERSION_EXECUTION_NOT_SEMANTIC_ACCEPTANCE",
+        "status": "PASS",
+        "bundle_manifest_sha256": "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55",
+        "checks": [
+          {
+            "component": "node",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node\\node.exe",
+            "args": [
+              "--version"
+            ],
+            "expected_version": "24.21.0",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "v24.21.0\r\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "basedpyright",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node\\node.exe",
+            "args": [
+              "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node_modules\\basedpyright\\index.js",
+              "--version"
+            ],
+            "expected_version": "1.40.2",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "basedpyright 1.40.2\nbased on pyright 1.40.2\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "typescript-language-server",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node\\node.exe",
+            "args": [
+              "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+              "--version"
+            ],
+            "expected_version": "6.0.2",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "6.0.2\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "typescript",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node\\node.exe",
+            "args": [
+              "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node_modules\\typescript\\lib\\tsc.js",
+              "--version"
+            ],
+            "expected_version": "6.0.3",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "Version 6.0.3\r\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "bash-language-server",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node\\node.exe",
+            "args": [
+              "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node_modules\\bash-language-server\\out\\cli.js",
+              "--version"
+            ],
+            "expected_version": "5.8.1",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "5.8.1\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "go",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\go\\bin\\go.exe",
+            "args": [
+              "version"
+            ],
+            "expected_version": "1.27.3",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "go version go1.27.3 windows/amd64\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "gopls",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\gopls\\gopls.exe",
+            "args": [
+              "version"
+            ],
+            "expected_version": "0.24.0",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "golang.org/x/tools/gopls v0.24.0\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "dotnet",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\dotnet\\dotnet.exe",
+            "args": [
+              "--version"
+            ],
+            "expected_version": "10.0.402",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "10.0.402\r\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "csharp-ls",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\dotnet\\dotnet.exe",
+            "args": [
+              "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\csharp\\CSharpLanguageServer.dll",
+              "--version"
+            ],
+            "expected_version": "0.28.0",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "csharp-ls, 0.28.0 (Klebi?kis)+72671fc7fa810c158864e72485db68e8b9b25c3d\r\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "lua-language-server",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\lua\\bin\\lua-language-server.exe",
+            "args": [
+              "--configpath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-zeaUvm\\lua-settings.json",
+              "--logpath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-zeaUvm\\lua\\log",
+              "--metapath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-zeaUvm\\lua\\meta",
+              "--version"
+            ],
+            "expected_version": "3.19.2",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "3.19.2\r\n",
+            "stderr": "",
+            "error": null
+          }
+        ],
+        "post_health_integrity": {
+          "status": "PASS",
+          "manifest_sha256": "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55"
+        },
+        "semantic_acceptance": "NOT_RUN"
+      },
+      "result": {
+        "status": "PASS",
+        "host_config": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\host\\host.toml",
+        "before_sha256": "absent",
+        "after_sha256": "4aa1fcbcbfb121cddb4b53b0e53fec2ac5fbc9c03e3d350d2b01e5e62cc4a052",
+        "backups": [],
+        "languages": [
+          "python",
+          "go",
+          "csharp",
+          "lua",
+          "javascript",
+          "typescript",
+          "bash"
+        ],
+        "bundle_manifest_sha256": "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55",
+        "setup_semantics": "Host-file CAS with backups; no multi-file atomicity or OS-global CAS claimed"
+      }
+    },
+    {
+      "raw_path": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\lsp-reinstall-receipt.json",
+      "raw_sha256": "e2ee02016bc244dee2e241dd1acc1d0c4bce0f2578d97e2dc8f766485aef0c36",
+      "health": {
+        "scope": "BUNDLED_BACKEND_VERSION_EXECUTION_NOT_SEMANTIC_ACCEPTANCE",
+        "status": "PASS",
+        "bundle_manifest_sha256": "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55",
+        "checks": [
+          {
+            "component": "node",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node\\node.exe",
+            "args": [
+              "--version"
+            ],
+            "expected_version": "24.21.0",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "v24.21.0\r\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "basedpyright",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node\\node.exe",
+            "args": [
+              "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node_modules\\basedpyright\\index.js",
+              "--version"
+            ],
+            "expected_version": "1.40.2",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "basedpyright 1.40.2\nbased on pyright 1.40.2\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "typescript-language-server",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node\\node.exe",
+            "args": [
+              "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+              "--version"
+            ],
+            "expected_version": "6.0.2",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "6.0.2\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "typescript",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node\\node.exe",
+            "args": [
+              "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node_modules\\typescript\\lib\\tsc.js",
+              "--version"
+            ],
+            "expected_version": "6.0.3",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "Version 6.0.3\r\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "bash-language-server",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node\\node.exe",
+            "args": [
+              "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\node_modules\\bash-language-server\\out\\cli.js",
+              "--version"
+            ],
+            "expected_version": "5.8.1",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "5.8.1\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "go",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\go\\bin\\go.exe",
+            "args": [
+              "version"
+            ],
+            "expected_version": "1.27.3",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "go version go1.27.3 windows/amd64\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "gopls",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\gopls\\gopls.exe",
+            "args": [
+              "version"
+            ],
+            "expected_version": "0.24.0",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "golang.org/x/tools/gopls v0.24.0\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "dotnet",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\dotnet\\dotnet.exe",
+            "args": [
+              "--version"
+            ],
+            "expected_version": "10.0.402",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "10.0.402\r\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "csharp-ls",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\dotnet\\dotnet.exe",
+            "args": [
+              "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\csharp\\CSharpLanguageServer.dll",
+              "--version"
+            ],
+            "expected_version": "0.28.0",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "csharp-ls, 0.28.0 (Klebi?kis)+72671fc7fa810c158864e72485db68e8b9b25c3d\r\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "component": "lua-language-server",
+            "status": "PASS",
+            "program": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\app\\backends\\lua\\bin\\lua-language-server.exe",
+            "args": [
+              "--configpath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-FbNUFa\\lua-settings.json",
+              "--logpath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-FbNUFa\\lua\\log",
+              "--metapath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-FbNUFa\\lua\\meta",
+              "--version"
+            ],
+            "expected_version": "3.19.2",
+            "exit_code": 0,
+            "signal": null,
+            "stdout": "3.19.2\r\n",
+            "stderr": "",
+            "error": null
+          }
+        ],
+        "post_health_integrity": {
+          "status": "PASS",
+          "manifest_sha256": "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55"
+        },
+        "semantic_acceptance": "NOT_RUN"
+      },
+      "result": {
+        "status": "PASS",
+        "host_config": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\host\\host.toml",
+        "before_sha256": "4aa1fcbcbfb121cddb4b53b0e53fec2ac5fbc9c03e3d350d2b01e5e62cc4a052",
+        "after_sha256": "4aa1fcbcbfb121cddb4b53b0e53fec2ac5fbc9c03e3d350d2b01e5e62cc4a052",
+        "backups": [
+          {
+            "path": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\host\\host.toml.backup-1792635350051-e6563d40-18f3-4a29-ad23-647b6bb70f64",
+            "sha256": "4aa1fcbcbfb121cddb4b53b0e53fec2ac5fbc9c03e3d350d2b01e5e62cc4a052"
+          },
+          {
+            "path": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\host\\host.toml.odin-lsps.json.backup-1792635350054-001299ee-a812-46b3-a8aa-007d90b6c837",
+            "sha256": "7d323c28a4c0780e8914376366e7742d67a98ad77cf663060341737ae4ce6a8a"
+          }
+        ],
+        "languages": [
+          "python",
+          "go",
+          "csharp",
+          "lua",
+          "javascript",
+          "typescript",
+          "bash"
+        ],
+        "bundle_manifest_sha256": "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55",
+        "setup_semantics": "Host-file CAS with backups; no multi-file atomicity or OS-global CAS claimed"
+      }
+    }
+  ],
+  "raw_installer_logs": [
+    {
+      "path": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\install.log",
+      "sha256": "9a83cb9f74d09a1e495b16864ea9f162d5d7d34686f9d20ef0eae25ffee3d6c1",
+      "bytes": 14617194
+    },
+    {
+      "path": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\reinstall.log",
+      "sha256": "ccbc07e17ad6cecbf8d94add31b92af41767ee6fc991a6669c94adb167b08494",
+      "bytes": 17949511
+    },
+    {
+      "path": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\uninstall.log",
+      "sha256": "699a86a892d04bae0ac620b9d5f6e77acd8a386990929a8d43e1aa2deca1887d",
+      "bytes": 7141031
+    }
+  ],
+  "final_raw_command_logs": [
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\clean-release-build.log",
+      "sha256": "b721ec2c499f740e146b45a68c302ffca1cb536e64e793e8c38c6c866a0dacf0",
+      "bytes": 116
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\payload-final-command.log",
+      "sha256": "137e4929b34cdf97def1d7dba6343f0dfda9aee14e1801098e57dfa625d1c67b",
+      "bytes": 304
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\package-v3-command.log",
+      "sha256": "ecfd0fe07dd2d6fd2765b88a2f26ce98b824d1f3ca957c98701efffefe5fcd02",
+      "bytes": 10624
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-lifecycle-v3-command.log",
+      "sha256": "aacbaeb3f178d61a247de450aec02951a23a8c4c9d0c16f90f43f349781c8086",
+      "bytes": 45780
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-semantic-v3-command.log",
+      "sha256": "c0fc9defeab6167d43eaf654a02de4555cc3dde026c98fdb6b0268ce37745a80",
+      "bytes": 491
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-entry-v3-command.log",
+      "sha256": "adde1ed92acc3ece04fd588809bcbaafaaedc776b11b4c0b9bff8bd5fa8936d1",
+      "bytes": 391
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-workspace-smoke.log",
+      "sha256": "3b491529c536fd33fd3a1ccef2ae2e69e1d3e54d10306e181e70bdc6a2c50317",
+      "bytes": 2340
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-cli-smoke.log",
+      "sha256": "e2161ed0366d4f835362e0eface38f2e3386a30fe85fbdad4215aa1e5b232b09",
+      "bytes": 3789
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-mcp-smoke.log",
+      "sha256": "065ed2afab0b3fcee3b59ccd0895c302f19c7d101aa6524fd468564a72cc811f",
+      "bytes": 1600
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-http-smoke.log",
+      "sha256": "f12c8637893e60dbd41f10436cb200af8823461113df8d4ed910ef456c52d83d",
+      "bytes": 2444
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-cancellation-smoke.log",
+      "sha256": "4f43843433e2a10cb92e8f18b4fb4e2ac9d5580e9c50249f631c43daacef469a",
+      "bytes": 1609
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\static-v3\\generated-check.log",
+      "sha256": "9b32876060f522dab834f51929d61842c5c163bdbd717351267868d562cb1126",
+      "bytes": 887
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\static-v3\\source-check.log",
+      "sha256": "a8ccce4a7a177f68621405d04c7a2bddac55db28dbd4191c3f764f4030f51323",
+      "bytes": 217
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\static-v3\\requirements-check.log",
+      "sha256": "425fa3eefc6462c16c6ef4592d6c0e8a7a3dc05dc0fd7fed2654ca074b28a7e1",
+      "bytes": 193
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\static-v3\\publish-policy-check.log",
+      "sha256": "59dd0830a2619aa31d85fad5025dff893243990bd80fb3fa64ddf7c747e9650c",
+      "bytes": 74
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\static-v3\\whitespace-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-01.stdout.log",
+      "sha256": "9f5b94d8db3c98b3851bf18822e5df8df338f454317d808f622bf5de24aaafdf",
+      "bytes": 26
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-01.stderr.log",
+      "sha256": "0c5e2568b4c79c13debcc497cf347b98e7a01e636ae2bed42cf3faa742048c94",
+      "bytes": 209
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-02.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-02.stderr.log",
+      "sha256": "5343adbec1839da2296a9970ecba7a9260ea92411adfc4e1359078dab9ae145d",
+      "bytes": 1297
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-03.stdout.log",
+      "sha256": "b0d239764c3f6932031ab242ed183ff976ef77bb8ca6dde6ab3696961d6ded75",
+      "bytes": 2445
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-03.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-04.stdout.log",
+      "sha256": "44ce64f1806e1aa8fa0bdd85b10e0413acd78557c88a8d52e94a0eb70f40b7ee",
+      "bytes": 10
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-04.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-05.stdout.log",
+      "sha256": "8a7482001971a0707b9cb457418796cfa6dcb3cdfcc3ff560a2f1d87635285c4",
+      "bytes": 34
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-05.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-06.stdout.log",
+      "sha256": "5a7fea7845f8e63821000bd30103e1dde66102fd755a1e46e47867d15442fc1c",
+      "bytes": 33
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-06.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-07.stdout.log",
+      "sha256": "ebf847509df71d6a49f8454d69392fe4184974c59aec8c68649196983d618acb",
+      "bytes": 126
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-07.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-08.stdout.log",
+      "sha256": "0550a61470dc15a7acaed915dd2b4591c48534f641b50a3b219fab0e260b4085",
+      "bytes": 73
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-08.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-09.stdout.log",
+      "sha256": "807c473edfffb2a5e22294cdf0c9e11bfac89c95bb78bbb2b6e7f489a1de782a",
+      "bytes": 8
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-09.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-10.stdout.log",
+      "sha256": "d3207a8615b51619b09dd933c1f7c3fcb6bd34bce638cc36ae1acafd2f8f20e0",
+      "bytes": 44
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-10.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-11.stdout.log",
+      "sha256": "8adcc17e039842d2f4d92ca25f72a8963ede072c885ef5f762c0682b87c6d872",
+      "bytes": 6
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-11.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-12.stdout.log",
+      "sha256": "13e3d29b223a790813794c1fd5ccb787c36992580e2f1c6a93be3ca7b93ae622",
+      "bytes": 15
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-12.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-13.stdout.log",
+      "sha256": "62c1572b33dad18969931fa8c8cb960a093adbfa9ca5fd4c955f640eb61b9b58",
+      "bytes": 6
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\odin-lsp-build-s5uybqje\\command-13.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ],
+  "final_published_command_log": {
+    "path": "verification/bundled-lsp-final-command-log.txt",
+    "sha256": "30df5d67e9ec615ef317616adb2486f11a9a4eba02cbc5fcbbb21c4162415892",
+    "note": "Combined actual outputs, UTF-8/LF normalized; each section records original raw-byte SHA256. Lifecycle stdout is explicitly presented as a public PATH-hash view; original raw log retained privately."
+  }
 }

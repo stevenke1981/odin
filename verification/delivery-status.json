@@ -722,9 +722,9 @@
   },
   "bundled_language_backends": {
     "task_id": "ODIN-BUNDLED-LSP",
-    "status": "IMPLEMENTED_PENDING_INSTALLATION_ACCEPTANCE",
+    "status": "PASS_WITH_DOCUMENTED_FEATURE_GAPS",
     "report": "verification/bundled-lsp-validation.json",
-    "report_sha256": "627c7c26e635d5f4b69ac1896cadd6707db026cd33540824d04e1fa5881c87fd",
+    "report_sha256": "ce53fee356a912f7fbf7b388d562a69c9e4ef7b40d42c96498cf4ef5a950fdb4",
     "seven_added_languages": [
       "python",
       "go",
@@ -737,6 +737,14 @@
     "existing_rust_preserved": true,
     "all_ide_features_accepted": false,
     "cloud_ci_started": false,
-    "note": "This record is the current Windows bundled-language scope; pre-existing source_change/extension entries remain historical evidence and are not overwritten by these results."
+    "note": "This record is the current Windows bundled-language scope; pre-existing source_change/extension entries remain historical evidence and are not overwritten by these results.",
+    "actual_installed_client_entry": "PASS",
+    "current_codex_process_restarted": "NOT_RUN",
+    "publication": "NOT_RUN",
+    "installer_sha256": "c3f7452c0af8868657b8efc3be89dbc9aceffbd6904553f561060b7bfca8b448",
+    "required_semantic_checks_passed": 203,
+    "independent_review_status": "PASS_WITH_DOCUMENTED_FEATURE_GAPS",
+    "independent_review_report": "verification/bundled-lsp-review.json",
+    "independent_review_sha256": "7e2c48d8d0ab63ae02e52dd08e07c3ec5df232bb61d850bd5b71379bfeec24d2"
   }
 }

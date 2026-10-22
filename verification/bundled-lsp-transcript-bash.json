@@ -1,0 +1,3155 @@
+[
+  {
+    "language": "bash",
+    "tool": "list_projects",
+    "arguments": {},
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"projects\":[{\"allow_debug\":false,\"allow_inspections\":false,\"allow_shell\":false,\"allow_write\":false,\"id\":\"ws_d5af925c9869b4c78fe4898659e412cbc4c7dae9bc941db7\",\"languages\":[\"rust\",\"python\",\"go\",\"csharp\",\"lua\",\"javascript\",\"typescript\",\"bash\"],\"root\":\"\\\\\\\\?\\\\C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\\\final-installed-languages-v3.fixtures\\\\\u5c08\u6848 bash_a\"}],\"trace\":{\"elapsed_ms\":0,\"id\":\"905ff970-da17-415b-9247-5697b170b068\",\"result_bytes\":402,\"result_sha256\":\"131a4358b01957a2af4e02ea5441cc02b17f556f381c65a80ed481b881e45668\"}}"
+          }
+        ],
+        "structuredContent": {
+          "projects": [
+            {
+              "allow_debug": false,
+              "allow_inspections": false,
+              "allow_shell": false,
+              "allow_write": false,
+              "id": "ws_d5af925c9869b4c78fe4898659e412cbc4c7dae9bc941db7",
+              "languages": [
+                "rust",
+                "python",
+                "go",
+                "csharp",
+                "lua",
+                "javascript",
+                "typescript",
+                "bash"
+              ],
+              "root": "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-installed-languages-v3.fixtures\\\u5c08\u6848 bash_a"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "905ff970-da17-415b-9247-5697b170b068",
+            "result_bytes": 402,
+            "result_sha256": "131a4358b01957a2af4e02ea5441cc02b17f556f381c65a80ed481b881e45668"
+          }
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "read_file",
+    "arguments": {
+      "relative_path": "sentinel.txt"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\":\"bash_a\",\"end_line\":1,\"line_base\":1,\"relative_path\":\"sentinel.txt\",\"sha256\":\"f28fafb4a0f4d30f10a2890dd53da0f828bf8778d319ee147d85f4a4b5e14ffc\",\"start_line\":1,\"total_lines\":1,\"trace\":{\"elapsed_ms\":4,\"id\":\"8ce18464-fe81-4f35-b6d3-b332ae86d1dd\",\"result_bytes\":185,\"result_sha256\":\"884495cc99a4ba3b6db486c41ed86fb218b53cece2aea958b07369b1f804faba\"}}"
+          }
+        ],
+        "structuredContent": {
+          "content": "bash_a",
+          "end_line": 1,
+          "line_base": 1,
+          "relative_path": "sentinel.txt",
+          "sha256": "f28fafb4a0f4d30f10a2890dd53da0f828bf8778d319ee147d85f4a4b5e14ffc",
+          "start_line": 1,
+          "total_lines": 1,
+          "trace": {
+            "elapsed_ms": 4,
+            "id": "8ce18464-fe81-4f35-b6d3-b332ae86d1dd",
+            "result_bytes": 185,
+            "result_sha256": "884495cc99a4ba3b6db486c41ed86fb218b53cece2aea958b07369b1f804faba"
+          }
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "project_analysis",
+    "arguments": {},
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"analysis_kind\":\"LIVE_STRUCTURE_AND_CONFIGURATION\",\"backends_started\":false,\"configured_backends\":[{\"extensions\":[\"rs\"],\"id\":\"rust\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"py\",\"pyi\"],\"id\":\"python\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"go\"],\"id\":\"go\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"cs\"],\"id\":\"csharp\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"lua\"],\"id\":\"lua\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"js\",\"jsx\",\"mjs\",\"cjs\"],\"id\":\"javascript\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"ts\",\"tsx\",\"mts\",\"cts\"],\"id\":\"typescript\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"sh\",\"bash\"],\"id\":\"bash\",\"probe\":\"NOT_RUN\"}],\"directories_truncated\":false,\"evidence\":[],\"evidence_truncated\":false,\"extensions\":{\"sh\":2,\"txt\":1},\"file_count\":3,\"inspections\":\"NOT_RUN\",\"language_hints\":[{\"backend_probe\":\"NOT_RUN\",\"detection\":\"EXTENSION_HINT\",\"host_backend_configured\":true,\"id\":\"bash\",\"marker_hints\":[],\"observed_extensions\":[\"sh\"],\"source_file_count\":2,\"suggested_server\":\"bash-language-server\",\"unconfigured_extensions\":[]}],\"limitations\":[\"Structural hints are not semantic symbol analysis or dependency parsing.\",\"Ignore rules, path policy and scan/evidence limits restrict visibility; absent evidence is not proof of absence.\",\"No background watcher or atomic multi-file snapshot. structure_sha256 covers paths and returned evidence only.\",\"No repository commands/configuration executed and no backend installed or probed. Semantic work requires a host-configured LSP.\"],\"next_steps\":[{\"probe\":false,\"project\":\"ws_d5af925c9869b4c78fe4898659e412cbc4c7dae9bc941db7\",\"tool\":\"get_capabilities\"},{\"project\":\"ws_d5af925c9869b4c78fe4898659e412cbc4c7dae9bc941db7\",\"relative_path\":\"consumer.sh\",\"tool\":\"get_symbols_overview\"}],\"permissions\":{\"debug\":false,\"formatters\":false,\"inspections\":false,\"shell\":false,\"write\":false},\"project\":\"ws_d5af925c9869b4c78fe4898659e412cbc4c7dae9bc941db7\",\"root\":\"\\\\\\\\?\\\\C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\\\final-installed-languages-v3.fixtures\\\\\u5c08\u6848 bash_a\",\"sample_files\":[\"consumer.sh\",\"sample.sh\",\"sentinel.txt\"],\"scan_limit\":10000,\"scan_truncated\":false,\"snapshot\":\"LIVE_NON_ATOMIC\",\"structure_sha256\":\"01e33676e729801c7a2ca6da94fdf9baaf9e42035c30e76484580ed326b2a54b\",\"tests\":\"NOT_RUN\",\"top_level_directories\":[],\"trace\":{\"elapsed_ms\":1,\"id\":\"7b66dc49-3435-4053-bf05-499b56fbfdc8\",\"result_bytes\":2287,\"result_sha256\":\"f1ef52023d82355d77596111f0bc34e4635c4dea77fa6a3468920e8861298c31\"},\"unconfigured_language_hints\":[]}"
+          }
+        ],
+        "structuredContent": {
+          "analysis_kind": "LIVE_STRUCTURE_AND_CONFIGURATION",
+          "backends_started": false,
+          "configured_backends": [
+            {
+              "extensions": [
+                "rs"
+              ],
+              "id": "rust",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "py",
+                "pyi"
+              ],
+              "id": "python",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "go"
+              ],
+              "id": "go",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "cs"
+              ],
+              "id": "csharp",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "lua"
+              ],
+              "id": "lua",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "js",
+                "jsx",
+                "mjs",
+                "cjs"
+              ],
+              "id": "javascript",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "ts",
+                "tsx",
+                "mts",
+                "cts"
+              ],
+              "id": "typescript",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "sh",
+                "bash"
+              ],
+              "id": "bash",
+              "probe": "NOT_RUN"
+            }
+          ],
+          "directories_truncated": false,
+          "evidence": [],
+          "evidence_truncated": false,
+          "extensions": {
+            "sh": 2,
+            "txt": 1
+          },
+          "file_count": 3,
+          "inspections": "NOT_RUN",
+          "language_hints": [
+            {
+              "backend_probe": "NOT_RUN",
+              "detection": "EXTENSION_HINT",
+              "host_backend_configured": true,
+              "id": "bash",
+              "marker_hints": [],
+              "observed_extensions": [
+                "sh"
+              ],
+              "source_file_count": 2,
+              "suggested_server": "bash-language-server",
+              "unconfigured_extensions": []
+            }
+          ],
+          "limitations": [
+            "Structural hints are not semantic symbol analysis or dependency parsing.",
+            "Ignore rules, path policy and scan/evidence limits restrict visibility; absent evidence is not proof of absence.",
+            "No background watcher or atomic multi-file snapshot. structure_sha256 covers paths and returned evidence only.",
+            "No repository commands/configuration executed and no backend installed or probed. Semantic work requires a host-configured LSP."
+          ],
+          "next_steps": [
+            {
+              "probe": false,
+              "project": "ws_d5af925c9869b4c78fe4898659e412cbc4c7dae9bc941db7",
+              "tool": "get_capabilities"
+            },
+            {
+              "project": "ws_d5af925c9869b4c78fe4898659e412cbc4c7dae9bc941db7",
+              "relative_path": "consumer.sh",
+              "tool": "get_symbols_overview"
+            }
+          ],
+          "permissions": {
+            "debug": false,
+            "formatters": false,
+            "inspections": false,
+            "shell": false,
+            "write": false
+          },
+          "project": "ws_d5af925c9869b4c78fe4898659e412cbc4c7dae9bc941db7",
+          "root": "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-installed-languages-v3.fixtures\\\u5c08\u6848 bash_a",
+          "sample_files": [
+            "consumer.sh",
+            "sample.sh",
+            "sentinel.txt"
+          ],
+          "scan_limit": 10000,
+          "scan_truncated": false,
+          "snapshot": "LIVE_NON_ATOMIC",
+          "structure_sha256": "01e33676e729801c7a2ca6da94fdf9baaf9e42035c30e76484580ed326b2a54b",
+          "tests": "NOT_RUN",
+          "top_level_directories": [],
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "7b66dc49-3435-4053-bf05-499b56fbfdc8",
+            "result_bytes": 2287,
+            "result_sha256": "f1ef52023d82355d77596111f0bc34e4635c4dea77fa6a3468920e8861298c31"
+          },
+          "unconfigured_language_hints": []
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "get_capabilities",
+    "arguments": {
+      "probe": true,
+      "language": "bash"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"debug_allowed\":false,\"external_tool_bridge\":false,\"formatter_profiles\":[],\"formatters_allowed\":false,\"inspection_profiles\":[],\"inspections_allowed\":false,\"languages\":[{\"capabilities\":{\"codeActionProvider\":{\"codeActionKinds\":[\"quickfix\"],\"resolveProvider\":false,\"workDoneProgress\":false},\"completionProvider\":{\"resolveProvider\":true,\"triggerCharacters\":[\"$\",\"{\",\"-\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentSymbolProvider\":true,\"hoverProvider\":true,\"referencesProvider\":true,\"renameProvider\":{\"prepareProvider\":true},\"textDocumentSync\":1,\"workspaceSymbolProvider\":true},\"configured\":true,\"extensions\":[\"sh\",\"bash\"],\"id\":\"bash\",\"probed\":true,\"ready\":true,\"status\":{\"capabilities\":{\"codeActionProvider\":{\"codeActionKinds\":[\"quickfix\"],\"resolveProvider\":false,\"workDoneProgress\":false},\"completionProvider\":{\"resolveProvider\":true,\"triggerCharacters\":[\"$\",\"{\",\"-\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentSymbolProvider\":true,\"hoverProvider\":true,\"referencesProvider\":true,\"renameProvider\":{\"prepareProvider\":true},\"textDocumentSync\":1,\"workspaceSymbolProvider\":true},\"index_complete_proven\":false,\"initialized\":true,\"readiness\":\"unknown\",\"transport\":{\"active_progress\":{},\"closed\":false,\"isolation\":{\"launch_route\":\"host_process\",\"os_boundary_verified\":false,\"requested\":false},\"pending_requests\":0,\"server_status\":null}}}],\"project\":\"ws_d5af925c9869b4c78fe4898659e412cbc4c7dae9bc941db7\",\"result_retention\":{\"max_bytes\":134217728,\"max_results\":128,\"ttl_ms\":86400000},\"semantic_available\":true,\"shell_allowed\":false,\"standalone\":true,\"tools\":[{\"enabled\":true,\"name\":\"status\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_version\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_schemas\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_capabilities\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_projects\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_current_config\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"initial_instructions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"onboarding\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"project_analysis\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_dir\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_for_pattern\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"index_build\",\"policy\":\"state\"},{\"enabled\":true,\"name\":\"index_query\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_symbols_overview\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_referencing_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_implementations\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_declaration\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_type_hierarchy\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"code_actions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"hover\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"signature_help\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"workspace_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"call_hierarchy\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"format_document\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"inlay_hints\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"inlay_hint_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"semantic_tokens\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_inspection_providers\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"run_inspections\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"prepare_inspection_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"prepare_code_action\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"apply_quick_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"move_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"inline_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"restart_language_server\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"transaction_prepare\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_apply\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"transaction_rollback\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_list\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_recover\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"create_text_file\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_content\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"replacement_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"replace_in_files\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_at_line\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_symbol_body\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_before_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_after_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"safe_delete_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"list_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_memory\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"write_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"edit_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_memory\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_export\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_import\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"memory_move_scope\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_transaction_apply\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"check_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_memories\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"recover_memories\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"query_project\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_run\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_vars\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_clear\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"execute_shell_command\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_start\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_request\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_events\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_stop\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_batch\",\"policy\":\"execute\"},{\"enabled\":true,\"name\":\"result_read\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"audit_log\",\"policy\":\"read\"}],\"trace\":{\"elapsed_ms\":216,\"id\":\"3bdc8843-2f21-437f-8508-fb345a47bdee\",\"result_bytes\":6768,\"result_sha256\":\"8d1ba3bc2022b6be45f80ef3ec084bb4eff93375c80a0349f8b9e0c10675d29e\"},\"write_allowed\":false}"
+          }
+        ],
+        "structuredContent": {
+          "debug_allowed": false,
+          "external_tool_bridge": false,
+          "formatter_profiles": [],
+          "formatters_allowed": false,
+          "inspection_profiles": [],
+          "inspections_allowed": false,
+          "languages": [
+            {
+              "capabilities": {
+                "codeActionProvider": {
+                  "codeActionKinds": [
+                    "quickfix"
+                  ],
+                  "resolveProvider": false,
+                  "workDoneProgress": false
+                },
+                "completionProvider": {
+                  "resolveProvider": true,
+                  "triggerCharacters": [
+                    "$",
+                    "{",
+                    "-"
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentSymbolProvider": true,
+                "hoverProvider": true,
+                "referencesProvider": true,
+                "renameProvider": {
+                  "prepareProvider": true
+                },
+                "textDocumentSync": 1,
+                "workspaceSymbolProvider": true
+              },
+              "configured": true,
+              "extensions": [
+                "sh",
+                "bash"
+              ],
+              "id": "bash",
+              "probed": true,
+              "ready": true,
+              "status": {
+                "capabilities": {
+                  "codeActionProvider": {
+                    "codeActionKinds": [
+                      "quickfix"
+                    ],
+                    "resolveProvider": false,
+                    "workDoneProgress": false
+                  },
+                  "completionProvider": {
+                    "resolveProvider": true,
+                    "triggerCharacters": [
+                      "$",
+                      "{",
+                      "-"
+                    ]
+                  },
+                  "definitionProvider": true,
+                  "documentFormattingProvider": true,
+                  "documentHighlightProvider": true,
+                  "documentSymbolProvider": true,
+                  "hoverProvider": true,
+                  "referencesProvider": true,
+                  "renameProvider": {
+                    "prepareProvider": true
+                  },
+                  "textDocumentSync": 1,
+                  "workspaceSymbolProvider": true
+                },
+                "index_complete_proven": false,
+                "initialized": true,
+                "readiness": "unknown",
+                "transport": {
+                  "active_progress": {},
+                  "closed": false,
+                  "isolation": {
+                    "launch_route": "host_process",
+                    "os_boundary_verified": false,
+                    "requested": false
+                  },
+                  "pending_requests": 0,
+                  "server_status": null
+                }
+              }
+            }
+          ],
+          "project": "ws_d5af925c9869b4c78fe4898659e412cbc4c7dae9bc941db7",
+          "result_retention": {
+            "max_bytes": 134217728,
+            "max_results": 128,
+            "ttl_ms": 86400000
+          },
+          "semantic_available": true,
+          "shell_allowed": false,
+          "standalone": true,
+          "tools": [
+            {
+              "enabled": true,
+              "name": "status",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_version",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_schemas",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_capabilities",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_projects",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_current_config",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "initial_instructions",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "onboarding",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "project_analysis",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_dir",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "read_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "search_for_pattern",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "index_build",
+              "policy": "state"
+            },
+            {
+              "enabled": true,
+              "name": "index_query",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_symbols_overview",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_symbol",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_referencing_symbols",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_implementations",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_declaration",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_type_hierarchy",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_diagnostics_for_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_diagnostics_for_symbol",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "code_actions",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "completion",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "hover",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "signature_help",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "completion_resolve",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "workspace_symbols",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "call_hierarchy",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "format_document",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "inlay_hints",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "inlay_hint_resolve",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "semantic_tokens",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_inspection_providers",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "run_inspections",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "prepare_inspection_fix",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "prepare_code_action",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "apply_quick_fix",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "move_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "inline_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "restart_language_server",
+              "policy": "state"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_prepare",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "transaction_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_apply",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_rollback",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "transaction_list",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_recover",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "create_text_file",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_content",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "replacement_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "replace_in_files",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_lines",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "delete_lines",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_at_line",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_symbol_body",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_before_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_after_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "rename_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "safe_delete_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "list_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "read_memory",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "write_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "edit_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "delete_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "rename_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "memory_export",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "memory_import",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "memory_move_scope",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "memory_transaction_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "memory_transaction_apply",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "check_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "search_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "recover_memories",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "query_project",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_run",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_vars",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_clear",
+              "policy": "state"
+            },
+            {
+              "enabled": false,
+              "name": "execute_shell_command",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_start",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_request",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_events",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_stop",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_batch",
+              "policy": "execute"
+            },
+            {
+              "enabled": true,
+              "name": "result_read",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "audit_log",
+              "policy": "read"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 216,
+            "id": "3bdc8843-2f21-437f-8508-fb345a47bdee",
+            "result_bytes": 6768,
+            "result_sha256": "8d1ba3bc2022b6be45f80ef3ec084bb4eff93375c80a0349f8b9e0c10675d29e"
+          },
+          "write_allowed": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "sample.sh"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"bash\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":12,\"name\":\"greet\",\"name_path\":\"greet\",\"range\":{\"end\":{\"character\":1,\"line\":2},\"start\":{\"character\":0,\"line\":0}},\"relative_path\":\"sample.sh\",\"selection_range\":{\"end\":{\"character\":1,\"line\":2},\"start\":{\"character\":0,\"line\":0}}},{\"kind\":12,\"name\":\"run\",\"name_path\":\"run\",\"range\":{\"end\":{\"character\":1,\"line\":6},\"start\":{\"character\":0,\"line\":4}},\"relative_path\":\"sample.sh\",\"selection_range\":{\"end\":{\"character\":1,\"line\":6},\"start\":{\"character\":0,\"line\":4}}}],\"trace\":{\"elapsed_ms\":9,\"id\":\"63cc0623-0a39-4931-bc0d-bf0aef5414ee\",\"result_bytes\":557,\"result_sha256\":\"77d3a576b980f87f09c51068c12738a4257e093ec66d2573fa18d90367514568\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "bash",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 1,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.sh",
+              "selection_range": {
+                "end": {
+                  "character": 1,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 0
+                }
+              }
+            },
+            {
+              "kind": 12,
+              "name": "run",
+              "name_path": "run",
+              "range": {
+                "end": {
+                  "character": 1,
+                  "line": 6
+                },
+                "start": {
+                  "character": 0,
+                  "line": 4
+                }
+              },
+              "relative_path": "sample.sh",
+              "selection_range": {
+                "end": {
+                  "character": 1,
+                  "line": 6
+                },
+                "start": {
+                  "character": 0,
+                  "line": 4
+                }
+              }
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 9,
+            "id": "63cc0623-0a39-4931-bc0d-bf0aef5414ee",
+            "result_bytes": 557,
+            "result_sha256": "77d3a576b980f87f09c51068c12738a4257e093ec66d2573fa18d90367514568"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "create_text_file",
+    "arguments": {
+      "relative_path": "forbidden.txt",
+      "content": "denied",
+      "expected_sha256": null
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\":{\"code\":\"PERMISSION_DENIED\",\"message\":\"Project writes are disabled\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "PERMISSION_DENIED",
+            "message": "Project writes are disabled"
+          }
+        },
+        "isError": true
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "list_projects",
+    "arguments": {},
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"projects\":[{\"allow_debug\":false,\"allow_inspections\":false,\"allow_shell\":false,\"allow_write\":false,\"id\":\"ws_073f05f41b91de53e68fa2d1ef610ec06d9ff1f6b86dbc7f\",\"languages\":[\"rust\",\"python\",\"go\",\"csharp\",\"lua\",\"javascript\",\"typescript\",\"bash\"],\"root\":\"\\\\\\\\?\\\\C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\\\final-installed-languages-v3.fixtures\\\\bash_b\"}],\"trace\":{\"elapsed_ms\":0,\"id\":\"52d73c1e-c04b-45b0-b9ce-35612aab2dc6\",\"result_bytes\":395,\"result_sha256\":\"681a197daa4c31c01ffcf09957463411b572e9dbfd0c7dd7b4b37ab0dba9bec1\"}}"
+          }
+        ],
+        "structuredContent": {
+          "projects": [
+            {
+              "allow_debug": false,
+              "allow_inspections": false,
+              "allow_shell": false,
+              "allow_write": false,
+              "id": "ws_073f05f41b91de53e68fa2d1ef610ec06d9ff1f6b86dbc7f",
+              "languages": [
+                "rust",
+                "python",
+                "go",
+                "csharp",
+                "lua",
+                "javascript",
+                "typescript",
+                "bash"
+              ],
+              "root": "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-installed-languages-v3.fixtures\\bash_b"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "52d73c1e-c04b-45b0-b9ce-35612aab2dc6",
+            "result_bytes": 395,
+            "result_sha256": "681a197daa4c31c01ffcf09957463411b572e9dbfd0c7dd7b4b37ab0dba9bec1"
+          }
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "read_file",
+    "arguments": {
+      "relative_path": "sentinel.txt"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\":\"bash_b\",\"end_line\":1,\"line_base\":1,\"relative_path\":\"sentinel.txt\",\"sha256\":\"c01387ac39a8705f5ea2c9a7811c899532cbca014fd2050b33ccfebb61a9a742\",\"start_line\":1,\"total_lines\":1,\"trace\":{\"elapsed_ms\":6,\"id\":\"e164af7b-78c4-4f7c-8a38-a6a946dac08a\",\"result_bytes\":185,\"result_sha256\":\"529cd73b56f620afc6b6f80e73e4df5eb97867cd1714f57fd7fb89825763be02\"}}"
+          }
+        ],
+        "structuredContent": {
+          "content": "bash_b",
+          "end_line": 1,
+          "line_base": 1,
+          "relative_path": "sentinel.txt",
+          "sha256": "c01387ac39a8705f5ea2c9a7811c899532cbca014fd2050b33ccfebb61a9a742",
+          "start_line": 1,
+          "total_lines": 1,
+          "trace": {
+            "elapsed_ms": 6,
+            "id": "e164af7b-78c4-4f7c-8a38-a6a946dac08a",
+            "result_bytes": 185,
+            "result_sha256": "529cd73b56f620afc6b6f80e73e4df5eb97867cd1714f57fd7fb89825763be02"
+          }
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "project_analysis",
+    "arguments": {},
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"analysis_kind\":\"LIVE_STRUCTURE_AND_CONFIGURATION\",\"backends_started\":false,\"configured_backends\":[{\"extensions\":[\"rs\"],\"id\":\"rust\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"py\",\"pyi\"],\"id\":\"python\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"go\"],\"id\":\"go\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"cs\"],\"id\":\"csharp\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"lua\"],\"id\":\"lua\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"js\",\"jsx\",\"mjs\",\"cjs\"],\"id\":\"javascript\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"ts\",\"tsx\",\"mts\",\"cts\"],\"id\":\"typescript\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"sh\",\"bash\"],\"id\":\"bash\",\"probe\":\"NOT_RUN\"}],\"directories_truncated\":false,\"evidence\":[],\"evidence_truncated\":false,\"extensions\":{\"sh\":2,\"txt\":1},\"file_count\":3,\"inspections\":\"NOT_RUN\",\"language_hints\":[{\"backend_probe\":\"NOT_RUN\",\"detection\":\"EXTENSION_HINT\",\"host_backend_configured\":true,\"id\":\"bash\",\"marker_hints\":[],\"observed_extensions\":[\"sh\"],\"source_file_count\":2,\"suggested_server\":\"bash-language-server\",\"unconfigured_extensions\":[]}],\"limitations\":[\"Structural hints are not semantic symbol analysis or dependency parsing.\",\"Ignore rules, path policy and scan/evidence limits restrict visibility; absent evidence is not proof of absence.\",\"No background watcher or atomic multi-file snapshot. structure_sha256 covers paths and returned evidence only.\",\"No repository commands/configuration executed and no backend installed or probed. Semantic work requires a host-configured LSP.\"],\"next_steps\":[{\"probe\":false,\"project\":\"ws_073f05f41b91de53e68fa2d1ef610ec06d9ff1f6b86dbc7f\",\"tool\":\"get_capabilities\"},{\"project\":\"ws_073f05f41b91de53e68fa2d1ef610ec06d9ff1f6b86dbc7f\",\"relative_path\":\"consumer.sh\",\"tool\":\"get_symbols_overview\"}],\"permissions\":{\"debug\":false,\"formatters\":false,\"inspections\":false,\"shell\":false,\"write\":false},\"project\":\"ws_073f05f41b91de53e68fa2d1ef610ec06d9ff1f6b86dbc7f\",\"root\":\"\\\\\\\\?\\\\C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\\\final-installed-languages-v3.fixtures\\\\bash_b\",\"sample_files\":[\"consumer.sh\",\"sample.sh\",\"sentinel.txt\"],\"scan_limit\":10000,\"scan_truncated\":false,\"snapshot\":\"LIVE_NON_ATOMIC\",\"structure_sha256\":\"01e33676e729801c7a2ca6da94fdf9baaf9e42035c30e76484580ed326b2a54b\",\"tests\":\"NOT_RUN\",\"top_level_directories\":[],\"trace\":{\"elapsed_ms\":1,\"id\":\"2dcb6c9d-c831-459f-9ce0-c25e217a108b\",\"result_bytes\":2280,\"result_sha256\":\"b8f2fd1eb47355bc0afcad785ed04a4fb3ab4294a0b33c8be7cf169b6f6037c4\"},\"unconfigured_language_hints\":[]}"
+          }
+        ],
+        "structuredContent": {
+          "analysis_kind": "LIVE_STRUCTURE_AND_CONFIGURATION",
+          "backends_started": false,
+          "configured_backends": [
+            {
+              "extensions": [
+                "rs"
+              ],
+              "id": "rust",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "py",
+                "pyi"
+              ],
+              "id": "python",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "go"
+              ],
+              "id": "go",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "cs"
+              ],
+              "id": "csharp",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "lua"
+              ],
+              "id": "lua",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "js",
+                "jsx",
+                "mjs",
+                "cjs"
+              ],
+              "id": "javascript",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "ts",
+                "tsx",
+                "mts",
+                "cts"
+              ],
+              "id": "typescript",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "sh",
+                "bash"
+              ],
+              "id": "bash",
+              "probe": "NOT_RUN"
+            }
+          ],
+          "directories_truncated": false,
+          "evidence": [],
+          "evidence_truncated": false,
+          "extensions": {
+            "sh": 2,
+            "txt": 1
+          },
+          "file_count": 3,
+          "inspections": "NOT_RUN",
+          "language_hints": [
+            {
+              "backend_probe": "NOT_RUN",
+              "detection": "EXTENSION_HINT",
+              "host_backend_configured": true,
+              "id": "bash",
+              "marker_hints": [],
+              "observed_extensions": [
+                "sh"
+              ],
+              "source_file_count": 2,
+              "suggested_server": "bash-language-server",
+              "unconfigured_extensions": []
+            }
+          ],
+          "limitations": [
+            "Structural hints are not semantic symbol analysis or dependency parsing.",
+            "Ignore rules, path policy and scan/evidence limits restrict visibility; absent evidence is not proof of absence.",
+            "No background watcher or atomic multi-file snapshot. structure_sha256 covers paths and returned evidence only.",
+            "No repository commands/configuration executed and no backend installed or probed. Semantic work requires a host-configured LSP."
+          ],
+          "next_steps": [
+            {
+              "probe": false,
+              "project": "ws_073f05f41b91de53e68fa2d1ef610ec06d9ff1f6b86dbc7f",
+              "tool": "get_capabilities"
+            },
+            {
+              "project": "ws_073f05f41b91de53e68fa2d1ef610ec06d9ff1f6b86dbc7f",
+              "relative_path": "consumer.sh",
+              "tool": "get_symbols_overview"
+            }
+          ],
+          "permissions": {
+            "debug": false,
+            "formatters": false,
+            "inspections": false,
+            "shell": false,
+            "write": false
+          },
+          "project": "ws_073f05f41b91de53e68fa2d1ef610ec06d9ff1f6b86dbc7f",
+          "root": "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-installed-languages-v3.fixtures\\bash_b",
+          "sample_files": [
+            "consumer.sh",
+            "sample.sh",
+            "sentinel.txt"
+          ],
+          "scan_limit": 10000,
+          "scan_truncated": false,
+          "snapshot": "LIVE_NON_ATOMIC",
+          "structure_sha256": "01e33676e729801c7a2ca6da94fdf9baaf9e42035c30e76484580ed326b2a54b",
+          "tests": "NOT_RUN",
+          "top_level_directories": [],
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "2dcb6c9d-c831-459f-9ce0-c25e217a108b",
+            "result_bytes": 2280,
+            "result_sha256": "b8f2fd1eb47355bc0afcad785ed04a4fb3ab4294a0b33c8be7cf169b6f6037c4"
+          },
+          "unconfigured_language_hints": []
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "get_capabilities",
+    "arguments": {
+      "probe": true,
+      "language": "bash"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"debug_allowed\":false,\"external_tool_bridge\":false,\"formatter_profiles\":[],\"formatters_allowed\":false,\"inspection_profiles\":[],\"inspections_allowed\":false,\"languages\":[{\"capabilities\":{\"codeActionProvider\":{\"codeActionKinds\":[\"quickfix\"],\"resolveProvider\":false,\"workDoneProgress\":false},\"completionProvider\":{\"resolveProvider\":true,\"triggerCharacters\":[\"$\",\"{\",\"-\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentSymbolProvider\":true,\"hoverProvider\":true,\"referencesProvider\":true,\"renameProvider\":{\"prepareProvider\":true},\"textDocumentSync\":1,\"workspaceSymbolProvider\":true},\"configured\":true,\"extensions\":[\"sh\",\"bash\"],\"id\":\"bash\",\"probed\":true,\"ready\":true,\"status\":{\"capabilities\":{\"codeActionProvider\":{\"codeActionKinds\":[\"quickfix\"],\"resolveProvider\":false,\"workDoneProgress\":false},\"completionProvider\":{\"resolveProvider\":true,\"triggerCharacters\":[\"$\",\"{\",\"-\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentSymbolProvider\":true,\"hoverProvider\":true,\"referencesProvider\":true,\"renameProvider\":{\"prepareProvider\":true},\"textDocumentSync\":1,\"workspaceSymbolProvider\":true},\"index_complete_proven\":false,\"initialized\":true,\"readiness\":\"unknown\",\"transport\":{\"active_progress\":{},\"closed\":false,\"isolation\":{\"launch_route\":\"host_process\",\"os_boundary_verified\":false,\"requested\":false},\"pending_requests\":0,\"server_status\":null}}}],\"project\":\"ws_073f05f41b91de53e68fa2d1ef610ec06d9ff1f6b86dbc7f\",\"result_retention\":{\"max_bytes\":134217728,\"max_results\":128,\"ttl_ms\":86400000},\"semantic_available\":true,\"shell_allowed\":false,\"standalone\":true,\"tools\":[{\"enabled\":true,\"name\":\"status\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_version\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_schemas\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_capabilities\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_projects\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_current_config\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"initial_instructions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"onboarding\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"project_analysis\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_dir\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_for_pattern\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"index_build\",\"policy\":\"state\"},{\"enabled\":true,\"name\":\"index_query\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_symbols_overview\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_referencing_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_implementations\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_declaration\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_type_hierarchy\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"code_actions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"hover\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"signature_help\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"workspace_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"call_hierarchy\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"format_document\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"inlay_hints\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"inlay_hint_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"semantic_tokens\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_inspection_providers\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"run_inspections\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"prepare_inspection_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"prepare_code_action\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"apply_quick_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"move_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"inline_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"restart_language_server\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"transaction_prepare\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_apply\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"transaction_rollback\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_list\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_recover\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"create_text_file\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_content\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"replacement_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"replace_in_files\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_at_line\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_symbol_body\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_before_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_after_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"safe_delete_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"list_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_memory\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"write_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"edit_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_memory\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_export\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_import\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"memory_move_scope\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_transaction_apply\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"check_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_memories\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"recover_memories\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"query_project\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_run\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_vars\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_clear\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"execute_shell_command\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_start\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_request\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_events\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_stop\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_batch\",\"policy\":\"execute\"},{\"enabled\":true,\"name\":\"result_read\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"audit_log\",\"policy\":\"read\"}],\"trace\":{\"elapsed_ms\":245,\"id\":\"3b103903-715a-47c0-a258-54b17aa61c7f\",\"result_bytes\":6768,\"result_sha256\":\"ab333be4f1f00e049e49a8c2de53a5f22570b5477707f3bd5175b73469302edc\"},\"write_allowed\":false}"
+          }
+        ],
+        "structuredContent": {
+          "debug_allowed": false,
+          "external_tool_bridge": false,
+          "formatter_profiles": [],
+          "formatters_allowed": false,
+          "inspection_profiles": [],
+          "inspections_allowed": false,
+          "languages": [
+            {
+              "capabilities": {
+                "codeActionProvider": {
+                  "codeActionKinds": [
+                    "quickfix"
+                  ],
+                  "resolveProvider": false,
+                  "workDoneProgress": false
+                },
+                "completionProvider": {
+                  "resolveProvider": true,
+                  "triggerCharacters": [
+                    "$",
+                    "{",
+                    "-"
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentSymbolProvider": true,
+                "hoverProvider": true,
+                "referencesProvider": true,
+                "renameProvider": {
+                  "prepareProvider": true
+                },
+                "textDocumentSync": 1,
+                "workspaceSymbolProvider": true
+              },
+              "configured": true,
+              "extensions": [
+                "sh",
+                "bash"
+              ],
+              "id": "bash",
+              "probed": true,
+              "ready": true,
+              "status": {
+                "capabilities": {
+                  "codeActionProvider": {
+                    "codeActionKinds": [
+                      "quickfix"
+                    ],
+                    "resolveProvider": false,
+                    "workDoneProgress": false
+                  },
+                  "completionProvider": {
+                    "resolveProvider": true,
+                    "triggerCharacters": [
+                      "$",
+                      "{",
+                      "-"
+                    ]
+                  },
+                  "definitionProvider": true,
+                  "documentFormattingProvider": true,
+                  "documentHighlightProvider": true,
+                  "documentSymbolProvider": true,
+                  "hoverProvider": true,
+                  "referencesProvider": true,
+                  "renameProvider": {
+                    "prepareProvider": true
+                  },
+                  "textDocumentSync": 1,
+                  "workspaceSymbolProvider": true
+                },
+                "index_complete_proven": false,
+                "initialized": true,
+                "readiness": "unknown",
+                "transport": {
+                  "active_progress": {},
+                  "closed": false,
+                  "isolation": {
+                    "launch_route": "host_process",
+                    "os_boundary_verified": false,
+                    "requested": false
+                  },
+                  "pending_requests": 0,
+                  "server_status": null
+                }
+              }
+            }
+          ],
+          "project": "ws_073f05f41b91de53e68fa2d1ef610ec06d9ff1f6b86dbc7f",
+          "result_retention": {
+            "max_bytes": 134217728,
+            "max_results": 128,
+            "ttl_ms": 86400000
+          },
+          "semantic_available": true,
+          "shell_allowed": false,
+          "standalone": true,
+          "tools": [
+            {
+              "enabled": true,
+              "name": "status",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_version",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_schemas",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_capabilities",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_projects",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_current_config",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "initial_instructions",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "onboarding",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "project_analysis",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_dir",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "read_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "search_for_pattern",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "index_build",
+              "policy": "state"
+            },
+            {
+              "enabled": true,
+              "name": "index_query",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_symbols_overview",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_symbol",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_referencing_symbols",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_implementations",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_declaration",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_type_hierarchy",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_diagnostics_for_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_diagnostics_for_symbol",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "code_actions",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "completion",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "hover",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "signature_help",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "completion_resolve",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "workspace_symbols",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "call_hierarchy",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "format_document",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "inlay_hints",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "inlay_hint_resolve",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "semantic_tokens",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_inspection_providers",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "run_inspections",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "prepare_inspection_fix",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "prepare_code_action",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "apply_quick_fix",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "move_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "inline_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "restart_language_server",
+              "policy": "state"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_prepare",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "transaction_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_apply",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_rollback",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "transaction_list",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_recover",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "create_text_file",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_content",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "replacement_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "replace_in_files",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_lines",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "delete_lines",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_at_line",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_symbol_body",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_before_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_after_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "rename_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "safe_delete_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "list_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "read_memory",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "write_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "edit_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "delete_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "rename_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "memory_export",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "memory_import",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "memory_move_scope",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "memory_transaction_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "memory_transaction_apply",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "check_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "search_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "recover_memories",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "query_project",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_run",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_vars",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_clear",
+              "policy": "state"
+            },
+            {
+              "enabled": false,
+              "name": "execute_shell_command",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_start",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_request",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_events",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_stop",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_batch",
+              "policy": "execute"
+            },
+            {
+              "enabled": true,
+              "name": "result_read",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "audit_log",
+              "policy": "read"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 245,
+            "id": "3b103903-715a-47c0-a258-54b17aa61c7f",
+            "result_bytes": 6768,
+            "result_sha256": "ab333be4f1f00e049e49a8c2de53a5f22570b5477707f3bd5175b73469302edc"
+          },
+          "write_allowed": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "sample.sh"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"bash\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":12,\"name\":\"greet\",\"name_path\":\"greet\",\"range\":{\"end\":{\"character\":1,\"line\":2},\"start\":{\"character\":0,\"line\":0}},\"relative_path\":\"sample.sh\",\"selection_range\":{\"end\":{\"character\":1,\"line\":2},\"start\":{\"character\":0,\"line\":0}}},{\"kind\":12,\"name\":\"run\",\"name_path\":\"run\",\"range\":{\"end\":{\"character\":1,\"line\":6},\"start\":{\"character\":0,\"line\":4}},\"relative_path\":\"sample.sh\",\"selection_range\":{\"end\":{\"character\":1,\"line\":6},\"start\":{\"character\":0,\"line\":4}}}],\"trace\":{\"elapsed_ms\":11,\"id\":\"f54b1e4e-6898-432b-bb09-3ef515a9565d\",\"result_bytes\":557,\"result_sha256\":\"77d3a576b980f87f09c51068c12738a4257e093ec66d2573fa18d90367514568\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "bash",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 1,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.sh",
+              "selection_range": {
+                "end": {
+                  "character": 1,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 0
+                }
+              }
+            },
+            {
+              "kind": 12,
+              "name": "run",
+              "name_path": "run",
+              "range": {
+                "end": {
+                  "character": 1,
+                  "line": 6
+                },
+                "start": {
+                  "character": 0,
+                  "line": 4
+                }
+              },
+              "relative_path": "sample.sh",
+              "selection_range": {
+                "end": {
+                  "character": 1,
+                  "line": 6
+                },
+                "start": {
+                  "character": 0,
+                  "line": 4
+                }
+              }
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 11,
+            "id": "f54b1e4e-6898-432b-bb09-3ef515a9565d",
+            "result_bytes": 557,
+            "result_sha256": "77d3a576b980f87f09c51068c12738a4257e093ec66d2573fa18d90367514568"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "create_text_file",
+    "arguments": {
+      "relative_path": "forbidden.txt",
+      "content": "denied",
+      "expected_sha256": null
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\":{\"code\":\"PERMISSION_DENIED\",\"message\":\"Project writes are disabled\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "PERMISSION_DENIED",
+            "message": "Project writes are disabled"
+          }
+        },
+        "isError": true
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "read_file",
+    "arguments": {
+      "project": "ws_d5af925c9869b4c78fe4898659e412cbc4c7dae9bc941db7",
+      "relative_path": "sample.sh"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 8,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\":{\"code\":\"INVALID_ARGUMENT\",\"message\":\"Unknown configured project: ws_d5af925c9869b4c78fe4898659e412cbc4c7dae9bc941db7\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "INVALID_ARGUMENT",
+            "message": "Unknown configured project: ws_d5af925c9869b4c78fe4898659e412cbc4c7dae9bc941db7"
+          }
+        },
+        "isError": true
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "sample.sh"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"bash\",\"next_offset\":null,\"offset\":0,\"symbols\":[],\"trace\":{\"elapsed_ms\":232,\"id\":\"6582ac2b-4d75-42fe-8794-84e9f8e286ca\",\"result_bytes\":96,\"result_sha256\":\"ac313bedaee05ac5f571b888ddbbe83e38f864fa31a680193dda81b331527654\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "bash",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [],
+          "trace": {
+            "elapsed_ms": 232,
+            "id": "6582ac2b-4d75-42fe-8794-84e9f8e286ca",
+            "result_bytes": 96,
+            "result_sha256": "ac313bedaee05ac5f571b888ddbbe83e38f864fa31a680193dda81b331527654"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "sample.sh"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"bash\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":12,\"name\":\"greet\",\"name_path\":\"greet\",\"range\":{\"end\":{\"character\":1,\"line\":2},\"start\":{\"character\":0,\"line\":0}},\"relative_path\":\"sample.sh\",\"selection_range\":{\"end\":{\"character\":1,\"line\":2},\"start\":{\"character\":0,\"line\":0}}},{\"kind\":12,\"name\":\"run\",\"name_path\":\"run\",\"range\":{\"end\":{\"character\":1,\"line\":6},\"start\":{\"character\":0,\"line\":4}},\"relative_path\":\"sample.sh\",\"selection_range\":{\"end\":{\"character\":1,\"line\":6},\"start\":{\"character\":0,\"line\":4}}}],\"trace\":{\"elapsed_ms\":2,\"id\":\"eb969a87-8049-42d3-8120-629d90cca81b\",\"result_bytes\":557,\"result_sha256\":\"77d3a576b980f87f09c51068c12738a4257e093ec66d2573fa18d90367514568\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "bash",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 1,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.sh",
+              "selection_range": {
+                "end": {
+                  "character": 1,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 0
+                }
+              }
+            },
+            {
+              "kind": 12,
+              "name": "run",
+              "name_path": "run",
+              "range": {
+                "end": {
+                  "character": 1,
+                  "line": 6
+                },
+                "start": {
+                  "character": 0,
+                  "line": 4
+                }
+              },
+              "relative_path": "sample.sh",
+              "selection_range": {
+                "end": {
+                  "character": 1,
+                  "line": 6
+                },
+                "start": {
+                  "character": 0,
+                  "line": 4
+                }
+              }
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 2,
+            "id": "eb969a87-8049-42d3-8120-629d90cca81b",
+            "result_bytes": 557,
+            "result_sha256": "77d3a576b980f87f09c51068c12738a4257e093ec66d2573fa18d90367514568"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "consumer.sh"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"bash\",\"next_offset\":null,\"offset\":0,\"symbols\":[],\"trace\":{\"elapsed_ms\":2,\"id\":\"fe9d59fc-658e-4bfc-8f3a-970b686fbfce\",\"result_bytes\":96,\"result_sha256\":\"ac313bedaee05ac5f571b888ddbbe83e38f864fa31a680193dda81b331527654\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "bash",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [],
+          "trace": {
+            "elapsed_ms": 2,
+            "id": "fe9d59fc-658e-4bfc-8f3a-970b686fbfce",
+            "result_bytes": 96,
+            "result_sha256": "ac313bedaee05ac5f571b888ddbbe83e38f864fa31a680193dda81b331527654"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "find_referencing_symbols",
+    "arguments": {
+      "relative_path": "sample.sh",
+      "name_path": "greet"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"locations\":[{\"enclosing_symbol\":{\"kind\":12,\"name\":\"run\",\"name_path\":\"run\",\"range\":{\"end\":{\"character\":1,\"line\":6},\"start\":{\"character\":0,\"line\":4}},\"relative_path\":\"sample.sh\",\"selection_range\":{\"end\":{\"character\":1,\"line\":6},\"start\":{\"character\":0,\"line\":4}}},\"external\":false,\"location\":{\"range\":{\"end\":{\"character\":9,\"line\":5},\"start\":{\"character\":4,\"line\":5}},\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh\"},\"relative_path\":\"sample.sh\"},{\"enclosing_symbol\":null,\"external\":false,\"location\":{\"range\":{\"end\":{\"character\":5,\"line\":1},\"start\":{\"character\":0,\"line\":1}},\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/consumer.sh\"},\"relative_path\":\"consumer.sh\"}],\"trace\":{\"elapsed_ms\":6,\"id\":\"d9fc2b54-175d-4658-817f-f2dc81d454d6\",\"result_bytes\":925,\"result_sha256\":\"ae1bd6319934b523da3c9408db90f23b419dbbd501047e447f3a0296c2d36ed1\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "locations": [
+            {
+              "enclosing_symbol": {
+                "kind": 12,
+                "name": "run",
+                "name_path": "run",
+                "range": {
+                  "end": {
+                    "character": 1,
+                    "line": 6
+                  },
+                  "start": {
+                    "character": 0,
+                    "line": 4
+                  }
+                },
+                "relative_path": "sample.sh",
+                "selection_range": {
+                  "end": {
+                    "character": 1,
+                    "line": 6
+                  },
+                  "start": {
+                    "character": 0,
+                    "line": 4
+                  }
+                }
+              },
+              "external": false,
+              "location": {
+                "range": {
+                  "end": {
+                    "character": 9,
+                    "line": 5
+                  },
+                  "start": {
+                    "character": 4,
+                    "line": 5
+                  }
+                },
+                "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh"
+              },
+              "relative_path": "sample.sh"
+            },
+            {
+              "enclosing_symbol": null,
+              "external": false,
+              "location": {
+                "range": {
+                  "end": {
+                    "character": 5,
+                    "line": 1
+                  },
+                  "start": {
+                    "character": 0,
+                    "line": 1
+                  }
+                },
+                "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/consumer.sh"
+              },
+              "relative_path": "consumer.sh"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 6,
+            "id": "d9fc2b54-175d-4658-817f-f2dc81d454d6",
+            "result_bytes": 925,
+            "result_sha256": "ae1bd6319934b523da3c9408db90f23b419dbbd501047e447f3a0296c2d36ed1"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "find_declaration",
+    "arguments": {
+      "relative_path": "sample.sh",
+      "position": {
+        "line": 5,
+        "character": 5
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"locations\":[{\"enclosing_symbol\":{\"kind\":12,\"name\":\"greet\",\"name_path\":\"greet\",\"range\":{\"end\":{\"character\":1,\"line\":2},\"start\":{\"character\":0,\"line\":0}},\"relative_path\":\"sample.sh\",\"selection_range\":{\"end\":{\"character\":1,\"line\":2},\"start\":{\"character\":0,\"line\":0}}},\"external\":false,\"location\":{\"range\":{\"end\":{\"character\":1,\"line\":2},\"start\":{\"character\":0,\"line\":0}},\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh\"},\"relative_path\":\"sample.sh\"}],\"trace\":{\"elapsed_ms\":4,\"id\":\"81c46e88-07d9-40eb-a4f1-a38efa3807a7\",\"result_bytes\":593,\"result_sha256\":\"9584d9ba90449e81da8a047b9f6ded9663110a441cf8d8078f1e37e8857c5597\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "locations": [
+            {
+              "enclosing_symbol": {
+                "kind": 12,
+                "name": "greet",
+                "name_path": "greet",
+                "range": {
+                  "end": {
+                    "character": 1,
+                    "line": 2
+                  },
+                  "start": {
+                    "character": 0,
+                    "line": 0
+                  }
+                },
+                "relative_path": "sample.sh",
+                "selection_range": {
+                  "end": {
+                    "character": 1,
+                    "line": 2
+                  },
+                  "start": {
+                    "character": 0,
+                    "line": 0
+                  }
+                }
+              },
+              "external": false,
+              "location": {
+                "range": {
+                  "end": {
+                    "character": 1,
+                    "line": 2
+                  },
+                  "start": {
+                    "character": 0,
+                    "line": 0
+                  }
+                },
+                "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh"
+              },
+              "relative_path": "sample.sh"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 4,
+            "id": "81c46e88-07d9-40eb-a4f1-a38efa3807a7",
+            "result_bytes": 593,
+            "result_sha256": "9584d9ba90449e81da8a047b9f6ded9663110a441cf8d8078f1e37e8857c5597"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "completion",
+    "arguments": {
+      "relative_path": "sample.sh",
+      "position": {
+        "line": 5,
+        "character": 7
+      },
+      "limit": 200
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"commands_executed\":false,\"document\":{\"path\":\"sample.sh\",\"sha256\":\"560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh\",\"version\":1},\"edits_applied\":false,\"freshness\":\"current\",\"index_complete_proven\":false,\"position_encoding\":\"utf-16\",\"provider\":\"bash\",\"result\":[{\"data\":{\"type\":3},\"kind\":3,\"label\":\"greet\"}],\"source\":\"lsp\",\"trace\":{\"elapsed_ms\":2,\"id\":\"3937117d-1ddd-4009-bb3e-1f164f305828\",\"result_bytes\":531,\"result_sha256\":\"27d6096a44b2b235e00b0b2a9a0dddb4e3197a40d5c621b635ac3471c86b26a9\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "commands_executed": false,
+          "document": {
+            "path": "sample.sh",
+            "sha256": "560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh",
+            "version": 1
+          },
+          "edits_applied": false,
+          "freshness": "current",
+          "index_complete_proven": false,
+          "position_encoding": "utf-16",
+          "provider": "bash",
+          "result": [
+            {
+              "data": {
+                "type": 3
+              },
+              "kind": 3,
+              "label": "greet"
+            }
+          ],
+          "source": "lsp",
+          "trace": {
+            "elapsed_ms": 2,
+            "id": "3937117d-1ddd-4009-bb3e-1f164f305828",
+            "result_bytes": 531,
+            "result_sha256": "27d6096a44b2b235e00b0b2a9a0dddb4e3197a40d5c621b635ac3471c86b26a9"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "hover",
+    "arguments": {
+      "relative_path": "sample.sh",
+      "position": {
+        "line": 5,
+        "character": 5
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 8,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"commands_executed\":false,\"document\":{\"path\":\"sample.sh\",\"sha256\":\"560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh\",\"version\":1},\"edits_applied\":false,\"freshness\":\"current\",\"index_complete_proven\":false,\"position_encoding\":\"utf-16\",\"provider\":\"bash\",\"result\":{\"contents\":{\"kind\":\"markdown\",\"value\":\"Function: **greet** - *defined on line 1*\"}},\"source\":\"lsp\",\"trace\":{\"elapsed_ms\":1,\"id\":\"e1e7c14e-4ca0-42a7-be78-81a0617649ec\",\"result_bytes\":551,\"result_sha256\":\"976be50793b9271fc55ccca28c59bfeff52dea6fffa1212c3689863fcda9abb1\"}}"
+          }
+        ],
+        "structuredContent": {
+          "commands_executed": false,
+          "document": {
+            "path": "sample.sh",
+            "sha256": "560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh",
+            "version": 1
+          },
+          "edits_applied": false,
+          "freshness": "current",
+          "index_complete_proven": false,
+          "position_encoding": "utf-16",
+          "provider": "bash",
+          "result": {
+            "contents": {
+              "kind": "markdown",
+              "value": "Function: **greet** - *defined on line 1*"
+            }
+          },
+          "source": "lsp",
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "e1e7c14e-4ca0-42a7-be78-81a0617649ec",
+            "result_bytes": 551,
+            "result_sha256": "976be50793b9271fc55ccca28c59bfeff52dea6fffa1212c3689863fcda9abb1"
+          }
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "get_diagnostics_for_file",
+    "arguments": {
+      "relative_path": "sample.sh"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 9,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"available\":true,\"clean_build_proven\":false,\"current_version\":1,\"document\":{\"path\":\"sample.sh\",\"sha256\":\"560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh\",\"version\":1},\"findings\":[],\"freshness\":\"current\",\"pending\":false,\"position_encoding\":\"utf-16\",\"provider\":\"bash\",\"reason\":null,\"report\":{\"diagnostics\":[],\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh\",\"version\":1},\"reported_version\":1,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"clean\",\"summary\":{\"complete\":true,\"errors\":0,\"hints\":0,\"information\":0,\"scope\":\"document\",\"total\":0,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":0,\"id\":\"d48f316c-4844-4155-83bd-6a0bfbd3d1a5\",\"result_bytes\":901,\"result_sha256\":\"d8e2eec63ad695107b0305fe4b8bc7b2723d68256f48e21ba12c7fc9b97f4616\"},\"version_verified\":true}"
+          }
+        ],
+        "structuredContent": {
+          "available": true,
+          "clean_build_proven": false,
+          "current_version": 1,
+          "document": {
+            "path": "sample.sh",
+            "sha256": "560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh",
+            "version": 1
+          },
+          "findings": [],
+          "freshness": "current",
+          "pending": false,
+          "position_encoding": "utf-16",
+          "provider": "bash",
+          "reason": null,
+          "report": {
+            "diagnostics": [],
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh",
+            "version": 1
+          },
+          "reported_version": 1,
+          "source": "lsp_push",
+          "stale": false,
+          "status": "clean",
+          "summary": {
+            "complete": true,
+            "errors": 0,
+            "hints": 0,
+            "information": 0,
+            "scope": "document",
+            "total": 0,
+            "unknown": 0,
+            "warnings": 0
+          },
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "d48f316c-4844-4155-83bd-6a0bfbd3d1a5",
+            "result_bytes": 901,
+            "result_sha256": "d8e2eec63ad695107b0305fe4b8bc7b2723d68256f48e21ba12c7fc9b97f4616"
+          },
+          "version_verified": true
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "rename_symbol",
+    "arguments": {
+      "relative_path": "sample.sh",
+      "name_path": "greet",
+      "new_name": "salute"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 10,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"a037dcf5d0f7ba6319c4d856a19892df35729a1222e98fce31b3a6e8ee53846e\",\"before_sha256\":\"e18a68a3965d3555064e63f29b5c70a2729f0120af46d0fbeb0a5173a7c2c903\",\"diff\":\"--- a/consumer.sh\\n+++ b/consumer.sh\\n@@ -1,2 +1,2 @@\\n source ./sample.sh\\n-greet \\\"Caller\\\"\\n+salute \\\"Caller\\\"\\n\",\"path\":\"consumer.sh\"},{\"after_sha256\":\"fa97391b0e51cac90a9eb89b55ccea2714d6595eee29e8b6002ed6d92ca332fc\",\"before_sha256\":\"560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185\",\"diff\":\"--- a/sample.sh\\n+++ b/sample.sh\\n@@ -1,7 +1,7 @@\\n-greet() {\\n+salute() {\\n     printf \\\"Hi %s\\\\n\\\" \\\"$1\\\"\\n }\\n \\n run() {\\n-    greet \\\"Odin\\\"\\n+    salute \\\"Odin\\\"\\n }\\n\",\"path\":\"sample.sh\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":15,\"id\":\"2940ba59-f77d-4bac-a2ca-c008bede1757\",\"result_bytes\":849,\"result_sha256\":\"0b42704c300b6ceecdf802aae99a345ad9ab116ad4478cc543996d81de7f40a8\"},\"transaction_id\":\"6abc38ff-c37c-441b-a3d6-f801b9bd0917\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "a037dcf5d0f7ba6319c4d856a19892df35729a1222e98fce31b3a6e8ee53846e",
+              "before_sha256": "e18a68a3965d3555064e63f29b5c70a2729f0120af46d0fbeb0a5173a7c2c903",
+              "diff": "--- a/consumer.sh\n+++ b/consumer.sh\n@@ -1,2 +1,2 @@\n source ./sample.sh\n-greet \"Caller\"\n+salute \"Caller\"\n",
+              "path": "consumer.sh"
+            },
+            {
+              "after_sha256": "fa97391b0e51cac90a9eb89b55ccea2714d6595eee29e8b6002ed6d92ca332fc",
+              "before_sha256": "560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185",
+              "diff": "--- a/sample.sh\n+++ b/sample.sh\n@@ -1,7 +1,7 @@\n-greet() {\n+salute() {\n     printf \"Hi %s\\n\" \"$1\"\n }\n \n run() {\n-    greet \"Odin\"\n+    salute \"Odin\"\n }\n",
+              "path": "sample.sh"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 15,
+            "id": "2940ba59-f77d-4bac-a2ca-c008bede1757",
+            "result_bytes": 849,
+            "result_sha256": "0b42704c300b6ceecdf802aae99a345ad9ab116ad4478cc543996d81de7f40a8"
+          },
+          "transaction_id": "6abc38ff-c37c-441b-a3d6-f801b9bd0917"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "transaction_preview",
+    "arguments": {
+      "transaction_id": "6abc38ff-c37c-441b-a3d6-f801b9bd0917"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 11,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"a037dcf5d0f7ba6319c4d856a19892df35729a1222e98fce31b3a6e8ee53846e\",\"before_sha256\":\"e18a68a3965d3555064e63f29b5c70a2729f0120af46d0fbeb0a5173a7c2c903\",\"diff\":\"--- a/consumer.sh\\n+++ b/consumer.sh\\n@@ -1,2 +1,2 @@\\n source ./sample.sh\\n-greet \\\"Caller\\\"\\n+salute \\\"Caller\\\"\\n\",\"path\":\"consumer.sh\"},{\"after_sha256\":\"fa97391b0e51cac90a9eb89b55ccea2714d6595eee29e8b6002ed6d92ca332fc\",\"before_sha256\":\"560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185\",\"diff\":\"--- a/sample.sh\\n+++ b/sample.sh\\n@@ -1,7 +1,7 @@\\n-greet() {\\n+salute() {\\n     printf \\\"Hi %s\\\\n\\\" \\\"$1\\\"\\n }\\n \\n run() {\\n-    greet \\\"Odin\\\"\\n+    salute \\\"Odin\\\"\\n }\\n\",\"path\":\"sample.sh\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":0,\"id\":\"2e7d0898-0892-4da2-b39c-4efcb8e64aac\",\"result_bytes\":849,\"result_sha256\":\"0b42704c300b6ceecdf802aae99a345ad9ab116ad4478cc543996d81de7f40a8\"},\"transaction_id\":\"6abc38ff-c37c-441b-a3d6-f801b9bd0917\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "a037dcf5d0f7ba6319c4d856a19892df35729a1222e98fce31b3a6e8ee53846e",
+              "before_sha256": "e18a68a3965d3555064e63f29b5c70a2729f0120af46d0fbeb0a5173a7c2c903",
+              "diff": "--- a/consumer.sh\n+++ b/consumer.sh\n@@ -1,2 +1,2 @@\n source ./sample.sh\n-greet \"Caller\"\n+salute \"Caller\"\n",
+              "path": "consumer.sh"
+            },
+            {
+              "after_sha256": "fa97391b0e51cac90a9eb89b55ccea2714d6595eee29e8b6002ed6d92ca332fc",
+              "before_sha256": "560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185",
+              "diff": "--- a/sample.sh\n+++ b/sample.sh\n@@ -1,7 +1,7 @@\n-greet() {\n+salute() {\n     printf \"Hi %s\\n\" \"$1\"\n }\n \n run() {\n-    greet \"Odin\"\n+    salute \"Odin\"\n }\n",
+              "path": "sample.sh"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "2e7d0898-0892-4da2-b39c-4efcb8e64aac",
+            "result_bytes": 849,
+            "result_sha256": "0b42704c300b6ceecdf802aae99a345ad9ab116ad4478cc543996d81de7f40a8"
+          },
+          "transaction_id": "6abc38ff-c37c-441b-a3d6-f801b9bd0917"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "transaction_prepare",
+    "arguments": {
+      "changes": [
+        {
+          "path": "sample.sh",
+          "expected_sha256": "560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185",
+          "content": "greet() {\n    printf \"Hi %s\\n\" \"$1\"\n}\n\nrun() {\n    greet \"Odin\"\n}\n\n# independent edit\n"
+        }
+      ]
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 12,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"3c4188f5075a7f320ff1e947e21604280c70c9d3ca57b324e0cd789a3c32925d\",\"before_sha256\":\"560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185\",\"diff\":\"--- a/sample.sh\\n+++ b/sample.sh\\n@@ -5,3 +5,5 @@\\n run() {\\n     greet \\\"Odin\\\"\\n }\\n+\\n+# independent edit\\n\",\"path\":\"sample.sh\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":5,\"id\":\"7491c026-e1f5-4d44-9888-2df3a5ccadb6\",\"result_bytes\":473,\"result_sha256\":\"14b49db71977e48fc22a711e4481c2445671a29550be1741ccce689f8b33d2e6\"},\"transaction_id\":\"ff9beb1b-87a6-470b-a5ca-28b23065afc2\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "3c4188f5075a7f320ff1e947e21604280c70c9d3ca57b324e0cd789a3c32925d",
+              "before_sha256": "560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185",
+              "diff": "--- a/sample.sh\n+++ b/sample.sh\n@@ -5,3 +5,5 @@\n run() {\n     greet \"Odin\"\n }\n+\n+# independent edit\n",
+              "path": "sample.sh"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 5,
+            "id": "7491c026-e1f5-4d44-9888-2df3a5ccadb6",
+            "result_bytes": 473,
+            "result_sha256": "14b49db71977e48fc22a711e4481c2445671a29550be1741ccce689f8b33d2e6"
+          },
+          "transaction_id": "ff9beb1b-87a6-470b-a5ca-28b23065afc2"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "transaction_preview",
+    "arguments": {
+      "transaction_id": "ff9beb1b-87a6-470b-a5ca-28b23065afc2"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 13,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"3c4188f5075a7f320ff1e947e21604280c70c9d3ca57b324e0cd789a3c32925d\",\"before_sha256\":\"560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185\",\"diff\":\"--- a/sample.sh\\n+++ b/sample.sh\\n@@ -5,3 +5,5 @@\\n run() {\\n     greet \\\"Odin\\\"\\n }\\n+\\n+# independent edit\\n\",\"path\":\"sample.sh\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":0,\"id\":\"c8805008-bd05-499e-bddd-3e24496cfc04\",\"result_bytes\":473,\"result_sha256\":\"14b49db71977e48fc22a711e4481c2445671a29550be1741ccce689f8b33d2e6\"},\"transaction_id\":\"ff9beb1b-87a6-470b-a5ca-28b23065afc2\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "3c4188f5075a7f320ff1e947e21604280c70c9d3ca57b324e0cd789a3c32925d",
+              "before_sha256": "560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185",
+              "diff": "--- a/sample.sh\n+++ b/sample.sh\n@@ -5,3 +5,5 @@\n run() {\n     greet \"Odin\"\n }\n+\n+# independent edit\n",
+              "path": "sample.sh"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "c8805008-bd05-499e-bddd-3e24496cfc04",
+            "result_bytes": 473,
+            "result_sha256": "14b49db71977e48fc22a711e4481c2445671a29550be1741ccce689f8b33d2e6"
+          },
+          "transaction_id": "ff9beb1b-87a6-470b-a5ca-28b23065afc2"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "transaction_apply",
+    "arguments": {
+      "transaction_id": "ff9beb1b-87a6-470b-a5ca-28b23065afc2"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 14,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":1,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":22,\"id\":\"c446e71a-5ed5-495a-aca3-2d77b43c8139\",\"result_bytes\":114,\"result_sha256\":\"b5358eff8c174692bf721913ca47b0233a0598bb4237f2103d6a000b4eeb1d63\"},\"transaction_id\":\"ff9beb1b-87a6-470b-a5ca-28b23065afc2\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 1,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 22,
+            "id": "c446e71a-5ed5-495a-aca3-2d77b43c8139",
+            "result_bytes": 114,
+            "result_sha256": "b5358eff8c174692bf721913ca47b0233a0598bb4237f2103d6a000b4eeb1d63"
+          },
+          "transaction_id": "ff9beb1b-87a6-470b-a5ca-28b23065afc2"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "transaction_apply",
+    "arguments": {
+      "transaction_id": "6abc38ff-c37c-441b-a3d6-f801b9bd0917"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 15,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\":{\"code\":\"CONFLICT\",\"message\":\"File changed after preview: sample.sh\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "CONFLICT",
+            "message": "File changed after preview: sample.sh"
+          }
+        },
+        "isError": true
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "transaction_rollback",
+    "arguments": {
+      "transaction_id": "ff9beb1b-87a6-470b-a5ca-28b23065afc2"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 16,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":1,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":34,\"id\":\"fa7701b2-4523-4f28-8ec4-3d440b1555a5\",\"result_bytes\":163,\"result_sha256\":\"ddfc0155bb00d1b4d8301056ac67d3f319029063404e8bd40bed7dc387c19995\"},\"transaction_id\":\"8fcd7f5d-cca5-4ac9-8108-253454e10e62\",\"undo_of\":\"ff9beb1b-87a6-470b-a5ca-28b23065afc2\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 1,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 34,
+            "id": "fa7701b2-4523-4f28-8ec4-3d440b1555a5",
+            "result_bytes": 163,
+            "result_sha256": "ddfc0155bb00d1b4d8301056ac67d3f319029063404e8bd40bed7dc387c19995"
+          },
+          "transaction_id": "8fcd7f5d-cca5-4ac9-8108-253454e10e62",
+          "undo_of": "ff9beb1b-87a6-470b-a5ca-28b23065afc2"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "sample.sh"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 17,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"bash\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":12,\"name\":\"greet\",\"name_path\":\"greet\",\"range\":{\"end\":{\"character\":1,\"line\":2},\"start\":{\"character\":0,\"line\":0}},\"relative_path\":\"sample.sh\",\"selection_range\":{\"end\":{\"character\":1,\"line\":2},\"start\":{\"character\":0,\"line\":0}}},{\"kind\":12,\"name\":\"run\",\"name_path\":\"run\",\"range\":{\"end\":{\"character\":1,\"line\":6},\"start\":{\"character\":0,\"line\":4}},\"relative_path\":\"sample.sh\",\"selection_range\":{\"end\":{\"character\":1,\"line\":6},\"start\":{\"character\":0,\"line\":4}}}],\"trace\":{\"elapsed_ms\":1,\"id\":\"b44ce2f6-681f-4b3d-9b4e-47b5b20776aa\",\"result_bytes\":557,\"result_sha256\":\"77d3a576b980f87f09c51068c12738a4257e093ec66d2573fa18d90367514568\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "bash",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 1,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 0
+                }
+              },
+              "relative_path": "sample.sh",
+              "selection_range": {
+                "end": {
+                  "character": 1,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 0
+                }
+              }
+            },
+            {
+              "kind": 12,
+              "name": "run",
+              "name_path": "run",
+              "range": {
+                "end": {
+                  "character": 1,
+                  "line": 6
+                },
+                "start": {
+                  "character": 0,
+                  "line": 4
+                }
+              },
+              "relative_path": "sample.sh",
+              "selection_range": {
+                "end": {
+                  "character": 1,
+                  "line": 6
+                },
+                "start": {
+                  "character": 0,
+                  "line": 4
+                }
+              }
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "b44ce2f6-681f-4b3d-9b4e-47b5b20776aa",
+            "result_bytes": 557,
+            "result_sha256": "77d3a576b980f87f09c51068c12738a4257e093ec66d2573fa18d90367514568"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "rename_symbol",
+    "arguments": {
+      "relative_path": "sample.sh",
+      "name_path": "greet",
+      "new_name": "salute"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 18,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"a037dcf5d0f7ba6319c4d856a19892df35729a1222e98fce31b3a6e8ee53846e\",\"before_sha256\":\"e18a68a3965d3555064e63f29b5c70a2729f0120af46d0fbeb0a5173a7c2c903\",\"diff\":\"--- a/consumer.sh\\n+++ b/consumer.sh\\n@@ -1,2 +1,2 @@\\n source ./sample.sh\\n-greet \\\"Caller\\\"\\n+salute \\\"Caller\\\"\\n\",\"path\":\"consumer.sh\"},{\"after_sha256\":\"fa97391b0e51cac90a9eb89b55ccea2714d6595eee29e8b6002ed6d92ca332fc\",\"before_sha256\":\"560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185\",\"diff\":\"--- a/sample.sh\\n+++ b/sample.sh\\n@@ -1,7 +1,7 @@\\n-greet() {\\n+salute() {\\n     printf \\\"Hi %s\\\\n\\\" \\\"$1\\\"\\n }\\n \\n run() {\\n-    greet \\\"Odin\\\"\\n+    salute \\\"Odin\\\"\\n }\\n\",\"path\":\"sample.sh\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":14,\"id\":\"7059a617-f03f-4062-91be-89f950608500\",\"result_bytes\":849,\"result_sha256\":\"c58d300952de64835e80923ac84bbc8dac08e90021c02f829ed1880bebef0eab\"},\"transaction_id\":\"5d4cf49d-a0c0-4dcb-8f0d-43d51dd83275\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "a037dcf5d0f7ba6319c4d856a19892df35729a1222e98fce31b3a6e8ee53846e",
+              "before_sha256": "e18a68a3965d3555064e63f29b5c70a2729f0120af46d0fbeb0a5173a7c2c903",
+              "diff": "--- a/consumer.sh\n+++ b/consumer.sh\n@@ -1,2 +1,2 @@\n source ./sample.sh\n-greet \"Caller\"\n+salute \"Caller\"\n",
+              "path": "consumer.sh"
+            },
+            {
+              "after_sha256": "fa97391b0e51cac90a9eb89b55ccea2714d6595eee29e8b6002ed6d92ca332fc",
+              "before_sha256": "560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185",
+              "diff": "--- a/sample.sh\n+++ b/sample.sh\n@@ -1,7 +1,7 @@\n-greet() {\n+salute() {\n     printf \"Hi %s\\n\" \"$1\"\n }\n \n run() {\n-    greet \"Odin\"\n+    salute \"Odin\"\n }\n",
+              "path": "sample.sh"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 14,
+            "id": "7059a617-f03f-4062-91be-89f950608500",
+            "result_bytes": 849,
+            "result_sha256": "c58d300952de64835e80923ac84bbc8dac08e90021c02f829ed1880bebef0eab"
+          },
+          "transaction_id": "5d4cf49d-a0c0-4dcb-8f0d-43d51dd83275"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "transaction_preview",
+    "arguments": {
+      "transaction_id": "5d4cf49d-a0c0-4dcb-8f0d-43d51dd83275"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 19,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"a037dcf5d0f7ba6319c4d856a19892df35729a1222e98fce31b3a6e8ee53846e\",\"before_sha256\":\"e18a68a3965d3555064e63f29b5c70a2729f0120af46d0fbeb0a5173a7c2c903\",\"diff\":\"--- a/consumer.sh\\n+++ b/consumer.sh\\n@@ -1,2 +1,2 @@\\n source ./sample.sh\\n-greet \\\"Caller\\\"\\n+salute \\\"Caller\\\"\\n\",\"path\":\"consumer.sh\"},{\"after_sha256\":\"fa97391b0e51cac90a9eb89b55ccea2714d6595eee29e8b6002ed6d92ca332fc\",\"before_sha256\":\"560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185\",\"diff\":\"--- a/sample.sh\\n+++ b/sample.sh\\n@@ -1,7 +1,7 @@\\n-greet() {\\n+salute() {\\n     printf \\\"Hi %s\\\\n\\\" \\\"$1\\\"\\n }\\n \\n run() {\\n-    greet \\\"Odin\\\"\\n+    salute \\\"Odin\\\"\\n }\\n\",\"path\":\"sample.sh\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":0,\"id\":\"33fccf0f-4240-4800-be81-63ae13f55c3b\",\"result_bytes\":849,\"result_sha256\":\"c58d300952de64835e80923ac84bbc8dac08e90021c02f829ed1880bebef0eab\"},\"transaction_id\":\"5d4cf49d-a0c0-4dcb-8f0d-43d51dd83275\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "a037dcf5d0f7ba6319c4d856a19892df35729a1222e98fce31b3a6e8ee53846e",
+              "before_sha256": "e18a68a3965d3555064e63f29b5c70a2729f0120af46d0fbeb0a5173a7c2c903",
+              "diff": "--- a/consumer.sh\n+++ b/consumer.sh\n@@ -1,2 +1,2 @@\n source ./sample.sh\n-greet \"Caller\"\n+salute \"Caller\"\n",
+              "path": "consumer.sh"
+            },
+            {
+              "after_sha256": "fa97391b0e51cac90a9eb89b55ccea2714d6595eee29e8b6002ed6d92ca332fc",
+              "before_sha256": "560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185",
+              "diff": "--- a/sample.sh\n+++ b/sample.sh\n@@ -1,7 +1,7 @@\n-greet() {\n+salute() {\n     printf \"Hi %s\\n\" \"$1\"\n }\n \n run() {\n-    greet \"Odin\"\n+    salute \"Odin\"\n }\n",
+              "path": "sample.sh"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "33fccf0f-4240-4800-be81-63ae13f55c3b",
+            "result_bytes": 849,
+            "result_sha256": "c58d300952de64835e80923ac84bbc8dac08e90021c02f829ed1880bebef0eab"
+          },
+          "transaction_id": "5d4cf49d-a0c0-4dcb-8f0d-43d51dd83275"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "transaction_apply",
+    "arguments": {
+      "transaction_id": "5d4cf49d-a0c0-4dcb-8f0d-43d51dd83275"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 20,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":2,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":24,\"id\":\"277fc0ec-9730-4d63-b8db-613edc8f53ec\",\"result_bytes\":114,\"result_sha256\":\"1cc8a08d29934db008e5c4898116c3c4b753ee2354c761dbe9dc832184e767c4\"},\"transaction_id\":\"5d4cf49d-a0c0-4dcb-8f0d-43d51dd83275\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 2,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 24,
+            "id": "277fc0ec-9730-4d63-b8db-613edc8f53ec",
+            "result_bytes": 114,
+            "result_sha256": "1cc8a08d29934db008e5c4898116c3c4b753ee2354c761dbe9dc832184e767c4"
+          },
+          "transaction_id": "5d4cf49d-a0c0-4dcb-8f0d-43d51dd83275"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "transaction_rollback",
+    "arguments": {
+      "transaction_id": "5d4cf49d-a0c0-4dcb-8f0d-43d51dd83275"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 21,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":2,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":38,\"id\":\"34a8b2fe-b40a-4fb6-9fe6-60e2a1641c87\",\"result_bytes\":163,\"result_sha256\":\"839c142484ef52a28d8995b4a7872b95928fa9ca402a603fb0e7fe971cb41b2e\"},\"transaction_id\":\"f857c576-aab7-4522-ab60-e81b8c2440ee\",\"undo_of\":\"5d4cf49d-a0c0-4dcb-8f0d-43d51dd83275\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 2,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 38,
+            "id": "34a8b2fe-b40a-4fb6-9fe6-60e2a1641c87",
+            "result_bytes": 163,
+            "result_sha256": "839c142484ef52a28d8995b4a7872b95928fa9ca402a603fb0e7fe971cb41b2e"
+          },
+          "transaction_id": "f857c576-aab7-4522-ab60-e81b8c2440ee",
+          "undo_of": "5d4cf49d-a0c0-4dcb-8f0d-43d51dd83275"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "transaction_prepare",
+    "arguments": {
+      "changes": [
+        {
+          "path": "sample.sh",
+          "expected_sha256": "560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185",
+          "content": "greet() {\n    printf \"Hi %s\\n\" \"$1\"\n}\n\nrun() {\n    greet \"Odin\"\n}\n\nodin_broken() {\n"
+        }
+      ]
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 22,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"2a9bebc3d21c685ae53028211241c2252003d6035fe347bf93d6fedb21e4e425\",\"before_sha256\":\"560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185\",\"diff\":\"--- a/sample.sh\\n+++ b/sample.sh\\n@@ -5,3 +5,5 @@\\n run() {\\n     greet \\\"Odin\\\"\\n }\\n+\\n+odin_broken() {\\n\",\"path\":\"sample.sh\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":5,\"id\":\"23201afe-ddb1-47f8-91eb-2a77c12a10ba\",\"result_bytes\":470,\"result_sha256\":\"1f71ab1638a2f7644b7c49bdce57b5a88abc8382f3b29dfc1ace90cbc16adb81\"},\"transaction_id\":\"308aadce-5ee4-41fd-871b-915f0a2c1876\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "2a9bebc3d21c685ae53028211241c2252003d6035fe347bf93d6fedb21e4e425",
+              "before_sha256": "560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185",
+              "diff": "--- a/sample.sh\n+++ b/sample.sh\n@@ -5,3 +5,5 @@\n run() {\n     greet \"Odin\"\n }\n+\n+odin_broken() {\n",
+              "path": "sample.sh"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 5,
+            "id": "23201afe-ddb1-47f8-91eb-2a77c12a10ba",
+            "result_bytes": 470,
+            "result_sha256": "1f71ab1638a2f7644b7c49bdce57b5a88abc8382f3b29dfc1ace90cbc16adb81"
+          },
+          "transaction_id": "308aadce-5ee4-41fd-871b-915f0a2c1876"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "transaction_preview",
+    "arguments": {
+      "transaction_id": "308aadce-5ee4-41fd-871b-915f0a2c1876"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 23,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"2a9bebc3d21c685ae53028211241c2252003d6035fe347bf93d6fedb21e4e425\",\"before_sha256\":\"560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185\",\"diff\":\"--- a/sample.sh\\n+++ b/sample.sh\\n@@ -5,3 +5,5 @@\\n run() {\\n     greet \\\"Odin\\\"\\n }\\n+\\n+odin_broken() {\\n\",\"path\":\"sample.sh\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":0,\"id\":\"aeaeb993-082a-4174-8b86-085ee01bb2ee\",\"result_bytes\":470,\"result_sha256\":\"1f71ab1638a2f7644b7c49bdce57b5a88abc8382f3b29dfc1ace90cbc16adb81\"},\"transaction_id\":\"308aadce-5ee4-41fd-871b-915f0a2c1876\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "2a9bebc3d21c685ae53028211241c2252003d6035fe347bf93d6fedb21e4e425",
+              "before_sha256": "560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185",
+              "diff": "--- a/sample.sh\n+++ b/sample.sh\n@@ -5,3 +5,5 @@\n run() {\n     greet \"Odin\"\n }\n+\n+odin_broken() {\n",
+              "path": "sample.sh"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "aeaeb993-082a-4174-8b86-085ee01bb2ee",
+            "result_bytes": 470,
+            "result_sha256": "1f71ab1638a2f7644b7c49bdce57b5a88abc8382f3b29dfc1ace90cbc16adb81"
+          },
+          "transaction_id": "308aadce-5ee4-41fd-871b-915f0a2c1876"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "transaction_apply",
+    "arguments": {
+      "transaction_id": "308aadce-5ee4-41fd-871b-915f0a2c1876"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 24,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":1,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":21,\"id\":\"539052b0-cb72-4955-acb2-71e09b873f66\",\"result_bytes\":114,\"result_sha256\":\"1a26d97eb87324cee3d40a7e181ec2c0524047578a922e66d6fceef51b40c832\"},\"transaction_id\":\"308aadce-5ee4-41fd-871b-915f0a2c1876\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 1,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 21,
+            "id": "539052b0-cb72-4955-acb2-71e09b873f66",
+            "result_bytes": 114,
+            "result_sha256": "1a26d97eb87324cee3d40a7e181ec2c0524047578a922e66d6fceef51b40c832"
+          },
+          "transaction_id": "308aadce-5ee4-41fd-871b-915f0a2c1876"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "get_diagnostics_for_file",
+    "arguments": {
+      "relative_path": "sample.sh"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 25,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"available\":true,\"clean_build_proven\":false,\"current_version\":9,\"document\":{\"path\":\"sample.sh\",\"sha256\":\"2a9bebc3d21c685ae53028211241c2252003d6035fe347bf93d6fedb21e4e425\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh\",\"version\":9},\"findings\":[],\"freshness\":\"current\",\"pending\":false,\"position_encoding\":\"utf-16\",\"provider\":\"bash\",\"reason\":null,\"report\":{\"diagnostics\":[],\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh\",\"version\":9},\"reported_version\":9,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"clean\",\"summary\":{\"complete\":true,\"errors\":0,\"hints\":0,\"information\":0,\"scope\":\"document\",\"total\":0,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":1,\"id\":\"9175959c-af08-4179-99eb-bce687c0748b\",\"result_bytes\":901,\"result_sha256\":\"095cbbb0878abe5b5b9465eaf55e9fc37b86650a8a5159fd648de9ae527cd20a\"},\"version_verified\":true}"
+          }
+        ],
+        "structuredContent": {
+          "available": true,
+          "clean_build_proven": false,
+          "current_version": 9,
+          "document": {
+            "path": "sample.sh",
+            "sha256": "2a9bebc3d21c685ae53028211241c2252003d6035fe347bf93d6fedb21e4e425",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh",
+            "version": 9
+          },
+          "findings": [],
+          "freshness": "current",
+          "pending": false,
+          "position_encoding": "utf-16",
+          "provider": "bash",
+          "reason": null,
+          "report": {
+            "diagnostics": [],
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh",
+            "version": 9
+          },
+          "reported_version": 9,
+          "source": "lsp_push",
+          "stale": false,
+          "status": "clean",
+          "summary": {
+            "complete": true,
+            "errors": 0,
+            "hints": 0,
+            "information": 0,
+            "scope": "document",
+            "total": 0,
+            "unknown": 0,
+            "warnings": 0
+          },
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "9175959c-af08-4179-99eb-bce687c0748b",
+            "result_bytes": 901,
+            "result_sha256": "095cbbb0878abe5b5b9465eaf55e9fc37b86650a8a5159fd648de9ae527cd20a"
+          },
+          "version_verified": true
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "transaction_rollback",
+    "arguments": {
+      "transaction_id": "308aadce-5ee4-41fd-871b-915f0a2c1876"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 26,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":1,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":34,\"id\":\"2d511fa8-0022-4d13-8590-3e7810d34e73\",\"result_bytes\":163,\"result_sha256\":\"25ee749a3ef442e5e8c81c9533e585ef94b765612e10fc1e517acbf1f21bfe4d\"},\"transaction_id\":\"251edced-1e92-4bee-8af5-7421d32a4dff\",\"undo_of\":\"308aadce-5ee4-41fd-871b-915f0a2c1876\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 1,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 34,
+            "id": "2d511fa8-0022-4d13-8590-3e7810d34e73",
+            "result_bytes": 163,
+            "result_sha256": "25ee749a3ef442e5e8c81c9533e585ef94b765612e10fc1e517acbf1f21bfe4d"
+          },
+          "transaction_id": "251edced-1e92-4bee-8af5-7421d32a4dff",
+          "undo_of": "308aadce-5ee4-41fd-871b-915f0a2c1876"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "bash",
+    "tool": "get_diagnostics_for_file",
+    "arguments": {
+      "relative_path": "sample.sh"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 27,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"available\":true,\"clean_build_proven\":false,\"current_version\":10,\"document\":{\"path\":\"sample.sh\",\"sha256\":\"560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh\",\"version\":10},\"findings\":[],\"freshness\":\"current\",\"pending\":false,\"position_encoding\":\"utf-16\",\"provider\":\"bash\",\"reason\":null,\"report\":{\"diagnostics\":[],\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh\",\"version\":10},\"reported_version\":10,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"clean\",\"summary\":{\"complete\":true,\"errors\":0,\"hints\":0,\"information\":0,\"scope\":\"document\",\"total\":0,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":1,\"id\":\"dde0a5fa-de7f-4e27-a0f0-6f31514515dc\",\"result_bytes\":905,\"result_sha256\":\"4c3d9c654be09e1c874e110b1158466f330e0c42ec0604ae84e2149ab51fc88d\"},\"version_verified\":true}"
+          }
+        ],
+        "structuredContent": {
+          "available": true,
+          "clean_build_proven": false,
+          "current_version": 10,
+          "document": {
+            "path": "sample.sh",
+            "sha256": "560b998bf9e0e47430dd3e2c584353fb6f4f415997efa29e2a0a1223bcc47185",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh",
+            "version": 10
+          },
+          "findings": [],
+          "freshness": "current",
+          "pending": false,
+          "position_encoding": "utf-16",
+          "provider": "bash",
+          "reason": null,
+          "report": {
+            "diagnostics": [],
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20bash_a/sample.sh",
+            "version": 10
+          },
+          "reported_version": 10,
+          "source": "lsp_push",
+          "stale": false,
+          "status": "clean",
+          "summary": {
+            "complete": true,
+            "errors": 0,
+            "hints": 0,
+            "information": 0,
+            "scope": "document",
+            "total": 0,
+            "unknown": 0,
+            "warnings": 0
+          },
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "dde0a5fa-de7f-4e27-a0f0-6f31514515dc",
+            "result_bytes": 905,
+            "result_sha256": "4c3d9c654be09e1c874e110b1158466f330e0c42ec0604ae84e2149ab51fc88d"
+          },
+          "version_verified": true
+        },
+        "isError": false
+      }
+    }
+  }
+]

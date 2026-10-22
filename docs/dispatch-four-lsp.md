@@ -4,7 +4,7 @@ Scope: Python, Go, C#, Lua, JavaScript, TypeScript and Bash on Windows x64, reta
 
 ## Ownership and evidence
 
-- Primary engineering owner: root worktree `feat/python-go-csharp-lua-lsp`; language IDs, pinned npm lock, real backend MCP validation, source integration, release evidence.
+- Primary engineering owner: root worktree `feat/bundled-language-backends`; language IDs, pinned npm lock, real backend MCP validation, source integration, release evidence.
 - Windows installer owner: separate `feat/bundled-lsp-installer` worktree; offline setup/configuration and package lifecycle. Source writes use Odin Transactions with expected hashes.
 - Payload build owner: separate `feat/lsp-payload-builder` worktree; pinned official archive acquisition, npm closure, Go module build and full asset inventory. Source writes use Odin Transactions with expected hashes.
 - Independent QA/review: validation_audit, read only. Implementation authors cannot approve their own changes.

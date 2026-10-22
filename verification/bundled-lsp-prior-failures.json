@@ -1,0 +1,301 @@
+{
+  "scope": "PRESERVED_REAL_FAILURES_AND_CANCELLED_RETRY",
+  "candidate2_lifecycle": {
+    "scope": "ISOLATED_WINDOWS_INSTALL_REINSTALL_UNINSTALL",
+    "status": "FAIL",
+    "checks": [
+      {
+        "name": "portable_safe_member_paths",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_inventory_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_binary_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_metadata",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_lsp_setup_exit",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_setup_result:portable-lsp-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_health:portable-lsp-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_languages:portable-lsp-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_generated_host_validates",
+        "status": "PASS"
+      },
+      {
+        "name": "installer_exit",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_binary_hash",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_metadata",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_metadata_matches_portable",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_inventory_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_setup_result:lsp-install-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_health:lsp-install-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_languages:lsp-install-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_generated_host_validates",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_fresh_host_has_no_elevated_grants",
+        "status": "PASS"
+      },
+      {
+        "name": "portable_installed_bundle_manifest_matches",
+        "status": "PASS"
+      },
+      {
+        "name": "shipped_template_permissions_disabled",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_tools_exit",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_tool_contracts",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_runtime_signature:vcruntime140.dll",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_runtime_loaded_app_local",
+        "status": "PASS"
+      },
+      {
+        "name": "installed_safe_default_configuration",
+        "status": "PASS"
+      },
+      {
+        "name": "reinstall_exit",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_setup_result:lsp-reinstall-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_health:lsp-reinstall-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "lsp_languages:lsp-reinstall-receipt.json",
+        "status": "PASS"
+      },
+      {
+        "name": "reinstall_preserves_host_content",
+        "status": "PASS"
+      },
+      {
+        "name": "reinstall_preserves_user_file",
+        "status": "PASS"
+      },
+      {
+        "name": "reinstall_inventory_sha256",
+        "status": "PASS"
+      },
+      {
+        "name": "uninstaller_exit",
+        "status": "PASS"
+      },
+      {
+        "name": "owned_binary_removed",
+        "status": "PASS"
+      },
+      {
+        "name": "owned_inventory_payload_removed",
+        "status": "PASS"
+      },
+      {
+        "name": "uninstall_preserves_user_file",
+        "status": "PASS"
+      },
+      {
+        "name": "uninstall_preserves_external_host",
+        "status": "PASS"
+      },
+      {
+        "name": "operator_path_unchanged",
+        "status": "FAIL"
+      }
+    ],
+    "commands": [
+      {
+        "name": "portable_lsp_setup",
+        "exit_code": 0,
+        "receipt": "C:\\OdinQA\\q-22b4777d\\dist\\installer-qa-d80fcfbed3024c5ea3fdc67d62e842a4\\portable-lsp-receipt.json"
+      },
+      {
+        "name": "portable_host_validate",
+        "exit_code": 0
+      },
+      {
+        "name": "install",
+        "exit_code": 0,
+        "log": "install.log"
+      },
+      {
+        "name": "installed_host_validate",
+        "exit_code": 0
+      },
+      {
+        "name": "reinstall",
+        "exit_code": 0,
+        "log": "reinstall.log"
+      },
+      {
+        "name": "uninstall",
+        "exit_code": 0,
+        "log": "uninstall.log"
+      }
+    ],
+    "error": "Installer check failed: operator_path_unchanged",
+    "installer_sha256": "83530e745852d1cb47b70b19ddd1f4f75f48e2c187b5c9cae78678c945ed82a9",
+    "portable_sha256": "6ae6eaad6bd8b03794468169111090c580e82b493cffe1a6328d0b8f2ea12534",
+    "build": {
+      "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+      "external_tool_bridge": false,
+      "model_token_usage": "UNKNOWN",
+      "name": "Odin",
+      "profile": "release",
+      "revision": "5c08e65a41a1e272470a938e5e3cd79185aee4ee",
+      "schema_version": 1,
+      "standalone": true,
+      "target": "x86_64-pc-windows-msvc",
+      "tracked_source_dirty": false,
+      "version": "0.2.0"
+    },
+    "inventory_files": 32787,
+    "qa_directory": "C:\\OdinQA\\q-22b4777d\\dist\\installer-qa-d80fcfbed3024c5ea3fdc67d62e842a4",
+    "interruption_rollback": "NOT_RUN",
+    "cross_version_upgrade": "NOT_RUN",
+    "lsp_semantic_acceptance": "NOT_RUN",
+    "lsp_version_health": "See source-bound install receipts",
+    "native_binary_expected_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8"
+  },
+  "candidate2_outer_command": {
+    "argv": [
+      "powershell.exe",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      "C:\\OdinQA\\q-22b4777d\\scripts\\verify_installer.ps1",
+      "-Installer",
+      "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\windows-final-candidate\\odin-0.2.0-windows-x64-setup.exe",
+      "-Portable",
+      "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\windows-final-candidate\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+      "-ExpectedBinarySha256",
+      "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8"
+    ],
+    "script_sha256": "cfe596071ed2e561397bc72aeafe72e5513d18a5915a65af660a3e2ca9b40d1e",
+    "exit_code": 1,
+    "seconds": 687.69,
+    "log_sha256": "756e75b9aeeca0d313f1dde50472c1b3366bfd0a255ac0792e7c33b29af55439"
+  },
+  "cancelled_retry": {
+    "status": "CANCELLED_BEFORE_INSTALL",
+    "process_id": 28956,
+    "qa_directory": "C:\\OdinQA\\q-627c26e7\\dist\\installer-qa-d05c7c977db9439a8cc59c54c8841a96",
+    "reason": "Known .NET first-run environment bug requires source correction before rerun",
+    "at_utc": "2026-10-22T01:49:23.3635767Z"
+  },
+  "long_output_package_command": {
+    "argv": [
+      "powershell.exe",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      "E:\\odin\\scripts\\package.ps1",
+      "-SkipBuild",
+      "-Binary",
+      "E:\\odin\\target\\release\\odin.exe",
+      "-ExpectedBinarySha256",
+      "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+      "-LspPayload",
+      "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\backends",
+      "-Iscc",
+      "C:/Program Files/Inno Setup 7/ISCC.exe",
+      "-OutputDirectory",
+      "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\windows-final-v3"
+    ],
+    "exit_code": 1,
+    "seconds": 4.69,
+    "log_sha256": "e1ea868982369af935fa4e17e871544a080050d64ac16650ce8ab9764819b608",
+    "packaging_source_revision": "1cf8f991d7ab1d90711c820ea027a461a2f1e677",
+    "source_sha256": {
+      "scripts/package.ps1": "af0822134976d5182938a68118220fcb23e372e3247c2f263d2d6cb31680f1f2",
+      "packaging/odin.iss": "a0fa3c46d85d1ee16bc6b4dce8e5df1da2e5d1c86937f2b3c7386bfa2540c37a",
+      "packaging/setup-lsps.mjs": "094a036f50057d3ea74355d38348b240c8c079eeaf6aa102d8c37dbc907a9634",
+      "scripts/prepare_lsp_payload.py": "c027c38fa7189bd477616e8c2710d2e53d3ccc2f4faf57b7671fcd00a9fe9643",
+      "scripts/verify_installer.ps1": "d800723d5995ec65301bafcefd00894e9d8bd8811caa8923c3ed5323c1559fa8",
+      "tests/real_installed_languages.py": "280a756f953d859bf742e5a1b084923c8e390d3671973cd394124088719c794f"
+    }
+  },
+  "long_output_package_log": "Copy-Item : Could not find a part of the path 'C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076c\r\na6796111e\\windows-final-v3\\.stage-96e8780990ba44719e727f15dda624f7\\backends\\dotnet\\packs\\Microsoft.AspNetCore.App.Ref\\1\r\n0.0.13\\analyzers\\dotnet\\cs\\Microsoft.AspNetCore.App.SourceGenerators.dll'.\r\nAt E:\\odin\\scripts\\package.ps1:55 char:5\r\n+     Copy-Item -LiteralPath $LspPayload -Destination (Join-Path $Stage ...\r\n+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : WriteError: (Microsoft.AspNe...eGenerators.dll:FileInfo) [Copy-Item], DirectoryNotFoundE \r\n   xception\r\n    + FullyQualifiedErrorId : CopyDirectoryInfoItemIOError,Microsoft.PowerShell.Commands.CopyItemCommand\r\n \r\n",
+  "existing_host_empty_root_install_attempt": {
+    "install": {
+      "argv": [
+        "E:\\odin\\dist\\windows-lsp-20261022-candidate1\\odin-0.2.0-windows-x64-setup.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/SP-",
+        "/NOICONS",
+        "/DIR=C:\\Users\\steven\\AppData\\Local\\Programs\\Odin",
+        "/ODIN_HOST_CONFIG=C:\\Users\\steven\\.config\\odin\\host.toml",
+        "/ODIN_SETUP_RECEIPT=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production-lsp-receipt.json",
+        "/LOG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production-install.log"
+      ],
+      "exit_code": 1,
+      "seconds": 0.5,
+      "log_sha256": "e7f472d5689869b6fa2452b72aa33f0b4f9ecd0d7ab78c07d81cf33d175051d6"
+    },
+    "app": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin",
+    "host_config": "C:\\Users\\steven\\.config\\odin\\host.toml",
+    "before_host_sha256": "b7ab2dadb9b1fcb095fa81008101c12075f7c4aad2ffb6483f88794a513ebf93"
+  }
+}

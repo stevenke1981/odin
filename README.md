@@ -8,9 +8,10 @@ Markdown 記憶與受限 JSON 流程。產品沒有 Serena bridge、Python REPL�
 任意 eval 或自動上游 fallback。
 
 Linux x86-64 已完成本機 VM 的正式編譯、完整 workspace 測試，以及 `.deb`／tar
-的安裝、重裝與移除。歷史 Windows 候選曾受主機 AppControl 阻擋，六語最終矩陣
-仍待驗收。本次當前專案功能已完成 Windows 全 workspace gates 與 binary smoke，
-見 [本次驗收](verification/current-workspace-validation.json)；不替代其他語言／平台驗收。**40 項規格尚未全數驗收；目前不是跨平台穩定版。** 最新命令、
+的安裝、重裝與移除。本次 Windows 已完成七種新增語言、14 個獨立測試專案的必要
+LSP 操作驗證，以及新版安裝、同版重裝與卸載；見
+[Windows LSP 驗收](verification/bundled-lsp-validation.json)。當前專案功能另有
+[workspace 驗收](verification/current-workspace-validation.json)；不替代完整 IDE／其他平台驗收。**40 項規格尚未全數驗收；目前不是跨平台穩定版。** 最新命令、
 exit code、來源／binary hash 以 [交付狀態](verification/delivery-status.json)、
 [Linux 本機驗收](verification/package-v3-linux-notices-final.json)、
 [歷史 Windows 驗收](verification/sandbox-ide-release-validation.json) 與
@@ -30,6 +31,8 @@ Rust toolchain 仍由既有主機提供，不因 registry 存在就宣稱已安�
 [後端建置](docs/LSP_PAYLOAD_BUILDER.md) 與
 [安裝方式](docs/PACKAGING_WINDOWS_LINUX.md)。逐語言真實 MCP／安裝驗收
 以最新 `verification/bundled-lsp-validation.json` 為準；版本命令成功不等於完整 IDE 功能通過。
+JS／TS 未帶版本的 diagnostics 維持未確認；Bash 完整語法／lint 需另設 ShellCheck。
+驗收包含實際安裝與 Codex 啟動命令；已開啟的 Codex 程序需重新啟動才載入新設定。
 Linux／macOS 不包含這份 Windows runtime payload。
 
 ### 可用功能

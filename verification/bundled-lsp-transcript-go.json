@@ -1,0 +1,3788 @@
+[
+  {
+    "language": "go",
+    "tool": "list_projects",
+    "arguments": {},
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"projects\":[{\"allow_debug\":false,\"allow_inspections\":false,\"allow_shell\":false,\"allow_write\":false,\"id\":\"ws_47f89c021393d0d229adf17fe0310b4fb21a88a7fd10ce1e\",\"languages\":[\"rust\",\"python\",\"go\",\"csharp\",\"lua\",\"javascript\",\"typescript\",\"bash\"],\"root\":\"\\\\\\\\?\\\\C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\\\final-installed-languages-v3.fixtures\\\\\u5c08\u6848 go_a\"}],\"trace\":{\"elapsed_ms\":0,\"id\":\"0a838aed-e8aa-41fb-9ab5-226dfc7cdc96\",\"result_bytes\":400,\"result_sha256\":\"79e6508ad5cbdfc7b7e765248e4619f85f37cf482e7f643909da795139a08d3a\"}}"
+          }
+        ],
+        "structuredContent": {
+          "projects": [
+            {
+              "allow_debug": false,
+              "allow_inspections": false,
+              "allow_shell": false,
+              "allow_write": false,
+              "id": "ws_47f89c021393d0d229adf17fe0310b4fb21a88a7fd10ce1e",
+              "languages": [
+                "rust",
+                "python",
+                "go",
+                "csharp",
+                "lua",
+                "javascript",
+                "typescript",
+                "bash"
+              ],
+              "root": "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-installed-languages-v3.fixtures\\\u5c08\u6848 go_a"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "0a838aed-e8aa-41fb-9ab5-226dfc7cdc96",
+            "result_bytes": 400,
+            "result_sha256": "79e6508ad5cbdfc7b7e765248e4619f85f37cf482e7f643909da795139a08d3a"
+          }
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "read_file",
+    "arguments": {
+      "relative_path": "sentinel.txt"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\":\"go_a\",\"end_line\":1,\"line_base\":1,\"relative_path\":\"sentinel.txt\",\"sha256\":\"541f5e318b070ea2ba7a90e811c145d697975ec4c092960f5eaf46452c3c93ec\",\"start_line\":1,\"total_lines\":1,\"trace\":{\"elapsed_ms\":0,\"id\":\"f6ba7c23-7e92-4e0a-9307-c771d6102142\",\"result_bytes\":183,\"result_sha256\":\"6abda3aa17a28db2471f1941bbd677f80515d61ae35e87f238565741507d8c16\"}}"
+          }
+        ],
+        "structuredContent": {
+          "content": "go_a",
+          "end_line": 1,
+          "line_base": 1,
+          "relative_path": "sentinel.txt",
+          "sha256": "541f5e318b070ea2ba7a90e811c145d697975ec4c092960f5eaf46452c3c93ec",
+          "start_line": 1,
+          "total_lines": 1,
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "f6ba7c23-7e92-4e0a-9307-c771d6102142",
+            "result_bytes": 183,
+            "result_sha256": "6abda3aa17a28db2471f1941bbd677f80515d61ae35e87f238565741507d8c16"
+          }
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "project_analysis",
+    "arguments": {},
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"analysis_kind\":\"LIVE_STRUCTURE_AND_CONFIGURATION\",\"backends_started\":false,\"configured_backends\":[{\"extensions\":[\"rs\"],\"id\":\"rust\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"py\",\"pyi\"],\"id\":\"python\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"go\"],\"id\":\"go\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"cs\"],\"id\":\"csharp\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"lua\"],\"id\":\"lua\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"js\",\"jsx\",\"mjs\",\"cjs\"],\"id\":\"javascript\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"ts\",\"tsx\",\"mts\",\"cts\"],\"id\":\"typescript\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"sh\",\"bash\"],\"id\":\"bash\",\"probe\":\"NOT_RUN\"}],\"directories_truncated\":false,\"evidence\":[{\"bytes\":41,\"path\":\"go.mod\",\"sha256\":\"82e143540fc0f1846df061f50bd5b93ee93d3257558f733a6c56c2ed6ad456f4\",\"status\":\"READ\"}],\"evidence_truncated\":false,\"extensions\":{\"go\":2,\"mod\":1,\"txt\":1},\"file_count\":4,\"inspections\":\"NOT_RUN\",\"language_hints\":[{\"backend_probe\":\"NOT_RUN\",\"detection\":\"EXTENSION_HINT\",\"host_backend_configured\":true,\"id\":\"go\",\"marker_hints\":[\"go.mod\"],\"observed_extensions\":[\"go\"],\"source_file_count\":2,\"suggested_server\":\"gopls\",\"unconfigured_extensions\":[]}],\"limitations\":[\"Structural hints are not semantic symbol analysis or dependency parsing.\",\"Ignore rules, path policy and scan/evidence limits restrict visibility; absent evidence is not proof of absence.\",\"No background watcher or atomic multi-file snapshot. structure_sha256 covers paths and returned evidence only.\",\"No repository commands/configuration executed and no backend installed or probed. Semantic work requires a host-configured LSP.\"],\"next_steps\":[{\"probe\":false,\"project\":\"ws_47f89c021393d0d229adf17fe0310b4fb21a88a7fd10ce1e\",\"tool\":\"get_capabilities\"},{\"project\":\"ws_47f89c021393d0d229adf17fe0310b4fb21a88a7fd10ce1e\",\"relative_path\":\"consumer.go\",\"tool\":\"get_symbols_overview\"}],\"permissions\":{\"debug\":false,\"formatters\":false,\"inspections\":false,\"shell\":false,\"write\":false},\"project\":\"ws_47f89c021393d0d229adf17fe0310b4fb21a88a7fd10ce1e\",\"root\":\"\\\\\\\\?\\\\C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\\\final-installed-languages-v3.fixtures\\\\\u5c08\u6848 go_a\",\"sample_files\":[\"consumer.go\",\"go.mod\",\"sample.go\",\"sentinel.txt\"],\"scan_limit\":10000,\"scan_truncated\":false,\"snapshot\":\"LIVE_NON_ATOMIC\",\"structure_sha256\":\"7f9727ca75fe0fa43cfe67800dc3299278bde9d373d7f35acbd29e23cc7519e2\",\"tests\":\"NOT_RUN\",\"top_level_directories\":[],\"trace\":{\"elapsed_ms\":6,\"id\":\"7f0f6616-ea70-41b5-99c3-ce3bcec4fa55\",\"result_bytes\":2413,\"result_sha256\":\"31f6a89503c0cdbc0403892bbf224fb4dc99dabfbdf50d79af103e47913fc822\"},\"unconfigured_language_hints\":[]}"
+          }
+        ],
+        "structuredContent": {
+          "analysis_kind": "LIVE_STRUCTURE_AND_CONFIGURATION",
+          "backends_started": false,
+          "configured_backends": [
+            {
+              "extensions": [
+                "rs"
+              ],
+              "id": "rust",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "py",
+                "pyi"
+              ],
+              "id": "python",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "go"
+              ],
+              "id": "go",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "cs"
+              ],
+              "id": "csharp",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "lua"
+              ],
+              "id": "lua",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "js",
+                "jsx",
+                "mjs",
+                "cjs"
+              ],
+              "id": "javascript",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "ts",
+                "tsx",
+                "mts",
+                "cts"
+              ],
+              "id": "typescript",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "sh",
+                "bash"
+              ],
+              "id": "bash",
+              "probe": "NOT_RUN"
+            }
+          ],
+          "directories_truncated": false,
+          "evidence": [
+            {
+              "bytes": 41,
+              "path": "go.mod",
+              "sha256": "82e143540fc0f1846df061f50bd5b93ee93d3257558f733a6c56c2ed6ad456f4",
+              "status": "READ"
+            }
+          ],
+          "evidence_truncated": false,
+          "extensions": {
+            "go": 2,
+            "mod": 1,
+            "txt": 1
+          },
+          "file_count": 4,
+          "inspections": "NOT_RUN",
+          "language_hints": [
+            {
+              "backend_probe": "NOT_RUN",
+              "detection": "EXTENSION_HINT",
+              "host_backend_configured": true,
+              "id": "go",
+              "marker_hints": [
+                "go.mod"
+              ],
+              "observed_extensions": [
+                "go"
+              ],
+              "source_file_count": 2,
+              "suggested_server": "gopls",
+              "unconfigured_extensions": []
+            }
+          ],
+          "limitations": [
+            "Structural hints are not semantic symbol analysis or dependency parsing.",
+            "Ignore rules, path policy and scan/evidence limits restrict visibility; absent evidence is not proof of absence.",
+            "No background watcher or atomic multi-file snapshot. structure_sha256 covers paths and returned evidence only.",
+            "No repository commands/configuration executed and no backend installed or probed. Semantic work requires a host-configured LSP."
+          ],
+          "next_steps": [
+            {
+              "probe": false,
+              "project": "ws_47f89c021393d0d229adf17fe0310b4fb21a88a7fd10ce1e",
+              "tool": "get_capabilities"
+            },
+            {
+              "project": "ws_47f89c021393d0d229adf17fe0310b4fb21a88a7fd10ce1e",
+              "relative_path": "consumer.go",
+              "tool": "get_symbols_overview"
+            }
+          ],
+          "permissions": {
+            "debug": false,
+            "formatters": false,
+            "inspections": false,
+            "shell": false,
+            "write": false
+          },
+          "project": "ws_47f89c021393d0d229adf17fe0310b4fb21a88a7fd10ce1e",
+          "root": "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-installed-languages-v3.fixtures\\\u5c08\u6848 go_a",
+          "sample_files": [
+            "consumer.go",
+            "go.mod",
+            "sample.go",
+            "sentinel.txt"
+          ],
+          "scan_limit": 10000,
+          "scan_truncated": false,
+          "snapshot": "LIVE_NON_ATOMIC",
+          "structure_sha256": "7f9727ca75fe0fa43cfe67800dc3299278bde9d373d7f35acbd29e23cc7519e2",
+          "tests": "NOT_RUN",
+          "top_level_directories": [],
+          "trace": {
+            "elapsed_ms": 6,
+            "id": "7f0f6616-ea70-41b5-99c3-ce3bcec4fa55",
+            "result_bytes": 2413,
+            "result_sha256": "31f6a89503c0cdbc0403892bbf224fb4dc99dabfbdf50d79af103e47913fc822"
+          },
+          "unconfigured_language_hints": []
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "get_capabilities",
+    "arguments": {
+      "probe": true,
+      "language": "go"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"debug_allowed\":false,\"external_tool_bridge\":false,\"formatter_profiles\":[],\"formatters_allowed\":false,\"inspection_profiles\":[],\"inspections_allowed\":false,\"languages\":[{\"capabilities\":{\"callHierarchyProvider\":true,\"codeActionProvider\":true,\"codeLensProvider\":{},\"completionProvider\":{\"triggerCharacters\":[\".\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentLinkProvider\":{},\"documentSymbolProvider\":true,\"executeCommandProvider\":{\"commands\":[\"gopls.add_dependency\",\"gopls.add_import\",\"gopls.add_telemetry_counters\",\"gopls.add_test\",\"gopls.apply_fix\",\"gopls.assembly\",\"gopls.change_signature\",\"gopls.check_upgrades\",\"gopls.client_open_url\",\"gopls.diagnose_files\",\"gopls.doc\",\"gopls.dragon_slayer\",\"gopls.edit_go_directive\",\"gopls.extract_to_new_file\",\"gopls.fetch_vulncheck_result\",\"gopls.free_symbols\",\"gopls.gc_details\",\"gopls.generate\",\"gopls.go_get_package\",\"gopls.implement_interface\",\"gopls.list_imports\",\"gopls.list_known_packages\",\"gopls.lsp\",\"gopls.maybe_prompt_for_telemetry\",\"gopls.mem_stats\",\"gopls.modify_tags\",\"gopls.modules\",\"gopls.move_declaration\",\"gopls.move_type\",\"gopls.package_symbols\",\"gopls.packages\",\"gopls.regenerate_cgo\",\"gopls.remove_dependency\",\"gopls.reset_go_mod_diagnostics\",\"gopls.resolve_target\",\"gopls.run_go_work_command\",\"gopls.run_govulncheck\",\"gopls.run_tests\",\"gopls.scan_imports\",\"gopls.split_package\",\"gopls.start_debugging\",\"gopls.start_profile\",\"gopls.stop_profile\",\"gopls.tidy\",\"gopls.update_go_sum\",\"gopls.upgrade_dependency\",\"gopls.vendor\",\"gopls.views\",\"gopls.vulncheck\",\"gopls.workspace_stats\"]},\"experimental\":{\"interactiveResolveProvider\":{\"kinds\":[\"command\"]}},\"foldingRangeProvider\":true,\"hoverProvider\":true,\"implementationProvider\":true,\"inlayHintProvider\":{},\"referencesProvider\":true,\"renameProvider\":true,\"selectionRangeProvider\":true,\"semanticTokensProvider\":{\"full\":true,\"legend\":{\"tokenModifiers\":[\"definition\",\"readonly\",\"defaultLibrary\",\"static\",\"array\",\"bool\",\"chan\",\"format\",\"interface\",\"map\",\"number\",\"pointer\",\"signature\",\"slice\",\"string\",\"struct\",\"shadowing\"],\"tokenTypes\":[\"namespace\",\"type\",\"typeParameter\",\"parameter\",\"property\",\"variable\",\"function\",\"method\",\"macro\",\"keyword\",\"comment\",\"string\",\"number\",\"operator\",\"label\"]},\"range\":true},\"signatureHelpProvider\":{\"retriggerCharacters\":[\")\"],\"triggerCharacters\":[\"(\",\",\"]},\"textDocumentSync\":{\"change\":2,\"openClose\":true,\"save\":{}},\"typeDefinitionProvider\":true,\"typeHierarchyProvider\":true,\"workspace\":{\"fileOperations\":{\"didCreate\":{\"filters\":[{\"pattern\":{\"glob\":\"**/*.go\"},\"scheme\":\"file\"}]}},\"workspaceFolders\":{\"changeNotifications\":\"workspace/didChangeWorkspaceFolders\",\"supported\":true}},\"workspaceSymbolProvider\":true},\"configured\":true,\"extensions\":[\"go\"],\"id\":\"go\",\"probed\":true,\"ready\":true,\"status\":{\"capabilities\":{\"callHierarchyProvider\":true,\"codeActionProvider\":true,\"codeLensProvider\":{},\"completionProvider\":{\"triggerCharacters\":[\".\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentLinkProvider\":{},\"documentSymbolProvider\":true,\"executeCommandProvider\":{\"commands\":[\"gopls.add_dependency\",\"gopls.add_import\",\"gopls.add_telemetry_counters\",\"gopls.add_test\",\"gopls.apply_fix\",\"gopls.assembly\",\"gopls.change_signature\",\"gopls.check_upgrades\",\"gopls.client_open_url\",\"gopls.diagnose_files\",\"gopls.doc\",\"gopls.dragon_slayer\",\"gopls.edit_go_directive\",\"gopls.extract_to_new_file\",\"gopls.fetch_vulncheck_result\",\"gopls.free_symbols\",\"gopls.gc_details\",\"gopls.generate\",\"gopls.go_get_package\",\"gopls.implement_interface\",\"gopls.list_imports\",\"gopls.list_known_packages\",\"gopls.lsp\",\"gopls.maybe_prompt_for_telemetry\",\"gopls.mem_stats\",\"gopls.modify_tags\",\"gopls.modules\",\"gopls.move_declaration\",\"gopls.move_type\",\"gopls.package_symbols\",\"gopls.packages\",\"gopls.regenerate_cgo\",\"gopls.remove_dependency\",\"gopls.reset_go_mod_diagnostics\",\"gopls.resolve_target\",\"gopls.run_go_work_command\",\"gopls.run_govulncheck\",\"gopls.run_tests\",\"gopls.scan_imports\",\"gopls.split_package\",\"gopls.start_debugging\",\"gopls.start_profile\",\"gopls.stop_profile\",\"gopls.tidy\",\"gopls.update_go_sum\",\"gopls.upgrade_dependency\",\"gopls.vendor\",\"gopls.views\",\"gopls.vulncheck\",\"gopls.workspace_stats\"]},\"experimental\":{\"interactiveResolveProvider\":{\"kinds\":[\"command\"]}},\"foldingRangeProvider\":true,\"hoverProvider\":true,\"implementationProvider\":true,\"inlayHintProvider\":{},\"referencesProvider\":true,\"renameProvider\":true,\"selectionRangeProvider\":true,\"semanticTokensProvider\":{\"full\":true,\"legend\":{\"tokenModifiers\":[\"definition\",\"readonly\",\"defaultLibrary\",\"static\",\"array\",\"bool\",\"chan\",\"format\",\"interface\",\"map\",\"number\",\"pointer\",\"signature\",\"slice\",\"string\",\"struct\",\"shadowing\"],\"tokenTypes\":[\"namespace\",\"type\",\"typeParameter\",\"parameter\",\"property\",\"variable\",\"function\",\"method\",\"macro\",\"keyword\",\"comment\",\"string\",\"number\",\"operator\",\"label\"]},\"range\":true},\"signatureHelpProvider\":{\"retriggerCharacters\":[\")\"],\"triggerCharacters\":[\"(\",\",\"]},\"textDocumentSync\":{\"change\":2,\"openClose\":true,\"save\":{}},\"typeDefinitionProvider\":true,\"typeHierarchyProvider\":true,\"workspace\":{\"fileOperations\":{\"didCreate\":{\"filters\":[{\"pattern\":{\"glob\":\"**/*.go\"},\"scheme\":\"file\"}]}},\"workspaceFolders\":{\"changeNotifications\":\"workspace/didChangeWorkspaceFolders\",\"supported\":true}},\"workspaceSymbolProvider\":true},\"index_complete_proven\":false,\"initialized\":true,\"readiness\":\"unknown\",\"transport\":{\"active_progress\":{},\"closed\":false,\"isolation\":{\"launch_route\":\"host_process\",\"os_boundary_verified\":false,\"requested\":false},\"pending_requests\":0,\"server_status\":null}}}],\"project\":\"ws_47f89c021393d0d229adf17fe0310b4fb21a88a7fd10ce1e\",\"result_retention\":{\"max_bytes\":134217728,\"max_results\":128,\"ttl_ms\":86400000},\"semantic_available\":true,\"shell_allowed\":false,\"standalone\":true,\"tools\":[{\"enabled\":true,\"name\":\"status\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_version\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_schemas\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_capabilities\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_projects\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_current_config\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"initial_instructions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"onboarding\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"project_analysis\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_dir\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_for_pattern\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"index_build\",\"policy\":\"state\"},{\"enabled\":true,\"name\":\"index_query\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_symbols_overview\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_referencing_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_implementations\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_declaration\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_type_hierarchy\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"code_actions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"hover\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"signature_help\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"workspace_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"call_hierarchy\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"format_document\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"inlay_hints\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"inlay_hint_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"semantic_tokens\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_inspection_providers\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"run_inspections\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"prepare_inspection_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"prepare_code_action\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"apply_quick_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"move_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"inline_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"restart_language_server\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"transaction_prepare\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_apply\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"transaction_rollback\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_list\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_recover\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"create_text_file\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_content\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"replacement_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"replace_in_files\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_at_line\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_symbol_body\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_before_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_after_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"safe_delete_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"list_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_memory\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"write_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"edit_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_memory\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_export\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_import\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"memory_move_scope\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_transaction_apply\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"check_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_memories\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"recover_memories\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"query_project\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_run\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_vars\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_clear\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"execute_shell_command\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_start\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_request\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_events\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_stop\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_batch\",\"policy\":\"execute\"},{\"enabled\":true,\"name\":\"result_read\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"audit_log\",\"policy\":\"read\"}],\"trace\":{\"elapsed_ms\":225,\"id\":\"8f3f345c-09f6-4b50-a695-5336fdad58ac\",\"result_bytes\":10901,\"result_sha256\":\"ab1cd1c2661ff7d549aa2169ecaeb768b06446e1c7a5cf6a77a4b68ecc8a00b9\"},\"write_allowed\":false}"
+          }
+        ],
+        "structuredContent": {
+          "debug_allowed": false,
+          "external_tool_bridge": false,
+          "formatter_profiles": [],
+          "formatters_allowed": false,
+          "inspection_profiles": [],
+          "inspections_allowed": false,
+          "languages": [
+            {
+              "capabilities": {
+                "callHierarchyProvider": true,
+                "codeActionProvider": true,
+                "codeLensProvider": {},
+                "completionProvider": {
+                  "triggerCharacters": [
+                    "."
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentLinkProvider": {},
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "gopls.add_dependency",
+                    "gopls.add_import",
+                    "gopls.add_telemetry_counters",
+                    "gopls.add_test",
+                    "gopls.apply_fix",
+                    "gopls.assembly",
+                    "gopls.change_signature",
+                    "gopls.check_upgrades",
+                    "gopls.client_open_url",
+                    "gopls.diagnose_files",
+                    "gopls.doc",
+                    "gopls.dragon_slayer",
+                    "gopls.edit_go_directive",
+                    "gopls.extract_to_new_file",
+                    "gopls.fetch_vulncheck_result",
+                    "gopls.free_symbols",
+                    "gopls.gc_details",
+                    "gopls.generate",
+                    "gopls.go_get_package",
+                    "gopls.implement_interface",
+                    "gopls.list_imports",
+                    "gopls.list_known_packages",
+                    "gopls.lsp",
+                    "gopls.maybe_prompt_for_telemetry",
+                    "gopls.mem_stats",
+                    "gopls.modify_tags",
+                    "gopls.modules",
+                    "gopls.move_declaration",
+                    "gopls.move_type",
+                    "gopls.package_symbols",
+                    "gopls.packages",
+                    "gopls.regenerate_cgo",
+                    "gopls.remove_dependency",
+                    "gopls.reset_go_mod_diagnostics",
+                    "gopls.resolve_target",
+                    "gopls.run_go_work_command",
+                    "gopls.run_govulncheck",
+                    "gopls.run_tests",
+                    "gopls.scan_imports",
+                    "gopls.split_package",
+                    "gopls.start_debugging",
+                    "gopls.start_profile",
+                    "gopls.stop_profile",
+                    "gopls.tidy",
+                    "gopls.update_go_sum",
+                    "gopls.upgrade_dependency",
+                    "gopls.vendor",
+                    "gopls.views",
+                    "gopls.vulncheck",
+                    "gopls.workspace_stats"
+                  ]
+                },
+                "experimental": {
+                  "interactiveResolveProvider": {
+                    "kinds": [
+                      "command"
+                    ]
+                  }
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": {},
+                "referencesProvider": true,
+                "renameProvider": true,
+                "selectionRangeProvider": true,
+                "semanticTokensProvider": {
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "definition",
+                      "readonly",
+                      "defaultLibrary",
+                      "static",
+                      "array",
+                      "bool",
+                      "chan",
+                      "format",
+                      "interface",
+                      "map",
+                      "number",
+                      "pointer",
+                      "signature",
+                      "slice",
+                      "string",
+                      "struct",
+                      "shadowing"
+                    ],
+                    "tokenTypes": [
+                      "namespace",
+                      "type",
+                      "typeParameter",
+                      "parameter",
+                      "property",
+                      "variable",
+                      "function",
+                      "method",
+                      "macro",
+                      "keyword",
+                      "comment",
+                      "string",
+                      "number",
+                      "operator",
+                      "label"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "retriggerCharacters": [
+                    ")"
+                  ],
+                  "triggerCharacters": [
+                    "(",
+                    ","
+                  ]
+                },
+                "textDocumentSync": {
+                  "change": 2,
+                  "openClose": true,
+                  "save": {}
+                },
+                "typeDefinitionProvider": true,
+                "typeHierarchyProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "didCreate": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "**/*.go"
+                          },
+                          "scheme": "file"
+                        }
+                      ]
+                    }
+                  },
+                  "workspaceFolders": {
+                    "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                    "supported": true
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "configured": true,
+              "extensions": [
+                "go"
+              ],
+              "id": "go",
+              "probed": true,
+              "ready": true,
+              "status": {
+                "capabilities": {
+                  "callHierarchyProvider": true,
+                  "codeActionProvider": true,
+                  "codeLensProvider": {},
+                  "completionProvider": {
+                    "triggerCharacters": [
+                      "."
+                    ]
+                  },
+                  "definitionProvider": true,
+                  "documentFormattingProvider": true,
+                  "documentHighlightProvider": true,
+                  "documentLinkProvider": {},
+                  "documentSymbolProvider": true,
+                  "executeCommandProvider": {
+                    "commands": [
+                      "gopls.add_dependency",
+                      "gopls.add_import",
+                      "gopls.add_telemetry_counters",
+                      "gopls.add_test",
+                      "gopls.apply_fix",
+                      "gopls.assembly",
+                      "gopls.change_signature",
+                      "gopls.check_upgrades",
+                      "gopls.client_open_url",
+                      "gopls.diagnose_files",
+                      "gopls.doc",
+                      "gopls.dragon_slayer",
+                      "gopls.edit_go_directive",
+                      "gopls.extract_to_new_file",
+                      "gopls.fetch_vulncheck_result",
+                      "gopls.free_symbols",
+                      "gopls.gc_details",
+                      "gopls.generate",
+                      "gopls.go_get_package",
+                      "gopls.implement_interface",
+                      "gopls.list_imports",
+                      "gopls.list_known_packages",
+                      "gopls.lsp",
+                      "gopls.maybe_prompt_for_telemetry",
+                      "gopls.mem_stats",
+                      "gopls.modify_tags",
+                      "gopls.modules",
+                      "gopls.move_declaration",
+                      "gopls.move_type",
+                      "gopls.package_symbols",
+                      "gopls.packages",
+                      "gopls.regenerate_cgo",
+                      "gopls.remove_dependency",
+                      "gopls.reset_go_mod_diagnostics",
+                      "gopls.resolve_target",
+                      "gopls.run_go_work_command",
+                      "gopls.run_govulncheck",
+                      "gopls.run_tests",
+                      "gopls.scan_imports",
+                      "gopls.split_package",
+                      "gopls.start_debugging",
+                      "gopls.start_profile",
+                      "gopls.stop_profile",
+                      "gopls.tidy",
+                      "gopls.update_go_sum",
+                      "gopls.upgrade_dependency",
+                      "gopls.vendor",
+                      "gopls.views",
+                      "gopls.vulncheck",
+                      "gopls.workspace_stats"
+                    ]
+                  },
+                  "experimental": {
+                    "interactiveResolveProvider": {
+                      "kinds": [
+                        "command"
+                      ]
+                    }
+                  },
+                  "foldingRangeProvider": true,
+                  "hoverProvider": true,
+                  "implementationProvider": true,
+                  "inlayHintProvider": {},
+                  "referencesProvider": true,
+                  "renameProvider": true,
+                  "selectionRangeProvider": true,
+                  "semanticTokensProvider": {
+                    "full": true,
+                    "legend": {
+                      "tokenModifiers": [
+                        "definition",
+                        "readonly",
+                        "defaultLibrary",
+                        "static",
+                        "array",
+                        "bool",
+                        "chan",
+                        "format",
+                        "interface",
+                        "map",
+                        "number",
+                        "pointer",
+                        "signature",
+                        "slice",
+                        "string",
+                        "struct",
+                        "shadowing"
+                      ],
+                      "tokenTypes": [
+                        "namespace",
+                        "type",
+                        "typeParameter",
+                        "parameter",
+                        "property",
+                        "variable",
+                        "function",
+                        "method",
+                        "macro",
+                        "keyword",
+                        "comment",
+                        "string",
+                        "number",
+                        "operator",
+                        "label"
+                      ]
+                    },
+                    "range": true
+                  },
+                  "signatureHelpProvider": {
+                    "retriggerCharacters": [
+                      ")"
+                    ],
+                    "triggerCharacters": [
+                      "(",
+                      ","
+                    ]
+                  },
+                  "textDocumentSync": {
+                    "change": 2,
+                    "openClose": true,
+                    "save": {}
+                  },
+                  "typeDefinitionProvider": true,
+                  "typeHierarchyProvider": true,
+                  "workspace": {
+                    "fileOperations": {
+                      "didCreate": {
+                        "filters": [
+                          {
+                            "pattern": {
+                              "glob": "**/*.go"
+                            },
+                            "scheme": "file"
+                          }
+                        ]
+                      }
+                    },
+                    "workspaceFolders": {
+                      "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                      "supported": true
+                    }
+                  },
+                  "workspaceSymbolProvider": true
+                },
+                "index_complete_proven": false,
+                "initialized": true,
+                "readiness": "unknown",
+                "transport": {
+                  "active_progress": {},
+                  "closed": false,
+                  "isolation": {
+                    "launch_route": "host_process",
+                    "os_boundary_verified": false,
+                    "requested": false
+                  },
+                  "pending_requests": 0,
+                  "server_status": null
+                }
+              }
+            }
+          ],
+          "project": "ws_47f89c021393d0d229adf17fe0310b4fb21a88a7fd10ce1e",
+          "result_retention": {
+            "max_bytes": 134217728,
+            "max_results": 128,
+            "ttl_ms": 86400000
+          },
+          "semantic_available": true,
+          "shell_allowed": false,
+          "standalone": true,
+          "tools": [
+            {
+              "enabled": true,
+              "name": "status",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_version",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_schemas",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_capabilities",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_projects",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_current_config",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "initial_instructions",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "onboarding",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "project_analysis",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_dir",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "read_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "search_for_pattern",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "index_build",
+              "policy": "state"
+            },
+            {
+              "enabled": true,
+              "name": "index_query",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_symbols_overview",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_symbol",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_referencing_symbols",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_implementations",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_declaration",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_type_hierarchy",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_diagnostics_for_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_diagnostics_for_symbol",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "code_actions",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "completion",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "hover",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "signature_help",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "completion_resolve",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "workspace_symbols",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "call_hierarchy",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "format_document",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "inlay_hints",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "inlay_hint_resolve",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "semantic_tokens",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_inspection_providers",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "run_inspections",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "prepare_inspection_fix",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "prepare_code_action",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "apply_quick_fix",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "move_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "inline_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "restart_language_server",
+              "policy": "state"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_prepare",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "transaction_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_apply",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_rollback",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "transaction_list",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_recover",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "create_text_file",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_content",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "replacement_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "replace_in_files",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_lines",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "delete_lines",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_at_line",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_symbol_body",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_before_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_after_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "rename_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "safe_delete_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "list_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "read_memory",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "write_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "edit_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "delete_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "rename_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "memory_export",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "memory_import",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "memory_move_scope",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "memory_transaction_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "memory_transaction_apply",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "check_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "search_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "recover_memories",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "query_project",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_run",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_vars",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_clear",
+              "policy": "state"
+            },
+            {
+              "enabled": false,
+              "name": "execute_shell_command",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_start",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_request",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_events",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_stop",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_batch",
+              "policy": "execute"
+            },
+            {
+              "enabled": true,
+              "name": "result_read",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "audit_log",
+              "policy": "read"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 225,
+            "id": "8f3f345c-09f6-4b50-a695-5336fdad58ac",
+            "result_bytes": 10901,
+            "result_sha256": "ab1cd1c2661ff7d549aa2169ecaeb768b06446e1c7a5cf6a77a4b68ecc8a00b9"
+          },
+          "write_allowed": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "sample.go"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"go\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":12,\"name\":\"greet\",\"name_path\":\"greet\",\"range\":{\"end\":{\"character\":49,\"line\":1},\"start\":{\"character\":0,\"line\":1}},\"relative_path\":\"sample.go\",\"selection_range\":{\"end\":{\"character\":10,\"line\":1},\"start\":{\"character\":5,\"line\":1}}},{\"kind\":12,\"name\":\"run\",\"name_path\":\"run\",\"range\":{\"end\":{\"character\":56,\"line\":2},\"start\":{\"character\":0,\"line\":2}},\"relative_path\":\"sample.go\",\"selection_range\":{\"end\":{\"character\":8,\"line\":2},\"start\":{\"character\":5,\"line\":2}}}],\"trace\":{\"elapsed_ms\":615,\"id\":\"63bfad1f-1a36-4dca-a756-6a4d6230ec01\",\"result_bytes\":558,\"result_sha256\":\"6ea8a1a19c2457b9ab310d2d4e1981ae89e2a5a845a93a5a15fab59f165b537c\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "go",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 49,
+                  "line": 1
+                },
+                "start": {
+                  "character": 0,
+                  "line": 1
+                }
+              },
+              "relative_path": "sample.go",
+              "selection_range": {
+                "end": {
+                  "character": 10,
+                  "line": 1
+                },
+                "start": {
+                  "character": 5,
+                  "line": 1
+                }
+              }
+            },
+            {
+              "kind": 12,
+              "name": "run",
+              "name_path": "run",
+              "range": {
+                "end": {
+                  "character": 56,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 2
+                }
+              },
+              "relative_path": "sample.go",
+              "selection_range": {
+                "end": {
+                  "character": 8,
+                  "line": 2
+                },
+                "start": {
+                  "character": 5,
+                  "line": 2
+                }
+              }
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 615,
+            "id": "63bfad1f-1a36-4dca-a756-6a4d6230ec01",
+            "result_bytes": 558,
+            "result_sha256": "6ea8a1a19c2457b9ab310d2d4e1981ae89e2a5a845a93a5a15fab59f165b537c"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "create_text_file",
+    "arguments": {
+      "relative_path": "forbidden.txt",
+      "content": "denied",
+      "expected_sha256": null
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\":{\"code\":\"PERMISSION_DENIED\",\"message\":\"Project writes are disabled\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "PERMISSION_DENIED",
+            "message": "Project writes are disabled"
+          }
+        },
+        "isError": true
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "list_projects",
+    "arguments": {},
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"projects\":[{\"allow_debug\":false,\"allow_inspections\":false,\"allow_shell\":false,\"allow_write\":false,\"id\":\"ws_0d7bc6aaf7d598356c4fb1ea49728e790f1a5ea5f0a564ca\",\"languages\":[\"rust\",\"python\",\"go\",\"csharp\",\"lua\",\"javascript\",\"typescript\",\"bash\"],\"root\":\"\\\\\\\\?\\\\C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\\\final-installed-languages-v3.fixtures\\\\go_b\"}],\"trace\":{\"elapsed_ms\":0,\"id\":\"736d4acf-5630-4968-803c-21167dc2749e\",\"result_bytes\":393,\"result_sha256\":\"c06a646bfeab709b7e50def9eb08de736d970df5b42e28d96e2c988f31896ec8\"}}"
+          }
+        ],
+        "structuredContent": {
+          "projects": [
+            {
+              "allow_debug": false,
+              "allow_inspections": false,
+              "allow_shell": false,
+              "allow_write": false,
+              "id": "ws_0d7bc6aaf7d598356c4fb1ea49728e790f1a5ea5f0a564ca",
+              "languages": [
+                "rust",
+                "python",
+                "go",
+                "csharp",
+                "lua",
+                "javascript",
+                "typescript",
+                "bash"
+              ],
+              "root": "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-installed-languages-v3.fixtures\\go_b"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "736d4acf-5630-4968-803c-21167dc2749e",
+            "result_bytes": 393,
+            "result_sha256": "c06a646bfeab709b7e50def9eb08de736d970df5b42e28d96e2c988f31896ec8"
+          }
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "read_file",
+    "arguments": {
+      "relative_path": "sentinel.txt"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"content\":\"go_b\",\"end_line\":1,\"line_base\":1,\"relative_path\":\"sentinel.txt\",\"sha256\":\"2c1e2876356fa4d265c879c922df3fd9febd0f0416e788a146afa8e548190770\",\"start_line\":1,\"total_lines\":1,\"trace\":{\"elapsed_ms\":0,\"id\":\"28775556-45ab-4685-94ad-7ffdd4c20296\",\"result_bytes\":183,\"result_sha256\":\"19e1f43ad68f367cadad155d578dc727ba39c1151a128a0cc2c663bcebb5b890\"}}"
+          }
+        ],
+        "structuredContent": {
+          "content": "go_b",
+          "end_line": 1,
+          "line_base": 1,
+          "relative_path": "sentinel.txt",
+          "sha256": "2c1e2876356fa4d265c879c922df3fd9febd0f0416e788a146afa8e548190770",
+          "start_line": 1,
+          "total_lines": 1,
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "28775556-45ab-4685-94ad-7ffdd4c20296",
+            "result_bytes": 183,
+            "result_sha256": "19e1f43ad68f367cadad155d578dc727ba39c1151a128a0cc2c663bcebb5b890"
+          }
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "project_analysis",
+    "arguments": {},
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"analysis_kind\":\"LIVE_STRUCTURE_AND_CONFIGURATION\",\"backends_started\":false,\"configured_backends\":[{\"extensions\":[\"rs\"],\"id\":\"rust\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"py\",\"pyi\"],\"id\":\"python\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"go\"],\"id\":\"go\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"cs\"],\"id\":\"csharp\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"lua\"],\"id\":\"lua\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"js\",\"jsx\",\"mjs\",\"cjs\"],\"id\":\"javascript\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"ts\",\"tsx\",\"mts\",\"cts\"],\"id\":\"typescript\",\"probe\":\"NOT_RUN\"},{\"extensions\":[\"sh\",\"bash\"],\"id\":\"bash\",\"probe\":\"NOT_RUN\"}],\"directories_truncated\":false,\"evidence\":[{\"bytes\":41,\"path\":\"go.mod\",\"sha256\":\"d242e3a3c0c860c2ebc805506e5eb07c54d654175e46d4a41d19adde47f91d45\",\"status\":\"READ\"}],\"evidence_truncated\":false,\"extensions\":{\"go\":2,\"mod\":1,\"txt\":1},\"file_count\":4,\"inspections\":\"NOT_RUN\",\"language_hints\":[{\"backend_probe\":\"NOT_RUN\",\"detection\":\"EXTENSION_HINT\",\"host_backend_configured\":true,\"id\":\"go\",\"marker_hints\":[\"go.mod\"],\"observed_extensions\":[\"go\"],\"source_file_count\":2,\"suggested_server\":\"gopls\",\"unconfigured_extensions\":[]}],\"limitations\":[\"Structural hints are not semantic symbol analysis or dependency parsing.\",\"Ignore rules, path policy and scan/evidence limits restrict visibility; absent evidence is not proof of absence.\",\"No background watcher or atomic multi-file snapshot. structure_sha256 covers paths and returned evidence only.\",\"No repository commands/configuration executed and no backend installed or probed. Semantic work requires a host-configured LSP.\"],\"next_steps\":[{\"probe\":false,\"project\":\"ws_0d7bc6aaf7d598356c4fb1ea49728e790f1a5ea5f0a564ca\",\"tool\":\"get_capabilities\"},{\"project\":\"ws_0d7bc6aaf7d598356c4fb1ea49728e790f1a5ea5f0a564ca\",\"relative_path\":\"consumer.go\",\"tool\":\"get_symbols_overview\"}],\"permissions\":{\"debug\":false,\"formatters\":false,\"inspections\":false,\"shell\":false,\"write\":false},\"project\":\"ws_0d7bc6aaf7d598356c4fb1ea49728e790f1a5ea5f0a564ca\",\"root\":\"\\\\\\\\?\\\\C:\\\\Users\\\\steven\\\\AppData\\\\Local\\\\Temp\\\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\\\final-installed-languages-v3.fixtures\\\\go_b\",\"sample_files\":[\"consumer.go\",\"go.mod\",\"sample.go\",\"sentinel.txt\"],\"scan_limit\":10000,\"scan_truncated\":false,\"snapshot\":\"LIVE_NON_ATOMIC\",\"structure_sha256\":\"9ba581ba55635261723ea9e6a57176a35150393e0860629ec7f2a57ac644728c\",\"tests\":\"NOT_RUN\",\"top_level_directories\":[],\"trace\":{\"elapsed_ms\":6,\"id\":\"1d2cb7f3-c9ae-4a3e-b884-8b2b0969131e\",\"result_bytes\":2406,\"result_sha256\":\"cbde72378386880f536b309fa08fb5cd19fb17c76527ff507742a8081438a51f\"},\"unconfigured_language_hints\":[]}"
+          }
+        ],
+        "structuredContent": {
+          "analysis_kind": "LIVE_STRUCTURE_AND_CONFIGURATION",
+          "backends_started": false,
+          "configured_backends": [
+            {
+              "extensions": [
+                "rs"
+              ],
+              "id": "rust",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "py",
+                "pyi"
+              ],
+              "id": "python",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "go"
+              ],
+              "id": "go",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "cs"
+              ],
+              "id": "csharp",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "lua"
+              ],
+              "id": "lua",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "js",
+                "jsx",
+                "mjs",
+                "cjs"
+              ],
+              "id": "javascript",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "ts",
+                "tsx",
+                "mts",
+                "cts"
+              ],
+              "id": "typescript",
+              "probe": "NOT_RUN"
+            },
+            {
+              "extensions": [
+                "sh",
+                "bash"
+              ],
+              "id": "bash",
+              "probe": "NOT_RUN"
+            }
+          ],
+          "directories_truncated": false,
+          "evidence": [
+            {
+              "bytes": 41,
+              "path": "go.mod",
+              "sha256": "d242e3a3c0c860c2ebc805506e5eb07c54d654175e46d4a41d19adde47f91d45",
+              "status": "READ"
+            }
+          ],
+          "evidence_truncated": false,
+          "extensions": {
+            "go": 2,
+            "mod": 1,
+            "txt": 1
+          },
+          "file_count": 4,
+          "inspections": "NOT_RUN",
+          "language_hints": [
+            {
+              "backend_probe": "NOT_RUN",
+              "detection": "EXTENSION_HINT",
+              "host_backend_configured": true,
+              "id": "go",
+              "marker_hints": [
+                "go.mod"
+              ],
+              "observed_extensions": [
+                "go"
+              ],
+              "source_file_count": 2,
+              "suggested_server": "gopls",
+              "unconfigured_extensions": []
+            }
+          ],
+          "limitations": [
+            "Structural hints are not semantic symbol analysis or dependency parsing.",
+            "Ignore rules, path policy and scan/evidence limits restrict visibility; absent evidence is not proof of absence.",
+            "No background watcher or atomic multi-file snapshot. structure_sha256 covers paths and returned evidence only.",
+            "No repository commands/configuration executed and no backend installed or probed. Semantic work requires a host-configured LSP."
+          ],
+          "next_steps": [
+            {
+              "probe": false,
+              "project": "ws_0d7bc6aaf7d598356c4fb1ea49728e790f1a5ea5f0a564ca",
+              "tool": "get_capabilities"
+            },
+            {
+              "project": "ws_0d7bc6aaf7d598356c4fb1ea49728e790f1a5ea5f0a564ca",
+              "relative_path": "consumer.go",
+              "tool": "get_symbols_overview"
+            }
+          ],
+          "permissions": {
+            "debug": false,
+            "formatters": false,
+            "inspections": false,
+            "shell": false,
+            "write": false
+          },
+          "project": "ws_0d7bc6aaf7d598356c4fb1ea49728e790f1a5ea5f0a564ca",
+          "root": "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-installed-languages-v3.fixtures\\go_b",
+          "sample_files": [
+            "consumer.go",
+            "go.mod",
+            "sample.go",
+            "sentinel.txt"
+          ],
+          "scan_limit": 10000,
+          "scan_truncated": false,
+          "snapshot": "LIVE_NON_ATOMIC",
+          "structure_sha256": "9ba581ba55635261723ea9e6a57176a35150393e0860629ec7f2a57ac644728c",
+          "tests": "NOT_RUN",
+          "top_level_directories": [],
+          "trace": {
+            "elapsed_ms": 6,
+            "id": "1d2cb7f3-c9ae-4a3e-b884-8b2b0969131e",
+            "result_bytes": 2406,
+            "result_sha256": "cbde72378386880f536b309fa08fb5cd19fb17c76527ff507742a8081438a51f"
+          },
+          "unconfigured_language_hints": []
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "get_capabilities",
+    "arguments": {
+      "probe": true,
+      "language": "go"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"debug_allowed\":false,\"external_tool_bridge\":false,\"formatter_profiles\":[],\"formatters_allowed\":false,\"inspection_profiles\":[],\"inspections_allowed\":false,\"languages\":[{\"capabilities\":{\"callHierarchyProvider\":true,\"codeActionProvider\":true,\"codeLensProvider\":{},\"completionProvider\":{\"triggerCharacters\":[\".\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentLinkProvider\":{},\"documentSymbolProvider\":true,\"executeCommandProvider\":{\"commands\":[\"gopls.add_dependency\",\"gopls.add_import\",\"gopls.add_telemetry_counters\",\"gopls.add_test\",\"gopls.apply_fix\",\"gopls.assembly\",\"gopls.change_signature\",\"gopls.check_upgrades\",\"gopls.client_open_url\",\"gopls.diagnose_files\",\"gopls.doc\",\"gopls.dragon_slayer\",\"gopls.edit_go_directive\",\"gopls.extract_to_new_file\",\"gopls.fetch_vulncheck_result\",\"gopls.free_symbols\",\"gopls.gc_details\",\"gopls.generate\",\"gopls.go_get_package\",\"gopls.implement_interface\",\"gopls.list_imports\",\"gopls.list_known_packages\",\"gopls.lsp\",\"gopls.maybe_prompt_for_telemetry\",\"gopls.mem_stats\",\"gopls.modify_tags\",\"gopls.modules\",\"gopls.move_declaration\",\"gopls.move_type\",\"gopls.package_symbols\",\"gopls.packages\",\"gopls.regenerate_cgo\",\"gopls.remove_dependency\",\"gopls.reset_go_mod_diagnostics\",\"gopls.resolve_target\",\"gopls.run_go_work_command\",\"gopls.run_govulncheck\",\"gopls.run_tests\",\"gopls.scan_imports\",\"gopls.split_package\",\"gopls.start_debugging\",\"gopls.start_profile\",\"gopls.stop_profile\",\"gopls.tidy\",\"gopls.update_go_sum\",\"gopls.upgrade_dependency\",\"gopls.vendor\",\"gopls.views\",\"gopls.vulncheck\",\"gopls.workspace_stats\"]},\"experimental\":{\"interactiveResolveProvider\":{\"kinds\":[\"command\"]}},\"foldingRangeProvider\":true,\"hoverProvider\":true,\"implementationProvider\":true,\"inlayHintProvider\":{},\"referencesProvider\":true,\"renameProvider\":true,\"selectionRangeProvider\":true,\"semanticTokensProvider\":{\"full\":true,\"legend\":{\"tokenModifiers\":[\"definition\",\"readonly\",\"defaultLibrary\",\"static\",\"array\",\"bool\",\"chan\",\"format\",\"interface\",\"map\",\"number\",\"pointer\",\"signature\",\"slice\",\"string\",\"struct\",\"shadowing\"],\"tokenTypes\":[\"namespace\",\"type\",\"typeParameter\",\"parameter\",\"property\",\"variable\",\"function\",\"method\",\"macro\",\"keyword\",\"comment\",\"string\",\"number\",\"operator\",\"label\"]},\"range\":true},\"signatureHelpProvider\":{\"retriggerCharacters\":[\")\"],\"triggerCharacters\":[\"(\",\",\"]},\"textDocumentSync\":{\"change\":2,\"openClose\":true,\"save\":{}},\"typeDefinitionProvider\":true,\"typeHierarchyProvider\":true,\"workspace\":{\"fileOperations\":{\"didCreate\":{\"filters\":[{\"pattern\":{\"glob\":\"**/*.go\"},\"scheme\":\"file\"}]}},\"workspaceFolders\":{\"changeNotifications\":\"workspace/didChangeWorkspaceFolders\",\"supported\":true}},\"workspaceSymbolProvider\":true},\"configured\":true,\"extensions\":[\"go\"],\"id\":\"go\",\"probed\":true,\"ready\":true,\"status\":{\"capabilities\":{\"callHierarchyProvider\":true,\"codeActionProvider\":true,\"codeLensProvider\":{},\"completionProvider\":{\"triggerCharacters\":[\".\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentLinkProvider\":{},\"documentSymbolProvider\":true,\"executeCommandProvider\":{\"commands\":[\"gopls.add_dependency\",\"gopls.add_import\",\"gopls.add_telemetry_counters\",\"gopls.add_test\",\"gopls.apply_fix\",\"gopls.assembly\",\"gopls.change_signature\",\"gopls.check_upgrades\",\"gopls.client_open_url\",\"gopls.diagnose_files\",\"gopls.doc\",\"gopls.dragon_slayer\",\"gopls.edit_go_directive\",\"gopls.extract_to_new_file\",\"gopls.fetch_vulncheck_result\",\"gopls.free_symbols\",\"gopls.gc_details\",\"gopls.generate\",\"gopls.go_get_package\",\"gopls.implement_interface\",\"gopls.list_imports\",\"gopls.list_known_packages\",\"gopls.lsp\",\"gopls.maybe_prompt_for_telemetry\",\"gopls.mem_stats\",\"gopls.modify_tags\",\"gopls.modules\",\"gopls.move_declaration\",\"gopls.move_type\",\"gopls.package_symbols\",\"gopls.packages\",\"gopls.regenerate_cgo\",\"gopls.remove_dependency\",\"gopls.reset_go_mod_diagnostics\",\"gopls.resolve_target\",\"gopls.run_go_work_command\",\"gopls.run_govulncheck\",\"gopls.run_tests\",\"gopls.scan_imports\",\"gopls.split_package\",\"gopls.start_debugging\",\"gopls.start_profile\",\"gopls.stop_profile\",\"gopls.tidy\",\"gopls.update_go_sum\",\"gopls.upgrade_dependency\",\"gopls.vendor\",\"gopls.views\",\"gopls.vulncheck\",\"gopls.workspace_stats\"]},\"experimental\":{\"interactiveResolveProvider\":{\"kinds\":[\"command\"]}},\"foldingRangeProvider\":true,\"hoverProvider\":true,\"implementationProvider\":true,\"inlayHintProvider\":{},\"referencesProvider\":true,\"renameProvider\":true,\"selectionRangeProvider\":true,\"semanticTokensProvider\":{\"full\":true,\"legend\":{\"tokenModifiers\":[\"definition\",\"readonly\",\"defaultLibrary\",\"static\",\"array\",\"bool\",\"chan\",\"format\",\"interface\",\"map\",\"number\",\"pointer\",\"signature\",\"slice\",\"string\",\"struct\",\"shadowing\"],\"tokenTypes\":[\"namespace\",\"type\",\"typeParameter\",\"parameter\",\"property\",\"variable\",\"function\",\"method\",\"macro\",\"keyword\",\"comment\",\"string\",\"number\",\"operator\",\"label\"]},\"range\":true},\"signatureHelpProvider\":{\"retriggerCharacters\":[\")\"],\"triggerCharacters\":[\"(\",\",\"]},\"textDocumentSync\":{\"change\":2,\"openClose\":true,\"save\":{}},\"typeDefinitionProvider\":true,\"typeHierarchyProvider\":true,\"workspace\":{\"fileOperations\":{\"didCreate\":{\"filters\":[{\"pattern\":{\"glob\":\"**/*.go\"},\"scheme\":\"file\"}]}},\"workspaceFolders\":{\"changeNotifications\":\"workspace/didChangeWorkspaceFolders\",\"supported\":true}},\"workspaceSymbolProvider\":true},\"index_complete_proven\":false,\"initialized\":true,\"readiness\":\"unknown\",\"transport\":{\"active_progress\":{},\"closed\":false,\"isolation\":{\"launch_route\":\"host_process\",\"os_boundary_verified\":false,\"requested\":false},\"pending_requests\":0,\"server_status\":null}}}],\"project\":\"ws_0d7bc6aaf7d598356c4fb1ea49728e790f1a5ea5f0a564ca\",\"result_retention\":{\"max_bytes\":134217728,\"max_results\":128,\"ttl_ms\":86400000},\"semantic_available\":true,\"shell_allowed\":false,\"standalone\":true,\"tools\":[{\"enabled\":true,\"name\":\"status\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_version\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_schemas\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_capabilities\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_projects\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_current_config\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"initial_instructions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"onboarding\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"project_analysis\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_dir\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_for_pattern\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"index_build\",\"policy\":\"state\"},{\"enabled\":true,\"name\":\"index_query\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_symbols_overview\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_referencing_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_implementations\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_declaration\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_type_hierarchy\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"code_actions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"hover\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"signature_help\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"workspace_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"call_hierarchy\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"format_document\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"inlay_hints\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"inlay_hint_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"semantic_tokens\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_inspection_providers\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"run_inspections\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"prepare_inspection_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"prepare_code_action\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"apply_quick_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"move_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"inline_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"restart_language_server\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"transaction_prepare\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_apply\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"transaction_rollback\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_list\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_recover\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"create_text_file\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_content\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"replacement_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"replace_in_files\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_at_line\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_symbol_body\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_before_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_after_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"safe_delete_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"list_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_memory\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"write_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"edit_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_memory\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_export\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_import\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"memory_move_scope\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_transaction_apply\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"check_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_memories\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"recover_memories\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"query_project\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_run\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_vars\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_clear\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"execute_shell_command\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_start\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_request\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_events\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_stop\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_batch\",\"policy\":\"execute\"},{\"enabled\":true,\"name\":\"result_read\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"audit_log\",\"policy\":\"read\"}],\"trace\":{\"elapsed_ms\":215,\"id\":\"68aa23a1-378c-4cbd-913b-b2555da795ee\",\"result_bytes\":10901,\"result_sha256\":\"4051760a465d3c926d5b3eb1a87b477457f910dedde82f2e205b0b6c02d21289\"},\"write_allowed\":false}"
+          }
+        ],
+        "structuredContent": {
+          "debug_allowed": false,
+          "external_tool_bridge": false,
+          "formatter_profiles": [],
+          "formatters_allowed": false,
+          "inspection_profiles": [],
+          "inspections_allowed": false,
+          "languages": [
+            {
+              "capabilities": {
+                "callHierarchyProvider": true,
+                "codeActionProvider": true,
+                "codeLensProvider": {},
+                "completionProvider": {
+                  "triggerCharacters": [
+                    "."
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentLinkProvider": {},
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "gopls.add_dependency",
+                    "gopls.add_import",
+                    "gopls.add_telemetry_counters",
+                    "gopls.add_test",
+                    "gopls.apply_fix",
+                    "gopls.assembly",
+                    "gopls.change_signature",
+                    "gopls.check_upgrades",
+                    "gopls.client_open_url",
+                    "gopls.diagnose_files",
+                    "gopls.doc",
+                    "gopls.dragon_slayer",
+                    "gopls.edit_go_directive",
+                    "gopls.extract_to_new_file",
+                    "gopls.fetch_vulncheck_result",
+                    "gopls.free_symbols",
+                    "gopls.gc_details",
+                    "gopls.generate",
+                    "gopls.go_get_package",
+                    "gopls.implement_interface",
+                    "gopls.list_imports",
+                    "gopls.list_known_packages",
+                    "gopls.lsp",
+                    "gopls.maybe_prompt_for_telemetry",
+                    "gopls.mem_stats",
+                    "gopls.modify_tags",
+                    "gopls.modules",
+                    "gopls.move_declaration",
+                    "gopls.move_type",
+                    "gopls.package_symbols",
+                    "gopls.packages",
+                    "gopls.regenerate_cgo",
+                    "gopls.remove_dependency",
+                    "gopls.reset_go_mod_diagnostics",
+                    "gopls.resolve_target",
+                    "gopls.run_go_work_command",
+                    "gopls.run_govulncheck",
+                    "gopls.run_tests",
+                    "gopls.scan_imports",
+                    "gopls.split_package",
+                    "gopls.start_debugging",
+                    "gopls.start_profile",
+                    "gopls.stop_profile",
+                    "gopls.tidy",
+                    "gopls.update_go_sum",
+                    "gopls.upgrade_dependency",
+                    "gopls.vendor",
+                    "gopls.views",
+                    "gopls.vulncheck",
+                    "gopls.workspace_stats"
+                  ]
+                },
+                "experimental": {
+                  "interactiveResolveProvider": {
+                    "kinds": [
+                      "command"
+                    ]
+                  }
+                },
+                "foldingRangeProvider": true,
+                "hoverProvider": true,
+                "implementationProvider": true,
+                "inlayHintProvider": {},
+                "referencesProvider": true,
+                "renameProvider": true,
+                "selectionRangeProvider": true,
+                "semanticTokensProvider": {
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "definition",
+                      "readonly",
+                      "defaultLibrary",
+                      "static",
+                      "array",
+                      "bool",
+                      "chan",
+                      "format",
+                      "interface",
+                      "map",
+                      "number",
+                      "pointer",
+                      "signature",
+                      "slice",
+                      "string",
+                      "struct",
+                      "shadowing"
+                    ],
+                    "tokenTypes": [
+                      "namespace",
+                      "type",
+                      "typeParameter",
+                      "parameter",
+                      "property",
+                      "variable",
+                      "function",
+                      "method",
+                      "macro",
+                      "keyword",
+                      "comment",
+                      "string",
+                      "number",
+                      "operator",
+                      "label"
+                    ]
+                  },
+                  "range": true
+                },
+                "signatureHelpProvider": {
+                  "retriggerCharacters": [
+                    ")"
+                  ],
+                  "triggerCharacters": [
+                    "(",
+                    ","
+                  ]
+                },
+                "textDocumentSync": {
+                  "change": 2,
+                  "openClose": true,
+                  "save": {}
+                },
+                "typeDefinitionProvider": true,
+                "typeHierarchyProvider": true,
+                "workspace": {
+                  "fileOperations": {
+                    "didCreate": {
+                      "filters": [
+                        {
+                          "pattern": {
+                            "glob": "**/*.go"
+                          },
+                          "scheme": "file"
+                        }
+                      ]
+                    }
+                  },
+                  "workspaceFolders": {
+                    "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                    "supported": true
+                  }
+                },
+                "workspaceSymbolProvider": true
+              },
+              "configured": true,
+              "extensions": [
+                "go"
+              ],
+              "id": "go",
+              "probed": true,
+              "ready": true,
+              "status": {
+                "capabilities": {
+                  "callHierarchyProvider": true,
+                  "codeActionProvider": true,
+                  "codeLensProvider": {},
+                  "completionProvider": {
+                    "triggerCharacters": [
+                      "."
+                    ]
+                  },
+                  "definitionProvider": true,
+                  "documentFormattingProvider": true,
+                  "documentHighlightProvider": true,
+                  "documentLinkProvider": {},
+                  "documentSymbolProvider": true,
+                  "executeCommandProvider": {
+                    "commands": [
+                      "gopls.add_dependency",
+                      "gopls.add_import",
+                      "gopls.add_telemetry_counters",
+                      "gopls.add_test",
+                      "gopls.apply_fix",
+                      "gopls.assembly",
+                      "gopls.change_signature",
+                      "gopls.check_upgrades",
+                      "gopls.client_open_url",
+                      "gopls.diagnose_files",
+                      "gopls.doc",
+                      "gopls.dragon_slayer",
+                      "gopls.edit_go_directive",
+                      "gopls.extract_to_new_file",
+                      "gopls.fetch_vulncheck_result",
+                      "gopls.free_symbols",
+                      "gopls.gc_details",
+                      "gopls.generate",
+                      "gopls.go_get_package",
+                      "gopls.implement_interface",
+                      "gopls.list_imports",
+                      "gopls.list_known_packages",
+                      "gopls.lsp",
+                      "gopls.maybe_prompt_for_telemetry",
+                      "gopls.mem_stats",
+                      "gopls.modify_tags",
+                      "gopls.modules",
+                      "gopls.move_declaration",
+                      "gopls.move_type",
+                      "gopls.package_symbols",
+                      "gopls.packages",
+                      "gopls.regenerate_cgo",
+                      "gopls.remove_dependency",
+                      "gopls.reset_go_mod_diagnostics",
+                      "gopls.resolve_target",
+                      "gopls.run_go_work_command",
+                      "gopls.run_govulncheck",
+                      "gopls.run_tests",
+                      "gopls.scan_imports",
+                      "gopls.split_package",
+                      "gopls.start_debugging",
+                      "gopls.start_profile",
+                      "gopls.stop_profile",
+                      "gopls.tidy",
+                      "gopls.update_go_sum",
+                      "gopls.upgrade_dependency",
+                      "gopls.vendor",
+                      "gopls.views",
+                      "gopls.vulncheck",
+                      "gopls.workspace_stats"
+                    ]
+                  },
+                  "experimental": {
+                    "interactiveResolveProvider": {
+                      "kinds": [
+                        "command"
+                      ]
+                    }
+                  },
+                  "foldingRangeProvider": true,
+                  "hoverProvider": true,
+                  "implementationProvider": true,
+                  "inlayHintProvider": {},
+                  "referencesProvider": true,
+                  "renameProvider": true,
+                  "selectionRangeProvider": true,
+                  "semanticTokensProvider": {
+                    "full": true,
+                    "legend": {
+                      "tokenModifiers": [
+                        "definition",
+                        "readonly",
+                        "defaultLibrary",
+                        "static",
+                        "array",
+                        "bool",
+                        "chan",
+                        "format",
+                        "interface",
+                        "map",
+                        "number",
+                        "pointer",
+                        "signature",
+                        "slice",
+                        "string",
+                        "struct",
+                        "shadowing"
+                      ],
+                      "tokenTypes": [
+                        "namespace",
+                        "type",
+                        "typeParameter",
+                        "parameter",
+                        "property",
+                        "variable",
+                        "function",
+                        "method",
+                        "macro",
+                        "keyword",
+                        "comment",
+                        "string",
+                        "number",
+                        "operator",
+                        "label"
+                      ]
+                    },
+                    "range": true
+                  },
+                  "signatureHelpProvider": {
+                    "retriggerCharacters": [
+                      ")"
+                    ],
+                    "triggerCharacters": [
+                      "(",
+                      ","
+                    ]
+                  },
+                  "textDocumentSync": {
+                    "change": 2,
+                    "openClose": true,
+                    "save": {}
+                  },
+                  "typeDefinitionProvider": true,
+                  "typeHierarchyProvider": true,
+                  "workspace": {
+                    "fileOperations": {
+                      "didCreate": {
+                        "filters": [
+                          {
+                            "pattern": {
+                              "glob": "**/*.go"
+                            },
+                            "scheme": "file"
+                          }
+                        ]
+                      }
+                    },
+                    "workspaceFolders": {
+                      "changeNotifications": "workspace/didChangeWorkspaceFolders",
+                      "supported": true
+                    }
+                  },
+                  "workspaceSymbolProvider": true
+                },
+                "index_complete_proven": false,
+                "initialized": true,
+                "readiness": "unknown",
+                "transport": {
+                  "active_progress": {},
+                  "closed": false,
+                  "isolation": {
+                    "launch_route": "host_process",
+                    "os_boundary_verified": false,
+                    "requested": false
+                  },
+                  "pending_requests": 0,
+                  "server_status": null
+                }
+              }
+            }
+          ],
+          "project": "ws_0d7bc6aaf7d598356c4fb1ea49728e790f1a5ea5f0a564ca",
+          "result_retention": {
+            "max_bytes": 134217728,
+            "max_results": 128,
+            "ttl_ms": 86400000
+          },
+          "semantic_available": true,
+          "shell_allowed": false,
+          "standalone": true,
+          "tools": [
+            {
+              "enabled": true,
+              "name": "status",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_version",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_schemas",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_capabilities",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_projects",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_current_config",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "initial_instructions",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "onboarding",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "project_analysis",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_dir",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "read_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "search_for_pattern",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "index_build",
+              "policy": "state"
+            },
+            {
+              "enabled": true,
+              "name": "index_query",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_symbols_overview",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_symbol",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_referencing_symbols",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_implementations",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "find_declaration",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_type_hierarchy",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_diagnostics_for_file",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "get_diagnostics_for_symbol",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "code_actions",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "completion",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "hover",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "signature_help",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "completion_resolve",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "workspace_symbols",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "call_hierarchy",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "format_document",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "inlay_hints",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "inlay_hint_resolve",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "semantic_tokens",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "list_inspection_providers",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "run_inspections",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "prepare_inspection_fix",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "prepare_code_action",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "apply_quick_fix",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "move_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "inline_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "restart_language_server",
+              "policy": "state"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_prepare",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "transaction_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_apply",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_rollback",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "transaction_list",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "transaction_recover",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "create_text_file",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_content",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "replacement_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "replace_in_files",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_lines",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "delete_lines",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_at_line",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "replace_symbol_body",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_before_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "insert_after_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "rename_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "safe_delete_symbol",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "list_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "read_memory",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "write_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "edit_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "delete_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "rename_memory",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "memory_export",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "memory_import",
+              "policy": "write"
+            },
+            {
+              "enabled": false,
+              "name": "memory_move_scope",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "memory_transaction_preview",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "memory_transaction_apply",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "check_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "search_memories",
+              "policy": "read"
+            },
+            {
+              "enabled": false,
+              "name": "recover_memories",
+              "policy": "write"
+            },
+            {
+              "enabled": true,
+              "name": "query_project",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_run",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_vars",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "flow_clear",
+              "policy": "state"
+            },
+            {
+              "enabled": false,
+              "name": "execute_shell_command",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_start",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_request",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_events",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_stop",
+              "policy": "execute"
+            },
+            {
+              "enabled": false,
+              "name": "debug_batch",
+              "policy": "execute"
+            },
+            {
+              "enabled": true,
+              "name": "result_read",
+              "policy": "read"
+            },
+            {
+              "enabled": true,
+              "name": "audit_log",
+              "policy": "read"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 215,
+            "id": "68aa23a1-378c-4cbd-913b-b2555da795ee",
+            "result_bytes": 10901,
+            "result_sha256": "4051760a465d3c926d5b3eb1a87b477457f910dedde82f2e205b0b6c02d21289"
+          },
+          "write_allowed": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "sample.go"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"go\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":12,\"name\":\"greet\",\"name_path\":\"greet\",\"range\":{\"end\":{\"character\":49,\"line\":1},\"start\":{\"character\":0,\"line\":1}},\"relative_path\":\"sample.go\",\"selection_range\":{\"end\":{\"character\":10,\"line\":1},\"start\":{\"character\":5,\"line\":1}}},{\"kind\":12,\"name\":\"run\",\"name_path\":\"run\",\"range\":{\"end\":{\"character\":56,\"line\":2},\"start\":{\"character\":0,\"line\":2}},\"relative_path\":\"sample.go\",\"selection_range\":{\"end\":{\"character\":8,\"line\":2},\"start\":{\"character\":5,\"line\":2}}}],\"trace\":{\"elapsed_ms\":137,\"id\":\"b64137e2-57e9-49e5-a833-cecdfd8f0cc5\",\"result_bytes\":558,\"result_sha256\":\"6ea8a1a19c2457b9ab310d2d4e1981ae89e2a5a845a93a5a15fab59f165b537c\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "go",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 49,
+                  "line": 1
+                },
+                "start": {
+                  "character": 0,
+                  "line": 1
+                }
+              },
+              "relative_path": "sample.go",
+              "selection_range": {
+                "end": {
+                  "character": 10,
+                  "line": 1
+                },
+                "start": {
+                  "character": 5,
+                  "line": 1
+                }
+              }
+            },
+            {
+              "kind": 12,
+              "name": "run",
+              "name_path": "run",
+              "range": {
+                "end": {
+                  "character": 56,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 2
+                }
+              },
+              "relative_path": "sample.go",
+              "selection_range": {
+                "end": {
+                  "character": 8,
+                  "line": 2
+                },
+                "start": {
+                  "character": 5,
+                  "line": 2
+                }
+              }
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 137,
+            "id": "b64137e2-57e9-49e5-a833-cecdfd8f0cc5",
+            "result_bytes": 558,
+            "result_sha256": "6ea8a1a19c2457b9ab310d2d4e1981ae89e2a5a845a93a5a15fab59f165b537c"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "create_text_file",
+    "arguments": {
+      "relative_path": "forbidden.txt",
+      "content": "denied",
+      "expected_sha256": null
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\":{\"code\":\"PERMISSION_DENIED\",\"message\":\"Project writes are disabled\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "PERMISSION_DENIED",
+            "message": "Project writes are disabled"
+          }
+        },
+        "isError": true
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "read_file",
+    "arguments": {
+      "project": "ws_47f89c021393d0d229adf17fe0310b4fb21a88a7fd10ce1e",
+      "relative_path": "sample.go"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 8,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\":{\"code\":\"INVALID_ARGUMENT\",\"message\":\"Unknown configured project: ws_47f89c021393d0d229adf17fe0310b4fb21a88a7fd10ce1e\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "INVALID_ARGUMENT",
+            "message": "Unknown configured project: ws_47f89c021393d0d229adf17fe0310b4fb21a88a7fd10ce1e"
+          }
+        },
+        "isError": true
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "sample.go"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"go\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":12,\"name\":\"greet\",\"name_path\":\"greet\",\"range\":{\"end\":{\"character\":49,\"line\":1},\"start\":{\"character\":0,\"line\":1}},\"relative_path\":\"sample.go\",\"selection_range\":{\"end\":{\"character\":10,\"line\":1},\"start\":{\"character\":5,\"line\":1}}},{\"kind\":12,\"name\":\"run\",\"name_path\":\"run\",\"range\":{\"end\":{\"character\":56,\"line\":2},\"start\":{\"character\":0,\"line\":2}},\"relative_path\":\"sample.go\",\"selection_range\":{\"end\":{\"character\":8,\"line\":2},\"start\":{\"character\":5,\"line\":2}}}],\"trace\":{\"elapsed_ms\":375,\"id\":\"3865be4a-7c43-4d24-ac5b-65d5cf0bd20e\",\"result_bytes\":558,\"result_sha256\":\"6ea8a1a19c2457b9ab310d2d4e1981ae89e2a5a845a93a5a15fab59f165b537c\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "go",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 49,
+                  "line": 1
+                },
+                "start": {
+                  "character": 0,
+                  "line": 1
+                }
+              },
+              "relative_path": "sample.go",
+              "selection_range": {
+                "end": {
+                  "character": 10,
+                  "line": 1
+                },
+                "start": {
+                  "character": 5,
+                  "line": 1
+                }
+              }
+            },
+            {
+              "kind": 12,
+              "name": "run",
+              "name_path": "run",
+              "range": {
+                "end": {
+                  "character": 56,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 2
+                }
+              },
+              "relative_path": "sample.go",
+              "selection_range": {
+                "end": {
+                  "character": 8,
+                  "line": 2
+                },
+                "start": {
+                  "character": 5,
+                  "line": 2
+                }
+              }
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 375,
+            "id": "3865be4a-7c43-4d24-ac5b-65d5cf0bd20e",
+            "result_bytes": 558,
+            "result_sha256": "6ea8a1a19c2457b9ab310d2d4e1981ae89e2a5a845a93a5a15fab59f165b537c"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "consumer.go"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"go\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":12,\"name\":\"consume\",\"name_path\":\"consume\",\"range\":{\"end\":{\"character\":45,\"line\":1},\"start\":{\"character\":0,\"line\":1}},\"relative_path\":\"consumer.go\",\"selection_range\":{\"end\":{\"character\":12,\"line\":1},\"start\":{\"character\":5,\"line\":1}}}],\"trace\":{\"elapsed_ms\":3,\"id\":\"0f0a1308-5a38-40de-b4fd-9fddc2892c39\",\"result_bytes\":334,\"result_sha256\":\"2b8c2a06c2e86ebe1803d6681aa0c143a3d64495a84f37746571fa5f39600a57\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "go",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [
+            {
+              "kind": 12,
+              "name": "consume",
+              "name_path": "consume",
+              "range": {
+                "end": {
+                  "character": 45,
+                  "line": 1
+                },
+                "start": {
+                  "character": 0,
+                  "line": 1
+                }
+              },
+              "relative_path": "consumer.go",
+              "selection_range": {
+                "end": {
+                  "character": 12,
+                  "line": 1
+                },
+                "start": {
+                  "character": 5,
+                  "line": 1
+                }
+              }
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 3,
+            "id": "0f0a1308-5a38-40de-b4fd-9fddc2892c39",
+            "result_bytes": 334,
+            "result_sha256": "2b8c2a06c2e86ebe1803d6681aa0c143a3d64495a84f37746571fa5f39600a57"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "find_referencing_symbols",
+    "arguments": {
+      "relative_path": "sample.go",
+      "name_path": "greet"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"locations\":[{\"enclosing_symbol\":{\"kind\":12,\"name\":\"consume\",\"name_path\":\"consume\",\"range\":{\"end\":{\"character\":45,\"line\":1},\"start\":{\"character\":0,\"line\":1}},\"relative_path\":\"consumer.go\",\"selection_range\":{\"end\":{\"character\":12,\"line\":1},\"start\":{\"character\":5,\"line\":1}}},\"external\":false,\"location\":{\"range\":{\"end\":{\"character\":34,\"line\":1},\"start\":{\"character\":29,\"line\":1}},\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/consumer.go\"},\"relative_path\":\"consumer.go\"},{\"enclosing_symbol\":{\"kind\":12,\"name\":\"run\",\"name_path\":\"run\",\"range\":{\"end\":{\"character\":56,\"line\":2},\"start\":{\"character\":0,\"line\":2}},\"relative_path\":\"sample.go\",\"selection_range\":{\"end\":{\"character\":8,\"line\":2},\"start\":{\"character\":5,\"line\":2}}},\"external\":false,\"location\":{\"range\":{\"end\":{\"character\":32,\"line\":2},\"start\":{\"character\":27,\"line\":2}},\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go\"},\"relative_path\":\"sample.go\"}],\"trace\":{\"elapsed_ms\":5,\"id\":\"c4be245b-3bf4-4153-9457-d8bf2929ef72\",\"result_bytes\":1162,\"result_sha256\":\"77583e24ccd80f39f36ed47d2198b70ee165dcbd1c26387aec707de8a0dabb4f\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "locations": [
+            {
+              "enclosing_symbol": {
+                "kind": 12,
+                "name": "consume",
+                "name_path": "consume",
+                "range": {
+                  "end": {
+                    "character": 45,
+                    "line": 1
+                  },
+                  "start": {
+                    "character": 0,
+                    "line": 1
+                  }
+                },
+                "relative_path": "consumer.go",
+                "selection_range": {
+                  "end": {
+                    "character": 12,
+                    "line": 1
+                  },
+                  "start": {
+                    "character": 5,
+                    "line": 1
+                  }
+                }
+              },
+              "external": false,
+              "location": {
+                "range": {
+                  "end": {
+                    "character": 34,
+                    "line": 1
+                  },
+                  "start": {
+                    "character": 29,
+                    "line": 1
+                  }
+                },
+                "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/consumer.go"
+              },
+              "relative_path": "consumer.go"
+            },
+            {
+              "enclosing_symbol": {
+                "kind": 12,
+                "name": "run",
+                "name_path": "run",
+                "range": {
+                  "end": {
+                    "character": 56,
+                    "line": 2
+                  },
+                  "start": {
+                    "character": 0,
+                    "line": 2
+                  }
+                },
+                "relative_path": "sample.go",
+                "selection_range": {
+                  "end": {
+                    "character": 8,
+                    "line": 2
+                  },
+                  "start": {
+                    "character": 5,
+                    "line": 2
+                  }
+                }
+              },
+              "external": false,
+              "location": {
+                "range": {
+                  "end": {
+                    "character": 32,
+                    "line": 2
+                  },
+                  "start": {
+                    "character": 27,
+                    "line": 2
+                  }
+                },
+                "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go"
+              },
+              "relative_path": "sample.go"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 5,
+            "id": "c4be245b-3bf4-4153-9457-d8bf2929ef72",
+            "result_bytes": 1162,
+            "result_sha256": "77583e24ccd80f39f36ed47d2198b70ee165dcbd1c26387aec707de8a0dabb4f"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "find_declaration",
+    "arguments": {
+      "relative_path": "sample.go",
+      "position": {
+        "line": 2,
+        "character": 28
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"locations\":[{\"enclosing_symbol\":{\"kind\":12,\"name\":\"greet\",\"name_path\":\"greet\",\"range\":{\"end\":{\"character\":49,\"line\":1},\"start\":{\"character\":0,\"line\":1}},\"relative_path\":\"sample.go\",\"selection_range\":{\"end\":{\"character\":10,\"line\":1},\"start\":{\"character\":5,\"line\":1}}},\"external\":false,\"location\":{\"range\":{\"end\":{\"character\":10,\"line\":1},\"start\":{\"character\":5,\"line\":1}},\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go\"},\"relative_path\":\"sample.go\"}],\"trace\":{\"elapsed_ms\":2,\"id\":\"1c29b1f2-707f-4883-8aab-d3c35e453538\",\"result_bytes\":594,\"result_sha256\":\"494d4b47f9c5df53592eec57e7627df1f7f492ec905a7ad9baeed5d0c930a1c1\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "locations": [
+            {
+              "enclosing_symbol": {
+                "kind": 12,
+                "name": "greet",
+                "name_path": "greet",
+                "range": {
+                  "end": {
+                    "character": 49,
+                    "line": 1
+                  },
+                  "start": {
+                    "character": 0,
+                    "line": 1
+                  }
+                },
+                "relative_path": "sample.go",
+                "selection_range": {
+                  "end": {
+                    "character": 10,
+                    "line": 1
+                  },
+                  "start": {
+                    "character": 5,
+                    "line": 1
+                  }
+                }
+              },
+              "external": false,
+              "location": {
+                "range": {
+                  "end": {
+                    "character": 10,
+                    "line": 1
+                  },
+                  "start": {
+                    "character": 5,
+                    "line": 1
+                  }
+                },
+                "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go"
+              },
+              "relative_path": "sample.go"
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 2,
+            "id": "1c29b1f2-707f-4883-8aab-d3c35e453538",
+            "result_bytes": 594,
+            "result_sha256": "494d4b47f9c5df53592eec57e7627df1f7f492ec905a7ad9baeed5d0c930a1c1"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "completion",
+    "arguments": {
+      "relative_path": "sample.go",
+      "position": {
+        "line": 2,
+        "character": 30
+      },
+      "limit": 200
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"commands_executed\":false,\"document\":{\"path\":\"sample.go\",\"sha256\":\"63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go\",\"version\":1},\"edits_applied\":false,\"freshness\":\"current\",\"index_complete_proven\":false,\"position_encoding\":\"utf-16\",\"provider\":\"go\",\"result\":{\"isIncomplete\":true,\"items\":[{\"detail\":\"func(name string) string\",\"filterText\":\"greet\",\"insertTextFormat\":1,\"kind\":3,\"label\":\"greet\",\"preselect\":true,\"sortText\":\"00000\",\"textEdit\":{\"newText\":\"greet\",\"range\":{\"end\":{\"character\":32,\"line\":2},\"start\":{\"character\":27,\"line\":2}}}}]},\"source\":\"lsp\",\"trace\":{\"elapsed_ms\":65,\"id\":\"82dc3b9d-e00b-447e-b98f-f21140ebd7f6\",\"result_bytes\":760,\"result_sha256\":\"6cbe36c8b6372189d4c3f7c4cbaeea0c55703f379ab908f50a777465d8fa4554\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "commands_executed": false,
+          "document": {
+            "path": "sample.go",
+            "sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go",
+            "version": 1
+          },
+          "edits_applied": false,
+          "freshness": "current",
+          "index_complete_proven": false,
+          "position_encoding": "utf-16",
+          "provider": "go",
+          "result": {
+            "isIncomplete": true,
+            "items": [
+              {
+                "detail": "func(name string) string",
+                "filterText": "greet",
+                "insertTextFormat": 1,
+                "kind": 3,
+                "label": "greet",
+                "preselect": true,
+                "sortText": "00000",
+                "textEdit": {
+                  "newText": "greet",
+                  "range": {
+                    "end": {
+                      "character": 32,
+                      "line": 2
+                    },
+                    "start": {
+                      "character": 27,
+                      "line": 2
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "source": "lsp",
+          "trace": {
+            "elapsed_ms": 65,
+            "id": "82dc3b9d-e00b-447e-b98f-f21140ebd7f6",
+            "result_bytes": 760,
+            "result_sha256": "6cbe36c8b6372189d4c3f7c4cbaeea0c55703f379ab908f50a777465d8fa4554"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "hover",
+    "arguments": {
+      "relative_path": "sample.go",
+      "position": {
+        "line": 2,
+        "character": 28
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"commands_executed\":false,\"document\":{\"path\":\"sample.go\",\"sha256\":\"63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go\",\"version\":1},\"edits_applied\":false,\"freshness\":\"current\",\"index_complete_proven\":false,\"position_encoding\":\"utf-16\",\"provider\":\"go\",\"result\":{\"contents\":{\"kind\":\"plaintext\",\"value\":\"func greet(name string) string\"},\"range\":{\"end\":{\"character\":32,\"line\":2},\"start\":{\"character\":27,\"line\":2}}},\"source\":\"lsp\",\"trace\":{\"elapsed_ms\":1,\"id\":\"1eb351a1-ab38-48a2-8438-b8617846b1cd\",\"result_bytes\":613,\"result_sha256\":\"19a5d35413a31344769f9efc06d7b588e45ddfb0809b28fea3b655c0e6dee7b1\"}}"
+          }
+        ],
+        "structuredContent": {
+          "commands_executed": false,
+          "document": {
+            "path": "sample.go",
+            "sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go",
+            "version": 1
+          },
+          "edits_applied": false,
+          "freshness": "current",
+          "index_complete_proven": false,
+          "position_encoding": "utf-16",
+          "provider": "go",
+          "result": {
+            "contents": {
+              "kind": "plaintext",
+              "value": "func greet(name string) string"
+            },
+            "range": {
+              "end": {
+                "character": 32,
+                "line": 2
+              },
+              "start": {
+                "character": 27,
+                "line": 2
+              }
+            }
+          },
+          "source": "lsp",
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "1eb351a1-ab38-48a2-8438-b8617846b1cd",
+            "result_bytes": 613,
+            "result_sha256": "19a5d35413a31344769f9efc06d7b588e45ddfb0809b28fea3b655c0e6dee7b1"
+          }
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "get_diagnostics_for_file",
+    "arguments": {
+      "relative_path": "sample.go"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 8,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"available\":true,\"clean_build_proven\":false,\"current_version\":1,\"document\":{\"path\":\"sample.go\",\"sha256\":\"63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go\",\"version\":1},\"findings\":[],\"freshness\":\"current\",\"pending\":false,\"position_encoding\":\"utf-16\",\"provider\":\"go\",\"reason\":null,\"report\":{\"diagnostics\":[],\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go\",\"version\":1},\"reported_version\":1,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"clean\",\"summary\":{\"complete\":true,\"errors\":0,\"hints\":0,\"information\":0,\"scope\":\"document\",\"total\":0,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":0,\"id\":\"0fac4f6d-123f-4a2d-ab40-0f68d5db0637\",\"result_bytes\":895,\"result_sha256\":\"f73d7e46746dc64ce8922e65b6a623279b5acd7c5db56d7838227e7a473f6621\"},\"version_verified\":true}"
+          }
+        ],
+        "structuredContent": {
+          "available": true,
+          "clean_build_proven": false,
+          "current_version": 1,
+          "document": {
+            "path": "sample.go",
+            "sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go",
+            "version": 1
+          },
+          "findings": [],
+          "freshness": "current",
+          "pending": false,
+          "position_encoding": "utf-16",
+          "provider": "go",
+          "reason": null,
+          "report": {
+            "diagnostics": [],
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go",
+            "version": 1
+          },
+          "reported_version": 1,
+          "source": "lsp_push",
+          "stale": false,
+          "status": "clean",
+          "summary": {
+            "complete": true,
+            "errors": 0,
+            "hints": 0,
+            "information": 0,
+            "scope": "document",
+            "total": 0,
+            "unknown": 0,
+            "warnings": 0
+          },
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "0fac4f6d-123f-4a2d-ab40-0f68d5db0637",
+            "result_bytes": 895,
+            "result_sha256": "f73d7e46746dc64ce8922e65b6a623279b5acd7c5db56d7838227e7a473f6621"
+          },
+          "version_verified": true
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "rename_symbol",
+    "arguments": {
+      "relative_path": "sample.go",
+      "name_path": "greet",
+      "new_name": "salute"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 9,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"8e14b6092643c3b9893744bb4e46063fea441ffe0f177512c647624ed4500a4a\",\"before_sha256\":\"2bb4de9c5c3927bfa3d87c359fd4553761391fe35d7ae310be1456a23e727041\",\"diff\":\"--- a/consumer.go\\n+++ b/consumer.go\\n@@ -1,2 +1,2 @@\\n package fixture\\n-func consume() string{return greet(\\\"Caller\\\")}\\n+func consume() string{return salute(\\\"Caller\\\")}\\n\",\"path\":\"consumer.go\"},{\"after_sha256\":\"19f3057ee8110aba7a3687c7ff535e7699798b8945c11bfce9aada93625186dc\",\"before_sha256\":\"63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04\",\"diff\":\"--- a/sample.go\\n+++ b/sample.go\\n@@ -1,3 +1,3 @@\\n package fixture\\n-func greet(name string) string{return \\\"Hi \\\"+name}\\n-func run() string{message:=greet(\\\"Odin\\\");return message}\\n+func salute(name string) string{return \\\"Hi \\\"+name}\\n+func run() string{message:=salute(\\\"Odin\\\");return message}\\n\",\"path\":\"sample.go\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":11,\"id\":\"770ae4f4-3962-4507-93a9-7578c12682c9\",\"result_bytes\":1036,\"result_sha256\":\"ef4cd1754eba0ae4441341db0cf133803e16d5f4febd73ad6fa0720695f649d3\"},\"transaction_id\":\"ae48db7a-7377-4b28-a276-fa2ec5b0beb9\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "8e14b6092643c3b9893744bb4e46063fea441ffe0f177512c647624ed4500a4a",
+              "before_sha256": "2bb4de9c5c3927bfa3d87c359fd4553761391fe35d7ae310be1456a23e727041",
+              "diff": "--- a/consumer.go\n+++ b/consumer.go\n@@ -1,2 +1,2 @@\n package fixture\n-func consume() string{return greet(\"Caller\")}\n+func consume() string{return salute(\"Caller\")}\n",
+              "path": "consumer.go"
+            },
+            {
+              "after_sha256": "19f3057ee8110aba7a3687c7ff535e7699798b8945c11bfce9aada93625186dc",
+              "before_sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+              "diff": "--- a/sample.go\n+++ b/sample.go\n@@ -1,3 +1,3 @@\n package fixture\n-func greet(name string) string{return \"Hi \"+name}\n-func run() string{message:=greet(\"Odin\");return message}\n+func salute(name string) string{return \"Hi \"+name}\n+func run() string{message:=salute(\"Odin\");return message}\n",
+              "path": "sample.go"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 11,
+            "id": "770ae4f4-3962-4507-93a9-7578c12682c9",
+            "result_bytes": 1036,
+            "result_sha256": "ef4cd1754eba0ae4441341db0cf133803e16d5f4febd73ad6fa0720695f649d3"
+          },
+          "transaction_id": "ae48db7a-7377-4b28-a276-fa2ec5b0beb9"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "transaction_preview",
+    "arguments": {
+      "transaction_id": "ae48db7a-7377-4b28-a276-fa2ec5b0beb9"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 10,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"8e14b6092643c3b9893744bb4e46063fea441ffe0f177512c647624ed4500a4a\",\"before_sha256\":\"2bb4de9c5c3927bfa3d87c359fd4553761391fe35d7ae310be1456a23e727041\",\"diff\":\"--- a/consumer.go\\n+++ b/consumer.go\\n@@ -1,2 +1,2 @@\\n package fixture\\n-func consume() string{return greet(\\\"Caller\\\")}\\n+func consume() string{return salute(\\\"Caller\\\")}\\n\",\"path\":\"consumer.go\"},{\"after_sha256\":\"19f3057ee8110aba7a3687c7ff535e7699798b8945c11bfce9aada93625186dc\",\"before_sha256\":\"63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04\",\"diff\":\"--- a/sample.go\\n+++ b/sample.go\\n@@ -1,3 +1,3 @@\\n package fixture\\n-func greet(name string) string{return \\\"Hi \\\"+name}\\n-func run() string{message:=greet(\\\"Odin\\\");return message}\\n+func salute(name string) string{return \\\"Hi \\\"+name}\\n+func run() string{message:=salute(\\\"Odin\\\");return message}\\n\",\"path\":\"sample.go\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":0,\"id\":\"ea42e1b0-4bd3-49f1-955c-236c78707013\",\"result_bytes\":1036,\"result_sha256\":\"ef4cd1754eba0ae4441341db0cf133803e16d5f4febd73ad6fa0720695f649d3\"},\"transaction_id\":\"ae48db7a-7377-4b28-a276-fa2ec5b0beb9\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "8e14b6092643c3b9893744bb4e46063fea441ffe0f177512c647624ed4500a4a",
+              "before_sha256": "2bb4de9c5c3927bfa3d87c359fd4553761391fe35d7ae310be1456a23e727041",
+              "diff": "--- a/consumer.go\n+++ b/consumer.go\n@@ -1,2 +1,2 @@\n package fixture\n-func consume() string{return greet(\"Caller\")}\n+func consume() string{return salute(\"Caller\")}\n",
+              "path": "consumer.go"
+            },
+            {
+              "after_sha256": "19f3057ee8110aba7a3687c7ff535e7699798b8945c11bfce9aada93625186dc",
+              "before_sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+              "diff": "--- a/sample.go\n+++ b/sample.go\n@@ -1,3 +1,3 @@\n package fixture\n-func greet(name string) string{return \"Hi \"+name}\n-func run() string{message:=greet(\"Odin\");return message}\n+func salute(name string) string{return \"Hi \"+name}\n+func run() string{message:=salute(\"Odin\");return message}\n",
+              "path": "sample.go"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "ea42e1b0-4bd3-49f1-955c-236c78707013",
+            "result_bytes": 1036,
+            "result_sha256": "ef4cd1754eba0ae4441341db0cf133803e16d5f4febd73ad6fa0720695f649d3"
+          },
+          "transaction_id": "ae48db7a-7377-4b28-a276-fa2ec5b0beb9"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "transaction_prepare",
+    "arguments": {
+      "changes": [
+        {
+          "path": "sample.go",
+          "expected_sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+          "content": "package fixture\nfunc greet(name string) string{return \"Hi \"+name}\nfunc run() string{message:=greet(\"Odin\");return message}\n\n// independent edit\n"
+        }
+      ]
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 11,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"042b33361c46a47b8ec2030e3f4320f38412b202c5f98136a295511d74d9eeb6\",\"before_sha256\":\"63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04\",\"diff\":\"--- a/sample.go\\n+++ b/sample.go\\n@@ -1,3 +1,5 @@\\n package fixture\\n func greet(name string) string{return \\\"Hi \\\"+name}\\n func run() string{message:=greet(\\\"Odin\\\");return message}\\n+\\n+// independent edit\\n\",\"path\":\"sample.go\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":5,\"id\":\"8d16a3cb-67c8-4997-8bb9-94f2b1a92a9e\",\"result_bytes\":572,\"result_sha256\":\"4083d0b9778e9e3a59bf089dbb92f2781f561ff470f2501c399e8b18362631f7\"},\"transaction_id\":\"13a0dfa7-a9e4-4d88-8cdf-0d815a714894\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "042b33361c46a47b8ec2030e3f4320f38412b202c5f98136a295511d74d9eeb6",
+              "before_sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+              "diff": "--- a/sample.go\n+++ b/sample.go\n@@ -1,3 +1,5 @@\n package fixture\n func greet(name string) string{return \"Hi \"+name}\n func run() string{message:=greet(\"Odin\");return message}\n+\n+// independent edit\n",
+              "path": "sample.go"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 5,
+            "id": "8d16a3cb-67c8-4997-8bb9-94f2b1a92a9e",
+            "result_bytes": 572,
+            "result_sha256": "4083d0b9778e9e3a59bf089dbb92f2781f561ff470f2501c399e8b18362631f7"
+          },
+          "transaction_id": "13a0dfa7-a9e4-4d88-8cdf-0d815a714894"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "transaction_preview",
+    "arguments": {
+      "transaction_id": "13a0dfa7-a9e4-4d88-8cdf-0d815a714894"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 12,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"042b33361c46a47b8ec2030e3f4320f38412b202c5f98136a295511d74d9eeb6\",\"before_sha256\":\"63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04\",\"diff\":\"--- a/sample.go\\n+++ b/sample.go\\n@@ -1,3 +1,5 @@\\n package fixture\\n func greet(name string) string{return \\\"Hi \\\"+name}\\n func run() string{message:=greet(\\\"Odin\\\");return message}\\n+\\n+// independent edit\\n\",\"path\":\"sample.go\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":0,\"id\":\"8f9c19c1-720a-4b7e-8caf-c0cdbd642e97\",\"result_bytes\":572,\"result_sha256\":\"4083d0b9778e9e3a59bf089dbb92f2781f561ff470f2501c399e8b18362631f7\"},\"transaction_id\":\"13a0dfa7-a9e4-4d88-8cdf-0d815a714894\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "042b33361c46a47b8ec2030e3f4320f38412b202c5f98136a295511d74d9eeb6",
+              "before_sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+              "diff": "--- a/sample.go\n+++ b/sample.go\n@@ -1,3 +1,5 @@\n package fixture\n func greet(name string) string{return \"Hi \"+name}\n func run() string{message:=greet(\"Odin\");return message}\n+\n+// independent edit\n",
+              "path": "sample.go"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "8f9c19c1-720a-4b7e-8caf-c0cdbd642e97",
+            "result_bytes": 572,
+            "result_sha256": "4083d0b9778e9e3a59bf089dbb92f2781f561ff470f2501c399e8b18362631f7"
+          },
+          "transaction_id": "13a0dfa7-a9e4-4d88-8cdf-0d815a714894"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "transaction_apply",
+    "arguments": {
+      "transaction_id": "13a0dfa7-a9e4-4d88-8cdf-0d815a714894"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 13,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":1,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":23,\"id\":\"598c86a3-8813-4134-954d-8f4dff12d822\",\"result_bytes\":114,\"result_sha256\":\"6bc9160d5f1a1d459af6740d03b177c0d33e081276d6481d41528d0c1680bcb8\"},\"transaction_id\":\"13a0dfa7-a9e4-4d88-8cdf-0d815a714894\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 1,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 23,
+            "id": "598c86a3-8813-4134-954d-8f4dff12d822",
+            "result_bytes": 114,
+            "result_sha256": "6bc9160d5f1a1d459af6740d03b177c0d33e081276d6481d41528d0c1680bcb8"
+          },
+          "transaction_id": "13a0dfa7-a9e4-4d88-8cdf-0d815a714894"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "transaction_apply",
+    "arguments": {
+      "transaction_id": "ae48db7a-7377-4b28-a276-fa2ec5b0beb9"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 14,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\":{\"code\":\"CONFLICT\",\"message\":\"File changed after preview: sample.go\"}}"
+          }
+        ],
+        "structuredContent": {
+          "error": {
+            "code": "CONFLICT",
+            "message": "File changed after preview: sample.go"
+          }
+        },
+        "isError": true
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "transaction_rollback",
+    "arguments": {
+      "transaction_id": "13a0dfa7-a9e4-4d88-8cdf-0d815a714894"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 15,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":1,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":32,\"id\":\"5ac27d7c-bb67-4c47-a769-d412c4174c49\",\"result_bytes\":163,\"result_sha256\":\"f31639662a166805c80bbea10e5092c9a8c7564e5bc91b3b168ae1fb77c1d2bf\"},\"transaction_id\":\"16df36fe-ccdc-4f9c-8223-9b2ed61277ff\",\"undo_of\":\"13a0dfa7-a9e4-4d88-8cdf-0d815a714894\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 1,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 32,
+            "id": "5ac27d7c-bb67-4c47-a769-d412c4174c49",
+            "result_bytes": 163,
+            "result_sha256": "f31639662a166805c80bbea10e5092c9a8c7564e5bc91b3b168ae1fb77c1d2bf"
+          },
+          "transaction_id": "16df36fe-ccdc-4f9c-8223-9b2ed61277ff",
+          "undo_of": "13a0dfa7-a9e4-4d88-8cdf-0d815a714894"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "get_symbols_overview",
+    "arguments": {
+      "relative_path": "sample.go"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 16,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend\":\"lsp\",\"language\":\"go\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":12,\"name\":\"greet\",\"name_path\":\"greet\",\"range\":{\"end\":{\"character\":49,\"line\":1},\"start\":{\"character\":0,\"line\":1}},\"relative_path\":\"sample.go\",\"selection_range\":{\"end\":{\"character\":10,\"line\":1},\"start\":{\"character\":5,\"line\":1}}},{\"kind\":12,\"name\":\"run\",\"name_path\":\"run\",\"range\":{\"end\":{\"character\":56,\"line\":2},\"start\":{\"character\":0,\"line\":2}},\"relative_path\":\"sample.go\",\"selection_range\":{\"end\":{\"character\":8,\"line\":2},\"start\":{\"character\":5,\"line\":2}}}],\"trace\":{\"elapsed_ms\":1,\"id\":\"d421faff-1b1e-4b79-96f9-0ab344d7c039\",\"result_bytes\":558,\"result_sha256\":\"6ea8a1a19c2457b9ab310d2d4e1981ae89e2a5a845a93a5a15fab59f165b537c\"},\"truncated\":false}"
+          }
+        ],
+        "structuredContent": {
+          "backend": "lsp",
+          "language": "go",
+          "next_offset": null,
+          "offset": 0,
+          "symbols": [
+            {
+              "kind": 12,
+              "name": "greet",
+              "name_path": "greet",
+              "range": {
+                "end": {
+                  "character": 49,
+                  "line": 1
+                },
+                "start": {
+                  "character": 0,
+                  "line": 1
+                }
+              },
+              "relative_path": "sample.go",
+              "selection_range": {
+                "end": {
+                  "character": 10,
+                  "line": 1
+                },
+                "start": {
+                  "character": 5,
+                  "line": 1
+                }
+              }
+            },
+            {
+              "kind": 12,
+              "name": "run",
+              "name_path": "run",
+              "range": {
+                "end": {
+                  "character": 56,
+                  "line": 2
+                },
+                "start": {
+                  "character": 0,
+                  "line": 2
+                }
+              },
+              "relative_path": "sample.go",
+              "selection_range": {
+                "end": {
+                  "character": 8,
+                  "line": 2
+                },
+                "start": {
+                  "character": 5,
+                  "line": 2
+                }
+              }
+            }
+          ],
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "d421faff-1b1e-4b79-96f9-0ab344d7c039",
+            "result_bytes": 558,
+            "result_sha256": "6ea8a1a19c2457b9ab310d2d4e1981ae89e2a5a845a93a5a15fab59f165b537c"
+          },
+          "truncated": false
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "rename_symbol",
+    "arguments": {
+      "relative_path": "sample.go",
+      "name_path": "greet",
+      "new_name": "salute"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 17,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"8e14b6092643c3b9893744bb4e46063fea441ffe0f177512c647624ed4500a4a\",\"before_sha256\":\"2bb4de9c5c3927bfa3d87c359fd4553761391fe35d7ae310be1456a23e727041\",\"diff\":\"--- a/consumer.go\\n+++ b/consumer.go\\n@@ -1,2 +1,2 @@\\n package fixture\\n-func consume() string{return greet(\\\"Caller\\\")}\\n+func consume() string{return salute(\\\"Caller\\\")}\\n\",\"path\":\"consumer.go\"},{\"after_sha256\":\"19f3057ee8110aba7a3687c7ff535e7699798b8945c11bfce9aada93625186dc\",\"before_sha256\":\"63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04\",\"diff\":\"--- a/sample.go\\n+++ b/sample.go\\n@@ -1,3 +1,3 @@\\n package fixture\\n-func greet(name string) string{return \\\"Hi \\\"+name}\\n-func run() string{message:=greet(\\\"Odin\\\");return message}\\n+func salute(name string) string{return \\\"Hi \\\"+name}\\n+func run() string{message:=salute(\\\"Odin\\\");return message}\\n\",\"path\":\"sample.go\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":11,\"id\":\"a6bbee7b-364d-4f2b-8304-2f8581e08c15\",\"result_bytes\":1036,\"result_sha256\":\"f0881fcf5f7475eb0c315fd4b6c33234cadd58cdef6b4e000ebca4fdbcdbaf62\"},\"transaction_id\":\"f8301f1a-bb6f-40c1-b19e-93e94e423fd0\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "8e14b6092643c3b9893744bb4e46063fea441ffe0f177512c647624ed4500a4a",
+              "before_sha256": "2bb4de9c5c3927bfa3d87c359fd4553761391fe35d7ae310be1456a23e727041",
+              "diff": "--- a/consumer.go\n+++ b/consumer.go\n@@ -1,2 +1,2 @@\n package fixture\n-func consume() string{return greet(\"Caller\")}\n+func consume() string{return salute(\"Caller\")}\n",
+              "path": "consumer.go"
+            },
+            {
+              "after_sha256": "19f3057ee8110aba7a3687c7ff535e7699798b8945c11bfce9aada93625186dc",
+              "before_sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+              "diff": "--- a/sample.go\n+++ b/sample.go\n@@ -1,3 +1,3 @@\n package fixture\n-func greet(name string) string{return \"Hi \"+name}\n-func run() string{message:=greet(\"Odin\");return message}\n+func salute(name string) string{return \"Hi \"+name}\n+func run() string{message:=salute(\"Odin\");return message}\n",
+              "path": "sample.go"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 11,
+            "id": "a6bbee7b-364d-4f2b-8304-2f8581e08c15",
+            "result_bytes": 1036,
+            "result_sha256": "f0881fcf5f7475eb0c315fd4b6c33234cadd58cdef6b4e000ebca4fdbcdbaf62"
+          },
+          "transaction_id": "f8301f1a-bb6f-40c1-b19e-93e94e423fd0"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "transaction_preview",
+    "arguments": {
+      "transaction_id": "f8301f1a-bb6f-40c1-b19e-93e94e423fd0"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 18,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"8e14b6092643c3b9893744bb4e46063fea441ffe0f177512c647624ed4500a4a\",\"before_sha256\":\"2bb4de9c5c3927bfa3d87c359fd4553761391fe35d7ae310be1456a23e727041\",\"diff\":\"--- a/consumer.go\\n+++ b/consumer.go\\n@@ -1,2 +1,2 @@\\n package fixture\\n-func consume() string{return greet(\\\"Caller\\\")}\\n+func consume() string{return salute(\\\"Caller\\\")}\\n\",\"path\":\"consumer.go\"},{\"after_sha256\":\"19f3057ee8110aba7a3687c7ff535e7699798b8945c11bfce9aada93625186dc\",\"before_sha256\":\"63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04\",\"diff\":\"--- a/sample.go\\n+++ b/sample.go\\n@@ -1,3 +1,3 @@\\n package fixture\\n-func greet(name string) string{return \\\"Hi \\\"+name}\\n-func run() string{message:=greet(\\\"Odin\\\");return message}\\n+func salute(name string) string{return \\\"Hi \\\"+name}\\n+func run() string{message:=salute(\\\"Odin\\\");return message}\\n\",\"path\":\"sample.go\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":0,\"id\":\"1c9b61c4-8279-46f4-ad15-a9dff3b3028f\",\"result_bytes\":1036,\"result_sha256\":\"f0881fcf5f7475eb0c315fd4b6c33234cadd58cdef6b4e000ebca4fdbcdbaf62\"},\"transaction_id\":\"f8301f1a-bb6f-40c1-b19e-93e94e423fd0\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "8e14b6092643c3b9893744bb4e46063fea441ffe0f177512c647624ed4500a4a",
+              "before_sha256": "2bb4de9c5c3927bfa3d87c359fd4553761391fe35d7ae310be1456a23e727041",
+              "diff": "--- a/consumer.go\n+++ b/consumer.go\n@@ -1,2 +1,2 @@\n package fixture\n-func consume() string{return greet(\"Caller\")}\n+func consume() string{return salute(\"Caller\")}\n",
+              "path": "consumer.go"
+            },
+            {
+              "after_sha256": "19f3057ee8110aba7a3687c7ff535e7699798b8945c11bfce9aada93625186dc",
+              "before_sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+              "diff": "--- a/sample.go\n+++ b/sample.go\n@@ -1,3 +1,3 @@\n package fixture\n-func greet(name string) string{return \"Hi \"+name}\n-func run() string{message:=greet(\"Odin\");return message}\n+func salute(name string) string{return \"Hi \"+name}\n+func run() string{message:=salute(\"Odin\");return message}\n",
+              "path": "sample.go"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "1c9b61c4-8279-46f4-ad15-a9dff3b3028f",
+            "result_bytes": 1036,
+            "result_sha256": "f0881fcf5f7475eb0c315fd4b6c33234cadd58cdef6b4e000ebca4fdbcdbaf62"
+          },
+          "transaction_id": "f8301f1a-bb6f-40c1-b19e-93e94e423fd0"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "transaction_apply",
+    "arguments": {
+      "transaction_id": "f8301f1a-bb6f-40c1-b19e-93e94e423fd0"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 19,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":2,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":24,\"id\":\"0c541459-adea-4d9c-b675-36b61d2e8780\",\"result_bytes\":114,\"result_sha256\":\"9ceb3bd00df53897348541d58a123177fe8c462005b96e01a3cd44849dab309f\"},\"transaction_id\":\"f8301f1a-bb6f-40c1-b19e-93e94e423fd0\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 2,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 24,
+            "id": "0c541459-adea-4d9c-b675-36b61d2e8780",
+            "result_bytes": 114,
+            "result_sha256": "9ceb3bd00df53897348541d58a123177fe8c462005b96e01a3cd44849dab309f"
+          },
+          "transaction_id": "f8301f1a-bb6f-40c1-b19e-93e94e423fd0"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "transaction_rollback",
+    "arguments": {
+      "transaction_id": "f8301f1a-bb6f-40c1-b19e-93e94e423fd0"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 20,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":2,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":34,\"id\":\"ebba53ad-76d2-4ecb-8e37-f9ddff2f2124\",\"result_bytes\":163,\"result_sha256\":\"8b01182770f57ff9146d9b0ad23597d89097ee9c3c23797565cde71a7ac7a373\"},\"transaction_id\":\"939667ec-2b75-4678-a660-5c7e3f6fe177\",\"undo_of\":\"f8301f1a-bb6f-40c1-b19e-93e94e423fd0\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 2,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 34,
+            "id": "ebba53ad-76d2-4ecb-8e37-f9ddff2f2124",
+            "result_bytes": 163,
+            "result_sha256": "8b01182770f57ff9146d9b0ad23597d89097ee9c3c23797565cde71a7ac7a373"
+          },
+          "transaction_id": "939667ec-2b75-4678-a660-5c7e3f6fe177",
+          "undo_of": "f8301f1a-bb6f-40c1-b19e-93e94e423fd0"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "transaction_prepare",
+    "arguments": {
+      "changes": [
+        {
+          "path": "sample.go",
+          "expected_sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+          "content": "package fixture\nfunc greet(name string) string{return \"Hi \"+name}\nfunc run() string{message:=greet(\"Odin\");return message}\n\nfunc odin_broken( {\n"
+        }
+      ]
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 21,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"9844e5dd837e5fc4e81f0933e251c04b8191a3838a2393ce5e212ea7f92ef29a\",\"before_sha256\":\"63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04\",\"diff\":\"--- a/sample.go\\n+++ b/sample.go\\n@@ -1,3 +1,5 @@\\n package fixture\\n func greet(name string) string{return \\\"Hi \\\"+name}\\n func run() string{message:=greet(\\\"Odin\\\");return message}\\n+\\n+func odin_broken( {\\n\",\"path\":\"sample.go\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":5,\"id\":\"959d854e-06fd-4030-9bfd-07d7a2d0b394\",\"result_bytes\":572,\"result_sha256\":\"54ccbdca8b52ce9402c557dd086b884b6f11b3e83f6b2589927a8829b8c0e631\"},\"transaction_id\":\"a5d9a12b-5863-4292-a412-bc57fb44f179\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "9844e5dd837e5fc4e81f0933e251c04b8191a3838a2393ce5e212ea7f92ef29a",
+              "before_sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+              "diff": "--- a/sample.go\n+++ b/sample.go\n@@ -1,3 +1,5 @@\n package fixture\n func greet(name string) string{return \"Hi \"+name}\n func run() string{message:=greet(\"Odin\");return message}\n+\n+func odin_broken( {\n",
+              "path": "sample.go"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 5,
+            "id": "959d854e-06fd-4030-9bfd-07d7a2d0b394",
+            "result_bytes": 572,
+            "result_sha256": "54ccbdca8b52ce9402c557dd086b884b6f11b3e83f6b2589927a8829b8c0e631"
+          },
+          "transaction_id": "a5d9a12b-5863-4292-a412-bc57fb44f179"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "transaction_preview",
+    "arguments": {
+      "transaction_id": "a5d9a12b-5863-4292-a412-bc57fb44f179"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 22,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"9844e5dd837e5fc4e81f0933e251c04b8191a3838a2393ce5e212ea7f92ef29a\",\"before_sha256\":\"63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04\",\"diff\":\"--- a/sample.go\\n+++ b/sample.go\\n@@ -1,3 +1,5 @@\\n package fixture\\n func greet(name string) string{return \\\"Hi \\\"+name}\\n func run() string{message:=greet(\\\"Odin\\\");return message}\\n+\\n+func odin_broken( {\\n\",\"path\":\"sample.go\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":0,\"id\":\"da4838f9-e18b-49fb-b64b-e3611b83a96c\",\"result_bytes\":572,\"result_sha256\":\"54ccbdca8b52ce9402c557dd086b884b6f11b3e83f6b2589927a8829b8c0e631\"},\"transaction_id\":\"a5d9a12b-5863-4292-a412-bc57fb44f179\"}"
+          }
+        ],
+        "structuredContent": {
+          "atomic_visibility": "per_file_only",
+          "files": [
+            {
+              "after_sha256": "9844e5dd837e5fc4e81f0933e251c04b8191a3838a2393ce5e212ea7f92ef29a",
+              "before_sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+              "diff": "--- a/sample.go\n+++ b/sample.go\n@@ -1,3 +1,5 @@\n package fixture\n func greet(name string) string{return \"Hi \"+name}\n func run() string{message:=greet(\"Odin\");return message}\n+\n+func odin_broken( {\n",
+              "path": "sample.go"
+            }
+          ],
+          "journaled_recovery": true,
+          "phase": "draft",
+          "requires_apply": true,
+          "trace": {
+            "elapsed_ms": 0,
+            "id": "da4838f9-e18b-49fb-b64b-e3611b83a96c",
+            "result_bytes": 572,
+            "result_sha256": "54ccbdca8b52ce9402c557dd086b884b6f11b3e83f6b2589927a8829b8c0e631"
+          },
+          "transaction_id": "a5d9a12b-5863-4292-a412-bc57fb44f179"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "transaction_apply",
+    "arguments": {
+      "transaction_id": "a5d9a12b-5863-4292-a412-bc57fb44f179"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 23,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":1,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":21,\"id\":\"1ebfe286-1864-49a2-a2ce-7171d1403c99\",\"result_bytes\":114,\"result_sha256\":\"a936d1358872ec257789c7782b3d568d385a93190ecb1e90a2325e38296f842c\"},\"transaction_id\":\"a5d9a12b-5863-4292-a412-bc57fb44f179\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 1,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 21,
+            "id": "1ebfe286-1864-49a2-a2ce-7171d1403c99",
+            "result_bytes": 114,
+            "result_sha256": "a936d1358872ec257789c7782b3d568d385a93190ecb1e90a2325e38296f842c"
+          },
+          "transaction_id": "a5d9a12b-5863-4292-a412-bc57fb44f179"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "get_diagnostics_for_file",
+    "arguments": {
+      "relative_path": "sample.go"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 24,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"available\":true,\"clean_build_proven\":false,\"current_version\":9,\"document\":{\"path\":\"sample.go\",\"sha256\":\"9844e5dd837e5fc4e81f0933e251c04b8191a3838a2393ce5e212ea7f92ef29a\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go\",\"version\":9},\"findings\":[{\"document_version\":9,\"lsp_severity\":1,\"message\":\"expected ')', found '{'\",\"provider\":\"go\",\"range\":{\"end\":{\"character\":18,\"line\":4},\"start\":{\"character\":18,\"line\":4}},\"relative_path\":\"sample.go\",\"rule_id\":null,\"severity\":\"error\",\"source\":\"syntax\",\"source_sha256\":\"9844e5dd837e5fc4e81f0933e251c04b8191a3838a2393ce5e212ea7f92ef29a\",\"status\":\"current\"}],\"freshness\":\"current\",\"pending\":false,\"position_encoding\":\"utf-16\",\"provider\":\"go\",\"reason\":null,\"report\":{\"diagnostics\":[{\"message\":\"expected ')', found '{'\",\"range\":{\"end\":{\"character\":18,\"line\":4},\"start\":{\"character\":18,\"line\":4}},\"severity\":1,\"source\":\"syntax\"}],\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go\",\"version\":9},\"reported_version\":9,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"errors\",\"summary\":{\"complete\":true,\"errors\":1,\"hints\":0,\"information\":0,\"scope\":\"document\",\"total\":1,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":1,\"id\":\"045bd5ff-89c4-41c3-92d6-3be2ff480e97\",\"result_bytes\":1389,\"result_sha256\":\"baf65e693ace3d821fd3603b29994bbfbbaae8ecde723870b8283e7996c572ef\"},\"version_verified\":true}"
+          }
+        ],
+        "structuredContent": {
+          "available": true,
+          "clean_build_proven": false,
+          "current_version": 9,
+          "document": {
+            "path": "sample.go",
+            "sha256": "9844e5dd837e5fc4e81f0933e251c04b8191a3838a2393ce5e212ea7f92ef29a",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go",
+            "version": 9
+          },
+          "findings": [
+            {
+              "document_version": 9,
+              "lsp_severity": 1,
+              "message": "expected ')', found '{'",
+              "provider": "go",
+              "range": {
+                "end": {
+                  "character": 18,
+                  "line": 4
+                },
+                "start": {
+                  "character": 18,
+                  "line": 4
+                }
+              },
+              "relative_path": "sample.go",
+              "rule_id": null,
+              "severity": "error",
+              "source": "syntax",
+              "source_sha256": "9844e5dd837e5fc4e81f0933e251c04b8191a3838a2393ce5e212ea7f92ef29a",
+              "status": "current"
+            }
+          ],
+          "freshness": "current",
+          "pending": false,
+          "position_encoding": "utf-16",
+          "provider": "go",
+          "reason": null,
+          "report": {
+            "diagnostics": [
+              {
+                "message": "expected ')', found '{'",
+                "range": {
+                  "end": {
+                    "character": 18,
+                    "line": 4
+                  },
+                  "start": {
+                    "character": 18,
+                    "line": 4
+                  }
+                },
+                "severity": 1,
+                "source": "syntax"
+              }
+            ],
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go",
+            "version": 9
+          },
+          "reported_version": 9,
+          "source": "lsp_push",
+          "stale": false,
+          "status": "errors",
+          "summary": {
+            "complete": true,
+            "errors": 1,
+            "hints": 0,
+            "information": 0,
+            "scope": "document",
+            "total": 1,
+            "unknown": 0,
+            "warnings": 0
+          },
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "045bd5ff-89c4-41c3-92d6-3be2ff480e97",
+            "result_bytes": 1389,
+            "result_sha256": "baf65e693ace3d821fd3603b29994bbfbbaae8ecde723870b8283e7996c572ef"
+          },
+          "version_verified": true
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "transaction_rollback",
+    "arguments": {
+      "transaction_id": "a5d9a12b-5863-4292-a412-bc57fb44f179"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 25,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"backend_sync_warnings\":[],\"files\":1,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":34,\"id\":\"014f6c8f-8ff5-4a0f-8291-94a82796e8d4\",\"result_bytes\":163,\"result_sha256\":\"7181d8132deb4322bd549ac1a432b9a016908117362ebfe0d11236a640401d8c\"},\"transaction_id\":\"c921bcfe-eef0-4d81-8099-cb5ee07c80ff\",\"undo_of\":\"a5d9a12b-5863-4292-a412-bc57fb44f179\"}"
+          }
+        ],
+        "structuredContent": {
+          "backend_sync_warnings": [],
+          "files": 1,
+          "phase": "committed",
+          "trace": {
+            "elapsed_ms": 34,
+            "id": "014f6c8f-8ff5-4a0f-8291-94a82796e8d4",
+            "result_bytes": 163,
+            "result_sha256": "7181d8132deb4322bd549ac1a432b9a016908117362ebfe0d11236a640401d8c"
+          },
+          "transaction_id": "c921bcfe-eef0-4d81-8099-cb5ee07c80ff",
+          "undo_of": "a5d9a12b-5863-4292-a412-bc57fb44f179"
+        },
+        "isError": false
+      }
+    }
+  },
+  {
+    "language": "go",
+    "tool": "get_diagnostics_for_file",
+    "arguments": {
+      "relative_path": "sample.go"
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 26,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"available\":true,\"clean_build_proven\":false,\"current_version\":10,\"document\":{\"path\":\"sample.go\",\"sha256\":\"63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04\",\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go\",\"version\":10},\"findings\":[],\"freshness\":\"current\",\"pending\":false,\"position_encoding\":\"utf-16\",\"provider\":\"go\",\"reason\":null,\"report\":{\"diagnostics\":[],\"uri\":\"file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go\",\"version\":10},\"reported_version\":10,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"clean\",\"summary\":{\"complete\":true,\"errors\":0,\"hints\":0,\"information\":0,\"scope\":\"document\",\"total\":0,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":1,\"id\":\"c321a9e1-5f33-4fda-ad04-fd0e1ea907d6\",\"result_bytes\":899,\"result_sha256\":\"08a17a6cdc16decf8dc588509c14d0d34dbcf0763c1a651d8756197a31bb8ec6\"},\"version_verified\":true}"
+          }
+        ],
+        "structuredContent": {
+          "available": true,
+          "clean_build_proven": false,
+          "current_version": 10,
+          "document": {
+            "path": "sample.go",
+            "sha256": "63895b4b6a05216696f2f90f3964f1fa2e703232a2721ae8acdafa2ac9b43e04",
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go",
+            "version": 10
+          },
+          "findings": [],
+          "freshness": "current",
+          "pending": false,
+          "position_encoding": "utf-16",
+          "provider": "go",
+          "reason": null,
+          "report": {
+            "diagnostics": [],
+            "uri": "file:///C:/Users/steven/AppData/Local/Temp/odin-four-lsp-3db6cad776cc4d80a17076ca6796111e/final-installed-languages-v3.fixtures/%E5%B0%88%E6%A1%88%20go_a/sample.go",
+            "version": 10
+          },
+          "reported_version": 10,
+          "source": "lsp_push",
+          "stale": false,
+          "status": "clean",
+          "summary": {
+            "complete": true,
+            "errors": 0,
+            "hints": 0,
+            "information": 0,
+            "scope": "document",
+            "total": 0,
+            "unknown": 0,
+            "warnings": 0
+          },
+          "trace": {
+            "elapsed_ms": 1,
+            "id": "c321a9e1-5f33-4fda-ad04-fd0e1ea907d6",
+            "result_bytes": 899,
+            "result_sha256": "08a17a6cdc16decf8dc588509c14d0d34dbcf0763c1a651d8756197a31bb8ec6"
+          },
+          "version_verified": true
+        },
+        "isError": false
+      }
+    }
+  }
+]

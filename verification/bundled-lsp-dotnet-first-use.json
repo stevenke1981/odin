@@ -1,5 +1,5 @@
 {
-  "status": "IMPLEMENTED_PENDING_RETEST",
+  "status": "PASS_WITH_RETAINED_PRIOR_SIDE_EFFECT_EVIDENCE",
   "cause": "C# fixture direct dotnet restore inherited default SDK first-use settings and registered this task private CLI home in persistent user PATH while final-candidate2 lifecycle ran.",
   "source_sha256": {
     "packaging/setup-lsps.mjs": "094a036f50057d3ea74355d38348b240c8c079eeaf6aa102d8c37dbc907a9634",
@@ -61,12 +61,38 @@
     "DOTNET_GENERATE_ASPNET_CERTIFICATE": "false"
   },
   "certificate_limitation": "A prior fixture restore reported development certificate installation. No pre-task certificate inventory exists, so no certificate was removed. Subsequent runs explicitly disable generation.",
-  "independent_review": "SOURCE_PASS",
+  "independent_review": "SOURCE_AND_FINAL_EVIDENCE_PASS",
   "new_payload_build": {
     "status": "PASS",
-    "receipt": "verification/bundled-lsp-build-receipt.json",
     "builder_sha256": "c027c38fa7189bd477616e8c2710d2e53d3ccc2f4faf57b7671fcd00a9fe9643",
     "persistent_user_path_unchanged": true
   },
-  "new_package_lifecycle": "NOT_RUN"
+  "new_package_lifecycle": {
+    "status": "PASS",
+    "installer_sha256": "c3f7452c0af8868657b8efc3be89dbc9aceffbd6904553f561060b7bfca8b448",
+    "path_observation_phases": [
+      "before",
+      "after_portable",
+      "after_install",
+      "after_reinstall",
+      "after_uninstall"
+    ]
+  },
+  "new_semantic_run": {
+    "status": "PASS",
+    "driver_sha256": "280a756f953d859bf742e5a1b084923c8e390d3671973cd394124088719c794f",
+    "persistent_user_path_unchanged": "PASS"
+  },
+  "certificate_store_after_fix": {
+    "status": "PASS",
+    "scope": "POST_FIX_BEFORE_PRODUCTION_UPGRADE_TO_AFTER_FINAL_LIFECYCLE_AND_SEMANTIC_RUN",
+    "certificate_store_unchanged": true,
+    "before_count": 1,
+    "after_count": 1,
+    "before_canonical_sha256": "e1582fe2ee98c0ee93ccd8a4386826cf2910f0d53598ec4c8d30e401b3e696d7",
+    "after_canonical_sha256": "e1582fe2ee98c0ee93ccd8a4386826cf2910f0d53598ec4c8d30e401b3e696d7",
+    "pre_task_certificate_inventory": "NOT_RUN",
+    "certificate_removal": "NOT_RUN",
+    "private_key_material_read": false
+  }
 }

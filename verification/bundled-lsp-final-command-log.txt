@@ -1,0 +1,603 @@
+
+===== clean-release-build.log RAW SHA256 b721ec2c499f740e146b45a68c302ffca1cb536e64e793e8c38c6c866a0dacf0 =====
+   Compiling odin-agent v0.2.0 (E:\odin\crates\odin)
+    Finished `release` profile [optimized] target(s) in 1m 16s
+
+===== payload-final-command.log RAW SHA256 137e4929b34cdf97def1d7dba6343f0dfda9aee14e1801098e57dfa625d1c67b =====
+{"status": "PASS", "exit_code": 0, "receipt": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\backends.build-receipt.json", "output": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\production3\\backends"}
+
+===== package-v3-command.log RAW SHA256 ecfd0fe07dd2d6fd2765b88a2f26ce98b824d1f3ca957c98701efffefe5fcd02 =====
+{
+    "scope":  "WINDOWS_NATIVE_PACKAGE",
+    "portable":  "PASS",
+    "installer_compile":  "PASS",
+    "installer_lifecycle":  "NOT_RUN",
+    "binary_sha256":  "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+    "build":  {
+                  "compiler":  "rustc 1.90.0 (1159e78c4 2025-09-14)",
+                  "external_tool_bridge":  false,
+                  "model_token_usage":  "UNKNOWN",
+                  "name":  "Odin",
+                  "profile":  "release",
+                  "revision":  "5c08e65a41a1e272470a938e5e3cd79185aee4ee",
+                  "schema_version":  1,
+                  "standalone":  true,
+                  "target":  "x86_64-pc-windows-msvc",
+                  "tracked_source_dirty":  false,
+                  "version":  "0.2.0"
+              },
+    "staging":  "C:\\OdinQA\\p-b3c57a8d\\.stage-3c44eccacd7e43b3b6c34030f46b71a8",
+    "artifacts":  [
+                      {
+                          "path":  "C:\\OdinQA\\p-b3c57a8d\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+                          "sha256":  "8846c09773edc784a486bc014cdbddd38f99b0964125351fb1fc7781b615b756"
+                      },
+                      {
+                          "path":  "C:\\OdinQA\\p-b3c57a8d\\odin-0.2.0-windows-x64-setup.exe",
+                          "sha256":  "c3f7452c0af8868657b8efc3be89dbc9aceffbd6904553f561060b7bfca8b448"
+                      }
+                  ],
+    "signed":  false,
+    "linux_macos_native":  "NOT_RUN",
+    "compiler":  {
+                     "path":  "C:\\Program Files\\Inno Setup 7\\ISCC.exe",
+                     "version":  "7.1.0",
+                     "sha256":  "d06ebd38f38e3cee60a3c50cc45bd449d77e0bc6a5cabc607ea9886808e4de1a"
+                 },
+    "runtime_dependencies":  {
+                                 "minimum_os":  "Windows 10 x64 or Windows 11 x64 with OS-provided UCRT",
+                                 "app_local":  [
+                                                   {
+                                                       "path":  "vcruntime140.dll",
+                                                       "source":  "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Redist\\MSVC\\14.44.35112\\x64\\Microsoft.VC143.CRT\\vcruntime140.dll",
+                                                       "version":  "14.44.35211.0",
+                                                       "sha256":  "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+                                                       "authenticode":  "Valid",
+                                                       "signer":  "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+                                                       "redistribution":  "https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution"
+                                                   }
+                                               ],
+                                 "os_provided":  [
+                                                     "api-ms-win-core-synch-l1-2-0.dll",
+                                                     "api-ms-win-crt-convert-l1-1-0.dll",
+                                                     "api-ms-win-crt-heap-l1-1-0.dll",
+                                                     "api-ms-win-crt-locale-l1-1-0.dll",
+                                                     "api-ms-win-crt-math-l1-1-0.dll",
+                                                     "api-ms-win-crt-runtime-l1-1-0.dll",
+                                                     "api-ms-win-crt-stdio-l1-1-0.dll",
+                                                     "api-ms-win-crt-string-l1-1-0.dll",
+                                                     "api-ms-win-crt-time-l1-1-0.dll",
+                                                     "api-ms-win-crt-utility-l1-1-0.dll",
+                                                     "bcryptprimitives.dll",
+                                                     "kernel32.dll",
+                                                     "ntdll.dll",
+                                                     "userenv.dll",
+                                                     "ws2_32.dll"
+                                                 ],
+                                 "global_runtime_installation":  false
+                             },
+    "lsp_payload":  {
+                        "manifest_sha256":  "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55",
+                        "files":  32730,
+                        "components":  [
+                                           {
+                                               "id":  "basedpyright",
+                                               "integrity":  "sha512-9uld8+5tZC2Gxf8nIynyunK0N4xn01W1ApzLMXDAcuA8uJq2QSfldYn9gSbxn9MWR8wmHDo7GaEHLhlnLFHaJA==",
+                                               "source":  "https://registry.npmjs.org/basedpyright/-/basedpyright-1.40.2.tgz",
+                                               "version":  "1.40.2"
+                                           },
+                                           {
+                                               "id":  "bash-language-server",
+                                               "integrity":  "sha512-F3g0hKZhCiKbLUf9wkrST6+ZypsHvJqaJxw/+J7WK2ywhFyc8+7jSHSTU1UDYncZkyWgbKV6+eZy5qWTZtoXww==",
+                                               "source":  "https://registry.npmjs.org/bash-language-server/-/bash-language-server-5.8.1.tgz",
+                                               "version":  "5.8.1"
+                                           },
+                                           {
+                                               "id":  "csharp-ls",
+                                               "sha256":  "8f815e4f22674106a8244beba07e4b4b062e31528e404aa8489312effb8c0e0c",
+                                               "source":  "https://api.nuget.org/v3-flatcontainer/csharp-ls/0.28.0/csharp-ls.0.28.0.nupkg",
+                                               "version":  "0.28.0"
+                                           },
+                                           {
+                                               "id":  "dotnet",
+                                               "sha256":  "24d057ab968986a9d7c7a01606b2a0192cbe6485221ba38e9c685522e93d8798",
+                                               "source":  "https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.402/dotnet-sdk-10.0.402-win-x64.zip",
+                                               "version":  "10.0.402"
+                                           },
+                                           {
+                                               "id":  "go",
+                                               "sha256":  "f26081f438319757f8a1b46d7d0b2c5ec7583d4038e485e0aa725cfde7885fff",
+                                               "source":  "https://go.dev/dl/go1.27.3.windows-amd64.zip",
+                                               "version":  "1.27.3"
+                                           },
+                                           {
+                                               "id":  "gopls",
+                                               "sha256":  "df2f78d456011cc1618ced854769ff8a07914549291cc519ac4293dbcadb4e14",
+                                               "source":  "https://proxy.golang.org/golang.org/x/tools/gopls/@v/v0.24.0.info",
+                                               "version":  "0.24.0"
+                                           },
+                                           {
+                                               "id":  "lua-language-server",
+                                               "sha256":  "4a3dc851b3b31e7b75a23f645d1ba4a2137579a55f5fa4edbb17a3e2a6254044",
+                                               "source":  "https://github.com/LuaLS/lua-language-server/releases/download/3.19.2/lua-language-server-3.19.2-win32-x64.zip",
+                                               "version":  "3.19.2"
+                                           },
+                                           {
+                                               "id":  "node",
+                                               "sha256":  "158f7685b44de51f6c0df1d153526cbcd3e1bc739a8dfc607721cef75de9e541",
+                                               "source":  "https://nodejs.org/dist/v24.21.0/node-v24.21.0-win-x64.zip",
+                                               "version":  "24.21.0"
+                                           },
+                                           {
+                                               "id":  "smol-toml",
+                                               "integrity":  "sha512-j7WyPdf0CJoutMzMoPLF/bVXHtKZIT9Rb4eGeEbWw8X2t5oirjPgpL+OpaENZrILYaXqYwnVH+qgUwVbl+pUJQ==",
+                                               "source":  "https://registry.npmjs.org/smol-toml/-/smol-toml-1.9.1.tgz",
+                                               "version":  "1.9.1"
+                                           },
+                                           {
+                                               "id":  "typescript",
+                                               "integrity":  "sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==",
+                                               "source":  "https://registry.npmjs.org/typescript/-/typescript-6.0.3.tgz",
+                                               "version":  "6.0.3"
+                                           },
+                                           {
+                                               "id":  "typescript-language-server",
+                                               "integrity":  "sha512-Ph7Ql+xkUJvMamnkh1h+aKP6HxLR7lrWIYkPn9/LZBkJdJZgtIj7OoVhkDYtQ7zFPTPmqZHOVXaUKGyz9M2q1Q==",
+                                               "source":  "https://registry.npmjs.org/typescript-language-server/-/typescript-language-server-6.0.2.tgz",
+                                               "version":  "6.0.2"
+                                           }
+                                       ],
+                        "integrity":  "PASS",
+                        "backend_health":  "NOT_RUN",
+                        "semantic_acceptance":  "NOT_RUN"
+                    },
+    "packaging_source_revision":  "1cf8f991d7ab1d90711c820ea027a461a2f1e677"
+}
+
+===== final-lifecycle-v3-command.log RAW SHA256 aacbaeb3f178d61a247de450aec02951a23a8c4c9d0c16f90f43f349781c8086 =====
+{
+  "scope": "ISOLATED_WINDOWS_INSTALL_REINSTALL_UNINSTALL",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "portable_safe_member_paths",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_inventory_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_binary_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_lsp_setup_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_setup_result:portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_health:portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_languages:portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_generated_host_validates",
+      "status": "PASS"
+    },
+    {
+      "name": "installer_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_binary_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_metadata_matches_portable",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_inventory_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_setup_result:lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_health:lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_languages:lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_generated_host_validates",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_fresh_host_has_no_elevated_grants",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_installed_bundle_manifest_matches",
+      "status": "PASS"
+    },
+    {
+      "name": "shipped_template_permissions_disabled",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_tools_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_tool_contracts",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_runtime_signature:vcruntime140.dll",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_runtime_loaded_app_local",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_safe_default_configuration",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_setup_result:lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_health:lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_languages:lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_preserves_host_content",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_preserves_user_file",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_inventory_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "uninstaller_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "owned_binary_removed",
+      "status": "PASS"
+    },
+    {
+      "name": "owned_inventory_payload_removed",
+      "status": "PASS"
+    },
+    {
+      "name": "uninstall_preserves_user_file",
+      "status": "PASS"
+    },
+    {
+      "name": "uninstall_preserves_external_host",
+      "status": "PASS"
+    },
+    {
+      "name": "operator_path_unchanged",
+      "status": "PASS"
+    }
+  ],
+  "commands": [
+    {
+      "name": "portable_lsp_setup",
+      "exit_code": 0,
+      "receipt": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89\\portable-lsp-receipt.json"
+    },
+    {
+      "name": "portable_host_validate",
+      "exit_code": 0
+    },
+    {
+      "name": "install",
+      "exit_code": 0,
+      "log": "install.log"
+    },
+    {
+      "name": "installed_host_validate",
+      "exit_code": 0
+    },
+    {
+      "name": "reinstall",
+      "exit_code": 0,
+      "log": "reinstall.log"
+    },
+    {
+      "name": "uninstall",
+      "exit_code": 0,
+      "log": "uninstall.log"
+    }
+  ],
+  "operator_path_observations": [
+    {
+      "phase": "before",
+      "observed_at_utc": "2026-10-22T02:06:04.6185173Z",
+      "user_path_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "user_path_raw_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "process_path_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809"
+    },
+    {
+      "phase": "after_portable",
+      "observed_at_utc": "2026-10-22T02:12:10.0912250Z",
+      "user_path_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "user_path_raw_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "process_path_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809"
+    },
+    {
+      "phase": "after_install",
+      "observed_at_utc": "2026-10-22T02:13:41.9051947Z",
+      "user_path_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "user_path_raw_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "process_path_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809"
+    },
+    {
+      "phase": "after_reinstall",
+      "observed_at_utc": "2026-10-22T02:15:50.9640388Z",
+      "user_path_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "user_path_raw_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "process_path_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809"
+    },
+    {
+      "phase": "after_uninstall",
+      "observed_at_utc": "2026-10-22T02:16:37.1194158Z",
+      "user_path_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "user_path_raw_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "process_path_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809"
+    }
+  ],
+  "error": null,
+  "installer_sha256": "c3f7452c0af8868657b8efc3be89dbc9aceffbd6904553f561060b7bfca8b448",
+  "portable_sha256": "8846c09773edc784a486bc014cdbddd38f99b0964125351fb1fc7781b615b756",
+  "build": {
+    "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "external_tool_bridge": false,
+    "model_token_usage": "UNKNOWN",
+    "name": "Odin",
+    "profile": "release",
+    "revision": "5c08e65a41a1e272470a938e5e3cd79185aee4ee",
+    "schema_version": 1,
+    "standalone": true,
+    "target": "x86_64-pc-windows-msvc",
+    "tracked_source_dirty": false,
+    "version": "0.2.0"
+  },
+  "inventory_files": 32787,
+  "qa_directory": "C:\\OdinQA\\q-37352da7\\dist\\installer-qa-99f682ee8fee494e9f1466aa6f5f1a89",
+  "interruption_rollback": "NOT_RUN",
+  "cross_version_upgrade": "NOT_RUN",
+  "lsp_semantic_acceptance": "NOT_RUN",
+  "lsp_version_health": "See source-bound install receipts",
+  "native_binary_expected_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+  "operator_path_evidence_note": "Actual raw/expanded registry and process PATH snapshots are retained privately; public view exposes UTF-8 SHA256 for each observation."
+}
+[Public PATH-hash view; complete original log retained at the recorded raw path/hash.]
+
+===== final-semantic-v3-command.log RAW SHA256 c0fc9defeab6167d43eaf654a02de4555cc3dde026c98fdb6b0268ce37745a80 =====
+{"language": "python", "status": "PASS", "optional_status": "PASS"}
+{"language": "go", "status": "PASS", "optional_status": "PASS"}
+{"language": "csharp", "status": "PASS", "optional_status": "PASS"}
+{"language": "lua", "status": "PASS", "optional_status": "PASS"}
+{"language": "javascript", "status": "PASS", "optional_status": "PARTIAL"}
+{"language": "typescript", "status": "PASS", "optional_status": "PARTIAL"}
+{"language": "bash", "status": "PASS", "optional_status": "PARTIAL"}
+
+===== final-entry-v3-command.log RAW SHA256 adde1ed92acc3ece04fd588809bcbaafaaedc776b11b4c0b9bff8bd5fa8936d1 =====
+{"status": "PASS", "checks": [{"name": "selected_runtime", "status": "PASS"}, {"name": "installed_binary_hash", "status": "PASS"}, {"name": "actual_entry_initialize", "status": "PASS"}, {"name": "cwd_binding", "status": "PASS"}, {"name": "eight_profiles", "status": "PASS"}, {"name": "tool_version", "status": "PASS"}, {"name": "real_rust_retained", "status": "PASS"}], "rust_symbols": 13}
+
+===== final-workspace-smoke.log RAW SHA256 3b491529c536fd33fd3a1ccef2ae2e69e1d3e54d10306e181e70bdc6a2c50317 =====
+{"scope": "REAL_WINDOWS_OR_NATIVE_BINARY_WORKSPACE_CLI_AND_MCP", "status": "PASS", "platform": "Windows-11-10.0.26300-SP0", "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8", "checks": [{"name": "cli_exit:. analyze", "status": "PASS"}, {"name": "analysis_live_no_execution", "status": "PASS"}, {"name": "no_grants", "status": "PASS"}, {"name": "cli_exit:. analyze", "status": "PASS"}, {"name": "absolute_host_required", "status": "PASS"}, {"name": "cli_exit:. analyze", "status": "PASS"}, {"name": "cli_exit:. analyze", "status": "PASS"}, {"name": "cli_exit:--client codex", "status": "PASS"}, {"name": "setup_keeps_literal_dot", "status": "PASS"}, {"name": "initialize", "status": "PASS"}, {"name": "initialize", "status": "PASS"}, {"name": "tool:list_projects", "status": "PASS"}, {"name": "tool:list_projects", "status": "PASS"}, {"name": "one_launch_project", "status": "PASS"}, {"name": "distinct_stable_ids", "status": "PASS"}, {"name": "tool:read_file", "status": "PASS"}, {"name": "cwd_alpha", "status": "PASS"}, {"name": "tool:read_file", "status": "PASS"}, {"name": "cwd_beta", "status": "PASS"}, {"name": "legacy_not_selected", "status": "PASS"}, {"name": "tool:read_file", "status": "PASS"}, {"name": "tool:create_text_file", "status": "PASS"}, {"name": "tool:project_analysis", "status": "PASS"}, {"name": "tool:project_analysis", "status": "PASS"}, {"name": "live_add_delete", "status": "PASS"}, {"name": "live_manifest_hash", "status": "PASS"}, {"name": "backend_gap", "status": "PASS"}, {"name": "tool:project_analysis", "status": "PASS"}, {"name": "state_namespaces", "status": "PASS"}, {"name": "cli_exit:C:\\Users\\steven\\AppData\\Local\\Temp\\odin-workspace-si56med9\\beta\\client.toml --apply", "status": "PASS"}, {"name": "cli_exit:C:\\Users\\steven\\AppData\\Local\\Temp\\odin-workspace-si56med9\\sigma\\AGENTS.md --apply", "status": "PASS"}, {"name": "other_roots_not_written", "status": "PASS"}, {"name": "cli_exit:C:\\Users\\steven\\AppData\\Local\\Temp\\odin-workspace-si56med9\\state\\projects\\ws_f75b7218e4eaf5a75fddb6416ed5de97dfa811b0ef06cdd0\\transactions analyze", "status": "PASS"}, {"name": "cli_exit:. analyze", "status": "PASS"}, {"name": "registered_selection", "status": "PASS"}], "error": null, "real_lsp_dap_tested": false, "timestamp_unix": 1792631709.3225822}
+
+===== final-cli-smoke.log RAW SHA256 e2161ed0366d4f835362e0eface38f2e3386a30fe85fbdad4215aa1e5b232b09 =====
+{"scope": "REAL_ODIN_BINARY_CLI_AND_GENERATED_MCP_CONFIG", "status": "PASS", "binary": "E:\\odin\\target\\release\\odin.exe", "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8", "platform": "Windows-11-10.0.26300-SP0", "checks": [{"name": "exit:metadata", "status": "PASS"}, {"name": "build_identity", "status": "PASS"}, {"name": "tools_without_config", "status": "PASS"}, {"name": "language_guidance_without_config", "status": "PASS"}, {"name": "language_guidance_is_not_acceptance", "status": "PASS"}, {"name": "language_profiles_cover_six_targets", "status": "PASS"}, {"name": "exit:languages", "status": "PASS"}, {"name": "language_guidance_preserves_state_and_permissions", "status": "PASS"}, {"name": "exit:validate", "status": "PASS"}, {"name": "validate_does_not_create_state", "status": "PASS"}, {"name": "exit:setup", "status": "PASS"}, {"name": "setup_dry_run:codex", "status": "PASS"}, {"name": "preview_omits_unrelated_values:codex", "status": "PASS"}, {"name": "exit:setup", "status": "PASS"}, {"name": "exit:setup", "status": "PASS"}, {"name": "conflict_preserves_original:codex", "status": "PASS"}, {"name": "exit:setup", "status": "PASS"}, {"name": "setup_backup:codex", "status": "PASS"}, {"name": "codex_preserves_unrelated", "status": "PASS"}, {"name": "generated_config_initialize:codex", "status": "PASS"}, {"name": "generated_config_tools_list:codex", "status": "PASS"}, {"name": "exit:setup", "status": "PASS"}, {"name": "setup_idempotent:codex", "status": "PASS"}, {"name": "exit:setup", "status": "PASS"}, {"name": "setup_dry_run:claude", "status": "PASS"}, {"name": "preview_omits_unrelated_values:claude", "status": "PASS"}, {"name": "exit:setup", "status": "PASS"}, {"name": "exit:setup", "status": "PASS"}, {"name": "conflict_preserves_original:claude", "status": "PASS"}, {"name": "exit:setup", "status": "PASS"}, {"name": "setup_backup:claude", "status": "PASS"}, {"name": "claude_preserves_unrelated", "status": "PASS"}, {"name": "generated_config_initialize:claude", "status": "PASS"}, {"name": "generated_config_tools_list:claude", "status": "PASS"}, {"name": "exit:setup", "status": "PASS"}, {"name": "setup_idempotent:claude", "status": "PASS"}, {"name": "exit:setup", "status": "PASS"}, {"name": "setup_dry_run:opencode", "status": "PASS"}, {"name": "preview_omits_unrelated_values:opencode", "status": "PASS"}, {"name": "exit:setup", "status": "PASS"}, {"name": "exit:setup", "status": "PASS"}, {"name": "conflict_preserves_original:opencode", "status": "PASS"}, {"name": "exit:setup", "status": "PASS"}, {"name": "setup_backup:opencode", "status": "PASS"}, {"name": "opencode_preserves_unrelated", "status": "PASS"}, {"name": "generated_config_initialize:opencode", "status": "PASS"}, {"name": "generated_config_tools_list:opencode", "status": "PASS"}, {"name": "exit:setup", "status": "PASS"}, {"name": "setup_idempotent:opencode", "status": "PASS"}, {"name": "setup_lock_cleanup", "status": "PASS"}, {"name": "exit:hook", "status": "PASS"}, {"name": "hook_dry_run", "status": "PASS"}, {"name": "exit:hook", "status": "PASS"}, {"name": "hook_backup", "status": "PASS"}, {"name": "exit:hook", "status": "PASS"}, {"name": "hook_disable_restores_original", "status": "PASS"}, {"name": "exit:hook", "status": "PASS"}, {"name": "workspace_mutations_require_transactions", "status": "PASS"}, {"name": "exit:onboard", "status": "PASS"}, {"name": "onboarding_evidence", "status": "PASS"}, {"name": "exit:doctor", "status": "PASS"}, {"name": "sandbox_probe_does_not_enable_isolation", "status": "PASS"}, {"name": "exit:doctor", "status": "PASS"}, {"name": "doctor_missing_backend_not_pass", "status": "PASS"}], "error": null, "actual_codex_claude_opencode_applications_tested": false, "timestamp_unix": 1792631710.0248923}
+
+===== final-mcp-smoke.log RAW SHA256 065ed2afab0b3fcee3b59ccd0895c302f19c7d101aa6524fd468564a72cc811f =====
+{"scope": "REAL_ODIN_BINARY_STDIO_SMOKE", "status": "PASS", "binary": "E:\\odin\\target\\release\\odin.exe", "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8", "platform": "Windows-11-10.0.26300-SP0", "checks": [{"name": "initialize", "status": "PASS"}, {"name": "catalog_copies_equal", "status": "PASS"}, {"name": "catalog_names_match", "status": "PASS"}, {"name": "catalog_contracts_match", "status": "PASS"}, {"name": "no_upstream_bridge_tools", "status": "PASS"}, {"name": "tool_result:read_file", "status": "PASS"}, {"name": "tool_result:read_file", "status": "PASS"}, {"name": "read_sha", "status": "PASS"}, {"name": "tool_result:create_text_file", "status": "PASS"}, {"name": "tool_result:replace_content", "status": "PASS"}, {"name": "preview_does_not_mutate", "status": "PASS"}, {"name": "tool_result:transaction_apply", "status": "PASS"}, {"name": "apply_changes_file", "status": "PASS"}, {"name": "tool_result:transaction_rollback", "status": "PASS"}, {"name": "rollback_restores_file", "status": "PASS"}, {"name": "tool_result:write_memory", "status": "PASS"}, {"name": "tool_result:read_memory", "status": "PASS"}, {"name": "memory_content", "status": "PASS"}, {"name": "tool_result:flow_run", "status": "PASS"}, {"name": "flow_result", "status": "PASS"}, {"name": "tool_result:status", "status": "PASS"}, {"name": "standalone_status", "status": "PASS"}, {"name": "removed_tool:serena_tools", "status": "PASS"}, {"name": "removed_tool:serena_call", "status": "PASS"}], "error": null, "real_lsp_dap_tested": false, "timestamp_unix": 1792631710.5232983}
+
+===== final-http-smoke.log RAW SHA256 f12c8637893e60dbd41f10436cb200af8823461113df8d4ed910ef456c52d83d =====
+{"scope": "REAL_ODIN_BINARY_LOOPBACK_HTTP_AND_MCP_SMOKE", "status": "PASS", "binary": "E:\\odin\\target\\release\\odin.exe", "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8", "platform": "Windows-11-10.0.26300-SP0", "checks": [{"name": "server_starts", "status": "PASS"}, {"name": "unauthenticated_rejected:/api/projects", "status": "PASS"}, {"name": "unauthenticated_rejected:/api/status", "status": "PASS"}, {"name": "unauthenticated_rejected:/api/metadata", "status": "PASS"}, {"name": "unauthenticated_rejected:/api/audit/demo", "status": "PASS"}, {"name": "unauthenticated_rejected:/api/audit/demo/export", "status": "PASS"}, {"name": "unauthenticated_rejected:/mcp", "status": "PASS"}, {"name": "authenticated_projects", "status": "PASS"}, {"name": "no_store_api", "status": "PASS"}, {"name": "host_header_rejected", "status": "PASS"}, {"name": "cross_origin_rejected", "status": "PASS"}, {"name": "wrong_token_rejected", "status": "PASS"}, {"name": "dashboard_csp", "status": "PASS"}, {"name": "build_metadata", "status": "PASS"}, {"name": "readonly_status", "status": "PASS"}, {"name": "api_methods_readonly", "status": "PASS"}, {"name": "mcp_http_status:initialize", "status": "PASS"}, {"name": "mcp_response:initialize", "status": "PASS"}, {"name": "mcp_initialize", "status": "PASS"}, {"name": "mcp_notification_accepted", "status": "PASS"}, {"name": "mcp_http_status:tools/list", "status": "PASS"}, {"name": "mcp_response:tools/list", "status": "PASS"}, {"name": "mcp_catalog_names", "status": "PASS"}, {"name": "mcp_catalog_schemas", "status": "PASS"}, {"name": "mcp_http_status:tools/call", "status": "PASS"}, {"name": "mcp_response:tools/call", "status": "PASS"}, {"name": "mcp_real_tool_call", "status": "PASS"}, {"name": "api_no_raw_content_or_token:/api/projects", "status": "PASS"}, {"name": "api_no_raw_content_or_token:/api/status", "status": "PASS"}, {"name": "api_no_raw_content_or_token:/api/metadata", "status": "PASS"}, {"name": "api_no_raw_content_or_token:/api/audit/demo", "status": "PASS"}, {"name": "api_no_raw_content_or_token:/api/audit/demo/export", "status": "PASS"}, {"name": "audit_records_real_tool", "status": "PASS"}, {"name": "audit_metadata_allowlist", "status": "PASS"}, {"name": "audit_jsonl_export", "status": "PASS"}, {"name": "no_token_in_server_log", "status": "PASS"}], "error": null, "full_mcp_http_conformance": false, "timestamp_unix": 1792631711.4470248}
+
+===== final-cancellation-smoke.log RAW SHA256 4f43843433e2a10cb92e8f18b4fb4e2ac9d5580e9c50249f631c43daacef469a =====
+{"scope": "REAL_BINARY_MCP_CANCELLATION_WITH_PROTOCOL_FIXTURE", "status": "PASS", "binary": "E:\\odin\\target\\release\\odin.exe", "binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8", "platform": "Windows-11-10.0.26300-SP0", "checks": [{"name": "real_binary_initialize", "status": "PASS"}, {"name": "slow_backend_holds_project_gate", "status": "PASS"}, {"name": "earlier_backend_request_completes", "status": "PASS"}, {"name": "cancelled_queued_write_never_applied", "status": "PASS"}, {"name": "cancelled_transaction_remains_draft", "status": "PASS"}, {"name": "pending_backend_receives_protocol_cancellation", "status": "PASS"}, {"name": "cancelled_pending_backend_releases_gate", "status": "PASS"}, {"name": "backend_transport_usable_after_cancel", "status": "PASS"}], "observations": {"queued_write_source_sha256": "ef00998678cc4f84733e80f0cff82163b01e89ff0bf311daed29ce44e50e5182", "original_sha256": "ef00998678cc4f84733e80f0cff82163b01e89ff0bf311daed29ce44e50e5182", "transaction_phase_after_cancel": "draft", "gate_release_after_cancel_seconds": 0.012343000002147164, "fixture_events": [{"kind": "slow_started", "id": 2}, {"kind": "released", "id": 2}, {"kind": "slow_started", "id": 3}, {"kind": "cancel_received", "id": 3}, {"kind": "cancel_processed", "id": 3}, {"kind": "slow_started", "id": 4}, {"kind": "released", "id": 4}]}, "error": null, "fixture_is_real_language_server": false, "real_language_semantics_tested": false, "sdk_cancelled_response_behavior": "rmcp 3.6 suppresses wire responses for cancelled request IDs", "timestamp_unix": 1792631711.9304152}
+
+===== C:\Users\steven\AppData\Local\Temp\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\static-v3\generated-check.log RAW SHA256 9b32876060f522dab834f51929d61842c5c163bdbd717351267868d562cb1126 =====
+Generated 86 tool contracts
+Generated API for 86 Odin tools and parity for 53 Serena tools.
+{
+  "scope": "EXECUTED_GENERATOR_IDEMPOTENCE",
+  "status": "PASS",
+  "changed": [],
+  "sha256": {
+    "schemas/tools.json": "a7621dc80de4829edfe171cf6848ab2c48071eaf6575a9dce2462f5731768cba",
+    "crates/odin-engine/tools.json": "a7621dc80de4829edfe171cf6848ab2c48071eaf6575a9dce2462f5731768cba",
+    "docs/API.md": "b0257b4b7d6ecb46bd2efacefb914212d9b65b351ae120eac4bb67f0d3bf7ad4",
+    "docs/SERENA_PARITY.md": "247f75449cb9188af64a625cbcbe88afc36abd5dfe423780ea9d2b7a31014f05",
+    "docs/serena-parity.csv": "e2beb7db815f3355179de261eeb07379bc5c1c2749e4489a869435b8974f847a",
+    "docs/serena-parity.json": "e5c5a1b3e17c5b665432f23916adf3d44c66327cb023b4e1997e7836fee848da",
+    "docs/DEPENDENCIES.md": "4e11b5a504eaf17d6cc169543fde5307bcdf93c91729fdd8a1be5ae403a4cab4"
+  }
+}
+
+===== C:\Users\steven\AppData\Local\Temp\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\static-v3\source-check.log RAW SHA256 a8ccce4a7a177f68621405d04c7a2bddac55db28dbd4191c3f764f4030f51323 =====
+{"scope": "ARTIFACT_AND_CONTRACT_STATIC_CHECKS_ONLY", "status": "PASS", "rust_files": 53, "rust_lines": 20088, "rust_test_declarations": 241, "rust_compilation": "NOT_PERFORMED_BY_STATIC_CHECK"}
+Checks: 998 Fail: 0
+
+===== C:\Users\steven\AppData\Local\Temp\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\static-v3\requirements-check.log RAW SHA256 425fa3eefc6462c16c6ef4592d6c0e8a7a3dc05dc0fd7fed2654ca074b28a7e1 =====
+{
+  "kind": "DOCUMENTATION_TRACEABILITY_ONLY",
+  "features": 40,
+  "serena_reference_tools": 53,
+  "runtime_checks_executed_by_this_script": false,
+  "errors": [],
+  "status": "PASS"
+}
+
+===== C:\Users\steven\AppData\Local\Temp\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\static-v3\publish-policy-check.log RAW SHA256 59dd0830a2619aa31d85fad5025dff893243990bd80fb3fa64ddf7c747e9650c =====
+{"scope": "WORKFLOW_SOURCE_POLICY_ONLY", "status": "PASS", "errors": []}
+
+===== C:\Users\steven\AppData\Local\Temp\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\static-v3\whitespace-check.log RAW SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 =====
+
+===== PAYLOAD command-01.stdout.log SHA256 9f5b94d8db3c98b3851bf18822e5df8df338f454317d808f622bf5de24aaafdf =====
+
+added 40 packages in 17s
+
+===== PAYLOAD command-01.stderr.log SHA256 0c5e2568b4c79c13debcc497cf347b98e7a01e636ae2bed42cf3faa742048c94 =====
+npm notice
+npm notice New major version of npm available! 11.19.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
+
+===== PAYLOAD command-02.stdout.log SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 =====
+
+===== PAYLOAD command-02.stderr.log SHA256 5343adbec1839da2296a9970ecba7a9260ea92411adfc4e1359078dab9ae145d =====
+go: downloading golang.org/x/tools v0.24.0
+go: downloading golang.org/x/tools/gopls v0.24.0
+go: downloading golang.org/x/telemetry v0.0.0-20260924152758-ed294f943157
+go: downloading golang.org/x/tools v0.51.1-0.20261014163302-24a65270771e
+go: downloading golang.org/x/sync v0.23.0
+go: downloading github.com/modelcontextprotocol/go-sdk v1.8.0
+go: downloading github.com/fatih/gomodifytags v1.17.1-0.20250423142747-f3939df9aa3c
+go: downloading golang.org/x/mod v0.41.0
+go: downloading mvdan.cc/xurls/v2 v2.6.0
+go: downloading github.com/fsnotify/fsnotify v1.9.0
+go: downloading golang.org/x/vuln v1.8.0
+go: downloading honnef.co/go/tools v0.8.1
+go: downloading github.com/fatih/camelcase v1.0.0
+go: downloading github.com/fatih/structtag v1.2.0
+go: downloading golang.org/x/sys v0.48.0
+go: downloading golang.org/x/text v0.42.0
+go: downloading mvdan.cc/gofumpt v0.12.0
+go: downloading github.com/google/jsonschema-go v0.4.3
+go: downloading github.com/yosida95/uritemplate/v3 v3.0.2
+go: downloading golang.org/x/oauth2 v0.37.0
+go: downloading golang.org/x/time v0.16.0
+go: downloading golang.org/x/exp/typeparams v0.0.0-20260908205506-85c1c2202aba
+go: downloading github.com/segmentio/encoding v0.5.4
+go: downloading github.com/BurntSushi/toml v1.6.0
+go: downloading github.com/segmentio/asm v1.2.1
+
+===== PAYLOAD command-03.stdout.log SHA256 b0d239764c3f6932031ab242ed183ff976ef77bb8ca6dde6ab3696961d6ded75 =====
+C:\Users\steven\AppData\Local\Temp\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\production3\backends\gopls\gopls.exe: go1.27.3
+	path	golang.org/x/tools/gopls
+	mod	golang.org/x/tools/gopls	v0.24.0	h1:nPO/LffYa4sP62Ueuema5PPnZPGaZjGl+vZGvbTek4g=
+	dep	github.com/BurntSushi/toml	v1.6.0	h1:dRaEfpa2VI55EwlIW72hMRHdWouJeRF7TPYhI+AUQjk=
+	dep	github.com/fatih/camelcase	v1.0.0	h1:hxNvNX/xYBp0ovncs8WyWZrOrpBNub/JfaMvbURyft8=
+	dep	github.com/fatih/gomodifytags	v1.17.1-0.20250423142747-f3939df9aa3c	h1:dDSgAjoOMp8da3egfz0t2S+t8RGOpEmEXZubcGuc0Bg=
+	dep	github.com/fatih/structtag	v1.2.0	h1:/OdNE99OxoI/PqaW/SuSK9uxxT3f/tcSZgon/ssNSx4=
+	dep	github.com/fsnotify/fsnotify	v1.9.0	h1:2Ml+OJNzbYCTzsxtv8vKSFD9PbJjmhYF14k/jKC7S9k=
+	dep	github.com/google/jsonschema-go	v0.4.3	h1:/DBOLZTfDow7pe2GmaJNhltueGTtDKICi8V8p+DQPd0=
+	dep	github.com/modelcontextprotocol/go-sdk	v1.8.0	h1:KIvahhYqwtbeniWVPs3TcXEA7b8jEtwfBpOTAI+Urx4=
+	dep	github.com/segmentio/asm	v1.2.1	h1:DTNbBqs57ioxAD4PrArqftgypG4/qNpXoJx8TVXxPR0=
+	dep	github.com/segmentio/encoding	v0.5.4	h1:OW1VRern8Nw6ITAtwSZ7Idrl3MXCFwXHPgqESYfvNt0=
+	dep	github.com/yosida95/uritemplate/v3	v3.0.2	h1:Ed3Oyj9yrmi9087+NczuL5BwkIc4wvTb5zIM+UJPGz4=
+	dep	golang.org/x/exp/typeparams	v0.0.0-20260908205506-85c1c2202aba	h1:ZoZmFkcuQ289xJilBm9Ck3W+/okrhXc4LUpbtKFQE4k=
+	dep	golang.org/x/mod	v0.41.0	h1:qJmnOUb4YB+FsEuM3HcWucdZASCPGhsX6uljO6pog0c=
+	dep	golang.org/x/oauth2	v0.37.0	h1:JUlcxA8oAtauLfiH8FX2/FkAWHAdi0QtGCGc+hofE98=
+	dep	golang.org/x/sync	v0.23.0	h1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=
+	dep	golang.org/x/sys	v0.48.0	h1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=
+	dep	golang.org/x/telemetry	v0.0.0-20260924152758-ed294f943157	h1:DftxASHKl6JolFPqoN+2WrFO53JvkHwRXvFqf8gsivA=
+	dep	golang.org/x/text	v0.42.0	h1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=
+	dep	golang.org/x/time	v0.16.0	h1:vMb6ptszcQMkcwiRTAuNNU50gom6++Q/6gY2hDM6VDE=
+	dep	golang.org/x/tools	v0.51.1-0.20261014163302-24a65270771e	h1:OKD783ebWgqIZn7EAQNP944SpADpjJ8k4XI3nJAeB4o=
+	dep	golang.org/x/vuln	v1.8.0	h1:clG4qBU6zH5VKjti8n5j8BBuYzoSha392xXMkXS351U=
+	dep	honnef.co/go/tools	v0.8.1	h1:+JKf3xJ1ni4CwrhVg4/pqsfPGP6vNAXcKbMXJodYx3w=
+	dep	mvdan.cc/gofumpt	v0.12.0	h1:1Lbudkz2kpM9Cjz2pL4M19u7q+GaEhCTNf7N9mfpcho=
+	dep	mvdan.cc/xurls/v2	v2.6.0	h1:3NTZpeTxYVWNSokW3MKeyVkz/j7uYXYiMtXRUfmjbgI=
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=0
+	build	GOARCH=amd64
+	build	GOOS=windows
+	build	GOAMD64=v1
+
+===== PAYLOAD command-03.stderr.log SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 =====
+
+===== PAYLOAD command-04.stdout.log SHA256 44ce64f1806e1aa8fa0bdd85b10e0413acd78557c88a8d52e94a0eb70f40b7ee =====
+v24.21.0
+
+===== PAYLOAD command-04.stderr.log SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 =====
+
+===== PAYLOAD command-05.stdout.log SHA256 8a7482001971a0707b9cb457418796cfa6dcb3cdfcc3ff560a2f1d87635285c4 =====
+go version go1.27.3 windows/amd64
+
+===== PAYLOAD command-05.stderr.log SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 =====
+
+===== PAYLOAD command-06.stdout.log SHA256 5a7fea7845f8e63821000bd30103e1dde66102fd755a1e46e47867d15442fc1c =====
+golang.org/x/tools/gopls v0.24.0
+
+===== PAYLOAD command-06.stderr.log SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 =====
+
+===== PAYLOAD command-07.stdout.log SHA256 ebf847509df71d6a49f8454d69392fe4184974c59aec8c68649196983d618acb =====
+10.0.402 [C:\Users\steven\AppData\Local\Temp\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\production3\backends\dotnet\sdk]
+
+===== PAYLOAD command-07.stderr.log SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 =====
+
+===== PAYLOAD command-08.stdout.log SHA256 0550a61470dc15a7acaed915dd2b4591c48534f641b50a3b219fab0e260b4085 =====
+csharp-ls, 0.28.0 (Klebiškis)+72671fc7fa810c158864e72485db68e8b9b25c3d
+
+===== PAYLOAD command-08.stderr.log SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 =====
+
+===== PAYLOAD command-09.stdout.log SHA256 807c473edfffb2a5e22294cdf0c9e11bfac89c95bb78bbb2b6e7f489a1de782a =====
+3.19.2
+
+===== PAYLOAD command-09.stderr.log SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 =====
+
+===== PAYLOAD command-10.stdout.log SHA256 d3207a8615b51619b09dd933c1f7c3fcb6bd34bce638cc36ae1acafd2f8f20e0 =====
+basedpyright 1.40.2
+based on pyright 1.40.2
+
+===== PAYLOAD command-10.stderr.log SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 =====
+
+===== PAYLOAD command-11.stdout.log SHA256 8adcc17e039842d2f4d92ca25f72a8963ede072c885ef5f762c0682b87c6d872 =====
+6.0.2
+
+===== PAYLOAD command-11.stderr.log SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 =====
+
+===== PAYLOAD command-12.stdout.log SHA256 13e3d29b223a790813794c1fd5ccb787c36992580e2f1c6a93be3ca7b93ae622 =====
+Version 6.0.3
+
+===== PAYLOAD command-12.stderr.log SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 =====
+
+===== PAYLOAD command-13.stdout.log SHA256 62c1572b33dad18969931fa8c8cb960a093adbfa9ca5fd4c955f640eb61b9b58 =====
+5.8.1
+
+===== PAYLOAD command-13.stderr.log SHA256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 =====

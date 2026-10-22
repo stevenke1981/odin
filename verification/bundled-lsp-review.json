@@ -1,7 +1,7 @@
 {
   "task_id": "ODIN-BUNDLED-LSP",
-  "kind": "INDEPENDENT_SOURCE_REVIEW",
-  "status": "SOURCE_PASS_RUNTIME_ACCEPTANCE_PENDING",
+  "kind": "INDEPENDENT_SOURCE_AND_FINAL_EVIDENCE_REVIEW",
+  "status": "PASS_WITH_DOCUMENTED_FEATURE_GAPS",
   "actor_instance": "/root/validation_audit",
   "author_instances": [
     "/root",
@@ -68,8 +68,10 @@
     "binary_sha256": "478be59320e0c49e3e8286f705b1ac265c576f2e04347be400e43e5b3b420bd3"
   },
   "scope_limits": [
-    "Latest runtime acceptance must use the new setup script and driver, with persistent PATH checks. Earlier candidate2 has a real PATH check FAIL and is not accepted.",
-    "Existing Rust runtime source was unchanged by packaging and SDK environment fixes; final clean-release binary was separately smoke-tested.",
+    "JavaScript/TypeScript diagnostic freshness remains NOT_VERIFIED; Bash ShellCheck/shfmt/man external features remain unavailable or NOT_RUN.",
+    "Pre-task certificate inventory was NOT_RUN; no certificates removed. After the fix the before/after certificate store is unchanged.",
+    "Final runtime data was independently audited from actual reports/logs; the reviewer did not reexecute installation or semantic commands.",
+    "Current Codex UI session restart and publication remained NOT_RUN at review. Actual configured subprocess entry was verified.",
     "Independent agent instances are not separate human GitHub approvers or OS security boundaries."
   ],
   "dotnet_regressions": {
@@ -117,5 +119,74 @@
       "tests/lsp_installer.test.mjs": "04874c19636b6202987102a81e3ff0dcad6fe13f58f329acf49380bcf8393ee4"
     }
   },
-  "source_hash_normalization_note": "Raw independent log/report SHA256 binds original bytes. Published UTF-8 text uses LF normalization and may have a different file hash."
+  "source_hash_normalization_note": "Raw independent log/report SHA256 binds original bytes. Published UTF-8 text uses LF normalization and may have a different file hash.",
+  "final_evidence_audit": {
+    "actor_instance": "/root/validation_audit",
+    "status": "PASS_WITH_DOCUMENTED_FEATURE_GAPS",
+    "reviewed_public_validation_sha256": "ce53fee356a912f7fbf7b388d562a69c9e4ef7b40d42c96498cf4ef5a950fdb4",
+    "reviewed_semantic_matrix_sha256": "509922e9c33435a2945fa9ebf62d56867d42ab4338544454753c7b213d01839e",
+    "reviewed_manifest_sha256_before_review_annotation": "4e5d92cbed204d7cba0d34e95169cee909454b64a75ae1aa76aeedbf0d340170",
+    "manifest_entries_verified": 986,
+    "transcript_records_exactly_reconstructed": 547,
+    "transcript_reports": [
+      {
+        "language": "python",
+        "path": "verification/bundled-lsp-transcript-python.json",
+        "records": 40,
+        "sha256": "aba0c9410b29bb99e38e381821bacc36df99cbf4efe502d315cf7f0be86c080e"
+      },
+      {
+        "language": "go",
+        "path": "verification/bundled-lsp-transcript-go.json",
+        "records": 38,
+        "sha256": "d61ef3591f01e80bcf7be9201d66d07c42740980ba4397254474dfd9fec9c19a"
+      },
+      {
+        "language": "csharp",
+        "path": "verification/bundled-lsp-transcript-csharp.json",
+        "records": 38,
+        "sha256": "cfb6dd713ebc2922630702f5d401c63e7f743b06ecc52ef49e8459eaba2d813c"
+      },
+      {
+        "language": "lua",
+        "path": "verification/bundled-lsp-transcript-lua.json",
+        "records": 41,
+        "sha256": "feb3f89cf2ec5d2e257b7f6aa11b17c21c513fd7ed32475eb98e969ce7a1fe20"
+      },
+      {
+        "language": "javascript",
+        "path": "verification/bundled-lsp-transcript-javascript.json",
+        "records": 174,
+        "sha256": "80dc4e807f218d411ef7c02aba9179682bcfdf8f1a7cd39129bf856d21ca25b7"
+      },
+      {
+        "language": "typescript",
+        "path": "verification/bundled-lsp-transcript-typescript.json",
+        "records": 177,
+        "sha256": "09cb67501a5f1589ef4436a81c761182aae4c453f7271d35ddee8dddcfe2b23b"
+      },
+      {
+        "language": "bash",
+        "path": "verification/bundled-lsp-transcript-bash.json",
+        "records": 39,
+        "sha256": "7bf2056c9c915c3be2003dcef0ed1b55f3b9192400eeca3867438064bd002596"
+      }
+    ],
+    "required_semantic_checks_passed": 203,
+    "independent_test_projects": 14,
+    "installer_checks_passed": 39,
+    "installer_commands_exit_zero": 6,
+    "lifecycle_backend_version_checks_passed": 30,
+    "lifecycle_post_health_integrity_checks_passed": 3,
+    "operator_path_observation_phases_exact": 5,
+    "raw_command_logs_verified": 42,
+    "raw_installer_logs_verified": 3,
+    "latest_static_commands_exit_zero": 5,
+    "current_source_hashes_verified": 18,
+    "selected_clean_release_binary_sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+    "raw_runtime_reports_reviewed_without_reexecution": true,
+    "public_redactions": "Persistent PATH values replaced only by UTF-8 SHA256; transcript split by language. No tool responses/check statuses changed.",
+    "resolved_metadata_finding": "Combined public log pointer now matches actual LF-normalized30df5d67...; original raw source log hashes retained.",
+    "remaining_blockers": []
+  }
 }
