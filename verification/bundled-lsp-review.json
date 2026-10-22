@@ -9,16 +9,17 @@
     "/root/installer_audit"
   ],
   "reviewed_sha256": {
-    "packaging/setup-lsps.mjs": "4dbfa58bf751514526cc633fc8450f1274af75bb9a579f0e61348dcff7138ef9",
-    "packaging/odin.iss": "067b5bddda40133da170ea9da86558cb3a81db5666c1f3a4572ac31d5c789f03",
+    "packaging/setup-lsps.mjs": "094a036f50057d3ea74355d38348b240c8c079eeaf6aa102d8c37dbc907a9634",
+    "packaging/odin.iss": "a0fa3c46d85d1ee16bc6b4dce8e5df1da2e5d1c86937f2b3c7386bfa2540c37a",
     "scripts/package.ps1": "af0822134976d5182938a68118220fcb23e372e3247c2f263d2d6cb31680f1f2",
-    "scripts/verify_installer.ps1": "cfe596071ed2e561397bc72aeafe72e5513d18a5915a65af660a3e2ca9b40d1e",
-    "scripts/prepare_lsp_payload.py": "afee3f54986f2d1a16f3e8ff74899e8c671c63fac6712be591d27a72c4a4b712",
-    "tests/lsp_installer.test.mjs": "de0b1294cb769e3482ec1949ce5473c87f063b1b232051dc643949b3e8bcd6b8",
-    "tests/inno_argv_probe.py": "2ed41967886735fa5fa600512ba9dda82e348b4e03a89c55460e4ed754d68916",
-    "tests/test_lsp_payload_builder.py": "a8ebf565fb034e10c6ff5bd01abda8c2775cd10b1f92027070ed1aabc5c5da71",
+    "scripts/verify_installer.ps1": "d800723d5995ec65301bafcefd00894e9d8bd8811caa8923c3ed5323c1559fa8",
+    "scripts/prepare_lsp_payload.py": "c027c38fa7189bd477616e8c2710d2e53d3ccc2f4faf57b7671fcd00a9fe9643",
+    "tests/lsp_installer.test.mjs": "04874c19636b6202987102a81e3ff0dcad6fe13f58f329acf49380bcf8393ee4",
+    "tests/inno_argv_probe.py": "b583611faa95c9f862949b69d97ed0e34fd0ac5cc275fe89b5b79faefd8a4504",
+    "tests/test_lsp_payload_builder.py": "cca10f71290dff88b82d50fce271b8f1e35109eb76fbdf28ec7ed3cc8dc99d33",
     "crates/odin-core/src/languages.rs": "71a99f5aeed928faf4fd23e78f3e13f465a8a365767716ef3e0b19b4f78d5f42",
-    "crates/odin-protocol/tests/fixture_protocols.rs": "5fe65328abf7c442d3d51f0d654a8b2e16cc1dbe8e7940ef8f22518e97596576"
+    "crates/odin-protocol/tests/fixture_protocols.rs": "5fe65328abf7c442d3d51f0d654a8b2e16cc1dbe8e7940ef8f22518e97596576",
+    "tests/real_installed_languages.py": "280a756f953d859bf742e5a1b084923c8e390d3671973cd394124088719c794f"
   },
   "resolved_findings": [
     "Diagnostic complete-but-wrong results cannot silently PASS",
@@ -28,7 +29,11 @@
     "Backend health uses an environment allowlist",
     "Lua health uses external log/meta and checks complete payload after probes",
     "Inno Windows argv escaping and custom setup exit propagation",
-    "Foreign custom profile extensions compared case-insensitively"
+    "Foreign custom profile extensions compared case-insensitively",
+    "Existing-host optional root page retains old roots without adding an empty root",
+    "SDK first-use PATH registration and development certificate generation explicitly disabled in builder, health, C# runner and direct fixture restore",
+    "Verifier retains per-phase raw/expanded user PATH and rejects changes",
+    "CAS cleanup removed exactly four task-created .NET tools PATH entries; unrelated bytes and registry type independently verified"
   ],
   "remaining_source_blockers": [],
   "executed_independent_checks": [
@@ -49,7 +54,7 @@
     {
       "command": "Read actual Inno argv report, compare production recipe and probe driver hashes",
       "exit_code": 0,
-      "raw_report_sha256": "85cfba98d8e85da05675c6c6c36425853f89fa46dc340dab37be2794dc0de7df"
+      "raw_report_sha256": "a448863277935f3d137b9f83fbb93f5e766ff37eff8eb8b24f03371539f2f862"
     }
   ],
   "native_gate_preliminary_audit": {
@@ -63,9 +68,54 @@
     "binary_sha256": "478be59320e0c49e3e8286f705b1ac265c576f2e04347be400e43e5b3b420bd3"
   },
   "scope_limits": [
-    "This is source review, not final installer lifecycle acceptance.",
-    "Preliminary matrix lacks completion and final driver/source/manifest provenance; new installed matrix remains NOT_RUN.",
-    "Final harness adds completion plus Chinese/space project paths; results must be executed separately.",
+    "Latest runtime acceptance must use the new setup script and driver, with persistent PATH checks. Earlier candidate2 has a real PATH check FAIL and is not accepted.",
+    "Existing Rust runtime source was unchanged by packaging and SDK environment fixes; final clean-release binary was separately smoke-tested.",
     "Independent agent instances are not separate human GitHub approvers or OS security boundaries."
-  ]
+  ],
+  "dotnet_regressions": {
+    "scope": "INDEPENDENT_DOTNET_ENV_SOURCE_REGRESSIONS",
+    "node": {
+      "argv": [
+        "C:/Users/steven/.local/share/Odin/backends/node-24.21.0/node-v24.21.0-win-x64/node.exe",
+        "--test",
+        "tests/lsp_installer.test.mjs"
+      ],
+      "exit_code": 0,
+      "log": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\independent-dotnet-node-94128137767c470aa62010e416511191.log",
+      "log_sha256": "4a125de14653095d490078c40ba83ac6782a6b45cfc5ce91d0bcab726e0a6d41"
+    },
+    "builder": {
+      "argv": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_lsp_payload_builder.py"
+      ],
+      "exit_code": 0,
+      "log": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\independent-dotnet-builder-94128137767c470aa62010e416511191.log",
+      "log_sha256": "439d06e3965e2a0d88876e107b75a5b68e1553b98f3af8c8102c4987269fb60d"
+    },
+    "source_before": {
+      "scripts/prepare_lsp_payload.py": "c027c38fa7189bd477616e8c2710d2e53d3ccc2f4faf57b7671fcd00a9fe9643",
+      "scripts/verify_installer.ps1": "d800723d5995ec65301bafcefd00894e9d8bd8811caa8923c3ed5323c1559fa8",
+      "tests/test_lsp_payload_builder.py": "cca10f71290dff88b82d50fce271b8f1e35109eb76fbdf28ec7ed3cc8dc99d33",
+      "packaging/setup-lsps.mjs": "094a036f50057d3ea74355d38348b240c8c079eeaf6aa102d8c37dbc907a9634",
+      "tests/real_installed_languages.py": "280a756f953d859bf742e5a1b084923c8e390d3671973cd394124088719c794f",
+      "tests/lsp_installer.test.mjs": "04874c19636b6202987102a81e3ff0dcad6fe13f58f329acf49380bcf8393ee4"
+    },
+    "source_after": {
+      "scripts/prepare_lsp_payload.py": "c027c38fa7189bd477616e8c2710d2e53d3ccc2f4faf57b7671fcd00a9fe9643",
+      "scripts/verify_installer.ps1": "d800723d5995ec65301bafcefd00894e9d8bd8811caa8923c3ed5323c1559fa8",
+      "tests/test_lsp_payload_builder.py": "cca10f71290dff88b82d50fce271b8f1e35109eb76fbdf28ec7ed3cc8dc99d33",
+      "packaging/setup-lsps.mjs": "094a036f50057d3ea74355d38348b240c8c079eeaf6aa102d8c37dbc907a9634",
+      "tests/real_installed_languages.py": "280a756f953d859bf742e5a1b084923c8e390d3671973cd394124088719c794f",
+      "tests/lsp_installer.test.mjs": "04874c19636b6202987102a81e3ff0dcad6fe13f58f329acf49380bcf8393ee4"
+    }
+  },
+  "source_hash_normalization_note": "Raw independent log/report SHA256 binds original bytes. Published UTF-8 text uses LF normalization and may have a different file hash."
 }

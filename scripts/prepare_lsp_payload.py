@@ -352,7 +352,8 @@ def build_environment(output: Path, work: Path) -> dict[str, str]:
         "NPM_CONFIG_IGNORE_SCRIPTS": "true", "NPM_CONFIG_AUDIT": "false", "NPM_CONFIG_FUND": "false",
         "DOTNET_ROOT": str(output / "dotnet"), "DOTNET_MULTILEVEL_LOOKUP": "0",
         "DOTNET_CLI_HOME": str(work / "home"), "DOTNET_CLI_TELEMETRY_OPTOUT": "1",
-        "DOTNET_SKIP_FIRST_TIME_EXPERIENCE": "1", "DOTNET_GENERATE_ASPNET_CERTIFICATE": "false",
+        "DOTNET_SKIP_FIRST_TIME_EXPERIENCE": "1",
+        "DOTNET_ADD_GLOBAL_TOOLS_TO_PATH": "false", "DOTNET_GENERATE_ASPNET_CERTIFICATE": "false",
         "NUGET_PACKAGES": str(work / "nuget"),
     })
     return env

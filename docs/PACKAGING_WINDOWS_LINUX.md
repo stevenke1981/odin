@@ -110,6 +110,9 @@ hardlink host file 及第三方變更。這不是多檔瞬間原子交易，也�
   安裝離線；日常 gopls 可透過官方 Go proxy／sumdb 下載缺少的 modules 到 cache，
   不自動下載新 toolchain。
 - C# 固定 runner 選 bundled .NET SDK／CSharpLanguageServer.dll，cache 位於 host state。
+  建置、runner／health 與語意測試明確固定 `DOTNET_ADD_GLOBAL_TOOLS_TO_PATH=false`、
+  `DOTNET_GENERATE_ASPNET_CERTIFICATE=false`，避免 SDK first-use 修改使用者 PATH 或產生
+  開發憑證；這兩項預設行為見 [Microsoft 文件](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-environment-variables#dotnet_add_global_tools_to_path)。
   真實專案的 SDK、套件與 design-time MSBuild 行為仍受其專案特性影響。
 - Lua 固定 runner 使用 host-owned 純 JSON `--configpath`，停用 runtime.plugin、
   third-party checking／addon manager，每次程序使用獨立 log/meta cache。版本健康檢查

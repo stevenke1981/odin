@@ -183,3 +183,16 @@ test('existing hardlinked host configuration is rejected without mutating either
   assert.throws(()=>buildPlan(f.options({workspaceRoots:[]}),f.payload()),/regular unlinked file/);
   assert.equal(fs.readFileSync(f.host,'utf8'),fs.readFileSync(original,'utf8'));
 });
+
+test('Csharp runner and health disable SDK first-run PATH registration and certificate generation', t => {
+  const f=fixture(t), keys=['DOTNET_ADD_GLOBAL_TOOLS_TO_PATH','DOTNET_GENERATE_ASPNET_CERTIFICATE'];
+  const saved=Object.fromEntries(keys.map(key=>[key,process.env[key]]));
+  for(const key of keys) process.env[key]='true';
+  try {
+    const state=path.join(f.base,'state'), env=backendEnvironment(f.payload(),state,'csharp');
+    assert.equal(env.DOTNET_CLI_HOME,path.join(state,'lsp-cache','dotnet','home'));
+    for(const key of keys) assert.equal(env[key],'false',`${key} must override host first-run settings`);
+  } finally {
+    for(const key of keys) if(saved[key]===undefined) delete process.env[key]; else process.env[key]=saved[key];
+  }
+});

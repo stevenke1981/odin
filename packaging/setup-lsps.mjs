@@ -129,7 +129,7 @@ export function backendEnvironment(payload, stateDir, kind) {
   env.PATH = systemPath();
   env.NODE_NO_WARNINGS = '1';
   if (kind === 'go') Object.assign(env, { GOROOT: path.join(payload.backendRoot, 'go'), GOPATH: path.join(stateDir, 'lsp-cache', 'go', 'gopath'), GOCACHE: path.join(stateDir, 'lsp-cache', 'go', 'build'), GOMODCACHE: path.join(stateDir, 'lsp-cache', 'go', 'modules'), GOTOOLCHAIN: 'local', GOENV: 'off', GOFLAGS: '-mod=readonly', GOPROXY: 'https://proxy.golang.org', GOSUMDB: 'sum.golang.org', PATH: path.join(payload.backendRoot, 'go', 'bin') + path.delimiter + systemPath() });
-  if (kind === 'csharp') Object.assign(env, { DOTNET_ROOT: path.join(payload.backendRoot, 'dotnet'), DOTNET_ROOT_X64: path.join(payload.backendRoot, 'dotnet'), DOTNET_MULTILEVEL_LOOKUP: '0', DOTNET_CLI_TELEMETRY_OPTOUT: '1', DOTNET_SKIP_FIRST_TIME_EXPERIENCE: '1', DOTNET_NOLOGO: '1', DOTNET_CLI_HOME: path.join(stateDir, 'lsp-cache', 'dotnet', 'home'), NUGET_PACKAGES: path.join(stateDir, 'lsp-cache', 'dotnet', 'packages'), MSBUILDDISABLENODEREUSE: '1' });
+  if (kind === 'csharp') Object.assign(env, { DOTNET_ROOT: path.join(payload.backendRoot, 'dotnet'), DOTNET_ROOT_X64: path.join(payload.backendRoot, 'dotnet'), DOTNET_MULTILEVEL_LOOKUP: '0', DOTNET_CLI_TELEMETRY_OPTOUT: '1', DOTNET_SKIP_FIRST_TIME_EXPERIENCE: '1', DOTNET_NOLOGO: '1', DOTNET_CLI_HOME: path.join(stateDir, 'lsp-cache', 'dotnet', 'home'), DOTNET_ADD_GLOBAL_TOOLS_TO_PATH: 'false', DOTNET_GENERATE_ASPNET_CERTIFICATE: 'false', NUGET_PACKAGES: path.join(stateDir, 'lsp-cache', 'dotnet', 'packages'), MSBUILDDISABLENODEREUSE: '1' });
   return env;
 }
 export function makeProfiles(payload, stateDir, luaConfig) {

@@ -19,7 +19,17 @@ $Checks = [Collections.Generic.List[object]]::new()
 $Commands = [Collections.Generic.List[object]]::new()
 $Failure = $null
 $Inventory = @()
-$UserPathBefore = [Environment]::GetEnvironmentVariable('Path', 'User')
+$PathObservations = [Collections.Generic.List[object]]::new()
+function Record-OperatorPath([string]$Phase) {
+    $Key = [Microsoft.Win32.Registry]::CurrentUser.OpenSubKey('Environment')
+    try { $Raw = $(if ($Key) { $Key.GetValue('Path', $null, [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames) } else { $null }) }
+    finally { if ($Key) { $Key.Dispose() } }
+    $PathObservations.Add([ordered]@{phase=$Phase; observed_at_utc=[DateTime]::UtcNow.ToString('o'); user_path=[Environment]::GetEnvironmentVariable('Path','User'); user_path_raw=$Raw; process_path=$env:Path})
+    [IO.File]::WriteAllText((Join-Path $QaRoot 'path-observations.json'), (ConvertTo-Json -InputObject @($PathObservations.ToArray()) -Depth 4), [Text.UTF8Encoding]::new($false))
+}
+Record-OperatorPath 'before'
+$UserPathBefore = $PathObservations[0].user_path
+$UserPathRawBefore = $PathObservations[0].user_path_raw
 $Metadata = $null
 $LspWorkspace = Join-Path $QaRoot 'lsp-workspace'
 $LspHost = Join-Path $QaRoot 'host/host.toml'
@@ -85,10 +95,12 @@ try {
         $Commands.Add([ordered]@{name='portable_host_validate'; exit_code=$LASTEXITCODE})
         Assert-Check 'portable_generated_host_validates' ($LASTEXITCODE -eq 0)
     }
+    Record-OperatorPath 'after_portable'
     # Disable uninstall registration, icons and interactive prompts for this isolated QA installation.
     $InstallArgs = @('/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART','/SP-','/NOICONS','/ODIN_QA=1',"/DIR=$App","/ODIN_HOST_CONFIG=$LspHost","/ODIN_WORKSPACE_ROOT=$LspWorkspace","/ODIN_SETUP_RECEIPT=$LspReceipt",('/LOG=' + (Join-Path $QaRoot 'install.log')))
     $Process = Start-Process -FilePath $Installer -ArgumentList ($InstallArgs | ForEach-Object { '"' + $_ + '"' }) -PassThru -Wait -WindowStyle Hidden
     $Commands.Add([ordered]@{name='install'; exit_code=$Process.ExitCode; log='install.log'})
+    Record-OperatorPath 'after_install'
     Assert-Check 'installer_exit' ($Process.ExitCode -eq 0)
     $Binary = Join-Path $App 'odin.exe'
     Assert-Check 'installed_binary_hash' ((Get-FileHash -LiteralPath $Binary -Algorithm SHA256).Hash -ieq $ExpectedBinarySha256)
@@ -156,6 +168,7 @@ try {
     $ReinstallArgs = @($InstallArgs | ForEach-Object { if ($_.StartsWith('/LOG=')) { '/LOG=' + (Join-Path $QaRoot 'reinstall.log') } elseif ($_.StartsWith('/ODIN_SETUP_RECEIPT=')) { '/ODIN_SETUP_RECEIPT=' + $LspReinstallReceipt } else { $_ } })
     $Process = Start-Process -FilePath $Installer -ArgumentList ($ReinstallArgs | ForEach-Object { '"' + $_ + '"' }) -PassThru -Wait -WindowStyle Hidden
     $Commands.Add([ordered]@{name='reinstall'; exit_code=$Process.ExitCode; log='reinstall.log'})
+    Record-OperatorPath 'after_reinstall'
     Assert-Check 'reinstall_exit' ($Process.ExitCode -eq 0)
     $ReinstallLspReceipt = Verify-LspReceipt $LspReinstallReceipt
     Assert-Check 'reinstall_preserves_host_content' ((Get-FileHash -LiteralPath $LspHost -Algorithm SHA256).Hash -ceq $HostHashBeforeReinstall)
@@ -165,12 +178,13 @@ try {
     $Uninstaller = Join-Path $App 'unins000.exe'
     $Process = Start-Process -FilePath $Uninstaller -ArgumentList @('/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART',('/LOG="' + (Join-Path $QaRoot 'uninstall.log') + '"')) -PassThru -Wait -WindowStyle Hidden
     $Commands.Add([ordered]@{name='uninstall'; exit_code=$Process.ExitCode; log='uninstall.log'})
+    Record-OperatorPath 'after_uninstall'
     Assert-Check 'uninstaller_exit' ($Process.ExitCode -eq 0)
     Assert-Check 'owned_binary_removed' (-not (Test-Path -LiteralPath $Binary))
     Assert-Check 'owned_inventory_payload_removed' (@($Inventory | Where-Object { Test-Path -LiteralPath (Join-Path $App $_.path) }).Count -eq 0)
     Assert-Check 'uninstall_preserves_user_file' ((Get-Content -LiteralPath $UserData -Raw) -eq 'retain user data')
     Assert-Check 'uninstall_preserves_external_host' ((Get-FileHash -LiteralPath $LspHost -Algorithm SHA256).Hash -ceq $HostHashBeforeReinstall)
-    Assert-Check 'operator_path_unchanged' ([Environment]::GetEnvironmentVariable('Path', 'User') -ceq $UserPathBefore)
+    Assert-Check 'operator_path_unchanged' ($PathObservations[$PathObservations.Count-1].user_path -ceq $UserPathBefore -and $PathObservations[$PathObservations.Count-1].user_path_raw -ceq $UserPathRawBefore)
 } catch { $Failure = $_.Exception.Message }
 finally {
     if ($Failure) {
@@ -183,7 +197,7 @@ finally {
         }
     }
 }
-$Report = [ordered]@{scope='ISOLATED_WINDOWS_INSTALL_REINSTALL_UNINSTALL'; status=$(if($Failure){'FAIL'}else{'PASS'}); checks=$Checks; commands=$Commands; error=$Failure; installer_sha256=(Get-FileHash -LiteralPath $Installer -Algorithm SHA256).Hash.ToLowerInvariant(); portable_sha256=$(if($Portable){(Get-FileHash -LiteralPath $Portable -Algorithm SHA256).Hash.ToLowerInvariant()}else{$null}); build=$Metadata; inventory_files=$Inventory.Count; qa_directory=$QaRoot; interruption_rollback='NOT_RUN'; cross_version_upgrade='NOT_RUN'; lsp_semantic_acceptance='NOT_RUN'; lsp_version_health='See source-bound install receipts'; native_binary_expected_sha256=$ExpectedBinarySha256.ToLowerInvariant()}
+$Report = [ordered]@{scope='ISOLATED_WINDOWS_INSTALL_REINSTALL_UNINSTALL'; status=$(if($Failure){'FAIL'}else{'PASS'}); checks=$Checks; commands=$Commands; operator_path_observations=$PathObservations; error=$Failure; installer_sha256=(Get-FileHash -LiteralPath $Installer -Algorithm SHA256).Hash.ToLowerInvariant(); portable_sha256=$(if($Portable){(Get-FileHash -LiteralPath $Portable -Algorithm SHA256).Hash.ToLowerInvariant()}else{$null}); build=$Metadata; inventory_files=$Inventory.Count; qa_directory=$QaRoot; interruption_rollback='NOT_RUN'; cross_version_upgrade='NOT_RUN'; lsp_semantic_acceptance='NOT_RUN'; lsp_version_health='See source-bound install receipts'; native_binary_expected_sha256=$ExpectedBinarySha256.ToLowerInvariant()}
 [IO.File]::WriteAllText((Join-Path $QaRoot 'installer-report.json'), ($Report | ConvertTo-Json -Depth 12), [Text.UTF8Encoding]::new($false))
 $Report | ConvertTo-Json -Depth 12
 if ($Failure) { throw $Failure }

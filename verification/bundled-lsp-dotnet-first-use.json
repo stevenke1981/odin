@@ -1,0 +1,72 @@
+{
+  "status": "IMPLEMENTED_PENDING_RETEST",
+  "cause": "C# fixture direct dotnet restore inherited default SDK first-use settings and registered this task private CLI home in persistent user PATH while final-candidate2 lifecycle ran.",
+  "source_sha256": {
+    "packaging/setup-lsps.mjs": "094a036f50057d3ea74355d38348b240c8c079eeaf6aa102d8c37dbc907a9634",
+    "tests/lsp_installer.test.mjs": "04874c19636b6202987102a81e3ff0dcad6fe13f58f329acf49380bcf8393ee4",
+    "scripts/prepare_lsp_payload.py": "c027c38fa7189bd477616e8c2710d2e53d3ccc2f4faf57b7671fcd00a9fe9643",
+    "tests/test_lsp_payload_builder.py": "cca10f71290dff88b82d50fce271b8f1e35109eb76fbdf28ec7ed3cc8dc99d33",
+    "tests/real_installed_languages.py": "280a756f953d859bf742e5a1b084923c8e390d3671973cd394124088719c794f",
+    "scripts/verify_installer.ps1": "d800723d5995ec65301bafcefd00894e9d8bd8811caa8923c3ed5323c1559fa8"
+  },
+  "failed_lifecycle": {
+    "report": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\attempt1-final-installer-lifecycle.json",
+    "sha256": "8f76368f0192051bcca2f7d49a5fe4798d2a71c6a5991d372912d2c7be1ade5c",
+    "outer_command": {
+      "argv": [
+        "powershell.exe",
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "C:\\OdinQA\\q-22b4777d\\scripts\\verify_installer.ps1",
+        "-Installer",
+        "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\windows-final-candidate\\odin-0.2.0-windows-x64-setup.exe",
+        "-Portable",
+        "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\windows-final-candidate\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+        "-ExpectedBinarySha256",
+        "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8"
+      ],
+      "script_sha256": "cfe596071ed2e561397bc72aeafe72e5513d18a5915a65af660a3e2ca9b40d1e",
+      "exit_code": 1,
+      "seconds": 687.69,
+      "log_sha256": "756e75b9aeeca0d313f1dde50472c1b3366bfd0a255ac0792e7c33b29af55439"
+    }
+  },
+  "cancelled_retry": {
+    "status": "CANCELLED_BEFORE_INSTALL",
+    "process_id": 28956,
+    "qa_directory": "C:\\OdinQA\\q-627c26e7\\dist\\installer-qa-d05c7c977db9439a8cc59c54c8841a96",
+    "reason": "Known .NET first-run environment bug requires source correction before rerun",
+    "at_utc": "2026-10-22T01:49:23.3635767Z"
+  },
+  "path_repair": {
+    "status": "PASS",
+    "at_utc": "2026-10-22T01:51:12.383723+00:00",
+    "expected_before_sha256": "4e2012d99855a941a6201f58bacd837fd0b004803e7f5721bdd323a5cd48a3d9",
+    "after_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+    "registry_type_preserved": true,
+    "entries_removed": [
+      "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\preliminary-language-matrix.fixtures\\csharp_state\\dotnet\\.dotnet\\tools",
+      "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\preliminary-language-matrix-2.fixtures\\csharp_state\\dotnet\\.dotnet\\tools",
+      "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\preliminary-language-matrix-3.fixtures\\csharp_state\\dotnet\\.dotnet\\tools",
+      "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\final-installed-languages.fixtures\\csharp_state\\dotnet\\.dotnet\\tools"
+    ],
+    "other_entries_preserved_exactly": true,
+    "scope": "Only four .NET first-use tools paths created by this task, independently tied to actual C# restore output. No unrelated prior Odin entries or certificates changed.",
+    "certificate_cleanup": "NOT_RUN_NO_PRE_TASK_BASELINE"
+  },
+  "first_use_controls": {
+    "DOTNET_ADD_GLOBAL_TOOLS_TO_PATH": "false",
+    "DOTNET_GENERATE_ASPNET_CERTIFICATE": "false"
+  },
+  "certificate_limitation": "A prior fixture restore reported development certificate installation. No pre-task certificate inventory exists, so no certificate was removed. Subsequent runs explicitly disable generation.",
+  "independent_review": "SOURCE_PASS",
+  "new_payload_build": {
+    "status": "PASS",
+    "receipt": "verification/bundled-lsp-build-receipt.json",
+    "builder_sha256": "c027c38fa7189bd477616e8c2710d2e53d3ccc2f4faf57b7671fcd00a9fe9643",
+    "persistent_user_path_unchanged": true
+  },
+  "new_package_lifecycle": "NOT_RUN"
+}

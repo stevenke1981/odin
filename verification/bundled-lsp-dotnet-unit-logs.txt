@@ -1,0 +1,39 @@
+
+===== node 22 PASS; raw SHA256 4a125de14653095d490078c40ba83ac6782a6b45cfc5ce91d0bcab726e0a6d41 =====
+✔ fresh setup needs an explicit workspace decision (314.1259ms)
+✔ fresh plan is inert and contains seven fixed profiles without write/shell/debug grants (148.8074ms)
+✔ preserve existing grants, roots, Rust, commands and unrelated values (177.4917ms)
+✔ custom profile collision is reviewable and blocks apply without changing config (161.7729ms)
+✔ explicit replacement replaces only requested seven language profiles (158.7625ms)
+✔ CAS apply creates sidecars, backup and all seven host profiles (190.6512ms)
+✔ a managed profile can be refreshed, while an edited managed profile becomes a conflict (216.4136ms)
+✔ stale config hash refuses to overwrite an operator edit (210.4844ms)
+✔ stale expected plan hash refuses apply (150.2392ms)
+✔ changed managed marker refuses the prepared apply (181.4119ms)
+✔ payload guards reject altered, missing and unexpected files (201.939ms)
+✔ payload guards reject traversal and case-colliding inventory entries (181.3486ms)
+✔ host config, cache and installation cannot be placed in projects (160.3962ms)
+✔ relative state paths resolve against host config, and exact profile digest is stable (183.8968ms)
+✔ runner profiles have fixed arguments and SDK env, with no arbitrary shell input (174.0847ms)
+✔ CLI rejects unknown programs, duplicate modes and missing expected values (0.7747ms)
+✔ foreign custom language ids owning bundled extensions block setup even with replacement (152.5801ms)
+✔ runtime selective integrity checks launchers while explicit full verification checks SDK files (144.7185ms)
+✔ existing allowed roots protect host state and sidecars even without new root arguments (155.0686ms)
+✔ backend environment does not forward host credentials or arbitrary runtime options (141.68ms)
+✔ existing hardlinked host configuration is rejected without mutating either name (186.7703ms)
+✔ Csharp runner and health disable SDK first-run PATH registration and certificate generation (148.4708ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3832.7544
+
+===== builder 19 PASS; raw SHA256 439d06e3965e2a0d88876e107b75a5b68e1553b98f3af8c8102c4987269fb60d =====
+...................
+----------------------------------------------------------------------
+Ran 19 tests in 0.356s
+System.Management.Automation.RemoteException
+OK

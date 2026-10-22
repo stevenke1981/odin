@@ -9,6 +9,7 @@ import json
 import os
 from pathlib import Path
 import stat
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -214,6 +215,22 @@ class BuilderTests(unittest.TestCase):
         package["scripts"] = {"postinstall": "execute-repository-code"}
         with self.assertRaises(builder.BuildError):
             builder.validate_lock(package, lock)
+
+    def test_dotnet_first_use_environment_disables_persistent_host_changes(self):
+        work = self.root / "work"
+        work.mkdir()
+        keys = ("DOTNET_ADD_GLOBAL_TOOLS_TO_PATH", "DOTNET_GENERATE_ASPNET_CERTIFICATE", "DOTNET_CLI_HOME")
+        # Host values must not opt child SDK processes back into first-use effects.
+        with mock.patch.dict(os.environ, {keys[0]: "true", keys[1]: "true", keys[2]: "inherited-host-home"}):
+            env = builder.build_environment(self.root / "payload", work)
+            command = [sys.executable, "-c", "import json,os; print(json.dumps({k:os.environ[k] for k in " + repr(keys) + "}))"]
+            result = subprocess.run(command, cwd=work, env=env, capture_output=True, check=False)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            observed = json.loads(result.stdout)
+            self.assertEqual(observed, {keys[0]: "false", keys[1]: "false", keys[2]: str(work / "home")})
+            self.assertEqual(os.environ[keys[0]], "true")
+            self.assertEqual(os.environ[keys[1]], "true")
+            self.assertEqual(os.environ[keys[2]], "inherited-host-home")
 
     def test_command_failure_records_actual_exit_and_logs(self):
         receipt = {"commands": []}

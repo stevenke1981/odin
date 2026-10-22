@@ -724,7 +724,7 @@
     "task_id": "ODIN-BUNDLED-LSP",
     "status": "IMPLEMENTED_PENDING_INSTALLATION_ACCEPTANCE",
     "report": "verification/bundled-lsp-validation.json",
-    "report_sha256": "7f711321d09108052869be58dc782270296b9943b18413692cdd0f9b14ae9c3d",
+    "report_sha256": "627c7c26e635d5f4b69ac1896cadd6707db026cd33540824d04e1fa5881c87fd",
     "seven_added_languages": [
       "python",
       "go",

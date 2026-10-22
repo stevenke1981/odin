@@ -40,6 +40,18 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def user_path_snapshot():
+    if os.name != 'nt':
+        return {'available': False}
+    import winreg
+    with winreg.OpenKey(winreg.HKEY_CURRENT_USER, 'Environment') as key:
+        try:
+            value, kind = winreg.QueryValueEx(key, 'Path')
+        except FileNotFoundError:
+            value, kind = None, None
+    return {'available': True, 'value': value, 'registry_type': kind}
+
+
 def fixtures(base, language, tag):
     root = base / (('\u5c08\u6848 ' if tag == 'a' else '') + language + '_' + tag)
     root.mkdir(parents=True)
@@ -180,7 +192,8 @@ class Driver:
         config.write_text('state_dir = ' + toml(str(state)) + '\n[limits]\nrpc_timeout_secs = 120\n[workspace]\nallowed_roots = ' + toml([str(a['root']), str(b['root'])]) + '\n' + ''.join('[[workspace.languages]]\n' + '\n'.join(k + ' = ' + toml(v) for k, v in profile.items()) + '\n' for profile in profiles), encoding='utf-8')
         if language == 'csharp':
             dotnet = self.args.install_root / 'backends/dotnet/dotnet.exe'
-            env = {**self.environment, 'DOTNET_ROOT': str(dotnet.parent), 'DOTNET_CLI_HOME': str(state / 'dotnet'), 'NUGET_PACKAGES': str(state / 'nuget')}
+            env = {**self.environment, 'DOTNET_ROOT': str(dotnet.parent), 'DOTNET_CLI_HOME': str(state / 'dotnet'), 'NUGET_PACKAGES': str(state / 'nuget'), 'DOTNET_ADD_GLOBAL_TOOLS_TO_PATH': 'false', 'DOTNET_GENERATE_ASPNET_CERTIFICATE': 'false', 'DOTNET_CLI_TELEMETRY_OPTOUT': '1'}
+            self.current['dotnet_first_use_controls'] = {key: env[key] for key in ('DOTNET_ADD_GLOBAL_TOOLS_TO_PATH', 'DOTNET_GENERATE_ASPNET_CERTIFICATE', 'DOTNET_CLI_TELEMETRY_OPTOUT')}
             for fixture in (a, b):
                 result = subprocess.run([str(dotnet), 'restore', 'Fixture.csproj', '--configfile', 'NuGet.Config', '--ignore-failed-sources'], cwd=fixture['root'], env=env, capture_output=True, timeout=120)
                 self.current.setdefault('restore', []).append({'exit_code': result.returncode, 'stdout': result.stdout.decode('utf-8', errors='replace'), 'stderr': result.stderr.decode('utf-8', errors='replace')})
@@ -269,6 +282,7 @@ class Driver:
         self.args.output.write_text(json.dumps(self.report, indent=2, ensure_ascii=True) + '\n', encoding='utf-8')
 
     def run(self):
+        self.report['persistent_user_path_before'] = user_path_snapshot()
         config = tomllib.loads(self.args.host_config.read_text(encoding='utf-8'))
         profiles = config['workspace']['languages']
         self.profiles = profiles
@@ -287,7 +301,10 @@ class Driver:
                 self.current['status'] = 'FAIL'
                 self.current['optional_status'] = 'NOT_RUN'
                 self.save()
-        self.report['status'] = 'PASS' if all(v['status'] == 'PASS' for v in self.report['languages']) else 'FAIL'
+        self.report['persistent_user_path_after'] = user_path_snapshot()
+        path_unchanged = self.report['persistent_user_path_before'] == self.report['persistent_user_path_after']
+        self.report['persistent_user_path_unchanged'] = 'PASS' if path_unchanged else 'FAIL'
+        self.report['status'] = 'PASS' if path_unchanged and all(v['status'] == 'PASS' for v in self.report['languages']) else 'FAIL'
         self.report['optional_status'] = 'PARTIAL' if any(v['optional_status'] != 'PASS' for v in self.report['languages']) else 'PASS'
         self.report['completed_unix'] = time.time()
         self.save()
