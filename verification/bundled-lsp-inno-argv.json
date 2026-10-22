@@ -1,0 +1,133 @@
+{
+  "scope": "ACTUAL_PRODUCTION_INNO_RECIPE_ARGV_REGRESSION_NOT_LSP_ACCEPTANCE",
+  "status": "PASS",
+  "error": null,
+  "observed_at_utc": "2026-10-22T01:09:38.786312+00:00",
+  "recipe_sha256": "067b5bddda40133da170ea9da86558cb3a81db5666c1f3a4572ac31d5c789f03",
+  "test_driver_sha256": "2ed41967886735fa5fa600512ba9dda82e348b4e03a89c55460e4ed754d68916",
+  "node_sha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
+  "iscc_sha256": "d06ebd38f38e3cee60a3c50cc45bd449d77e0bc6a5cabc607ea9886808e4de1a",
+  "qa_directory": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28",
+  "commands": [
+    {
+      "argv": [
+        "C:\\Program Files\\Inno Setup 7\\ISCC.exe",
+        "--no-compression",
+        "--no-ide-signtools",
+        "--no-signing",
+        "--define=AppVersion=0.2.0",
+        "--define=StageDir=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\stage",
+        "--define=OutputPath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28",
+        "E:\\odin-worktrees\\bundled-lsp-installer\\packaging\\odin.iss"
+      ],
+      "inno_command_line": null,
+      "exit_code": 0,
+      "stdout": "Inno Setup 7 Command-Line Compiler\nCopyright (C) 1997-2026 Jordan Russell. All rights reserved.\nPortions Copyright (C) 2000-2026 Martijn Laan. All rights reserved.\nPortions Copyright (C) 2001-2004 Alex Yackimoff. All rights reserved.\nhttps://www.innosetup.com\n\nCompiler engine version: Inno Setup 7.1.0\nNon-commercial use only\n\nPreprocessing\n   Reading file: C:\\Program Files\\Inno Setup 7\\ISPPBuiltins.iss\nParsing [Setup] section, line 12\nParsing [Setup] section, line 13\nParsing [Setup] section, line 14\nParsing [Setup] section, line 15\nParsing [Setup] section, line 16\nParsing [Setup] section, line 17\nParsing [Setup] section, line 18\nParsing [Setup] section, line 19\nParsing [Setup] section, line 20\nParsing [Setup] section, line 21\nParsing [Setup] section, line 22\nParsing [Setup] section, line 23\nParsing [Setup] section, line 24\nParsing [Setup] section, line 25\nParsing [Setup] section, line 26\nParsing [Setup] section, line 27\nParsing [Setup] section, line 28\nParsing [Setup] section, line 29\nParsing [Setup] section, line 30\nParsing [Setup] section, line 31\nParsing [Setup] section, line 32\nParsing [Setup] section, line 33\nParsing [Setup] section, line 34\nParsing [Setup] section, line 35\nParsing [Setup] section, line 36\nParsing [Setup] section, line 37\nParsing [Setup] section, line 38\nReading file (LicenseFile)\nReading file (WizardImageFile)\nReading file (WizardSmallImageFile)\nPreparing Setup program executable\n   Verification successful\n   Updating icons (Setup.e32)\n   Updating version info (Setup.e32)\nDetermining language code pages\n   Reading file: C:\\Program Files\\Inno Setup 7\\Default.isl\n   Messages in script file\nReading default messages from Default.isl\nParsing [LangOptions], [Messages], and [CustomMessages] sections\n   Reading file: C:\\Program Files\\Inno Setup 7\\Default.isl\n   Messages in script file\nReading [Code] section\nParsing [Icons] section, line 42\nParsing [Files] section, line 40\nCompiling [Code] section\nCreating setup files\n   Verification successful\n   Updating icons (Setup.exe)\n   Storing: \\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\stage\\expected-argv.json\n   Storing: \\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\stage\\LICENSE\n   Storing: \\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\stage\\README.md\n   Storing: \\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\stage\\setup-lsps.mjs\n   Storing: \\\\?\\C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\stage\\backends\\node\\node.exe\n   Compressing Setup program executable\n   Updating version info (Setup.exe)\n   Updating manifest (Setup.exe)\n\n\nSuccessful compile (1.344 sec). Resulting Setup program filename is:\nC:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\odin-0.2.0-windows-x64-setup.exe\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\odin-0.2.0-windows-x64-setup.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/SP-",
+        "/NOICONS",
+        "/ODIN_QA=1",
+        "/DIR=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\installed app space",
+        "/ODIN_HOST_CONFIG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\host space\\host.toml",
+        "/ODIN_WORKSPACE_ROOT=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\project space\\",
+        "/ODIN_REPLACE_LANGUAGE_PROFILES=1",
+        "/ODIN_SETUP_RECEIPT=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\receipt space.json",
+        "/LOG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\install.log"
+      ],
+      "inno_command_line": "\"C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\odin-0.2.0-windows-x64-setup.exe\" \"/VERYSILENT\" \"/SUPPRESSMSGBOXES\" \"/NORESTART\" \"/SP-\" \"/NOICONS\" \"/ODIN_QA=1\" \"/DIR=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\installed app space\" \"/ODIN_HOST_CONFIG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\host space\\host.toml\" \"/ODIN_WORKSPACE_ROOT=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\project space\\\" \"/ODIN_REPLACE_LANGUAGE_PROFILES=1\" \"/ODIN_SETUP_RECEIPT=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\receipt space.json\" \"/LOG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\install.log\"",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\odin-0.2.0-windows-x64-setup.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/SP-",
+        "/NOICONS",
+        "/ODIN_QA=1",
+        "/DIR=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\intentional failed app space",
+        "/ODIN_HOST_CONFIG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\host space\\host.toml",
+        "/ODIN_WORKSPACE_ROOT=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\project space\\",
+        "/ODIN_SETUP_RECEIPT=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\intentional failure receipt.json",
+        "/LOG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\intentional-failure.log"
+      ],
+      "inno_command_line": "\"C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\odin-0.2.0-windows-x64-setup.exe\" \"/VERYSILENT\" \"/SUPPRESSMSGBOXES\" \"/NORESTART\" \"/SP-\" \"/NOICONS\" \"/ODIN_QA=1\" \"/DIR=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\intentional failed app space\" \"/ODIN_HOST_CONFIG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\host space\\host.toml\" \"/ODIN_WORKSPACE_ROOT=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\project space\\\" \"/ODIN_SETUP_RECEIPT=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\intentional failure receipt.json\" \"/LOG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\intentional-failure.log\"",
+      "exit_code": 17,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\odin-0.2.0-windows-x64-setup.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/SP-",
+        "/NOICONS",
+        "/ODIN_QA=1",
+        "/DIR=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\invalid receipt app",
+        "/ODIN_HOST_CONFIG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\host space\\host.toml",
+        "/ODIN_WORKSPACE_ROOT=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\project space\\",
+        "/ODIN_SETUP_RECEIPT=relative.json",
+        "/LOG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\invalid-receipt.log"
+      ],
+      "inno_command_line": "\"C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\odin-0.2.0-windows-x64-setup.exe\" \"/VERYSILENT\" \"/SUPPRESSMSGBOXES\" \"/NORESTART\" \"/SP-\" \"/NOICONS\" \"/ODIN_QA=1\" \"/DIR=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\invalid receipt app\" \"/ODIN_HOST_CONFIG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\host space\\host.toml\" \"/ODIN_WORKSPACE_ROOT=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\project space\\\" \"/ODIN_SETUP_RECEIPT=relative.json\" \"/LOG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\invalid-receipt.log\"",
+      "exit_code": 7,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\installed app space\\unins000.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/LOG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\uninstall-0.log"
+      ],
+      "inno_command_line": "\"C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\installed app space\\unins000.exe\" \"/VERYSILENT\" \"/SUPPRESSMSGBOXES\" \"/NORESTART\" \"/LOG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\uninstall-0.log\"",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\intentional failed app space\\unins000.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/LOG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\uninstall-1.log"
+      ],
+      "inno_command_line": "\"C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\intentional failed app space\\unins000.exe\" \"/VERYSILENT\" \"/SUPPRESSMSGBOXES\" \"/NORESTART\" \"/LOG=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\uninstall-1.log\"",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "argv_receipt": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\receipt space.json",
+  "expected_node_argv": [
+    "--install",
+    "--host-config",
+    "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\host space\\host.toml",
+    "--workspace-root",
+    "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\project space\\",
+    "--replace-language-profiles",
+    "--receipt",
+    "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\receipt space.json"
+  ],
+  "forced_setup_failure_exit_code": 17,
+  "failure_receipt": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-argv-probe-3s5uqs28\\intentional failure receipt.json",
+  "qa_shortcut_preserved": true,
+  "backend_health": "NOT_RUN",
+  "semantic_acceptance": "NOT_RUN",
+  "full_product_installer_lifecycle": "NOT_RUN"
+}

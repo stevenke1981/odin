@@ -719,5 +719,24 @@
       "report": "verification/current-workspace-publication.json",
       "report_sha256": "6336f31aa81e17db2689e5c5cd81f6049885478ada19006d39baa089811028e8"
     }
+  },
+  "bundled_language_backends": {
+    "task_id": "ODIN-BUNDLED-LSP",
+    "status": "IMPLEMENTED_PENDING_INSTALLATION_ACCEPTANCE",
+    "report": "verification/bundled-lsp-validation.json",
+    "report_sha256": "dc18a6c641af2ef58b64006d206174b36e1283ae91e5811bb17f49a400497fdd",
+    "seven_added_languages": [
+      "python",
+      "go",
+      "csharp",
+      "lua",
+      "javascript",
+      "typescript",
+      "bash"
+    ],
+    "existing_rust_preserved": true,
+    "all_ide_features_accepted": false,
+    "cloud_ci_started": false,
+    "note": "This record is the current Windows bundled-language scope; pre-existing source_change/extension entries remain historical evidence and are not overwritten by these results."
   }
 }

@@ -1,10 +1,12 @@
 # Windows 與 Linux 安裝包
 
-Odin app 是 CLI、MCP 服務與本機 Dashboard。安裝不會自動啟動 daemon、
-修改 MCP client、授予 shell/debug/write，或替使用者安裝語言伺服器。
-`odin.example.toml` 是含未選定路徑的 inert host 範本，write/shell/debug/inspections/formatters
-全部關閉；安裝不會載入它。請用 `odin init` 建立自己管理的 host config，
-或明確選定 root/state 路徑與權限後再使用範本；出貨範本不是可寫 acceptance fixture。
+Odin app 是 CLI、MCP 服務與本機 Dashboard。Windows 安裝包現在包含 Python、
+Go、C#、Lua、JavaScript、TypeScript、Bash 的固定 LSP 與所需 Node／Go／.NET runtime，
+安裝時離線解包並執行版本健康檢查、產生可信 host profiles。Linux／macOS 的舊有
+封裝路徑仍需另行配置後端；Windows payload 不代表其他平台也已驗收。
+安裝不會自動啟動 daemon、修改 MCP client 或 PATH，也不會提高 write/shell/debug。
+既有 host grants 保持原值；新 workspace 預設唯讀。Rust 保留既有 host profile 與工具鏈。
+`odin.example.toml` 仍是未啟用的 inert 範本；實際設定由下述 setup 流程建立在專案外。
 
 [Inno Setup 官方說明](https://jrsoftware.org/isinfo.php) 指定 Windows 應用程式；
 Windows 使用已安裝的 Inno Setup 7 產生 `.exe`，Linux 使用原生 `.deb` 與
@@ -19,6 +21,7 @@ portable `.tar.gz`。不得把 Inno EXE 或 Wine 執行稱為 Linux 安裝包驗
 $binary = (Resolve-Path .\target\release\odin.exe).Path
 $sha = (Get-FileHash -LiteralPath $binary -Algorithm SHA256).Hash
 .\scripts\package.ps1 -SkipBuild -Binary $binary -ExpectedBinarySha256 $sha `
+  -LspPayload C:\OdinBuild\prepared-backends `
   -Iscc 'C:\Program Files\Inno Setup 7\ISCC.exe' -OutputDirectory .\dist\windows-candidate
 .\scripts\verify_installer.ps1 `
   -Installer .\dist\windows-candidate\odin-0.2.0-windows-x64-setup.exe `
@@ -30,6 +33,11 @@ $sha = (Get-FileHash -LiteralPath $binary -Algorithm SHA256).Hash
 `package-report.json`。缺少 Inno 時 installer 維持 `NOT_RUN`；不冒充已打包。
 封裝拒絕覆寫同名產物，請使用新輸出目錄。Inno 以 per-user 模式安裝，
 安裝目錄由使用者選擇；不改 PATH，使用完整路徑或自行設定 PATH 執行。
+`-LspPayload` 為必要輸入，必須是含 `manifest.json`、完整 runtime/LSP closure 的
+已準備目錄；不是 repository 中任意可執行設定。封裝拒絕 links/junctions，逐檔
+驗證 manifest hash、必要 component 與 entry points，再建立含完整 closure 的 ZIP64。
+封裝不下載依賴、不執行 npm hooks。manifest 是內容一致性清單，未簽章產物不具
+發行者認證；component 版本、來源與授權必須隨 payload 保留。
 
 最低系統是 Windows 10/11 x64，UCRT 與系統 DLL 由 OS 提供。
 封裝會遞迴檢查 PE imports，只從 Visual Studio 官方 VC/Redist/x64 CRT 目錄
@@ -40,9 +48,97 @@ $sha = (Get-FileHash -LiteralPath $binary -Algorithm SHA256).Hash
 
 驗證器在新的 `dist/installer-qa-*` 目錄實際安裝、同版重裝與卸載，
 檢查 portable／安裝內容 inventory、binary hash、metadata、使用者檔案保留與
-PATH 不變。`/ODIN_QA=1` 不寫一般 uninstall 登錄項，所有程序隱藏執行。
+PATH 不變，並對 portable 及 Inno 安裝結果實際執行十個 backend/runtime 版本命令、
+健康檢查前後 closure hash、生成 host config 的 Odin validate、同版重裝設定保留。
+這些是版本／安裝驗證；真正 document symbols、definition 等語意結果仍需獨立 MCP
+整合測試，不能由版本成功推論。
+`/ODIN_QA=1` 不寫一般 uninstall 登錄項，並強制要求獨立 `/ODIN_HOST_CONFIG=`；
+驗證腳本使用自己的 workspace／host／receipt，所有程序隱藏執行。
 正常安裝保留標準每使用者 uninstall 登錄。測試沒有驗收乾淨 Windows、
 跨版本升級、中斷回復、SmartScreen 或 Defender/CFA。
+
+## Windows：安裝時設定 LSP
+
+Inno 安裝頁要求選定專案外的絕對 host config 路徑，預設為
+`%USERPROFILE%\.config\odin\host.toml`。新設定必須明確選一個既存 workspace root；
+既有設定可保留原本 roots。安裝程式先複製固定 payload，再由 bundled Node 執行
+`setup-lsps.mjs --install`，依序完成 plan、版本健康檢查及 expected-hash apply。
+任何一個必要元件失敗或 payload 在健康檢查時改變，都不套用新 host config。
+
+```powershell
+# 標準使用者 silent 安裝；workspace root 是操作者明確選定的範圍。
+.\odin-0.2.0-windows-x64-setup.exe /VERYSILENT /NORESTART `
+  /ODIN_HOST_CONFIG="C:\Users\me\.config\odin\host.toml" `
+  /ODIN_WORKSPACE_ROOT="D:\Source\my-project"
+```
+
+既有 workspace 與所有已註冊 projects 會加入七語 profiles；既有 roots、write/shell/debug
+等 grants、commands、其他設定值及 Rust profile 保留。TOML 會重新排版，註解不保留。
+只有 marker 中 digest 仍吻合的受管 profile 可以自動更新。自訂同名 profile 預設
+產生 CONFLICT；操作者審查 plan 後，才可在安裝頁勾選替換，或明確傳
+`/ODIN_REPLACE_LANGUAGE_PROFILES=1`。其他自訂 language ID 若已佔用七語副檔名，
+須先明確編輯該 host profile，不能靠替換選項刪除不相關 profile。
+
+Portable 解壓後使用同一支腳本：
+
+```powershell
+$app = 'C:\Tools\Odin'
+& "$app\backends\node\node.exe" "$app\setup-lsps.mjs" `
+  --host-config 'C:\Users\me\.config\odin\host.toml' `
+  --workspace-root 'D:\Source\my-project' --plan
+# 審查 before_sha256、plan_sha256、changes 及 collisions 後套用。
+& "$app\backends\node\node.exe" "$app\setup-lsps.mjs" `
+  --host-config 'C:\Users\me\.config\odin\host.toml' `
+  --workspace-root 'D:\Source\my-project' --apply `
+  --expected-sha256 absent --expected-plan-sha256 '<reviewed-plan-sha256>'
+& "$app\backends\node\node.exe" "$app\setup-lsps.mjs" --health
+```
+
+`absent` 只適用新檔；既有檔必須使用 plan 的確切 SHA-256。需要替換自訂 profile 時，
+plan 與 apply 都應明確加入 `--replace-language-profiles`。Host config、state、marker、
+Lua JSON 與 receipts 必須在所有 registered／allowed workspace roots 之外。
+Apply 以獨占 lock、重驗 hash、備份及同目錄 staged replace 處理衝突；拒絕連結、
+hardlink host file 及第三方變更。這不是多檔瞬間原子交易，也沒有宣稱消除外部程序
+在最後 CAS 檢查與 rename 間的競態。安裝後 receipt 與備份寫在 host 目錄，卸載保留。
+移動 portable 後，應在新位置重新 plan/apply，使絕對 backend 路徑更新。
+
+固定 profiles 的邊界：
+
+- Python 使用 Node basedpyright；Python 執行器、虛擬環境及專案依賴由操作者管理。
+- JavaScript／TypeScript 共用 TSLS 與固定 bundled tsserver，停用自動 typing acquisition。
+- Go 固定 runner 設 GOROOT、GOTOOLCHAIN=local、GOFLAGS=-mod=readonly 與 host cache。
+  安裝離線；日常 gopls 可透過官方 Go proxy／sumdb 下載缺少的 modules 到 cache，
+  不自動下載新 toolchain。
+- C# 固定 runner 選 bundled .NET SDK／CSharpLanguageServer.dll，cache 位於 host state。
+  真實專案的 SDK、套件與 design-time MSBuild 行為仍受其專案特性影響。
+- Lua 固定 runner 使用 host-owned 純 JSON `--configpath`，停用 runtime.plugin、
+  third-party checking／addon manager，每次程序使用獨立 log/meta cache。版本健康檢查
+  也明確指定 private temp 路徑，禁止在 bundled Lua 目錄產生 log。
+- Bash 使用固定 Node entry，停用可另行執行的 shellcheck／shfmt 及 explainshell endpoint；
+  這不代表已包含 shellcheck、formatter 或每一種 shell 方言。
+
+Runner 只接受固定 backend 名稱，不接受自由 program／argv／env，不使用 shell 或 eval。
+Child environment 僅傳必要 Windows runtime 變數並覆寫 SDK 設定，不傳任意 host tokens。
+每次 Go／C#／Lua 啟動驗證 manifest 結構與必要 launcher hash；完整 SDK／modules closure
+於 setup、`--verify-payload`、`--health` 驗證。日常 runtime 信任 host-owned 安裝目錄，
+不能把這個較快檢查宣稱為每次完整防竄改。沒有因此開啟 OS sandbox，backend 仍有
+主機程序權限；cache 保留且未實作完整 retention。對 client 使用方式仍需設定同一
+外部 host config 及 `--workspace <root>`，安裝不自動修改 client。
+
+版本健康檢查、完整 closure、installer lifecycle、真實逐語 LSP、乾淨主機、跨版本
+升級與中斷 rollback 各自記錄；新增腳本或某一層 PASS 不替代其他層驗收。
+安裝器會傳回 post-install setup 的失敗 exit code；不能只靠 Inno 的檔案複製成功
+宣稱 LSP 設定成功。QA 模式另外以 recipe Check 禁止建立正常使用者的文件捷徑。
+
+以下針對真正 production Inno recipe 建立小型、無 LSP 的私有 argv fixture，實際
+安裝／呼叫 bundled Node recorder／卸載，驗證含空白與尾反斜線的參數、強制 child
+失敗 exit code、receipt 路徑拒絕與原有捷徑保留；輸出報告不視為產品安裝驗收。
+
+```powershell
+python tests/inno_argv_probe.py `
+  --node 'C:\OdinBuild\prepared-backends\node\node.exe' `
+  --iscc 'C:\Program Files\Inno Setup 7\ISCC.exe'
+```
 
 ## Linux x86-64
 

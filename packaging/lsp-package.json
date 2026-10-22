@@ -1,0 +1,13 @@
+{
+  "name": "odin-windows-language-backends",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Pinned offline Windows LSP payload build; no install scripts",
+  "dependencies": {
+    "basedpyright": "1.40.2",
+    "typescript-language-server": "6.0.2",
+    "typescript": "6.0.3",
+    "bash-language-server": "5.8.1",
+    "smol-toml": "1.9.1"
+  }
+}

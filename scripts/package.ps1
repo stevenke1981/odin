@@ -1,5 +1,5 @@
 # Produce a portable archive and, if detected or supplied, an Inno Setup installer.
-param([switch]$SkipBuild, [switch]$SkipInstaller, [string]$Binary = '', [string]$ExpectedBinarySha256 = '', [string]$Iscc = '', [string]$RuntimeDirectory = '', [string]$OutputDirectory = '')
+param([switch]$SkipBuild, [switch]$SkipInstaller, [string]$Binary = '', [string]$ExpectedBinarySha256 = '', [string]$Iscc = '', [string]$RuntimeDirectory = '', [string]$OutputDirectory = '', [Parameter(Mandatory)][string]$LspPayload)
 $ErrorActionPreference = 'Stop'
 foreach ($ModuleName in @('Microsoft.PowerShell.Utility','Microsoft.PowerShell.Security','Microsoft.PowerShell.Archive')) {
     Import-Module (Join-Path $PSHOME "Modules/$ModuleName/$ModuleName.psd1") -ErrorAction Stop
@@ -37,6 +37,30 @@ try {
     . (Join-Path $Root 'packaging/windows-runtime.ps1')
     $RuntimeInfo = Add-OdinWindowsRuntime -Binary $Binary -Stage $Stage -Root $Root -RuntimeDirectory $RuntimeDirectory
     Write-Utf8 (Join-Path $Stage 'windows-runtime-dependencies.json') ($RuntimeInfo | ConvertTo-Json -Depth 12)
+    # A reviewed, complete fixed-version payload is an explicit build input.
+    # Never download dependencies or execute npm hooks from this packaging step.
+    $LspPayload = (Resolve-Path -LiteralPath $LspPayload).Path
+    if (-not (Test-Path -LiteralPath $LspPayload -PathType Container)) { throw 'LspPayload must be a prepared backend directory.' }
+    $Pending = [Collections.Generic.Stack[string]]::new()
+    $Pending.Push($LspPayload)
+    while ($Pending.Count -gt 0) {
+        $Directory = $Pending.Pop()
+        if ((Get-Item -LiteralPath $Directory -Force).Attributes -band [IO.FileAttributes]::ReparsePoint) { throw 'LSP payload cannot contain reparse points.' }
+        foreach ($Entry in Get-ChildItem -LiteralPath $Directory -Force) {
+            if ($Entry.Attributes -band [IO.FileAttributes]::ReparsePoint) { throw 'LSP payload cannot contain links or junctions.' }
+            if ($Entry.PSIsContainer) { $Pending.Push($Entry.FullName) }
+        }
+    }
+    if (-not (Test-Path -LiteralPath (Join-Path $LspPayload 'manifest.json') -PathType Leaf)) { throw 'LSP payload manifest is required.' }
+    Copy-Item -LiteralPath $LspPayload -Destination (Join-Path $Stage 'backends') -Recurse
+    Copy-Item -LiteralPath (Join-Path $Root 'packaging/setup-lsps.mjs') -Destination (Join-Path $Stage 'setup-lsps.mjs')
+    $Node = Join-Path $Stage 'backends/node/node.exe'
+    if (-not (Test-Path -LiteralPath $Node -PathType Leaf)) { throw 'The LSP payload must bundle Node.' }
+    $LspVerificationRaw = & $Node (Join-Path $Stage 'setup-lsps.mjs') --verify-payload
+    if ($LASTEXITCODE -ne 0) { throw 'Bundled LSP closure/digest verification failed.' }
+    $LspVerification = $LspVerificationRaw | ConvertFrom-Json
+    if ($LspVerification.status -ne 'PASS') { throw 'Bundled LSP manifest verification was not PASS.' }
+    $LspManifest = Get-Content -LiteralPath (Join-Path $Stage 'backends/manifest.json') -Raw -Encoding UTF8 | ConvertFrom-Json
     foreach ($Name in @('README.md','LICENSE','THIRD_PARTY_NOTICES.md')) { Copy-Item -LiteralPath (Join-Path $Root $Name) -Destination $Stage }
     Copy-Item -LiteralPath (Join-Path $Root 'docs') -Destination $Stage -Recurse
     Copy-Item -LiteralPath (Join-Path $Root 'schemas') -Destination $Stage -Recurse
@@ -56,7 +80,10 @@ try {
     Write-Utf8 (Join-Path $Stage 'SHA256SUMS.json') (ConvertTo-Json -InputObject $Inventory -Depth 5)
     $Archive = Join-Path $OutputDirectory "$PackageName.zip"
     if (Test-Path -LiteralPath $Archive) { throw "Refusing to replace existing package: $Archive. Select a fresh output directory." }
-    Compress-Archive -LiteralPath (Get-ChildItem -LiteralPath $Stage | ForEach-Object FullName) -DestinationPath $Archive -CompressionLevel Optimal
+    # ZipFile supports ZIP64 and all regular payload files, including SDK files.
+    # Compress-Archive's implementation has a per-file 2 GiB limitation.
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    [IO.Compression.ZipFile]::CreateFromDirectory($Stage, $Archive, [IO.Compression.CompressionLevel]::Optimal, $false)
     $InstallerStatus = 'NOT_RUN'
     $Installer = $null
     $CompilerInfo = $null
@@ -84,7 +111,7 @@ try {
     $Artifacts = @($Archive)
     if ($Installer) { $Artifacts += $Installer }
     $Checksums = @($Artifacts | ForEach-Object { [ordered]@{path = $_; sha256 = (Get-FileHash -LiteralPath $_ -Algorithm SHA256).Hash.ToLowerInvariant()} })
-    $Report = [ordered]@{scope = 'WINDOWS_NATIVE_PACKAGE'; portable = 'PASS'; installer_compile = $InstallerStatus; installer_lifecycle = 'NOT_RUN'; binary_sha256 = $BinaryHash; build = $Metadata; staging = $Stage; artifacts = $Checksums; signed = $false; linux_macos_native = 'NOT_RUN'; compiler = $CompilerInfo; runtime_dependencies=$RuntimeInfo; packaging_source_revision = ((& git rev-parse HEAD) | Out-String).Trim()}
+    $Report = [ordered]@{scope = 'WINDOWS_NATIVE_PACKAGE'; portable = 'PASS'; installer_compile = $InstallerStatus; installer_lifecycle = 'NOT_RUN'; binary_sha256 = $BinaryHash; build = $Metadata; staging = $Stage; artifacts = $Checksums; signed = $false; linux_macos_native = 'NOT_RUN'; compiler = $CompilerInfo; runtime_dependencies=$RuntimeInfo; lsp_payload=[ordered]@{manifest_sha256=$LspVerification.manifest_sha256; files=$LspVerification.files; components=$LspManifest.components; integrity='PASS'; backend_health='NOT_RUN'; semantic_acceptance='NOT_RUN'}; packaging_source_revision = ((& git rev-parse HEAD) | Out-String).Trim()}
     Write-Utf8 (Join-Path $OutputDirectory 'package-report.json') ($Report | ConvertTo-Json -Depth 20)
     Write-Utf8 (Join-Path $OutputDirectory 'build-manifest.json') ($Report | ConvertTo-Json -Depth 20)
     Write-Utf8 (Join-Path $OutputDirectory 'SHA256SUMS') ((($Checksums | ForEach-Object { $_.sha256 + '  ' + [IO.Path]::GetFileName($_.path) }) -join "`n") + "`n")

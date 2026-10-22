@@ -250,27 +250,32 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
 /// Multiplexed servers require the document's LSP ID, not the host profile name.
 /// Custom host profile IDs are preserved; no source-text heuristics are used.
 pub fn language_id_for_path<'a>(profile: &'a str, path: &Path) -> &'a str {
-    let ext = path.extension().and_then(|e| e.to_str()).unwrap_or("");
+    let ext = path
+        .extension()
+        .and_then(|e| e.to_str())
+        .unwrap_or("")
+        .to_ascii_lowercase();
     match profile {
-        "typescript" | "javascript" | "typescriptreact" | "javascriptreact" => match ext {
+        "typescript" | "javascript" | "typescriptreact" | "javascriptreact" => match ext.as_str() {
             "tsx" => "typescriptreact",
             "jsx" => "javascriptreact",
             "ts" | "mts" | "cts" => "typescript",
             "js" | "mjs" | "cjs" => "javascript",
             _ => profile,
         },
-        "cpp" | "c" => match ext {
+        "cpp" | "c" => match ext.as_str() {
             "c" => "c",
             "cc" | "cpp" | "cxx" | "hpp" | "hh" | "hxx" => "cpp",
             _ => profile,
         },
-        "css" | "scss" | "less" => match ext {
+        "css" | "scss" | "less" => match ext.as_str() {
             "scss" => "scss",
             "less" => "less",
             "css" => "css",
             _ => profile,
         },
         "json" | "jsonc" if ext == "jsonc" => "jsonc",
+        "bash" | "shellscript" => "shellscript",
         _ => profile,
     }
 }
@@ -290,6 +295,11 @@ mod tests {
             ("c", "code.cpp", "cpp"),
             ("css", "theme.scss", "scss"),
             ("json", "settings.jsonc", "jsonc"),
+            ("typescript", "ui.TSX", "typescriptreact"),
+            ("javascript", "ui.JSX", "javascriptreact"),
+            ("bash", "sample.sh", "shellscript"),
+            ("shellscript", "sample.bash", "shellscript"),
+            ("custom-bash", "sample.sh", "custom-bash"),
             ("custom", "ui.tsx", "custom"),
         ] {
             assert_eq!(language_id_for_path(profile, Path::new(file)), expected);

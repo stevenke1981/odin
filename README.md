@@ -17,6 +17,21 @@ exit code、來源／binary hash 以 [交付狀態](verification/delivery-status
 [逐需求證據](verification/feature-evidence.json) 為準。舊紀錄保留為歷史，
 不能覆蓋最新結果，也不能把 protocol fixture 當真實語言支援。
 
+### Windows 隨附 LSP
+
+Windows 安裝包與 portable recipe 現在包含 Python、Go、C#、Lua、JavaScript、
+TypeScript、Bash 的固定版本 LSP 與所需 Node／Go／.NET 執行環境，安裝時完成
+離線部署、host 設定與版本健康檢查。JavaScript／TypeScript 共用 TSLS；保留既有
+Rust 設定後是 **8 種語言 profile、7 套後端實作**。Rust 的 rust-analyzer 與
+Rust toolchain 仍由既有主機提供，不因 registry 存在就宣稱已安裝。
+
+新 workspace 維持唯讀；既有權限與自訂設定保留，自訂語言設定衝突需操作者
+明確處理。安裝來源、重建指令、完整性檢查及限制見
+[後端建置](docs/LSP_PAYLOAD_BUILDER.md) 與
+[安裝方式](docs/PACKAGING_WINDOWS_LINUX.md)。逐語言真實 MCP／安裝驗收
+以最新 `verification/bundled-lsp-validation.json` 為準；版本命令成功不等於完整 IDE 功能通過。
+Linux／macOS 不包含這份 Windows runtime payload。
+
 ### 可用功能
 
 - 檔案、文字與行編輯；精確選擇 occurrence；多檔案交易的預覽、提交、回復與衝突拒絕。

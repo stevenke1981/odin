@@ -1,0 +1,29 @@
+✔ fresh setup needs an explicit workspace decision (110.9277ms)
+✔ fresh plan is inert and contains seven fixed profiles without write/shell/debug grants (103.1201ms)
+✔ preserve existing grants, roots, Rust, commands and unrelated values (101.0416ms)
+✔ custom profile collision is reviewable and blocks apply without changing config (104.9035ms)
+✔ explicit replacement replaces only requested seven language profiles (100.0498ms)
+✔ CAS apply creates sidecars, backup and all seven host profiles (131.473ms)
+✔ a managed profile can be refreshed, while an edited managed profile becomes a conflict (140.8625ms)
+✔ stale config hash refuses to overwrite an operator edit (110.1178ms)
+✔ stale expected plan hash refuses apply (99.1596ms)
+✔ changed managed marker refuses the prepared apply (108.8215ms)
+✔ payload guards reject altered, missing and unexpected files (114.0595ms)
+✔ payload guards reject traversal and case-colliding inventory entries (94.2082ms)
+✔ host config, cache and installation cannot be placed in projects (104.1426ms)
+✔ relative state paths resolve against host config, and exact profile digest is stable (127.2071ms)
+✔ runner profiles have fixed arguments and SDK env, with no arbitrary shell input (104.929ms)
+✔ CLI rejects unknown programs, duplicate modes and missing expected values (0.3435ms)
+✔ foreign custom language ids owning bundled extensions block setup even with replacement (99.1412ms)
+✔ runtime selective integrity checks launchers while explicit full verification checks SDK files (91.985ms)
+✔ existing allowed roots protect host state and sidecars even without new root arguments (105.8535ms)
+✔ backend environment does not forward host credentials or arbitrary runtime options (92.5083ms)
+✔ existing hardlinked host configuration is rejected without mutating either name (93.9518ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2209.7808

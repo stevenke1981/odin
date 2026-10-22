@@ -42,6 +42,12 @@ flowchart TB
 
 沒有 Serena 分支或執行失敗後的上游 fallback。LSP／DAP 是直接後端；host 未配置 sandbox 時仍具主機程序權限。配置 native MXC 後，LSP、DAP、固定命令與 inspection 經相同的 fail-closed ProcessContainer launch；Rust API 的路徑政策另行生效。見 [OS 沙箱](OS_SANDBOX.md)。
 
+### Windows language runtime payload
+
+Windows packaging consumes a fixed, fully hashed backend closure. The development builder uses pinned official archives, the committed npm lock (`npm ci --ignore-scripts`), and a fixed Go module version. The installed app includes Node, Go SDK and .NET SDK; setup runs offline, parses only an explicitly selected host TOML outside projects, preserves grants, and applies expected-hash configuration changes with backups. No repository file is executable host configuration.
+
+Python uses basedpyright, JavaScript/TypeScript share TSLS with a fixed tsserver path, Bash uses BashLS, and Go/C#/Lua use fixed host-owned runners with private runtime state. Runners accept only enumerated backends, never arbitrary program/argv/shell/eval. Bash didOpen uses `shellscript`; TSX/JSX language IDs follow file extensions case-insensitively. Lua uses an exact host-owned JSON configuration with executable plugins disabled. Runtime processes remain trusted native programs unless the host separately configures OS sandboxing. SDK/project loading may process repository build metadata; source policy is not OS process isolation. See PACKAGING_WINDOWS_LINUX.md and KNOWN_LIMITATIONS.md for unsupported features/platforms.
+
 ## 3. 啟動與生命週期
 
 `Config::load` 讀 host TOML，canonicalize 根目錄、檢查 ID、limits、命令與重疊根目錄；若 config/state 在 workspace 內，自動加入原生路徑保護。`Engine::new` 建立 private state、每個專案的 journal/store 及共用 memory service。CLI 選擇 stdio 或 loopback HTTP；沒有背景 daemon 自動安裝，也不修改使用者的全域 MCP 設定。

@@ -978,31 +978,39 @@ async fn sandbox_startup_failure_never_retries_backend_without_sandbox() {
 
 #[tokio::test]
 async fn configured_language_profile_uses_file_specific_lsp_language_id() {
-    let temp = tempfile::tempdir().unwrap();
-    std::fs::write(temp.path().join("app.tsx"), "fn foo() {}").unwrap();
-    let mut arguments = args("lsp");
-    arguments.extend([
-        "--ide".into(),
-        "--expect-language-id".into(),
-        "typescriptreact".into(),
-    ]);
-    let language = LanguageConfig {
-        id: "typescript".into(),
-        extensions: vec!["tsx".into()],
-        program: python(),
-        args: arguments,
-        initialization_options: serde_json::Value::Null,
-        settings: serde_json::Value::Null,
-    };
-    let client = LspClient::start(
-        SafeRoot::new(temp.path(), &[], 1000).unwrap(),
-        language,
-        Duration::from_secs(3),
-    )
-    .await
-    .unwrap();
-    assert!(client.completion("app.tsx", ide_position()).await.is_ok());
-    client.shutdown().await.unwrap();
+    for (profile, file, expected) in [
+        ("typescript", "app.tsx", "typescriptreact"),
+        ("typescript", "app.TSX", "typescriptreact"),
+        ("javascript", "app.JSX", "javascriptreact"),
+        ("bash", "sample.sh", "shellscript"),
+        ("custom-bash", "sample.sh", "custom-bash"),
+    ] {
+        let temp = tempfile::tempdir().unwrap();
+        std::fs::write(temp.path().join(file), "fn foo() {}").unwrap();
+        let mut arguments = args("lsp");
+        arguments.extend([
+            "--ide".into(),
+            "--expect-language-id".into(),
+            expected.into(),
+        ]);
+        let language = LanguageConfig {
+            id: profile.into(),
+            extensions: vec![file.rsplit('.').next().unwrap().into()],
+            program: python(),
+            args: arguments,
+            initialization_options: serde_json::Value::Null,
+            settings: serde_json::Value::Null,
+        };
+        let client = LspClient::start(
+            SafeRoot::new(temp.path(), &[], 1000).unwrap(),
+            language,
+            Duration::from_secs(3),
+        )
+        .await
+        .unwrap();
+        assert!(client.completion(file, ide_position()).await.is_ok());
+        client.shutdown().await.unwrap();
+    }
 }
 
 #[tokio::test]

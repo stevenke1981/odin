@@ -1,0 +1,71 @@
+{
+  "task_id": "ODIN-BUNDLED-LSP",
+  "kind": "INDEPENDENT_SOURCE_REVIEW",
+  "status": "SOURCE_PASS_RUNTIME_ACCEPTANCE_PENDING",
+  "actor_instance": "/root/validation_audit",
+  "author_instances": [
+    "/root",
+    "/root/project_binding_audit",
+    "/root/installer_audit"
+  ],
+  "reviewed_sha256": {
+    "packaging/setup-lsps.mjs": "4dbfa58bf751514526cc633fc8450f1274af75bb9a579f0e61348dcff7138ef9",
+    "packaging/odin.iss": "067b5bddda40133da170ea9da86558cb3a81db5666c1f3a4572ac31d5c789f03",
+    "scripts/package.ps1": "af0822134976d5182938a68118220fcb23e372e3247c2f263d2d6cb31680f1f2",
+    "scripts/verify_installer.ps1": "cfe596071ed2e561397bc72aeafe72e5513d18a5915a65af660a3e2ca9b40d1e",
+    "scripts/prepare_lsp_payload.py": "afee3f54986f2d1a16f3e8ff74899e8c671c63fac6712be591d27a72c4a4b712",
+    "tests/lsp_installer.test.mjs": "de0b1294cb769e3482ec1949ce5473c87f063b1b232051dc643949b3e8bcd6b8",
+    "tests/inno_argv_probe.py": "2ed41967886735fa5fa600512ba9dda82e348b4e03a89c55460e4ed754d68916",
+    "tests/test_lsp_payload_builder.py": "a8ebf565fb034e10c6ff5bd01abda8c2775cd10b1f92027070ed1aabc5c5da71",
+    "crates/odin-core/src/languages.rs": "71a99f5aeed928faf4fd23e78f3e13f465a8a365767716ef3e0b19b4f78d5f42",
+    "crates/odin-protocol/tests/fixture_protocols.rs": "5fe65328abf7c442d3d51f0d654a8b2e16cc1dbe8e7940ef8f22518e97596576"
+  },
+  "resolved_findings": [
+    "Diagnostic complete-but-wrong results cannot silently PASS",
+    "Exact project-local reference/range and root identity checks",
+    "Csharp setup failures retain report and allow following languages",
+    "Explicit existing allowed workspace roots protect host/state/sidecars/receipt",
+    "Backend health uses an environment allowlist",
+    "Lua health uses external log/meta and checks complete payload after probes",
+    "Inno Windows argv escaping and custom setup exit propagation",
+    "Foreign custom profile extensions compared case-insensitively"
+  ],
+  "remaining_source_blockers": [],
+  "executed_independent_checks": [
+    {
+      "command": "node --test tests/lsp_installer.test.mjs",
+      "exit_code": 0,
+      "passed": 21,
+      "failed": 0,
+      "raw_log_sha256": "e072674eedddf45959a82d00c45d19cfa39e3de9d2951ba26fb67223013c08fa"
+    },
+    {
+      "command": "python -B -m unittest discover -s tests -p test_lsp_payload_builder.py",
+      "exit_code": 0,
+      "passed": 18,
+      "failed": 0,
+      "raw_log_sha256": "3ee47dd3a802c103ae83a728fd5dec269cef97be47f801cb6b2b8cda1587936c"
+    },
+    {
+      "command": "Read actual Inno argv report, compare production recipe and probe driver hashes",
+      "exit_code": 0,
+      "raw_report_sha256": "85cfba98d8e85da05675c6c6c36425853f89fa46dc340dab37be2794dc0de7df"
+    }
+  ],
+  "native_gate_preliminary_audit": {
+    "actor_instance": "/root/project_binding_audit",
+    "status": "PASS_FOR_PRELIMINARY_SCOPE",
+    "rust_source_hashes_match_original_transaction": true,
+    "native_source_unchanged_since_gates": true,
+    "passed": 233,
+    "failed": 0,
+    "ignored": 6,
+    "binary_sha256": "478be59320e0c49e3e8286f705b1ac265c576f2e04347be400e43e5b3b420bd3"
+  },
+  "scope_limits": [
+    "This is source review, not final installer lifecycle acceptance.",
+    "Preliminary matrix lacks completion and final driver/source/manifest provenance; new installed matrix remains NOT_RUN.",
+    "Final harness adds completion plus Chinese/space project paths; results must be executed separately.",
+    "Independent agent instances are not separate human GitHub approvers or OS security boundaries."
+  ]
+}
