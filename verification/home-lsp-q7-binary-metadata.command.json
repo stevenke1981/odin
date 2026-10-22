@@ -1,0 +1,14 @@
+{
+  "name": "binary-metadata",
+  "argv": [
+    "E:\\odin\\target\\release\\odin.exe",
+    "metadata"
+  ],
+  "cwd": "E:\\odin",
+  "exit_code": 0,
+  "elapsed_seconds": 0.014,
+  "stdout": "C:\\OdinQA\\q7\\binary-metadata.stdout.log",
+  "stderr": "C:\\OdinQA\\q7\\binary-metadata.stderr.log",
+  "stdout_sha256": "8697d7797fa3ea7e8c183a3e4672adbcc866fd546246a2a86030e057519d9902",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

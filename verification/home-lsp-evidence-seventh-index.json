@@ -1,0 +1,534 @@
+{
+  "status": "PASS_FOR_CURRENT_USER_PATH_PREFIX_AND_FRESH_CLI",
+  "registry_write": "EXECUTED_ONCE",
+  "installed_binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+  "prior_user_path_raw_and_kind_preserved_as_suffix": true,
+  "machine_path_unchanged": true,
+  "current_process_path_updated": false,
+  "client_restart": "NOT_RUN",
+  "separate_environment_notification": "DELIVERED_ONLY_NO_CURRENT_PROCESS_REFRESH_CLAIM",
+  "first_apply_failure": "Retained: ACL enforcement requested SeSecurityPrivilege before any registry write. Strict idempotent DACL-only owned-task fix was actually tested; new source snapshot was taken only after confirming original user/machine raw+kind identical.",
+  "private_files": "Raw registry snapshots/backups stay only in protected external private folder; published files contain digests and source/log receipts.",
+  "entries": [
+    {
+      "path": "verification/home-lsp-cli-path-actual-apply.command.json",
+      "published_sha256": "d5cdcc3c0ad131786df0dab5c72d6c9fd3e8fdef06d88aaa419c709513e865d8",
+      "bytes": 726,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\actual-apply.command.json",
+      "original_raw_sha256": "841c74a13666ccd32c77d588c261c583b22cd58b10a1c58b7ddfceffceb14596",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-actual-apply.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\actual-apply.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-actual-apply.stdout.log",
+      "published_sha256": "f6c63de54d44fe8dd05f017765288be7f5a5c852c82d75a13832af6dc2144412",
+      "bytes": 221,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\actual-apply.stdout.log",
+      "original_raw_sha256": "0155d2dc156adb6d917e56129ad6b0ddbe0ac4cf9286d0dfea96699b6efecf48",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-actual-apply02.command.json",
+      "published_sha256": "b77a0b442f9dd3559cd9e720e0d24995b65300154eb37f0c391d256f5e432789",
+      "bytes": 782,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\actual-apply02.command.json",
+      "original_raw_sha256": "e5f6865ac99269b8701decf12404ad8ebd70d091dec486c0549f702d394a7063",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-actual-apply02.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\actual-apply02.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-actual-apply02.stdout.log",
+      "published_sha256": "7af7a1b309c73965d4e3f5e6524e9e999d7fa4ab139bf50ee9bc531ceebdcf7b",
+      "bytes": 227,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\actual-apply02.stdout.log",
+      "original_raw_sha256": "3c7562464413be935483f1e46db6bc18c072682a9885e4ceb2b50d8bb0fa344c",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-actual-snapshot.command.json",
+      "published_sha256": "80229f4a3c7468ca1c2fb802205dc83fb0bc8d43f9765375c9df8288c6f7f03c",
+      "bytes": 492,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\actual-snapshot.command.json",
+      "original_raw_sha256": "3611f04a158bef60927ec6358528b04f07f15ae28fc37dce88dff465eeced358",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-actual-snapshot.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\actual-snapshot.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-actual-snapshot.stdout.log",
+      "published_sha256": "b8999199e5fe3cefd4f7d53a33f5128163b9cdb30c3b5305b9794eb5b8be8c10",
+      "bytes": 363,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\actual-snapshot.stdout.log",
+      "original_raw_sha256": "44434a43fea82133b1c906f70d36cb398809c990e9e9c5c3a420f1ba6e64aa5a",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-actual-snapshot02.command.json",
+      "published_sha256": "f8c1376cfa6a6005c2e6a983df22253b79b95d546578eb9e175ef0b1f49f5e12",
+      "bytes": 492,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\actual-snapshot02.command.json",
+      "original_raw_sha256": "05448f244ad707df4d28072277ead9cf97200bf62d0e40a410556ddfd77812a2",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-actual-snapshot02.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\actual-snapshot02.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-actual-snapshot02.stdout.log",
+      "published_sha256": "c2df2b5b0379c3d9bf9296ea7aedff705e61abbca6024ba45a31f009e21d4f4c",
+      "bytes": 363,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\actual-snapshot02.stdout.log",
+      "original_raw_sha256": "c8b618c73661730c41bda8d63b0d92ab4d3276a41fa0e4124bc00f55853d8a6e",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-before-source-fix-resnapshot.json",
+      "published_sha256": "5918afd22a06cb0bc97c989101bfe0f3683328e077dbdd459689b8dec230b7af",
+      "bytes": 474,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\before-source-fix-resnapshot.json",
+      "original_raw_sha256": "39c4781f11cadc7f86f00d2d110ad2583f1aa7a66cfa384b03f2a19fe56020bd",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-environment-notification.json",
+      "published_sha256": "347f24fa846b52bbe8006ef7e32af526b24b58f67bfb0bc6e0d11c233b2cb917",
+      "bytes": 577,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\environment-notification.json",
+      "original_raw_sha256": "632e1e1796c5681b6b6f0bdd990d034454490212562ec86b4072a48e67672800",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-README.md",
+      "published_sha256": "6b65fc2db5e24cda36948fdfc6cef2dc357c7691d11302a6e80b10def82c536b",
+      "bytes": 3585,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\README.md",
+      "original_raw_sha256": "6b65fc2db5e24cda36948fdfc6cef2dc357c7691d11302a6e80b10def82c536b",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-secure-private-folder.ps1",
+      "published_sha256": "3b2d98eb17032dba83dce96c3aae5434d5f5b0fd96796b445bf057860fe749b3",
+      "bytes": 3562,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\secure_private_folder.ps1",
+      "original_raw_sha256": "3b2d98eb17032dba83dce96c3aae5434d5f5b0fd96796b445bf057860fe749b3",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-snapshot-20261022T061606Z-ecce4b54.report.json",
+      "published_sha256": "49d299940d3aef4b7c33ccc6e71abade1cf983c65ff03845d777a46e22676c6c",
+      "bytes": 1679,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\snapshot-20261022T061606Z-ecce4b54.report.json",
+      "original_raw_sha256": "49d299940d3aef4b7c33ccc6e71abade1cf983c65ff03845d777a46e22676c6c",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-snapshot-20261022T062453Z-26441757.report.json",
+      "published_sha256": "9d807cd06a972319824e50c549aebd11f7b11ace430bf3984e16ebd183f423bb",
+      "bytes": 2758,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\snapshot-20261022T062453Z-26441757.report.json",
+      "original_raw_sha256": "9d807cd06a972319824e50c549aebd11f7b11ace430bf3984e16ebd183f423bb",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-user-cli-path.py",
+      "published_sha256": "3f5dc46f6822d69b08bdb80b63124da76ba08ef97fab89e50f4598ab93cebdf7",
+      "bytes": 21976,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\user_cli_path.py",
+      "original_raw_sha256": "3f5dc46f6822d69b08bdb80b63124da76ba08ef97fab89e50f4598ab93cebdf7",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-verify-fresh-cli.ps1",
+      "published_sha256": "1094d525fcddc5c1b54809c17b4d729b18d09feb06d3a81ca9c6d5466a9137f8",
+      "bytes": 2184,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\verify_fresh_cli.ps1",
+      "original_raw_sha256": "1094d525fcddc5c1b54809c17b4d729b18d09feb06d3a81ca9c6d5466a9137f8",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-prepare-checks-01-apply-missing-expected-snapshot.log",
+      "published_sha256": "e2c9b4287c2ae5900d6f1a8cfaccd52694cecc8532d487c7f0e09c9a4070db22",
+      "bytes": 302,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-01\\apply-missing-expected-snapshot.log",
+      "original_raw_sha256": "2ee2b1fa1ee8a1c875300c5705a2e7c43ec1598bed118792694b14c012fdc490",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-prepare-checks-01-inert-fixtures.log",
+      "published_sha256": "efc7b7ca8eef246510232149e33b408faac716437ae875da7c87fe6e3851d39e",
+      "bytes": 1152,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-01\\inert-fixtures.log",
+      "original_raw_sha256": "23de40ed5cdc8bc1f45506c457022eea9c7dabc30d39cac1d714ea3227657cee",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-prepare-checks-01-missing-mode.log",
+      "published_sha256": "3001ab1638c8324795438b708ce3c052aa141085c41d042eef1cc0db5c3a2a2d",
+      "bytes": 307,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-01\\missing-mode.log",
+      "original_raw_sha256": "942ea0083fe5bcef0ff88a7e1e1bf6f8460c6fc3579a3bd979bd71ebcfd4a149",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-prepare-checks-01-mutually-exclusive-modes.log",
+      "published_sha256": "6b8db4ba4dc0b1f3c779d604e56b7c693e946ebd776302f85697c1107ccf6613",
+      "bytes": 302,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-01\\mutually-exclusive-modes.log",
+      "original_raw_sha256": "5403658817676fbe377deabc7551fba40a770058eb5a9a82d03f0be2bf73632e",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-prepare-checks-01-powershell-syntax.log",
+      "published_sha256": "4db47992e74da21ade83d3fd7299acfd437ddce5644cd167050f02647ed3b594",
+      "bytes": 74,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-01\\powershell-syntax.log",
+      "original_raw_sha256": "9c758ba12cbaa24b25097152e1bdc717b2d2ea9da357245067cb4ea36689757a",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-prepare-checks-01-prepare.command.json",
+      "published_sha256": "0962dce5e895545bd73828b31353f872a8f633dd4bfa4c01c4c60a2b88d6da38",
+      "bytes": 5319,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-01\\prepare.command.json",
+      "original_raw_sha256": "21e8c7f0f1d746b06a811b1924525dea6616c07bda27049f43489ead7ac32380",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-prepare-checks-01-python-syntax.log",
+      "published_sha256": "13cf488d4694af5a723c67ec1e34f4d0c3686e153065a9a49f8b7fab895635f7",
+      "bytes": 26,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-01\\python-syntax.log",
+      "original_raw_sha256": "e2b393a899f5338893cbf6ad17338f76fe8f732a6ac34ab9308b601ecfc8bfc8",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-prepare-checks-02-apply-missing-expected-snapshot.log",
+      "published_sha256": "e2c9b4287c2ae5900d6f1a8cfaccd52694cecc8532d487c7f0e09c9a4070db22",
+      "bytes": 302,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-02\\apply-missing-expected-snapshot.log",
+      "original_raw_sha256": "2ee2b1fa1ee8a1c875300c5705a2e7c43ec1598bed118792694b14c012fdc490",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-prepare-checks-02-inert-fixtures.log",
+      "published_sha256": "efc7b7ca8eef246510232149e33b408faac716437ae875da7c87fe6e3851d39e",
+      "bytes": 1152,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-02\\inert-fixtures.log",
+      "original_raw_sha256": "23de40ed5cdc8bc1f45506c457022eea9c7dabc30d39cac1d714ea3227657cee",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-prepare-checks-02-missing-mode.log",
+      "published_sha256": "3001ab1638c8324795438b708ce3c052aa141085c41d042eef1cc0db5c3a2a2d",
+      "bytes": 307,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-02\\missing-mode.log",
+      "original_raw_sha256": "942ea0083fe5bcef0ff88a7e1e1bf6f8460c6fc3579a3bd979bd71ebcfd4a149",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-prepare-checks-02-mutually-exclusive-modes.log",
+      "published_sha256": "6b8db4ba4dc0b1f3c779d604e56b7c693e946ebd776302f85697c1107ccf6613",
+      "bytes": 302,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-02\\mutually-exclusive-modes.log",
+      "original_raw_sha256": "5403658817676fbe377deabc7551fba40a770058eb5a9a82d03f0be2bf73632e",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-prepare-checks-02-powershell-syntax.log",
+      "published_sha256": "eed92bd5292003c9580cc1ca9897fda37fd5d20c10befbf2af41b15c80dbb841",
+      "bytes": 50,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-02\\powershell-syntax.log",
+      "original_raw_sha256": "0507028cc2548d21441f9059cfb1fef408afcdbbf2d6856afcce5d9278f69920",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-prepare-checks-02-prepare.command.json",
+      "published_sha256": "a3a74b5e97a7c0aac6326f08d0aeb7d71921b722449ee0ed9d0ae397c0161f54",
+      "bytes": 6965,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-02\\prepare.command.json",
+      "original_raw_sha256": "683068173ac88c64d3b0a874f479d10897319b423aaa1495832d7f26188366b6",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-prepare-checks-02-python-syntax.log",
+      "published_sha256": "13cf488d4694af5a723c67ec1e34f4d0c3686e153065a9a49f8b7fab895635f7",
+      "bytes": 26,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-02\\python-syntax.log",
+      "original_raw_sha256": "e2b393a899f5338893cbf6ad17338f76fe8f732a6ac34ab9308b601ecfc8bfc8",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-fix-verification-01-acl.command.json",
+      "published_sha256": "79845f698138a477d88955aa8e0dbb110348354c856e7d8e7d7ede570039a608",
+      "bytes": 7477,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-fix-verification-01\\acl.command.json",
+      "original_raw_sha256": "8d0613410a188e5e2d6a783f2c930ab1f58e4c615962f075c3d11ad383bf65d4",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-fix-verification-01-fresh-1.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-fix-verification-01\\fresh-1.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-fix-verification-01-fresh-1.stdout.log",
+      "published_sha256": "c947f6adce8ded02b1dcba776e9dd004caa6a8cc799192184ae108e37371adf7",
+      "bytes": 248,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-fix-verification-01\\fresh-1.stdout.log",
+      "original_raw_sha256": "14dcd2c3415b30a63682d3d8362675ef16cab7ad92d72c6147c1ed03f651d294",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-fix-verification-01-fresh-2.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-fix-verification-01\\fresh-2.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-fix-verification-01-fresh-2.stdout.log",
+      "published_sha256": "c4138475f53513778fc95c8d3c737b7906af9ebe7da29d5a175b2a33042beb68",
+      "bytes": 241,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-fix-verification-01\\fresh-2.stdout.log",
+      "original_raw_sha256": "9b6b1465e4c2b2e7e8f002b952dfb3a8b320ddfd038d48472d233a8b43086da0",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-diagnosis-01-original-helper.command.json",
+      "published_sha256": "8112e3c16a7f71c3b0b6947d63f13caf072df26c5ecbc10543cec18db619a849",
+      "bytes": 1176,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-diagnosis-01\\original-helper.command.json",
+      "original_raw_sha256": "104865d516a93cfebd2b15ed956b4a09b358729298685daa1e88d6ad6c8f3d49",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-diagnosis-01-original-helper.stderr.log",
+      "published_sha256": "bfb306d2f8a318eb340d5c2624e1b7ee4e2b494bc6c5bc989f83029361467423",
+      "bytes": 565,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-diagnosis-01\\original-helper.stderr.log",
+      "original_raw_sha256": "7af0deaca03fc416d6baf28486df84bdfece0023d153a89071645b021c62e938",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-diagnosis-01-original-helper.stdout.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-diagnosis-01\\original-helper.stdout.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-commands-20261022T062146Z-7374dafb.command.json",
+      "published_sha256": "5ba8f53d840dc49ef9c1df37a37796401490e3914a4d6376924aaadc32bb1018",
+      "bytes": 1003,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062146Z-7374dafb.command.json",
+      "original_raw_sha256": "5ba8f53d840dc49ef9c1df37a37796401490e3914a4d6376924aaadc32bb1018",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-commands-20261022T062146Z-7374dafb.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062146Z-7374dafb.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-commands-20261022T062146Z-7374dafb.stdout.log",
+      "published_sha256": "c4138475f53513778fc95c8d3c737b7906af9ebe7da29d5a175b2a33042beb68",
+      "bytes": 241,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062146Z-7374dafb.stdout.log",
+      "original_raw_sha256": "9b6b1465e4c2b2e7e8f002b952dfb3a8b320ddfd038d48472d233a8b43086da0",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-commands-20261022T062146Z-aba2cf2c.command.json",
+      "published_sha256": "b86568c75ac2c588e9b57ac3ce370042ad22ac32502af84242153709bd9acba4",
+      "bytes": 1003,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062146Z-aba2cf2c.command.json",
+      "original_raw_sha256": "b86568c75ac2c588e9b57ac3ce370042ad22ac32502af84242153709bd9acba4",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-commands-20261022T062146Z-aba2cf2c.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062146Z-aba2cf2c.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-commands-20261022T062146Z-aba2cf2c.stdout.log",
+      "published_sha256": "c4138475f53513778fc95c8d3c737b7906af9ebe7da29d5a175b2a33042beb68",
+      "bytes": 241,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062146Z-aba2cf2c.stdout.log",
+      "original_raw_sha256": "9b6b1465e4c2b2e7e8f002b952dfb3a8b320ddfd038d48472d233a8b43086da0",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-commands-20261022T062452Z-3b68b947.command.json",
+      "published_sha256": "25f9af3fe2c844a2ba6c62776259b36d2bab3264e7e8417029cbfd72a1085216",
+      "bytes": 966,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062452Z-3b68b947.command.json",
+      "original_raw_sha256": "25f9af3fe2c844a2ba6c62776259b36d2bab3264e7e8417029cbfd72a1085216",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-commands-20261022T062452Z-3b68b947.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062452Z-3b68b947.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-commands-20261022T062452Z-3b68b947.stdout.log",
+      "published_sha256": "c4138475f53513778fc95c8d3c737b7906af9ebe7da29d5a175b2a33042beb68",
+      "bytes": 241,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062452Z-3b68b947.stdout.log",
+      "original_raw_sha256": "9b6b1465e4c2b2e7e8f002b952dfb3a8b320ddfd038d48472d233a8b43086da0",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-commands-20261022T062509Z-255ed4e1.command.json",
+      "published_sha256": "be5b7d1bfb0de990b1610aee2fab65ab08abe28cbc3dcfc8f66a314882a89e4a",
+      "bytes": 966,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062509Z-255ed4e1.command.json",
+      "original_raw_sha256": "be5b7d1bfb0de990b1610aee2fab65ab08abe28cbc3dcfc8f66a314882a89e4a",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-commands-20261022T062509Z-255ed4e1.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062509Z-255ed4e1.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-acl-commands-20261022T062509Z-255ed4e1.stdout.log",
+      "published_sha256": "c4138475f53513778fc95c8d3c737b7906af9ebe7da29d5a175b2a33042beb68",
+      "bytes": 241,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062509Z-255ed4e1.stdout.log",
+      "original_raw_sha256": "9b6b1465e4c2b2e7e8f002b952dfb3a8b320ddfd038d48472d233a8b43086da0",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-history-secure-private-folder.d4b83b28fc6e837d184fc87aa9f96fb6e9948c5a71ec92d619fc8dcf7672fa87.ps1",
+      "published_sha256": "d4b83b28fc6e837d184fc87aa9f96fb6e9948c5a71ec92d619fc8dcf7672fa87",
+      "bytes": 1480,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\history\\secure_private_folder.d4b83b28fc6e837d184fc87aa9f96fb6e9948c5a71ec92d619fc8dcf7672fa87.ps1",
+      "original_raw_sha256": "d4b83b28fc6e837d184fc87aa9f96fb6e9948c5a71ec92d619fc8dcf7672fa87",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-history-user-cli-path.eaf81f8986d6b86568dd38efb31ddbefcd62f76d23b587516ba4ac1c2e1f03c3.py",
+      "published_sha256": "eaf81f8986d6b86568dd38efb31ddbefcd62f76d23b587516ba4ac1c2e1f03c3",
+      "bytes": 21051,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\history\\user_cli_path.eaf81f8986d6b86568dd38efb31ddbefcd62f76d23b587516ba4ac1c2e1f03c3.py",
+      "original_raw_sha256": "eaf81f8986d6b86568dd38efb31ddbefcd62f76d23b587516ba4ac1c2e1f03c3",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-history-verify-fresh-cli.1094d525fcddc5c1b54809c17b4d729b18d09feb06d3a81ca9c6d5466a9137f8.ps1",
+      "published_sha256": "1094d525fcddc5c1b54809c17b4d729b18d09feb06d3a81ca9c6d5466a9137f8",
+      "bytes": 2184,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\history\\verify_fresh_cli.1094d525fcddc5c1b54809c17b4d729b18d09feb06d3a81ca9c6d5466a9137f8.ps1",
+      "original_raw_sha256": "1094d525fcddc5c1b54809c17b4d729b18d09feb06d3a81ca9c6d5466a9137f8",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-apply-20261022T061645Z-e7ca95b5-candidate-prewrite.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\apply-20261022T061645Z-e7ca95b5\\candidate_prewrite.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-apply-20261022T061645Z-e7ca95b5-candidate-prewrite.stdout.log",
+      "published_sha256": "15315a8f115ca1d07452024857be4bf4715abea2f701cbf090822c9b3e253c27",
+      "bytes": 735,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\apply-20261022T061645Z-e7ca95b5\\candidate_prewrite.stdout.log",
+      "original_raw_sha256": "3eb84968383ad04fcaf4d0cf2924ee7ebdfedda3604728095a13be8222a64837",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-apply-20261022T061645Z-e7ca95b5-report.json",
+      "published_sha256": "2ac965d74a5ff34a98927f928faa10a7b343ba4afa4ebbd75752880ada362913",
+      "bytes": 4573,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\apply-20261022T061645Z-e7ca95b5\\report.json",
+      "original_raw_sha256": "2ac965d74a5ff34a98927f928faa10a7b343ba4afa4ebbd75752880ada362913",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-apply-20261022T062509Z-c27297f5-actual-persisted-postwrite.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\apply-20261022T062509Z-c27297f5\\actual_persisted_postwrite.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-apply-20261022T062509Z-c27297f5-actual-persisted-postwrite.stdout.log",
+      "published_sha256": "15315a8f115ca1d07452024857be4bf4715abea2f701cbf090822c9b3e253c27",
+      "bytes": 735,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\apply-20261022T062509Z-c27297f5\\actual_persisted_postwrite.stdout.log",
+      "original_raw_sha256": "3eb84968383ad04fcaf4d0cf2924ee7ebdfedda3604728095a13be8222a64837",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-apply-20261022T062509Z-c27297f5-candidate-prewrite.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\apply-20261022T062509Z-c27297f5\\candidate_prewrite.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-cli-path-apply-20261022T062509Z-c27297f5-candidate-prewrite.stdout.log",
+      "published_sha256": "15315a8f115ca1d07452024857be4bf4715abea2f701cbf090822c9b3e253c27",
+      "bytes": 735,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\apply-20261022T062509Z-c27297f5\\candidate_prewrite.stdout.log",
+      "original_raw_sha256": "3eb84968383ad04fcaf4d0cf2924ee7ebdfedda3604728095a13be8222a64837",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-cli-path-apply-20261022T062509Z-c27297f5-report.json",
+      "published_sha256": "507d512af931f0c978ab4123ab83b1685d29539dd32131d7991bcab19ba03ac5",
+      "bytes": 8929,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\apply-20261022T062509Z-c27297f5\\report.json",
+      "original_raw_sha256": "507d512af931f0c978ab4123ab83b1685d29539dd32131d7991bcab19ba03ac5",
+      "lf_normalized": false
+    }
+  ]
+}

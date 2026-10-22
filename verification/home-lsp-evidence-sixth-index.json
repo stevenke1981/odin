@@ -1,0 +1,432 @@
+{
+  "status": "PASS_FOR_ACTUAL_USER_UPGRADE_AND_FRESH_BINDINGS",
+  "actual_upgrade_checks_passed": 44,
+  "actual_installer_exit_code": 0,
+  "actual_upgrade_seconds": 364.565,
+  "default_root": "C:/Users/steven",
+  "live_analysis_roots": 2,
+  "home_and_explicit_binding_ids_distinct": true,
+  "existing_rust_and_grants_preserved": true,
+  "client_config_bytes_unchanged": true,
+  "phase_boundary": "User/Process PATH and certificate state unchanged through this sealed upgrade. A separately authorized user-PATH prepend follows to resolve the legacy bare-CLI shadow; do not call the whole final environment PATH-unchanged.",
+  "first_prelaunch_failure": "Retained: Windows extended-drive spelling rejected by first wrapper; no installer/native command ran; revised external4498 succeeded without changing product source",
+  "private_files": "Actual host backup, full worker config receipt and18MB installer log retained privately outside repo; original raw hashes in report/command receipts. No private Home file content or client config is published.",
+  "entries": [
+    {
+      "path": "verification/home-lsp-user-upgrade-user-upgrade.py",
+      "published_sha256": "4498b3bd5c0468cf795adc2567369790b051564a84dde2a8a5a2e77d94a2eb6a",
+      "bytes": 46706,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\user_upgrade.py",
+      "original_raw_sha256": "4498b3bd5c0468cf795adc2567369790b051564a84dde2a8a5a2e77d94a2eb6a",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-read-operator-cert-state.ps1",
+      "published_sha256": "c17b2c8b91a37230816f0afcf9ba3fc60a8678238fb92bbf05b2c912816ad560",
+      "bytes": 1536,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\read_operator_cert_state.ps1",
+      "original_raw_sha256": "c17b2c8b91a37230816f0afcf9ba3fc60a8678238fb92bbf05b2c912816ad560",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-README.md",
+      "published_sha256": "21d3ff45d69edcfdbe439d70cc818b2f0054513dad48d98805f7ba92dd67d094",
+      "bytes": 4433,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\README.md",
+      "original_raw_sha256": "21d3ff45d69edcfdbe439d70cc818b2f0054513dad48d98805f7ba92dd67d094",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-first-runner-d15.py",
+      "published_sha256": "d15bb9a7a68a992390660a21d9516ae2d13684bd87a586195c3c4bb839f5c84e",
+      "bytes": 43377,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\history\\user_upgrade.d15bb9a7a68a992390660a21d9516ae2d13684bd87a586195c3c4bb839f5c84e.py",
+      "original_raw_sha256": "d15bb9a7a68a992390660a21d9516ae2d13684bd87a586195c3c4bb839f5c84e",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-prepare-checks-01-execute-without-required-identities.log",
+      "published_sha256": "70035c88dab6bc7b61c148ddf813a4581e176f7d3059114011101f91761d244b",
+      "bytes": 399,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-01\\execute-without-required-identities.log",
+      "original_raw_sha256": "273906157705e47f7d0828a2ff030ab113d549ecb5f793339137794edf138c7f",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-prepare-checks-01-inert-guards.log",
+      "published_sha256": "ef4ba067330deeb53ba5d3f456aaf32e68695f9aad0c572f41af77768211815d",
+      "bytes": 1195,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-01\\inert-guards.log",
+      "original_raw_sha256": "ac20851c160ef92646cc5c046682fe71455ac8ecc28e1e454564cf3110731c06",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-prepare-checks-01-missing-mode.log",
+      "published_sha256": "d41f54bfb263366c7d58a560f112c352f4c4af7f3c03d044e0e361051c94632f",
+      "bytes": 415,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-01\\missing-mode.log",
+      "original_raw_sha256": "a0e269f291224efef7736288ee5f6d8ffb8542f7be629dff486388f0ffba6f2a",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-prepare-checks-01-mutually-exclusive-modes.log",
+      "published_sha256": "938294636757d7d9edd31fcad55d0c2dbee5b4b6be05b897d4efab2e3747571e",
+      "bytes": 418,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-01\\mutually-exclusive-modes.log",
+      "original_raw_sha256": "209a5bbc3e8a707a036c14409da2beba972e17c5fdd023e775886b7327b3be76",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-prepare-checks-01-powershell-syntax.log",
+      "published_sha256": "f3a3505c834cb436488159cfe59839270ec87ea3bd47b3e2921e82a47cdf9f88",
+      "bytes": 71,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-01\\powershell-syntax.log",
+      "original_raw_sha256": "93b1f29e379d79957a4ebea8ae6d21232c6ef0e8f77802ffedc2490f401afa04",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-prepare-checks-01-prepare.command.json",
+      "published_sha256": "739bdcd5397dfb57db4755e424b0b99f204531726a42d55dadac9bf36bfef4e6",
+      "bytes": 4907,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-01\\prepare.command.json",
+      "original_raw_sha256": "81aa720bd4889a26451428c4136c6f78accea80c4a5f718ce3201938c302ccde",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-prepare-checks-01-python-syntax.log",
+      "published_sha256": "13cf488d4694af5a723c67ec1e34f4d0c3686e153065a9a49f8b7fab895635f7",
+      "bytes": 26,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-01\\python-syntax.log",
+      "original_raw_sha256": "e2b393a899f5338893cbf6ad17338f76fe8f732a6ac34ab9308b601ecfc8bfc8",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-prepare-checks-02-execute-without-required-identities.log",
+      "published_sha256": "70035c88dab6bc7b61c148ddf813a4581e176f7d3059114011101f91761d244b",
+      "bytes": 399,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\execute-without-required-identities.log",
+      "original_raw_sha256": "273906157705e47f7d0828a2ff030ab113d549ecb5f793339137794edf138c7f",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-prepare-checks-02-inert-guards.log",
+      "published_sha256": "fa6873b99fbef50766de6d88b00b5e8ea81cbdb8ea496ca22450575a694cd5a3",
+      "bytes": 1711,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\inert-guards.log",
+      "original_raw_sha256": "a97a27d287835ef4625d9869d8ff74b3c401c4cc85ca030b6603f967f1302e30",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-prepare-checks-02-missing-mode.log",
+      "published_sha256": "d41f54bfb263366c7d58a560f112c352f4c4af7f3c03d044e0e361051c94632f",
+      "bytes": 415,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\missing-mode.log",
+      "original_raw_sha256": "a0e269f291224efef7736288ee5f6d8ffb8542f7be629dff486388f0ffba6f2a",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-prepare-checks-02-mutually-exclusive-modes.log",
+      "published_sha256": "938294636757d7d9edd31fcad55d0c2dbee5b4b6be05b897d4efab2e3747571e",
+      "bytes": 418,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\mutually-exclusive-modes.log",
+      "original_raw_sha256": "209a5bbc3e8a707a036c14409da2beba972e17c5fdd023e775886b7327b3be76",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-prepare-checks-02-powershell-syntax.log",
+      "published_sha256": "fed1978b6c1c16c1a7e5849b5020e87bef5f883fd5a8cccf8cce24556b44fae1",
+      "bytes": 66,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\powershell-syntax.log",
+      "original_raw_sha256": "e27e316735b0cda0eb8d1fd68cb840f02f4ecdcb6a140dcc828e96c07886026e",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-prepare-checks-02-prepare.command.json",
+      "published_sha256": "2a21715e63752bdafd30feec3ebe159fd03d45c42ae7f3cb66b3a9ae7e9da416",
+      "bytes": 7375,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\prepare.command.json",
+      "original_raw_sha256": "ca71b438654fe7472e163124dc190e82e7e91bd2cfd5515a96a89d534cf487b5",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-prepare-checks-02-python-syntax.log",
+      "published_sha256": "13cf488d4694af5a723c67ec1e34f4d0c3686e153065a9a49f8b7fab895635f7",
+      "bytes": 26,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\python-syntax.log",
+      "original_raw_sha256": "e2b393a899f5338893cbf6ad17338f76fe8f732a6ac34ab9308b601ecfc8bfc8",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-prepare-checks-02-readonly-existing-client-identity.log",
+      "published_sha256": "25526f97202dbb5b6fcfe82175db5865ab2f6615b022520553cdf66bae6f75a5",
+      "bytes": 254,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\readonly-existing-client-identity.log",
+      "original_raw_sha256": "68935f4de36e369a4801a6a68737549d414266a09aee84a3e5309d99b2420240",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-actual_user_installer.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\actual_user_installer.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-actual_user_installer.stdout.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\actual_user_installer.stdout.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-cli_omitted_config_and_workspace.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\cli_omitted_config_and_workspace.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-cli_omitted_config_and_workspace.stdout.log",
+      "published_sha256": "dc07bd8e5e889b158840170ea3c5f60b470bbb68988cfe7884afbb4073f22a70",
+      "bytes": 731,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\cli_omitted_config_and_workspace.stdout.log",
+      "original_raw_sha256": "dc07bd8e5e889b158840170ea3c5f60b470bbb68988cfe7884afbb4073f22a70",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-cli_root_1.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\cli_root_1.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-cli_root_1.stdout.log",
+      "published_sha256": "45c2051277c811ccdbc71ff68dbde59172a9ae819861aae96c580111f0ff401e",
+      "bytes": 722,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\cli_root_1.stdout.log",
+      "original_raw_sha256": "45c2051277c811ccdbc71ff68dbde59172a9ae819861aae96c580111f0ff401e",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-cli_root_2.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\cli_root_2.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-cli_root_2.stdout.log",
+      "published_sha256": "14b2f2a04a83ffe73d0743620151267cfa68ac546e7b941899a598808f03d1ba",
+      "bytes": 736,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\cli_root_2.stdout.log",
+      "original_raw_sha256": "14b2f2a04a83ffe73d0743620151267cfa68ac546e7b941899a598808f03d1ba",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-installed_metadata.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\installed_metadata.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-installed_metadata.stdout.log",
+      "published_sha256": "8697d7797fa3ea7e8c183a3e4672adbcc866fd546246a2a86030e057519d9902",
+      "bytes": 361,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\installed_metadata.stdout.log",
+      "original_raw_sha256": "8697d7797fa3ea7e8c183a3e4672adbcc866fd546246a2a86030e057519d9902",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-installed_payload_closure.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\installed_payload_closure.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-installed_payload_closure.stdout.log",
+      "published_sha256": "8f5b92fce41ec0858cf36bc45b7320b051cbbde69d78771aa23d65e719e2db70",
+      "bytes": 150,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\installed_payload_closure.stdout.log",
+      "original_raw_sha256": "8f5b92fce41ec0858cf36bc45b7320b051cbbde69d78771aa23d65e719e2db70",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-mcp_client_root_1.json",
+      "published_sha256": "dc22bf72a05c70352ceb80976663f05454413a6d124645c1395858feb1f64d62",
+      "bytes": 3050,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\mcp_client_root_1.json",
+      "original_raw_sha256": "dc22bf72a05c70352ceb80976663f05454413a6d124645c1395858feb1f64d62",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-mcp_client_root_2.json",
+      "published_sha256": "b32c8dd4d9c9fbae609b24545ebc165ecbfe03591116a942650527a657f526c8",
+      "bytes": 3078,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\mcp_client_root_2.json",
+      "original_raw_sha256": "b32c8dd4d9c9fbae609b24545ebc165ecbfe03591116a942650527a657f526c8",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-mcp_omitted_config_and_workspace.json",
+      "published_sha256": "0f69411d0b48d5fec1221c6b15bb1f2f56e8e4c9a49abeac2b38bce9c3502aeb",
+      "bytes": 3070,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\mcp_omitted_config_and_workspace.json",
+      "original_raw_sha256": "0f69411d0b48d5fec1221c6b15bb1f2f56e8e4c9a49abeac2b38bce9c3502aeb",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-preserved_operator_rust_version.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\preserved_operator_rust_version.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-preserved_operator_rust_version.stdout.log",
+      "published_sha256": "9d63be47a867faaff6b5a5ea546558947c93433a0c90c61cf8aa273c0521554f",
+      "bytes": 43,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\preserved_operator_rust_version.stdout.log",
+      "original_raw_sha256": "9d63be47a867faaff6b5a5ea546558947c93433a0c90c61cf8aa273c0521554f",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-report.json",
+      "published_sha256": "5133c4320c0f0b7c7f163bfb8dbbd4a2cfbd9961482de9f297c1e5591e668abf",
+      "bytes": 30203,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\report.json",
+      "original_raw_sha256": "7ccd51d8ee61ed4ea94161ff77291959e7b016a765e2ea3feca17393d78ffd4c",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-execute.command.json",
+      "published_sha256": "b9a388d4f5db65dbad7b609e3bfffd78a0ed4c6cb699dccc58c4501210927301",
+      "bytes": 1085,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\actual-execute.command.json",
+      "original_raw_sha256": "cc658bce9eb3056f7fe9563bad8307ce1320c7db70502ab886beab434dc6e95e",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-execute.stdout.log",
+      "published_sha256": "7bf4b583e08c9429aaf7206c31f85ffdacbb1e7b6f831942cf64c6dbfa0c5c21",
+      "bytes": 194,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\actual-execute.stdout.log",
+      "original_raw_sha256": "dbea60200ab32430b5d53b6b6b624262f3bd24efc00a52c0c6b20f67de6b4b18",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-execute.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\actual-execute.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-execute02.command.json",
+      "published_sha256": "88a7e669b36cdd4538c5fa16af0f8f8d640a5a34876526e787d603479ccdd9ed",
+      "bytes": 1091,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\actual-execute02.command.json",
+      "original_raw_sha256": "4397d9f59aea28f2b410be9abca1a80084845ba7f23dea68a91d2264ba90d449",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-execute02.stdout.log",
+      "published_sha256": "361813b1c36f312492f513a5174a0ff04da018465360d4d28868b214c13776c6",
+      "bytes": 195,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\actual-execute02.stdout.log",
+      "original_raw_sha256": "d76b42660950baf437142ef7953d7cad379426474187c340b767ab91599f5e72",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-actual-execute02.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\actual-execute02.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-first-prelaunch-failure.json",
+      "published_sha256": "d919aca8a7b16d4cd4603ee1ecf8c3494ad84b60c934adab24e72bbbfb167b8e",
+      "bytes": 1859,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T055930Z-005cb442\\report.json",
+      "original_raw_sha256": "ee2a0d6a949eeab41f4cba225fa044981446158a36529926d28548f5f45af882",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-worker-health-cas-summary.json",
+      "published_sha256": "9c60fbe8a492db419aea345d1c724c9189d64eea82356d41bf44144cf0fd1440",
+      "bytes": 10978,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\installer-worker-receipt.json",
+      "original_raw_sha256": "e2ed29e1542ff89b39a9b929f44b37089fa529d6b0df99028c07674cc228488a",
+      "serialization": "Logical JSON subset: all health probes plus selected CAS/permission/provider fields; host configuration edits/content, sidecars and backups omitted. Full raw receipt hash and file retained externally."
+    },
+    {
+      "path": "verification/home-lsp-review-user-upgrade-runner-review-02.json",
+      "published_sha256": "088b3422e21d8ca906f1867860b402eb4c2594de9f2c6783110068ca208962de",
+      "bytes": 7138,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\user-upgrade-runner-review-02.json",
+      "original_raw_sha256": "cfc5c50f3329157674891e91e26d7673a0a2edb8a3130ddf6482bbec8864a534",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-review-actual-user-upgrade-evidence-review.json",
+      "published_sha256": "cfa2747d78f906fbf9f3a4687da2908aab1193f35bda2482456e0ff87c3d2b51",
+      "bytes": 10984,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\actual-user-upgrade-evidence-review.json",
+      "original_raw_sha256": "d39d3cd1ad2fc004feb197ef9a51b7c9d2b8aacadc5f278411d86458c38c12e2",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-live-analysis-command.json",
+      "published_sha256": "be6103d3344c40808ea09b769537598d4c1b13689fc452ddb94a176ed159161b",
+      "bytes": 2341,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-live-analysis-command.json",
+      "original_raw_sha256": "438adc25d07a18d751d68382d03e99d3f4e536a22cb3ef7df476835288bfa4a7",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-user-live-analysis-1.json",
+      "published_sha256": "e8ad6f99fbe938a10fc2f5fefa73aacc6fb8cce41724917994d4142c7914b059",
+      "bytes": 8466,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-live-analysis-1.json",
+      "original_raw_sha256": "e8ad6f99fbe938a10fc2f5fefa73aacc6fb8cce41724917994d4142c7914b059",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-live-analysis-2.json",
+      "published_sha256": "8bd78796f2f514a09ddf4c3fe8bf6751834d55a17ac2f924258c8eed29649637",
+      "bytes": 7838,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-live-analysis-2.json",
+      "original_raw_sha256": "8bd78796f2f514a09ddf4c3fe8bf6751834d55a17ac2f924258c8eed29649637",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-live-analysis-1.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-live-analysis-1.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-user-live-analysis-2.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\user-live-analysis-2.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    }
+  ]
+}

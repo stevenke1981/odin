@@ -1,0 +1,7 @@
+verification/home-lsp-cli-path-acl-diagnosis-01-original-helper.stderr.log:5: trailing whitespace.
++    + CategoryInfo          : PermissionDenied: (C:\OdinQA\home-...li-path\private:String) [Set-Acl], PrivilegeNotHeld 
+verification/home-lsp-cli-path-acl-diagnosis-01-original-helper.stderr.log:7: trailing whitespace.
++    + FullyQualifiedErrorId : System.Security.AccessControl.PrivilegeNotHeldException,Microsoft.PowerShell.Commands.Se 
+verification/home-lsp-cli-path-acl-diagnosis-01-original-helper.stderr.log:9: trailing whitespace.
++ 
+verification/home-lsp-cli-path-acl-diagnosis-01-original-helper.stderr.log:9: new blank line at EOF.

@@ -1,0 +1,101 @@
+{
+  "status": "FAIL",
+  "scope": "CURRENT_USER_PATH_PREFIX_ONLY",
+  "source_pins": {
+    "user_cli_path.py": "eaf81f8986d6b86568dd38efb31ddbefcd62f76d23b587516ba4ac1c2e1f03c3",
+    "secure_private_folder.ps1": "d4b83b28fc6e837d184fc87aa9f96fb6e9948c5a71ec92d619fc8dcf7672fa87",
+    "verify_fresh_cli.ps1": "1094d525fcddc5c1b54809c17b4d729b18d09feb06d3a81ca9c6d5466a9137f8"
+  },
+  "snapshot_sha256": "975bbc02cb1113c659931a2b221b3bb75f94841793a22a1656812800c9c81d7a",
+  "before_user_path": {
+    "present": true,
+    "registry_kind": 2,
+    "raw_and_kind_sha256": "102cd36936c0e99c0968d55498d0c2a97ab47a97acdfb980ed4eec8e224742d3",
+    "raw_sha256": "660df7cd677210df5fbf0ab005864a3bae51c26112730272001ea3690e38b900",
+    "separator_segment_count": 26
+  },
+  "machine_path": {
+    "present": true,
+    "registry_kind": 2,
+    "raw_and_kind_sha256": "ce324676954a3d81d4eb116b059b2a63c9d4f17358f8368308927709ad395b84",
+    "raw_sha256": "066803702d400b5a168a03845b8e61027fab6ab5b8608d73c1e728f80621a459",
+    "separator_segment_count": 13
+  },
+  "proposed_user_path": {
+    "present": true,
+    "registry_kind": 2,
+    "raw_and_kind_sha256": "69859bfb6d33954bedf7b595c5caeb738f305da89383bc1d78b070b0af115d0b",
+    "raw_sha256": "a5d29a7da718fc2c422d916ab19d54c00f9966e0b9208a578441d4e0c244edb6",
+    "separator_segment_count": 27
+  },
+  "commands": [
+    {
+      "name": "candidate_prewrite",
+      "argv": [
+        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "C:\\OdinQA\\home-progress-1022\\user-cli-path\\verify_fresh_cli.ps1",
+        "-ExpectedBinaryPath",
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "-ExpectedBinarySha256",
+        "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\apply-20261022T061645Z-e7ca95b5",
+      "exit_code": 0,
+      "effective_path_sha256": "74baa45a522c22de8491b7c41cc61d578a0be843cdeb8e1c9ca0bd0f886a67a3",
+      "machine_source": {
+        "present": true,
+        "registry_kind": 2,
+        "raw_and_kind_sha256": "ce324676954a3d81d4eb116b059b2a63c9d4f17358f8368308927709ad395b84",
+        "raw_sha256": "066803702d400b5a168a03845b8e61027fab6ab5b8608d73c1e728f80621a459",
+        "separator_segment_count": 13
+      },
+      "user_source": {
+        "present": true,
+        "registry_kind": 2,
+        "raw_and_kind_sha256": "69859bfb6d33954bedf7b595c5caeb738f305da89383bc1d78b070b0af115d0b",
+        "raw_sha256": "a5d29a7da718fc2c422d916ab19d54c00f9966e0b9208a578441d4e0c244edb6",
+        "separator_segment_count": 27
+      },
+      "stdout_sha256": "3eb84968383ad04fcaf4d0cf2924ee7ebdfedda3604728095a13be8222a64837",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": {
+        "status": "PASS",
+        "selected_application": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+        "metadata_exit_code": 0,
+        "metadata": {
+          "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+          "external_tool_bridge": false,
+          "model_token_usage": "UNKNOWN",
+          "name": "Odin",
+          "profile": "release",
+          "revision": "190c308e9ab7bbbf2917f879f58fd2d8a948cee0",
+          "schema_version": 1,
+          "standalone": true,
+          "target": "x86_64-pc-windows-msvc",
+          "tracked_source_dirty": false,
+          "version": "0.2.0"
+        },
+        "effective_path_sha256": "74baa45a522c22de8491b7c41cc61d578a0be843cdeb8e1c9ca0bd0f886a67a3",
+        "scope": "FRESH_FIXED_READONLY_CLI_PROCESS",
+        "existing_process_path_updated": false,
+        "client_restart": "NOT_RUN"
+      }
+    }
+  ],
+  "registry_write": "NOT_RUN",
+  "guard_limit": "Expected raw value and RegistryValueKind are rechecked immediately before SetValueEx. The registry read and write are separate operations, not atomic CAS with external actors. No automatic retry or rollback is performed.",
+  "current_process_path_updated": false,
+  "client_restart": "NOT_RUN",
+  "environment_notification": "NOT_RUN: fresh verifier receives an explicit persisted PATH; existing processes are not refreshed",
+  "first_failure": {
+    "type": "AssertionError",
+    "message": "Cannot enforce the private backup folder ACL"
+  },
+  "completed_at_utc": "2026-10-22T06:16:46.140887+00:00"
+}

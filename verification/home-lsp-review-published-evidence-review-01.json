@@ -1,0 +1,2378 @@
+{
+  "task_id": "ODIN-HOME-PROGRESS-EXPANDED-REVIEW",
+  "actor_instance": "/root/review_sol",
+  "scope": "INDEPENDENT_BYTE_AND_LOGICAL_PARTITION_REVIEW_OF_FOUR_PUBLISHED_INDEXES_NOT_NEW_LANGUAGE_CHECKS",
+  "status": "PASS_SCOPED",
+  "at_utc": "2026-10-22T06:01:19.613867+00:00",
+  "indices": [
+    {
+      "path": "E:\\odin\\verification\\home-lsp-evidence-initial-index.json",
+      "sha256": "512b42f15b2be78a925474cee518f97a1a68b9815458352aae86df1f08859236",
+      "entries": 51
+    },
+    {
+      "path": "E:\\odin\\verification\\home-lsp-evidence-second-index.json",
+      "sha256": "5b57b1136180e19ffc2ca6dbbd728d7d6ce49f1c640dcc16f811824b33c58ae0",
+      "entries": 32
+    },
+    {
+      "path": "E:\\odin\\verification\\home-lsp-evidence-third-index.json",
+      "sha256": "12a00268b72ba152b64079472b957c8f735affae4585b37f35c075aee69eba20",
+      "entries": 17
+    },
+    {
+      "path": "E:\\odin\\verification\\home-lsp-evidence-fourth-index.json",
+      "sha256": "942bd81b42717c18b20c6afb8febd37daa57c7fa2692cce2d211ff00d8baeccb",
+      "entries": 55
+    }
+  ],
+  "checks": [
+    {
+      "name": "published:verification/home-lsp-expanded-gates.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-expanded-gates.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-expanded-gates.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-expanded-gates.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-gate-fmt.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-expanded-gate-fmt.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-expanded-gate-fmt.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-expanded-gate-fmt.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-gate-test.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-expanded-gate-test.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-expanded-gate-test.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-expanded-gate-test.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-gate-clippy.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-expanded-gate-clippy.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-expanded-gate-clippy.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-expanded-gate-clippy.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-node49-configured.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-node49-configured.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-node49-configured.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-node49-configured.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-node49-configured.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-node49-configured.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-node49-configured.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-node49-configured.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-root-builder-final.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-root-builder-final.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-root-builder-final.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-root-builder-final.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-root-builder-final.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-root-builder-final.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-root-builder-final.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-root-builder-final.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-release-190c308.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-release-190c308.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-release-190c308.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-release-190c308.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-release-190c308.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-release-190c308.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-release-190c308.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-release-190c308.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-new-release-smokes.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-new-release-smokes.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-new-release-smokes.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-new-release-smokes.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker-expanded06b-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker-expanded06b-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker-expanded06b-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker-expanded06b-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded06b-success-worker-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-expanded06b-success-worker-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-expanded06b-success-worker-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-expanded06b-success-worker-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded06-first-worker-failure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-expanded06-first-worker-failure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-expanded06-first-worker-failure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-expanded06-first-worker-failure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-alternative-install-receipts.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-alternative-install-receipts.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-alternative-install-receipts.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-alternative-install-receipts.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-installed-home06.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-installed-home06.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-installed-home06.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-installed-home06.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-private-home-mcp.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-private-home-mcp.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-private-home-mcp.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-private-home-mcp.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-private-home-mcp-command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-private-home-mcp-command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-private-home-mcp-command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-private-home-mcp-command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-private-home-mcp.tool-stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-private-home-mcp.tool-stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-private-home-mcp.tool-stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-private-home-mcp.tool-stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-installed06-commands.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-installed06-commands.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-installed06-commands.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-installed06-commands.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-smoke-cli.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-smoke-cli.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-smoke-cli.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-smoke-cli.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-smoke-cli.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-smoke-cli.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-smoke-cli.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-smoke-cli.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-smoke-stdio.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-smoke-stdio.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-smoke-stdio.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-smoke-stdio.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-smoke-stdio.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-smoke-stdio.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-smoke-stdio.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-smoke-stdio.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-smoke-http.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-smoke-http.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-smoke-http.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-smoke-http.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-smoke-http.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-smoke-http.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-smoke-http.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-smoke-http.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-smoke-cancel.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-smoke-cancel.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-smoke-cancel.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-smoke-cancel.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-smoke-cancel.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-smoke-cancel.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-smoke-cancel.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-smoke-cancel.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-smoke-workspace.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-smoke-workspace.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-smoke-workspace.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-smoke-workspace.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-smoke-workspace.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-smoke-workspace.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-smoke-workspace.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-smoke-workspace.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker06-success.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker06-success.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker06-success.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker06-success.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker06-success.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker06-success.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker06-success.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker06-success.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker06-cancel.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker06-cancel.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker06-cancel.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker06-cancel.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker06-cancel.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker06-cancel.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker06-cancel.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker06-cancel.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker06-timeout.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker06-timeout.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker06-timeout.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker06-timeout.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker06-timeout.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker06-timeout.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker06-timeout.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker06-timeout.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-alternative-ty.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-alternative-ty.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-alternative-ty.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-alternative-ty.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-alternative-ruff.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-alternative-ruff.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-alternative-ruff.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-alternative-ruff.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-alternative-vtsls.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-alternative-vtsls.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-alternative-vtsls.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-alternative-vtsls.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-payload06-build.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-payload06-build.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-payload06-build.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-payload06-build.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-payload06-closure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-payload06-closure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-payload06-closure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-payload06-closure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-seven06-python.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-seven06-python.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-seven06-go.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-seven06-go.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-seven06-csharp.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-seven06-csharp.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-seven06-lua.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-seven06-lua.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-seven06-javascript.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-seven06-javascript.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-seven06-typescript.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-seven06-typescript.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-seven06-bash.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-seven06-bash.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-seven06-index.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-seven06-index.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded06-first-failure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-expanded06-first-failure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-private-home-mcp-driver.py",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-private-home-mcp-driver.py",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-private-home-mcp-driver.py",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-private-home-mcp-driver.py",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-a-slint.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-a-c.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-a-cpp.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-a-rust.json.part01",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-a-rust.json.part02",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-a-rust.json.part03",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-a-rust.json.part04",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-a-index.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-a.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-a.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-b-toml.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-b-yaml.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-b-markdown.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-b-index.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-b.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-b.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-c-ty.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-c-ruff.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-c-vtsls-javascript.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-c-vtsls-typescript.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-c-index.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-c.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-c.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-expanded-retry06-commands.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-driver-verified-inert.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-root-builder07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-root-builder07.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-payload-build-07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-payload-closure-07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-payload-unit-07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-payload-slint-loader-07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-payload-slint-loader-08.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-stage07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-stage07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-stage07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-stage07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker07-driver.py",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker07-driver.py",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker07-driver.py",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker07-driver.py",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker07-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker07-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker07-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker07-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker07-success-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker07-success-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker07-success-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker07-success-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-slint-final07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-slint-final07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-slint-final07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-slint-final07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-slint-final07-command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-slint-final07-command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-slint-final07-command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-slint-final07-command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-slint-final07.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-slint-final07.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-slint-final07.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-slint-final07.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker07-success.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker07-success.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker07-success.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker07-success.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker07-success.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker07-success.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker07-success.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker07-success.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker07-cancel.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker07-cancel.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker07-cancel.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker07-cancel.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker07-cancel.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker07-cancel.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker07-cancel.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker07-cancel.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker07-timeout.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker07-timeout.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker07-timeout.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker07-timeout.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-worker07-timeout.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-worker07-timeout.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-worker07-timeout.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-worker07-timeout.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-review-payload07-inert-audit.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-review-payload07-inert-audit.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-review-payload07-inert-audit.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-review-payload07-inert-audit.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-review-payload07-inert-audit.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-review-payload07-inert-audit.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-review-payload07-inert-audit.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-review-payload07-inert-audit.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-review-static-02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-review-static-02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-review-static-02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-review-static-02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-review-static-02.md",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-review-static-02.md",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-review-static-02.md",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-review-static-02.md",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-review-final07-stage-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-review-final07-stage-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-review-final07-stage-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-review-final07-stage-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-review-ui-source-equivalence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-review-ui-source-equivalence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-review-ui-source-equivalence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-review-ui-source-equivalence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-argv-frozen-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-argv-frozen-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-argv-frozen-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-argv-frozen-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-installer-support-inno-01.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-installer-support-inno-01.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-installer-support-inno-01.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-installer-support-inno-01.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-installer-support-inno-01.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-installer-support-inno-01.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-installer-support-inno-01.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-installer-support-inno-01.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-success.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-success.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-success.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-success.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-success-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-success-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-success-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-success-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-success.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-success.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-success.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-success.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-success-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-success-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-success-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-success-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-fresh_home.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-fresh_home.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-fresh_home.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-fresh_home.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-fresh_home-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-fresh_home-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-fresh_home-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-fresh_home-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-fresh_home.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-fresh_home.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-fresh_home.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-fresh_home.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-fresh_home-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-fresh_home-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-fresh_home-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-fresh_home-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-switch_existing.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-switch_existing.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-switch_existing.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-switch_existing.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-switch_existing-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-switch_existing-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-switch_existing-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-switch_existing-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-switch_existing.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-switch_existing.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-switch_existing.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-switch_existing.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-switch_existing-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-switch_existing-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-switch_existing-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-switch_existing-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-cancel.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-cancel.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-cancel.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-cancel.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-cancel-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-cancel-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-cancel-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-cancel-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-cancel.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-cancel.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-cancel.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-cancel.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-cancel-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-cancel-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-cancel-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-cancel-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-failure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-failure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-failure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-failure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-failure-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-failure-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-failure-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-failure-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-failure.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-failure.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-failure.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-failure.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-failure-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-failure-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-failure-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-failure-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-timeout.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-timeout.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-timeout.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-timeout.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-timeout-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-timeout-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-timeout-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-timeout-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-timeout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-timeout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-timeout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-timeout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-timeout-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-timeout-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-timeout-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-timeout-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-deadline.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-deadline.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-deadline.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-deadline.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-deadline-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-deadline-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-deadline-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-deadline-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-deadline.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-deadline.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-deadline.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-deadline.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-deadline-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-deadline-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-deadline-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-deadline-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-wrong_nonce.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-wrong_nonce.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-wrong_nonce.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-wrong_nonce.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-wrong_nonce-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-wrong_nonce-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-wrong_nonce-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-wrong_nonce-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-wrong_nonce.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-wrong_nonce.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-wrong_nonce.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-wrong_nonce.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-wrong_nonce-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-wrong_nonce-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-wrong_nonce-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-wrong_nonce-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-parent_exit-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-parent_exit-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-parent_exit-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-parent_exit-ui.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-parent_exit.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-parent_exit.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-parent_exit.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-parent_exit.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-ui-frozen-parent_exit-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-ui-frozen-parent_exit-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-ui-frozen-parent_exit-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-ui-frozen-parent_exit-uninstall.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-argv-frozen-existing host no root receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-argv-frozen-existing host no root receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-argv-frozen-existing host no root receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-argv-frozen-existing host no root receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-argv-frozen-intentional failure receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-argv-frozen-intentional failure receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-argv-frozen-intentional failure receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-argv-frozen-intentional failure receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-argv-frozen-receipt space.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-argv-frozen-receipt space.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-argv-frozen-receipt space.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-argv-frozen-receipt space.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-argv-frozen-existing-host-no-root.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-argv-frozen-existing-host-no-root.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-argv-frozen-existing-host-no-root.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-argv-frozen-existing-host-no-root.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-argv-frozen-install.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-argv-frozen-install.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-argv-frozen-install.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-argv-frozen-install.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-argv-frozen-intentional-failure.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-argv-frozen-intentional-failure.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-argv-frozen-intentional-failure.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-argv-frozen-intentional-failure.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-argv-frozen-invalid-receipt.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-argv-frozen-invalid-receipt.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-argv-frozen-invalid-receipt.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-argv-frozen-invalid-receipt.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-argv-frozen-uninstall-0.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-argv-frozen-uninstall-0.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-argv-frozen-uninstall-0.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-argv-frozen-uninstall-0.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-argv-frozen-uninstall-1.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-argv-frozen-uninstall-1.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-argv-frozen-uninstall-1.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-argv-frozen-uninstall-1.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-ui-argv-frozen-uninstall-2.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-ui-argv-frozen-uninstall-2.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-ui-argv-frozen-uninstall-2.log",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-ui-argv-frozen-uninstall-2.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-published-evidence-audit07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-published-evidence-audit07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-published-evidence-audit07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-published-evidence-audit07.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-published-evidence-audit07.py",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-published-evidence-audit07.py",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-published-evidence-audit07.py",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-published-evidence-audit07.py",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-published-evidence-audit07-first-attempt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-published-evidence-audit07-first-attempt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-published-evidence-audit07-first-attempt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-published-evidence-audit07-first-attempt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published:verification/home-lsp-published-evidence-audit07-first.py",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-published-evidence-audit07-first.py",
+      "status": "PASS"
+    },
+    {
+      "name": "original:verification/home-lsp-published-evidence-audit07-first.py",
+      "status": "PASS"
+    },
+    {
+      "name": "transformation:verification/home-lsp-published-evidence-audit07-first.py",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix_raw:home-lsp-seven06",
+      "status": "PASS"
+    },
+    {
+      "name": "metadata:home-lsp-seven06",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-seven06-python.json",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-seven06/python",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-seven06/python",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-seven06-go.json",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-seven06/go",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-seven06/go",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-seven06-csharp.json",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-seven06/csharp",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-seven06/csharp",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-seven06-lua.json",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-seven06/lua",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-seven06/lua",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-seven06-javascript.json",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-seven06/javascript",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-seven06/javascript",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-seven06-typescript.json",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-seven06/typescript",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-seven06/typescript",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-seven06-bash.json",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-seven06/bash",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-seven06/bash",
+      "status": "PASS"
+    },
+    {
+      "name": "all_transcript_indices_once:home-lsp-seven06",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix_raw:home-lsp-expanded-retry06-a",
+      "status": "PASS"
+    },
+    {
+      "name": "metadata:home-lsp-expanded-retry06-a",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-expanded-retry06-a-slint.json",
+      "status": "PASS"
+    },
+    {
+      "name": "concat:home-lsp-expanded-retry06-a/slint",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-expanded-retry06-a/slint",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-expanded-retry06-a/slint",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-expanded-retry06-a-c.json",
+      "status": "PASS"
+    },
+    {
+      "name": "concat:home-lsp-expanded-retry06-a/c",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-expanded-retry06-a/c",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-expanded-retry06-a/c",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-expanded-retry06-a-cpp.json",
+      "status": "PASS"
+    },
+    {
+      "name": "concat:home-lsp-expanded-retry06-a/cpp",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-expanded-retry06-a/cpp",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-expanded-retry06-a/cpp",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-expanded-retry06-a-rust.json.part01",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-expanded-retry06-a-rust.json.part02",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-expanded-retry06-a-rust.json.part03",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-expanded-retry06-a-rust.json.part04",
+      "status": "PASS"
+    },
+    {
+      "name": "concat:home-lsp-expanded-retry06-a/rust",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-expanded-retry06-a/rust",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-expanded-retry06-a/rust",
+      "status": "PASS"
+    },
+    {
+      "name": "all_transcript_indices_once:home-lsp-expanded-retry06-a",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix_raw:home-lsp-expanded-retry06-b",
+      "status": "PASS"
+    },
+    {
+      "name": "metadata:home-lsp-expanded-retry06-b",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-expanded-retry06-b-toml.json",
+      "status": "PASS"
+    },
+    {
+      "name": "concat:home-lsp-expanded-retry06-b/toml",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-expanded-retry06-b/toml",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-expanded-retry06-b/toml",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-expanded-retry06-b-yaml.json",
+      "status": "PASS"
+    },
+    {
+      "name": "concat:home-lsp-expanded-retry06-b/yaml",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-expanded-retry06-b/yaml",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-expanded-retry06-b/yaml",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-expanded-retry06-b-markdown.json",
+      "status": "PASS"
+    },
+    {
+      "name": "concat:home-lsp-expanded-retry06-b/markdown",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-expanded-retry06-b/markdown",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-expanded-retry06-b/markdown",
+      "status": "PASS"
+    },
+    {
+      "name": "all_transcript_indices_once:home-lsp-expanded-retry06-b",
+      "status": "PASS"
+    },
+    {
+      "name": "matrix_raw:home-lsp-expanded-retry06-c",
+      "status": "PASS"
+    },
+    {
+      "name": "metadata:home-lsp-expanded-retry06-c",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-expanded-retry06-c-ty.json",
+      "status": "PASS"
+    },
+    {
+      "name": "concat:home-lsp-expanded-retry06-c/ty",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-expanded-retry06-c/ty",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-expanded-retry06-c/ty",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-expanded-retry06-c-ruff.json",
+      "status": "PASS"
+    },
+    {
+      "name": "concat:home-lsp-expanded-retry06-c/ruff",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-expanded-retry06-c/ruff",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-expanded-retry06-c/ruff",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-expanded-retry06-c-vtsls-javascript.json",
+      "status": "PASS"
+    },
+    {
+      "name": "concat:home-lsp-expanded-retry06-c/vtsls-javascript",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-expanded-retry06-c/vtsls-javascript",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-expanded-retry06-c/vtsls-javascript",
+      "status": "PASS"
+    },
+    {
+      "name": "part:verification/home-lsp-expanded-retry06-c-vtsls-typescript.json",
+      "status": "PASS"
+    },
+    {
+      "name": "concat:home-lsp-expanded-retry06-c/vtsls-typescript",
+      "status": "PASS"
+    },
+    {
+      "name": "language_report:home-lsp-expanded-retry06-c/vtsls-typescript",
+      "status": "PASS"
+    },
+    {
+      "name": "transcript:home-lsp-expanded-retry06-c/vtsls-typescript",
+      "status": "PASS"
+    },
+    {
+      "name": "all_transcript_indices_once:home-lsp-expanded-retry06-c",
+      "status": "PASS"
+    }
+  ],
+  "reviewer_execution": "OWN_STDLIB_DATA_ONLY; no target executable/repository import/source mutation",
+  "current_top_level_reports": "PARTIAL_PENDING_Q7_PUBLICATION_ACTUAL_USER_AND_FINAL_REVIEW_AT_THIS_SNAPSHOT",
+  "command": "C:/Python314/python.exe - (trusted inline data audit via exec_command)"
+}

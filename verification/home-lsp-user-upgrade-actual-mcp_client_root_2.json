@@ -1,0 +1,64 @@
+{
+  "initialize": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+      "protocolVersion": "2025-11-25",
+      "capabilities": {
+        "tools": {}
+      },
+      "serverInfo": {
+        "name": "odin",
+        "version": "0.2.0"
+      },
+      "instructions": "Odin is a local Rust code-intelligence service. Every call is scoped to a configured project ID; there is no process-global active project. Start with project_analysis for live project structure and backend gaps, then get_symbols_overview/find_symbol; read bodies only when needed. LSP positions use zero-based lines and UTF-16 columns; read_file/line edits use one-based inclusive lines. Read the SHA-256 first. All native source edits return an immutable transaction preview; use transaction_apply only after reviewing it. Successful application is NOT a passing build: run an authorized build/test profile and inspect its actual exit status. Native JSON flow is a bounded dataflow, not Python eval. This standalone build has no external tool bridge. Semantic operations connect directly to configured language servers; debugging connects directly to configured DAP adapters. Missing features have no hidden fallback. Missing capabilities are errors, never fabricated successful results.\nConfigured project IDs: ws_b12b1270a86ad555f0d3133d7c0a6de44e869420c0c92e36"
+    }
+  },
+  "list_projects": {
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"projects\":[{\"allow_debug\":false,\"allow_inspections\":false,\"allow_shell\":false,\"allow_write\":false,\"id\":\"ws_b12b1270a86ad555f0d3133d7c0a6de44e869420c0c92e36\",\"languages\":[\"rust\",\"python\",\"go\",\"csharp\",\"lua\",\"javascript\",\"typescript\",\"bash\",\"slint\",\"c\",\"cpp\",\"toml\",\"yaml\",\"markdown\"],\"root\":\"\\\\\\\\?\\\\D:\\\\chatgpt-web-bridge\"}],\"trace\":{\"elapsed_ms\":0,\"id\":\"73acb76e-fa38-43fc-bc1f-5e629386af24\",\"result_bytes\":326,\"result_sha256\":\"8848b950b6720e63408dd4e12ca8ee1389457a4685ffc8bf18843f011a4f6371\"}}"
+        }
+      ],
+      "structuredContent": {
+        "projects": [
+          {
+            "allow_debug": false,
+            "allow_inspections": false,
+            "allow_shell": false,
+            "allow_write": false,
+            "id": "ws_b12b1270a86ad555f0d3133d7c0a6de44e869420c0c92e36",
+            "languages": [
+              "rust",
+              "python",
+              "go",
+              "csharp",
+              "lua",
+              "javascript",
+              "typescript",
+              "bash",
+              "slint",
+              "c",
+              "cpp",
+              "toml",
+              "yaml",
+              "markdown"
+            ],
+            "root": "\\\\?\\D:\\chatgpt-web-bridge"
+          }
+        ],
+        "trace": {
+          "elapsed_ms": 0,
+          "id": "73acb76e-fa38-43fc-bc1f-5e629386af24",
+          "result_bytes": 326,
+          "result_sha256": "8848b950b6720e63408dd4e12ca8ee1389457a4685ffc8bf18843f011a4f6371"
+        }
+      },
+      "isError": false
+    }
+  }
+}

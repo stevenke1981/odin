@@ -1,0 +1,457 @@
+{
+  "schema_version": 1,
+  "scope": "INDEPENDENT_REVIEWER_INERT_DATA_INTEGRITY_NOT_BACKEND_OR_LEGAL_ACCEPTANCE",
+  "actor_instance": "/root/review_sol",
+  "observed_at_utc": "2026-10-22T05:31:26.293537+00:00",
+  "status": "PASS",
+  "exit_code": 0,
+  "audit_script_sha256": "7e8ebfb61b096c362e5ca5b42ee4bd461ea9ca92cc979080e13955402e682923",
+  "manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+  "native_metadata_sha256": "bd1f02f0d3565e8e59b2ab0b7b9729dfe4949220281df93dabcd581d9a91a262",
+  "build_receipt_sha256": "d50037a574d81eba7aa7bde4b1f4a5c02897de05f8a13077e1ed9c2d9498d474",
+  "file_count": 35158,
+  "component_count": 20,
+  "file_hash_error_count": 0,
+  "missing": [],
+  "extra": [],
+  "errors": [],
+  "baseline06": {
+    "manifest_sha256": "2d559814338225275ec297f60fc30347682caca18fca983140341a0196d6645a",
+    "existing_file_count": 35153,
+    "runtime_file_count": 35084,
+    "changed": [],
+    "removed": [],
+    "added": [
+      "slint/MICROSOFT_RUNTIME_NOTICES.txt",
+      "slint/app-local-runtime.json",
+      "slint/msvcp140.dll",
+      "slint/vcruntime140.dll",
+      "slint/vcruntime140_1.dll"
+    ]
+  },
+  "build_commands": [
+    {
+      "index": 1,
+      "exit_code": 0,
+      "argv": [
+        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "-NoLogo",
+        "-NoProfile",
+        "-File",
+        "C:\\OdinQA\\expanded-lsp\\payload07\\odin-lsp-build-jbxove25\\runtime-signature.ps1",
+        "-Manifest",
+        "C:\\OdinQA\\expanded-lsp\\payload07\\odin-lsp-build-jbxove25\\runtime-input.json",
+        "-ExpectedManifestSha256",
+        "40ed1457a1599ed42f2fadeb34cc25ee0f02d59577c51e5fe141bf3c6a3a0430",
+        "-Output",
+        "C:\\OdinQA\\expanded-lsp\\payload07\\odin-lsp-build-jbxove25\\runtime-signatures.json"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 2,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\node\\node.exe",
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\node\\node_modules\\npm\\bin\\npm-cli.js",
+        "ci",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 3,
+      "exit_code": 0,
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "E:\\odin-worktrees\\expanded-payload-sol\\scripts\\collect_lsp_notices.py",
+        "--metadata",
+        "E:\\odin-worktrees\\expanded-payload-sol\\packaging\\lsp-native-sources.json",
+        "--expected-metadata-sha256",
+        "bd1f02f0d3565e8e59b2ab0b7b9729dfe4949220281df93dabcd581d9a91a262",
+        "--cache-dir",
+        "C:\\OdinQA\\expanded-lsp\\downloads",
+        "--output",
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\licenses\\native-dependencies"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 4,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\go\\bin\\go.exe",
+        "install",
+        "-trimpath",
+        "golang.org/x/tools/gopls@v0.24.0"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 5,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\go\\bin\\go.exe",
+        "version",
+        "-m",
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\gopls\\gopls.exe"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 6,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\node\\node.exe",
+        "--version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 7,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\go\\bin\\go.exe",
+        "version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 8,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\gopls\\gopls.exe",
+        "version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 9,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\dotnet\\dotnet.exe",
+        "--list-sdks"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 10,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\dotnet\\dotnet.exe",
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\csharp\\CSharpLanguageServer.dll",
+        "--version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 11,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\lua\\bin\\lua-language-server.exe",
+        "--version",
+        "--logpath=C:\\OdinQA\\expanded-lsp\\payload07\\odin-lsp-build-jbxove25\\lua-log",
+        "--metapath=C:\\OdinQA\\expanded-lsp\\payload07\\odin-lsp-build-jbxove25\\lua-meta"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 12,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\node\\node.exe",
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\node_modules\\basedpyright\\index.js",
+        "--version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 13,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\node\\node.exe",
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+        "--version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 14,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\node\\node.exe",
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\node_modules\\typescript\\bin\\tsc",
+        "--version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 15,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\node\\node.exe",
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\node_modules\\bash-language-server\\out\\cli.js",
+        "--version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 16,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\node\\node.exe",
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\node_modules\\yaml-language-server\\bin\\yaml-language-server",
+        "--version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 17,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\node\\node.exe",
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\node_modules\\@vtsls\\language-server\\bin\\vtsls.js",
+        "--version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 18,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\slint\\slint-lsp.exe",
+        "--version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 19,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\clangd\\bin\\clangd.exe",
+        "--version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 20,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\taplo\\taplo.exe",
+        "--version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 21,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\marksman\\marksman.exe",
+        "--version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 22,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\ruff\\ruff.exe",
+        "--version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 23,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\ty\\ty.exe",
+        "--version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    },
+    {
+      "index": 24,
+      "exit_code": 0,
+      "argv": [
+        "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\rust-analyzer\\rust-analyzer.exe",
+        "--version"
+      ],
+      "stdout_hash_match": true,
+      "stderr_hash_match": true
+    }
+  ],
+  "source_sidecar": {
+    "sha256": "efa11b55b9a7bf7798c321a356c18450cb927fd303a52e7cfe148ee7c4a546ae",
+    "inner_archives_verified": 1009,
+    "rebuild": "NOT_RUN",
+    "legal_sufficiency": "NOT_CERTIFIED"
+  },
+  "notices": {
+    "status": "WITH_DECLARED_NOTICE_GAPS",
+    "groups": [
+      {
+        "id": "taplo",
+        "scope": "CARGO_LOCK_SUPERSET_NOT_LINKED_BINARY_SBOM",
+        "package_count": 309,
+        "missing_notice_text": 6,
+        "aggregate_hash_match": true
+      },
+      {
+        "id": "ruff",
+        "scope": "CARGO_LOCK_SUPERSET_NOT_LINKED_BINARY_SBOM",
+        "package_count": 498,
+        "missing_notice_text": 9,
+        "aggregate_hash_match": true
+      },
+      {
+        "id": "ty",
+        "scope": "CARGO_LOCK_SUPERSET_NOT_LINKED_BINARY_SBOM",
+        "package_count": 498,
+        "missing_notice_text": 9,
+        "aggregate_hash_match": true
+      },
+      {
+        "id": "rust-analyzer",
+        "scope": "CARGO_LOCK_SUPERSET_NOT_LINKED_BINARY_SBOM",
+        "package_count": 332,
+        "missing_notice_text": 7,
+        "aggregate_hash_match": true
+      },
+      {
+        "id": "marksman",
+        "scope": "ACTUAL_EMBEDDED_DEPS_JSON_NUGET_AND_SELF_CONTAINED_RUNTIME",
+        "package_count": 20,
+        "missing_notice_text": 3,
+        "aggregate_hash_match": true
+      }
+    ],
+    "legal_sufficiency": "NOT_CERTIFIED"
+  },
+  "product_or_backend_commands_executed": false,
+  "slint_app_local_runtime": {
+    "clean_machine_acceptance": "NOT_RUN",
+    "dependencies": [
+      {
+        "name": "msvcp140.dll",
+        "sha256": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+        "signature": "Valid",
+        "signer": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "source": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Redist\\MSVC\\14.44.35112\\x64\\Microsoft.VC143.CRT\\msvcp140.dll",
+        "version": "14.44.35211.0"
+      },
+      {
+        "name": "vcruntime140.dll",
+        "sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "signature": "Valid",
+        "signer": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "source": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Redist\\MSVC\\14.44.35112\\x64\\Microsoft.VC143.CRT\\vcruntime140.dll",
+        "version": "14.44.35211.0"
+      },
+      {
+        "name": "vcruntime140_1.dll",
+        "sha256": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f",
+        "signature": "Valid",
+        "signer": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "source": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Redist\\MSVC\\14.44.35112\\x64\\Microsoft.VC143.CRT\\vcruntime140_1.dll",
+        "version": "14.44.35211.0"
+      }
+    ],
+    "global_runtime_installation": false,
+    "minimum_os": "Windows 10 x64 or Windows 11 x64 with OS-provided UCRT",
+    "notice_sha256": "bdfc73b0ab0b0547208a29aa1b2a43479c7283b5985920b3d825d5d7bbf092ae",
+    "os_provided": [
+      "advapi32.dll",
+      "api-ms-win-core-synch-l1-2-0.dll",
+      "api-ms-win-core-winrt-error-l1-1-0.dll",
+      "api-ms-win-crt-convert-l1-1-0.dll",
+      "api-ms-win-crt-environment-l1-1-0.dll",
+      "api-ms-win-crt-filesystem-l1-1-0.dll",
+      "api-ms-win-crt-heap-l1-1-0.dll",
+      "api-ms-win-crt-locale-l1-1-0.dll",
+      "api-ms-win-crt-math-l1-1-0.dll",
+      "api-ms-win-crt-runtime-l1-1-0.dll",
+      "api-ms-win-crt-stdio-l1-1-0.dll",
+      "api-ms-win-crt-string-l1-1-0.dll",
+      "api-ms-win-crt-time-l1-1-0.dll",
+      "api-ms-win-crt-utility-l1-1-0.dll",
+      "bcrypt.dll",
+      "bcryptprimitives.dll",
+      "combase.dll",
+      "comctl32.dll",
+      "d3d12.dll",
+      "d3dcompiler_47.dll",
+      "dwmapi.dll",
+      "dwrite.dll",
+      "dxgi.dll",
+      "gdi32.dll",
+      "imm32.dll",
+      "iphlpapi.dll",
+      "kernel32.dll",
+      "ntdll.dll",
+      "ole32.dll",
+      "oleaut32.dll",
+      "opengl32.dll",
+      "setupapi.dll",
+      "shell32.dll",
+      "shlwapi.dll",
+      "uiautomationcore.dll",
+      "user32.dll",
+      "uxtheme.dll",
+      "ws2_32.dll"
+    ],
+    "redistribution": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution",
+    "schema_version": 1,
+    "scope": "PINNED_SIGNED_MICROSOFT_APP_LOCAL_SLINT_CRT_CLOSURE"
+  },
+  "module_evidence": [
+    {
+      "path": "C:\\OdinQA\\expanded-lsp\\slint-loader-07.json",
+      "sha256": "0db7960551d9c405acee4378140cd4339a7a63822779b38e770acb2bd19b97b9",
+      "overall_driver_status": "FAIL",
+      "process_exit_code": 3,
+      "observer_exit_code": 0,
+      "crt_loaded_from_exact_app_local_paths": true,
+      "auxiliary_protocol_shutdown": "FAIL_PRESERVED_EXIT3_DUPLICATE_SHUTDOWN_ERROR",
+      "semantic_acceptance": "NOT_RUN"
+    },
+    {
+      "path": "C:\\OdinQA\\expanded-lsp\\slint-loader-08.json",
+      "sha256": "c2b634d63a2e6d1041a13de8ee6c47676afa2c0d4c137b346a94ec2812030b8d",
+      "overall_driver_status": "FAIL",
+      "process_exit_code": 3,
+      "observer_exit_code": 0,
+      "crt_loaded_from_exact_app_local_paths": true,
+      "auxiliary_protocol_shutdown": "FAIL_PRESERVED_EXIT3_DUPLICATE_SHUTDOWN_ERROR",
+      "semantic_acceptance": "NOT_RUN"
+    }
+  ],
+  "auxiliary_protocol_shutdown": "FAIL_PRESERVED_SEPARATELY_FROM_DATA_INTEGRITY",
+  "clean_machine_acceptance": "NOT_RUN",
+  "semantic_acceptance": "NOT_RUN_IN_THIS_AUDIT",
+  "source_mutations_performed": false
+}

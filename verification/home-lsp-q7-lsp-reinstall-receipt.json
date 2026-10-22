@@ -1,0 +1,1011 @@
+{
+  "plan": {
+    "schema_version": 1,
+    "scope": "OFFLINE_HOST_LSP_CONFIGURATION",
+    "status": "READY",
+    "host_config": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml",
+    "before_sha256": "febc247210a6b881224cba3b8e6554c68c7c3e487f455a7f2a0296fad7c41add",
+    "after_sha256": "febc247210a6b881224cba3b8e6554c68c7c3e487f455a7f2a0296fad7c41add",
+    "install_root": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app",
+    "bundle_manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+    "state_dir": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\state",
+    "added_workspace_roots": [
+      "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-workspace"
+    ],
+    "authorized_workspace_roots": [
+      "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-workspace"
+    ],
+    "replace_language_profiles": false,
+    "selected_backends": {
+      "python": "basedpyright",
+      "typescript": "typescript-language-server"
+    },
+    "backend_limits": {
+      "python": "basedpyright remains the default Python semantic provider",
+      "ruff_native": "Native inspection and stdin formatter execution still require separate explicit host grants and OS sandbox; setup does not enable them",
+      "selection": "One configured provider per Python/JavaScript/TypeScript extension; no automatic fallback"
+    },
+    "languages": [
+      "python",
+      "go",
+      "csharp",
+      "lua",
+      "javascript",
+      "typescript",
+      "bash",
+      "slint",
+      "c",
+      "cpp",
+      "toml",
+      "yaml",
+      "markdown",
+      "rust"
+    ],
+    "changes": [
+      {
+        "scope": "workspace",
+        "language": "python",
+        "action": "unchanged",
+        "before": {
+          "id": "python",
+          "extensions": [
+            "py",
+            "pyi"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "--preserve-symlinks",
+            "--preserve-symlinks-main",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\basedpyright\\langserver.index.js",
+            "--stdio"
+          ]
+        },
+        "after": {
+          "id": "python",
+          "extensions": [
+            "py",
+            "pyi"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "--preserve-symlinks",
+            "--preserve-symlinks-main",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\basedpyright\\langserver.index.js",
+            "--stdio"
+          ]
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "go",
+        "action": "unchanged",
+        "before": {
+          "id": "go",
+          "extensions": [
+            "go"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\setup-lsps.mjs",
+            "--run-backend",
+            "go",
+            "--state-dir",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\state",
+            "--host-config",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml"
+          ],
+          "initialization_options": {
+            "env": {
+              "PATH": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\go\\bin;C:\\WINDOWS\\System32;C:\\WINDOWS",
+              "GOROOT": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\go",
+              "GOPATH": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\state\\lsp-cache\\go\\gopath",
+              "GOCACHE": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\state\\lsp-cache\\go\\build",
+              "GOMODCACHE": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\state\\lsp-cache\\go\\modules",
+              "GOTOOLCHAIN": "local",
+              "GOENV": "off",
+              "GOFLAGS": "-mod=readonly",
+              "GOPROXY": "https://proxy.golang.org",
+              "GOSUMDB": "sum.golang.org"
+            }
+          }
+        },
+        "after": {
+          "id": "go",
+          "extensions": [
+            "go"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\setup-lsps.mjs",
+            "--run-backend",
+            "go",
+            "--state-dir",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\state",
+            "--host-config",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml"
+          ],
+          "initialization_options": {
+            "env": {
+              "PATH": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\go\\bin;C:\\WINDOWS\\System32;C:\\WINDOWS",
+              "GOROOT": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\go",
+              "GOPATH": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\state\\lsp-cache\\go\\gopath",
+              "GOCACHE": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\state\\lsp-cache\\go\\build",
+              "GOMODCACHE": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\state\\lsp-cache\\go\\modules",
+              "GOTOOLCHAIN": "local",
+              "GOENV": "off",
+              "GOFLAGS": "-mod=readonly",
+              "GOPROXY": "https://proxy.golang.org",
+              "GOSUMDB": "sum.golang.org"
+            }
+          }
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "csharp",
+        "action": "unchanged",
+        "before": {
+          "id": "csharp",
+          "extensions": [
+            "cs"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\setup-lsps.mjs",
+            "--run-backend",
+            "csharp",
+            "--state-dir",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\state",
+            "--host-config",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml"
+          ]
+        },
+        "after": {
+          "id": "csharp",
+          "extensions": [
+            "cs"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\setup-lsps.mjs",
+            "--run-backend",
+            "csharp",
+            "--state-dir",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\state",
+            "--host-config",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml"
+          ]
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "lua",
+        "action": "unchanged",
+        "before": {
+          "id": "lua",
+          "extensions": [
+            "lua"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\setup-lsps.mjs",
+            "--run-backend",
+            "lua",
+            "--state-dir",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\state",
+            "--host-config",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml",
+            "--lua-config",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml.lua-settings.46444fb804eda6b8.json"
+          ],
+          "settings": {
+            "Lua": {
+              "runtime": {
+                "plugin": ""
+              },
+              "workspace": {
+                "checkThirdParty": "Disable"
+              },
+              "addonManager": {
+                "enable": false
+              }
+            }
+          }
+        },
+        "after": {
+          "id": "lua",
+          "extensions": [
+            "lua"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\setup-lsps.mjs",
+            "--run-backend",
+            "lua",
+            "--state-dir",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\state",
+            "--host-config",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml",
+            "--lua-config",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml.lua-settings.46444fb804eda6b8.json"
+          ],
+          "settings": {
+            "Lua": {
+              "runtime": {
+                "plugin": ""
+              },
+              "workspace": {
+                "checkThirdParty": "Disable"
+              },
+              "addonManager": {
+                "enable": false
+              }
+            }
+          }
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "javascript",
+        "action": "unchanged",
+        "before": {
+          "id": "javascript",
+          "extensions": [
+            "js",
+            "jsx",
+            "mjs",
+            "cjs"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "--preserve-symlinks",
+            "--preserve-symlinks-main",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+            "--stdio"
+          ],
+          "initialization_options": {
+            "disableAutomaticTypingAcquisition": true,
+            "tsserver": {
+              "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\typescript\\lib\\tsserver.js"
+            }
+          }
+        },
+        "after": {
+          "id": "javascript",
+          "extensions": [
+            "js",
+            "jsx",
+            "mjs",
+            "cjs"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "--preserve-symlinks",
+            "--preserve-symlinks-main",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+            "--stdio"
+          ],
+          "initialization_options": {
+            "tsserver": {
+              "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\typescript\\lib\\tsserver.js"
+            },
+            "disableAutomaticTypingAcquisition": true
+          }
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "typescript",
+        "action": "unchanged",
+        "before": {
+          "id": "typescript",
+          "extensions": [
+            "ts",
+            "tsx",
+            "mts",
+            "cts"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "--preserve-symlinks",
+            "--preserve-symlinks-main",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+            "--stdio"
+          ],
+          "initialization_options": {
+            "disableAutomaticTypingAcquisition": true,
+            "tsserver": {
+              "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\typescript\\lib\\tsserver.js"
+            }
+          }
+        },
+        "after": {
+          "id": "typescript",
+          "extensions": [
+            "ts",
+            "tsx",
+            "mts",
+            "cts"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "--preserve-symlinks",
+            "--preserve-symlinks-main",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+            "--stdio"
+          ],
+          "initialization_options": {
+            "tsserver": {
+              "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\typescript\\lib\\tsserver.js"
+            },
+            "disableAutomaticTypingAcquisition": true
+          }
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "bash",
+        "action": "unchanged",
+        "before": {
+          "id": "bash",
+          "extensions": [
+            "sh",
+            "bash"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "--preserve-symlinks",
+            "--preserve-symlinks-main",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\bash-language-server\\out\\cli.js",
+            "start"
+          ],
+          "settings": {
+            "bashIde": {
+              "shellcheckPath": "",
+              "explainshellEndpoint": "",
+              "shfmt": {
+                "path": ""
+              }
+            }
+          }
+        },
+        "after": {
+          "id": "bash",
+          "extensions": [
+            "sh",
+            "bash"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "--preserve-symlinks",
+            "--preserve-symlinks-main",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\bash-language-server\\out\\cli.js",
+            "start"
+          ],
+          "settings": {
+            "bashIde": {
+              "shellcheckPath": "",
+              "shfmt": {
+                "path": ""
+              },
+              "explainshellEndpoint": ""
+            }
+          }
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "slint",
+        "action": "unchanged",
+        "before": {
+          "id": "slint",
+          "extensions": [
+            "slint"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\slint\\slint-lsp.exe",
+          "args": []
+        },
+        "after": {
+          "id": "slint",
+          "extensions": [
+            "slint"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\slint\\slint-lsp.exe",
+          "args": []
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "c",
+        "action": "unchanged",
+        "before": {
+          "id": "c",
+          "extensions": [
+            "c",
+            "h"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\clangd\\bin\\clangd.exe",
+          "args": [
+            "--enable-config=false"
+          ]
+        },
+        "after": {
+          "id": "c",
+          "extensions": [
+            "c",
+            "h"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\clangd\\bin\\clangd.exe",
+          "args": [
+            "--enable-config=false"
+          ]
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "cpp",
+        "action": "unchanged",
+        "before": {
+          "id": "cpp",
+          "extensions": [
+            "cc",
+            "cpp",
+            "cxx",
+            "hpp",
+            "hh",
+            "hxx"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\clangd\\bin\\clangd.exe",
+          "args": [
+            "--enable-config=false"
+          ]
+        },
+        "after": {
+          "id": "cpp",
+          "extensions": [
+            "cc",
+            "cpp",
+            "cxx",
+            "hpp",
+            "hh",
+            "hxx"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\clangd\\bin\\clangd.exe",
+          "args": [
+            "--enable-config=false"
+          ]
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "toml",
+        "action": "unchanged",
+        "before": {
+          "id": "toml",
+          "extensions": [
+            "toml"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\taplo\\taplo.exe",
+          "args": [
+            "lsp",
+            "stdio"
+          ],
+          "settings": {
+            "evenBetterToml": {
+              "taplo": {
+                "configFile": {
+                  "enabled": false
+                }
+              },
+              "schema": {
+                "enabled": false,
+                "catalogs": [],
+                "associations": {}
+              }
+            }
+          }
+        },
+        "after": {
+          "id": "toml",
+          "extensions": [
+            "toml"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\taplo\\taplo.exe",
+          "args": [
+            "lsp",
+            "stdio"
+          ],
+          "settings": {
+            "evenBetterToml": {
+              "taplo": {
+                "configFile": {
+                  "enabled": false
+                }
+              },
+              "schema": {
+                "enabled": false,
+                "catalogs": [],
+                "associations": {}
+              }
+            }
+          }
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "yaml",
+        "action": "unchanged",
+        "before": {
+          "id": "yaml",
+          "extensions": [
+            "yaml",
+            "yml"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "--preserve-symlinks",
+            "--preserve-symlinks-main",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\yaml-language-server\\bin\\yaml-language-server",
+            "--stdio"
+          ],
+          "settings": {
+            "yaml": {
+              "validate": true,
+              "schemaStore": {
+                "enable": false,
+                "url": ""
+              },
+              "schemas": {}
+            }
+          }
+        },
+        "after": {
+          "id": "yaml",
+          "extensions": [
+            "yaml",
+            "yml"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+          "args": [
+            "--preserve-symlinks",
+            "--preserve-symlinks-main",
+            "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\yaml-language-server\\bin\\yaml-language-server",
+            "--stdio"
+          ],
+          "settings": {
+            "yaml": {
+              "schemaStore": {
+                "enable": false,
+                "url": ""
+              },
+              "schemas": {},
+              "validate": true
+            }
+          }
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "markdown",
+        "action": "unchanged",
+        "before": {
+          "id": "markdown",
+          "extensions": [
+            "md",
+            "markdown"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\marksman\\marksman.exe",
+          "args": [
+            "server"
+          ]
+        },
+        "after": {
+          "id": "markdown",
+          "extensions": [
+            "md",
+            "markdown"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\marksman\\marksman.exe",
+          "args": [
+            "server"
+          ]
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "rust",
+        "action": "unchanged",
+        "before": {
+          "id": "rust",
+          "extensions": [
+            "rs"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\rust-analyzer\\rust-analyzer.exe",
+          "args": [],
+          "settings": {
+            "rust-analyzer": {
+              "checkOnSave": false,
+              "cargo": {
+                "buildScripts": {
+                  "enable": false
+                }
+              },
+              "procMacro": {
+                "enable": false
+              }
+            }
+          }
+        },
+        "after": {
+          "id": "rust",
+          "extensions": [
+            "rs"
+          ],
+          "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\rust-analyzer\\rust-analyzer.exe",
+          "args": [],
+          "settings": {
+            "rust-analyzer": {
+              "checkOnSave": false,
+              "cargo": {
+                "buildScripts": {
+                  "enable": false
+                }
+              },
+              "procMacro": {
+                "enable": false
+              }
+            }
+          }
+        }
+      }
+    ],
+    "collisions": [],
+    "permissions": "Existing grants preserved; new workspace grants remain disabled",
+    "optional_rust": "Bundled rust-analyzer is added without an existing Rust/.rs profile; unedited managed Rust can update with the installation, operator Rust profiles are retained and Rust toolchain is not bundled",
+    "sidecars": [
+      {
+        "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml.odin-lsps.json",
+        "before_sha256": "31a7ed2718a12514fff7dc2c1cf18b60b68b317864c64985c6d131f238ab3f25",
+        "after_sha256": "31a7ed2718a12514fff7dc2c1cf18b60b68b317864c64985c6d131f238ab3f25"
+      },
+      {
+        "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml.lua-settings.46444fb804eda6b8.json",
+        "before_sha256": "46444fb804eda6b8ebc50c6f39ea7116b02974160d3a1a87357379efe1bf4fff",
+        "after_sha256": "46444fb804eda6b8ebc50c6f39ea7116b02974160d3a1a87357379efe1bf4fff"
+      }
+    ],
+    "plan_sha256": "3d8d7c5cea35d6d7ab95b4419a55d0c62508fcebdf356d648c1798b3a8a0e936"
+  },
+  "health": {
+    "scope": "BUNDLED_BACKEND_VERSION_EXECUTION_NOT_SEMANTIC_ACCEPTANCE",
+    "status": "PASS",
+    "bundle_manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+    "checks": [
+      {
+        "component": "node",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "24.21.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "v24.21.0\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "basedpyright",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+        "args": [
+          "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\basedpyright\\index.js",
+          "--version"
+        ],
+        "expected_version": "1.40.2",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "basedpyright 1.40.2\nbased on pyright 1.40.2\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "typescript-language-server",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+        "args": [
+          "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+          "--version"
+        ],
+        "expected_version": "6.0.2",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "6.0.2\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "typescript",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+        "args": [
+          "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\typescript\\lib\\tsc.js",
+          "--version"
+        ],
+        "expected_version": "6.0.3",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "Version 6.0.3\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "bash-language-server",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+        "args": [
+          "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\bash-language-server\\out\\cli.js",
+          "--version"
+        ],
+        "expected_version": "5.8.1",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "5.8.1\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "go",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\go\\bin\\go.exe",
+        "args": [
+          "version"
+        ],
+        "expected_version": "1.27.3",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "go version go1.27.3 windows/amd64\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "gopls",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\gopls\\gopls.exe",
+        "args": [
+          "version"
+        ],
+        "expected_version": "0.24.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "golang.org/x/tools/gopls v0.24.0\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "dotnet",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\dotnet\\dotnet.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "10.0.402",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "10.0.402\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "csharp-ls",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\dotnet\\dotnet.exe",
+        "args": [
+          "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\csharp\\CSharpLanguageServer.dll",
+          "--version"
+        ],
+        "expected_version": "0.28.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "csharp-ls, 0.28.0 (Klebi?kis)+72671fc7fa810c158864e72485db68e8b9b25c3d\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "lua-language-server",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\lua\\bin\\lua-language-server.exe",
+        "args": [
+          "--configpath=C:\\OdinQA\\q7\\tmp\\odin-lsp-health-KXuGEq\\lua-settings.json",
+          "--logpath=C:\\OdinQA\\q7\\tmp\\odin-lsp-health-KXuGEq\\lua\\log",
+          "--metapath=C:\\OdinQA\\q7\\tmp\\odin-lsp-health-KXuGEq\\lua\\meta",
+          "--version"
+        ],
+        "expected_version": "3.19.2",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "3.19.2\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "slint-lsp",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\slint\\slint-lsp.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "1.18.1",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "slint-lsp 1.18.1\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "clangd",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\clangd\\bin\\clangd.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "23.1.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "clangd version 23.1.0 (https://github.com/llvm/llvm-project ea7d852a70e8bdfaf601d6626a760f9771b2c4b4)\nFeatures: windows+grpc\nPlatform: x86_64-pc-windows-msvc\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "taplo",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\taplo\\taplo.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "0.10.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "taplo 0.10.0\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "yaml-language-server",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+        "args": [
+          "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\yaml-language-server\\bin\\yaml-language-server",
+          "--version"
+        ],
+        "expected_version": "2.0.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "2.0.0\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "marksman",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\marksman\\marksman.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "2026-02-08",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "2026-02-08\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "ruff",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\ruff\\ruff.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "0.17.1",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "ruff 0.17.1\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "ty",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\ty\\ty.exe",
+        "args": [
+          "version"
+        ],
+        "expected_version": "0.0.90",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "ty 0.0.90 (ebc8bbb31 2026-10-20)\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "rust-analyzer",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\rust-analyzer\\rust-analyzer.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "0.3.3089",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "rust-analyzer 0.3.3089-standalone (5ec20d044d 2026-10-18)\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "@vtsls/language-server",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node\\node.exe",
+        "args": [
+          "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\backends\\node_modules\\@vtsls\\language-server\\bin\\vtsls.js",
+          "--version"
+        ],
+        "expected_version": "0.3.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "0.3.0\n",
+        "stderr": "",
+        "error": null
+      }
+    ],
+    "post_health_integrity": {
+      "status": "PASS",
+      "manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680"
+    },
+    "semantic_acceptance": "NOT_RUN"
+  },
+  "result": {
+    "status": "PASS",
+    "host_config": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml",
+    "before_sha256": "febc247210a6b881224cba3b8e6554c68c7c3e487f455a7f2a0296fad7c41add",
+    "after_sha256": "febc247210a6b881224cba3b8e6554c68c7c3e487f455a7f2a0296fad7c41add",
+    "backups": [
+      {
+        "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml.backup-1792648586203-34bedb15-e438-4116-be86-7b20a7c58498",
+        "sha256": "febc247210a6b881224cba3b8e6554c68c7c3e487f455a7f2a0296fad7c41add"
+      },
+      {
+        "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml.odin-lsps.json.backup-1792648586207-64a26981-5caf-4c4d-8438-523a15c8177a",
+        "sha256": "31a7ed2718a12514fff7dc2c1cf18b60b68b317864c64985c6d131f238ab3f25"
+      }
+    ],
+    "languages": [
+      "python",
+      "go",
+      "csharp",
+      "lua",
+      "javascript",
+      "typescript",
+      "bash",
+      "slint",
+      "c",
+      "cpp",
+      "toml",
+      "yaml",
+      "markdown",
+      "rust"
+    ],
+    "selected_backends": {
+      "python": "basedpyright",
+      "typescript": "typescript-language-server"
+    },
+    "backend_limits": {
+      "python": "basedpyright remains the default Python semantic provider",
+      "ruff_native": "Native inspection and stdin formatter execution still require separate explicit host grants and OS sandbox; setup does not enable them",
+      "selection": "One configured provider per Python/JavaScript/TypeScript extension; no automatic fallback"
+    },
+    "bundle_manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+    "setup_semantics": "Host-file CAS with backups; no multi-file atomicity or OS-global CAS claimed"
+  },
+  "receipt_path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-reinstall-receipt.json"
+}

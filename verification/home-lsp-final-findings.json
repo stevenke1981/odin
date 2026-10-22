@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "task_id": "ODIN-HOME-PROGRESS-EXPANDED-REVIEW",
+  "actor_instance": "/root/review_sol",
+  "review_result": "PASS_WITH_DOCUMENTED_GAPS",
+  "findings": [],
+  "open_findings": [],
+  "open_severity_counts": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0,
+    "P3": 0
+  },
+  "resolved_findings": [
+    {
+      "id": "ODIN-EXPANDED-REVIEW-001",
+      "severity": "P2",
+      "status": "RESOLVED_IN_FINAL_REVIEWED_SOURCE_AND_EXECUTED_EVIDENCE",
+      "title": "Preserved operator Rust profile could shadow another bundled extension or use a replaceable bundled ID",
+      "file": "packaging/setup-lsps.mjs",
+      "lines": [
+        289,
+        300
+      ],
+      "original_sha256": "7dd7ae1a59770b8267548082f3095ce458fdac4d1bd198340a3884fc4fdc1c3f",
+      "resolved_sha256": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec",
+      "resolution": "Effective profile IDs participate in extension collision checks; operator Rust IDs remain nonreplaceable. Source traced and executed regression logs verified."
+    },
+    {
+      "id": "ODIN-EXPANDED-REVIEW-002",
+      "severity": "P2",
+      "status": "RESOLVED_IN_FINAL_REVIEWED_SOURCE_AND_EXECUTED_EVIDENCE",
+      "title": "Worker required short vtsls alias absent from real payload manifest",
+      "file": "packaging/setup-lsps.mjs",
+      "lines": [
+        15,
+        389
+      ],
+      "discovered_by": "Root actual payload06 worker first run",
+      "original_sha256": "f565e72683fa742f133e557bfd8ee3a0a38c7ff7e80506041c7d8b2b512cb2bd",
+      "resolved_sha256": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec",
+      "resolution": "Canonical @vtsls/language-server ID, 49 source-bound units and final07 actual worker/user installer all19 executable probes pass; first real worker alias failure retained."
+    },
+    {
+      "id": "ODIN-EXPANDED-REVIEW-003",
+      "severity": "P2",
+      "status": "RESOLVED_IN_FINAL_REVIEWED_SOURCE_AND_EXECUTED_EVIDENCE",
+      "title": "Replacement checkbox still named seven languages after expanding replacement scope",
+      "file": "packaging/odin.iss",
+      "line": 133,
+      "original_sha256": "1b952d78964ab2cc2623e00b7b6376234f92402715cab757b12e60b04509edac",
+      "resolved_sha256": "f4ef1cf39dc2d158a51cd2b28a175f992dcb6aec8969e44f4bd85ae21992d24a",
+      "resolution": "Caption now names all bundled non-Rust profiles and preserved custom Rust. Exact recipe compiled with inert stage; visual layout NOT_RUN."
+    },
+    {
+      "id": "ODIN-EXPANDED-DRIVER-001",
+      "severity": "P2",
+      "status": "RESOLVED_IN_A11_DRIVER_AND_FRESH_REAL_MCP_RUNS",
+      "file": "tests/expanded_installed_languages.py",
+      "lines": [
+        133,
+        139
+      ],
+      "title": "Diagnostic checks read raw LSP keys after Odin normalizes diagnostics",
+      "trigger": "Actual get_diagnostics_for_file returns findings with rule_id, not diagnostics with code. Slint/C first-run current version errors exist in findings.",
+      "impact": "Positive broken-source checks falsely fail; recovered-source checks may falsely pass even with current error findings. Ruff F821 check cannot validate the rule.",
+      "evidence_api": "crates/odin-protocol/src/lsp.rs:1451 normalizes findings and summary; base driver already uses summary.errors with version_verified and complete.",
+      "requested_fix": "Read findings/rule_id; wait for confirmed current complete diagnostic state and evaluate errors/findings according to the predefined fixture. Keep unversioned state NOT_VERIFIED. Rerun fresh outputs.",
+      "original_source_sha256": {
+        "tests/expanded_installed_languages.py": "01148ab40e8aa3e3b1c41211a2c55d79d45f0bc8ef4fcbf7caf3bc0b35bbbeeb",
+        "tests/real_installed_languages.py": "280a756f953d859bf742e5a1b084923c8e390d3671973cd394124088719c794f",
+        "crates/odin-protocol/src/lsp.rs": "6f3272bef7d3455bec13e4c2e7657756e9255dbc41e739495bdc7437fccab12b"
+      },
+      "resolved_sha256": "a11d84c20db58b65f92363c58413af058219f3ba1c8691d49f8e5b406b5c56d2",
+      "resolution_evidence": [
+        "C:\\OdinQA\\home-progress-1022\\expanded-retry06-commands.json",
+        "C:\\OdinQA\\home-progress-1022\\expanded-retry06-a.json",
+        "C:\\OdinQA\\home-progress-1022\\slint-final07-command.json"
+      ]
+    },
+    {
+      "id": "ODIN-EXPANDED-DRIVER-002",
+      "severity": "P2",
+      "status": "RESOLVED_IN_A11_DRIVER_AND_FRESH_REAL_MCP_RUNS",
+      "file": "tests/expanded_installed_languages.py",
+      "lines": [
+        220,
+        221
+      ],
+      "title": "C++ free-function reference position matches greet_member substring",
+      "trigger": "CPP consumer calls greet(2)+Greeter::greet_member(2); local_location uses text.rindex(greet).",
+      "impact": "Actual cross-file free-function reference at consumer.cpp character25 is reported FAIL because expected offset points at greet_member. Blocks genuine .h member and rename checks afterward.",
+      "evidence_api": "tests/real_installed_languages.py:23-33 computes last raw substring offset.",
+      "requested_fix": "Use an exact controlled fixture call token or explicit UTF-16 token offset for the free function; retain separate greet_member reference coverage. Do not weaken cross-file capability claims.",
+      "original_source_sha256": {
+        "tests/expanded_installed_languages.py": "01148ab40e8aa3e3b1c41211a2c55d79d45f0bc8ef4fcbf7caf3bc0b35bbbeeb",
+        "tests/real_installed_languages.py": "280a756f953d859bf742e5a1b084923c8e390d3671973cd394124088719c794f",
+        "crates/odin-protocol/src/lsp.rs": "6f3272bef7d3455bec13e4c2e7657756e9255dbc41e739495bdc7437fccab12b"
+      },
+      "resolved_sha256": "a11d84c20db58b65f92363c58413af058219f3ba1c8691d49f8e5b406b5c56d2",
+      "resolution_evidence": [
+        "C:\\OdinQA\\home-progress-1022\\expanded-retry06-commands.json",
+        "C:\\OdinQA\\home-progress-1022\\expanded-retry06-a.json",
+        "C:\\OdinQA\\home-progress-1022\\slint-final07-command.json"
+      ]
+    },
+    {
+      "id": "ODIN-EXPANDED-DRIVER-003",
+      "severity": "P2",
+      "status": "RESOLVED_IN_A11_DRIVER_AND_FRESH_REAL_MCP_RUNS",
+      "file": "E:\\odin-worktrees\\expanded-setup-sol\\tests\\expanded_installed_languages.py",
+      "line": 230,
+      "source_sha256": "fe6184875da45b25b650cbfb43507f2053ab3922657016a96dfe5d9f86ace242",
+      "title": "Rust readiness dereferences null server_status before waiting",
+      "trigger": "Actual get_capabilities returns initialized=true, readiness=unknown, transport.server_status=null before the first experimental/serverStatus notification.",
+      "impact": "The chained .get(server_status,{}) returns None for explicit JSON null, then .get(health) raises AttributeError. Startup readiness immediately fails rather than using its bounded waiting phase.",
+      "requested_fix": "Handle null as not-yet-received status, preserve unknown as waiting; reject malformed nonobject nonnull status and add the real null response shape to inert readiness regressions. Do not promote unknown to ready.",
+      "evidence": {
+        "path": "C:\\OdinQA\\home-progress-1022\\review-sol\\installed-expanded06-live-snapshot.json",
+        "sha256": "ab8922e0a75ff17c07376cb04c095f2b400add597e508da0e0edfde5ab93ef1e",
+        "actual_rust_status_entries": [
+          {
+            "ready": true,
+            "status": {
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "launch_route": "host_process",
+                  "os_boundary_verified": false,
+                  "requested": false
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          },
+          {
+            "ready": true,
+            "status": {
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "launch_route": "host_process",
+                  "os_boundary_verified": false,
+                  "requested": false
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          }
+        ]
+      },
+      "original_source_sha256": "fe6184875da45b25b650cbfb43507f2053ab3922657016a96dfe5d9f86ace242",
+      "resolved_sha256": "a11d84c20db58b65f92363c58413af058219f3ba1c8691d49f8e5b406b5c56d2",
+      "resolution_evidence": [
+        "C:\\OdinQA\\home-progress-1022\\expanded-retry06-commands.json",
+        "C:\\OdinQA\\home-progress-1022\\expanded-retry06-a.json",
+        "C:\\OdinQA\\home-progress-1022\\slint-final07-command.json"
+      ]
+    },
+    {
+      "id": "ODIN-EXPANDED-PAYLOAD-CRT-001",
+      "severity": "P2",
+      "status": "RESOLVED_FINAL07",
+      "discovered_by": "Payload author PE inspection; independently confirmed by reviewer Microsoft dumpbin data inspection",
+      "file": "scripts/prepare_lsp_payload.py",
+      "title": "Slint payload06 omitted directly imported app-local MSVC libraries",
+      "resolved_sha256": "4601cb23ffb9d0be416d8aa899004ea412f04b1a298a102f45daeb9dd0e28eb5",
+      "resolution": "Final07 adds only three pinned Microsoft-signed CRT DLLs, notice and runtime inventory; all35153 prior files unchanged. Full manifest audit, real module path/hash observation and fresh final07 Slint MCP19 passed. Clean machine remains NOT_RUN.",
+      "evidence": "C:\\OdinQA\\home-progress-1022\\review-sol\\payload07-inert-audit.json"
+    },
+    {
+      "id": "ODIN-EXTERNAL-UPGRADE-PATH-001",
+      "severity": "P2",
+      "status": "RESOLVED_EXTERNAL_RUNNER_AND_ACTUAL_USER44",
+      "discovered_by": "Root first actual runner prelaunch; earlier static review missed valid extended-drive alias",
+      "file": "user-upgrade/user_upgrade.py",
+      "original_sha256": "d15bb9a7a68a992390660a21d9516ae2d13684bd87a586195c3c4bb839f5c84e",
+      "resolved_sha256": "4498b3bd5c0468cf795adc2567369790b051564a84dde2a8a5a2e77d94a2eb6a",
+      "resolution": "Alias only canonical extended absolute DOS drive paths, preserve no_redirect exactly; first prelaunch failure untouched; revised actual upgrade44 passed."
+    },
+    {
+      "id": "ODIN-EXTERNAL-CLI-ACL-001",
+      "severity": "P2",
+      "status": "RESOLVED_EXTERNAL_HELPER_AND_ACTUAL_REGISTRY_APPLY",
+      "discovered_by": "Root first actual apply and separate source-pinned diagnostic reproduction",
+      "file": "secure_private_folder.ps1",
+      "original_sha256": "d4b83b28fc6e837d184fc87aa9f96fb6e9948c5a71ec92d619fc8dcf7672fa87",
+      "original_line": 18,
+      "title": "Repeated Set-Acl requests SeSecurityPrivilege and stops before registry write",
+      "resolution": "Validate exact existing owner/protected explicit two-principal FullControl ACL as no-op; otherwise persist only Access DACL through .NET with no owner/SACL modification. Capture every ACL subprocess argv/status/raw logs, including failures.",
+      "resolved_sha256": "3b2d98eb17032dba83dce96c3aae5434d5f5b0fd96796b445bf057860fe749b3",
+      "first_apply_sha256": "2ac965d74a5ff34a98927f928faa10a7b343ba4afa4ebbd75752880ada362913",
+      "diagnostic_receipt_sha256": "104865d516a93cfebd2b15ed956b4a09b358729298685daa1e88d6ad6c8f3d49",
+      "diagnostic_stderr_sha256": "7af0deaca03fc416d6baf28486df84bdfece0023d153a89071645b021c62e938",
+      "resolution_evidence": "C:\\OdinQA\\home-progress-1022\\review-sol\\actual-cli-path-evidence-review.json"
+    }
+  ],
+  "scope": "Exact final source hashes and executed Windows evidence in final-review.json; documented upstream/diagnostic/notice gaps are retained, not promoted to PASS.",
+  "independence": "Reviewer authored no reviewed product/helper source and performed no target program, installer, registry-write or ACL operation."
+}

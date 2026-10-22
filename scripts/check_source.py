@@ -25,7 +25,7 @@ def main():
         try:json.loads(p.read_text(encoding='utf-8'));record('json:'+str(p.relative_to(ROOT)),True)
         except Exception as error:record('json:'+str(p.relative_to(ROOT)),False,str(error))
     for p in (p for p in files if p.suffix=='.py'):
-        try:ast.parse(p.read_text(encoding='utf-8'),filename=str(p));record('python_ast:'+str(p.relative_to(ROOT)),True)
+        try:ast.parse(p.read_bytes(),filename=str(p));record('python_ast:'+str(p.relative_to(ROOT)),True)
         except Exception as error:record('python_ast:'+str(p.relative_to(ROOT)),False,str(error))
     workspace=tomllib.loads((ROOT/'Cargo.toml').read_text(encoding='utf-8'))
     for member in workspace['workspace']['members']:

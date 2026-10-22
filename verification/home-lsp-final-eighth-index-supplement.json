@@ -1,0 +1,944 @@
+{
+  "task_id": "ODIN-HOME-PROGRESS-EXPANDED-REVIEW",
+  "actor_instance": "/root/review_sol",
+  "scope": "EIGHTH_STATIC_RECEIPT_PUBLICATION_SUPPLEMENT_TO_IMMUTABLE_FINAL_REVIEW_NOT_NEW_PRODUCT_EXECUTION",
+  "status": "PASS_SCOPED",
+  "at_utc": "2026-10-22T06:40:38.639105+00:00",
+  "eighth_index": {
+    "path": "E:\\odin\\verification\\home-lsp-evidence-eighth-index.json",
+    "sha256": "b1a85c361487986a474ea1be619d6d003425e7b9878544a2f07d73b614135d55",
+    "entries": 19
+  },
+  "immutable_final_review": {
+    "path": "C:\\OdinQA\\home-progress-1022\\review-sol\\final-review.json",
+    "sha256": "3112f7c69e2e958d1794a9cac31215434345953eb0b0d848d6018b50f338149c"
+  },
+  "checks": [
+    {
+      "name": "published_sha:verification/home-lsp-closeout-source.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-source.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-source.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-source.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-closeout-source.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-source.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-source.log",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-source.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-closeout-source02.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-source02.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-source02.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-source02.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-closeout-source02.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-source02.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-source02.log",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-source02.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-closeout-requirements.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-requirements.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-requirements.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-requirements.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-closeout-requirements.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-requirements.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-requirements.log",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-requirements.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-closeout-policy.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-policy.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-policy.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-policy.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-closeout-policy.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-policy.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-policy.log",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-policy.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-closeout-whitespace.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-whitespace.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-whitespace.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-whitespace.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-closeout-whitespace.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-whitespace.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-whitespace.log",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-whitespace.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-closeout-whitespace02.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-whitespace02.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-whitespace02.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-whitespace02.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-closeout-whitespace02.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-whitespace02.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-whitespace02.log",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-whitespace02.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-closeout-generated.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-generated.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-generated.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-generated.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-closeout-generated.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-generated.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-generated.log",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-generated.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-closeout-source.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-source.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-source.json",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-source.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-closeout-source02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-closeout-source02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-closeout-source02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-closeout-source02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-review-published-evidence-review-01.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-review-published-evidence-review-01.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-review-published-evidence-review-01.json",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-review-published-evidence-review-01.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-review-published-evidence-review-02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-review-published-evidence-review-02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-review-published-evidence-review-02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-review-published-evidence-review-02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-review-actual-cli-path-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-review-actual-cli-path-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-review-actual-cli-path-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "declared_transformation:verification/home-lsp-review-actual-cli-path-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/config.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/workspace.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin/src/main.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin/Cargo.toml",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:tests/home_workspace_native.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/languages.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:packaging/setup-lsps.mjs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:packaging/setup-progress.mjs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:tests/lsp_installer.test.mjs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:tests/setup_progress.test.mjs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:scripts/prepare_lsp_payload.py",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:scripts/collect_lsp_notices.py",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:tests/test_lsp_payload_builder.py",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:packaging/lsp-native-sources.json",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:packaging/lsp-package.json",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:packaging/lsp-package-lock.json",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:packaging/odin.iss",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:packaging/installer-progress.iss",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:scripts/verify_installer.ps1",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:tests/expanded_installed_languages.py",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:tests/home_installed_smoke.py",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:tests/inno_argv_probe.py",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:tests/inno_progress_probe.py",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:README.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/ARCHITECTURE.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/KNOWN_LIMITATIONS.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/EXPANDED_LSP.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/PACKAGING_WINDOWS_LINUX.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/HOME_AND_INSTALLER_PROGRESS.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/LSP_PAYLOAD_BUILDER.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:THIRD_PARTY_NOTICES.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:scripts/check_source.py",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:.gitattributes",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin/build.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin/src/http.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin/src/main.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin/src/mcp.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin/src/metadata.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin/src/setup.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/config.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/error.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/execution.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/languages.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/lib.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/memory.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/paths.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/process.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/sandbox.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/sandbox_policy.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/search.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/store.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/transaction.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/src/workspace.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/tests/fixtures/os_sandbox_workload.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/tests/fixtures/stdin_workload.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/tests/host_execution_policy.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/tests/os_sandbox_native.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/tests/process_contention.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/tests/stdin_execution.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/tests/workspace_binding.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/src/analysis.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/src/flow.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/src/formatter.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/src/ide.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/src/inspections.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/src/lib.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/src/occurrences.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/src/refactor.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/src/results.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/src/schema.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/src/shell.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/src/symbols.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/src/text_replace.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/tests/completion.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/tests/debug_launch_policy.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/tests/formatter_profiles.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/tests/ide_tools.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/tests/invariants.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/tests/project_analysis.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-protocol/src/dap.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-protocol/src/lib.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-protocol/src/lsp.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-protocol/src/rpc.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-protocol/src/text.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-protocol/src/workspace.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-protocol/tests/fixture_protocols.rs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin/Cargo.toml",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-core/Cargo.toml",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-engine/Cargo.toml",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:crates/odin-protocol/Cargo.toml",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:Cargo.toml",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:Cargo.lock",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:scripts/package.ps1",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:scripts/verify_installer.ps1",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:packaging/odin.iss",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:packaging/installer-progress.iss",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:packaging/setup-lsps.mjs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:packaging/setup-progress.mjs",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:packaging/windows-runtime.ps1",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:LICENSE",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:README.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:THIRD_PARTY_NOTICES.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/API.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/ARCHITECTURE.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/CORE_IMPLEMENTATION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/CURRENT_WORKSPACE.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/DEPENDENCIES.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/ENGINE_IMPLEMENTATION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/EXPANDED_LSP.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/FEATURE_SPEC.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/HOME_AND_INSTALLER_PROGRESS.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/IDE_IMPLEMENTATION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/IMPLEMENTATION_BACKLOG.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/KNOWN_LIMITATIONS.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/LANGUAGE_BACKENDS.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/LANGUAGE_SUPPORT.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/LSP_PAYLOAD_BUILDER.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/NATIVE_FORMATTERS.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/OS_SANDBOX.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/PACKAGING_WINDOWS_LINUX.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/PLATFORM_IMPLEMENTATION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/PROTOCOL_IDE.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/PROTOCOL_IMPLEMENTATION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/PUBLISH_GITHUB.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/RELEASE_GATES.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/ROADMAP.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/SECURITY.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/SERENA_COVERAGE_PLAN.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/SERENA_PARITY.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/SOURCES.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/STANDALONE.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/THIRD_PARTY_LICENSES.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/THIRD_PARTY_RUNTIME_NOTICES.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/USAGE.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/dependency-licenses/index.json",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/dependency-licenses/valuable-0.1.1-MIT.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/dependency-licenses/winapi-0.4.0-MIT.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/dispatch-current-workspace.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/dispatch-four-lsp.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/dispatch-language-installers-v3.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/dispatch-plan.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/dispatch-sandbox-ide.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/serena-parity.csv",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/serena-parity.json",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/specs/CORE_PROTOCOL.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/specs/LANGUAGE_DEBUG_INSPECTIONS.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/specs/OPERATIONS_RELEASE.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:docs/specs/REFACTOR_TRANSACTION.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:packaging/MICROSOFT_RUNTIME_NOTICES.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:packaging/odin.host.example.toml",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:schemas/tools.json",
+      "status": "PASS"
+    },
+    {
+      "name": "final_source_still_frozen:verification/sbom.cdx.json",
+      "status": "PASS"
+    },
+    {
+      "name": "final_report_immutable:review.md",
+      "status": "PASS"
+    },
+    {
+      "name": "final_report_immutable:findings.json",
+      "status": "PASS"
+    },
+    {
+      "name": "final_report_immutable:final-review.json",
+      "status": "PASS"
+    }
+  ],
+  "findings": [],
+  "note": "All static raw receipts/source/logs were already reviewed in published-evidence-review-03; this supplement verifies their newly published copies. No product/source/installer/registry/ACL mutation or target program execution."
+}

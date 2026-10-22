@@ -1,0 +1,62 @@
+{
+  "scope": "ACTUAL_INNO_TO_NODE_ARGV_ONLY",
+  "status": "PASS",
+  "argv": [
+    "--install",
+    "--host-config",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\host space\\host.toml",
+    "--workspace-root",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\project space\\",
+    "--replace-language-profiles",
+    "--receipt",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\receipt space.json"
+  ],
+  "raw_argv": [
+    "--install",
+    "--host-config",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\host space\\host.toml",
+    "--workspace-root",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\project space\\",
+    "--replace-language-profiles",
+    "--receipt",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\receipt space.json",
+    "--progress-file",
+    "C:\\Users\\steven\\AppData\\Local\\Temp\\is-89DZVABDO7.tmp\\odin-lsp-dfe4d15275bc6ae8d43defe079363abf.progress",
+    "--cancel-file",
+    "C:\\Users\\steven\\AppData\\Local\\Temp\\is-89DZVABDO7.tmp\\odin-lsp-dfe4d15275bc6ae8d43defe079363abf.cancel",
+    "--progress-run-id",
+    "dfe4d15275bc6ae8d43defe079363abf",
+    "--setup-timeout-seconds",
+    "900"
+  ],
+  "full_argv": [
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\installed app space\\backends\\node\\node.exe",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\installed app space\\setup-lsps.mjs",
+    "--install",
+    "--host-config",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\host space\\host.toml",
+    "--workspace-root",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\project space\\",
+    "--replace-language-profiles",
+    "--receipt",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\receipt space.json",
+    "--progress-file",
+    "C:\\Users\\steven\\AppData\\Local\\Temp\\is-89DZVABDO7.tmp\\odin-lsp-dfe4d15275bc6ae8d43defe079363abf.progress",
+    "--cancel-file",
+    "C:\\Users\\steven\\AppData\\Local\\Temp\\is-89DZVABDO7.tmp\\odin-lsp-dfe4d15275bc6ae8d43defe079363abf.cancel",
+    "--progress-run-id",
+    "dfe4d15275bc6ae8d43defe079363abf",
+    "--setup-timeout-seconds",
+    "900"
+  ],
+  "expected": [
+    "--install",
+    "--host-config",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\host space\\host.toml",
+    "--workspace-root",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\project space\\",
+    "--replace-language-profiles",
+    "--receipt",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\receipt space.json"
+  ]
+}

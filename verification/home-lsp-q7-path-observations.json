@@ -1,0 +1,97 @@
+[
+  {
+    "phase": "before",
+    "observed_at_utc": "2026-10-22T05:45:27.6177617Z",
+    "user_path": {
+      "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "characters": 1880,
+      "value": "REDACTED_PATH_STRING"
+    },
+    "user_path_raw": {
+      "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "characters": 1880,
+      "value": "REDACTED_PATH_STRING"
+    },
+    "process_path": {
+      "exact_utf8_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809",
+      "characters": 2564,
+      "value": "REDACTED_PATH_STRING"
+    }
+  },
+  {
+    "phase": "after_portable",
+    "observed_at_utc": "2026-10-22T05:52:04.6953963Z",
+    "user_path": {
+      "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "characters": 1880,
+      "value": "REDACTED_PATH_STRING"
+    },
+    "user_path_raw": {
+      "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "characters": 1880,
+      "value": "REDACTED_PATH_STRING"
+    },
+    "process_path": {
+      "exact_utf8_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809",
+      "characters": 2564,
+      "value": "REDACTED_PATH_STRING"
+    }
+  },
+  {
+    "phase": "after_install",
+    "observed_at_utc": "2026-10-22T05:53:53.9145576Z",
+    "user_path": {
+      "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "characters": 1880,
+      "value": "REDACTED_PATH_STRING"
+    },
+    "user_path_raw": {
+      "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "characters": 1880,
+      "value": "REDACTED_PATH_STRING"
+    },
+    "process_path": {
+      "exact_utf8_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809",
+      "characters": 2564,
+      "value": "REDACTED_PATH_STRING"
+    }
+  },
+  {
+    "phase": "after_reinstall",
+    "observed_at_utc": "2026-10-22T05:56:27.0227647Z",
+    "user_path": {
+      "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "characters": 1880,
+      "value": "REDACTED_PATH_STRING"
+    },
+    "user_path_raw": {
+      "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "characters": 1880,
+      "value": "REDACTED_PATH_STRING"
+    },
+    "process_path": {
+      "exact_utf8_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809",
+      "characters": 2564,
+      "value": "REDACTED_PATH_STRING"
+    }
+  },
+  {
+    "phase": "after_uninstall",
+    "observed_at_utc": "2026-10-22T05:57:17.3042023Z",
+    "user_path": {
+      "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "characters": 1880,
+      "value": "REDACTED_PATH_STRING"
+    },
+    "user_path_raw": {
+      "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+      "characters": 1880,
+      "value": "REDACTED_PATH_STRING"
+    },
+    "process_path": {
+      "exact_utf8_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809",
+      "characters": 2564,
+      "value": "REDACTED_PATH_STRING"
+    }
+  }
+]

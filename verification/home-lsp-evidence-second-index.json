@@ -1,0 +1,184 @@
+{
+  "status": "PARTIAL",
+  "executed_expanded_checks": {
+    "PASS": 316,
+    "NOT_VERIFIED": 20,
+    "FAIL": 0
+  },
+  "final_installer07": "NOT_RUN",
+  "entries": [
+    {
+      "path": "verification/home-lsp-expanded-retry06-a-slint.json",
+      "sha256": "cb2f5149d8ec8e444fb3a5d8bde4cd1704b608930c4924051385d77b290ad01b"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-a-c.json",
+      "sha256": "709f9366b128144010b7c070a74643890a00a2007fad9efe353f34a2e2169675"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-a-cpp.json",
+      "sha256": "6eb4e0f435b8abe91ee998c7108266dc5b8ec8b06436767b962580333207080f"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-a-rust.json.part01",
+      "sha256": "4773e4ce7e6546cf41172f62c280178a31d87711a24357c5fda5921dc64be480"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-a-rust.json.part02",
+      "sha256": "c8a666b9d48a2f65670066b0a1533b5ef4714715ece3850e922464356a54278a"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-a-rust.json.part03",
+      "sha256": "fefe77353f22e022e78068bf251f71504d484d92586e4779bf42bec796b929dc"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-a-rust.json.part04",
+      "sha256": "7d50603c36431b52f42126521eb9eb764a2d00ba0726c4323712bcf37edfdd96"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-a-index.json",
+      "sha256": "c441d532c473c6548af8ee6a1043a5b2dca48b4e376c7b70c825257bc057db86"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-a.stdout.log",
+      "sha256": "6fecca069a28f9cc4c62113a7cac59d56a6a8ec9d0a2000f86be13e45ec85621",
+      "original_raw_path": "C:\\OdinQA\\home-progress-1022\\expanded-retry06-a.stdout.log",
+      "original_raw_sha256": "36bfa0a1fc69a42d716d0a25d107c469cbeb89b9ff1cfcd60d24ddf18805c284",
+      "newline_policy": "Published UTF-8 LF; original raw hash is separate"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-a.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_raw_path": "C:\\OdinQA\\home-progress-1022\\expanded-retry06-a.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_policy": "Published UTF-8 LF; original raw hash is separate"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-b-toml.json",
+      "sha256": "6bc1a614cfac71644e6ecd2112c3392c5ba72fd82f225823ec21a36c4f4afc32"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-b-yaml.json",
+      "sha256": "7cf13f3c47d5d9379b1bb494312da9267d9d122ed1138d733f59e5ae68061fd2"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-b-markdown.json",
+      "sha256": "e498fc3982cb8c0b7dff5cf2ae438f76dcc40d6b571cddb2308f2a10a143a2db"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-b-index.json",
+      "sha256": "9b6ca9838c1bc7376cb937a8aebb90784be874d9b85610abc85bade116fff258"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-b.stdout.log",
+      "sha256": "70219b7d3ccb5295cafb51d5bcedca0374ace2a4333a805885d48cc20eed7d6a",
+      "original_raw_path": "C:\\OdinQA\\home-progress-1022\\expanded-retry06-b.stdout.log",
+      "original_raw_sha256": "172eec67ded53c302a5fecd7f978a4ede34efcdd449e6800364e4e37d85868ba",
+      "newline_policy": "Published UTF-8 LF; original raw hash is separate"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-b.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_raw_path": "C:\\OdinQA\\home-progress-1022\\expanded-retry06-b.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_policy": "Published UTF-8 LF; original raw hash is separate"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-c-ty.json",
+      "sha256": "9df8f2cbfbb64112ff64aecff1ae0b96a44c1218ef6ee2471ccaa3e43a596bbf"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-c-ruff.json",
+      "sha256": "72fe5a08d73152a0fe7148d579eff2d763228aee3ac055910d739ab09e870987"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-c-vtsls-javascript.json",
+      "sha256": "76086670fc1dd5e8b497283011c1564aaa73d2d4a3e76e6f878ce84b1670acc7"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-c-vtsls-typescript.json",
+      "sha256": "79705b9e41e047cb59b89000ba61ee6a5cb5fd6531cd9ca1dd6b146a2e6624fe"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-c-index.json",
+      "sha256": "0beb35f17337dac87dd57cb1387bec4fe56a7b59ab7bb84fe86793ad000a6f27"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-c.stdout.log",
+      "sha256": "206ba21397a881c13720827233c9a5c86efb16fa11149731288e3c8ffd8ca39c",
+      "original_raw_path": "C:\\OdinQA\\home-progress-1022\\expanded-retry06-c.stdout.log",
+      "original_raw_sha256": "0e747c7c469c4c811d36bf1a0e02ecce2e4c70d0b989390f82007de804b7537f",
+      "newline_policy": "Published UTF-8 LF; original raw hash is separate"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-c.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_raw_path": "C:\\OdinQA\\home-progress-1022\\expanded-retry06-c.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_policy": "Published UTF-8 LF; original raw hash is separate"
+    },
+    {
+      "path": "verification/home-lsp-expanded-retry06-commands.json",
+      "sha256": "a046dbb544a7f3d148db9e558ab022d8ac5cabd8a113ad12930dda03a833bacc",
+      "original_raw_path": "C:\\OdinQA\\home-progress-1022\\expanded-retry06-commands.json",
+      "original_raw_sha256": "50852fa52475a586b53e695d2e314b74ab185e8b0b525974789304904c29905e",
+      "newline_policy": "Published UTF-8 LF; original raw hash is separate"
+    },
+    {
+      "path": "verification/home-lsp-driver-verified-inert.json",
+      "sha256": "7c9987d81f45c00e2a1f4295a4cb755e622c0303a244c0110b4b22fa57603db9",
+      "original_raw_path": "C:\\OdinQA\\home-progress-1022\\driver-verified-inert.json",
+      "original_raw_sha256": "3f55e4e924cce11894f7786749221148a561b0d8a9f542c4c394efe470823fe1",
+      "newline_policy": "Published UTF-8 LF; original raw hash is separate"
+    },
+    {
+      "path": "verification/home-lsp-root-builder07.json",
+      "sha256": "2cbbe32d506ffd6dd09255826b96e593ffda1f2f40288c1a264b6eccf51edeb2",
+      "original_raw_path": "C:\\OdinQA\\home-progress-1022\\root-builder07.json",
+      "original_raw_sha256": "02df339d3aaf266a1420370967eb1e18b6247892250ea485b953ed6666fac15a",
+      "newline_policy": "Published UTF-8 LF; original raw hash is separate"
+    },
+    {
+      "path": "verification/home-lsp-root-builder07.log",
+      "sha256": "35fc2472154a76ad3b87b96881d66bc1a935e1c6784a0b3fdd6bf1747fc67a11",
+      "original_raw_path": "C:\\OdinQA\\home-progress-1022\\root-builder07.log",
+      "original_raw_sha256": "cd76912aed4fa07ecc7607ad19c1fb2a0ffaaca9a4e77c0b88bc034ec98d0bdd",
+      "newline_policy": "Published UTF-8 LF; original raw hash is separate"
+    },
+    {
+      "path": "verification/home-lsp-payload-build-07.json",
+      "sha256": "d50037a574d81eba7aa7bde4b1f4a5c02897de05f8a13077e1ed9c2d9498d474",
+      "original_raw_path": "C:\\OdinQA\\expanded-lsp\\build-07.json",
+      "original_raw_sha256": "d50037a574d81eba7aa7bde4b1f4a5c02897de05f8a13077e1ed9c2d9498d474",
+      "newline_policy": "Published UTF-8 LF; original raw hash is separate"
+    },
+    {
+      "path": "verification/home-lsp-payload-closure-07.json",
+      "sha256": "9c11a37e7ee8a697aa0d3427ce2d031b74022fdfb23832b7519792c9ea611faa",
+      "original_raw_path": "C:\\OdinQA\\expanded-lsp\\closure-07.json",
+      "original_raw_sha256": "396715b7fb4b84ddb41c2c55ecbe5e3801c22aec294c287662e21099ea26ef08",
+      "newline_policy": "Published UTF-8 LF; original raw hash is separate"
+    },
+    {
+      "path": "verification/home-lsp-payload-unit-07.json",
+      "sha256": "38ca64cc401e435dd1cffd3e7a1c96fb9dacacd4eb5380cb57622fd9c5337589",
+      "original_raw_path": "C:\\OdinQA\\expanded-lsp\\unit-07.json",
+      "original_raw_sha256": "df9ed4204d931c0fc944a8c1f1fe7cfdd19287e305e4e5220e22020494dec5e0",
+      "newline_policy": "Published UTF-8 LF; original raw hash is separate"
+    },
+    {
+      "path": "verification/home-lsp-payload-slint-loader-07.json",
+      "sha256": "4ede44319dfbdb0109e0b7b48fb36503da56ad817024fe70512d3177ab7b9d37",
+      "original_raw_path": "C:\\OdinQA\\expanded-lsp\\slint-loader-07.json",
+      "original_raw_sha256": "0db7960551d9c405acee4378140cd4339a7a63822779b38e770acb2bd19b97b9",
+      "newline_policy": "Published UTF-8 LF; original raw hash is separate"
+    },
+    {
+      "path": "verification/home-lsp-payload-slint-loader-08.json",
+      "sha256": "98f3a1e6174a87d3ef6ce5434af69c6794b471844d6b8f78bf0de1561305eb22",
+      "original_raw_path": "C:\\OdinQA\\expanded-lsp\\slint-loader-08.json",
+      "original_raw_sha256": "c2b634d63a2e6d1041a13de8ee6c47676afa2c0d4c137b346a94ec2812030b8d",
+      "newline_policy": "Published UTF-8 LF; original raw hash is separate"
+    }
+  ]
+}

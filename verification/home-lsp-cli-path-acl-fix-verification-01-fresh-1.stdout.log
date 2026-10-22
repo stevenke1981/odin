@@ -1,0 +1,1 @@
+{"status":"PASS","action":"ENFORCED_DACL_ONLY_OWNER_UNCHANGED","owner_current_user":true,"protected":true,"explicit_full_control_principal_count":2,"permitted_principals":"CURRENT_USER_AND_SYSTEM_ONLY","sacl_mutation":false,"owner_mutation":false}

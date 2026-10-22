@@ -1,6 +1,6 @@
 {
   "task": "ODIN-INSTALL-PROGRESS-HOME-AND-EXPANDED-LSP",
-  "status": "PARTIAL",
+  "status": "PASS_WITH_DOCUMENTED_GAPS",
   "base_sha": "3ac0260b724d3c03632660b34a412b54a6689297",
   "architecture": "Independent Rust; direct LSP; no hidden fallback",
   "team": {
@@ -70,11 +70,7 @@
       "crates/odin-engine/Cargo.toml": "68752a97bc3317afd4b125f406bdff03c236cfd948ca6a9fe441211e54c4150d",
       "crates/odin-protocol/Cargo.toml": "b89d0deb8c21224da781ccfa7549fe34f536c3561115750d9eb230accbef81fc",
       "Cargo.toml": "8a009f775d201c8199a6d6f81963bb75dde59a48dc783ae6086a6a7407e21e36",
-      "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34",
-      "packaging/setup-lsps.mjs": "f565e72683fa742f133e557bfd8ee3a0a38c7ff7e80506041c7d8b2b512cb2bd",
-      "packaging/setup-progress.mjs": "3e0a545584fc75502da9976beb0f32e2dc1b957fb62bb9e99bf1af360459473a",
-      "tests/lsp_installer.test.mjs": "a696d4193c237e957250c1fcfae9aefa761c25f2e2e476ea62fbb54e54aca377",
-      "tests/setup_progress.test.mjs": "e5c34d34e1165e0803a5f8f8e89fefa715275b958473a7e7f0d775bdb8182574"
+      "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34"
     },
     "checks": [
       {
@@ -123,29 +119,17 @@
         "seconds": 5.46,
         "log": "C:\\OdinQA\\home-progress-1022\\expanded-gate-clippy.log",
         "log_sha256": "fa693d7d5b7fa904db3255b01db7679653cb0a158e083e6379071371a27506af"
-      },
-      {
-        "name": "node",
-        "argv": [
-          "C:\\OdinQA\\expanded-lsp\\payload05\\backends\\node\\node.exe",
-          "--test",
-          "tests/lsp_installer.test.mjs",
-          "tests/setup_progress.test.mjs"
-        ],
-        "cwd": "E:\\odin",
-        "exit_code": 0,
-        "seconds": 5.52,
-        "log": "C:\\OdinQA\\home-progress-1022\\expanded-gate-node.log",
-        "log_sha256": "76a68f3ad8c447be80bbc0bc729e4761a2b04c6971161c480b653cbcf0ed6bd2"
       }
     ],
-    "unix_permission_tests": "NOT_RUN_WINDOWS_HOST"
+    "unix_permission_tests": "NOT_RUN_WINDOWS_HOST",
+    "scope": "ACTUAL_WINDOWS_FMT_WORKSPACE_TESTS_STRICT_CLIPPY_FOR_UNCHANGED_NATIVE_SOURCE"
   },
   "builder_unit": {
     "argv": [
-      "python",
+      "C:\\Python314\\python.exe",
       "-X",
       "utf8",
+      "-B",
       "-m",
       "unittest",
       "discover",
@@ -157,23 +141,23 @@
     ],
     "cwd": "E:\\odin",
     "exit_code": 0,
-    "seconds": 0.748,
-    "log": "C:\\OdinQA\\home-progress-1022\\root-builder-final.log",
-    "log_sha256": "3bf6d2eddca3c9ed4e3a40946cba7716f0248ad3760df6b1a757931ea6363469",
-    "source_files": {
-      "scripts/prepare_lsp_payload.py": "41a9a9279a60811b8ffcc4f64be146f753b661c42919e46234af5259edac6528",
-      "scripts/collect_lsp_notices.py": "b72d7da99cbe6ac6e333f9599b15bf7aa34c248013e3adcfd99aa3a2feb2d154",
-      "tests/test_lsp_payload_builder.py": "c640bcf7b8537fa91617c7169291451ba87acceb62f43a47fafd92bce9413430",
-      "packaging/lsp-native-sources.json": "bd1f02f0d3565e8e59b2ab0b7b9729dfe4949220281df93dabcd581d9a91a262",
-      "packaging/lsp-package.json": "dcab523560cf5d65948b998e69d54f15ee34fdaf34b00ed7bac079f3e010bae7",
-      "packaging/lsp-package-lock.json": "58cb6e0a67c4283bc56e29c4cd89a4304bf587bbbba92fe4d38024d35082b4ba"
-    }
+    "seconds": 0.845,
+    "log": "C:\\OdinQA\\home-progress-1022\\root-builder07.log",
+    "log_sha256": "cd76912aed4fa07ecc7607ad19c1fb2a0ffaaca9a4e77c0b88bc034ec98d0bdd",
+    "source_sha256": {
+      "scripts/prepare_lsp_payload.py": "4601cb23ffb9d0be416d8aa899004ea412f04b1a298a102f45daeb9dd0e28eb5",
+      "tests/test_lsp_payload_builder.py": "471ed04a9f4b2791951f855a035a34aab3dfa9c73cf74772ba8a1db01417551b"
+    },
+    "tests_passed": 35,
+    "evidence": "verification/home-lsp-root-builder07.json",
+    "published_log": "verification/home-lsp-root-builder07.log"
   },
   "prepared_payload": {
-    "manifest_sha256": "2d559814338225275ec297f60fc30347682caca18fca983140341a0196d6645a",
-    "files": 35153,
+    "manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+    "files": 35158,
     "components": 20,
     "version_probes": 19,
+    "build_commands": 24,
     "lsp_implementations": 15,
     "default_implementations": 12,
     "primary_profiles": 14,
@@ -211,20 +195,65 @@
       "version": "0.2.0"
     }
   },
-  "new_installed_semantic_mcp": "NOT_RUN",
+  "new_installed_semantic_mcp": {
+    "status": "PARTIAL",
+    "scope": "Actual prepared application copies and fresh MCP projects, not a claim of reloading an already-open client",
+    "baseline_required_checks_passed": 203,
+    "expanded_checks_passed": 316,
+    "expanded_not_verified": 20,
+    "expanded_failed": 0,
+    "fresh_final07_slint_checks_passed": 19
+  },
   "home_installed_mcp": {
     "status": "PASS",
     "checks": 30,
     "evidence": "verification/home-lsp-installed-home06.json"
   },
-  "full_expanded_installer_lifecycle": "NOT_RUN",
-  "final_independent_review": "NOT_RUN",
+  "full_expanded_installer_lifecycle": {
+    "status": "PASS",
+    "scope": "FINAL07_ISOLATED_PORTABLE_INSTALL_REINSTALL_UNINSTALL",
+    "checks_passed": 60,
+    "checks_failed": 0,
+    "package_exit_code": 0,
+    "package_seconds": 748.795,
+    "verifier_exit_code": 0,
+    "verifier_seconds": 722.819,
+    "installer_sha256": "ebf7f94acac5c0d850b4c5636684e775689df84dbc44a0b97324b35e17421af2",
+    "portable_sha256": "015cbfa7635a1735eceeff5ad977e0ddd6be06540a4630016bfd02af239cd03c",
+    "input_source_files_unchanged": 60,
+    "operator_state_unchanged_and_sealed": true,
+    "each_of_three_setup_phases": {
+      "version_probes": 19,
+      "live_primary_profiles": 14,
+      "default_invocations": 12,
+      "post_health_payload_integrity": "PASS"
+    },
+    "report": "verification/home-lsp-q7-installer-report.json",
+    "handoff": "verification/home-lsp-q7-final-handoff.json",
+    "independent_review": "verification/home-lsp-review-q7-lifecycle-evidence-review.json",
+    "limits": "Semantics have separate MCP reports; clean-machine, interrupted recovery, exact current-caption GUI matrix NOT_RUN"
+  },
+  "final_independent_review": {
+    "status": "PASS_WITH_DOCUMENTED_GAPS",
+    "open_p0_to_p3_findings": 0,
+    "report": "verification/home-lsp-final-review.json",
+    "findings": "verification/home-lsp-final-findings.json",
+    "human_report": "verification/home-lsp-final-review.md",
+    "original_raw_report_sha256": "3112f7c69e2e958d1794a9cac31215434345953eb0b0d848d6018b50f338149c",
+    "reviewed_runtime_package_inputs_unchanged": true,
+    "scope": "Current source, immutable final07 artifacts and actually executed Windows/Home/MCP/PATH receipts; limits remain explicit"
+  },
   "cloud_ci_started": false,
   "limits": [
     "Native source uses expected-hash Transactions",
     "New workspace write/shell/debug grants remain false",
     "Windows only; Unix permission regression tests NOT_RUN on this host",
-    "No full 40 requirement/IDE/clean-machine/legal certification claim"
+    "TOML/YAML/Markdown/vtsls diagnostics without verified document versions remain NOT_VERIFIED; unavailable capabilities are not support claims",
+    "Auxiliary direct Slint shutdown probes retain duplicate responses and exit3 FAIL; separate native MCP functionality passed",
+    "No full40 requirement, IDE parity, clean-machine, cross-platform or legal certification claim; Slint upstream rebuild NOT_RUN",
+    "Current client/terminal/launcher processes may retain old binary/config/PATH; restart or reconnect is required. Fresh explicit entry and persisted-PATH processes passed.",
+    "Installer and isolated q7 preserved operator state through their own sealed snapshots; actual subsequent user PATH change is intentional and separately reported.",
+    "Optional static JSONschema validation NOT_RUN in this Python environment; no new tool schema was added."
   ],
   "native_windows_passed": 249,
   "native_windows_ignored": 6,
@@ -288,7 +317,7 @@
           "-B",
           "scripts/mcp_smoke.py",
           "--binary",
-          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\odin.exe",
+          "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
           "--output",
           "C:\\OdinQA\\home-progress-1022\\new-release-stdio.json"
         ],
@@ -308,7 +337,7 @@
           "-B",
           "scripts/mcp_cancel_smoke.py",
           "--binary",
-          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\odin.exe",
+          "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
           "--output",
           "C:\\OdinQA\\home-progress-1022\\new-release-cancel.json"
         ],
@@ -328,7 +357,7 @@
           "-B",
           "scripts/workspace_smoke.py",
           "--binary",
-          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\odin.exe",
+          "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
           "--output",
           "C:\\OdinQA\\home-progress-1022\\new-release-workspace.json"
         ],
@@ -348,7 +377,7 @@
           "-B",
           "scripts/cli_smoke.py",
           "--binary",
-          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\odin.exe",
+          "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
           "--output",
           "C:\\OdinQA\\home-progress-1022\\new-release-cli.json"
         ],
@@ -368,7 +397,7 @@
           "-B",
           "scripts/http_smoke.py",
           "--binary",
-          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\odin.exe",
+          "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
           "--output",
           "C:\\OdinQA\\home-progress-1022\\new-release-http.json"
         ],
@@ -403,7 +432,14 @@
     "tested_manifest_sha256": "2d559814338225275ec297f60fc30347682caca18fca983140341a0196d6645a",
     "driver_sha256": "a11d84c20db58b65f92363c58413af058219f3ba1c8691d49f8e5b406b5c56d2",
     "command_receipt_external": "C:/OdinQA/home-progress-1022/expanded-retry06-commands.json",
-    "remaining_not_verified": "TOML/YAML/Markdown/vtsls document diagnostics without verified versions; no clean-source assertion"
+    "remaining_not_verified": "TOML/YAML/Markdown/vtsls document diagnostics without verified versions; no clean-source assertion",
+    "indexes": [
+      "verification/home-lsp-expanded-retry06-a-index.json",
+      "verification/home-lsp-expanded-retry06-b-index.json",
+      "verification/home-lsp-expanded-retry06-c-index.json"
+    ],
+    "command_receipt": "verification/home-lsp-expanded-retry06-commands.json",
+    "reuse_for07": "All35153 pre-existing files unchanged; only Slint CRT closure added. Slint also passed fresh07 MCP19; exact final07 full installer lifecycle is separately recorded."
   },
   "final_payload_candidate": {
     "manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
@@ -414,9 +450,196 @@
     "build_status": "PASS",
     "previous_payload06": "Historical: missing Slint app-local MSVC closure; superseded",
     "existing_35153_files": "All same SHA as06; 3 MSVC DLLs, notice and runtime JSON added only in slint/",
-    "slint_final07_mcp": "NOT_RUN",
-    "full_installer07_lifecycle": "NOT_RUN"
+    "slint_final07_mcp": "PASS_19_REAL_MCP_CHECKS",
+    "full_installer07_lifecycle": "PASS_60",
+    "worker07_success_cancel_timeout": "PASS",
+    "stage_review": "verification/home-lsp-review-final07-stage-evidence-review.json"
   },
-  "default_root_actual_user_migration": "NOT_RUN",
-  "evidence_index": "verification/home-lsp-evidence-initial-index.json"
+  "default_root_actual_user_migration": {
+    "status": "PASS",
+    "checks_passed": 44,
+    "actual_installer_exit_code": 0,
+    "outer_exit_code": 0,
+    "outer_seconds": 364.565,
+    "default_root": "C:/Users/steven",
+    "installed_binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+    "installed_setup_sha256": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec",
+    "installed_manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+    "host_before_sha256": "87c7559eb24ded23c6688f6f111f7ec37da47934bb77a22b8a666d5835871a2a",
+    "host_after_sha256": "5550667d1690b5e7b035aa1239db25af9e1df0346c4b6661d5192bb53b494144",
+    "client_before_after_sha256": "05aaddc8eac1c0ac524958b1819255f24d425a1c8b2fe83255a57a57c145846f",
+    "existing_rust_profiles_and_grants_preserved": true,
+    "live_primary_profiles_per_workspace_and_project": 14,
+    "default_invocations": 12,
+    "fresh_cli_mcp_explicit_and_home_ids": {
+      "explicit": [
+        "ws_e81c9bc0804543c514cb6e002d7d90574122eb6ef92c6910",
+        "ws_b12b1270a86ad555f0d3133d7c0a6de44e869420c0c92e36"
+      ],
+      "home_default": "ws_b421723f0c043cae1c815bfdf55dea8094fee9314741de7a"
+    },
+    "actual_client_entry_fresh_processes": "PASS",
+    "current_already_open_client_restart": "NOT_RUN",
+    "report": "verification/home-lsp-user-upgrade-actual-report.json",
+    "independent_review": "verification/home-lsp-review-actual-user-upgrade-evidence-review.json",
+    "semantics": "Separate source-bound real LSP MCP reports; this upgrade slice does not replace them"
+  },
+  "evidence_index": "verification/home-lsp-evidence-initial-index.json",
+  "historical_node48_gate": {
+    "checks": [
+      {
+        "name": "node",
+        "argv": [
+          "C:\\OdinQA\\expanded-lsp\\payload05\\backends\\node\\node.exe",
+          "--test",
+          "tests/lsp_installer.test.mjs",
+          "tests/setup_progress.test.mjs"
+        ],
+        "cwd": "E:\\odin",
+        "exit_code": 0,
+        "seconds": 5.52,
+        "log": "C:\\OdinQA\\home-progress-1022\\expanded-gate-node.log",
+        "log_sha256": "76a68f3ad8c447be80bbc0bc729e4761a2b04c6971161c480b653cbcf0ed6bd2"
+      }
+    ],
+    "source_files": {
+      "packaging/setup-lsps.mjs": "f565e72683fa742f133e557bfd8ee3a0a38c7ff7e80506041c7d8b2b512cb2bd",
+      "packaging/setup-progress.mjs": "3e0a545584fc75502da9976beb0f32e2dc1b957fb62bb9e99bf1af360459473a",
+      "tests/lsp_installer.test.mjs": "a696d4193c237e957250c1fcfae9aefa761c25f2e2e476ea62fbb54e54aca377",
+      "tests/setup_progress.test.mjs": "e5c34d34e1165e0803a5f8f8e89fefa715275b958473a7e7f0d775bdb8182574"
+    },
+    "scope": "Historical prior Node48; current Node49 receipt is node_current"
+  },
+  "historical_builder_unit30": {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_lsp_payload_builder.py",
+      "-v"
+    ],
+    "cwd": "E:\\odin",
+    "exit_code": 0,
+    "seconds": 0.748,
+    "log": "C:\\OdinQA\\home-progress-1022\\root-builder-final.log",
+    "log_sha256": "3bf6d2eddca3c9ed4e3a40946cba7716f0248ad3760df6b1a757931ea6363469",
+    "source_files": {
+      "scripts/prepare_lsp_payload.py": "41a9a9279a60811b8ffcc4f64be146f753b661c42919e46234af5259edac6528",
+      "scripts/collect_lsp_notices.py": "b72d7da99cbe6ac6e333f9599b15bf7aa34c248013e3adcfd99aa3a2feb2d154",
+      "tests/test_lsp_payload_builder.py": "c640bcf7b8537fa91617c7169291451ba87acceb62f43a47fafd92bce9413430",
+      "packaging/lsp-native-sources.json": "bd1f02f0d3565e8e59b2ab0b7b9729dfe4949220281df93dabcd581d9a91a262",
+      "packaging/lsp-package.json": "dcab523560cf5d65948b998e69d54f15ee34fdaf34b00ed7bac079f3e010bae7",
+      "packaging/lsp-package-lock.json": "58cb6e0a67c4283bc56e29c4cd89a4304bf587bbbba92fe4d38024d35082b4ba"
+    }
+  },
+  "historical_prepared_payload06": {
+    "manifest_sha256": "2d559814338225275ec297f60fc30347682caca18fca983140341a0196d6645a",
+    "files": 35153,
+    "components": 20,
+    "version_probes": 19,
+    "lsp_implementations": 15,
+    "default_implementations": 12,
+    "primary_profiles": 14,
+    "notice_status": "WITH_DECLARED_NOTICE_GAPS",
+    "slint_rebuild": "NOT_RUN"
+  },
+  "source_relation": {
+    "native_build_revision": "190c308e9ab7bbbf2917f879f58fd2d8a948cee0",
+    "packaging_freeze_revision": "ca190e867981b1351c74c0946b0cd45c427613ce",
+    "native_runtime_source_hashes_match_current": true,
+    "note": "Later commits change packaging, QA and evidence; exact native source files and binary remain unchanged. Artifact inputs are independently hash-verified.",
+    "additional_native_test_source": {
+      "tests/home_workspace_native.rs": "3610973a9f4a95019f4076af49a528e7b483967b4d0a7e1b742d4654f453d236"
+    }
+  },
+  "progress_worker07": {
+    "status": "PASS",
+    "evidence": "verification/home-lsp-worker07-report.json",
+    "success_exit_code": 0,
+    "cancel_exit_code": 1223,
+    "timeout_exit_code": 1460,
+    "success_seconds": 262.129,
+    "files_each_integrity_pass": 35158,
+    "version_probes": 19,
+    "cancel_timeout_host_unchanged": true
+  },
+  "progress_ui": {
+    "status": "PASS_FOR_UNCHANGED_PROCESS_AND_PROTOCOL_CODE",
+    "historical_real_gui_cases": 9,
+    "historical_recipe_sha256": "1b952d78964ab2cc2623e00b7b6376234f92402715cab757b12e60b04509edac",
+    "current_recipe_sha256": "f4ef1cf39dc2d158a51cd2b28a175f992dcb6aec8969e44f4bd85ae21992d24a",
+    "helper_sha256": "6c1bd0ba4b7ff82d046746361d811ba718d882d3483e6ba5e0642efec0486090",
+    "exact_difference": "One checkbox caption only; helper and process/protocol/argv code bytes identical",
+    "current_exact_recipe_compilation": "PASS",
+    "current_caption_nine_gui_cases": "NOT_RUN",
+    "continuous_visual_qa": "NOT_RUN",
+    "evidence": "verification/home-lsp-review-ui-source-equivalence-review.json"
+  },
+  "source_and_artifact_independent_review": {
+    "source": "PASS_WITH_DOCUMENTED_GAPS",
+    "artifact_and_inputs": "PASS",
+    "scope": "Final scoped independent review complete. No open P0-P3. Final metadata links and source manifest are root integration records.",
+    "artifact_external": "C:/OdinQA/home-progress-1022/review-sol/pkg7-artifact-input-review.json",
+    "historical_source_checkpoint": "verification/home-lsp-review-static-02.json",
+    "artifact_report": "verification/home-lsp-review-pkg7-artifact-input-review.json",
+    "lifecycle_report": "verification/home-lsp-review-q7-lifecycle-evidence-review.json",
+    "source_report": "verification/home-lsp-final-review.json"
+  },
+  "evidence_indexes": [
+    "verification/home-lsp-evidence-initial-index.json",
+    "verification/home-lsp-evidence-second-index.json",
+    "verification/home-lsp-evidence-third-index.json",
+    "verification/home-lsp-evidence-fourth-index.json",
+    "verification/home-lsp-evidence-fifth-index.json",
+    "verification/home-lsp-evidence-sixth-index.json",
+    "verification/home-lsp-evidence-seventh-index.json",
+    "verification/home-lsp-evidence-eighth-index.json",
+    "verification/home-lsp-evidence-ninth-index.json"
+  ],
+  "actual_user_cli_path": {
+    "status": "PASS",
+    "scope": "Intentional separate HKCU User PATH prepend after sealed upgrade",
+    "registry_write": "EXECUTED_ONCE",
+    "old_raw_value_order_and_kind_preserved_as_suffix": true,
+    "machine_path_unchanged": true,
+    "fresh_persisted_machine_plus_user_process_selects_installed_odin": "PASS",
+    "binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+    "report": "verification/home-lsp-cli-path-apply-20261022T062509Z-c27297f5-report.json",
+    "notification": "verification/home-lsp-cli-path-environment-notification.json",
+    "current_process_path_updated": false,
+    "client_restart": "NOT_RUN",
+    "guard_limit": "Immediate expected raw+kind guard; separate registry read/write is not atomic with external actors; source-pin snapshot update required after helper fix and original raw/kind equality verified"
+  },
+  "actual_user_live_project_analysis": {
+    "status": "PASS",
+    "roots": 2,
+    "configured_profiles_each": 14,
+    "repo_commands_or_backends_started": false,
+    "semantic_inference": false,
+    "report": "verification/home-lsp-user-live-analysis-command.json"
+  },
+  "static_closeout": {
+    "status": "PASS_WITH_EXPLICIT_OPTIONAL_NOT_RUN",
+    "total_checks": 1195,
+    "passed": 1194,
+    "failed": 0,
+    "not_run": 1,
+    "optional_not_run": "json_schema_validation: jsonschema is not installed in this Python environment; no new tool/schema was added",
+    "source_checker_sha256": "b23424ec1614b7f2a49e08775edce602b3f1d7ad2df932196dc9e4d3e62094da",
+    "gitattributes_sha256": "74afebbc97caa16ebbf35997e6a51c83b94d27feb8665f7f78c94b6be6061e69",
+    "source_report": "verification/home-lsp-closeout-source02.json",
+    "unfiltered_cached_whitespace_exit_code": 0,
+    "requirements_traceability_exit_code": 0,
+    "publish_policy_exit_code": 0,
+    "both_86_catalogs_and_docs_generator_idempotence_exit_code": 0,
+    "scope": "Static source/contracts only; actual Rust/Node/builder/native/MCP execution is recorded separately",
+    "history": "First BOM text-AST parser failure and raw-log whitespace output remain preserved; final fix parses Python source bytes and preserves raw log whitespace"
+  },
+  "source_manifest": "MANIFEST.sha256"
 }

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "scope": "READONLY_BEFORE_NEW_SOURCE_PIN_SNAPSHOT_NOT_CONFLICT_REFRESH",
+  "old_snapshot_sha256": "975bbc02cb1113c659931a2b221b3bb75f94841793a22a1656812800c9c81d7a",
+  "actual_user_raw_and_kind_equal_first_snapshot": true,
+  "actual_machine_raw_and_kind_equal_first_snapshot": true,
+  "registry_write": "NOT_RUN",
+  "reason": "Only helper source pins changed to fix task-directory ACL idempotency; original registry preconditions remain identical"
+}

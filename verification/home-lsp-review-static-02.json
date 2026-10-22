@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "task_id": "ODIN-HOME-PROGRESS-EXPANDED-REVIEW",
+  "revision": "expanded-static-review-02",
+  "actor_instance": "/root/review_sol",
+  "receiver_instance": "/root",
+  "observed_at_utc": "2026-10-22T05:04:41.166980+00:00",
+  "base_sha": "3ac0260b724d3c03632660b34a412b54a6689297",
+  "head_sha": "a19c49201bf502915e16f083529a54a619bf7a87",
+  "head_identity": "Native clean release commit plus exact source hashes; Node/UI/docs currently uncommitted integration deltas",
+  "worktree_status": [],
+  "source_root": "E:\\odin",
+  "write_scopes": [
+    "C:\\OdinQA\\home-progress-1022\\review-sol"
+  ],
+  "source_mutations_performed": false,
+  "review_result": "PASS",
+  "review_result_scope": "Independent static correctness review of frozen home, worker/profiles, builder/notices, native registry, UI and acceptance-driver changes; artifact-integrity evidence audits. Full feature acceptance remains NOT_RUN.",
+  "whole_user_feature_acceptance": "NOT_RUN",
+  "open_findings": [],
+  "reviewed_file_sha256": {
+    "crates/odin-core/src/config.rs": "711a2519b361b9743cfc87609a0a7d335a3b2f9f2586ffa5b1ec00b6eb33bb7d",
+    "crates/odin-core/src/workspace.rs": "38e78557ac99effc511aae9d018a088456010b47490f8d8685d59ec02d57c3df",
+    "crates/odin/src/main.rs": "f9007f16fe898d536264c5d261b53d0be131bc04685b408dc4ae92f857322129",
+    "crates/odin/Cargo.toml": "e3b96d98d97ae70069395e97d4075e6db6ccf4b78f3565fc6c5e48755d54c90d",
+    "tests/home_workspace_native.rs": "3610973a9f4a95019f4076af49a528e7b483967b4d0a7e1b742d4654f453d236",
+    "crates/odin-core/src/languages.rs": "79a16bacd2d91339e5f05b05d09a8bd33fe46339f34e0d29f9d4c4efba767502",
+    "packaging/setup-lsps.mjs": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec",
+    "packaging/setup-progress.mjs": "3e0a545584fc75502da9976beb0f32e2dc1b957fb62bb9e99bf1af360459473a",
+    "tests/lsp_installer.test.mjs": "bfe37951cfede445cd944b1f1ac4bd2a906b2ced13a5d425cee551ee195f0c1a",
+    "tests/setup_progress.test.mjs": "e5c34d34e1165e0803a5f8f8e89fefa715275b958473a7e7f0d775bdb8182574",
+    "scripts/prepare_lsp_payload.py": "41a9a9279a60811b8ffcc4f64be146f753b661c42919e46234af5259edac6528",
+    "scripts/collect_lsp_notices.py": "b72d7da99cbe6ac6e333f9599b15bf7aa34c248013e3adcfd99aa3a2feb2d154",
+    "tests/test_lsp_payload_builder.py": "c640bcf7b8537fa91617c7169291451ba87acceb62f43a47fafd92bce9413430",
+    "packaging/lsp-native-sources.json": "bd1f02f0d3565e8e59b2ab0b7b9729dfe4949220281df93dabcd581d9a91a262",
+    "packaging/lsp-package.json": "dcab523560cf5d65948b998e69d54f15ee34fdaf34b00ed7bac079f3e010bae7",
+    "packaging/lsp-package-lock.json": "58cb6e0a67c4283bc56e29c4cd89a4304bf587bbbba92fe4d38024d35082b4ba",
+    "packaging/odin.iss": "f4ef1cf39dc2d158a51cd2b28a175f992dcb6aec8969e44f4bd85ae21992d24a",
+    "packaging/installer-progress.iss": "6c1bd0ba4b7ff82d046746361d811ba718d882d3483e6ba5e0642efec0486090",
+    "scripts/verify_installer.ps1": "87ec5a74d863d04f4455440dec8c5295a7efebf87bcf1bcec14c1ecf9b8e55e6",
+    "tests/expanded_installed_languages.py": "01148ab40e8aa3e3b1c41211a2c55d79d45f0bc8ef4fcbf7caf3bc0b35bbbeeb",
+    "tests/home_installed_smoke.py": "aa845b352721b7e389e9685efd3704bd0dca07515ccb2893820791db2a5507d2",
+    "tests/inno_argv_probe.py": "259fd44fa4cb99876a4bd5991a441b07f8d758d448e7281ca0bc0b71ec9dc571",
+    "tests/inno_progress_probe.py": "c50d7705da8d1fada732963983d8e02edca0523576c9259b8953981c14d8ced7",
+    "README.md": "1cc06a6646977765d29d073c0e9883b9e2d7639524a0c991b6cb6ebe7c50f545",
+    "docs/ARCHITECTURE.md": "a8e88f6e1aacc4d3f1f73b24040181e707b6a067a1d141db1077dc4104dcfed7",
+    "docs/KNOWN_LIMITATIONS.md": "643f17cd135e47078dd07ca6336c28fcf29d6463725e885d63bf57028204dc40",
+    "docs/EXPANDED_LSP.md": "7ceb39f1ec45ad18947ce1052eeda2cf8c688c66753be2f3979a456f0fe815d3",
+    "docs/PACKAGING_WINDOWS_LINUX.md": "60a70bf326b843471c054bb2abfbc2b9e9aef127a3fd1ff5057e65b44aa4fbab",
+    "docs/HOME_AND_INSTALLER_PROGRESS.md": "c2460b8f6a43c7a11b3d5a8c56e9ecf0bf916eb998816e51ec45181322a6bb5c",
+    "docs/LSP_PAYLOAD_BUILDER.md": "d66c2afc0bb7b0c3d8a4374ecca0f509d915a33eebf94e0bcf7e3c05cb50f6fd",
+    "THIRD_PARTY_NOTICES.md": "235eb79688223b0aa2c17f3341472abcf9d0826eb00606873e5f94c5b082432f",
+    "verification/home-root-installer-validation.json": "210c1f0b11cf80d02c88d509fbcb3edb7fe790b365003b3165d459495f8260cd"
+  },
+  "native_gate_source_binding": {
+    "crates/odin/build.rs": "c901d4e9601890336248e1e5c20d600c2c837390e54d8dc5c7bb7704b5c2dabe",
+    "crates/odin/src/http.rs": "72746cbb15551b4a6b865e2a583ac3fdadb478fcd6041b5696c7b79069f0f275",
+    "crates/odin/src/main.rs": "f9007f16fe898d536264c5d261b53d0be131bc04685b408dc4ae92f857322129",
+    "crates/odin/src/mcp.rs": "16ac2886ea5003b116f025ae48b8368700dd10b9fb59520d4f96e999c3c1ba95",
+    "crates/odin/src/metadata.rs": "6010f496c4af39edc2523362ddcb9b3398cfe8ae996ac916e19aaf833d4d4063",
+    "crates/odin/src/setup.rs": "2aebc30744024e809335a9b4215d03b296407b3fdabe1e2d51646fadd71791a1",
+    "crates/odin-core/src/config.rs": "711a2519b361b9743cfc87609a0a7d335a3b2f9f2586ffa5b1ec00b6eb33bb7d",
+    "crates/odin-core/src/error.rs": "f01697b5eec32006f7ea676833d30b52030a8ebd5f45974b9f33d67a6d34e90e",
+    "crates/odin-core/src/execution.rs": "155dfc311d0119f2460b7024f12911745e48729199dd9539ceffefca8c4bba88",
+    "crates/odin-core/src/languages.rs": "79a16bacd2d91339e5f05b05d09a8bd33fe46339f34e0d29f9d4c4efba767502",
+    "crates/odin-core/src/lib.rs": "c6ebd10fb8e3ae005fe932f9db226fa094e869c383b438b33555c060d3c0eee5",
+    "crates/odin-core/src/memory.rs": "2b613b41174cc41f6778cc4ddc0350eaa2cd0753b2f6b881c1ff4b7b96f7abf4",
+    "crates/odin-core/src/paths.rs": "7ff6f57fc9315732bc1b32732503af9f8358b51353baf04049c3580de8c02cd9",
+    "crates/odin-core/src/process.rs": "b69e2cf89c9cf96b79f01b85ea67ad41a1f6dcdd89d5e9bedd6167062fb84fa8",
+    "crates/odin-core/src/sandbox.rs": "18be5bd8c1794375fbfd79f6ffe1d226167b0942614110c86d6cd4e92ea5f5d5",
+    "crates/odin-core/src/sandbox_policy.rs": "76fa4355780c363c1524b17713076a3a08b66384053916c1da22cbe0c05eb27a",
+    "crates/odin-core/src/search.rs": "fb9697e493a278593076982e243245b8d331ba71e18229b8796eac979c508274",
+    "crates/odin-core/src/store.rs": "326482e786fd8de8f02654dfc4682d160ddd70f61923788ea3503212b6f6f5fd",
+    "crates/odin-core/src/transaction.rs": "495b5344b6d68e8c1c2b82195fb532883fde9bf3484ac6401740eb7956fb52bb",
+    "crates/odin-core/src/workspace.rs": "38e78557ac99effc511aae9d018a088456010b47490f8d8685d59ec02d57c3df",
+    "crates/odin-core/tests/fixtures/os_sandbox_workload.rs": "7e8d8905257adfdee5e0b9b195e3d4d99306bae752cf7bf7f11136c0d9d6a09c",
+    "crates/odin-core/tests/fixtures/stdin_workload.rs": "93f2a2c2ccd2e9db54bf34b93723a4beeb8a86a60df9ce1a3ec66fd00dc53a86",
+    "crates/odin-core/tests/host_execution_policy.rs": "ba34311478079eca7d43a7904b228fa2d9c17697214cf26be162d6cb4302421a",
+    "crates/odin-core/tests/os_sandbox_native.rs": "5923210fc19435d8ad8a6ea2145c45c2b58a44e23ba42bf411fb32c133ff30a2",
+    "crates/odin-core/tests/process_contention.rs": "acde589bdadca4f41290883543f49a1a6b0710a607ea40cd06b33cf8ce1ac301",
+    "crates/odin-core/tests/stdin_execution.rs": "9d80ac47146314c2b7ab043b91a19391ec090f4819862131fb836c06ea3b1a31",
+    "crates/odin-core/tests/workspace_binding.rs": "ae8591703a277bb1755498effc78e0532f6ef5851d4458fe351b94e6a4919902",
+    "crates/odin-engine/src/analysis.rs": "1e89b65bf75397b799353fcc5cda2984f0adb70cc4becac438f089443e473442",
+    "crates/odin-engine/src/flow.rs": "b82de18dd48b805c0c542f94d3b2c0c90ff64052ab69b61646a69b47125d206c",
+    "crates/odin-engine/src/formatter.rs": "79cd591119294b25a3624ccb4d97d349856abc57039a530f93a8c2f517fc7ecb",
+    "crates/odin-engine/src/ide.rs": "e2712e30f060d31acfd5ded6ac6e4e4d9f50071951df50638d84e104a4aaf5f1",
+    "crates/odin-engine/src/inspections.rs": "b01820e8ceb56194f69b6ff71caa2640ef88d25dfd328e3a69addecebf62a720",
+    "crates/odin-engine/src/lib.rs": "08393affb482164c5e64055d6e44981ee1a1703cc85fc589e814ea147844bce8",
+    "crates/odin-engine/src/occurrences.rs": "9c5dacae294dea17cf1d14a729d57810d27f1492ac43292f98eb8331aff6b155",
+    "crates/odin-engine/src/refactor.rs": "41b8c8b9154b52118d2c47bd5df863330333818ff0d4b01efc0f707a115a5869",
+    "crates/odin-engine/src/results.rs": "d7b89fbaa048e8b1ec587a8596201e6c3292c6ab849df5d64ab2548be8747492",
+    "crates/odin-engine/src/schema.rs": "310e6e561a37a4b5f5f91c75185ac5332149503f2db72c8387b01f8cb11c8724",
+    "crates/odin-engine/src/shell.rs": "0d1e84f741657bcd01c62b8f0dd24527023e9491c7503f71d019a2766e68e751",
+    "crates/odin-engine/src/symbols.rs": "69056444f324be2bfdb7049b22adb9a490523bec98ff500168ee15f97c544c0f",
+    "crates/odin-engine/src/text_replace.rs": "8fa26da714905d4363ccfe60bc77196906b124a2322a8dcfdd15b035db4f654c",
+    "crates/odin-engine/tests/completion.rs": "3dddfde2c36edffaddc440c95d8181c3b09b9c131f93a7ce9a58d80eab4678af",
+    "crates/odin-engine/tests/debug_launch_policy.rs": "6d89bfab59065cfdeb68303b952fe8056a9b4a45068aa58558d01b5edf8ceb52",
+    "crates/odin-engine/tests/formatter_profiles.rs": "74db7ea48c617788acd7d7434d71c1fd46eb3483a8e894cc2322bb055a1d2a6e",
+    "crates/odin-engine/tests/ide_tools.rs": "6bfc26c527616e97f1b636902d3b7962a42d4445cc33e3270a48db4449a0e0d5",
+    "crates/odin-engine/tests/invariants.rs": "0c90fa06597051f18876611409092a4ec482e9b2041c4cc65267d2a517dca879",
+    "crates/odin-engine/tests/project_analysis.rs": "779a9e07f7c46ec091f2f699a9185478e46b52fd59a54fcde99301c79884e2b9",
+    "crates/odin-protocol/src/dap.rs": "23236ae9bd7476136ec17793cb1b4c2a7cc8404e7c17d5e36b124221ee82b05c",
+    "crates/odin-protocol/src/lib.rs": "99a75cf5cf2f0f42c91bb5d4344fa56ca54aab6d2c0c8bc498da1a1f9b98e68c",
+    "crates/odin-protocol/src/lsp.rs": "6f3272bef7d3455bec13e4c2e7657756e9255dbc41e739495bdc7437fccab12b",
+    "crates/odin-protocol/src/rpc.rs": "286f820bffcb014f8e7ac169c2d591ccfc622a1de6c794ef60a315cc6b313b12",
+    "crates/odin-protocol/src/text.rs": "047329493570b965a79f93a4dd3b2f62a05147d9610547eee5ae4d38619055c2",
+    "crates/odin-protocol/src/workspace.rs": "259f5936b90cd502b20b1eaee20977031f973fe76febed86c03b5bf3f380db6e",
+    "crates/odin-protocol/tests/fixture_protocols.rs": "5fe65328abf7c442d3d51f0d654a8b2e16cc1dbe8e7940ef8f22518e97596576",
+    "crates/odin/Cargo.toml": "e3b96d98d97ae70069395e97d4075e6db6ccf4b78f3565fc6c5e48755d54c90d",
+    "crates/odin-core/Cargo.toml": "666ad092614df526ed1b8d3253eb2565cc42c4876bb457d62734d0eb2e52f1bf",
+    "crates/odin-engine/Cargo.toml": "68752a97bc3317afd4b125f406bdff03c236cfd948ca6a9fe441211e54c4150d",
+    "crates/odin-protocol/Cargo.toml": "b89d0deb8c21224da781ccfa7549fe34f536c3561115750d9eb230accbef81fc",
+    "Cargo.toml": "8a009f775d201c8199a6d6f81963bb75dde59a48dc783ae6086a6a7407e21e36",
+    "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34"
+  },
+  "findings": [
+    {
+      "id": "ODIN-EXPANDED-REVIEW-001",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "title": "Preserved operator Rust profile could shadow another bundled extension or use a replaceable bundled ID",
+      "file": "packaging/setup-lsps.mjs",
+      "lines": [
+        289,
+        300
+      ],
+      "original_sha256": "7dd7ae1a59770b8267548082f3095ce458fdac4d1bd198340a3884fc4fdc1c3f",
+      "resolved_sha256": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec",
+      "resolution": "Effective profile IDs participate in extension collision checks; operator Rust IDs remain nonreplaceable. Source traced and executed regression logs verified."
+    },
+    {
+      "id": "ODIN-EXPANDED-REVIEW-002",
+      "severity": "P2",
+      "status": "RESOLVED_SOURCE_AND_UNIT_REAL_WORKER_RETRY_PENDING",
+      "title": "Worker required short vtsls alias absent from real payload manifest",
+      "file": "packaging/setup-lsps.mjs",
+      "lines": [
+        15,
+        389
+      ],
+      "discovered_by": "Root actual payload06 worker first run",
+      "original_sha256": "f565e72683fa742f133e557bfd8ee3a0a38c7ff7e80506041c7d8b2b512cb2bd",
+      "resolved_sha256": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec",
+      "resolution": "Required IDs and health probe use @vtsls/language-server, CLI selector remains vtsls. Added canonical declaration/real-manifest mapping regression and alias rejection; 49 unit tests executed and log hashes verified. Real worker06b result pending at this checkpoint."
+    },
+    {
+      "id": "ODIN-EXPANDED-REVIEW-003",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "title": "Replacement checkbox still named seven languages after expanding replacement scope",
+      "file": "packaging/odin.iss",
+      "line": 133,
+      "original_sha256": "1b952d78964ab2cc2623e00b7b6376234f92402715cab757b12e60b04509edac",
+      "resolved_sha256": "f4ef1cf39dc2d158a51cd2b28a175f992dcb6aec8969e44f4bd85ae21992d24a",
+      "resolution": "Caption now names all bundled non-Rust profiles and preserved custom Rust. Exact recipe compiled with inert stage; visual layout NOT_RUN."
+    }
+  ],
+  "validation_defects_resolved": [
+    "Expanded driver writable host originally put grants in deny_unknown_fields workspace table; now explicit registered test project grants, workspace readonly.",
+    "Fixture rename expectations now cover Python/JS/TS import identifiers while preserving C++ greet_member and shared.h include; inert expectations checks are not semantic evidence.",
+    "Formatting fixtures now require nonempty edits on valid unformatted TOML/YAML/Ruff source."
+  ],
+  "checks": [
+    {
+      "name": "Frozen source and evidence hash audit",
+      "status": "PASS",
+      "executor": "reviewer",
+      "product_execution": false
+    },
+    {
+      "name": "Rust fmt/workspace tests/strict Clippy",
+      "status": "PASS",
+      "executor": "root; receipts inspected by reviewer",
+      "exit_codes": [
+        0,
+        0,
+        0
+      ],
+      "rust_passed": 249,
+      "rust_failed": 0,
+      "rust_ignored": 6,
+      "freshness": "MATCH for current native sources; old Node48 subset excluded in favor of Node49 receipt"
+    },
+    {
+      "name": "Current Node setup/progress regression",
+      "status": "PASS",
+      "executor": "root and author; logs inspected by reviewer",
+      "exit_code": 0,
+      "passed": 49,
+      "semantic_acceptance": "NOT_RUN"
+    },
+    {
+      "name": "Current builder regression",
+      "status": "PASS",
+      "executor": "root and author; source-bound logs inspected by reviewer",
+      "exit_code": 0,
+      "passed": 30
+    },
+    {
+      "name": "Payload06 independent inert closure audit",
+      "status": "PASS",
+      "executor": "reviewer",
+      "exit_code": 0,
+      "manifest_files": 35153,
+      "runtime_files_equal_payload05": 35079,
+      "source_inner_archives": 1009,
+      "backend_execution": false
+    },
+    {
+      "name": "Clean native release and five binary smokes",
+      "status": "PASS",
+      "executor": "root; log/driver/binary hashes inspected by reviewer",
+      "release_commit": "190c308e9ab7bbbf2917f879f58fd2d8a948cee0",
+      "binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+      "exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "scope": "stdio, cancellation, workspace, CLI, HTTP; not real new-language backend operations"
+    },
+    {
+      "name": "Installer receipt guards and compile",
+      "status": "PASS",
+      "executor": "author; evidence inspected by reviewer",
+      "inert_guard_cases": 16,
+      "compile_exit_code": 0,
+      "installer_execution": "NOT_RUN"
+    },
+    {
+      "name": "Unix home permission regressions",
+      "status": "NOT_RUN",
+      "reason": "Two cfg(unix) tests not executed on Windows"
+    },
+    {
+      "name": "Full expanded real MCP/home/final payload installer acceptance",
+      "status": "NOT_RUN",
+      "reason": "Root real runs in progress; no result inferred from fixtures or version probes"
+    },
+    {
+      "name": "Slint binary rebuild",
+      "status": "NOT_RUN",
+      "reason": "Pinned source closure provided; actual official binary rebuild/reproducibility not executed"
+    },
+    {
+      "name": "Cloud CI",
+      "status": "N/A",
+      "reason": "No cloud CI authorized or started"
+    }
+  ],
+  "notice_status": "WITH_DECLARED_NOTICE_GAPS",
+  "notice_limitations": {
+    "gap_counts": {
+      "taplo": 6,
+      "ruff": 9,
+      "ty": 9,
+      "rust-analyzer": 7,
+      "marksman": 3
+    },
+    "counts_may_overlap": true,
+    "scope": "Cargo lock supersets and retained actual metadata, not exact linked SBOM or legal clearance",
+    "slint_rebuild": "NOT_RUN"
+  },
+  "evidence": [
+    {
+      "path": "C:/OdinQA/home-progress-1022/expanded-gates.json",
+      "sha256": "88459ac5ca7283510c89d8f5fa121ac9a5d28c3573dd59b43ef144a9faab60e3"
+    },
+    {
+      "path": "C:/OdinQA/home-progress-1022/root-builder-final.json",
+      "sha256": "1df8c50973438cbd9b4c0b25746cae8a4c927a6cb93f662b4885d43c0c60c5c2"
+    },
+    {
+      "path": "C:/OdinQA/home-progress-1022/node49-configured.json",
+      "sha256": "89679eaaeaab52f550c245fc72ba314e78309f87c0cf5211629618884bce2ed9"
+    },
+    {
+      "path": "C:/OdinQA/home-progress-1022/release-190c308.json",
+      "sha256": "57ea1958d5a95de17a0e7c9893538b37ccffd4de80c881fb5533ff9377a9006b"
+    },
+    {
+      "path": "C:/OdinQA/home-progress-1022/new-release-smokes.json",
+      "sha256": "8df0b59af429c63070c5e7aeeeea20d7a55c4397aeefd41a2342688f0451de66"
+    },
+    {
+      "path": "C:/OdinQA/home-progress-1022/review-sol/payload06-inert-audit.json",
+      "sha256": "2aa0fb6f93d1da145f760763a27db8f3f1719fa6addfc93f2db83990ea4d4fc4"
+    },
+    {
+      "path": "C:/OdinQA/home-progress-1022/review-sol/payload06-inert-audit.command.json",
+      "sha256": "03cd13de81b022147d7f0938334dd54492f6ab68fa85e85d7339190e562a54c3"
+    },
+    {
+      "path": "C:/OdinQA/home-progress-1022/review-sol/payload06-inert-audit.runtime.json",
+      "sha256": "d376bb1070ece618fc6fb84b10287c5cc579f55c9ded116f797cc94fbe054d61"
+    },
+    {
+      "path": "C:/OdinQA/expanded-lsp/build-06.json",
+      "sha256": "becabe09243cfba0eb224d69935b3cac698912c4b3cf558e72c8df1646df21ac"
+    },
+    {
+      "path": "C:/OdinQA/expanded-lsp/closure-06.json",
+      "sha256": "83e9ff4119bd4f96c5f839fb8cdad741ada55f7cb016c48342cf0f77e7fa5585"
+    },
+    {
+      "path": "C:/OdinQA/expanded-lsp/unit-03.json",
+      "sha256": "82276d8b2c5ce80e2e99d4d167444f79f6cd0f652d204840305deb202124cda0"
+    },
+    {
+      "path": "C:/OdinQA/expanded-setup-1022/installer-support/canonical-vtsls-unit.command.json",
+      "sha256": "0bf22befa559183693c4f34f199a59b551eb4f23a0761013c1f9088a130c8364"
+    },
+    {
+      "path": "C:/OdinQA/expanded-setup-1022/installer-support/guards-01/report.json",
+      "sha256": "b7527caadfa6ab76f7620f7af532a09b538de35e81551e4970dcdb4558c75418"
+    },
+    {
+      "path": "C:/OdinQA/expanded-setup-1022/installer-support/inno-01.command.json",
+      "sha256": "97ccdf20b89c8d7dd0c02f90e0768316634dc56ef07d14f6bdb1f31e21e0b77d"
+    }
+  ],
+  "remaining_risks": [
+    "Current true worker retry, real new-language MCP matrix, home driver, full payload package/install/reinstall/uninstall evidence still pending.",
+    "Native Rust executable provenance is clean commit190c308; later Node/UI/docs deltas have separate exact hashes and do not require relabeling the binary revision.",
+    "Version probes and mocks do not prove semantic operations; Ruff is lint/format and optional ty/vtsls require explicit selection.",
+    "Protected source paths do not imply OS sandboxing of trusted backend processes.",
+    "Cross-version upgrade, interrupted multi-file apply/crash rollback, clean-machine and all-platform/full IDE parity not established."
+  ],
+  "next_owner": "/root",
+  "next_action": "Provide fresh source-bound real worker/MCP/home/installer receipts; reviewer will append a separate final evidence review without overwriting this checkpoint."
+}

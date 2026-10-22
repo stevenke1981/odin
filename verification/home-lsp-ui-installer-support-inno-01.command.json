@@ -1,0 +1,35 @@
+{
+  "scope": "ACTUAL_INNO7_COMPILATION_OF_EXACT_INSTALLER_SCRIPT_WITH_INERT_TINY_STAGE_ONLY",
+  "command": [
+    "C:\\Program Files\\Inno Setup 7\\ISCC.exe",
+    "--quiet-progress",
+    "--no-ide-signtools",
+    "--no-signing",
+    "--define=AppVersion=0.2.0",
+    "--define=StageDir=C:\\OdinQA\\expanded-setup-1022\\installer-support\\inno-01\\inert-stage",
+    "--define=OutputPath=C:\\OdinQA\\expanded-setup-1022\\installer-support\\inno-01\\output",
+    "C:\\OdinQA\\expanded-setup-1022\\installer-support\\inno-01\\odin.iss"
+  ],
+  "cwd": "E:\\odin-worktrees\\expanded-setup-sol",
+  "exit_code": 0,
+  "started_at_utc": "2026-10-22T05:01:03.591887+00:00",
+  "completed_at_utc": "2026-10-22T05:01:04.530014+00:00",
+  "compiler_version": "7.1.0",
+  "compiler_sha256": "d06ebd38f38e3cee60a3c50cc45bd449d77e0bc6a5cabc607ea9886808e4de1a",
+  "source_sha256": {
+    "E:\\odin-worktrees\\expanded-setup-sol\\packaging\\odin.iss": "f4ef1cf39dc2d158a51cd2b28a175f992dcb6aec8969e44f4bd85ae21992d24a",
+    "E:\\odin\\packaging\\installer-progress.iss": "6c1bd0ba4b7ff82d046746361d811ba718d882d3483e6ba5e0642efec0486090"
+  },
+  "log": "C:\\OdinQA\\expanded-setup-1022\\installer-support\\inno-01.log",
+  "log_sha256": "a3680b6601c39b586ea892ad2bbaa58a7f72b62a64f73917b09aa8c5f188110e",
+  "artifacts": [
+    {
+      "path": "C:\\OdinQA\\expanded-setup-1022\\installer-support\\inno-01\\output\\odin-0.2.0-windows-x64-setup.exe",
+      "sha256": "c26954a44473e23c887951f432d9a751ec4bc0215f98bb54e327e7bf5137ca5d",
+      "bytes": 2105523
+    }
+  ],
+  "installer_execution": "NOT_RUN",
+  "full_payload_packaging": "NOT_RUN",
+  "ui_rendering": "NOT_RUN"
+}

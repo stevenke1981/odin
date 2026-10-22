@@ -1,0 +1,178 @@
+{
+  "status": "PASS",
+  "scope": "ROOT_AUTHORIZED_OWNED_EXTERNAL_ACL_ONLY",
+  "private_before": {
+    "owner_sid": "S-1-5-21-255869720-3615173302-1655807352-1001",
+    "protected": true,
+    "rule_count": 2,
+    "sddl_sha256": "51900b266674cdb2dce545bc1e936ee4e02606a6b772377fb0818a0bb25b4436"
+  },
+  "private_after": {
+    "owner_sid": "S-1-5-21-255869720-3615173302-1655807352-1001",
+    "protected": true,
+    "rule_count": 2,
+    "sddl_sha256": "51900b266674cdb2dce545bc1e936ee4e02606a6b772377fb0818a0bb25b4436"
+  },
+  "existing_private_acl_unchanged": true,
+  "fresh_fixture_before": {
+    "owner_sid": "S-1-5-21-255869720-3615173302-1655807352-1001",
+    "protected": false,
+    "rule_count": 5,
+    "sddl_sha256": "8b3e5cc613e285d42d1e2aa2f4ce89239c079a0971e55e371e2d6bc3de85f60c"
+  },
+  "fresh_fixture_after": {
+    "owner_sid": "S-1-5-21-255869720-3615173302-1655807352-1001",
+    "protected": true,
+    "rule_count": 2,
+    "sddl_sha256": "51900b266674cdb2dce545bc1e936ee4e02606a6b772377fb0818a0bb25b4436"
+  },
+  "commands": [
+    {
+      "case": "existing_private_1",
+      "command": {
+        "name": "private_acl",
+        "argv": [
+          "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-File",
+          "C:\\OdinQA\\home-progress-1022\\user-cli-path\\secure_private_folder.ps1",
+          "-Directory",
+          "C:\\OdinQA\\home-progress-1022\\user-cli-path\\private"
+        ],
+        "cwd": "C:\\OdinQA\\home-progress-1022\\user-cli-path",
+        "exit_code": 0,
+        "helper_sha256": "3b2d98eb17032dba83dce96c3aae5434d5f5b0fd96796b445bf057860fe749b3",
+        "stdout_log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062146Z-7374dafb.stdout.log",
+        "stdout_sha256": "9b6b1465e4c2b2e7e8f002b952dfb3a8b320ddfd038d48472d233a8b43086da0",
+        "stderr_log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062146Z-7374dafb.stderr.log",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "registry_execution": "NOT_RUN",
+        "odin_execution": "NOT_RUN"
+      },
+      "result": {
+        "status": "PASS",
+        "action": "VALIDATED_EXISTING_NO_WRITE",
+        "owner_current_user": true,
+        "protected": true,
+        "explicit_full_control_principal_count": 2,
+        "permitted_principals": "CURRENT_USER_AND_SYSTEM_ONLY",
+        "sacl_mutation": false,
+        "owner_mutation": false
+      }
+    },
+    {
+      "case": "existing_private_2",
+      "command": {
+        "name": "private_acl",
+        "argv": [
+          "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-File",
+          "C:\\OdinQA\\home-progress-1022\\user-cli-path\\secure_private_folder.ps1",
+          "-Directory",
+          "C:\\OdinQA\\home-progress-1022\\user-cli-path\\private"
+        ],
+        "cwd": "C:\\OdinQA\\home-progress-1022\\user-cli-path",
+        "exit_code": 0,
+        "helper_sha256": "3b2d98eb17032dba83dce96c3aae5434d5f5b0fd96796b445bf057860fe749b3",
+        "stdout_log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062146Z-aba2cf2c.stdout.log",
+        "stdout_sha256": "9b6b1465e4c2b2e7e8f002b952dfb3a8b320ddfd038d48472d233a8b43086da0",
+        "stderr_log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062146Z-aba2cf2c.stderr.log",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "registry_execution": "NOT_RUN",
+        "odin_execution": "NOT_RUN"
+      },
+      "result": {
+        "status": "PASS",
+        "action": "VALIDATED_EXISTING_NO_WRITE",
+        "owner_current_user": true,
+        "protected": true,
+        "explicit_full_control_principal_count": 2,
+        "permitted_principals": "CURRENT_USER_AND_SYSTEM_ONLY",
+        "sacl_mutation": false,
+        "owner_mutation": false
+      }
+    },
+    {
+      "case": "fresh_owned_directory_1",
+      "argv": [
+        "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "C:\\OdinQA\\home-progress-1022\\user-cli-path\\secure_private_folder.ps1",
+        "-Directory",
+        "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-fixtures-01"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-cli-path",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-22T06:21:47.410549+00:00",
+      "completed_at_utc": "2026-10-22T06:21:47.715873+00:00",
+      "stdout_log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-fix-verification-01\\fresh-1.stdout.log",
+      "stdout_sha256": "14dcd2c3415b30a63682d3d8362675ef16cab7ad92d72c6147c1ed03f651d294",
+      "stderr_log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-fix-verification-01\\fresh-1.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": {
+        "status": "PASS",
+        "action": "ENFORCED_DACL_ONLY_OWNER_UNCHANGED",
+        "owner_current_user": true,
+        "protected": true,
+        "explicit_full_control_principal_count": 2,
+        "permitted_principals": "CURRENT_USER_AND_SYSTEM_ONLY",
+        "sacl_mutation": false,
+        "owner_mutation": false
+      }
+    },
+    {
+      "case": "fresh_owned_directory_2",
+      "argv": [
+        "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "C:\\OdinQA\\home-progress-1022\\user-cli-path\\secure_private_folder.ps1",
+        "-Directory",
+        "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-fixtures-01"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-cli-path",
+      "exit_code": 0,
+      "started_at_utc": "2026-10-22T06:21:47.721464+00:00",
+      "completed_at_utc": "2026-10-22T06:21:48.027894+00:00",
+      "stdout_log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-fix-verification-01\\fresh-2.stdout.log",
+      "stdout_sha256": "9b6b1465e4c2b2e7e8f002b952dfb3a8b320ddfd038d48472d233a8b43086da0",
+      "stderr_log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-fix-verification-01\\fresh-2.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": {
+        "status": "PASS",
+        "action": "VALIDATED_EXISTING_NO_WRITE",
+        "owner_current_user": true,
+        "protected": true,
+        "explicit_full_control_principal_count": 2,
+        "permitted_principals": "CURRENT_USER_AND_SYSTEM_ONLY",
+        "sacl_mutation": false,
+        "owner_mutation": false
+      }
+    }
+  ],
+  "registry_execution": "NOT_RUN",
+  "PATH_mutation": false,
+  "odin_execution": "NOT_RUN",
+  "owner_mutation": false,
+  "sacl_mutation": false,
+  "sources": {
+    "user_cli_path.py": "3f5dc46f6822d69b08bdb80b63124da76ba08ef97fab89e50f4598ab93cebdf7",
+    "secure_private_folder.ps1": "3b2d98eb17032dba83dce96c3aae5434d5f5b0fd96796b445bf057860fe749b3",
+    "verify_fresh_cli.ps1": "1094d525fcddc5c1b54809c17b4d729b18d09feb06d3a81ca9c6d5466a9137f8",
+    "README.md": "6b65fc2db5e24cda36948fdfc6cef2dc357c7691d11302a6e80b10def82c536b"
+  }
+}

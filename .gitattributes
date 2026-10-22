@@ -14,3 +14,6 @@ verification/debug-candidate-appcontrol.json -text whitespace=cr-at-eol
 verification/native-inspections-attempt-1.json -text whitespace=cr-at-eol
 verification/native-inspections-attempt-2.json -text whitespace=cr-at-eol
 verification/native-inspections-attempt-3.json -text whitespace=cr-at-eol
+
+# Captured command output keeps authentic spaces after LF normalization.
+verification/home-lsp-*.log -whitespace

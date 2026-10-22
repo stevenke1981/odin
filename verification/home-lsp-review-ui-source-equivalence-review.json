@@ -1,0 +1,464 @@
+{
+  "schema_version": 1,
+  "task_id": "ODIN-HOME-PROGRESS-EXPANDED-REVIEW",
+  "actor_instance": "/root/review_sol",
+  "observed_at_utc": "2026-10-22T05:47:57.294234+00:00",
+  "scope": "Historical real Inno GUI/argv evidence and precise current-source reuse boundary",
+  "review_result": "PASS_SCOPED_SOURCE_EQUIVALENCE",
+  "historical_ui_cases": {
+    "status": "PASS",
+    "count": 9,
+    "recipe_sha256": "1b952d78964ab2cc2623e00b7b6376234f92402715cab757b12e60b04509edac",
+    "helper_sha256": "6c1bd0ba4b7ff82d046746361d811ba718d882d3483e6ba5e0642efec0486090",
+    "cases": [
+      {
+        "mode": "success",
+        "responsive_samples": 124,
+        "applying_stop_disabled": true,
+        "parent_exit_injected": false,
+        "host_field_changed": false,
+        "exit_code": 0,
+        "elapsed_seconds": 6.989,
+        "worker_and_descendant_reaped": true,
+        "status": "PASS"
+      },
+      {
+        "mode": "fresh_home",
+        "responsive_samples": 120,
+        "applying_stop_disabled": true,
+        "parent_exit_injected": false,
+        "host_field_changed": false,
+        "exit_code": 0,
+        "elapsed_seconds": 7.039,
+        "worker_and_descendant_reaped": true,
+        "status": "PASS"
+      },
+      {
+        "mode": "switch_existing",
+        "responsive_samples": 124,
+        "applying_stop_disabled": true,
+        "parent_exit_injected": false,
+        "host_field_changed": true,
+        "exit_code": 0,
+        "elapsed_seconds": 7.039,
+        "worker_and_descendant_reaped": true,
+        "status": "PASS"
+      },
+      {
+        "mode": "cancel",
+        "responsive_samples": 134,
+        "applying_stop_disabled": false,
+        "parent_exit_injected": false,
+        "host_field_changed": false,
+        "exit_code": 1223,
+        "elapsed_seconds": 7.353,
+        "worker_and_descendant_reaped": true,
+        "status": "PASS"
+      },
+      {
+        "mode": "failure",
+        "responsive_samples": 68,
+        "applying_stop_disabled": false,
+        "parent_exit_injected": false,
+        "host_field_changed": false,
+        "exit_code": 17,
+        "elapsed_seconds": 5.325,
+        "worker_and_descendant_reaped": true,
+        "status": "PASS"
+      },
+      {
+        "mode": "timeout",
+        "responsive_samples": 114,
+        "applying_stop_disabled": false,
+        "parent_exit_injected": false,
+        "host_field_changed": false,
+        "exit_code": 1460,
+        "elapsed_seconds": 6.909,
+        "worker_and_descendant_reaped": true,
+        "status": "PASS"
+      },
+      {
+        "mode": "deadline",
+        "responsive_samples": 50,
+        "applying_stop_disabled": false,
+        "parent_exit_injected": false,
+        "host_field_changed": false,
+        "exit_code": 1460,
+        "elapsed_seconds": 4.901,
+        "worker_and_descendant_reaped": true,
+        "status": "PASS"
+      },
+      {
+        "mode": "wrong_nonce",
+        "responsive_samples": 112,
+        "applying_stop_disabled": false,
+        "parent_exit_injected": false,
+        "host_field_changed": false,
+        "exit_code": 1,
+        "elapsed_seconds": 7.252,
+        "worker_and_descendant_reaped": true,
+        "status": "PASS"
+      },
+      {
+        "mode": "parent_exit",
+        "responsive_samples": 27,
+        "applying_stop_disabled": false,
+        "parent_exit_injected": true,
+        "host_field_changed": false,
+        "exit_code": 93,
+        "elapsed_seconds": 4.352,
+        "worker_and_descendant_reaped": true,
+        "status": "PASS"
+      }
+    ],
+    "compile_argv": [
+      "C:\\Program Files\\Inno Setup 7\\ISCC.exe",
+      "--no-compression",
+      "--no-ide-signtools",
+      "--no-signing",
+      "--define=AppVersion=0.2.0",
+      "--define=StageDir=C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\stage",
+      "--define=OutputPath=C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen",
+      "E:\\odin-worktrees\\installer-progress\\packaging\\odin.iss"
+    ],
+    "compile_exit_code": 0
+  },
+  "historical_argv": {
+    "status": "PASS",
+    "recipe_sha256": "1b952d78964ab2cc2623e00b7b6376234f92402715cab757b12e60b04509edac",
+    "helper_sha256": "6c1bd0ba4b7ff82d046746361d811ba718d882d3483e6ba5e0642efec0486090",
+    "commands": [
+      {
+        "argv": [
+          "C:\\Program Files\\Inno Setup 7\\ISCC.exe",
+          "--no-compression",
+          "--no-ide-signtools",
+          "--no-signing",
+          "--define=AppVersion=0.2.0",
+          "--define=StageDir=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\stage",
+          "--define=OutputPath=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen",
+          "E:\\odin-worktrees\\installer-progress\\packaging\\odin.iss"
+        ],
+        "exit_code": 0
+      },
+      {
+        "argv": [
+          "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\odin-0.2.0-windows-x64-setup.exe",
+          "/VERYSILENT",
+          "/SUPPRESSMSGBOXES",
+          "/NORESTART",
+          "/SP-",
+          "/NOICONS",
+          "/ODIN_QA=1",
+          "/DIR=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\installed app space",
+          "/ODIN_HOST_CONFIG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\host space\\host.toml",
+          "/ODIN_WORKSPACE_ROOT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\project space\\",
+          "/ODIN_REPLACE_LANGUAGE_PROFILES=1",
+          "/ODIN_SETUP_RECEIPT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\receipt space.json",
+          "/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\install.log"
+        ],
+        "exit_code": 0
+      },
+      {
+        "argv": [
+          "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\odin-0.2.0-windows-x64-setup.exe",
+          "/VERYSILENT",
+          "/SUPPRESSMSGBOXES",
+          "/NORESTART",
+          "/SP-",
+          "/NOICONS",
+          "/ODIN_QA=1",
+          "/DIR=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host app space",
+          "/ODIN_HOST_CONFIG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host space\\host.toml",
+          "/ODIN_SETUP_RECEIPT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host no root receipt.json",
+          "/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing-host-no-root.log"
+        ],
+        "exit_code": 0
+      },
+      {
+        "argv": [
+          "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\odin-0.2.0-windows-x64-setup.exe",
+          "/VERYSILENT",
+          "/SUPPRESSMSGBOXES",
+          "/NORESTART",
+          "/SP-",
+          "/NOICONS",
+          "/ODIN_QA=1",
+          "/DIR=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional failed app space",
+          "/ODIN_HOST_CONFIG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\host space\\host.toml",
+          "/ODIN_WORKSPACE_ROOT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\project space\\",
+          "/ODIN_SETUP_RECEIPT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional failure receipt.json",
+          "/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional-failure.log"
+        ],
+        "exit_code": 17
+      },
+      {
+        "argv": [
+          "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\odin-0.2.0-windows-x64-setup.exe",
+          "/VERYSILENT",
+          "/SUPPRESSMSGBOXES",
+          "/NORESTART",
+          "/SP-",
+          "/NOICONS",
+          "/ODIN_QA=1",
+          "/DIR=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\invalid receipt app",
+          "/ODIN_HOST_CONFIG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\host space\\host.toml",
+          "/ODIN_WORKSPACE_ROOT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\project space\\",
+          "/ODIN_SETUP_RECEIPT=relative.json",
+          "/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\invalid-receipt.log"
+        ],
+        "exit_code": 7
+      },
+      {
+        "argv": [
+          "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\installed app space\\unins000.exe",
+          "/VERYSILENT",
+          "/SUPPRESSMSGBOXES",
+          "/NORESTART",
+          "/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\uninstall-0.log"
+        ],
+        "exit_code": 0
+      },
+      {
+        "argv": [
+          "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host app space\\unins000.exe",
+          "/VERYSILENT",
+          "/SUPPRESSMSGBOXES",
+          "/NORESTART",
+          "/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\uninstall-1.log"
+        ],
+        "exit_code": 0
+      },
+      {
+        "argv": [
+          "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional failed app space\\unins000.exe",
+          "/VERYSILENT",
+          "/SUPPRESSMSGBOXES",
+          "/NORESTART",
+          "/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\uninstall-2.log"
+        ],
+        "exit_code": 0
+      }
+    ]
+  },
+  "current_source_binding": {
+    "recipe_sha256": "f4ef1cf39dc2d158a51cd2b28a175f992dcb6aec8969e44f4bd85ae21992d24a",
+    "helper_sha256": "6c1bd0ba4b7ff82d046746361d811ba718d882d3483e6ba5e0642efec0486090",
+    "byte_difference_is_exact_single_caption_replacement": true,
+    "replaced_caption_before": "Replace custom profiles for the seven bundled languages",
+    "replaced_caption_after": "Replace custom profiles for all bundled languages except Rust (custom Rust settings are kept)",
+    "event_job_process_argv_status_cancel_code_bytes_unchanged": true,
+    "current_exact_recipe_compilation": {
+      "status": "PASS",
+      "exit_code": 0,
+      "receipt": "C:\\OdinQA\\expanded-setup-1022\\installer-support\\inno-01.command.json",
+      "sha256": "97ccdf20b89c8d7dd0c02f90e0768316634dc56ef07d14f6bdb1f31e21e0b77d",
+      "scope": "Inert small stage only"
+    }
+  },
+  "current_f4ef_recipe_all_nine_gui_cases": "NOT_RUN",
+  "continuous_visual_QA": "NOT_RUN",
+  "evidence_interpretation": "The nine GUI and argv fixture results were actually executed on recipe1b952d/helper6c1bd0. Current helper6c1bd0 is byte-identical. Current recipef4ef differs only in checkbox caption and has an actual compilation receipt. Historical GUI commands must not be relabeled as executed against f4ef. Reuse is limited to unchanged process/protocol/argv code; new caption layout is not visually verified. Full payload package acceptance is separate.",
+  "external_raw_files_for_collector": [
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\report.json",
+      "sha256": "2ef13e5e9d353f58280b68f6854a9739b46408b608c7c3e824ae6be90db6f689"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\report.json",
+      "sha256": "8d368f85ccb826553ecbe4c76a7a8a24f72760ac58981a2338a4e3d3c2049789"
+    },
+    {
+      "path": "C:\\OdinQA\\expanded-setup-1022\\installer-support\\inno-01.command.json",
+      "sha256": "97ccdf20b89c8d7dd0c02f90e0768316634dc56ef07d14f6bdb1f31e21e0b77d"
+    },
+    {
+      "path": "C:\\OdinQA\\expanded-setup-1022\\installer-support\\inno-01.log",
+      "sha256": "a3680b6601c39b586ea892ad2bbaa58a7f72b62a64f73917b09aa8c5f188110e"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\success.json",
+      "sha256": "5b4c232f3988baf02a05a665bf7f626f32f41ff3e26dd6e80e2417c13ef8f1a9"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\success-ui.json",
+      "sha256": "9feaff4de1219b834332933d41e7f4677d73368377f1654f844cccd7c97402df"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\success.log",
+      "sha256": "bfed022ce5e6e599116e1b237ed16fceac426ed8bc00bc26aacdc9ab9c554ab1"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\success-uninstall.log",
+      "sha256": "200efc664bea27bbc9ed3fc9514e20c5ba366d82e6b636db56d529b25a67a190"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\fresh_home.json",
+      "sha256": "8546d14f2bd8c696d750e1d577af08e79cb82d1a9644db579aa121bd058c6dd4"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\fresh_home-ui.json",
+      "sha256": "dc32d0a4eedb9c65621b2f4d5d0d3d5d014ade80cebd0646c3c024160d5e779d"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\fresh_home.log",
+      "sha256": "6ef7f0bf6b96eecea4f5cdd45ec9ad2d228df0a427667c24fe83b6ca197d5b6b"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\fresh_home-uninstall.log",
+      "sha256": "aca41e4aa399b0a15fcfea1ac81b144b105cce0e188a9b4ebf31d7f97fc162be"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\switch_existing.json",
+      "sha256": "3cc32451900a9e9d284fbb998a34f7c0ec03c517a82f22b0638d328f5cee5dc5"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\switch_existing-ui.json",
+      "sha256": "a49c10c3befbbcb9f27fb20d0d2c69781d3a7e877bbd53c9d98844792a5fba09"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\switch_existing.log",
+      "sha256": "08845a68d272dec136471551c7310a8ba5fddb8b37463b8a658c921aa1e8b2ee"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\switch_existing-uninstall.log",
+      "sha256": "d2213e8a910f9abb2c79862bfdc0f95fe1954f195cc0abad7db4129744543fa1"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\cancel.json",
+      "sha256": "6c92e17ec36481afd2067e130ae36a7717716e30cdb1d1bef8f54ad363b960fe"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\cancel-ui.json",
+      "sha256": "2e22759301be603d1917ab2035649e0dab5f97d5bafeece6734c2e1a3299d4e1"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\cancel.log",
+      "sha256": "56f0fa030eccfd2c48a449f6fc30087f1e8fe03a8a3c45502171698b4138b510"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\cancel-uninstall.log",
+      "sha256": "6e718447fc7609b8d6ce340a92afbe95439c871528182f1d8b954fe190c2edb4"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\failure.json",
+      "sha256": "7858b655aa6e0c51b6c232fc9ad1028614c5845bf515284da44c486796cb8b30"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\failure-ui.json",
+      "sha256": "354aa60101d8be5e54473250098abc11cb3e45475611928d8ced493604f0e480"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\failure.log",
+      "sha256": "cd097a1b2cb81336efb23c31833baad79da0e3ff5c8b5ddfca9d982eeff589f7"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\failure-uninstall.log",
+      "sha256": "b6672b4a1694c725a51f8fbaa973f0ed637d1018bc0bef421d01385095b88bc3"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\timeout.json",
+      "sha256": "20d731c9467544ac810222834c7b3ad27fcbf46c8200893631cd293da15f34f4"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\timeout-ui.json",
+      "sha256": "deb3c100bcea136cbd6fda0e3b2de5b4fef9a745cd72d5eaae9ce57fc6091885"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\timeout.log",
+      "sha256": "9988075f9a9a9b67f809c6a61d6c03ff5b90ac3259e807d7d6778495adba9da7"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\timeout-uninstall.log",
+      "sha256": "82a2a1aeb86e733de8899a0d85f18cf536e697d2cfab313e05a7d0513cff47c2"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\deadline.json",
+      "sha256": "cf0b6f98900c6d1ff078f6950505635e48364a5f80ed4f8bc0c2bce4c9cdbc1a"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\deadline-ui.json",
+      "sha256": "f738a2e0289c2466e468c471d4cf54f244e144c398a493b22558647c04212e41"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\deadline.log",
+      "sha256": "47d0ec709ee019c6f67d3b8cc22bb62d5df8532c4a9430c02c5c997cb8c4c94a"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\deadline-uninstall.log",
+      "sha256": "589991b0677140b2f867b055bc2a73013bd39e3bbb16c3e0ce4dd79c03cb171a"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\wrong_nonce.json",
+      "sha256": "ff1519fbfd99a4f7991c0bf70d996ca644decd0b365c3983a6a5f1c77dbf5ab3"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\wrong_nonce-ui.json",
+      "sha256": "9d219f9f13b00771e3e526ef27b0ec30b987e0aa88f3eaf414d825ad3ee5adbb"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\wrong_nonce.log",
+      "sha256": "1ce2a9101eb4800e8e6b16d99fc1e8ac66a923d4795f49a91c08ec77b653be69"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\wrong_nonce-uninstall.log",
+      "sha256": "32742ebf500285f30dfc1f44a9465d224481e188ea78792bbcbb0aaf1c15201e"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\parent_exit-ui.json",
+      "sha256": "272db60ffa12b07b776dbd9e3b636a7cb065ea0088886327045aba1b3d61c122"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\parent_exit.log",
+      "sha256": "9036c0b4b760a18645c9be1254fd47cc1a9e53f4b61a59b68360647b1f08e0ad"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\parent_exit-uninstall.log",
+      "sha256": "69b0f0d91d39359f1e44374719c11a8ec338c07bf40670bb316e7203b84efb82"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host no root receipt.json",
+      "sha256": "9722895b68c1d6616a4b4bfe43bd26b1f0729ddfb2551b005a4233b08b6b3954"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional failure receipt.json",
+      "sha256": "a0dd74b3ad328f94c82fbe295154e4a4e036fed4babee5b40719585f60f4129d"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\receipt space.json",
+      "sha256": "9629630044fda3a5d7117a657cd161db16c840e308791b462b766fc3d3612f50"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing-host-no-root.log",
+      "sha256": "b4e495027d2fd8869eeedaa17aa2aa087b2028ad8b03c1191668e605d150119a"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\install.log",
+      "sha256": "82d22757a7a94e8e78eb156fa80f5ae3e4a0634a68004f81d1e6cef3b38b7ed7"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional-failure.log",
+      "sha256": "ee1fe23cc8a8800c37b201f89222330233b4644382e5bb411c2066bd8283fa81"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\invalid-receipt.log",
+      "sha256": "6d9ffa8a0f8d3fa3de6878aac29ce741fa9d209a5907773f803e61d48192fd38"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\uninstall-0.log",
+      "sha256": "32400871fee9f89390288b5356ef25ff983d9ade5bc145316b81c2734bb63a41"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\uninstall-1.log",
+      "sha256": "1175d1b5550ec94b77ce6bedb4f32094887c2f739ee373e581f195ca8432a3ae"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\uninstall-2.log",
+      "sha256": "6f2e6990c6961cf8cf703672fa2c244adfd18787eab3b790a818625f8073180a"
+    }
+  ],
+  "source_mutations_performed": false,
+  "installer_or_GUI_operations_by_reviewer": false,
+  "next_owner": "/root",
+  "next_action": "Publish these source-bound raw receipts, this equivalence bridge and current final package QA; retain old ui-final FAIL as historical evidence rather than replacing it."
+}

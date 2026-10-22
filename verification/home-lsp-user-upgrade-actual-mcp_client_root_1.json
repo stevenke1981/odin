@@ -1,0 +1,64 @@
+{
+  "initialize": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+      "protocolVersion": "2025-11-25",
+      "capabilities": {
+        "tools": {}
+      },
+      "serverInfo": {
+        "name": "odin",
+        "version": "0.2.0"
+      },
+      "instructions": "Odin is a local Rust code-intelligence service. Every call is scoped to a configured project ID; there is no process-global active project. Start with project_analysis for live project structure and backend gaps, then get_symbols_overview/find_symbol; read bodies only when needed. LSP positions use zero-based lines and UTF-16 columns; read_file/line edits use one-based inclusive lines. Read the SHA-256 first. All native source edits return an immutable transaction preview; use transaction_apply only after reviewing it. Successful application is NOT a passing build: run an authorized build/test profile and inspect its actual exit status. Native JSON flow is a bounded dataflow, not Python eval. This standalone build has no external tool bridge. Semantic operations connect directly to configured language servers; debugging connects directly to configured DAP adapters. Missing features have no hidden fallback. Missing capabilities are errors, never fabricated successful results.\nConfigured project IDs: ws_e81c9bc0804543c514cb6e002d7d90574122eb6ef92c6910"
+    }
+  },
+  "list_projects": {
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"projects\":[{\"allow_debug\":false,\"allow_inspections\":false,\"allow_shell\":false,\"allow_write\":false,\"id\":\"ws_e81c9bc0804543c514cb6e002d7d90574122eb6ef92c6910\",\"languages\":[\"rust\",\"python\",\"go\",\"csharp\",\"lua\",\"javascript\",\"typescript\",\"bash\",\"slint\",\"c\",\"cpp\",\"toml\",\"yaml\",\"markdown\"],\"root\":\"\\\\\\\\?\\\\E:\\\\odin\"}],\"trace\":{\"elapsed_ms\":0,\"id\":\"660a00dc-8361-4fdb-9e80-5b1e5596d67e\",\"result_bytes\":312,\"result_sha256\":\"96882c26ed562779bfca976aa4bdf3df43440ff440057becd9e2f2e10fa61b3b\"}}"
+        }
+      ],
+      "structuredContent": {
+        "projects": [
+          {
+            "allow_debug": false,
+            "allow_inspections": false,
+            "allow_shell": false,
+            "allow_write": false,
+            "id": "ws_e81c9bc0804543c514cb6e002d7d90574122eb6ef92c6910",
+            "languages": [
+              "rust",
+              "python",
+              "go",
+              "csharp",
+              "lua",
+              "javascript",
+              "typescript",
+              "bash",
+              "slint",
+              "c",
+              "cpp",
+              "toml",
+              "yaml",
+              "markdown"
+            ],
+            "root": "\\\\?\\E:\\odin"
+          }
+        ],
+        "trace": {
+          "elapsed_ms": 0,
+          "id": "660a00dc-8361-4fdb-9e80-5b1e5596d67e",
+          "result_bytes": 312,
+          "result_sha256": "96882c26ed562779bfca976aa4bdf3df43440ff440057becd9e2f2e10fa61b3b"
+        }
+      },
+      "isError": false
+    }
+  }
+}

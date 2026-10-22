@@ -1,0 +1,6 @@
+{
+  "exit_code": 1,
+  "scope": "HARNESS_SCHEMA_ERROR_NOT_PRODUCT_FAILURE",
+  "error": "KeyError: published_sha256",
+  "script_sha256": "2c378e2209eda6a316e078c96c8fb3535c5933259341dd824a1ee10e241f0edd"
+}

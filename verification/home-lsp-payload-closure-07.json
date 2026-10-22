@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "scope": "ACTUAL_PAYLOAD07_CRT_CLOSURE_HASHES_AND_EXACT_UNCHANGED06_COMPARISON",
+  "status": "PASS",
+  "manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+  "file_count": 35158,
+  "components": 20,
+  "build_commands": 24,
+  "actual_version_probes": 19,
+  "command_exit_codes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "baseline_manifest_sha256": "2d559814338225275ec297f60fc30347682caca18fca983140341a0196d6645a",
+  "existing06_file_count": 35153,
+  "changed_existing_files": [],
+  "added_files": [
+    "slint/MICROSOFT_RUNTIME_NOTICES.txt",
+    "slint/app-local-runtime.json",
+    "slint/msvcp140.dll",
+    "slint/vcruntime140.dll",
+    "slint/vcruntime140_1.dll"
+  ],
+  "file_hash_errors": [],
+  "extra_files": [],
+  "missing_files": [],
+  "sidecar_unchanged": true,
+  "sidecar_inventory": {
+    "sha256": "efa11b55b9a7bf7798c321a356c18450cb927fd303a52e7cfe148ee7c4a546ae",
+    "bytes": 399893506,
+    "slint_source_commit": "372cf0ee5577c3dfec309a45e7b778ba4e81b734",
+    "crate_count": 993,
+    "skia_native_dependency_count": 14,
+    "all_source_hashes_match": true,
+    "checks": 1009,
+    "rebuild": "NOT_RUN"
+  },
+  "app_local_runtime": {
+    "clean_machine_acceptance": "NOT_RUN",
+    "dependencies": [
+      {
+        "name": "msvcp140.dll",
+        "sha256": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+        "signature": "Valid",
+        "signer": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "source": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Redist\\MSVC\\14.44.35112\\x64\\Microsoft.VC143.CRT\\msvcp140.dll",
+        "version": "14.44.35211.0"
+      },
+      {
+        "name": "vcruntime140.dll",
+        "sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "signature": "Valid",
+        "signer": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "source": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Redist\\MSVC\\14.44.35112\\x64\\Microsoft.VC143.CRT\\vcruntime140.dll",
+        "version": "14.44.35211.0"
+      },
+      {
+        "name": "vcruntime140_1.dll",
+        "sha256": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f",
+        "signature": "Valid",
+        "signer": "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "source": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Redist\\MSVC\\14.44.35112\\x64\\Microsoft.VC143.CRT\\vcruntime140_1.dll",
+        "version": "14.44.35211.0"
+      }
+    ],
+    "global_runtime_installation": false,
+    "minimum_os": "Windows 10 x64 or Windows 11 x64 with OS-provided UCRT",
+    "notice_sha256": "bdfc73b0ab0b0547208a29aa1b2a43479c7283b5985920b3d825d5d7bbf092ae",
+    "os_provided": [
+      "advapi32.dll",
+      "api-ms-win-core-synch-l1-2-0.dll",
+      "api-ms-win-core-winrt-error-l1-1-0.dll",
+      "api-ms-win-crt-convert-l1-1-0.dll",
+      "api-ms-win-crt-environment-l1-1-0.dll",
+      "api-ms-win-crt-filesystem-l1-1-0.dll",
+      "api-ms-win-crt-heap-l1-1-0.dll",
+      "api-ms-win-crt-locale-l1-1-0.dll",
+      "api-ms-win-crt-math-l1-1-0.dll",
+      "api-ms-win-crt-runtime-l1-1-0.dll",
+      "api-ms-win-crt-stdio-l1-1-0.dll",
+      "api-ms-win-crt-string-l1-1-0.dll",
+      "api-ms-win-crt-time-l1-1-0.dll",
+      "api-ms-win-crt-utility-l1-1-0.dll",
+      "bcrypt.dll",
+      "bcryptprimitives.dll",
+      "combase.dll",
+      "comctl32.dll",
+      "d3d12.dll",
+      "d3dcompiler_47.dll",
+      "dwmapi.dll",
+      "dwrite.dll",
+      "dxgi.dll",
+      "gdi32.dll",
+      "imm32.dll",
+      "iphlpapi.dll",
+      "kernel32.dll",
+      "ntdll.dll",
+      "ole32.dll",
+      "oleaut32.dll",
+      "opengl32.dll",
+      "setupapi.dll",
+      "shell32.dll",
+      "shlwapi.dll",
+      "uiautomationcore.dll",
+      "user32.dll",
+      "uxtheme.dll",
+      "ws2_32.dll"
+    ],
+    "redistribution": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution",
+    "schema_version": 1,
+    "scope": "PINNED_SIGNED_MICROSOFT_APP_LOCAL_SLINT_CRT_CLOSURE"
+  },
+  "actual_loaded_modules": {
+    "scope": "ACTUAL_WINDOWS_LOADER_PATHS_AND_HASHES_ONLY",
+    "status": "PASS",
+    "rows": [
+      {
+        "name": "msvcp140.dll",
+        "expected_sha256": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+        "observed": {
+          "name": "msvcp140.dll",
+          "loaded_from": "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\slint\\MSVCP140.dll",
+          "sha256": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9"
+        },
+        "status": "PASS"
+      },
+      {
+        "name": "vcruntime140.dll",
+        "expected_sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "observed": {
+          "name": "vcruntime140.dll",
+          "loaded_from": "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\slint\\VCRUNTIME140.dll",
+          "sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066"
+        },
+        "status": "PASS"
+      },
+      {
+        "name": "vcruntime140_1.dll",
+        "expected_sha256": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f",
+        "observed": {
+          "name": "vcruntime140_1.dll",
+          "loaded_from": "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\slint\\VCRUNTIME140_1.dll",
+          "sha256": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f"
+        },
+        "status": "PASS"
+      }
+    ],
+    "observer_exit_code": 0
+  },
+  "auxiliary_lsp_protocol_shutdown": {
+    "status": "FAIL",
+    "exit_code": 3,
+    "reports": [
+      "slint-loader-07.json",
+      "slint-loader-08.json"
+    ],
+    "note": "Both drivers observed successful initialize and shutdown result, followed by duplicate shutdown MethodNotFound and server exit3. Pipelining and sequential drivers preserve the same upstream behavior. This does not change the observed CRT module paths; no further retries or source changes."
+  },
+  "clean_machine_acceptance": "NOT_RUN",
+  "semantic_acceptance": "ROOT_OWNS_ACTUAL_MCP_MATRIX"
+}

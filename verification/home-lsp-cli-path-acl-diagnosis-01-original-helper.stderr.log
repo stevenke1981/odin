@@ -1,0 +1,9 @@
+Set-Acl : The process does not possess the 'SeSecurityPrivilege' privilege which is required for this operation.
+At C:\OdinQA\home-progress-1022\user-cli-path\secure_private_folder.ps1:17 char:1
++ Set-Acl -LiteralPath $Directory -AclObject $Acl
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : PermissionDenied: (C:\OdinQA\home-...li-path\private:String) [Set-Acl], PrivilegeNotHeld 
+   Exception
+    + FullyQualifiedErrorId : System.Security.AccessControl.PrivilegeNotHeldException,Microsoft.PowerShell.Commands.Se 
+   tAclCommand
+ 

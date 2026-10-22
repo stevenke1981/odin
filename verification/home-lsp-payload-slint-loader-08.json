@@ -1,0 +1,142 @@
+{
+  "scope": "ACTUAL_SLINT_PROCESS_APP_LOCAL_CRT_MODULE_PATHS_AND_LSP_INITIALIZE_SHUTDOWN_ONLY",
+  "status": "FAIL",
+  "binary_sha256": "b8fa9db40e39f866c61ca5ca81b9ee653f5775408fc89fc0756cb86333d4b333",
+  "argv": [
+    "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\slint\\slint-lsp.exe"
+  ],
+  "cwd": "C:\\OdinQA\\expanded-lsp\\slint-loader-08",
+  "process_exit_code": 3,
+  "observer_argv": [
+    "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "-NoLogo",
+    "-NoProfile",
+    "-File",
+    "C:\\OdinQA\\expanded-lsp\\slint-module-observer.ps1",
+    "-TargetPid",
+    "14296"
+  ],
+  "observer_exit_code": 0,
+  "observer_script_sha256": "9f7d96f9018a916ed92135f776336659c9285f2113b04b0d0579a352dccf33e2",
+  "loaded_dependencies": [
+    {
+      "name": "msvcp140.dll",
+      "expected_sha256": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+      "observed": {
+        "name": "msvcp140.dll",
+        "loaded_from": "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\slint\\MSVCP140.dll",
+        "sha256": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9"
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "vcruntime140.dll",
+      "expected_sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+      "observed": {
+        "name": "vcruntime140.dll",
+        "loaded_from": "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\slint\\VCRUNTIME140.dll",
+        "sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066"
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "vcruntime140_1.dll",
+      "expected_sha256": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f",
+      "observed": {
+        "name": "vcruntime140_1.dll",
+        "loaded_from": "C:\\OdinQA\\expanded-lsp\\payload07\\backends\\slint\\VCRUNTIME140_1.dll",
+        "sha256": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f"
+      },
+      "status": "PASS"
+    }
+  ],
+  "responses": [
+    {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "capabilities": {
+          "codeActionProvider": true,
+          "codeLensProvider": {
+            "resolveProvider": true
+          },
+          "colorProvider": true,
+          "completionProvider": {
+            "triggerCharacters": [
+              "."
+            ]
+          },
+          "definitionProvider": true,
+          "documentFormattingProvider": true,
+          "documentHighlightProvider": true,
+          "documentSymbolProvider": true,
+          "executeCommandProvider": {
+            "commands": [
+              "slint/populate",
+              "slint/showPreview"
+            ]
+          },
+          "hoverProvider": true,
+          "renameProvider": true,
+          "semanticTokensProvider": {
+            "full": true,
+            "legend": {
+              "tokenModifiers": [
+                "definition",
+                "declaration"
+              ],
+              "tokenTypes": [
+                "type",
+                "parameter",
+                "variable",
+                "property",
+                "function",
+                "macro",
+                "keyword",
+                "comment",
+                "string",
+                "number",
+                "operator",
+                "enum",
+                "enumMember"
+              ]
+            }
+          },
+          "signatureHelpProvider": {
+            "triggerCharacters": [
+              "(",
+              ","
+            ]
+          },
+          "textDocumentSync": 1
+        },
+        "serverInfo": {
+          "name": "slint-lsp",
+          "version": "1.18.1"
+        }
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": null
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "error": {
+        "code": -32601,
+        "message": "Cannot handle request"
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "method": "slint/lsp_to_preview",
+      "params": "Quit"
+    }
+  ],
+  "stdout_sha256": "017fd14cac37b558e8fa060df9ee5404bd4634fcc7b7e7a368cc578443b1f51e",
+  "stderr_sha256": "6c95fd0721f0e65d9adc4f2f9960c821c2f08c778c156f1f967345073ad3b55a",
+  "semantic_acceptance": "NOT_RUN",
+  "clean_machine_acceptance": "NOT_RUN"
+}

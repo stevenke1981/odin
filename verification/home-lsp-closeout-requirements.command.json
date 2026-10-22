@@ -1,0 +1,15 @@
+{
+  "name": "requirements",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "scripts/check_requirements.py"
+  ],
+  "cwd": "E:\\odin",
+  "exit_code": 0,
+  "seconds": 0.168,
+  "log": "C:\\OdinQA\\home-progress-1022\\closeout-requirements.log",
+  "log_sha256": "425fa3eefc6462c16c6ef4592d6c0e8a7a3dc05dc0fd7fed2654ca074b28a7e1"
+}

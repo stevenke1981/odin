@@ -1,0 +1,8 @@
+
+STDERR
+usage: user_upgrade.py [-h] (--check-runner | --execute)
+                       [--installer INSTALLER]
+                       [--expected-host-sha256 EXPECTED_HOST_SHA256]
+                       [--expected-client-sha256 EXPECTED_CLIENT_SHA256]
+                       [--workspace-a WORKSPACE_A] [--workspace-b WORKSPACE_B]
+user_upgrade.py: error: --execute requires --expected-host-sha256

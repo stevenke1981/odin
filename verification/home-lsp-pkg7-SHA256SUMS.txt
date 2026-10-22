@@ -1,0 +1,2 @@
+015cbfa7635a1735eceeff5ad977e0ddd6be06540a4630016bfd02af239cd03c  odin-0.2.0-x86_64-pc-windows-msvc.zip
+ebf7f94acac5c0d850b4c5636684e775689df84dbc44a0b97324b35e17421af2  odin-0.2.0-windows-x64-setup.exe

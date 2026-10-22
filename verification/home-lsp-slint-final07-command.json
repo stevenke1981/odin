@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "tests/expanded_installed_languages.py",
+    "--binary",
+    "C:\\OdinQA\\x7\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+    "--install-root",
+    "C:\\OdinQA\\x7\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin",
+    "--host-config",
+    "C:\\OdinQA\\x7\\Home \u4e2d\u6587\\.config\\odin\\host.toml",
+    "--output",
+    "C:\\OdinQA\\home-progress-1022\\slint-final07.json",
+    "--cases",
+    "slint"
+  ],
+  "cwd": "E:\\odin",
+  "exit_code": 0,
+  "seconds": 1.29,
+  "driver_sha256": "a11d84c20db58b65f92363c58413af058219f3ba1c8691d49f8e5b406b5c56d2",
+  "binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+  "bundle_manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+  "log": "C:\\OdinQA\\home-progress-1022\\slint-final07.log",
+  "log_sha256": "7f067be523d4ce64099ba4fc9c479a505724eb55f0784ec63ef7ab5ce8b834f8",
+  "report_sha256": "70d061089b3e6ad2253a1610f586df19b7509a2a2227fb1dc98eb59333fcca91"
+}

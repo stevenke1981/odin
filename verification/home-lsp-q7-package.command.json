@@ -1,0 +1,30 @@
+{
+  "name": "package",
+  "argv": [
+    "powershell.exe",
+    "-NoLogo",
+    "-NoProfile",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "E:\\odin\\scripts\\package.ps1",
+    "-SkipBuild",
+    "-Binary",
+    "E:\\odin\\target\\release\\odin.exe",
+    "-ExpectedBinarySha256",
+    "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+    "-LspPayload",
+    "C:/OdinQA/expanded-lsp/payload07/backends",
+    "-Iscc",
+    "C:/Program Files/Inno Setup 7/ISCC.exe",
+    "-OutputDirectory",
+    "C:\\OdinQA\\pkg7"
+  ],
+  "cwd": "E:\\odin",
+  "exit_code": 0,
+  "elapsed_seconds": 748.795,
+  "stdout": "C:\\OdinQA\\q7\\package.stdout.log",
+  "stderr": "C:\\OdinQA\\q7\\package.stderr.log",
+  "stdout_sha256": "73b28c34dd39057293d015a45a76d8cbad7ca1db185c8513352ac51520aaefd5",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

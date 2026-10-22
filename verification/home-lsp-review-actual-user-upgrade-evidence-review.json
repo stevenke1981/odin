@@ -1,0 +1,431 @@
+{
+  "task_id": "ODIN-HOME-PROGRESS-EXPANDED-REVIEW",
+  "actor_instance": "/root/review_sol",
+  "scope": "INDEPENDENT_READ_ONLY_REAL_USER_INSTALL_HOST_POLICY_AND_FRESH_CLI_MCP_EVIDENCE_REVIEW",
+  "status": "PASS_SCOPED",
+  "at_utc": "2026-10-22T06:13:34.711589+00:00",
+  "reviewed_report": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\report.json",
+  "report_sha256": "7ccd51d8ee61ed4ea94161ff77291959e7b016a765e2ea3feca17393d78ffd4c",
+  "command_receipt": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\actual-execute02.command.json",
+  "command_receipt_sha256": "4397d9f59aea28f2b410be9abca1a80084845ba7f23dea68a91d2264ba90d449",
+  "worker_receipt_sha256": "e2ed29e1542ff89b39a9b929f44b37089fa529d6b0df99028c07674cc228488a",
+  "checks": [
+    {
+      "name": "user_report_sha",
+      "status": "PASS"
+    },
+    {
+      "name": "all44_report_checks_pass",
+      "status": "PASS"
+    },
+    {
+      "name": "outer_exit_zero",
+      "status": "PASS"
+    },
+    {
+      "name": "runner_frozen_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "cert_reader_frozen_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "outer_log:stdout",
+      "status": "PASS"
+    },
+    {
+      "name": "outer_log:stderr",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_exit0:actual_user_installer",
+      "status": "PASS"
+    },
+    {
+      "name": "inner_log:actual_user_installer:stdout",
+      "status": "PASS"
+    },
+    {
+      "name": "inner_log:actual_user_installer:stderr",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_exit0:installed_payload_closure",
+      "status": "PASS"
+    },
+    {
+      "name": "inner_log:installed_payload_closure:stdout",
+      "status": "PASS"
+    },
+    {
+      "name": "inner_log:installed_payload_closure:stderr",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_exit0:installed_metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "inner_log:installed_metadata:stdout",
+      "status": "PASS"
+    },
+    {
+      "name": "inner_log:installed_metadata:stderr",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_exit0:default_host_current_config",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_exit0:cli_root_1",
+      "status": "PASS"
+    },
+    {
+      "name": "inner_log:cli_root_1:stdout",
+      "status": "PASS"
+    },
+    {
+      "name": "inner_log:cli_root_1:stderr",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_exit0:cli_root_2",
+      "status": "PASS"
+    },
+    {
+      "name": "inner_log:cli_root_2:stdout",
+      "status": "PASS"
+    },
+    {
+      "name": "inner_log:cli_root_2:stderr",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_exit0:cli_omitted_config_and_workspace",
+      "status": "PASS"
+    },
+    {
+      "name": "inner_log:cli_omitted_config_and_workspace:stdout",
+      "status": "PASS"
+    },
+    {
+      "name": "inner_log:cli_omitted_config_and_workspace:stderr",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_exit0:native_configured_home_profiles",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_exit0:preserved_operator_rust_version",
+      "status": "PASS"
+    },
+    {
+      "name": "inner_log:preserved_operator_rust_version:stdout",
+      "status": "PASS"
+    },
+    {
+      "name": "inner_log:preserved_operator_rust_version:stderr",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_exit0:mcp_client_root_1",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_exit0:mcp_client_root_2",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_exit0:mcp_omitted_config_and_workspace",
+      "status": "PASS"
+    },
+    {
+      "name": "exactly12_actual_commands",
+      "status": "PASS"
+    },
+    {
+      "name": "normal_peruser_flags",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_installed_file:odin.exe",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_installed_file:setup-lsps.mjs",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_installed_file:backends/manifest.json",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_installed_file:setup-progress.mjs",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_installed_file:SHA256SUMS.json",
+      "status": "PASS"
+    },
+    {
+      "name": "exact_final07_expected",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_raw_sha",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_plan_commit:before_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_plan_commit:after_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_plan_commit:bundle_manifest_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_statuses",
+      "status": "PASS"
+    },
+    {
+      "name": "19_actual_canonical_probes",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_post_integrity",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_backup:a77993f760cd9a49cd759fd3b93fadcaa7e248e3cb79d26d7407c55073fb4c69",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_backup:b355322b2b83df6e1e87d0ab524bcc0ebbf670034d3a618e26e335975081a958",
+      "status": "PASS"
+    },
+    {
+      "name": "before_backup_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_host_current_sealed_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "prior_nonlanguage_policy_retained",
+      "status": "PASS"
+    },
+    {
+      "name": "prior_grants_and_rust_hashes_retained",
+      "status": "PASS"
+    },
+    {
+      "name": "same_scope:1871de04d1a88117af90b3e8bb6f40ad1047eadb38e21078e89c0913d8d8807b",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_grants_unchanged:1871de04d1a88117af90b3e8bb6f40ad1047eadb38e21078e89c0913d8d8807b",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_rust_profiles_unchanged:1871de04d1a88117af90b3e8bb6f40ad1047eadb38e21078e89c0913d8d8807b",
+      "status": "PASS"
+    },
+    {
+      "name": "actual14_profiles12_invocations:1871de04d1a88117af90b3e8bb6f40ad1047eadb38e21078e89c0913d8d8807b",
+      "status": "PASS"
+    },
+    {
+      "name": "same_scope:e1bcc563fb21a156ac000c8e72205bfe5d145a49a485db1ada1f1e4358ceba61",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_grants_unchanged:e1bcc563fb21a156ac000c8e72205bfe5d145a49a485db1ada1f1e4358ceba61",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_rust_profiles_unchanged:e1bcc563fb21a156ac000c8e72205bfe5d145a49a485db1ada1f1e4358ceba61",
+      "status": "PASS"
+    },
+    {
+      "name": "actual14_profiles12_invocations:e1bcc563fb21a156ac000c8e72205bfe5d145a49a485db1ada1f1e4358ceba61",
+      "status": "PASS"
+    },
+    {
+      "name": "home_default_exact",
+      "status": "PASS"
+    },
+    {
+      "name": "client_bytes_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "native_profile_summary14_12",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_profile_summary:rust",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_profile_summary:python",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_profile_summary:go",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_profile_summary:csharp",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_profile_summary:lua",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_profile_summary:javascript",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_profile_summary:typescript",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_profile_summary:bash",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_profile_summary:slint",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_profile_summary:c",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_profile_summary:cpp",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_profile_summary:toml",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_profile_summary:yaml",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_profile_summary:markdown",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_selected_root:cli_root_1",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_readonly:cli_root_1",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_selected_root:cli_root_2",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_readonly:cli_root_2",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_selected_root:cli_omitted_config_and_workspace",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_readonly:cli_omitted_config_and_workspace",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_mcp_matches_cli:mcp_client_root_1",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_mcp_matches_cli:mcp_client_root_2",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_mcp_matches_cli:mcp_omitted_config_and_workspace",
+      "status": "PASS"
+    },
+    {
+      "name": "three_distinct_transient_ids",
+      "status": "PASS"
+    },
+    {
+      "name": "native190_release_metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "sealed_installer_slice_operator_unchanged:user_path_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "sealed_installer_slice_operator_unchanged:process_path_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "sealed_installer_slice_operator_unchanged:certificate_state_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "certificate_detailed_digests_equal",
+      "status": "PASS"
+    },
+    {
+      "name": "preserved_operator_rust_program_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "semantic_not_run_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "first_failure_preserved",
+      "status": "PASS"
+    }
+  ],
+  "actual_root_execution": {
+    "outer_exit_code": 0,
+    "outer_seconds": 364.565,
+    "installer_exit_code": 0,
+    "installer_seconds": 356.947,
+    "runner_checks_passed": 44,
+    "health_probes": 19,
+    "primary_profiles": 14,
+    "default_invocations": 12,
+    "fresh_mcp_processes": 3
+  },
+  "capture_limits": {
+    "private_output_intentionally_not_saved": [
+      "default_host_current_config",
+      "native_configured_home_profiles"
+    ],
+    "other_raw_output_not_saved": [
+      "mcp_client_root_1:stderr hash captured but raw stderr not retained",
+      "mcp_client_root_2:stderr hash captured but raw stderr not retained",
+      "mcp_omitted_config_and_workspace:stderr hash captured but raw stderr not retained"
+    ],
+    "result": "These are source-verified runner checks and hashes, not independent rereads of unavailable raw streams. Private host profiles were independently compared as data without printing contents."
+  },
+  "path_scope": "PASS_UNCHANGED_DURING_THIS_INSTALL_SLICE_ONLY; later CLI-shadow correction requires separate receipt",
+  "current_already_open_client_reload": "NOT_RUN",
+  "semantic_acceptance": "NOT_RUN_BY_THIS_INSTALL_SLICE; separate real-backend matrix applies",
+  "target_program_execution_by_reviewer": "NOT_RUN",
+  "source_mutations": "NONE",
+  "findings": []
+}

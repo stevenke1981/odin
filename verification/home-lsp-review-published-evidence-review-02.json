@@ -1,0 +1,1363 @@
+{
+  "task_id": "ODIN-HOME-PROGRESS-EXPANDED-REVIEW",
+  "actor_instance": "/root/review_sol",
+  "scope": "INDEPENDENT_FIFTH_SIXTH_PUBLICATION_BYTES_PATH_REDACTIONS_AND_WORKER_LOGICAL_SUBSET_NOT_NEW_PRODUCT_TESTS",
+  "status": "PASS_SCOPED",
+  "at_utc": "2026-10-22T06:20:35.015462+00:00",
+  "indices": [
+    {
+      "path": "E:\\odin\\verification\\home-lsp-evidence-fifth-index.json",
+      "sha256": "b21508cdfc86fb3d18b37e1983c957b03b5713d81983cceee5a4c9d5a7787228",
+      "entries": 27
+    },
+    {
+      "path": "E:\\odin\\verification\\home-lsp-evidence-sixth-index.json",
+      "sha256": "413a4f59989050da2e130848ea949c4acfeed4f5012f4bb6374665266b53efe5",
+      "entries": 52
+    }
+  ],
+  "checks": [
+    {
+      "name": "published_sha:verification/home-lsp-q7-final-handoff.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-final-handoff.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-final-handoff.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-final-handoff.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-run-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-run-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-run-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-run-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-operator-before.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-operator-before.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-operator-before.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-operator-before.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-operator-after.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-operator-after.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-operator-after.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-operator-after.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-preflight.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-preflight.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-preflight.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-preflight.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-package-doc-copy-integrity.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-package-doc-copy-integrity.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-package-doc-copy-integrity.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-package-doc-copy-integrity.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-package.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-package.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-package.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-package.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-binary-metadata.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-binary-metadata.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-binary-metadata.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-binary-metadata.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-installer-qa.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-installer-qa.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-installer-qa.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-installer-qa.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-package.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-package.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-package.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-package.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-package.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-package.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-package.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-package.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-binary-metadata.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-binary-metadata.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-binary-metadata.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-binary-metadata.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-binary-metadata.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-binary-metadata.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-binary-metadata.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-binary-metadata.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-installer-qa.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-installer-qa.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-installer-qa.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-installer-qa.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-sealed-SHA256SUMS.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-sealed-SHA256SUMS.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-sealed-SHA256SUMS.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-sealed-SHA256SUMS.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-pkg7-package-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-pkg7-package-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-pkg7-package-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-pkg7-package-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-pkg7-SHA256SUMS.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-pkg7-SHA256SUMS.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-pkg7-SHA256SUMS.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-pkg7-SHA256SUMS.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-installer-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-installer-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-installer-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "exact_PATH_only_redaction:verification/home-lsp-q7-installer-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-path-observations.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-path-observations.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-path-observations.json",
+      "status": "PASS"
+    },
+    {
+      "name": "exact_PATH_only_redaction:verification/home-lsp-q7-path-observations.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-portable-lsp-receipt.json.current-config.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-portable-lsp-receipt.json.current-config.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-portable-lsp-receipt.json.current-config.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-portable-lsp-receipt.json.current-config.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-lsp-install-receipt.json.current-config.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-lsp-install-receipt.json.current-config.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-lsp-install-receipt.json.current-config.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-lsp-install-receipt.json.current-config.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-q7-lsp-reinstall-receipt.json.current-config.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-q7-lsp-reinstall-receipt.json.current-config.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-q7-lsp-reinstall-receipt.json.current-config.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-q7-lsp-reinstall-receipt.json.current-config.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-review-pkg7-artifact-input-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-review-pkg7-artifact-input-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-review-pkg7-artifact-input-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-review-pkg7-artifact-input-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-review-q7-lifecycle-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-review-q7-lifecycle-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-review-q7-lifecycle-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-review-q7-lifecycle-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-user-upgrade.py",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-user-upgrade.py",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-user-upgrade.py",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-user-upgrade.py",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-read-operator-cert-state.ps1",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-read-operator-cert-state.ps1",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-read-operator-cert-state.ps1",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-read-operator-cert-state.ps1",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-README.md",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-README.md",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-README.md",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-README.md",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-first-runner-d15.py",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-first-runner-d15.py",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-first-runner-d15.py",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-first-runner-d15.py",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-prepare-checks-01-execute-without-required-identities.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-prepare-checks-01-execute-without-required-identities.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-prepare-checks-01-execute-without-required-identities.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-prepare-checks-01-execute-without-required-identities.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-prepare-checks-01-inert-guards.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-prepare-checks-01-inert-guards.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-prepare-checks-01-inert-guards.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-prepare-checks-01-inert-guards.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-prepare-checks-01-missing-mode.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-prepare-checks-01-missing-mode.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-prepare-checks-01-missing-mode.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-prepare-checks-01-missing-mode.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-prepare-checks-01-mutually-exclusive-modes.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-prepare-checks-01-mutually-exclusive-modes.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-prepare-checks-01-mutually-exclusive-modes.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-prepare-checks-01-mutually-exclusive-modes.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-prepare-checks-01-powershell-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-prepare-checks-01-powershell-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-prepare-checks-01-powershell-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-prepare-checks-01-powershell-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-prepare-checks-01-prepare.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-prepare-checks-01-prepare.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-prepare-checks-01-prepare.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-prepare-checks-01-prepare.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-prepare-checks-01-python-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-prepare-checks-01-python-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-prepare-checks-01-python-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-prepare-checks-01-python-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-prepare-checks-02-execute-without-required-identities.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-prepare-checks-02-execute-without-required-identities.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-prepare-checks-02-execute-without-required-identities.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-prepare-checks-02-execute-without-required-identities.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-prepare-checks-02-inert-guards.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-prepare-checks-02-inert-guards.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-prepare-checks-02-inert-guards.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-prepare-checks-02-inert-guards.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-prepare-checks-02-missing-mode.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-prepare-checks-02-missing-mode.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-prepare-checks-02-missing-mode.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-prepare-checks-02-missing-mode.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-prepare-checks-02-mutually-exclusive-modes.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-prepare-checks-02-mutually-exclusive-modes.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-prepare-checks-02-mutually-exclusive-modes.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-prepare-checks-02-mutually-exclusive-modes.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-prepare-checks-02-powershell-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-prepare-checks-02-powershell-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-prepare-checks-02-powershell-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-prepare-checks-02-powershell-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-prepare-checks-02-prepare.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-prepare-checks-02-prepare.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-prepare-checks-02-prepare.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-prepare-checks-02-prepare.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-prepare-checks-02-python-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-prepare-checks-02-python-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-prepare-checks-02-python-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-prepare-checks-02-python-syntax.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-prepare-checks-02-readonly-existing-client-identity.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-prepare-checks-02-readonly-existing-client-identity.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-prepare-checks-02-readonly-existing-client-identity.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-prepare-checks-02-readonly-existing-client-identity.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-actual_user_installer.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-actual_user_installer.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-actual_user_installer.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-actual_user_installer.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-actual_user_installer.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-actual_user_installer.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-actual_user_installer.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-actual_user_installer.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-cli_omitted_config_and_workspace.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-cli_omitted_config_and_workspace.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-cli_omitted_config_and_workspace.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-cli_omitted_config_and_workspace.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-cli_omitted_config_and_workspace.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-cli_omitted_config_and_workspace.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-cli_omitted_config_and_workspace.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-cli_omitted_config_and_workspace.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-cli_root_1.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-cli_root_1.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-cli_root_1.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-cli_root_1.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-cli_root_1.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-cli_root_1.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-cli_root_1.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-cli_root_1.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-cli_root_2.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-cli_root_2.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-cli_root_2.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-cli_root_2.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-cli_root_2.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-cli_root_2.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-cli_root_2.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-cli_root_2.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-installed_metadata.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-installed_metadata.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-installed_metadata.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-installed_metadata.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-installed_metadata.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-installed_metadata.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-installed_metadata.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-installed_metadata.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-installed_payload_closure.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-installed_payload_closure.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-installed_payload_closure.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-installed_payload_closure.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-installed_payload_closure.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-installed_payload_closure.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-installed_payload_closure.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-installed_payload_closure.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-mcp_client_root_1.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-mcp_client_root_1.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-mcp_client_root_1.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-mcp_client_root_1.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-mcp_client_root_2.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-mcp_client_root_2.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-mcp_client_root_2.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-mcp_client_root_2.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-mcp_omitted_config_and_workspace.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-mcp_omitted_config_and_workspace.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-mcp_omitted_config_and_workspace.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-mcp_omitted_config_and_workspace.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-preserved_operator_rust_version.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-preserved_operator_rust_version.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-preserved_operator_rust_version.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-preserved_operator_rust_version.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-preserved_operator_rust_version.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-preserved_operator_rust_version.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-preserved_operator_rust_version.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-preserved_operator_rust_version.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-execute.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-execute.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-execute.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-execute.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-execute.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-execute.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-execute.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-execute.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-execute.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-execute.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-execute.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-execute.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-execute02.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-execute02.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-execute02.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-execute02.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-execute02.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-execute02.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-execute02.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-execute02.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-actual-execute02.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-actual-execute02.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-actual-execute02.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-actual-execute02.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-first-prelaunch-failure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-first-prelaunch-failure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-first-prelaunch-failure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-upgrade-first-prelaunch-failure.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-upgrade-worker-health-cas-summary.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-upgrade-worker-health-cas-summary.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-upgrade-worker-health-cas-summary.json",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_subset_topkeys",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_scope_declares_partial",
+      "status": "PASS"
+    },
+    {
+      "name": "entire_actual_health_exact",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_exact_plan_keys",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_exact_plan_values",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_exact_result_keys",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_exact_result_values",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_language_ids_exact",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-review-user-upgrade-runner-review-02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-review-user-upgrade-runner-review-02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-review-user-upgrade-runner-review-02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-review-user-upgrade-runner-review-02.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-review-actual-user-upgrade-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-review-actual-user-upgrade-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-review-actual-user-upgrade-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-review-actual-user-upgrade-evidence-review.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-live-analysis-command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-live-analysis-command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-live-analysis-command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-live-analysis-command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-live-analysis-1.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-live-analysis-1.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-live-analysis-1.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-live-analysis-1.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-live-analysis-2.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-live-analysis-2.json",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-live-analysis-2.json",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-live-analysis-2.json",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-live-analysis-1.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-live-analysis-1.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-live-analysis-1.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-live-analysis-1.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_sha:verification/home-lsp-user-live-analysis-2.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "published_size:verification/home-lsp-user-live-analysis-2.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "original_raw_sha:verification/home-lsp-user-live-analysis-2.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "byte_transformation:verification/home-lsp-user-live-analysis-2.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "live_analysis_scope_no_semantic_claim",
+      "status": "PASS"
+    },
+    {
+      "name": "live_native_exit_and_rawsha:1",
+      "status": "PASS"
+    },
+    {
+      "name": "live_native_14_configured_no_backend:1",
+      "status": "PASS"
+    },
+    {
+      "name": "live_native_root_project:1",
+      "status": "PASS"
+    },
+    {
+      "name": "live_native_exit_and_rawsha:2",
+      "status": "PASS"
+    },
+    {
+      "name": "live_native_14_configured_no_backend:2",
+      "status": "PASS"
+    },
+    {
+      "name": "live_native_root_project:2",
+      "status": "PASS"
+    }
+  ],
+  "special_transformations": [
+    {
+      "path": "verification/home-lsp-q7-installer-report.json",
+      "transformation": "ONLY_3_NAMED_RAW_PATH_STRING_FIELDS_TO_UTF8_SHA256_AND_LENGTH; other JSON equal"
+    },
+    {
+      "path": "verification/home-lsp-q7-path-observations.json",
+      "transformation": "ONLY_3_NAMED_RAW_PATH_STRING_FIELDS_TO_UTF8_SHA256_AND_LENGTH; other JSON equal"
+    },
+    {
+      "path": "verification/home-lsp-user-upgrade-worker-health-cas-summary.json",
+      "transformation": "EXACT_FULL_HEALTH_PLUS_DECLARED_PLAN_RESULT_KEYS_AND_LANGUAGE_IDS; not full host receipt"
+    }
+  ],
+  "target_program_execution_by_reviewer": "NOT_RUN",
+  "source_mutations": "NONE",
+  "reviewer_first_attempt": "C:\\OdinQA\\home-progress-1022\\review-sol\\published-evidence-review-02.first-attempt.json",
+  "limits": [
+    "Large original installer logs/host backups and complete worker config retained externally; published logical subset is not full original receipt",
+    "No actual project semantics inferred from extension/configuration structure reports",
+    "Earlier four-index review remains separate immutable record; registry PATH operation not accepted until final receipt"
+  ]
+}

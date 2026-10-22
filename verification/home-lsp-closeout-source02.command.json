@@ -1,0 +1,17 @@
+{
+  "name": "source02",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "scripts/check_source.py",
+    "--output",
+    "C:\\OdinQA\\home-progress-1022\\closeout-source02.json"
+  ],
+  "cwd": "E:\\odin",
+  "exit_code": 0,
+  "seconds": 0.486,
+  "log": "C:\\OdinQA\\home-progress-1022\\closeout-source02.log",
+  "log_sha256": "ac7a5c48f70e119b5b1260c72c813377854d39216d435f9cad4f37fe8c24a29d"
+}

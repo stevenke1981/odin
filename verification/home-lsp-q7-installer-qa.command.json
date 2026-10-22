@@ -1,0 +1,25 @@
+{
+  "name": "installer-qa",
+  "argv": [
+    "powershell.exe",
+    "-NoLogo",
+    "-NoProfile",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "C:\\OdinQA\\q7\\scripts\\verify_installer.ps1",
+    "-Installer",
+    "C:\\OdinQA\\pkg7\\odin-0.2.0-windows-x64-setup.exe",
+    "-ExpectedBinarySha256",
+    "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+    "-Portable",
+    "C:\\OdinQA\\pkg7\\odin-0.2.0-x86_64-pc-windows-msvc.zip"
+  ],
+  "cwd": "C:\\OdinQA\\q7",
+  "exit_code": 0,
+  "elapsed_seconds": 722.819,
+  "stdout": "C:\\OdinQA\\q7\\installer-qa.stdout.log",
+  "stderr": "C:\\OdinQA\\q7\\installer-qa.stderr.log",
+  "stdout_sha256": "e597d0cb8467824aed5bee1dd3eb07ad16268208e30fa43b2ab7c097e461a6ba",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

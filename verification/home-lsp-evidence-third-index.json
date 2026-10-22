@@ -1,0 +1,148 @@
+{
+  "status": "PARTIAL",
+  "scope": "FINAL07_WORKER_AND_REAL_SLINT_MCP",
+  "manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+  "worker_success_cancel_timeout": "PASS",
+  "slint_mcp": "PASS_19",
+  "direct_slint_shutdown": "FAIL_EXIT_3_RETAINED_IN_SECOND_INDEX",
+  "final_installer_lifecycle": "NOT_RUN",
+  "user_home_migration": "NOT_RUN",
+  "entries": [
+    {
+      "path": "verification/home-lsp-stage07.json",
+      "published_sha256": "fa4031b99510b6fbebebdfeb9b381e40e7af864f1fc3868c3bd874c94c9947e7",
+      "bytes": 625,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded-stage07.json",
+      "original_raw_sha256": "8d044e8da3f496eb780edb09bf8d8b13be45aa9a8fbce2d16ea595dacef517f6",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-worker07-driver.py",
+      "published_sha256": "f564d900ea6a32ce9bff468fe3ae416df4084fa7000f8a74a1e631328baa9897",
+      "bytes": 4415,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\worker-expanded07.py",
+      "original_raw_sha256": "35e763d75eb839ea5d7c100f54b7cef21341f8fc9fb792895f9570f0f5f89530",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-worker07-report.json",
+      "published_sha256": "c399d890096f411372f8c7269e1f35197fff46e9eca9b33c0526130a7bd5a49f",
+      "bytes": 251757,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\worker-expanded07-report.json",
+      "original_raw_sha256": "9d1521c54b6cafc434a97b089b7e1cfd6835e577c72118f9bc891e1d1fcdd2d6",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-worker07-success-receipt.json",
+      "published_sha256": "11df208bdce099d01920bc86ec912983c386076e239719a135882fdc774b6ae2",
+      "bytes": 24305,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded07-success-worker-receipt.json",
+      "original_raw_sha256": "11df208bdce099d01920bc86ec912983c386076e239719a135882fdc774b6ae2",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-slint-final07.json",
+      "published_sha256": "4fafcfa3780af096dd824cf9b5a81f57244af0f115084929f09f9ddadd3a3cc8",
+      "bytes": 135928,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\slint-final07.json",
+      "original_raw_sha256": "70d061089b3e6ad2253a1610f586df19b7509a2a2227fb1dc98eb59333fcca91",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-slint-final07-command.json",
+      "published_sha256": "d039730b063cd89d9c9960e88ba5b8d32a3461bdc300900f8b14d4ec9228f555",
+      "bytes": 1073,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\slint-final07-command.json",
+      "original_raw_sha256": "5896923d3bf2e2a994e8e38e9e3e5cd5a89c4dbea0090d9f09b3a50b8091c0be",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-slint-final07.log",
+      "published_sha256": "e88427b4f78aa70a52e8f67630d785672a085fa0bd80394ebe709d81d65ff016",
+      "bytes": 103,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\slint-final07.log",
+      "original_raw_sha256": "7f067be523d4ce64099ba4fc9c479a505724eb55f0784ec63ef7ab5ce8b834f8",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-worker07-success.stdout.log",
+      "published_sha256": "11df208bdce099d01920bc86ec912983c386076e239719a135882fdc774b6ae2",
+      "bytes": 24305,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded07-success-worker.stdout.log",
+      "original_raw_sha256": "11df208bdce099d01920bc86ec912983c386076e239719a135882fdc774b6ae2",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-worker07-success.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded07-success-worker.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-worker07-cancel.stdout.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded07-cancel-worker.stdout.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-worker07-cancel.stderr.log",
+      "published_sha256": "292cbcc1c2bb4db0f2d9b82dde6df7d25a57fe3ec22b8b17a48d963c4b98b6a2",
+      "bytes": 91,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded07-cancel-worker.stderr.log",
+      "original_raw_sha256": "292cbcc1c2bb4db0f2d9b82dde6df7d25a57fe3ec22b8b17a48d963c4b98b6a2",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-worker07-timeout.stdout.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded07-timeout-worker.stdout.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-worker07-timeout.stderr.log",
+      "published_sha256": "cc0a8519a7ed45960b112d4b5992226853210a19a93a463c932c12a965486182",
+      "bytes": 100,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded07-timeout-worker.stderr.log",
+      "original_raw_sha256": "cc0a8519a7ed45960b112d4b5992226853210a19a93a463c932c12a965486182",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-review-payload07-inert-audit.json",
+      "published_sha256": "6b00b29fb307ea082ff4b9d1efa866f3c82c5384b2562fd64a82b195d1e99c0a",
+      "bytes": 14634,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\payload07-inert-audit.json",
+      "original_raw_sha256": "6b00b29fb307ea082ff4b9d1efa866f3c82c5384b2562fd64a82b195d1e99c0a",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-review-payload07-inert-audit.command.json",
+      "published_sha256": "c5b0e24d3d9d3d205a75db0de20b86b4a771b1676c154c64f53f21b7b3bf8830",
+      "bytes": 1237,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\payload07-inert-audit.command.json",
+      "original_raw_sha256": "c5b0e24d3d9d3d205a75db0de20b86b4a771b1676c154c64f53f21b7b3bf8830",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-review-static-02.json",
+      "published_sha256": "1d408941d6be453bbf89d61d3a8476fe7991b0ab16794f66e09fec82c3f455ec",
+      "bytes": 19935,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\expanded-static-review-02.json",
+      "original_raw_sha256": "1d408941d6be453bbf89d61d3a8476fe7991b0ab16794f66e09fec82c3f455ec",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-review-static-02.md",
+      "published_sha256": "3e5404f2427ff80b77748df11633474a7498179e273fb26bc85be6c5c36db682",
+      "bytes": 1379,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\expanded-static-review-02.md",
+      "original_raw_sha256": "3e5404f2427ff80b77748df11633474a7498179e273fb26bc85be6c5c36db682",
+      "lf_normalized": false
+    }
+  ]
+}

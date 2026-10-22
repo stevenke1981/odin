@@ -1,0 +1,41 @@
+{
+  "uninstall_registry": [
+    {
+      "hive": "HKCU",
+      "view": 256,
+      "key": "{BA80AB81-DC70-4A33-833F-B10BFD86C09D}_is1",
+      "value_sha256": "b21bfeef9b16c7700de3e1db13d965a3305c0c0541e08ee7a3fbf33bb236d0ca"
+    },
+    {
+      "hive": "HKCU",
+      "view": 512,
+      "key": "{BA80AB81-DC70-4A33-833F-B10BFD86C09D}_is1",
+      "value_sha256": "b21bfeef9b16c7700de3e1db13d965a3305c0c0541e08ee7a3fbf33bb236d0ca"
+    }
+  ],
+  "real_user_keyfiles": [
+    {
+      "path": "C:\\Users\\steven\\.config\\odin\\host.toml",
+      "exists": true,
+      "sha256": "87c7559eb24ded23c6688f6f111f7ec37da47934bb77a22b8a666d5835871a2a"
+    },
+    {
+      "path": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe",
+      "exists": true,
+      "sha256": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8"
+    },
+    {
+      "path": "C:\\Users\\steven\\.local\\share\\Odin\\odin.exe",
+      "exists": true,
+      "sha256": "7e4687c3581626d4561b5e2f88946fe391cc70a90ccb828362dcb205b38de351"
+    }
+  ],
+  "odin_shortcuts": [
+    {
+      "path": "C:\\Users\\steven\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Odin\\Odin documentation.lnk",
+      "sha256": "379f7be7da3f40cec2dfeaed724fc752b67000af4db3d260297c8a7d99e07407"
+    }
+  ],
+  "user_path_sha256": "f57e1b29959415507a89b7be4b95bdf424e1b7897d1b5386f9517b6c9d3f50cf",
+  "process_path_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809"
+}

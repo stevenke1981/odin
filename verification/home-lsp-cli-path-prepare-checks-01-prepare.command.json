@@ -1,0 +1,114 @@
+{
+  "status": "PASS",
+  "scope": "EXTERNAL_CLI_PATH_HELPER_PREPARATION_ONLY",
+  "source_hashes": {
+    "user_cli_path.py": "eaf81f8986d6b86568dd38efb31ddbefcd62f76d23b587516ba4ac1c2e1f03c3",
+    "secure_private_folder.ps1": "d4b83b28fc6e837d184fc87aa9f96fb6e9948c5a71ec92d619fc8dcf7672fa87",
+    "verify_fresh_cli.ps1": "1094d525fcddc5c1b54809c17b4d729b18d09feb06d3a81ca9c6d5466a9137f8",
+    "README.md": "414e9e0d3aee1095a5dfdd81c91f833319c5ce76a4d4196a3717c678901a52d9"
+  },
+  "commands": [
+    {
+      "name": "inert-fixtures",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "C:\\OdinQA\\home-progress-1022\\user-cli-path\\user_cli_path.py",
+        "--check-fixtures"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-cli-path",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at_utc": "2026-10-22T06:13:46.144734+00:00",
+      "completed_at_utc": "2026-10-22T06:13:46.245017+00:00",
+      "log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-01\\inert-fixtures.log",
+      "log_sha256": "23de40ed5cdc8bc1f45506c457022eea9c7dabc30d39cac1d714ea3227657cee",
+      "inert_case_count": 22
+    },
+    {
+      "name": "python-syntax",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-c",
+        "import pathlib,sys; compile(pathlib.Path(sys.argv[1]).read_text(encoding='utf-8'),sys.argv[1],'exec'); print('PASS: syntax only')",
+        "C:\\OdinQA\\home-progress-1022\\user-cli-path\\user_cli_path.py"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-cli-path",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at_utc": "2026-10-22T06:13:46.251126+00:00",
+      "completed_at_utc": "2026-10-22T06:13:46.299371+00:00",
+      "log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-01\\python-syntax.log",
+      "log_sha256": "e2b393a899f5338893cbf6ad17338f76fe8f732a6ac34ab9308b601ecfc8bfc8"
+    },
+    {
+      "name": "powershell-syntax",
+      "argv": [
+        "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+        "-NoProfile",
+        "-NonInteractive",
+        "-Command",
+        "$bad=$false; foreach ($p in @('C:/OdinQA/home-progress-1022/user-cli-path/secure_private_folder.ps1','C:/OdinQA/home-progress-1022/user-cli-path/verify_fresh_cli.ps1')) { $tokens=$null; $errors=$null; [void][Management.Automation.Language.Parser]::ParseFile($p,[ref]$tokens,[ref]$errors); if ($errors.Count) { $bad=$true; $errors | ForEach-Object { $_.Message } } }; if ($bad) { exit 1 }; 'PASS: two PowerShell scripts syntax only; no ACL or CLI execution'"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-cli-path",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at_utc": "2026-10-22T06:13:46.304280+00:00",
+      "completed_at_utc": "2026-10-22T06:13:46.485880+00:00",
+      "log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-01\\powershell-syntax.log",
+      "log_sha256": "9c758ba12cbaa24b25097152e1bdc717b2d2ea9da357245067cb4ea36689757a"
+    },
+    {
+      "name": "missing-mode",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "C:\\OdinQA\\home-progress-1022\\user-cli-path\\user_cli_path.py"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-cli-path",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "started_at_utc": "2026-10-22T06:13:46.491769+00:00",
+      "completed_at_utc": "2026-10-22T06:13:46.590118+00:00",
+      "log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-01\\missing-mode.log",
+      "log_sha256": "942ea0083fe5bcef0ff88a7e1e1bf6f8460c6fc3579a3bd979bd71ebcfd4a149"
+    },
+    {
+      "name": "apply-missing-expected-snapshot",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "C:\\OdinQA\\home-progress-1022\\user-cli-path\\user_cli_path.py",
+        "--apply"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-cli-path",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "started_at_utc": "2026-10-22T06:13:46.594658+00:00",
+      "completed_at_utc": "2026-10-22T06:13:46.689883+00:00",
+      "log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-01\\apply-missing-expected-snapshot.log",
+      "log_sha256": "2ee2b1fa1ee8a1c875300c5705a2e7c43ec1598bed118792694b14c012fdc490"
+    },
+    {
+      "name": "mutually-exclusive-modes",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "C:\\OdinQA\\home-progress-1022\\user-cli-path\\user_cli_path.py",
+        "--snapshot",
+        "--check-fixtures"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-cli-path",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "started_at_utc": "2026-10-22T06:13:46.695036+00:00",
+      "completed_at_utc": "2026-10-22T06:13:46.791714+00:00",
+      "log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\prepare-checks-01\\mutually-exclusive-modes.log",
+      "log_sha256": "5403658817676fbe377deabc7551fba40a770058eb5a9a82d03f0be2bf73632e"
+    }
+  ],
+  "actual_registry_read": "NOT_RUN",
+  "actual_registry_write": "NOT_RUN",
+  "private_acl_execution": "NOT_RUN",
+  "fresh_odin_cli_execution": "NOT_RUN",
+  "user_process_path_mutation": false,
+  "client_restart": "NOT_RUN",
+  "sources_unchanged": true,
+  "frozen_upgrade_runner_sha256": "4498b3bd5c0468cf795adc2567369790b051564a84dde2a8a5a2e77d94a2eb6a"
+}

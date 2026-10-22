@@ -1,0 +1,281 @@
+{
+    "scope":  "WINDOWS_NATIVE_PACKAGE",
+    "portable":  "PASS",
+    "installer_compile":  "PASS",
+    "installer_lifecycle":  "NOT_RUN",
+    "binary_sha256":  "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+    "build":  {
+                  "compiler":  "rustc 1.90.0 (1159e78c4 2025-09-14)",
+                  "external_tool_bridge":  false,
+                  "model_token_usage":  "UNKNOWN",
+                  "name":  "Odin",
+                  "profile":  "release",
+                  "revision":  "190c308e9ab7bbbf2917f879f58fd2d8a948cee0",
+                  "schema_version":  1,
+                  "standalone":  true,
+                  "target":  "x86_64-pc-windows-msvc",
+                  "tracked_source_dirty":  false,
+                  "version":  "0.2.0"
+              },
+    "staging":  "C:\\OdinQA\\pkg7\\.stage-c231533f06224bcdaa407b4c08b665be",
+    "artifacts":  [
+                      {
+                          "path":  "C:\\OdinQA\\pkg7\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+                          "sha256":  "015cbfa7635a1735eceeff5ad977e0ddd6be06540a4630016bfd02af239cd03c"
+                      },
+                      {
+                          "path":  "C:\\OdinQA\\pkg7\\odin-0.2.0-windows-x64-setup.exe",
+                          "sha256":  "ebf7f94acac5c0d850b4c5636684e775689df84dbc44a0b97324b35e17421af2"
+                      }
+                  ],
+    "signed":  false,
+    "linux_macos_native":  "NOT_RUN",
+    "compiler":  {
+                     "path":  "C:\\Program Files\\Inno Setup 7\\ISCC.exe",
+                     "version":  "7.1.0",
+                     "sha256":  "d06ebd38f38e3cee60a3c50cc45bd449d77e0bc6a5cabc607ea9886808e4de1a"
+                 },
+    "runtime_dependencies":  {
+                                 "minimum_os":  "Windows 10 x64 or Windows 11 x64 with OS-provided UCRT",
+                                 "app_local":  [
+                                                   {
+                                                       "path":  "vcruntime140.dll",
+                                                       "source":  "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Redist\\MSVC\\14.44.35112\\x64\\Microsoft.VC143.CRT\\vcruntime140.dll",
+                                                       "version":  "14.44.35211.0",
+                                                       "sha256":  "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+                                                       "authenticode":  "Valid",
+                                                       "signer":  "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+                                                       "redistribution":  "https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution"
+                                                   }
+                                               ],
+                                 "os_provided":  [
+                                                     "api-ms-win-core-synch-l1-2-0.dll",
+                                                     "api-ms-win-crt-convert-l1-1-0.dll",
+                                                     "api-ms-win-crt-heap-l1-1-0.dll",
+                                                     "api-ms-win-crt-locale-l1-1-0.dll",
+                                                     "api-ms-win-crt-math-l1-1-0.dll",
+                                                     "api-ms-win-crt-runtime-l1-1-0.dll",
+                                                     "api-ms-win-crt-stdio-l1-1-0.dll",
+                                                     "api-ms-win-crt-string-l1-1-0.dll",
+                                                     "api-ms-win-crt-time-l1-1-0.dll",
+                                                     "api-ms-win-crt-utility-l1-1-0.dll",
+                                                     "bcryptprimitives.dll",
+                                                     "kernel32.dll",
+                                                     "ntdll.dll",
+                                                     "userenv.dll",
+                                                     "ws2_32.dll"
+                                                 ],
+                                 "global_runtime_installation":  false
+                             },
+    "lsp_payload":  {
+                        "manifest_sha256":  "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+                        "files":  35158,
+                        "components":  [
+                                           {
+                                               "id":  "@vtsls/language-server",
+                                               "integrity":  "sha512-EYTkCHNGz3MFSP7z0DZ5+WBQY5CWEH7bCUu53EaDloBTjghoi2vfZqSrS0+7WsRG03MhBhjGG9ifNee/2kixvQ==",
+                                               "source":  "https://registry.npmjs.org/@vtsls/language-server/-/language-server-0.3.0.tgz",
+                                               "version":  "0.3.0"
+                                           },
+                                           {
+                                               "id":  "basedpyright",
+                                               "integrity":  "sha512-9uld8+5tZC2Gxf8nIynyunK0N4xn01W1ApzLMXDAcuA8uJq2QSfldYn9gSbxn9MWR8wmHDo7GaEHLhlnLFHaJA==",
+                                               "source":  "https://registry.npmjs.org/basedpyright/-/basedpyright-1.40.2.tgz",
+                                               "version":  "1.40.2"
+                                           },
+                                           {
+                                               "id":  "bash-language-server",
+                                               "integrity":  "sha512-F3g0hKZhCiKbLUf9wkrST6+ZypsHvJqaJxw/+J7WK2ywhFyc8+7jSHSTU1UDYncZkyWgbKV6+eZy5qWTZtoXww==",
+                                               "source":  "https://registry.npmjs.org/bash-language-server/-/bash-language-server-5.8.1.tgz",
+                                               "version":  "5.8.1"
+                                           },
+                                           {
+                                               "id":  "clangd",
+                                               "sha256":  "23412a240756a162e7b98a282f36aa2a23a88db5ce16a0cbc4fef7253768c810",
+                                               "source":  "https://github.com/clangd/clangd/releases/download/23.1.0/clangd-windows-23.1.0.zip",
+                                               "version":  "23.1.0"
+                                           },
+                                           {
+                                               "id":  "csharp-ls",
+                                               "sha256":  "8f815e4f22674106a8244beba07e4b4b062e31528e404aa8489312effb8c0e0c",
+                                               "source":  "https://api.nuget.org/v3-flatcontainer/csharp-ls/0.28.0/csharp-ls.0.28.0.nupkg",
+                                               "version":  "0.28.0"
+                                           },
+                                           {
+                                               "id":  "dotnet",
+                                               "sha256":  "24d057ab968986a9d7c7a01606b2a0192cbe6485221ba38e9c685522e93d8798",
+                                               "source":  "https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.402/dotnet-sdk-10.0.402-win-x64.zip",
+                                               "version":  "10.0.402"
+                                           },
+                                           {
+                                               "id":  "go",
+                                               "sha256":  "f26081f438319757f8a1b46d7d0b2c5ec7583d4038e485e0aa725cfde7885fff",
+                                               "source":  "https://go.dev/dl/go1.27.3.windows-amd64.zip",
+                                               "version":  "1.27.3"
+                                           },
+                                           {
+                                               "id":  "gopls",
+                                               "sha256":  "df2f78d456011cc1618ced854769ff8a07914549291cc519ac4293dbcadb4e14",
+                                               "source":  "https://proxy.golang.org/golang.org/x/tools/gopls/@v/v0.24.0.info",
+                                               "version":  "0.24.0"
+                                           },
+                                           {
+                                               "id":  "lua-language-server",
+                                               "sha256":  "4a3dc851b3b31e7b75a23f645d1ba4a2137579a55f5fa4edbb17a3e2a6254044",
+                                               "source":  "https://github.com/LuaLS/lua-language-server/releases/download/3.19.2/lua-language-server-3.19.2-win32-x64.zip",
+                                               "version":  "3.19.2"
+                                           },
+                                           {
+                                               "id":  "marksman",
+                                               "sha256":  "a6d05beb08ebe41b0a9f09c98a438540421436fa5531424c22e0bb1d22529705",
+                                               "source":  "https://github.com/artempyanykh/marksman/releases/download/2026-02-08/marksman.exe",
+                                               "version":  "2026-02-08"
+                                           },
+                                           {
+                                               "id":  "node",
+                                               "sha256":  "158f7685b44de51f6c0df1d153526cbcd3e1bc739a8dfc607721cef75de9e541",
+                                               "source":  "https://nodejs.org/dist/v24.21.0/node-v24.21.0-win-x64.zip",
+                                               "version":  "24.21.0"
+                                           },
+                                           {
+                                               "id":  "ruff",
+                                               "sha256":  "a841fb7e59680508b9394bfea32e369b3907cc6620a491c65d8d1f479498db82",
+                                               "source":  "https://github.com/astral-sh/ruff/releases/download/0.17.1/ruff-x86_64-pc-windows-msvc.zip",
+                                               "version":  "0.17.1"
+                                           },
+                                           {
+                                               "id":  "rust-analyzer",
+                                               "release":  "2026-10-19",
+                                               "sha256":  "7df6e1a2595d1906e8441cb83fd58170b47d32eb09bc52c1b2184538cfd49a71",
+                                               "source":  "https://github.com/rust-lang/rust-analyzer/releases/download/2026-10-19/rust-analyzer-x86_64-pc-windows-msvc.zip",
+                                               "version":  "0.3.3089"
+                                           },
+                                           {
+                                               "app_local_runtime":  {
+                                                                         "clean_machine_acceptance":  "NOT_RUN",
+                                                                         "dependencies":  [
+                                                                                              {
+                                                                                                  "name":  "msvcp140.dll",
+                                                                                                  "sha256":  "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+                                                                                                  "signature":  "Valid",
+                                                                                                  "signer":  "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+                                                                                                  "source":  "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Redist\\MSVC\\14.44.35112\\x64\\Microsoft.VC143.CRT\\msvcp140.dll",
+                                                                                                  "version":  "14.44.35211.0"
+                                                                                              },
+                                                                                              {
+                                                                                                  "name":  "vcruntime140.dll",
+                                                                                                  "sha256":  "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+                                                                                                  "signature":  "Valid",
+                                                                                                  "signer":  "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+                                                                                                  "source":  "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Redist\\MSVC\\14.44.35112\\x64\\Microsoft.VC143.CRT\\vcruntime140.dll",
+                                                                                                  "version":  "14.44.35211.0"
+                                                                                              },
+                                                                                              {
+                                                                                                  "name":  "vcruntime140_1.dll",
+                                                                                                  "sha256":  "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f",
+                                                                                                  "signature":  "Valid",
+                                                                                                  "signer":  "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+                                                                                                  "source":  "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Redist\\MSVC\\14.44.35112\\x64\\Microsoft.VC143.CRT\\vcruntime140_1.dll",
+                                                                                                  "version":  "14.44.35211.0"
+                                                                                              }
+                                                                                          ],
+                                                                         "global_runtime_installation":  false,
+                                                                         "minimum_os":  "Windows 10 x64 or Windows 11 x64 with OS-provided UCRT",
+                                                                         "notice_sha256":  "bdfc73b0ab0b0547208a29aa1b2a43479c7283b5985920b3d825d5d7bbf092ae",
+                                                                         "os_provided":  [
+                                                                                             "advapi32.dll",
+                                                                                             "api-ms-win-core-synch-l1-2-0.dll",
+                                                                                             "api-ms-win-core-winrt-error-l1-1-0.dll",
+                                                                                             "api-ms-win-crt-convert-l1-1-0.dll",
+                                                                                             "api-ms-win-crt-environment-l1-1-0.dll",
+                                                                                             "api-ms-win-crt-filesystem-l1-1-0.dll",
+                                                                                             "api-ms-win-crt-heap-l1-1-0.dll",
+                                                                                             "api-ms-win-crt-locale-l1-1-0.dll",
+                                                                                             "api-ms-win-crt-math-l1-1-0.dll",
+                                                                                             "api-ms-win-crt-runtime-l1-1-0.dll",
+                                                                                             "api-ms-win-crt-stdio-l1-1-0.dll",
+                                                                                             "api-ms-win-crt-string-l1-1-0.dll",
+                                                                                             "api-ms-win-crt-time-l1-1-0.dll",
+                                                                                             "api-ms-win-crt-utility-l1-1-0.dll",
+                                                                                             "bcrypt.dll",
+                                                                                             "bcryptprimitives.dll",
+                                                                                             "combase.dll",
+                                                                                             "comctl32.dll",
+                                                                                             "d3d12.dll",
+                                                                                             "d3dcompiler_47.dll",
+                                                                                             "dwmapi.dll",
+                                                                                             "dwrite.dll",
+                                                                                             "dxgi.dll",
+                                                                                             "gdi32.dll",
+                                                                                             "imm32.dll",
+                                                                                             "iphlpapi.dll",
+                                                                                             "kernel32.dll",
+                                                                                             "ntdll.dll",
+                                                                                             "ole32.dll",
+                                                                                             "oleaut32.dll",
+                                                                                             "opengl32.dll",
+                                                                                             "setupapi.dll",
+                                                                                             "shell32.dll",
+                                                                                             "shlwapi.dll",
+                                                                                             "uiautomationcore.dll",
+                                                                                             "user32.dll",
+                                                                                             "uxtheme.dll",
+                                                                                             "ws2_32.dll"
+                                                                                         ],
+                                                                         "redistribution":  "https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution",
+                                                                         "schema_version":  1,
+                                                                         "scope":  "PINNED_SIGNED_MICROSOFT_APP_LOCAL_SLINT_CRT_CLOSURE"
+                                                                     },
+                                               "id":  "slint-lsp",
+                                               "sha256":  "4dc30c4b2024c5676092c647cb7471a1419a843fae46e632b50b68e2732fa912",
+                                               "source":  "https://github.com/slint-ui/slint/releases/download/v1.18.1/slint-lsp-x86_64-pc-windows-msvc.zip",
+                                               "source_sidecar":  {
+                                                                      "destination":  "sources/slint-lsp-1.18.1-source-sidecar.zip",
+                                                                      "sha256":  "efa11b55b9a7bf7798c321a356c18450cb927fd303a52e7cfe148ee7c4a546ae",
+                                                                      "source_closure_status":  "PINNED_SLINT_CARGO_AND_SKIA_DEPS_SOURCE_INVENTORY"
+                                                                  },
+                                               "version":  "1.18.1"
+                                           },
+                                           {
+                                               "id":  "smol-toml",
+                                               "integrity":  "sha512-j7WyPdf0CJoutMzMoPLF/bVXHtKZIT9Rb4eGeEbWw8X2t5oirjPgpL+OpaENZrILYaXqYwnVH+qgUwVbl+pUJQ==",
+                                               "source":  "https://registry.npmjs.org/smol-toml/-/smol-toml-1.9.1.tgz",
+                                               "version":  "1.9.1"
+                                           },
+                                           {
+                                               "id":  "taplo",
+                                               "sha256":  "1615eed140039bd58e7089109883b1c434de5d6de8f64a993e6e8c80ca57bdf9",
+                                               "source":  "https://github.com/tamasfe/taplo/releases/download/0.10.0/taplo-windows-x86_64.zip",
+                                               "version":  "0.10.0"
+                                           },
+                                           {
+                                               "id":  "ty",
+                                               "sha256":  "39ac9cac22d18cd2b5f8c896dab4e3e8a8cd7459c0718aae5f26cc279e1f9a36",
+                                               "source":  "https://github.com/astral-sh/ty/releases/download/0.0.90/ty-x86_64-pc-windows-msvc.zip",
+                                               "version":  "0.0.90"
+                                           },
+                                           {
+                                               "id":  "typescript",
+                                               "integrity":  "sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==",
+                                               "source":  "https://registry.npmjs.org/typescript/-/typescript-6.0.3.tgz",
+                                               "version":  "6.0.3"
+                                           },
+                                           {
+                                               "id":  "typescript-language-server",
+                                               "integrity":  "sha512-Ph7Ql+xkUJvMamnkh1h+aKP6HxLR7lrWIYkPn9/LZBkJdJZgtIj7OoVhkDYtQ7zFPTPmqZHOVXaUKGyz9M2q1Q==",
+                                               "source":  "https://registry.npmjs.org/typescript-language-server/-/typescript-language-server-6.0.2.tgz",
+                                               "version":  "6.0.2"
+                                           },
+                                           {
+                                               "id":  "yaml-language-server",
+                                               "integrity":  "sha512-vT6ZEMTkXJA9Ixo07ByLgPkkt/L22fJdVDGAoB3EpPq3DCfKkMYeEeZdK5ECU6alwFUofhETo94/OV8GUxGuBg==",
+                                               "source":  "https://registry.npmjs.org/yaml-language-server/-/yaml-language-server-2.0.0.tgz",
+                                               "version":  "2.0.0"
+                                           }
+                                       ],
+                        "integrity":  "PASS",
+                        "backend_health":  "NOT_RUN",
+                        "semantic_acceptance":  "NOT_RUN"
+                    },
+    "packaging_source_revision":  "ca190e867981b1351c74c0946b0cd45c427613ce"
+}

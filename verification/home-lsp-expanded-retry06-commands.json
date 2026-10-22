@@ -1,0 +1,142 @@
+{
+  "runs": [
+    {
+      "group": "a",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "tests/expanded_installed_languages.py",
+        "--binary",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--install-root",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin",
+        "--host-config",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\.config\\odin\\host.toml",
+        "--ty-host-config",
+        "C:/OdinQA/x6/hosts/ty/host.toml",
+        "--ruff-host-config",
+        "C:/OdinQA/x6/hosts/ruff/host.toml",
+        "--vtsls-host-config",
+        "C:/OdinQA/x6/hosts/vtsls/host.toml",
+        "--rust-toolchain-bin",
+        "C:/Users/steven/.rustup/toolchains/stable-x86_64-pc-windows-msvc/bin",
+        "--output",
+        "C:\\OdinQA\\home-progress-1022\\expanded-retry06-a.json",
+        "--cases",
+        "slint",
+        "c",
+        "cpp",
+        "rust"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "reported_status": "PASS",
+      "counts": {
+        "PASS": 130
+      },
+      "seconds": 40.22,
+      "driver_sha256": "a11d84c20db58b65f92363c58413af058219f3ba1c8691d49f8e5b406b5c56d2",
+      "report": "C:\\OdinQA\\home-progress-1022\\expanded-retry06-a.json",
+      "report_sha256": "16ae81676151b35a73f1366c413fd00908930ccf398c003d37de335d2a92d4e0",
+      "logs": {
+        "stdout": "36bfa0a1fc69a42d716d0a25d107c469cbeb89b9ff1cfcd60d24ddf18805c284",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "group": "c",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "tests/expanded_installed_languages.py",
+        "--binary",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--install-root",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin",
+        "--host-config",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\.config\\odin\\host.toml",
+        "--ty-host-config",
+        "C:/OdinQA/x6/hosts/ty/host.toml",
+        "--ruff-host-config",
+        "C:/OdinQA/x6/hosts/ruff/host.toml",
+        "--vtsls-host-config",
+        "C:/OdinQA/x6/hosts/vtsls/host.toml",
+        "--rust-toolchain-bin",
+        "C:/Users/steven/.rustup/toolchains/stable-x86_64-pc-windows-msvc/bin",
+        "--output",
+        "C:\\OdinQA\\home-progress-1022\\expanded-retry06-c.json",
+        "--cases",
+        "ty",
+        "ruff",
+        "vtsls-javascript",
+        "vtsls-typescript"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 2,
+      "reported_status": "PARTIAL",
+      "counts": {
+        "PASS": 129,
+        "NOT_VERIFIED": 8
+      },
+      "seconds": 132.41,
+      "driver_sha256": "a11d84c20db58b65f92363c58413af058219f3ba1c8691d49f8e5b406b5c56d2",
+      "report": "C:\\OdinQA\\home-progress-1022\\expanded-retry06-c.json",
+      "report_sha256": "29fe7311e1fc324689ae007eb0504fdf4e3697372cda5138083680dc4112eca8",
+      "logs": {
+        "stdout": "0e747c7c469c4c811d36bf1a0e02ecce2e4c70d0b989390f82007de804b7537f",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "group": "b",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "tests/expanded_installed_languages.py",
+        "--binary",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--install-root",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin",
+        "--host-config",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\.config\\odin\\host.toml",
+        "--ty-host-config",
+        "C:/OdinQA/x6/hosts/ty/host.toml",
+        "--ruff-host-config",
+        "C:/OdinQA/x6/hosts/ruff/host.toml",
+        "--vtsls-host-config",
+        "C:/OdinQA/x6/hosts/vtsls/host.toml",
+        "--rust-toolchain-bin",
+        "C:/Users/steven/.rustup/toolchains/stable-x86_64-pc-windows-msvc/bin",
+        "--output",
+        "C:\\OdinQA\\home-progress-1022\\expanded-retry06-b.json",
+        "--cases",
+        "toml",
+        "yaml",
+        "markdown"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 2,
+      "reported_status": "PARTIAL",
+      "counts": {
+        "PASS": 57,
+        "NOT_VERIFIED": 12
+      },
+      "seconds": 195.75,
+      "driver_sha256": "a11d84c20db58b65f92363c58413af058219f3ba1c8691d49f8e5b406b5c56d2",
+      "report": "C:\\OdinQA\\home-progress-1022\\expanded-retry06-b.json",
+      "report_sha256": "fbb08ea63865efc8c4c09e488248330ece39336b8d2fda9191b02e7bfc83ab01",
+      "logs": {
+        "stdout": "172eec67ded53c302a5fecd7f978a4ede34efcdd449e6800364e4e37d85868ba",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "all_three_executed": true,
+  "executed_status": "PARTIAL"
+}

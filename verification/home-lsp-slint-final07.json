@@ -1,0 +1,3211 @@
+{
+  "scope": "ACTUAL_INSTALLED_EXPANDED_LSP_MCP_FIXED_CLAIMS_TWO_PROJECTS",
+  "status": "PASS",
+  "binary": "C:\\OdinQA\\x7\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+  "binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+  "host_config_sha256": "2d38f53c66285bb9ec488c831b185ded11b7bec8ae275145cd22410610fbbd2a",
+  "languages": [
+    {
+      "language": "slint",
+      "status": "PASS",
+      "checks": [
+        {
+          "name": "a_current_workspace",
+          "status": "PASS",
+          "optional": false,
+          "detail": [
+            {
+              "allow_debug": false,
+              "allow_inspections": false,
+              "allow_shell": false,
+              "allow_write": false,
+              "id": "ws_771fd6eecd21ca32a11fff7c7c431713ce86d48df4a0eb99",
+              "languages": [
+                "slint"
+              ],
+              "root": "\\\\?\\C:\\OdinQA\\home-progress-1022\\slint-final07.fixtures\\slint\\project \u4e2d\u6587 a"
+            }
+          ]
+        },
+        {
+          "name": "a_source_binding",
+          "status": "PASS",
+          "optional": false,
+          "detail": null
+        },
+        {
+          "name": "a_actual_lsp_initialize",
+          "status": "PASS",
+          "optional": false,
+          "detail": {
+            "capabilities": {
+              "codeActionProvider": true,
+              "codeLensProvider": {
+                "resolveProvider": true
+              },
+              "colorProvider": true,
+              "completionProvider": {
+                "triggerCharacters": [
+                  "."
+                ]
+              },
+              "definitionProvider": true,
+              "documentFormattingProvider": true,
+              "documentHighlightProvider": true,
+              "documentSymbolProvider": true,
+              "executeCommandProvider": {
+                "commands": [
+                  "slint/populate",
+                  "slint/showPreview"
+                ]
+              },
+              "hoverProvider": true,
+              "renameProvider": true,
+              "semanticTokensProvider": {
+                "full": true,
+                "legend": {
+                  "tokenModifiers": [
+                    "definition",
+                    "declaration"
+                  ],
+                  "tokenTypes": [
+                    "type",
+                    "parameter",
+                    "variable",
+                    "property",
+                    "function",
+                    "macro",
+                    "keyword",
+                    "comment",
+                    "string",
+                    "number",
+                    "operator",
+                    "enum",
+                    "enumMember"
+                  ]
+                }
+              },
+              "signatureHelpProvider": {
+                "triggerCharacters": [
+                  "(",
+                  ","
+                ]
+              },
+              "textDocumentSync": 1
+            },
+            "configured": true,
+            "extensions": [
+              "slint"
+            ],
+            "id": "slint",
+            "probed": true,
+            "ready": true,
+            "status": {
+              "capabilities": {
+                "codeActionProvider": true,
+                "codeLensProvider": {
+                  "resolveProvider": true
+                },
+                "colorProvider": true,
+                "completionProvider": {
+                  "triggerCharacters": [
+                    "."
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "slint/populate",
+                    "slint/showPreview"
+                  ]
+                },
+                "hoverProvider": true,
+                "renameProvider": true,
+                "semanticTokensProvider": {
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "definition",
+                      "declaration"
+                    ],
+                    "tokenTypes": [
+                      "type",
+                      "parameter",
+                      "variable",
+                      "property",
+                      "function",
+                      "macro",
+                      "keyword",
+                      "comment",
+                      "string",
+                      "number",
+                      "operator",
+                      "enum",
+                      "enumMember"
+                    ]
+                  }
+                },
+                "signatureHelpProvider": {
+                  "triggerCharacters": [
+                    "(",
+                    ","
+                  ]
+                },
+                "textDocumentSync": 1
+              },
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "launch_route": "host_process",
+                  "os_boundary_verified": false,
+                  "requested": false
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          }
+        },
+        {
+          "name": "a_required_documentSymbolProvider",
+          "status": "PASS",
+          "optional": false,
+          "detail": true
+        },
+        {
+          "name": "a_actual_backend_symbols",
+          "status": "PASS",
+          "optional": false,
+          "detail": {
+            "backend": "lsp",
+            "language": "slint",
+            "next_offset": null,
+            "offset": 0,
+            "symbols": [
+              {
+                "kind": 5,
+                "name": "App",
+                "name_path": "App",
+                "range": {
+                  "end": {
+                    "character": 1,
+                    "line": 3
+                  },
+                  "start": {
+                    "character": 7,
+                    "line": 0
+                  }
+                },
+                "relative_path": "sample.slint",
+                "selection_range": {
+                  "end": {
+                    "character": 20,
+                    "line": 0
+                  },
+                  "start": {
+                    "character": 17,
+                    "line": 0
+                  }
+                }
+              },
+              {
+                "kind": 13,
+                "name": "Text",
+                "name_path": "App/Text",
+                "range": {
+                  "end": {
+                    "character": 35,
+                    "line": 2
+                  },
+                  "start": {
+                    "character": 4,
+                    "line": 2
+                  }
+                },
+                "relative_path": "sample.slint",
+                "selection_range": {
+                  "end": {
+                    "character": 9,
+                    "line": 2
+                  },
+                  "start": {
+                    "character": 4,
+                    "line": 2
+                  }
+                }
+              }
+            ],
+            "trace": {
+              "elapsed_ms": 22,
+              "id": "211455c9-a803-49be-914a-76ffaaa4bff9",
+              "result_bytes": 568,
+              "result_sha256": "15cf1cb60e7fb35be06ae02f4c78c201f3660a40b98e511222d2dad8ca7e3b72"
+            },
+            "truncated": false
+          }
+        },
+        {
+          "name": "a_valid_diagnostics",
+          "status": "PASS",
+          "optional": false,
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 1,
+            "document": {
+              "path": "sample.slint",
+              "sha256": "0042d183d8f59fcc429eb625b465ac18609f3d22e5ff3daaed124076cd0c1a8a",
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint",
+              "version": 1
+            },
+            "findings": [],
+            "freshness": "current",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "slint",
+            "reason": null,
+            "report": {
+              "diagnostics": [],
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint",
+              "version": 1
+            },
+            "reported_version": 1,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "clean",
+            "summary": {
+              "complete": true,
+              "errors": 0,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 0,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "741c2949-395c-4fa0-9371-8fc8e1121d50",
+              "result_bytes": 797,
+              "result_sha256": "261ba1c8ee6a323f179449f40b11fc031599f773a25af3ef3fa9ea7f0e09a49e"
+            },
+            "version_verified": true
+          }
+        },
+        {
+          "name": "a_readonly_write_denied",
+          "status": "PASS",
+          "optional": false,
+          "detail": {
+            "error": {
+              "code": "PERMISSION_DENIED",
+              "message": "Project writes are disabled"
+            }
+          }
+        },
+        {
+          "name": "b_current_workspace",
+          "status": "PASS",
+          "optional": false,
+          "detail": [
+            {
+              "allow_debug": false,
+              "allow_inspections": false,
+              "allow_shell": false,
+              "allow_write": false,
+              "id": "ws_12ebac88a920291ef1f0d32109eee3d83cb5523b39b41e4a",
+              "languages": [
+                "slint"
+              ],
+              "root": "\\\\?\\C:\\OdinQA\\home-progress-1022\\slint-final07.fixtures\\slint\\project b"
+            }
+          ]
+        },
+        {
+          "name": "b_source_binding",
+          "status": "PASS",
+          "optional": false,
+          "detail": null
+        },
+        {
+          "name": "b_actual_lsp_initialize",
+          "status": "PASS",
+          "optional": false,
+          "detail": {
+            "capabilities": {
+              "codeActionProvider": true,
+              "codeLensProvider": {
+                "resolveProvider": true
+              },
+              "colorProvider": true,
+              "completionProvider": {
+                "triggerCharacters": [
+                  "."
+                ]
+              },
+              "definitionProvider": true,
+              "documentFormattingProvider": true,
+              "documentHighlightProvider": true,
+              "documentSymbolProvider": true,
+              "executeCommandProvider": {
+                "commands": [
+                  "slint/populate",
+                  "slint/showPreview"
+                ]
+              },
+              "hoverProvider": true,
+              "renameProvider": true,
+              "semanticTokensProvider": {
+                "full": true,
+                "legend": {
+                  "tokenModifiers": [
+                    "definition",
+                    "declaration"
+                  ],
+                  "tokenTypes": [
+                    "type",
+                    "parameter",
+                    "variable",
+                    "property",
+                    "function",
+                    "macro",
+                    "keyword",
+                    "comment",
+                    "string",
+                    "number",
+                    "operator",
+                    "enum",
+                    "enumMember"
+                  ]
+                }
+              },
+              "signatureHelpProvider": {
+                "triggerCharacters": [
+                  "(",
+                  ","
+                ]
+              },
+              "textDocumentSync": 1
+            },
+            "configured": true,
+            "extensions": [
+              "slint"
+            ],
+            "id": "slint",
+            "probed": true,
+            "ready": true,
+            "status": {
+              "capabilities": {
+                "codeActionProvider": true,
+                "codeLensProvider": {
+                  "resolveProvider": true
+                },
+                "colorProvider": true,
+                "completionProvider": {
+                  "triggerCharacters": [
+                    "."
+                  ]
+                },
+                "definitionProvider": true,
+                "documentFormattingProvider": true,
+                "documentHighlightProvider": true,
+                "documentSymbolProvider": true,
+                "executeCommandProvider": {
+                  "commands": [
+                    "slint/populate",
+                    "slint/showPreview"
+                  ]
+                },
+                "hoverProvider": true,
+                "renameProvider": true,
+                "semanticTokensProvider": {
+                  "full": true,
+                  "legend": {
+                    "tokenModifiers": [
+                      "definition",
+                      "declaration"
+                    ],
+                    "tokenTypes": [
+                      "type",
+                      "parameter",
+                      "variable",
+                      "property",
+                      "function",
+                      "macro",
+                      "keyword",
+                      "comment",
+                      "string",
+                      "number",
+                      "operator",
+                      "enum",
+                      "enumMember"
+                    ]
+                  }
+                },
+                "signatureHelpProvider": {
+                  "triggerCharacters": [
+                    "(",
+                    ","
+                  ]
+                },
+                "textDocumentSync": 1
+              },
+              "index_complete_proven": false,
+              "initialized": true,
+              "readiness": "unknown",
+              "transport": {
+                "active_progress": {},
+                "closed": false,
+                "isolation": {
+                  "launch_route": "host_process",
+                  "os_boundary_verified": false,
+                  "requested": false
+                },
+                "pending_requests": 0,
+                "server_status": null
+              }
+            }
+          }
+        },
+        {
+          "name": "b_required_documentSymbolProvider",
+          "status": "PASS",
+          "optional": false,
+          "detail": true
+        },
+        {
+          "name": "b_actual_backend_symbols",
+          "status": "PASS",
+          "optional": false,
+          "detail": {
+            "backend": "lsp",
+            "language": "slint",
+            "next_offset": null,
+            "offset": 0,
+            "symbols": [
+              {
+                "kind": 5,
+                "name": "App",
+                "name_path": "App",
+                "range": {
+                  "end": {
+                    "character": 1,
+                    "line": 3
+                  },
+                  "start": {
+                    "character": 7,
+                    "line": 0
+                  }
+                },
+                "relative_path": "sample.slint",
+                "selection_range": {
+                  "end": {
+                    "character": 20,
+                    "line": 0
+                  },
+                  "start": {
+                    "character": 17,
+                    "line": 0
+                  }
+                }
+              },
+              {
+                "kind": 13,
+                "name": "Text",
+                "name_path": "App/Text",
+                "range": {
+                  "end": {
+                    "character": 35,
+                    "line": 2
+                  },
+                  "start": {
+                    "character": 4,
+                    "line": 2
+                  }
+                },
+                "relative_path": "sample.slint",
+                "selection_range": {
+                  "end": {
+                    "character": 9,
+                    "line": 2
+                  },
+                  "start": {
+                    "character": 4,
+                    "line": 2
+                  }
+                }
+              }
+            ],
+            "trace": {
+              "elapsed_ms": 22,
+              "id": "d2a7185b-abfb-4a52-855c-da49c407928d",
+              "result_bytes": 568,
+              "result_sha256": "15cf1cb60e7fb35be06ae02f4c78c201f3660a40b98e511222d2dad8ca7e3b72"
+            },
+            "truncated": false
+          }
+        },
+        {
+          "name": "b_valid_diagnostics",
+          "status": "PASS",
+          "optional": false,
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 1,
+            "document": {
+              "path": "sample.slint",
+              "sha256": "0042d183d8f59fcc429eb625b465ac18609f3d22e5ff3daaed124076cd0c1a8a",
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20b/sample.slint",
+              "version": 1
+            },
+            "findings": [],
+            "freshness": "current",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "slint",
+            "reason": null,
+            "report": {
+              "diagnostics": [],
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20b/sample.slint",
+              "version": 1
+            },
+            "reported_version": 1,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "clean",
+            "summary": {
+              "complete": true,
+              "errors": 0,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 0,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "8b7e60b2-c040-4d38-95b0-cdb2f83a5f12",
+              "result_bytes": 755,
+              "result_sha256": "626208d2910761df2e4f58e2629f5f091ccec2eab11826618fc325b43225114e"
+            },
+            "version_verified": true
+          }
+        },
+        {
+          "name": "b_readonly_write_denied",
+          "status": "PASS",
+          "optional": false,
+          "detail": {
+            "error": {
+              "code": "PERMISSION_DENIED",
+              "message": "Project writes are disabled"
+            }
+          }
+        },
+        {
+          "name": "distinct_project_ids",
+          "status": "PASS",
+          "optional": false,
+          "detail": [
+            "ws_771fd6eecd21ca32a11fff7c7c431713ce86d48df4a0eb99",
+            "ws_12ebac88a920291ef1f0d32109eee3d83cb5523b39b41e4a"
+          ]
+        },
+        {
+          "name": "readonly_source_hashes",
+          "status": "PASS",
+          "optional": false,
+          "detail": null
+        },
+        {
+          "name": "broken_source_diagnostics",
+          "status": "PASS",
+          "optional": false,
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 1,
+            "document": {
+              "path": "sample.slint",
+              "sha256": "752face5a6806f6fff4cdf5c422af11790faafcb656e30b97be6ecaaa09f78d6",
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint",
+              "version": 1
+            },
+            "findings": [
+              {
+                "document_version": 1,
+                "lsp_severity": 1,
+                "message": "invalid expression",
+                "provider": "slint",
+                "range": {
+                  "end": {
+                    "character": 61,
+                    "line": 5
+                  },
+                  "start": {
+                    "character": 60,
+                    "line": 5
+                  }
+                },
+                "relative_path": "sample.slint",
+                "rule_id": null,
+                "severity": "error",
+                "source": "lsp_push",
+                "source_sha256": "752face5a6806f6fff4cdf5c422af11790faafcb656e30b97be6ecaaa09f78d6",
+                "status": "current"
+              },
+              {
+                "document_version": 1,
+                "lsp_severity": 1,
+                "message": "Parse error",
+                "provider": "slint",
+                "range": {
+                  "end": {
+                    "character": 61,
+                    "line": 5
+                  },
+                  "start": {
+                    "character": 60,
+                    "line": 5
+                  }
+                },
+                "relative_path": "sample.slint",
+                "rule_id": null,
+                "severity": "error",
+                "source": "lsp_push",
+                "source_sha256": "752face5a6806f6fff4cdf5c422af11790faafcb656e30b97be6ecaaa09f78d6",
+                "status": "current"
+              }
+            ],
+            "freshness": "current",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "slint",
+            "reason": null,
+            "report": {
+              "diagnostics": [
+                {
+                  "message": "invalid expression",
+                  "range": {
+                    "end": {
+                      "character": 61,
+                      "line": 5
+                    },
+                    "start": {
+                      "character": 60,
+                      "line": 5
+                    }
+                  },
+                  "severity": 1
+                },
+                {
+                  "message": "Parse error",
+                  "range": {
+                    "end": {
+                      "character": 61,
+                      "line": 5
+                    },
+                    "start": {
+                      "character": 60,
+                      "line": 5
+                    }
+                  },
+                  "severity": 1
+                }
+              ],
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint",
+              "version": 1
+            },
+            "reported_version": 1,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "errors",
+            "summary": {
+              "complete": true,
+              "errors": 2,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 2,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "b3351778-75e0-48f1-b62e-be8ef6176ef8",
+              "result_bytes": 1732,
+              "result_sha256": "87a45a75aca769e4e39661677d069dd0dcf5ee4d0b13703f13199979cc59c714"
+            },
+            "version_verified": true
+          }
+        },
+        {
+          "name": "recovered_source_diagnostics",
+          "status": "PASS",
+          "optional": false,
+          "detail": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 2,
+            "document": {
+              "path": "sample.slint",
+              "sha256": "0042d183d8f59fcc429eb625b465ac18609f3d22e5ff3daaed124076cd0c1a8a",
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint",
+              "version": 2
+            },
+            "findings": [],
+            "freshness": "current",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "slint",
+            "reason": null,
+            "report": {
+              "diagnostics": [],
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint",
+              "version": 2
+            },
+            "reported_version": 2,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "clean",
+            "summary": {
+              "complete": true,
+              "errors": 0,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 0,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "b4157ded-c7b0-4998-addd-962b3c7be971",
+              "result_bytes": 797,
+              "result_sha256": "a28a04a95f20dbed3107fa4d32a43af7e1e3bcf80d63526abdd1c8688af5058e"
+            },
+            "version_verified": true
+          }
+        },
+        {
+          "name": "all_sources_restored",
+          "status": "PASS",
+          "optional": false,
+          "detail": null
+        }
+      ],
+      "stderr": [],
+      "profile": {
+        "id": "slint",
+        "extensions": [
+          "slint"
+        ],
+        "program": "C:\\OdinQA\\x7\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\backends\\slint\\slint-lsp.exe",
+        "args": []
+      },
+      "capabilities": {
+        "codeActionProvider": true,
+        "codeLensProvider": {
+          "resolveProvider": true
+        },
+        "colorProvider": true,
+        "completionProvider": {
+          "triggerCharacters": [
+            "."
+          ]
+        },
+        "definitionProvider": true,
+        "documentFormattingProvider": true,
+        "documentHighlightProvider": true,
+        "documentSymbolProvider": true,
+        "executeCommandProvider": {
+          "commands": [
+            "slint/populate",
+            "slint/showPreview"
+          ]
+        },
+        "hoverProvider": true,
+        "renameProvider": true,
+        "semanticTokensProvider": {
+          "full": true,
+          "legend": {
+            "tokenModifiers": [
+              "definition",
+              "declaration"
+            ],
+            "tokenTypes": [
+              "type",
+              "parameter",
+              "variable",
+              "property",
+              "function",
+              "macro",
+              "keyword",
+              "comment",
+              "string",
+              "number",
+              "operator",
+              "enum",
+              "enumMember"
+            ]
+          }
+        },
+        "signatureHelpProvider": {
+          "triggerCharacters": [
+            "(",
+            ","
+          ]
+        },
+        "textDocumentSync": 1
+      }
+    }
+  ],
+  "transcript": [
+    {
+      "language": "slint",
+      "tool": "list_projects",
+      "arguments": {},
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"projects\":[{\"allow_debug\":false,\"allow_inspections\":false,\"allow_shell\":false,\"allow_write\":false,\"id\":\"ws_771fd6eecd21ca32a11fff7c7c431713ce86d48df4a0eb99\",\"languages\":[\"slint\"],\"root\":\"\\\\\\\\?\\\\C:\\\\OdinQA\\\\home-progress-1022\\\\slint-final07.fixtures\\\\slint\\\\project \u4e2d\u6587 a\"}],\"trace\":{\"elapsed_ms\":0,\"id\":\"d1190b2b-d8b2-4cd0-8a48-4a89b0a1b1f1\",\"result_bytes\":279,\"result_sha256\":\"4e2b717bab8f07b7bdd5dc022490b2b866ffaf8ac1a8f6c3ac9d27a5256600ca\"}}"
+            }
+          ],
+          "structuredContent": {
+            "projects": [
+              {
+                "allow_debug": false,
+                "allow_inspections": false,
+                "allow_shell": false,
+                "allow_write": false,
+                "id": "ws_771fd6eecd21ca32a11fff7c7c431713ce86d48df4a0eb99",
+                "languages": [
+                  "slint"
+                ],
+                "root": "\\\\?\\C:\\OdinQA\\home-progress-1022\\slint-final07.fixtures\\slint\\project \u4e2d\u6587 a"
+              }
+            ],
+            "trace": {
+              "elapsed_ms": 0,
+              "id": "d1190b2b-d8b2-4cd0-8a48-4a89b0a1b1f1",
+              "result_bytes": 279,
+              "result_sha256": "4e2b717bab8f07b7bdd5dc022490b2b866ffaf8ac1a8f6c3ac9d27a5256600ca"
+            }
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "read_file",
+      "arguments": {
+        "relative_path": "sentinel.txt"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"content\":\"slint_a\",\"end_line\":1,\"line_base\":1,\"relative_path\":\"sentinel.txt\",\"sha256\":\"a7a07d2a2ef68856c4dfee4a93cbae772b3e99563e18d59321696676c6631c30\",\"start_line\":1,\"total_lines\":1,\"trace\":{\"elapsed_ms\":5,\"id\":\"0213612c-3c5b-46b9-aa9e-fec0557a7761\",\"result_bytes\":186,\"result_sha256\":\"a898b07c8bf7c259d5c54664a53a4419e5d947cbb3cf92a29d9d7e4c894054df\"}}"
+            }
+          ],
+          "structuredContent": {
+            "content": "slint_a",
+            "end_line": 1,
+            "line_base": 1,
+            "relative_path": "sentinel.txt",
+            "sha256": "a7a07d2a2ef68856c4dfee4a93cbae772b3e99563e18d59321696676c6631c30",
+            "start_line": 1,
+            "total_lines": 1,
+            "trace": {
+              "elapsed_ms": 5,
+              "id": "0213612c-3c5b-46b9-aa9e-fec0557a7761",
+              "result_bytes": 186,
+              "result_sha256": "a898b07c8bf7c259d5c54664a53a4419e5d947cbb3cf92a29d9d7e4c894054df"
+            }
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "get_capabilities",
+      "arguments": {
+        "probe": true,
+        "language": "slint"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"debug_allowed\":false,\"external_tool_bridge\":false,\"formatter_profiles\":[],\"formatters_allowed\":false,\"inspection_profiles\":[],\"inspections_allowed\":false,\"languages\":[{\"capabilities\":{\"codeActionProvider\":true,\"codeLensProvider\":{\"resolveProvider\":true},\"colorProvider\":true,\"completionProvider\":{\"triggerCharacters\":[\".\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentSymbolProvider\":true,\"executeCommandProvider\":{\"commands\":[\"slint/populate\",\"slint/showPreview\"]},\"hoverProvider\":true,\"renameProvider\":true,\"semanticTokensProvider\":{\"full\":true,\"legend\":{\"tokenModifiers\":[\"definition\",\"declaration\"],\"tokenTypes\":[\"type\",\"parameter\",\"variable\",\"property\",\"function\",\"macro\",\"keyword\",\"comment\",\"string\",\"number\",\"operator\",\"enum\",\"enumMember\"]}},\"signatureHelpProvider\":{\"triggerCharacters\":[\"(\",\",\"]},\"textDocumentSync\":1},\"configured\":true,\"extensions\":[\"slint\"],\"id\":\"slint\",\"probed\":true,\"ready\":true,\"status\":{\"capabilities\":{\"codeActionProvider\":true,\"codeLensProvider\":{\"resolveProvider\":true},\"colorProvider\":true,\"completionProvider\":{\"triggerCharacters\":[\".\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentSymbolProvider\":true,\"executeCommandProvider\":{\"commands\":[\"slint/populate\",\"slint/showPreview\"]},\"hoverProvider\":true,\"renameProvider\":true,\"semanticTokensProvider\":{\"full\":true,\"legend\":{\"tokenModifiers\":[\"definition\",\"declaration\"],\"tokenTypes\":[\"type\",\"parameter\",\"variable\",\"property\",\"function\",\"macro\",\"keyword\",\"comment\",\"string\",\"number\",\"operator\",\"enum\",\"enumMember\"]}},\"signatureHelpProvider\":{\"triggerCharacters\":[\"(\",\",\"]},\"textDocumentSync\":1},\"index_complete_proven\":false,\"initialized\":true,\"readiness\":\"unknown\",\"transport\":{\"active_progress\":{},\"closed\":false,\"isolation\":{\"launch_route\":\"host_process\",\"os_boundary_verified\":false,\"requested\":false},\"pending_requests\":0,\"server_status\":null}}}],\"project\":\"ws_771fd6eecd21ca32a11fff7c7c431713ce86d48df4a0eb99\",\"result_retention\":{\"max_bytes\":134217728,\"max_results\":128,\"ttl_ms\":86400000},\"semantic_available\":true,\"shell_allowed\":false,\"standalone\":true,\"tools\":[{\"enabled\":true,\"name\":\"status\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_version\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_schemas\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_capabilities\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_projects\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_current_config\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"initial_instructions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"onboarding\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"project_analysis\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_dir\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_for_pattern\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"index_build\",\"policy\":\"state\"},{\"enabled\":true,\"name\":\"index_query\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_symbols_overview\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_referencing_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_implementations\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_declaration\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_type_hierarchy\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"code_actions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"hover\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"signature_help\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"workspace_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"call_hierarchy\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"format_document\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"inlay_hints\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"inlay_hint_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"semantic_tokens\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_inspection_providers\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"run_inspections\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"prepare_inspection_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"prepare_code_action\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"apply_quick_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"move_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"inline_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"restart_language_server\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"transaction_prepare\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_apply\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"transaction_rollback\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_list\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_recover\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"create_text_file\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_content\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"replacement_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"replace_in_files\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_at_line\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_symbol_body\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_before_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_after_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"safe_delete_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"list_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_memory\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"write_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"edit_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_memory\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_export\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_import\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"memory_move_scope\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_transaction_apply\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"check_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_memories\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"recover_memories\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"query_project\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_run\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_vars\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_clear\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"execute_shell_command\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_start\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_request\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_events\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_stop\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_batch\",\"policy\":\"execute\"},{\"enabled\":true,\"name\":\"result_read\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"audit_log\",\"policy\":\"read\"}],\"trace\":{\"elapsed_ms\":28,\"id\":\"77a2f888-1a16-4cfe-a860-b9eb702fb095\",\"result_bytes\":7271,\"result_sha256\":\"50044f3dca16c1a529bb343a062bdf06de6368e3fcbff823010b6ec9f741deaa\"},\"write_allowed\":false}"
+            }
+          ],
+          "structuredContent": {
+            "debug_allowed": false,
+            "external_tool_bridge": false,
+            "formatter_profiles": [],
+            "formatters_allowed": false,
+            "inspection_profiles": [],
+            "inspections_allowed": false,
+            "languages": [
+              {
+                "capabilities": {
+                  "codeActionProvider": true,
+                  "codeLensProvider": {
+                    "resolveProvider": true
+                  },
+                  "colorProvider": true,
+                  "completionProvider": {
+                    "triggerCharacters": [
+                      "."
+                    ]
+                  },
+                  "definitionProvider": true,
+                  "documentFormattingProvider": true,
+                  "documentHighlightProvider": true,
+                  "documentSymbolProvider": true,
+                  "executeCommandProvider": {
+                    "commands": [
+                      "slint/populate",
+                      "slint/showPreview"
+                    ]
+                  },
+                  "hoverProvider": true,
+                  "renameProvider": true,
+                  "semanticTokensProvider": {
+                    "full": true,
+                    "legend": {
+                      "tokenModifiers": [
+                        "definition",
+                        "declaration"
+                      ],
+                      "tokenTypes": [
+                        "type",
+                        "parameter",
+                        "variable",
+                        "property",
+                        "function",
+                        "macro",
+                        "keyword",
+                        "comment",
+                        "string",
+                        "number",
+                        "operator",
+                        "enum",
+                        "enumMember"
+                      ]
+                    }
+                  },
+                  "signatureHelpProvider": {
+                    "triggerCharacters": [
+                      "(",
+                      ","
+                    ]
+                  },
+                  "textDocumentSync": 1
+                },
+                "configured": true,
+                "extensions": [
+                  "slint"
+                ],
+                "id": "slint",
+                "probed": true,
+                "ready": true,
+                "status": {
+                  "capabilities": {
+                    "codeActionProvider": true,
+                    "codeLensProvider": {
+                      "resolveProvider": true
+                    },
+                    "colorProvider": true,
+                    "completionProvider": {
+                      "triggerCharacters": [
+                        "."
+                      ]
+                    },
+                    "definitionProvider": true,
+                    "documentFormattingProvider": true,
+                    "documentHighlightProvider": true,
+                    "documentSymbolProvider": true,
+                    "executeCommandProvider": {
+                      "commands": [
+                        "slint/populate",
+                        "slint/showPreview"
+                      ]
+                    },
+                    "hoverProvider": true,
+                    "renameProvider": true,
+                    "semanticTokensProvider": {
+                      "full": true,
+                      "legend": {
+                        "tokenModifiers": [
+                          "definition",
+                          "declaration"
+                        ],
+                        "tokenTypes": [
+                          "type",
+                          "parameter",
+                          "variable",
+                          "property",
+                          "function",
+                          "macro",
+                          "keyword",
+                          "comment",
+                          "string",
+                          "number",
+                          "operator",
+                          "enum",
+                          "enumMember"
+                        ]
+                      }
+                    },
+                    "signatureHelpProvider": {
+                      "triggerCharacters": [
+                        "(",
+                        ","
+                      ]
+                    },
+                    "textDocumentSync": 1
+                  },
+                  "index_complete_proven": false,
+                  "initialized": true,
+                  "readiness": "unknown",
+                  "transport": {
+                    "active_progress": {},
+                    "closed": false,
+                    "isolation": {
+                      "launch_route": "host_process",
+                      "os_boundary_verified": false,
+                      "requested": false
+                    },
+                    "pending_requests": 0,
+                    "server_status": null
+                  }
+                }
+              }
+            ],
+            "project": "ws_771fd6eecd21ca32a11fff7c7c431713ce86d48df4a0eb99",
+            "result_retention": {
+              "max_bytes": 134217728,
+              "max_results": 128,
+              "ttl_ms": 86400000
+            },
+            "semantic_available": true,
+            "shell_allowed": false,
+            "standalone": true,
+            "tools": [
+              {
+                "enabled": true,
+                "name": "status",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_version",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_schemas",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_capabilities",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "list_projects",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_current_config",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "initial_instructions",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "onboarding",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "project_analysis",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "list_dir",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "find_file",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "read_file",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "search_for_pattern",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "index_build",
+                "policy": "state"
+              },
+              {
+                "enabled": true,
+                "name": "index_query",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_symbols_overview",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "find_symbol",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "find_referencing_symbols",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "find_implementations",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "find_declaration",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_type_hierarchy",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_diagnostics_for_file",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_diagnostics_for_symbol",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "code_actions",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "completion",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "hover",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "signature_help",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "completion_resolve",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "workspace_symbols",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "call_hierarchy",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "format_document",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "inlay_hints",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "inlay_hint_resolve",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "semantic_tokens",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "list_inspection_providers",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "run_inspections",
+                "policy": "execute"
+              },
+              {
+                "enabled": false,
+                "name": "prepare_inspection_fix",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "prepare_code_action",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "apply_quick_fix",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "move_symbol",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "inline_symbol",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "restart_language_server",
+                "policy": "state"
+              },
+              {
+                "enabled": false,
+                "name": "transaction_prepare",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "transaction_preview",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "transaction_apply",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "transaction_rollback",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "transaction_list",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "transaction_recover",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "create_text_file",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "replace_content",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "replacement_preview",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "replace_in_files",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "replace_lines",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "delete_lines",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "insert_at_line",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "replace_symbol_body",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "insert_before_symbol",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "insert_after_symbol",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "rename_symbol",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "safe_delete_symbol",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "list_memories",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "read_memory",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "write_memory",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "edit_memory",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "delete_memory",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "rename_memory",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "memory_export",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "memory_import",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "memory_move_scope",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "memory_transaction_preview",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "memory_transaction_apply",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "check_memories",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "search_memories",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "recover_memories",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "query_project",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "flow_run",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "flow_vars",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "flow_clear",
+                "policy": "state"
+              },
+              {
+                "enabled": false,
+                "name": "execute_shell_command",
+                "policy": "execute"
+              },
+              {
+                "enabled": false,
+                "name": "debug_start",
+                "policy": "execute"
+              },
+              {
+                "enabled": false,
+                "name": "debug_request",
+                "policy": "execute"
+              },
+              {
+                "enabled": false,
+                "name": "debug_events",
+                "policy": "execute"
+              },
+              {
+                "enabled": false,
+                "name": "debug_stop",
+                "policy": "execute"
+              },
+              {
+                "enabled": false,
+                "name": "debug_batch",
+                "policy": "execute"
+              },
+              {
+                "enabled": true,
+                "name": "result_read",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "audit_log",
+                "policy": "read"
+              }
+            ],
+            "trace": {
+              "elapsed_ms": 28,
+              "id": "77a2f888-1a16-4cfe-a860-b9eb702fb095",
+              "result_bytes": 7271,
+              "result_sha256": "50044f3dca16c1a529bb343a062bdf06de6368e3fcbff823010b6ec9f741deaa"
+            },
+            "write_allowed": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "get_symbols_overview",
+      "arguments": {
+        "relative_path": "sample.slint"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"backend\":\"lsp\",\"language\":\"slint\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":5,\"name\":\"App\",\"name_path\":\"App\",\"range\":{\"end\":{\"character\":1,\"line\":3},\"start\":{\"character\":7,\"line\":0}},\"relative_path\":\"sample.slint\",\"selection_range\":{\"end\":{\"character\":20,\"line\":0},\"start\":{\"character\":17,\"line\":0}}},{\"kind\":13,\"name\":\"Text\",\"name_path\":\"App/Text\",\"range\":{\"end\":{\"character\":35,\"line\":2},\"start\":{\"character\":4,\"line\":2}},\"relative_path\":\"sample.slint\",\"selection_range\":{\"end\":{\"character\":9,\"line\":2},\"start\":{\"character\":4,\"line\":2}}}],\"trace\":{\"elapsed_ms\":22,\"id\":\"211455c9-a803-49be-914a-76ffaaa4bff9\",\"result_bytes\":568,\"result_sha256\":\"15cf1cb60e7fb35be06ae02f4c78c201f3660a40b98e511222d2dad8ca7e3b72\"},\"truncated\":false}"
+            }
+          ],
+          "structuredContent": {
+            "backend": "lsp",
+            "language": "slint",
+            "next_offset": null,
+            "offset": 0,
+            "symbols": [
+              {
+                "kind": 5,
+                "name": "App",
+                "name_path": "App",
+                "range": {
+                  "end": {
+                    "character": 1,
+                    "line": 3
+                  },
+                  "start": {
+                    "character": 7,
+                    "line": 0
+                  }
+                },
+                "relative_path": "sample.slint",
+                "selection_range": {
+                  "end": {
+                    "character": 20,
+                    "line": 0
+                  },
+                  "start": {
+                    "character": 17,
+                    "line": 0
+                  }
+                }
+              },
+              {
+                "kind": 13,
+                "name": "Text",
+                "name_path": "App/Text",
+                "range": {
+                  "end": {
+                    "character": 35,
+                    "line": 2
+                  },
+                  "start": {
+                    "character": 4,
+                    "line": 2
+                  }
+                },
+                "relative_path": "sample.slint",
+                "selection_range": {
+                  "end": {
+                    "character": 9,
+                    "line": 2
+                  },
+                  "start": {
+                    "character": 4,
+                    "line": 2
+                  }
+                }
+              }
+            ],
+            "trace": {
+              "elapsed_ms": 22,
+              "id": "211455c9-a803-49be-914a-76ffaaa4bff9",
+              "result_bytes": 568,
+              "result_sha256": "15cf1cb60e7fb35be06ae02f4c78c201f3660a40b98e511222d2dad8ca7e3b72"
+            },
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "get_diagnostics_for_file",
+      "arguments": {
+        "relative_path": "sample.slint"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"available\":true,\"clean_build_proven\":false,\"current_version\":1,\"document\":{\"path\":\"sample.slint\",\"sha256\":\"0042d183d8f59fcc429eb625b465ac18609f3d22e5ff3daaed124076cd0c1a8a\",\"uri\":\"file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint\",\"version\":1},\"findings\":[],\"freshness\":\"current\",\"pending\":false,\"position_encoding\":\"utf-16\",\"provider\":\"slint\",\"reason\":null,\"report\":{\"diagnostics\":[],\"uri\":\"file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint\",\"version\":1},\"reported_version\":1,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"clean\",\"summary\":{\"complete\":true,\"errors\":0,\"hints\":0,\"information\":0,\"scope\":\"document\",\"total\":0,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":1,\"id\":\"741c2949-395c-4fa0-9371-8fc8e1121d50\",\"result_bytes\":797,\"result_sha256\":\"261ba1c8ee6a323f179449f40b11fc031599f773a25af3ef3fa9ea7f0e09a49e\"},\"version_verified\":true}"
+            }
+          ],
+          "structuredContent": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 1,
+            "document": {
+              "path": "sample.slint",
+              "sha256": "0042d183d8f59fcc429eb625b465ac18609f3d22e5ff3daaed124076cd0c1a8a",
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint",
+              "version": 1
+            },
+            "findings": [],
+            "freshness": "current",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "slint",
+            "reason": null,
+            "report": {
+              "diagnostics": [],
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint",
+              "version": 1
+            },
+            "reported_version": 1,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "clean",
+            "summary": {
+              "complete": true,
+              "errors": 0,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 0,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "741c2949-395c-4fa0-9371-8fc8e1121d50",
+              "result_bytes": 797,
+              "result_sha256": "261ba1c8ee6a323f179449f40b11fc031599f773a25af3ef3fa9ea7f0e09a49e"
+            },
+            "version_verified": true
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "create_text_file",
+      "arguments": {
+        "relative_path": "denied.txt",
+        "expected_sha256": null,
+        "content": "denied"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"error\":{\"code\":\"PERMISSION_DENIED\",\"message\":\"Project writes are disabled\"}}"
+            }
+          ],
+          "structuredContent": {
+            "error": {
+              "code": "PERMISSION_DENIED",
+              "message": "Project writes are disabled"
+            }
+          },
+          "isError": true
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "list_projects",
+      "arguments": {},
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"projects\":[{\"allow_debug\":false,\"allow_inspections\":false,\"allow_shell\":false,\"allow_write\":false,\"id\":\"ws_12ebac88a920291ef1f0d32109eee3d83cb5523b39b41e4a\",\"languages\":[\"slint\"],\"root\":\"\\\\\\\\?\\\\C:\\\\OdinQA\\\\home-progress-1022\\\\slint-final07.fixtures\\\\slint\\\\project b\"}],\"trace\":{\"elapsed_ms\":0,\"id\":\"53f63978-2719-4eaf-b74f-407c0a3d6af4\",\"result_bytes\":272,\"result_sha256\":\"ba0459b43d153ccce8e1eb5731e2fd81112bf1f22ce76504efd7b8a1b7470708\"}}"
+            }
+          ],
+          "structuredContent": {
+            "projects": [
+              {
+                "allow_debug": false,
+                "allow_inspections": false,
+                "allow_shell": false,
+                "allow_write": false,
+                "id": "ws_12ebac88a920291ef1f0d32109eee3d83cb5523b39b41e4a",
+                "languages": [
+                  "slint"
+                ],
+                "root": "\\\\?\\C:\\OdinQA\\home-progress-1022\\slint-final07.fixtures\\slint\\project b"
+              }
+            ],
+            "trace": {
+              "elapsed_ms": 0,
+              "id": "53f63978-2719-4eaf-b74f-407c0a3d6af4",
+              "result_bytes": 272,
+              "result_sha256": "ba0459b43d153ccce8e1eb5731e2fd81112bf1f22ce76504efd7b8a1b7470708"
+            }
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "read_file",
+      "arguments": {
+        "relative_path": "sentinel.txt"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"content\":\"slint_b\",\"end_line\":1,\"line_base\":1,\"relative_path\":\"sentinel.txt\",\"sha256\":\"c6f5d6ec86599c8b8c651e68a4482609183a88f904675db915641d2045e3a819\",\"start_line\":1,\"total_lines\":1,\"trace\":{\"elapsed_ms\":4,\"id\":\"ee6ffef8-9087-4069-9379-87ee13c756be\",\"result_bytes\":186,\"result_sha256\":\"9044fa14182c4619f6e56375bf23029c247d245588020d48e41e2485d8c78d15\"}}"
+            }
+          ],
+          "structuredContent": {
+            "content": "slint_b",
+            "end_line": 1,
+            "line_base": 1,
+            "relative_path": "sentinel.txt",
+            "sha256": "c6f5d6ec86599c8b8c651e68a4482609183a88f904675db915641d2045e3a819",
+            "start_line": 1,
+            "total_lines": 1,
+            "trace": {
+              "elapsed_ms": 4,
+              "id": "ee6ffef8-9087-4069-9379-87ee13c756be",
+              "result_bytes": 186,
+              "result_sha256": "9044fa14182c4619f6e56375bf23029c247d245588020d48e41e2485d8c78d15"
+            }
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "get_capabilities",
+      "arguments": {
+        "probe": true,
+        "language": "slint"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"debug_allowed\":false,\"external_tool_bridge\":false,\"formatter_profiles\":[],\"formatters_allowed\":false,\"inspection_profiles\":[],\"inspections_allowed\":false,\"languages\":[{\"capabilities\":{\"codeActionProvider\":true,\"codeLensProvider\":{\"resolveProvider\":true},\"colorProvider\":true,\"completionProvider\":{\"triggerCharacters\":[\".\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentSymbolProvider\":true,\"executeCommandProvider\":{\"commands\":[\"slint/populate\",\"slint/showPreview\"]},\"hoverProvider\":true,\"renameProvider\":true,\"semanticTokensProvider\":{\"full\":true,\"legend\":{\"tokenModifiers\":[\"definition\",\"declaration\"],\"tokenTypes\":[\"type\",\"parameter\",\"variable\",\"property\",\"function\",\"macro\",\"keyword\",\"comment\",\"string\",\"number\",\"operator\",\"enum\",\"enumMember\"]}},\"signatureHelpProvider\":{\"triggerCharacters\":[\"(\",\",\"]},\"textDocumentSync\":1},\"configured\":true,\"extensions\":[\"slint\"],\"id\":\"slint\",\"probed\":true,\"ready\":true,\"status\":{\"capabilities\":{\"codeActionProvider\":true,\"codeLensProvider\":{\"resolveProvider\":true},\"colorProvider\":true,\"completionProvider\":{\"triggerCharacters\":[\".\"]},\"definitionProvider\":true,\"documentFormattingProvider\":true,\"documentHighlightProvider\":true,\"documentSymbolProvider\":true,\"executeCommandProvider\":{\"commands\":[\"slint/populate\",\"slint/showPreview\"]},\"hoverProvider\":true,\"renameProvider\":true,\"semanticTokensProvider\":{\"full\":true,\"legend\":{\"tokenModifiers\":[\"definition\",\"declaration\"],\"tokenTypes\":[\"type\",\"parameter\",\"variable\",\"property\",\"function\",\"macro\",\"keyword\",\"comment\",\"string\",\"number\",\"operator\",\"enum\",\"enumMember\"]}},\"signatureHelpProvider\":{\"triggerCharacters\":[\"(\",\",\"]},\"textDocumentSync\":1},\"index_complete_proven\":false,\"initialized\":true,\"readiness\":\"unknown\",\"transport\":{\"active_progress\":{},\"closed\":false,\"isolation\":{\"launch_route\":\"host_process\",\"os_boundary_verified\":false,\"requested\":false},\"pending_requests\":0,\"server_status\":null}}}],\"project\":\"ws_12ebac88a920291ef1f0d32109eee3d83cb5523b39b41e4a\",\"result_retention\":{\"max_bytes\":134217728,\"max_results\":128,\"ttl_ms\":86400000},\"semantic_available\":true,\"shell_allowed\":false,\"standalone\":true,\"tools\":[{\"enabled\":true,\"name\":\"status\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_version\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_schemas\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_capabilities\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_projects\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_current_config\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"initial_instructions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"onboarding\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"project_analysis\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_dir\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_for_pattern\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"index_build\",\"policy\":\"state\"},{\"enabled\":true,\"name\":\"index_query\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_symbols_overview\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_referencing_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_implementations\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"find_declaration\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_type_hierarchy\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_file\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"get_diagnostics_for_symbol\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"code_actions\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"hover\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"signature_help\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"completion_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"workspace_symbols\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"call_hierarchy\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"format_document\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"inlay_hints\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"inlay_hint_resolve\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"semantic_tokens\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"list_inspection_providers\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"run_inspections\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"prepare_inspection_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"prepare_code_action\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"apply_quick_fix\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"move_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"inline_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"restart_language_server\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"transaction_prepare\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_apply\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"transaction_rollback\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"transaction_list\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"transaction_recover\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"create_text_file\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_content\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"replacement_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"replace_in_files\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_lines\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_at_line\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"replace_symbol_body\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_before_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"insert_after_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_symbol\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"safe_delete_symbol\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"list_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"read_memory\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"write_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"edit_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"delete_memory\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"rename_memory\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_export\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_import\",\"policy\":\"write\"},{\"enabled\":false,\"name\":\"memory_move_scope\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"memory_transaction_preview\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"memory_transaction_apply\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"check_memories\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"search_memories\",\"policy\":\"read\"},{\"enabled\":false,\"name\":\"recover_memories\",\"policy\":\"write\"},{\"enabled\":true,\"name\":\"query_project\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_run\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_vars\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"flow_clear\",\"policy\":\"state\"},{\"enabled\":false,\"name\":\"execute_shell_command\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_start\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_request\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_events\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_stop\",\"policy\":\"execute\"},{\"enabled\":false,\"name\":\"debug_batch\",\"policy\":\"execute\"},{\"enabled\":true,\"name\":\"result_read\",\"policy\":\"read\"},{\"enabled\":true,\"name\":\"audit_log\",\"policy\":\"read\"}],\"trace\":{\"elapsed_ms\":25,\"id\":\"8f0db327-3a9d-4c0c-91bb-606396d1ae73\",\"result_bytes\":7271,\"result_sha256\":\"c5ea5a248c4c9c39e64f66ca0493b3f71b05d5b1c08ed59b9ac47aff6706971d\"},\"write_allowed\":false}"
+            }
+          ],
+          "structuredContent": {
+            "debug_allowed": false,
+            "external_tool_bridge": false,
+            "formatter_profiles": [],
+            "formatters_allowed": false,
+            "inspection_profiles": [],
+            "inspections_allowed": false,
+            "languages": [
+              {
+                "capabilities": {
+                  "codeActionProvider": true,
+                  "codeLensProvider": {
+                    "resolveProvider": true
+                  },
+                  "colorProvider": true,
+                  "completionProvider": {
+                    "triggerCharacters": [
+                      "."
+                    ]
+                  },
+                  "definitionProvider": true,
+                  "documentFormattingProvider": true,
+                  "documentHighlightProvider": true,
+                  "documentSymbolProvider": true,
+                  "executeCommandProvider": {
+                    "commands": [
+                      "slint/populate",
+                      "slint/showPreview"
+                    ]
+                  },
+                  "hoverProvider": true,
+                  "renameProvider": true,
+                  "semanticTokensProvider": {
+                    "full": true,
+                    "legend": {
+                      "tokenModifiers": [
+                        "definition",
+                        "declaration"
+                      ],
+                      "tokenTypes": [
+                        "type",
+                        "parameter",
+                        "variable",
+                        "property",
+                        "function",
+                        "macro",
+                        "keyword",
+                        "comment",
+                        "string",
+                        "number",
+                        "operator",
+                        "enum",
+                        "enumMember"
+                      ]
+                    }
+                  },
+                  "signatureHelpProvider": {
+                    "triggerCharacters": [
+                      "(",
+                      ","
+                    ]
+                  },
+                  "textDocumentSync": 1
+                },
+                "configured": true,
+                "extensions": [
+                  "slint"
+                ],
+                "id": "slint",
+                "probed": true,
+                "ready": true,
+                "status": {
+                  "capabilities": {
+                    "codeActionProvider": true,
+                    "codeLensProvider": {
+                      "resolveProvider": true
+                    },
+                    "colorProvider": true,
+                    "completionProvider": {
+                      "triggerCharacters": [
+                        "."
+                      ]
+                    },
+                    "definitionProvider": true,
+                    "documentFormattingProvider": true,
+                    "documentHighlightProvider": true,
+                    "documentSymbolProvider": true,
+                    "executeCommandProvider": {
+                      "commands": [
+                        "slint/populate",
+                        "slint/showPreview"
+                      ]
+                    },
+                    "hoverProvider": true,
+                    "renameProvider": true,
+                    "semanticTokensProvider": {
+                      "full": true,
+                      "legend": {
+                        "tokenModifiers": [
+                          "definition",
+                          "declaration"
+                        ],
+                        "tokenTypes": [
+                          "type",
+                          "parameter",
+                          "variable",
+                          "property",
+                          "function",
+                          "macro",
+                          "keyword",
+                          "comment",
+                          "string",
+                          "number",
+                          "operator",
+                          "enum",
+                          "enumMember"
+                        ]
+                      }
+                    },
+                    "signatureHelpProvider": {
+                      "triggerCharacters": [
+                        "(",
+                        ","
+                      ]
+                    },
+                    "textDocumentSync": 1
+                  },
+                  "index_complete_proven": false,
+                  "initialized": true,
+                  "readiness": "unknown",
+                  "transport": {
+                    "active_progress": {},
+                    "closed": false,
+                    "isolation": {
+                      "launch_route": "host_process",
+                      "os_boundary_verified": false,
+                      "requested": false
+                    },
+                    "pending_requests": 0,
+                    "server_status": null
+                  }
+                }
+              }
+            ],
+            "project": "ws_12ebac88a920291ef1f0d32109eee3d83cb5523b39b41e4a",
+            "result_retention": {
+              "max_bytes": 134217728,
+              "max_results": 128,
+              "ttl_ms": 86400000
+            },
+            "semantic_available": true,
+            "shell_allowed": false,
+            "standalone": true,
+            "tools": [
+              {
+                "enabled": true,
+                "name": "status",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_version",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_schemas",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_capabilities",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "list_projects",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_current_config",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "initial_instructions",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "onboarding",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "project_analysis",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "list_dir",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "find_file",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "read_file",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "search_for_pattern",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "index_build",
+                "policy": "state"
+              },
+              {
+                "enabled": true,
+                "name": "index_query",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_symbols_overview",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "find_symbol",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "find_referencing_symbols",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "find_implementations",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "find_declaration",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_type_hierarchy",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_diagnostics_for_file",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "get_diagnostics_for_symbol",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "code_actions",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "completion",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "hover",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "signature_help",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "completion_resolve",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "workspace_symbols",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "call_hierarchy",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "format_document",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "inlay_hints",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "inlay_hint_resolve",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "semantic_tokens",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "list_inspection_providers",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "run_inspections",
+                "policy": "execute"
+              },
+              {
+                "enabled": false,
+                "name": "prepare_inspection_fix",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "prepare_code_action",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "apply_quick_fix",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "move_symbol",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "inline_symbol",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "restart_language_server",
+                "policy": "state"
+              },
+              {
+                "enabled": false,
+                "name": "transaction_prepare",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "transaction_preview",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "transaction_apply",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "transaction_rollback",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "transaction_list",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "transaction_recover",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "create_text_file",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "replace_content",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "replacement_preview",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "replace_in_files",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "replace_lines",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "delete_lines",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "insert_at_line",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "replace_symbol_body",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "insert_before_symbol",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "insert_after_symbol",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "rename_symbol",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "safe_delete_symbol",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "list_memories",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "read_memory",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "write_memory",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "edit_memory",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "delete_memory",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "rename_memory",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "memory_export",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "memory_import",
+                "policy": "write"
+              },
+              {
+                "enabled": false,
+                "name": "memory_move_scope",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "memory_transaction_preview",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "memory_transaction_apply",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "check_memories",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "search_memories",
+                "policy": "read"
+              },
+              {
+                "enabled": false,
+                "name": "recover_memories",
+                "policy": "write"
+              },
+              {
+                "enabled": true,
+                "name": "query_project",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "flow_run",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "flow_vars",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "flow_clear",
+                "policy": "state"
+              },
+              {
+                "enabled": false,
+                "name": "execute_shell_command",
+                "policy": "execute"
+              },
+              {
+                "enabled": false,
+                "name": "debug_start",
+                "policy": "execute"
+              },
+              {
+                "enabled": false,
+                "name": "debug_request",
+                "policy": "execute"
+              },
+              {
+                "enabled": false,
+                "name": "debug_events",
+                "policy": "execute"
+              },
+              {
+                "enabled": false,
+                "name": "debug_stop",
+                "policy": "execute"
+              },
+              {
+                "enabled": false,
+                "name": "debug_batch",
+                "policy": "execute"
+              },
+              {
+                "enabled": true,
+                "name": "result_read",
+                "policy": "read"
+              },
+              {
+                "enabled": true,
+                "name": "audit_log",
+                "policy": "read"
+              }
+            ],
+            "trace": {
+              "elapsed_ms": 25,
+              "id": "8f0db327-3a9d-4c0c-91bb-606396d1ae73",
+              "result_bytes": 7271,
+              "result_sha256": "c5ea5a248c4c9c39e64f66ca0493b3f71b05d5b1c08ed59b9ac47aff6706971d"
+            },
+            "write_allowed": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "get_symbols_overview",
+      "arguments": {
+        "relative_path": "sample.slint"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"backend\":\"lsp\",\"language\":\"slint\",\"next_offset\":null,\"offset\":0,\"symbols\":[{\"kind\":5,\"name\":\"App\",\"name_path\":\"App\",\"range\":{\"end\":{\"character\":1,\"line\":3},\"start\":{\"character\":7,\"line\":0}},\"relative_path\":\"sample.slint\",\"selection_range\":{\"end\":{\"character\":20,\"line\":0},\"start\":{\"character\":17,\"line\":0}}},{\"kind\":13,\"name\":\"Text\",\"name_path\":\"App/Text\",\"range\":{\"end\":{\"character\":35,\"line\":2},\"start\":{\"character\":4,\"line\":2}},\"relative_path\":\"sample.slint\",\"selection_range\":{\"end\":{\"character\":9,\"line\":2},\"start\":{\"character\":4,\"line\":2}}}],\"trace\":{\"elapsed_ms\":22,\"id\":\"d2a7185b-abfb-4a52-855c-da49c407928d\",\"result_bytes\":568,\"result_sha256\":\"15cf1cb60e7fb35be06ae02f4c78c201f3660a40b98e511222d2dad8ca7e3b72\"},\"truncated\":false}"
+            }
+          ],
+          "structuredContent": {
+            "backend": "lsp",
+            "language": "slint",
+            "next_offset": null,
+            "offset": 0,
+            "symbols": [
+              {
+                "kind": 5,
+                "name": "App",
+                "name_path": "App",
+                "range": {
+                  "end": {
+                    "character": 1,
+                    "line": 3
+                  },
+                  "start": {
+                    "character": 7,
+                    "line": 0
+                  }
+                },
+                "relative_path": "sample.slint",
+                "selection_range": {
+                  "end": {
+                    "character": 20,
+                    "line": 0
+                  },
+                  "start": {
+                    "character": 17,
+                    "line": 0
+                  }
+                }
+              },
+              {
+                "kind": 13,
+                "name": "Text",
+                "name_path": "App/Text",
+                "range": {
+                  "end": {
+                    "character": 35,
+                    "line": 2
+                  },
+                  "start": {
+                    "character": 4,
+                    "line": 2
+                  }
+                },
+                "relative_path": "sample.slint",
+                "selection_range": {
+                  "end": {
+                    "character": 9,
+                    "line": 2
+                  },
+                  "start": {
+                    "character": 4,
+                    "line": 2
+                  }
+                }
+              }
+            ],
+            "trace": {
+              "elapsed_ms": 22,
+              "id": "d2a7185b-abfb-4a52-855c-da49c407928d",
+              "result_bytes": 568,
+              "result_sha256": "15cf1cb60e7fb35be06ae02f4c78c201f3660a40b98e511222d2dad8ca7e3b72"
+            },
+            "truncated": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "get_diagnostics_for_file",
+      "arguments": {
+        "relative_path": "sample.slint"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"available\":true,\"clean_build_proven\":false,\"current_version\":1,\"document\":{\"path\":\"sample.slint\",\"sha256\":\"0042d183d8f59fcc429eb625b465ac18609f3d22e5ff3daaed124076cd0c1a8a\",\"uri\":\"file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20b/sample.slint\",\"version\":1},\"findings\":[],\"freshness\":\"current\",\"pending\":false,\"position_encoding\":\"utf-16\",\"provider\":\"slint\",\"reason\":null,\"report\":{\"diagnostics\":[],\"uri\":\"file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20b/sample.slint\",\"version\":1},\"reported_version\":1,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"clean\",\"summary\":{\"complete\":true,\"errors\":0,\"hints\":0,\"information\":0,\"scope\":\"document\",\"total\":0,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":1,\"id\":\"8b7e60b2-c040-4d38-95b0-cdb2f83a5f12\",\"result_bytes\":755,\"result_sha256\":\"626208d2910761df2e4f58e2629f5f091ccec2eab11826618fc325b43225114e\"},\"version_verified\":true}"
+            }
+          ],
+          "structuredContent": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 1,
+            "document": {
+              "path": "sample.slint",
+              "sha256": "0042d183d8f59fcc429eb625b465ac18609f3d22e5ff3daaed124076cd0c1a8a",
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20b/sample.slint",
+              "version": 1
+            },
+            "findings": [],
+            "freshness": "current",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "slint",
+            "reason": null,
+            "report": {
+              "diagnostics": [],
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20b/sample.slint",
+              "version": 1
+            },
+            "reported_version": 1,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "clean",
+            "summary": {
+              "complete": true,
+              "errors": 0,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 0,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "8b7e60b2-c040-4d38-95b0-cdb2f83a5f12",
+              "result_bytes": 755,
+              "result_sha256": "626208d2910761df2e4f58e2629f5f091ccec2eab11826618fc325b43225114e"
+            },
+            "version_verified": true
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "create_text_file",
+      "arguments": {
+        "relative_path": "denied.txt",
+        "expected_sha256": null,
+        "content": "denied"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"error\":{\"code\":\"PERMISSION_DENIED\",\"message\":\"Project writes are disabled\"}}"
+            }
+          ],
+          "structuredContent": {
+            "error": {
+              "code": "PERMISSION_DENIED",
+              "message": "Project writes are disabled"
+            }
+          },
+          "isError": true
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "transaction_prepare",
+      "arguments": {
+        "changes": [
+          {
+            "path": "sample.slint",
+            "expected_sha256": "0042d183d8f59fcc429eb625b465ac18609f3d22e5ff3daaed124076cd0c1a8a",
+            "content": "export component App inherits Window {\n    in-out property <string> title-text: \"Hello\";\n    Text { text: root.title-text; }\n}\n\nexport component Broken inherits Window { invalid-property: ???; }\n"
+          }
+        ]
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"752face5a6806f6fff4cdf5c422af11790faafcb656e30b97be6ecaaa09f78d6\",\"before_sha256\":\"0042d183d8f59fcc429eb625b465ac18609f3d22e5ff3daaed124076cd0c1a8a\",\"diff\":\"--- a/sample.slint\\n+++ b/sample.slint\\n@@ -2,3 +2,5 @@\\n     in-out property <string> title-text: \\\"Hello\\\";\\n     Text { text: root.title-text; }\\n }\\n+\\n+export component Broken inherits Window { invalid-property: ???; }\\n\",\"path\":\"sample.slint\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":4,\"id\":\"cb55591a-e5b6-4b7c-afd5-e4e4f93d1583\",\"result_bytes\":591,\"result_sha256\":\"f36c039f1faa5532e09cde3313e847ede31ff68ac2b581ed3a42c6c9d0679b78\"},\"transaction_id\":\"0896fc31-23b0-4b60-a210-9c364494346e\"}"
+            }
+          ],
+          "structuredContent": {
+            "atomic_visibility": "per_file_only",
+            "files": [
+              {
+                "after_sha256": "752face5a6806f6fff4cdf5c422af11790faafcb656e30b97be6ecaaa09f78d6",
+                "before_sha256": "0042d183d8f59fcc429eb625b465ac18609f3d22e5ff3daaed124076cd0c1a8a",
+                "diff": "--- a/sample.slint\n+++ b/sample.slint\n@@ -2,3 +2,5 @@\n     in-out property <string> title-text: \"Hello\";\n     Text { text: root.title-text; }\n }\n+\n+export component Broken inherits Window { invalid-property: ???; }\n",
+                "path": "sample.slint"
+              }
+            ],
+            "journaled_recovery": true,
+            "phase": "draft",
+            "requires_apply": true,
+            "trace": {
+              "elapsed_ms": 4,
+              "id": "cb55591a-e5b6-4b7c-afd5-e4e4f93d1583",
+              "result_bytes": 591,
+              "result_sha256": "f36c039f1faa5532e09cde3313e847ede31ff68ac2b581ed3a42c6c9d0679b78"
+            },
+            "transaction_id": "0896fc31-23b0-4b60-a210-9c364494346e"
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "transaction_preview",
+      "arguments": {
+        "transaction_id": "0896fc31-23b0-4b60-a210-9c364494346e"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"atomic_visibility\":\"per_file_only\",\"files\":[{\"after_sha256\":\"752face5a6806f6fff4cdf5c422af11790faafcb656e30b97be6ecaaa09f78d6\",\"before_sha256\":\"0042d183d8f59fcc429eb625b465ac18609f3d22e5ff3daaed124076cd0c1a8a\",\"diff\":\"--- a/sample.slint\\n+++ b/sample.slint\\n@@ -2,3 +2,5 @@\\n     in-out property <string> title-text: \\\"Hello\\\";\\n     Text { text: root.title-text; }\\n }\\n+\\n+export component Broken inherits Window { invalid-property: ???; }\\n\",\"path\":\"sample.slint\"}],\"journaled_recovery\":true,\"phase\":\"draft\",\"requires_apply\":true,\"trace\":{\"elapsed_ms\":0,\"id\":\"bcae814a-eca9-4481-a133-633c7b308f42\",\"result_bytes\":591,\"result_sha256\":\"f36c039f1faa5532e09cde3313e847ede31ff68ac2b581ed3a42c6c9d0679b78\"},\"transaction_id\":\"0896fc31-23b0-4b60-a210-9c364494346e\"}"
+            }
+          ],
+          "structuredContent": {
+            "atomic_visibility": "per_file_only",
+            "files": [
+              {
+                "after_sha256": "752face5a6806f6fff4cdf5c422af11790faafcb656e30b97be6ecaaa09f78d6",
+                "before_sha256": "0042d183d8f59fcc429eb625b465ac18609f3d22e5ff3daaed124076cd0c1a8a",
+                "diff": "--- a/sample.slint\n+++ b/sample.slint\n@@ -2,3 +2,5 @@\n     in-out property <string> title-text: \"Hello\";\n     Text { text: root.title-text; }\n }\n+\n+export component Broken inherits Window { invalid-property: ???; }\n",
+                "path": "sample.slint"
+              }
+            ],
+            "journaled_recovery": true,
+            "phase": "draft",
+            "requires_apply": true,
+            "trace": {
+              "elapsed_ms": 0,
+              "id": "bcae814a-eca9-4481-a133-633c7b308f42",
+              "result_bytes": 591,
+              "result_sha256": "f36c039f1faa5532e09cde3313e847ede31ff68ac2b581ed3a42c6c9d0679b78"
+            },
+            "transaction_id": "0896fc31-23b0-4b60-a210-9c364494346e"
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "transaction_apply",
+      "arguments": {
+        "transaction_id": "0896fc31-23b0-4b60-a210-9c364494346e"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 4,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"backend_sync_warnings\":[],\"files\":1,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":17,\"id\":\"8dca1d25-6aa2-4058-bdbc-717a68683dc0\",\"result_bytes\":114,\"result_sha256\":\"a5ddb8bb84708aa7797f57138d09da8286a8f2b2240d0cf2e97e437a9b09242b\"},\"transaction_id\":\"0896fc31-23b0-4b60-a210-9c364494346e\"}"
+            }
+          ],
+          "structuredContent": {
+            "backend_sync_warnings": [],
+            "files": 1,
+            "phase": "committed",
+            "trace": {
+              "elapsed_ms": 17,
+              "id": "8dca1d25-6aa2-4058-bdbc-717a68683dc0",
+              "result_bytes": 114,
+              "result_sha256": "a5ddb8bb84708aa7797f57138d09da8286a8f2b2240d0cf2e97e437a9b09242b"
+            },
+            "transaction_id": "0896fc31-23b0-4b60-a210-9c364494346e"
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "get_diagnostics_for_file",
+      "arguments": {
+        "relative_path": "sample.slint"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"available\":false,\"clean_build_proven\":false,\"current_version\":1,\"document\":{\"path\":\"sample.slint\",\"sha256\":\"752face5a6806f6fff4cdf5c422af11790faafcb656e30b97be6ecaaa09f78d6\",\"uri\":\"file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint\",\"version\":1},\"findings\":[],\"freshness\":\"pending\",\"pending\":true,\"position_encoding\":\"utf-16\",\"provider\":\"slint\",\"reason\":\"No current diagnostics received; this does not prove zero errors\",\"report\":null,\"reported_version\":null,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"pending\",\"summary\":{\"complete\":false,\"errors\":0,\"hints\":0,\"information\":0,\"scope\":\"document\",\"total\":0,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":26,\"id\":\"dd180627-c22e-4f80-998a-c9aa3f61c3d0\",\"result_bytes\":720,\"result_sha256\":\"01e6f421bcc89842e77215103c3d9e01f2737b38527848a2e3083b762777371b\"},\"version_verified\":false}"
+            }
+          ],
+          "structuredContent": {
+            "available": false,
+            "clean_build_proven": false,
+            "current_version": 1,
+            "document": {
+              "path": "sample.slint",
+              "sha256": "752face5a6806f6fff4cdf5c422af11790faafcb656e30b97be6ecaaa09f78d6",
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint",
+              "version": 1
+            },
+            "findings": [],
+            "freshness": "pending",
+            "pending": true,
+            "position_encoding": "utf-16",
+            "provider": "slint",
+            "reason": "No current diagnostics received; this does not prove zero errors",
+            "report": null,
+            "reported_version": null,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "pending",
+            "summary": {
+              "complete": false,
+              "errors": 0,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 0,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 26,
+              "id": "dd180627-c22e-4f80-998a-c9aa3f61c3d0",
+              "result_bytes": 720,
+              "result_sha256": "01e6f421bcc89842e77215103c3d9e01f2737b38527848a2e3083b762777371b"
+            },
+            "version_verified": false
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "get_diagnostics_for_file",
+      "arguments": {
+        "relative_path": "sample.slint"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"available\":true,\"clean_build_proven\":false,\"current_version\":1,\"document\":{\"path\":\"sample.slint\",\"sha256\":\"752face5a6806f6fff4cdf5c422af11790faafcb656e30b97be6ecaaa09f78d6\",\"uri\":\"file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint\",\"version\":1},\"findings\":[{\"document_version\":1,\"lsp_severity\":1,\"message\":\"invalid expression\",\"provider\":\"slint\",\"range\":{\"end\":{\"character\":61,\"line\":5},\"start\":{\"character\":60,\"line\":5}},\"relative_path\":\"sample.slint\",\"rule_id\":null,\"severity\":\"error\",\"source\":\"lsp_push\",\"source_sha256\":\"752face5a6806f6fff4cdf5c422af11790faafcb656e30b97be6ecaaa09f78d6\",\"status\":\"current\"},{\"document_version\":1,\"lsp_severity\":1,\"message\":\"Parse error\",\"provider\":\"slint\",\"range\":{\"end\":{\"character\":61,\"line\":5},\"start\":{\"character\":60,\"line\":5}},\"relative_path\":\"sample.slint\",\"rule_id\":null,\"severity\":\"error\",\"source\":\"lsp_push\",\"source_sha256\":\"752face5a6806f6fff4cdf5c422af11790faafcb656e30b97be6ecaaa09f78d6\",\"status\":\"current\"}],\"freshness\":\"current\",\"pending\":false,\"position_encoding\":\"utf-16\",\"provider\":\"slint\",\"reason\":null,\"report\":{\"diagnostics\":[{\"message\":\"invalid expression\",\"range\":{\"end\":{\"character\":61,\"line\":5},\"start\":{\"character\":60,\"line\":5}},\"severity\":1},{\"message\":\"Parse error\",\"range\":{\"end\":{\"character\":61,\"line\":5},\"start\":{\"character\":60,\"line\":5}},\"severity\":1}],\"uri\":\"file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint\",\"version\":1},\"reported_version\":1,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"errors\",\"summary\":{\"complete\":true,\"errors\":2,\"hints\":0,\"information\":0,\"scope\":\"document\",\"total\":2,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":1,\"id\":\"b3351778-75e0-48f1-b62e-be8ef6176ef8\",\"result_bytes\":1732,\"result_sha256\":\"87a45a75aca769e4e39661677d069dd0dcf5ee4d0b13703f13199979cc59c714\"},\"version_verified\":true}"
+            }
+          ],
+          "structuredContent": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 1,
+            "document": {
+              "path": "sample.slint",
+              "sha256": "752face5a6806f6fff4cdf5c422af11790faafcb656e30b97be6ecaaa09f78d6",
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint",
+              "version": 1
+            },
+            "findings": [
+              {
+                "document_version": 1,
+                "lsp_severity": 1,
+                "message": "invalid expression",
+                "provider": "slint",
+                "range": {
+                  "end": {
+                    "character": 61,
+                    "line": 5
+                  },
+                  "start": {
+                    "character": 60,
+                    "line": 5
+                  }
+                },
+                "relative_path": "sample.slint",
+                "rule_id": null,
+                "severity": "error",
+                "source": "lsp_push",
+                "source_sha256": "752face5a6806f6fff4cdf5c422af11790faafcb656e30b97be6ecaaa09f78d6",
+                "status": "current"
+              },
+              {
+                "document_version": 1,
+                "lsp_severity": 1,
+                "message": "Parse error",
+                "provider": "slint",
+                "range": {
+                  "end": {
+                    "character": 61,
+                    "line": 5
+                  },
+                  "start": {
+                    "character": 60,
+                    "line": 5
+                  }
+                },
+                "relative_path": "sample.slint",
+                "rule_id": null,
+                "severity": "error",
+                "source": "lsp_push",
+                "source_sha256": "752face5a6806f6fff4cdf5c422af11790faafcb656e30b97be6ecaaa09f78d6",
+                "status": "current"
+              }
+            ],
+            "freshness": "current",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "slint",
+            "reason": null,
+            "report": {
+              "diagnostics": [
+                {
+                  "message": "invalid expression",
+                  "range": {
+                    "end": {
+                      "character": 61,
+                      "line": 5
+                    },
+                    "start": {
+                      "character": 60,
+                      "line": 5
+                    }
+                  },
+                  "severity": 1
+                },
+                {
+                  "message": "Parse error",
+                  "range": {
+                    "end": {
+                      "character": 61,
+                      "line": 5
+                    },
+                    "start": {
+                      "character": 60,
+                      "line": 5
+                    }
+                  },
+                  "severity": 1
+                }
+              ],
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint",
+              "version": 1
+            },
+            "reported_version": 1,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "errors",
+            "summary": {
+              "complete": true,
+              "errors": 2,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 2,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "b3351778-75e0-48f1-b62e-be8ef6176ef8",
+              "result_bytes": 1732,
+              "result_sha256": "87a45a75aca769e4e39661677d069dd0dcf5ee4d0b13703f13199979cc59c714"
+            },
+            "version_verified": true
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "transaction_rollback",
+      "arguments": {
+        "transaction_id": "0896fc31-23b0-4b60-a210-9c364494346e"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"backend_sync_warnings\":[],\"files\":1,\"phase\":\"committed\",\"trace\":{\"elapsed_ms\":26,\"id\":\"e53ee22a-788c-4ba0-bda2-094e838ebd22\",\"result_bytes\":163,\"result_sha256\":\"6792e552d4ba5ae0f440e0383523bda893643dd98ee931d940828c69d817b1c3\"},\"transaction_id\":\"49df84ae-4f41-41ac-bae5-722551cf66a5\",\"undo_of\":\"0896fc31-23b0-4b60-a210-9c364494346e\"}"
+            }
+          ],
+          "structuredContent": {
+            "backend_sync_warnings": [],
+            "files": 1,
+            "phase": "committed",
+            "trace": {
+              "elapsed_ms": 26,
+              "id": "e53ee22a-788c-4ba0-bda2-094e838ebd22",
+              "result_bytes": 163,
+              "result_sha256": "6792e552d4ba5ae0f440e0383523bda893643dd98ee931d940828c69d817b1c3"
+            },
+            "transaction_id": "49df84ae-4f41-41ac-bae5-722551cf66a5",
+            "undo_of": "0896fc31-23b0-4b60-a210-9c364494346e"
+          },
+          "isError": false
+        }
+      }
+    },
+    {
+      "language": "slint",
+      "tool": "get_diagnostics_for_file",
+      "arguments": {
+        "relative_path": "sample.slint"
+      },
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 8,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"available\":true,\"clean_build_proven\":false,\"current_version\":2,\"document\":{\"path\":\"sample.slint\",\"sha256\":\"0042d183d8f59fcc429eb625b465ac18609f3d22e5ff3daaed124076cd0c1a8a\",\"uri\":\"file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint\",\"version\":2},\"findings\":[],\"freshness\":\"current\",\"pending\":false,\"position_encoding\":\"utf-16\",\"provider\":\"slint\",\"reason\":null,\"report\":{\"diagnostics\":[],\"uri\":\"file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint\",\"version\":2},\"reported_version\":2,\"source\":\"lsp_push\",\"stale\":false,\"status\":\"clean\",\"summary\":{\"complete\":true,\"errors\":0,\"hints\":0,\"information\":0,\"scope\":\"document\",\"total\":0,\"unknown\":0,\"warnings\":0},\"trace\":{\"elapsed_ms\":1,\"id\":\"b4157ded-c7b0-4998-addd-962b3c7be971\",\"result_bytes\":797,\"result_sha256\":\"a28a04a95f20dbed3107fa4d32a43af7e1e3bcf80d63526abdd1c8688af5058e\"},\"version_verified\":true}"
+            }
+          ],
+          "structuredContent": {
+            "available": true,
+            "clean_build_proven": false,
+            "current_version": 2,
+            "document": {
+              "path": "sample.slint",
+              "sha256": "0042d183d8f59fcc429eb625b465ac18609f3d22e5ff3daaed124076cd0c1a8a",
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint",
+              "version": 2
+            },
+            "findings": [],
+            "freshness": "current",
+            "pending": false,
+            "position_encoding": "utf-16",
+            "provider": "slint",
+            "reason": null,
+            "report": {
+              "diagnostics": [],
+              "uri": "file:///C:/OdinQA/home-progress-1022/slint-final07.fixtures/slint/project%20%E4%B8%AD%E6%96%87%20a/sample.slint",
+              "version": 2
+            },
+            "reported_version": 2,
+            "source": "lsp_push",
+            "stale": false,
+            "status": "clean",
+            "summary": {
+              "complete": true,
+              "errors": 0,
+              "hints": 0,
+              "information": 0,
+              "scope": "document",
+              "total": 0,
+              "unknown": 0,
+              "warnings": 0
+            },
+            "trace": {
+              "elapsed_ms": 1,
+              "id": "b4157ded-c7b0-4998-addd-962b3c7be971",
+              "result_bytes": 797,
+              "result_sha256": "a28a04a95f20dbed3107fa4d32a43af7e1e3bcf80d63526abdd1c8688af5058e"
+            },
+            "version_verified": true
+          },
+          "isError": false
+        }
+      }
+    }
+  ],
+  "runtime_source_sha256": {
+    "crates/odin/build.rs": "c901d4e9601890336248e1e5c20d600c2c837390e54d8dc5c7bb7704b5c2dabe",
+    "crates/odin/src/http.rs": "72746cbb15551b4a6b865e2a583ac3fdadb478fcd6041b5696c7b79069f0f275",
+    "crates/odin/src/main.rs": "f9007f16fe898d536264c5d261b53d0be131bc04685b408dc4ae92f857322129",
+    "crates/odin/src/mcp.rs": "16ac2886ea5003b116f025ae48b8368700dd10b9fb59520d4f96e999c3c1ba95",
+    "crates/odin/src/metadata.rs": "6010f496c4af39edc2523362ddcb9b3398cfe8ae996ac916e19aaf833d4d4063",
+    "crates/odin/src/setup.rs": "2aebc30744024e809335a9b4215d03b296407b3fdabe1e2d51646fadd71791a1",
+    "crates/odin-core/src/config.rs": "711a2519b361b9743cfc87609a0a7d335a3b2f9f2586ffa5b1ec00b6eb33bb7d",
+    "crates/odin-core/src/error.rs": "f01697b5eec32006f7ea676833d30b52030a8ebd5f45974b9f33d67a6d34e90e",
+    "crates/odin-core/src/execution.rs": "155dfc311d0119f2460b7024f12911745e48729199dd9539ceffefca8c4bba88",
+    "crates/odin-core/src/languages.rs": "79a16bacd2d91339e5f05b05d09a8bd33fe46339f34e0d29f9d4c4efba767502",
+    "crates/odin-core/src/lib.rs": "c6ebd10fb8e3ae005fe932f9db226fa094e869c383b438b33555c060d3c0eee5",
+    "crates/odin-core/src/memory.rs": "2b613b41174cc41f6778cc4ddc0350eaa2cd0753b2f6b881c1ff4b7b96f7abf4",
+    "crates/odin-core/src/paths.rs": "7ff6f57fc9315732bc1b32732503af9f8358b51353baf04049c3580de8c02cd9",
+    "crates/odin-core/src/process.rs": "b69e2cf89c9cf96b79f01b85ea67ad41a1f6dcdd89d5e9bedd6167062fb84fa8",
+    "crates/odin-core/src/sandbox.rs": "18be5bd8c1794375fbfd79f6ffe1d226167b0942614110c86d6cd4e92ea5f5d5",
+    "crates/odin-core/src/sandbox_policy.rs": "76fa4355780c363c1524b17713076a3a08b66384053916c1da22cbe0c05eb27a",
+    "crates/odin-core/src/search.rs": "fb9697e493a278593076982e243245b8d331ba71e18229b8796eac979c508274",
+    "crates/odin-core/src/store.rs": "326482e786fd8de8f02654dfc4682d160ddd70f61923788ea3503212b6f6f5fd",
+    "crates/odin-core/src/transaction.rs": "495b5344b6d68e8c1c2b82195fb532883fde9bf3484ac6401740eb7956fb52bb",
+    "crates/odin-core/src/workspace.rs": "38e78557ac99effc511aae9d018a088456010b47490f8d8685d59ec02d57c3df",
+    "crates/odin-core/tests/fixtures/os_sandbox_workload.rs": "7e8d8905257adfdee5e0b9b195e3d4d99306bae752cf7bf7f11136c0d9d6a09c",
+    "crates/odin-core/tests/fixtures/stdin_workload.rs": "93f2a2c2ccd2e9db54bf34b93723a4beeb8a86a60df9ce1a3ec66fd00dc53a86",
+    "crates/odin-core/tests/host_execution_policy.rs": "ba34311478079eca7d43a7904b228fa2d9c17697214cf26be162d6cb4302421a",
+    "crates/odin-core/tests/os_sandbox_native.rs": "5923210fc19435d8ad8a6ea2145c45c2b58a44e23ba42bf411fb32c133ff30a2",
+    "crates/odin-core/tests/process_contention.rs": "acde589bdadca4f41290883543f49a1a6b0710a607ea40cd06b33cf8ce1ac301",
+    "crates/odin-core/tests/stdin_execution.rs": "9d80ac47146314c2b7ab043b91a19391ec090f4819862131fb836c06ea3b1a31",
+    "crates/odin-core/tests/workspace_binding.rs": "ae8591703a277bb1755498effc78e0532f6ef5851d4458fe351b94e6a4919902",
+    "crates/odin-engine/src/analysis.rs": "1e89b65bf75397b799353fcc5cda2984f0adb70cc4becac438f089443e473442",
+    "crates/odin-engine/src/flow.rs": "b82de18dd48b805c0c542f94d3b2c0c90ff64052ab69b61646a69b47125d206c",
+    "crates/odin-engine/src/formatter.rs": "79cd591119294b25a3624ccb4d97d349856abc57039a530f93a8c2f517fc7ecb",
+    "crates/odin-engine/src/ide.rs": "e2712e30f060d31acfd5ded6ac6e4e4d9f50071951df50638d84e104a4aaf5f1",
+    "crates/odin-engine/src/inspections.rs": "b01820e8ceb56194f69b6ff71caa2640ef88d25dfd328e3a69addecebf62a720",
+    "crates/odin-engine/src/lib.rs": "08393affb482164c5e64055d6e44981ee1a1703cc85fc589e814ea147844bce8",
+    "crates/odin-engine/src/occurrences.rs": "9c5dacae294dea17cf1d14a729d57810d27f1492ac43292f98eb8331aff6b155",
+    "crates/odin-engine/src/refactor.rs": "41b8c8b9154b52118d2c47bd5df863330333818ff0d4b01efc0f707a115a5869",
+    "crates/odin-engine/src/results.rs": "d7b89fbaa048e8b1ec587a8596201e6c3292c6ab849df5d64ab2548be8747492",
+    "crates/odin-engine/src/schema.rs": "310e6e561a37a4b5f5f91c75185ac5332149503f2db72c8387b01f8cb11c8724",
+    "crates/odin-engine/src/shell.rs": "0d1e84f741657bcd01c62b8f0dd24527023e9491c7503f71d019a2766e68e751",
+    "crates/odin-engine/src/symbols.rs": "69056444f324be2bfdb7049b22adb9a490523bec98ff500168ee15f97c544c0f",
+    "crates/odin-engine/src/text_replace.rs": "8fa26da714905d4363ccfe60bc77196906b124a2322a8dcfdd15b035db4f654c",
+    "crates/odin-engine/tests/completion.rs": "3dddfde2c36edffaddc440c95d8181c3b09b9c131f93a7ce9a58d80eab4678af",
+    "crates/odin-engine/tests/debug_launch_policy.rs": "6d89bfab59065cfdeb68303b952fe8056a9b4a45068aa58558d01b5edf8ceb52",
+    "crates/odin-engine/tests/formatter_profiles.rs": "74db7ea48c617788acd7d7434d71c1fd46eb3483a8e894cc2322bb055a1d2a6e",
+    "crates/odin-engine/tests/ide_tools.rs": "6bfc26c527616e97f1b636902d3b7962a42d4445cc33e3270a48db4449a0e0d5",
+    "crates/odin-engine/tests/invariants.rs": "0c90fa06597051f18876611409092a4ec482e9b2041c4cc65267d2a517dca879",
+    "crates/odin-engine/tests/project_analysis.rs": "779a9e07f7c46ec091f2f699a9185478e46b52fd59a54fcde99301c79884e2b9",
+    "crates/odin-protocol/src/dap.rs": "23236ae9bd7476136ec17793cb1b4c2a7cc8404e7c17d5e36b124221ee82b05c",
+    "crates/odin-protocol/src/lib.rs": "99a75cf5cf2f0f42c91bb5d4344fa56ca54aab6d2c0c8bc498da1a1f9b98e68c",
+    "crates/odin-protocol/src/lsp.rs": "6f3272bef7d3455bec13e4c2e7657756e9255dbc41e739495bdc7437fccab12b",
+    "crates/odin-protocol/src/rpc.rs": "286f820bffcb014f8e7ac169c2d591ccfc622a1de6c794ef60a315cc6b313b12",
+    "crates/odin-protocol/src/text.rs": "047329493570b965a79f93a4dd3b2f62a05147d9610547eee5ae4d38619055c2",
+    "crates/odin-protocol/src/workspace.rs": "259f5936b90cd502b20b1eaee20977031f973fe76febed86c03b5bf3f380db6e",
+    "crates/odin-protocol/tests/fixture_protocols.rs": "5fe65328abf7c442d3d51f0d654a8b2e16cc1dbe8e7940ef8f22518e97596576",
+    "crates/odin/Cargo.toml": "e3b96d98d97ae70069395e97d4075e6db6ccf4b78f3565fc6c5e48755d54c90d",
+    "crates/odin-core/Cargo.toml": "666ad092614df526ed1b8d3253eb2565cc42c4876bb457d62734d0eb2e52f1bf",
+    "crates/odin-engine/Cargo.toml": "68752a97bc3317afd4b125f406bdff03c236cfd948ca6a9fe441211e54c4150d",
+    "crates/odin-protocol/Cargo.toml": "b89d0deb8c21224da781ccfa7549fe34f536c3561115750d9eb230accbef81fc",
+    "Cargo.toml": "8a009f775d201c8199a6d6f81963bb75dde59a48dc783ae6086a6a7407e21e36",
+    "Cargo.lock": "14f04535d80050b87c63f27a359473019516d528c7b0586acd825b4b1a1d0c34"
+  },
+  "driver_sha256": "280a756f953d859bf742e5a1b084923c8e390d3671973cd394124088719c794f",
+  "setup_script_sha256": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec",
+  "bundle_manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+  "client_entries": [
+    {
+      "command": [
+        "C:\\OdinQA\\x7\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--config",
+        "C:\\OdinQA\\home-progress-1022\\slint-final07.fixtures\\slint-readonly.toml",
+        "--workspace",
+        ".",
+        "serve",
+        "--transport",
+        "stdio"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\slint-final07.fixtures\\slint\\project \u4e2d\u6587 a"
+    },
+    {
+      "command": [
+        "C:\\OdinQA\\x7\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--config",
+        "C:\\OdinQA\\home-progress-1022\\slint-final07.fixtures\\slint-readonly.toml",
+        "--workspace",
+        ".",
+        "serve",
+        "--transport",
+        "stdio"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\slint-final07.fixtures\\slint\\project b"
+    },
+    {
+      "command": [
+        "C:\\OdinQA\\x7\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--config",
+        "C:\\OdinQA\\home-progress-1022\\slint-final07.fixtures\\slint-writable.toml",
+        "--workspace",
+        ".",
+        "serve",
+        "--transport",
+        "stdio"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\slint-final07.fixtures\\slint\\project \u4e2d\u6587 a"
+    }
+  ],
+  "expanded_driver_sha256": "a11d84c20db58b65f92363c58413af058219f3ba1c8691d49f8e5b406b5c56d2",
+  "predetermined_required_capabilities": {
+    "slint": [
+      "documentSymbolProvider"
+    ],
+    "c": [
+      "documentSymbolProvider",
+      "definitionProvider",
+      "referencesProvider",
+      "hoverProvider",
+      "renameProvider"
+    ],
+    "cpp": [
+      "documentSymbolProvider",
+      "definitionProvider",
+      "referencesProvider",
+      "hoverProvider",
+      "renameProvider"
+    ],
+    "toml": [
+      "documentSymbolProvider",
+      "documentFormattingProvider"
+    ],
+    "yaml": [
+      "documentSymbolProvider",
+      "documentFormattingProvider"
+    ],
+    "markdown": [
+      "documentSymbolProvider"
+    ],
+    "rust": [
+      "documentSymbolProvider",
+      "definitionProvider",
+      "referencesProvider",
+      "hoverProvider",
+      "renameProvider"
+    ],
+    "ty": [
+      "documentSymbolProvider",
+      "definitionProvider",
+      "referencesProvider",
+      "hoverProvider",
+      "renameProvider"
+    ],
+    "ruff": [
+      "diagnosticProvider",
+      "documentFormattingProvider",
+      "codeActionProvider"
+    ],
+    "vtsls-javascript": [
+      "documentSymbolProvider",
+      "definitionProvider",
+      "referencesProvider",
+      "hoverProvider",
+      "renameProvider"
+    ],
+    "vtsls-typescript": [
+      "documentSymbolProvider",
+      "definitionProvider",
+      "referencesProvider",
+      "hoverProvider",
+      "renameProvider"
+    ]
+  },
+  "native_inspection_formatter_execution": "NOT_RUN: LSP path only; no inspection/formatter host grants are added",
+  "external_runtime_PATH": "C:\\WINDOWS\\System32;C:\\WINDOWS",
+  "persistent_user_path_before": {
+    "available": true,
+    "value": "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\python-3.13.16\\tools\\Scripts;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\python-3.13.16\\tools;C:\\Users\\steven\\.cargo\\bin;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\node-24.21.0\\node-v24.21.0-win-x64;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\gh-2.102.0\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\git-2.56.0.2\\cmd;C:\\Users\\steven\\AppData\\Roaming\\npm;C:\\Program Files\\GitHub CLI;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Godot;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg.Essentials_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-9.0.1-essentials_build\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\soundx;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WinGet\\Packages\\astral-sh.uv_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\steven\\.local\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\Crew-Portable\\v0.5.1;E:\\odin\\.odin\\validation-tools\\dotnet-home\\.dotnet\\tools;C:\\Users\\steven\\AppData\\Local\\Temp\\odin-language-ide-_n9yp3a7\\backend-cache\\csharp_a\\dotnet-home\\.dotnet\\tools;C:\\Users\\steven\\AppData\\Local\\Temp\\odin-language-ide-_n9yp3a7\\backend-cache\\csharp_b\\dotnet-home\\.dotnet\\tools;C:\\Users\\steven\\AppData\\Local\\Temp\\odin-language-ide-cvypo2ad\\backend-cache\\csharp_a\\dotnet-home\\.dotnet\\tools;C:\\Users\\steven\\AppData\\Local\\Temp\\odin-language-ide-cvypo2ad\\backend-cache\\csharp_b\\dotnet-home\\.dotnet\\tools;C:\\Users\\steven\\AppData\\Local\\Temp\\odin-native-diagnostic-99tq8mk4\\backend-cache\\csharp_diagnostic\\dotnet-home\\.dotnet\\tools;C:\\Users\\steven\\AppData\\Local\\Temp\\odin-native-diagnostic-bphn0qwg\\backend-cache\\csharp_diagnostic\\dotnet-home\\.dotnet\\tools;C:\\Users\\steven\\.local\\share\\Odin",
+    "registry_type": 2
+  },
+  "configuration_sources": [
+    {
+      "case": "slint",
+      "host": "C:\\OdinQA\\x7\\Home \u4e2d\u6587\\.config\\odin\\host.toml",
+      "sha256": "2d38f53c66285bb9ec488c831b185ded11b7bec8ae275145cd22410610fbbd2a"
+    }
+  ],
+  "persistent_user_path_after": {
+    "available": true,
+    "value": "C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\python-3.13.16\\tools\\Scripts;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\python-3.13.16\\tools;C:\\Users\\steven\\.cargo\\bin;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\node-24.21.0\\node-v24.21.0-win-x64;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\gh-2.102.0\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\git-2.56.0.2\\cmd;C:\\Users\\steven\\AppData\\Roaming\\npm;C:\\Program Files\\GitHub CLI;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Godot;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg.Essentials_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-9.0.1-essentials_build\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\mxc\\node_modules\\@microsoft\\mxc-sdk\\bin\\x64;C:\\Users\\steven\\AppData\\Local\\Programs\\DevTools\\soundx;C:\\Users\\steven\\AppData\\Local\\Microsoft\\WinGet\\Packages\\astral-sh.uv_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\steven\\.local\\bin;C:\\Users\\steven\\AppData\\Local\\Programs\\Crew-Portable\\v0.5.1;E:\\odin\\.odin\\validation-tools\\dotnet-home\\.dotnet\\tools;C:\\Users\\steven\\AppData\\Local\\Temp\\odin-language-ide-_n9yp3a7\\backend-cache\\csharp_a\\dotnet-home\\.dotnet\\tools;C:\\Users\\steven\\AppData\\Local\\Temp\\odin-language-ide-_n9yp3a7\\backend-cache\\csharp_b\\dotnet-home\\.dotnet\\tools;C:\\Users\\steven\\AppData\\Local\\Temp\\odin-language-ide-cvypo2ad\\backend-cache\\csharp_a\\dotnet-home\\.dotnet\\tools;C:\\Users\\steven\\AppData\\Local\\Temp\\odin-language-ide-cvypo2ad\\backend-cache\\csharp_b\\dotnet-home\\.dotnet\\tools;C:\\Users\\steven\\AppData\\Local\\Temp\\odin-native-diagnostic-99tq8mk4\\backend-cache\\csharp_diagnostic\\dotnet-home\\.dotnet\\tools;C:\\Users\\steven\\AppData\\Local\\Temp\\odin-native-diagnostic-bphn0qwg\\backend-cache\\csharp_diagnostic\\dotnet-home\\.dotnet\\tools;C:\\Users\\steven\\.local\\share\\Odin",
+    "registry_type": 2
+  },
+  "persistent_user_path_unchanged": "PASS",
+  "counts": {
+    "PASS": 19
+  },
+  "completed_unix": 1792647621.3224046
+}

@@ -1,0 +1,15 @@
+{
+  "name": "policy",
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "scripts/check_publish_policy.py"
+  ],
+  "cwd": "E:\\odin",
+  "exit_code": 0,
+  "seconds": 0.063,
+  "log": "C:\\OdinQA\\home-progress-1022\\closeout-policy.log",
+  "log_sha256": "59dd0830a2619aa31d85fad5025dff893243990bd80fb3fa64ddf7c747e9650c"
+}

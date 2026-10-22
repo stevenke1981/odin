@@ -1,0 +1,5 @@
+{"case": "ty", "status": "PASS", "counts": {"PASS": 36}}
+{"case": "ruff", "status": "PASS", "counts": {"PASS": 29}}
+{"case": "vtsls-javascript", "status": "PARTIAL", "counts": {"PASS": 32, "NOT_VERIFIED": 4}}
+{"case": "vtsls-typescript", "status": "PARTIAL", "counts": {"PASS": 32, "NOT_VERIFIED": 4}}
+{"status": "PARTIAL", "counts": {"PASS": 129, "NOT_VERIFIED": 8}}

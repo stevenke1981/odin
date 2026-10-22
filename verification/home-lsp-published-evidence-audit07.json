@@ -1,0 +1,1506 @@
+{
+  "schema_version": 1,
+  "scope": "PUBLISHED_EVIDENCE_BYTES_AND_LOGICAL_TRANSCRIPT_PARTITIONS_NOT_NEW_LANGUAGE_TESTS",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "published hash verification/home-lsp-expanded-gates.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-expanded-gates.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-expanded-gates.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-gate-fmt.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-expanded-gate-fmt.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-expanded-gate-fmt.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-gate-test.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-expanded-gate-test.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-expanded-gate-test.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-gate-clippy.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-expanded-gate-clippy.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-expanded-gate-clippy.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-node49-configured.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-node49-configured.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-node49-configured.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-node49-configured.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-node49-configured.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-node49-configured.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-root-builder-final.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-root-builder-final.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-root-builder-final.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-root-builder-final.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-root-builder-final.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-root-builder-final.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-release-190c308.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-release-190c308.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-release-190c308.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-release-190c308.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-release-190c308.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-release-190c308.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-new-release-smokes.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-new-release-smokes.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-new-release-smokes.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker-expanded06b-report.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker-expanded06b-report.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker-expanded06b-report.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded06b-success-worker-receipt.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-expanded06b-success-worker-receipt.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-expanded06b-success-worker-receipt.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded06-first-worker-failure.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-expanded06-first-worker-failure.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-expanded06-first-worker-failure.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-alternative-install-receipts.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-alternative-install-receipts.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-alternative-install-receipts.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-installed-home06.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-installed-home06.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-installed-home06.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-private-home-mcp.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-private-home-mcp.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-private-home-mcp.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-private-home-mcp-command.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-private-home-mcp-command.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-private-home-mcp-command.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-private-home-mcp.tool-stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-private-home-mcp.tool-stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-private-home-mcp.tool-stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-installed06-commands.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-installed06-commands.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-installed06-commands.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-smoke-cli.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-smoke-cli.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-smoke-cli.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-smoke-cli.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-smoke-cli.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-smoke-cli.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-smoke-stdio.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-smoke-stdio.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-smoke-stdio.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-smoke-stdio.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-smoke-stdio.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-smoke-stdio.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-smoke-http.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-smoke-http.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-smoke-http.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-smoke-http.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-smoke-http.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-smoke-http.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-smoke-cancel.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-smoke-cancel.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-smoke-cancel.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-smoke-cancel.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-smoke-cancel.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-smoke-cancel.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-smoke-workspace.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-smoke-workspace.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-smoke-workspace.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-smoke-workspace.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-smoke-workspace.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-smoke-workspace.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker06-success.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker06-success.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker06-success.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker06-success.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker06-success.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker06-success.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker06-cancel.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker06-cancel.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker06-cancel.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker06-cancel.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker06-cancel.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker06-cancel.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker06-timeout.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker06-timeout.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker06-timeout.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker06-timeout.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker06-timeout.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker06-timeout.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-alternative-ty.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-alternative-ty.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-alternative-ty.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-alternative-ruff.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-alternative-ruff.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-alternative-ruff.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-alternative-vtsls.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-alternative-vtsls.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-alternative-vtsls.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-payload06-build.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-payload06-build.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-payload06-build.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-payload06-closure.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-payload06-closure.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-payload06-closure.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-seven06-python.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-seven06-go.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-seven06-csharp.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-seven06-lua.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-seven06-javascript.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-seven06-typescript.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-seven06-bash.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-seven06-index.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded06-first-failure.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-private-home-mcp-driver.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-private-home-mcp-driver.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-private-home-mcp-driver.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-a-slint.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-a-c.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-a-cpp.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-a-rust.json.part01",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-a-rust.json.part02",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-a-rust.json.part03",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-a-rust.json.part04",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-a-index.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-a.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-a.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-b-toml.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-b-yaml.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-b-markdown.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-b-index.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-b.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-b.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-c-ty.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-c-ruff.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-c-vtsls-javascript.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-c-vtsls-typescript.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-c-index.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-c.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-c.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-expanded-retry06-commands.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-driver-verified-inert.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-root-builder07.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-root-builder07.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-payload-build-07.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-payload-closure-07.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-payload-unit-07.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-payload-slint-loader-07.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-payload-slint-loader-08.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-stage07.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-stage07.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-stage07.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker07-driver.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker07-driver.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker07-driver.py",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker07-report.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker07-report.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker07-report.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker07-success-receipt.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker07-success-receipt.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker07-success-receipt.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-slint-final07.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-slint-final07.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-slint-final07.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-slint-final07-command.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-slint-final07-command.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-slint-final07-command.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-slint-final07.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-slint-final07.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-slint-final07.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker07-success.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker07-success.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker07-success.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker07-success.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker07-success.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker07-success.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker07-cancel.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker07-cancel.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker07-cancel.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker07-cancel.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker07-cancel.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker07-cancel.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker07-timeout.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker07-timeout.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker07-timeout.stdout.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-worker07-timeout.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-worker07-timeout.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-worker07-timeout.stderr.log",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-review-payload07-inert-audit.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-review-payload07-inert-audit.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-review-payload07-inert-audit.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-review-payload07-inert-audit.command.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-review-payload07-inert-audit.command.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-review-payload07-inert-audit.command.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-review-static-02.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-review-static-02.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-review-static-02.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "published hash verification/home-lsp-review-static-02.md",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "original raw hash verification/home-lsp-review-static-02.md",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "exact LF normalization verification/home-lsp-review-static-02.md",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix original raw home-lsp-seven06",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "metadata equality home-lsp-seven06",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-seven06-python.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-seven06/python",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-seven06/python",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-seven06-go.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-seven06/go",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-seven06/go",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-seven06-csharp.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-seven06/csharp",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-seven06/csharp",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-seven06-lua.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-seven06/lua",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-seven06/lua",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-seven06-javascript.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-seven06/javascript",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-seven06/javascript",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-seven06-typescript.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-seven06/typescript",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-seven06/typescript",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-seven06-bash.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-seven06/bash",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-seven06/bash",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "every transcript entry exactly once home-lsp-seven06",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix original raw home-lsp-expanded-retry06-a",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "metadata equality home-lsp-expanded-retry06-a",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-expanded-retry06-a-slint.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "concatenated SHA home-lsp-expanded-retry06-a/slint",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-expanded-retry06-a/slint",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-expanded-retry06-a/slint",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-expanded-retry06-a-c.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "concatenated SHA home-lsp-expanded-retry06-a/c",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-expanded-retry06-a/c",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-expanded-retry06-a/c",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-expanded-retry06-a-cpp.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "concatenated SHA home-lsp-expanded-retry06-a/cpp",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-expanded-retry06-a/cpp",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-expanded-retry06-a/cpp",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-expanded-retry06-a-rust.json.part01",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-expanded-retry06-a-rust.json.part02",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-expanded-retry06-a-rust.json.part03",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-expanded-retry06-a-rust.json.part04",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "concatenated SHA home-lsp-expanded-retry06-a/rust",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-expanded-retry06-a/rust",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-expanded-retry06-a/rust",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "every transcript entry exactly once home-lsp-expanded-retry06-a",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix original raw home-lsp-expanded-retry06-b",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "metadata equality home-lsp-expanded-retry06-b",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-expanded-retry06-b-toml.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "concatenated SHA home-lsp-expanded-retry06-b/toml",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-expanded-retry06-b/toml",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-expanded-retry06-b/toml",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-expanded-retry06-b-yaml.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "concatenated SHA home-lsp-expanded-retry06-b/yaml",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-expanded-retry06-b/yaml",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-expanded-retry06-b/yaml",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-expanded-retry06-b-markdown.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "concatenated SHA home-lsp-expanded-retry06-b/markdown",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-expanded-retry06-b/markdown",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-expanded-retry06-b/markdown",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "every transcript entry exactly once home-lsp-expanded-retry06-b",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix original raw home-lsp-expanded-retry06-c",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "metadata equality home-lsp-expanded-retry06-c",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-expanded-retry06-c-ty.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "concatenated SHA home-lsp-expanded-retry06-c/ty",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-expanded-retry06-c/ty",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-expanded-retry06-c/ty",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-expanded-retry06-c-ruff.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "concatenated SHA home-lsp-expanded-retry06-c/ruff",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-expanded-retry06-c/ruff",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-expanded-retry06-c/ruff",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-expanded-retry06-c-vtsls-javascript.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "concatenated SHA home-lsp-expanded-retry06-c/vtsls-javascript",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-expanded-retry06-c/vtsls-javascript",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-expanded-retry06-c/vtsls-javascript",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "matrix part SHA verification/home-lsp-expanded-retry06-c-vtsls-typescript.json",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "concatenated SHA home-lsp-expanded-retry06-c/vtsls-typescript",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case equality home-lsp-expanded-retry06-c/vtsls-typescript",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "raw transcript equality home-lsp-expanded-retry06-c/vtsls-typescript",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "every transcript entry exactly once home-lsp-expanded-retry06-c",
+      "status": "PASS",
+      "detail": null
+    }
+  ],
+  "command": [
+    "C:\\Python314\\python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "C:\\OdinQA\\home-progress-1022\\published_evidence_audit07.py"
+  ],
+  "cwd": "E:\\odin",
+  "script_sha256": "9c6f25d8bd3eea7d2e760bfa5ec1ef37495f72097bd1dbb5af14cc26bba13f5a"
+}

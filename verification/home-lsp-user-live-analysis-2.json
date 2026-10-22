@@ -1,0 +1,355 @@
+{
+  "analysis_kind": "LIVE_STRUCTURE_AND_CONFIGURATION",
+  "backends_started": false,
+  "configured_backends": [
+    {
+      "extensions": [
+        "rs"
+      ],
+      "id": "rust",
+      "probe": "NOT_RUN"
+    },
+    {
+      "extensions": [
+        "py",
+        "pyi"
+      ],
+      "id": "python",
+      "probe": "NOT_RUN"
+    },
+    {
+      "extensions": [
+        "go"
+      ],
+      "id": "go",
+      "probe": "NOT_RUN"
+    },
+    {
+      "extensions": [
+        "cs"
+      ],
+      "id": "csharp",
+      "probe": "NOT_RUN"
+    },
+    {
+      "extensions": [
+        "lua"
+      ],
+      "id": "lua",
+      "probe": "NOT_RUN"
+    },
+    {
+      "extensions": [
+        "js",
+        "jsx",
+        "mjs",
+        "cjs"
+      ],
+      "id": "javascript",
+      "probe": "NOT_RUN"
+    },
+    {
+      "extensions": [
+        "ts",
+        "tsx",
+        "mts",
+        "cts"
+      ],
+      "id": "typescript",
+      "probe": "NOT_RUN"
+    },
+    {
+      "extensions": [
+        "sh",
+        "bash"
+      ],
+      "id": "bash",
+      "probe": "NOT_RUN"
+    },
+    {
+      "extensions": [
+        "slint"
+      ],
+      "id": "slint",
+      "probe": "NOT_RUN"
+    },
+    {
+      "extensions": [
+        "c",
+        "h"
+      ],
+      "id": "c",
+      "probe": "NOT_RUN"
+    },
+    {
+      "extensions": [
+        "cc",
+        "cpp",
+        "cxx",
+        "hpp",
+        "hh",
+        "hxx"
+      ],
+      "id": "cpp",
+      "probe": "NOT_RUN"
+    },
+    {
+      "extensions": [
+        "toml"
+      ],
+      "id": "toml",
+      "probe": "NOT_RUN"
+    },
+    {
+      "extensions": [
+        "yaml",
+        "yml"
+      ],
+      "id": "yaml",
+      "probe": "NOT_RUN"
+    },
+    {
+      "extensions": [
+        "md",
+        "markdown"
+      ],
+      "id": "markdown",
+      "probe": "NOT_RUN"
+    }
+  ],
+  "directories_truncated": false,
+  "evidence": [
+    {
+      "bytes": 15752,
+      "path": "README.md",
+      "sha256": "d82e02bccb236c45efb43f56139ec8c7ee16e99df822e06c829913cd31506dba",
+      "status": "READ"
+    },
+    {
+      "bytes": 576,
+      "path": "pyproject.toml",
+      "sha256": "7eea79bb665e1c49f59ded5a72f427831dd41ba27ed996cae28bc00073418d68",
+      "status": "READ"
+    }
+  ],
+  "evidence_truncated": true,
+  "extensions": {
+    "cjs": 3,
+    "cmd": 2,
+    "cs": 1,
+    "css": 1,
+    "html": 3,
+    "js": 6,
+    "json": 7,
+    "md": 13,
+    "png": 1,
+    "ps1": 3,
+    "py": 26,
+    "sh": 3,
+    "toml": 2,
+    "txt": 5,
+    "yml": 1
+  },
+  "file_count": 79,
+  "inspections": "NOT_RUN",
+  "language_hints": [
+    {
+      "backend_probe": "NOT_RUN",
+      "detection": "EXTENSION_HINT",
+      "host_backend_configured": true,
+      "id": "python",
+      "marker_hints": [
+        "pyproject.toml"
+      ],
+      "observed_extensions": [
+        "py"
+      ],
+      "source_file_count": 26,
+      "suggested_server": "basedpyright-langserver",
+      "unconfigured_extensions": []
+    },
+    {
+      "backend_probe": "NOT_RUN",
+      "detection": "EXTENSION_HINT",
+      "host_backend_configured": true,
+      "id": "javascript",
+      "marker_hints": [],
+      "observed_extensions": [
+        "js",
+        "cjs"
+      ],
+      "source_file_count": 9,
+      "suggested_server": "typescript-language-server",
+      "unconfigured_extensions": []
+    },
+    {
+      "backend_probe": "NOT_RUN",
+      "detection": "EXTENSION_HINT",
+      "host_backend_configured": true,
+      "id": "csharp",
+      "marker_hints": [],
+      "observed_extensions": [
+        "cs"
+      ],
+      "source_file_count": 1,
+      "suggested_server": "csharp-ls",
+      "unconfigured_extensions": []
+    },
+    {
+      "backend_probe": "NOT_RUN",
+      "detection": "EXTENSION_HINT",
+      "host_backend_configured": true,
+      "id": "bash",
+      "marker_hints": [],
+      "observed_extensions": [
+        "sh"
+      ],
+      "source_file_count": 3,
+      "suggested_server": "bash-language-server",
+      "unconfigured_extensions": []
+    },
+    {
+      "backend_probe": "NOT_RUN",
+      "detection": "EXTENSION_HINT",
+      "host_backend_configured": false,
+      "id": "html",
+      "marker_hints": [],
+      "observed_extensions": [
+        "html"
+      ],
+      "source_file_count": 3,
+      "suggested_server": "vscode-html-language-server",
+      "unconfigured_extensions": [
+        "html"
+      ]
+    },
+    {
+      "backend_probe": "NOT_RUN",
+      "detection": "EXTENSION_HINT",
+      "host_backend_configured": false,
+      "id": "css",
+      "marker_hints": [],
+      "observed_extensions": [
+        "css"
+      ],
+      "source_file_count": 1,
+      "suggested_server": "vscode-css-language-server",
+      "unconfigured_extensions": [
+        "css"
+      ]
+    },
+    {
+      "backend_probe": "NOT_RUN",
+      "detection": "EXTENSION_HINT",
+      "host_backend_configured": false,
+      "id": "json",
+      "marker_hints": [],
+      "observed_extensions": [
+        "json"
+      ],
+      "source_file_count": 7,
+      "suggested_server": "vscode-json-language-server",
+      "unconfigured_extensions": [
+        "json"
+      ]
+    },
+    {
+      "backend_probe": "NOT_RUN",
+      "detection": "EXTENSION_HINT",
+      "host_backend_configured": true,
+      "id": "yaml",
+      "marker_hints": [],
+      "observed_extensions": [
+        "yml"
+      ],
+      "source_file_count": 1,
+      "suggested_server": "yaml-language-server",
+      "unconfigured_extensions": []
+    },
+    {
+      "backend_probe": "NOT_RUN",
+      "detection": "EXTENSION_HINT",
+      "host_backend_configured": true,
+      "id": "toml",
+      "marker_hints": [],
+      "observed_extensions": [
+        "toml"
+      ],
+      "source_file_count": 2,
+      "suggested_server": "taplo",
+      "unconfigured_extensions": []
+    },
+    {
+      "backend_probe": "NOT_RUN",
+      "detection": "EXTENSION_HINT",
+      "host_backend_configured": true,
+      "id": "markdown",
+      "marker_hints": [],
+      "observed_extensions": [
+        "md"
+      ],
+      "source_file_count": 13,
+      "suggested_server": "marksman",
+      "unconfigured_extensions": []
+    }
+  ],
+  "limitations": [
+    "Structural hints are not semantic symbol analysis or dependency parsing.",
+    "Ignore rules, path policy and scan/evidence limits restrict visibility; absent evidence is not proof of absence.",
+    "No background watcher or atomic multi-file snapshot. structure_sha256 covers paths and returned evidence only.",
+    "No repository commands/configuration executed and no backend installed or probed. Semantic work requires a host-configured LSP."
+  ],
+  "next_steps": [
+    {
+      "probe": false,
+      "project": "ws_b12b1270a86ad555f0d3133d7c0a6de44e869420c0c92e36",
+      "tool": "get_capabilities"
+    },
+    {
+      "project": "ws_b12b1270a86ad555f0d3133d7c0a6de44e869420c0c92e36",
+      "relative_path": ".github/workflows/test.yml",
+      "tool": "get_symbols_overview"
+    }
+  ],
+  "permissions": {
+    "debug": false,
+    "formatters": false,
+    "inspections": false,
+    "shell": false,
+    "write": false
+  },
+  "project": "ws_b12b1270a86ad555f0d3133d7c0a6de44e869420c0c92e36",
+  "root": "\\\\?\\D:\\chatgpt-web-bridge",
+  "sample_files": [
+    ".github/workflows/test.yml",
+    ".gitignore",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scan_limit": 10000,
+  "scan_truncated": false,
+  "snapshot": "LIVE_NON_ATOMIC",
+  "structure_sha256": "f8068d28b85771eee51b595f0e4038dd01eb479a4b3257a81bb050fda7c94ba6",
+  "tests": "NOT_RUN",
+  "top_level_directories": [
+    ".github",
+    "docs",
+    "examples",
+    "extension",
+    "scripts",
+    "skills",
+    "src",
+    "tests"
+  ],
+  "trace": {
+    "elapsed_ms": 37,
+    "id": "cd79e6bd-df69-4fe2-9982-15048ec99c69",
+    "result_bytes": 5246,
+    "result_sha256": "e5adaf266574edcad3401230479fc63c375b06622733aa2461e9aa888998f21f"
+  },
+  "unconfigured_language_hints": [
+    "html",
+    "css",
+    "json"
+  ]
+}

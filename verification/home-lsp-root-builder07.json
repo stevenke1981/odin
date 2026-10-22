@@ -1,0 +1,25 @@
+{
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_lsp_payload_builder.py",
+    "-v"
+  ],
+  "cwd": "E:\\odin",
+  "exit_code": 0,
+  "seconds": 0.845,
+  "log": "C:\\OdinQA\\home-progress-1022\\root-builder07.log",
+  "log_sha256": "cd76912aed4fa07ecc7607ad19c1fb2a0ffaaca9a4e77c0b88bc034ec98d0bdd",
+  "source_sha256": {
+    "scripts/prepare_lsp_payload.py": "4601cb23ffb9d0be416d8aa899004ea412f04b1a298a102f45daeb9dd0e28eb5",
+    "tests/test_lsp_payload_builder.py": "471ed04a9f4b2791951f855a035a34aab3dfa9c73cf74772ba8a1db01417551b"
+  }
+}

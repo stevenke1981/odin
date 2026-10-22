@@ -1,0 +1,168 @@
+{
+  "scope": "ACTUAL_PRODUCTION_INNO_RECIPE_ARGV_REGRESSION_NOT_LSP_ACCEPTANCE",
+  "status": "PASS",
+  "error": null,
+  "observed_at_utc": "2026-10-22T04:19:52.790732+00:00",
+  "recipe_sha256": "1b952d78964ab2cc2623e00b7b6376234f92402715cab757b12e60b04509edac",
+  "helper_sha256": "6c1bd0ba4b7ff82d046746361d811ba718d882d3483e6ba5e0642efec0486090",
+  "test_driver_sha256": "259fd44fa4cb99876a4bd5991a441b07f8d758d448e7281ca0bc0b71ec9dc571",
+  "node_sha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
+  "iscc_sha256": "d06ebd38f38e3cee60a3c50cc45bd449d77e0bc6a5cabc607ea9886808e4de1a",
+  "qa_directory": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen",
+  "commands": [
+    {
+      "argv": [
+        "C:\\Program Files\\Inno Setup 7\\ISCC.exe",
+        "--no-compression",
+        "--no-ide-signtools",
+        "--no-signing",
+        "--define=AppVersion=0.2.0",
+        "--define=StageDir=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\stage",
+        "--define=OutputPath=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen",
+        "E:\\odin-worktrees\\installer-progress\\packaging\\odin.iss"
+      ],
+      "inno_command_line": null,
+      "exit_code": 0,
+      "stdout": "Inno Setup 7 Command-Line Compiler\nCopyright (C) 1997-2026 Jordan Russell. All rights reserved.\nPortions Copyright (C) 2000-2026 Martijn Laan. All rights reserved.\nPortions Copyright (C) 2001-2004 Alex Yackimoff. All rights reserved.\nhttps://www.innosetup.com\n\nCompiler engine version: Inno Setup 7.1.0\nNon-commercial use only\n\nPreprocessing\n   Reading file: C:\\Program Files\\Inno Setup 7\\ISPPBuiltins.iss\n   Line 104: Including file: E:\\odin-worktrees\\installer-progress\\packaging\\installer-progress.iss\n   Reading file: E:\\odin-worktrees\\installer-progress\\packaging\\installer-progress.iss\nParsing [Setup] section, line 12\nParsing [Setup] section, line 13\nParsing [Setup] section, line 14\nParsing [Setup] section, line 15\nParsing [Setup] section, line 16\nParsing [Setup] section, line 17\nParsing [Setup] section, line 18\nParsing [Setup] section, line 20\nParsing [Setup] section, line 21\nParsing [Setup] section, line 22\nParsing [Setup] section, line 23\nParsing [Setup] section, line 24\nParsing [Setup] section, line 25\nParsing [Setup] section, line 26\nParsing [Setup] section, line 27\nParsing [Setup] section, line 28\nParsing [Setup] section, line 29\nParsing [Setup] section, line 30\nParsing [Setup] section, line 31\nParsing [Setup] section, line 32\nParsing [Setup] section, line 33\nParsing [Setup] section, line 34\nParsing [Setup] section, line 35\nParsing [Setup] section, line 36\nParsing [Setup] section, line 37\nParsing [Setup] section, line 38\nParsing [Setup] section, line 39\nParsing [Setup] section, line 40\nReading file (LicenseFile)\nReading file (WizardImageFile)\nReading file (WizardSmallImageFile)\nPreparing Setup program executable\n   Verification successful\n   Updating icons (Setup.e32)\n   Updating version info (Setup.e32)\nDetermining language code pages\n   Reading file: C:\\Program Files\\Inno Setup 7\\Default.isl\n   Messages in script file\nReading default messages from Default.isl\nParsing [LangOptions], [Messages], and [CustomMessages] sections\n   Reading file: C:\\Program Files\\Inno Setup 7\\Default.isl\n   Messages in script file\nReading [Code] section\nParsing [Icons] section, line 44\nParsing [Files] section, line 42\nCompiling [Code] section\nCreating setup files\n   Verification successful\n   Updating icons (Setup.exe)\n   Storing: \\\\?\\C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\stage\\expected-argv.json\n   Storing: \\\\?\\C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\stage\\LICENSE\n   Storing: \\\\?\\C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\stage\\README.md\n   Storing: \\\\?\\C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\stage\\setup-lsps.mjs\n   Storing: \\\\?\\C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\stage\\backends\\node\\node.exe\n   Compressing Setup program executable\n   Updating version info (Setup.exe)\n   Updating manifest (Setup.exe)\n\n\nSuccessful compile (1.359 sec). Resulting Setup program filename is:\nC:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\odin-0.2.0-windows-x64-setup.exe\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\odin-0.2.0-windows-x64-setup.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/SP-",
+        "/NOICONS",
+        "/ODIN_QA=1",
+        "/DIR=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\installed app space",
+        "/ODIN_HOST_CONFIG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\host space\\host.toml",
+        "/ODIN_WORKSPACE_ROOT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\project space\\",
+        "/ODIN_REPLACE_LANGUAGE_PROFILES=1",
+        "/ODIN_SETUP_RECEIPT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\receipt space.json",
+        "/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\install.log"
+      ],
+      "inno_command_line": "\"C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\odin-0.2.0-windows-x64-setup.exe\" \"/VERYSILENT\" \"/SUPPRESSMSGBOXES\" \"/NORESTART\" \"/SP-\" \"/NOICONS\" \"/ODIN_QA=1\" \"/DIR=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\installed app space\" \"/ODIN_HOST_CONFIG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\host space\\host.toml\" \"/ODIN_WORKSPACE_ROOT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\project space\\\" \"/ODIN_REPLACE_LANGUAGE_PROFILES=1\" \"/ODIN_SETUP_RECEIPT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\receipt space.json\" \"/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\install.log\"",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\odin-0.2.0-windows-x64-setup.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/SP-",
+        "/NOICONS",
+        "/ODIN_QA=1",
+        "/DIR=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host app space",
+        "/ODIN_HOST_CONFIG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host space\\host.toml",
+        "/ODIN_SETUP_RECEIPT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host no root receipt.json",
+        "/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing-host-no-root.log"
+      ],
+      "inno_command_line": "\"C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\odin-0.2.0-windows-x64-setup.exe\" \"/VERYSILENT\" \"/SUPPRESSMSGBOXES\" \"/NORESTART\" \"/SP-\" \"/NOICONS\" \"/ODIN_QA=1\" \"/DIR=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host app space\" \"/ODIN_HOST_CONFIG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host space\\host.toml\" \"/ODIN_SETUP_RECEIPT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host no root receipt.json\" \"/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing-host-no-root.log\"",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\odin-0.2.0-windows-x64-setup.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/SP-",
+        "/NOICONS",
+        "/ODIN_QA=1",
+        "/DIR=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional failed app space",
+        "/ODIN_HOST_CONFIG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\host space\\host.toml",
+        "/ODIN_WORKSPACE_ROOT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\project space\\",
+        "/ODIN_SETUP_RECEIPT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional failure receipt.json",
+        "/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional-failure.log"
+      ],
+      "inno_command_line": "\"C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\odin-0.2.0-windows-x64-setup.exe\" \"/VERYSILENT\" \"/SUPPRESSMSGBOXES\" \"/NORESTART\" \"/SP-\" \"/NOICONS\" \"/ODIN_QA=1\" \"/DIR=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional failed app space\" \"/ODIN_HOST_CONFIG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\host space\\host.toml\" \"/ODIN_WORKSPACE_ROOT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\project space\\\" \"/ODIN_SETUP_RECEIPT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional failure receipt.json\" \"/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional-failure.log\"",
+      "exit_code": 17,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\odin-0.2.0-windows-x64-setup.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/SP-",
+        "/NOICONS",
+        "/ODIN_QA=1",
+        "/DIR=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\invalid receipt app",
+        "/ODIN_HOST_CONFIG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\host space\\host.toml",
+        "/ODIN_WORKSPACE_ROOT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\project space\\",
+        "/ODIN_SETUP_RECEIPT=relative.json",
+        "/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\invalid-receipt.log"
+      ],
+      "inno_command_line": "\"C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\odin-0.2.0-windows-x64-setup.exe\" \"/VERYSILENT\" \"/SUPPRESSMSGBOXES\" \"/NORESTART\" \"/SP-\" \"/NOICONS\" \"/ODIN_QA=1\" \"/DIR=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\invalid receipt app\" \"/ODIN_HOST_CONFIG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\host space\\host.toml\" \"/ODIN_WORKSPACE_ROOT=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\project space\\\" \"/ODIN_SETUP_RECEIPT=relative.json\" \"/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\invalid-receipt.log\"",
+      "exit_code": 7,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\installed app space\\unins000.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\uninstall-0.log"
+      ],
+      "inno_command_line": "\"C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\installed app space\\unins000.exe\" \"/VERYSILENT\" \"/SUPPRESSMSGBOXES\" \"/NORESTART\" \"/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\uninstall-0.log\"",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host app space\\unins000.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\uninstall-1.log"
+      ],
+      "inno_command_line": "\"C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host app space\\unins000.exe\" \"/VERYSILENT\" \"/SUPPRESSMSGBOXES\" \"/NORESTART\" \"/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\uninstall-1.log\"",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional failed app space\\unins000.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\uninstall-2.log"
+      ],
+      "inno_command_line": "\"C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional failed app space\\unins000.exe\" \"/VERYSILENT\" \"/SUPPRESSMSGBOXES\" \"/NORESTART\" \"/LOG=C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\uninstall-2.log\"",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "argv_receipt": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\receipt space.json",
+  "expected_node_argv": [
+    "--install",
+    "--host-config",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\host space\\host.toml",
+    "--workspace-root",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\project space\\",
+    "--replace-language-profiles",
+    "--receipt",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\receipt space.json"
+  ],
+  "existing_host_no_root_receipt": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host no root receipt.json",
+  "existing_host_preserved": true,
+  "forced_setup_failure_exit_code": 17,
+  "failure_receipt": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional failure receipt.json",
+  "qa_shortcut_preserved": true,
+  "backend_health": "NOT_RUN",
+  "semantic_acceptance": "NOT_RUN",
+  "full_product_installer_lifecycle": "NOT_RUN"
+}

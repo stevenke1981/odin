@@ -1,0 +1,169 @@
+{
+  "status": "PASS_FOR_EXECUTED_CLOSEOUT_STATIC_SCOPE_WITH_RETAINED_FIRST_FAILURES",
+  "current_static_source_checks": 1195,
+  "source_check_exit_code": 0,
+  "unfiltered_cached_git_diff_check_exit_code": 0,
+  "requirements_traceability": "PASS_STATIC_NOT_RUNTIME_ACCEPTANCE",
+  "publish_policy": "PASS_SOURCE_ONLY_NO_CLOUD_CI",
+  "both_catalogs_and_generated_docs": "ACTUAL_IDEMPOTENCE_PASS_86_TOOL_CONTRACTS",
+  "tooling_patch": {
+    "scripts/check_source.py": "ast.parse reads source bytes so CPython handles valid Python BOM/encoding; no source code is executed",
+    ".gitattributes": "Only home-lsp raw .log records excluded from whitespace style checks; original trailing spaces and first stderr remain intact"
+  },
+  "first_failures": "Preserved first source BOM parser failure and raw-log whitespace findings; no runtime/native regression or erased evidence",
+  "native_runtime_or_installer_input_changes": false,
+  "entries": [
+    {
+      "path": "verification/home-lsp-closeout-source.command.json",
+      "published_sha256": "52376c24e087356bbae50d0a3381a1ee23694aa2becef78504f8c86b81c0240e",
+      "bytes": 418,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-source.command.json",
+      "original_raw_sha256": "cf13c1463e84cec1ec790de2e54fef22731e9273ea287e72035b6a7781055dce",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-closeout-source.log",
+      "published_sha256": "2e53278b84b9f3eeb4ce0f027dd63d0dfa89eafe282135adb9b72e3e55753a9a",
+      "bytes": 423,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-source.log",
+      "original_raw_sha256": "3962a0767451f58f4627af077a3e2dcae98be6c5c8fe5ef77319afb46791f9d9",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-closeout-source02.command.json",
+      "published_sha256": "31fd3ab15a132d0d490182dedde55659669522a559a8fa97681d3e0e66c894b4",
+      "bytes": 424,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-source02.command.json",
+      "original_raw_sha256": "cd31e4d035dedd1881942e0dd28fd80557d9d6d1f9ff7bf28c13db28098542c0",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-closeout-source02.log",
+      "published_sha256": "1425dd5f27165969b4c5f14e8ee5ff28b6ef5f93b8ff2f19a367f230bc5da01a",
+      "bytes": 216,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-source02.log",
+      "original_raw_sha256": "ac7a5c48f70e119b5b1260c72c813377854d39216d435f9cad4f37fe8c24a29d",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-closeout-requirements.command.json",
+      "published_sha256": "1eaf8cc3c19ab1a6037d82670b9f1c07f2c553d10e85cb003f5296b2a6db5a8f",
+      "bytes": 360,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-requirements.command.json",
+      "original_raw_sha256": "29e836700d91403295fbdd3e4dabcc9b30908a2ce2f01a90304d3d8f0cd8e70a",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-closeout-requirements.log",
+      "published_sha256": "43db49f08011f5975c45e4013bfaab8e7fefe6e57bf8d6ba8578e7b35dd38ea2",
+      "bytes": 185,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-requirements.log",
+      "original_raw_sha256": "425fa3eefc6462c16c6ef4592d6c0e8a7a3dc05dc0fd7fed2654ca074b28a7e1",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-closeout-policy.command.json",
+      "published_sha256": "b80833f9b61e3c55e1e68b39ce25b9a3b27c02b1fcbdf5893b645a2b3768b90a",
+      "bytes": 350,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-policy.command.json",
+      "original_raw_sha256": "809e05c80b76e5913f87cfc6f126627cd9307731f1009787925cefbd60fdb725",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-closeout-policy.log",
+      "published_sha256": "577cfa19fb53c7412fa83e4cb62433548e790cc6726a5df6d2d6c1d6e3736983",
+      "bytes": 73,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-policy.log",
+      "original_raw_sha256": "59dd0830a2619aa31d85fad5025dff893243990bd80fb3fa64ddf7c747e9650c",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-closeout-whitespace.command.json",
+      "published_sha256": "922e9f8e1811c4cbbed9c4ef2db6e291169f81c024eff6285ce630e46ec45ea2",
+      "bytes": 307,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-whitespace.command.json",
+      "original_raw_sha256": "7eb30063780a3a6727026304d0e70aba44285640f7f2fce8ec4125613042ec87",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-closeout-whitespace.log",
+      "published_sha256": "b7e9a2c3ebaf47075ba260d905bd80783747e204cfe137b0e7f4ccc5c43003a0",
+      "bytes": 643,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-whitespace.log",
+      "original_raw_sha256": "b7e9a2c3ebaf47075ba260d905bd80783747e204cfe137b0e7f4ccc5c43003a0",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-closeout-whitespace02.command.json",
+      "published_sha256": "76a5f6a6745260fee51cf1284d7e100b781bb2fd30a0150dce9a8b6df86bf33d",
+      "bytes": 312,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-whitespace02.command.json",
+      "original_raw_sha256": "91315c9a2e1eef9e7a66a19a58b42a1b3070a44e71309255e38b1e981df04f4a",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-closeout-whitespace02.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-whitespace02.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-closeout-generated.command.json",
+      "published_sha256": "2133740c7300a60d77bffcb82d22c170f2c1943026f95fa2b7033272ded88434",
+      "bytes": 439,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-generated.command.json",
+      "original_raw_sha256": "4f1e9ce6810cef3126f44852051c1057fe7d58e839a336b51e3050fb27843756",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-closeout-generated.log",
+      "published_sha256": "5bc2ace9b67da795bd5c30342b788629ab8ef78d72294c2e200a244cd88cffc6",
+      "bytes": 871,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-generated.log",
+      "original_raw_sha256": "9b32876060f522dab834f51929d61842c5c163bdbd717351267868d562cb1126",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-closeout-source.json",
+      "published_sha256": "e7e6adae0b9626625f414515e573ed93b4560891c7a1f4939daecb91cd0a2265",
+      "bytes": 149297,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-source.json",
+      "original_raw_sha256": "7e41fe93fe943f4abe9ecc368ea21ef44fc88616566b924ab9e2f0d9b0963787",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-closeout-source02.json",
+      "published_sha256": "3b1dd810f48249392ed53a95ee1fcc40b556ef6b3991b58c169f9d8fbe1caa80",
+      "bytes": 149204,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\closeout-source02.json",
+      "original_raw_sha256": "bd523aaa734b6528b1a84a9433b960fbfabaa665723c99349a70444ac04df815",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-review-published-evidence-review-01.json",
+      "published_sha256": "1f206d5c457f8713ff18a2322e87e0e5f45bfc993ac46059da08df4fdaddd8c9",
+      "bytes": 67657,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\published-evidence-review-01.json",
+      "original_raw_sha256": "c05d0a5c07f7c2c25aaf55eeec5869442ee92091caf43de2d37f8d1743e39acf",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-review-published-evidence-review-02.json",
+      "published_sha256": "8053f59b167cf1b4f27b81da19a69561b2df6d009e688364ad46364b4a9f02cb",
+      "bytes": 44878,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\published-evidence-review-02.json",
+      "original_raw_sha256": "66c9fee3ea870cc1f41151ffce7ca974ae0afb0fe69fcf94ed9fe0f7f546c0a0",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-review-actual-cli-path-evidence-review.json",
+      "published_sha256": "0b75a7aba96d7bfc27518051efbd7dd1b7ce112665646047c9aa9c2a51fe0e4f",
+      "bytes": 5852,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\actual-cli-path-evidence-review.json",
+      "original_raw_sha256": "fd9f05aac91898c1af31f7c622a67c47d3d4b5f3a222d0b231f252ea3ec494b4",
+      "lf_normalized": true
+    }
+  ]
+}

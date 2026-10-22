@@ -1,0 +1,49 @@
+{
+  "status": "PASS_WITH_DOCUMENTED_GAPS",
+  "scope": "INDEPENDENT_FINAL_SOURCE_AND_EXECUTED_SCOPE_REVIEW",
+  "open_findings": [],
+  "final_review_raw_sha256": "3112f7c69e2e958d1794a9cac31215434345953eb0b0d848d6018b50f338149c",
+  "remaining_root_actions": "Finalize source manifest and commit/push; no claim that reviewer performed them",
+  "entries": [
+    {
+      "path": "verification/home-lsp-final-review.md",
+      "published_sha256": "34548e33a59d343d2fd5d5b0e49eff65248c4d18bba32775866f671f1567e741",
+      "bytes": 2276,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\review.md",
+      "original_raw_sha256": "4abe8a7c0ae30fb03c25a13775361a328791b85528732229595d9a60f53bbc5f",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-final-findings.json",
+      "published_sha256": "2211f5f16f54d835aedb9e2e6db22b9f80a2bad78370f686bd205783bca58aa6",
+      "bytes": 12031,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\findings.json",
+      "original_raw_sha256": "76adfec00d9bda5fa26e3f03abe750683fe0db13ddd865b04d6f44dd2a29e374",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-final-review.json",
+      "published_sha256": "18308ccc9d1ad17cd3f43b9197c3619f03d1ac487179a0290672606bf3259856",
+      "bytes": 55685,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\final-review.json",
+      "original_raw_sha256": "3112f7c69e2e958d1794a9cac31215434345953eb0b0d848d6018b50f338149c",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-review-published-evidence-review-03.json",
+      "published_sha256": "6bbae2ab2438170ec0b7a1ae1f7aab6010b5a5e02cfdee2d3ee64555f357ba5c",
+      "bytes": 43369,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\published-evidence-review-03.json",
+      "original_raw_sha256": "0c500082864552f15f8dbb24ea5292c196e1435e6e5aec76aa15b418c94d70c4",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-final-eighth-index-supplement.json",
+      "published_sha256": "b5303c0875954cda1d6576f1375c3903f015437ef785d56f62e236bb806fa22f",
+      "bytes": 26998,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\final-eighth-index-supplement.json",
+      "original_raw_sha256": "8636a828cdb9c5c82ca5974bbb4b53079ab7ea20aeeac47997354a97274baed7",
+      "lf_normalized": true
+    }
+  ]
+}

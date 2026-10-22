@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "scope": "INERT_PATH_GUARDS_ONLY",
+  "checks": [
+    "prepend_preserves_entire_old_raw_suffix",
+    "empty_segments_quotes_order_kind_preserved",
+    "existing_later_entry_preserved_instead_of_removed",
+    "already_first_noop_exact_raw_kind",
+    "expand_sz_existing_first_noop",
+    "reg_sz_percent_value_not_silently_expanded",
+    "kind_1_retained",
+    "kind_2_retained",
+    "empty_raw_path_retains_original_empty_segment",
+    "exact_raw_and_kind_guard_accepts_only_same_snapshot",
+    "raw_value_conflict_rejected",
+    "kind_only_conflict_rejected",
+    "absent_value_no_implicit_kind_created",
+    "unsupported_registry_kind_rejected",
+    "nul_raw_path_rejected",
+    "self_referential_expand_sz_path_rejected",
+    "effective_path_uses_machine_then_user_sources",
+    "public_value_never_includes_raw_path",
+    "public_state_kind_and_digest_recorded",
+    "extended_drive_spelling_same_as_plain",
+    "extended_unc_not_stripped",
+    "device_namespace_not_stripped"
+  ],
+  "registry_read": "NOT_RUN",
+  "registry_write": "NOT_RUN",
+  "fresh_cli_execution": "NOT_RUN",
+  "private_acl_execution": "NOT_RUN"
+}
+
+STDERR

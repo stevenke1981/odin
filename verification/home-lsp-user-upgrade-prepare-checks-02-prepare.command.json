@@ -1,0 +1,136 @@
+{
+  "scope": "EXTERNAL_EXTENDED_DRIVE_ALIAS_FIX_ONLY",
+  "status": "PASS",
+  "source_hashes": {
+    "user_upgrade.py": "4498b3bd5c0468cf795adc2567369790b051564a84dde2a8a5a2e77d94a2eb6a",
+    "read_operator_cert_state.ps1": "c17b2c8b91a37230816f0afcf9ba3fc60a8678238fb92bbf05b2c912816ad560",
+    "README.md": "21d3ff45d69edcfdbe439d70cc818b2f0054513dad48d98805f7ba92dd67d094"
+  },
+  "historical_sha256": {
+    "C:\\OdinQA\\home-progress-1022\\user-upgrade\\history\\user_upgrade.d15bb9a7a68a992390660a21d9516ae2d13684bd87a586195c3c4bb839f5c84e.py": "d15bb9a7a68a992390660a21d9516ae2d13684bd87a586195c3c4bb839f5c84e",
+    "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-01\\prepare.command.json": "81aa720bd4889a26451428c4136c6f78accea80c4a5f718ce3201938c302ccde",
+    "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T055930Z-005cb442\\report.json": "ee2a0d6a949eeab41f4cba225fa044981446158a36529926d28548f5f45af882",
+    "C:\\OdinQA\\home-progress-1022\\user-upgrade\\actual-execute.command.json": "cc658bce9eb3056f7fe9563bad8307ce1320c7db70502ab886beab434dc6e95e",
+    "C:\\OdinQA\\home-progress-1022\\user-upgrade\\actual-execute.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "C:\\OdinQA\\home-progress-1022\\user-upgrade\\actual-execute.stdout.log": "dbea60200ab32430b5d53b6b6b624262f3bd24efc00a52c0c6b20f67de6b4b18"
+  },
+  "commands": [
+    {
+      "name": "inert-guards",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "C:\\OdinQA\\home-progress-1022\\user-upgrade\\user_upgrade.py",
+        "--check-runner"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-upgrade",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at_utc": "2026-10-22T06:03:05.525868+00:00",
+      "completed_at_utc": "2026-10-22T06:03:05.643253+00:00",
+      "log": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\inert-guards.log",
+      "log_sha256": "a97a27d287835ef4625d9869d8ff74b3c401c4cc85ca030b6603f967f1302e30",
+      "inert_case_count": 35
+    },
+    {
+      "name": "python-syntax",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-c",
+        "import pathlib,sys; compile(pathlib.Path(sys.argv[1]).read_text(encoding='utf-8'),sys.argv[1],'exec'); print('PASS: syntax only')",
+        "C:\\OdinQA\\home-progress-1022\\user-upgrade\\user_upgrade.py"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-upgrade",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at_utc": "2026-10-22T06:03:05.649308+00:00",
+      "completed_at_utc": "2026-10-22T06:03:05.701305+00:00",
+      "log": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\python-syntax.log",
+      "log_sha256": "e2b393a899f5338893cbf6ad17338f76fe8f732a6ac34ab9308b601ecfc8bfc8"
+    },
+    {
+      "name": "powershell-syntax",
+      "argv": [
+        "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+        "-NoProfile",
+        "-NonInteractive",
+        "-Command",
+        "$tokens=$null; $errors=$null; [void][Management.Automation.Language.Parser]::ParseFile('C:/OdinQA/home-progress-1022/user-upgrade/read_operator_cert_state.ps1',[ref]$tokens,[ref]$errors); if ($errors.Count) { $errors | ForEach-Object { $_.Message }; exit 1 }; 'PASS: certificate helper syntax only; helper NOT_EXECUTED'"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-upgrade",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at_utc": "2026-10-22T06:03:05.702252+00:00",
+      "completed_at_utc": "2026-10-22T06:03:05.888381+00:00",
+      "log": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\powershell-syntax.log",
+      "log_sha256": "e27e316735b0cda0eb8d1fd68cb840f02f4ecdcb6a140dcc828e96c07886026e"
+    },
+    {
+      "name": "readonly-existing-client-identity",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-c",
+        "import importlib.util,tomllib,hashlib,json,sys; from pathlib import Path; p=Path(sys.argv[1]); s=importlib.util.spec_from_file_location('prepared_upgrade',p); m=importlib.util.module_from_spec(s); s.loader.exec_module(m); c=Path('C:/Users/steven/.codex/config.toml'); b=c.read_bytes(); cfg=tomllib.loads(b.decode('utf-8-sig')); entry=m.verify_client(cfg,Path('C:/Users/steven/AppData/Local/Programs/Odin/odin.exe'),Path('C:/Users/steven/.config/odin/host.toml')); assert c.read_bytes()==b; print(json.dumps({'status':'PASS','scope':'READ_ONLY_EXISTING_CLIENT_IDENTITY_ONLY','client_sha256':hashlib.sha256(b).hexdigest(),'entry_unchanged':True,'installer_execution':'NOT_RUN','native_execution':'NOT_RUN'}))",
+        "C:\\OdinQA\\home-progress-1022\\user-upgrade\\user_upgrade.py"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-upgrade",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "started_at_utc": "2026-10-22T06:03:05.894049+00:00",
+      "completed_at_utc": "2026-10-22T06:03:05.991924+00:00",
+      "log": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\readonly-existing-client-identity.log",
+      "log_sha256": "68935f4de36e369a4801a6a68737549d414266a09aee84a3e5309d99b2420240"
+    },
+    {
+      "name": "missing-mode",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "C:\\OdinQA\\home-progress-1022\\user-upgrade\\user_upgrade.py"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-upgrade",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "started_at_utc": "2026-10-22T06:03:05.997285+00:00",
+      "completed_at_utc": "2026-10-22T06:03:06.103541+00:00",
+      "log": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\missing-mode.log",
+      "log_sha256": "a0e269f291224efef7736288ee5f6d8ffb8542f7be629dff486388f0ffba6f2a"
+    },
+    {
+      "name": "execute-without-required-identities",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "C:\\OdinQA\\home-progress-1022\\user-upgrade\\user_upgrade.py",
+        "--execute"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-upgrade",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "started_at_utc": "2026-10-22T06:03:06.104487+00:00",
+      "completed_at_utc": "2026-10-22T06:03:06.210555+00:00",
+      "log": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\execute-without-required-identities.log",
+      "log_sha256": "273906157705e47f7d0828a2ff030ab113d549ecb5f793339137794edf138c7f"
+    },
+    {
+      "name": "mutually-exclusive-modes",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "C:\\OdinQA\\home-progress-1022\\user-upgrade\\user_upgrade.py",
+        "--execute",
+        "--check-runner"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-upgrade",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "started_at_utc": "2026-10-22T06:03:06.211508+00:00",
+      "completed_at_utc": "2026-10-22T06:03:06.317088+00:00",
+      "log": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\mutually-exclusive-modes.log",
+      "log_sha256": "209a5bbc3e8a707a036c14409da2beba972e17c5fdd023e775886b7327b3be76"
+    }
+  ],
+  "actual_installer_execution": "NOT_RUN",
+  "actual_native_cli_mcp": "NOT_RUN",
+  "actual_certificate_snapshot": "NOT_RUN",
+  "actual_user_config_mutation": false,
+  "original_no_redirect_function_unchanged": true,
+  "historical_evidence_unchanged": true,
+  "sources_unchanged": true
+}

@@ -1,0 +1,42 @@
+{
+  "task_id": "ODIN-ACTUAL-USER-UPGRADE",
+  "status": "FAIL",
+  "runner_sha256": "d15bb9a7a68a992390660a21d9516ae2d13684bd87a586195c3c4bb839f5c84e",
+  "checks": [
+    {
+      "name": "final_pkg7_installer_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "reviewed_host_hash_before_snapshot",
+      "status": "PASS"
+    },
+    {
+      "name": "reviewed_client_hash_before_snapshot",
+      "status": "PASS"
+    }
+  ],
+  "commands": [],
+  "certificate_reader_sha256": "c17b2c8b91a37230816f0afcf9ba3fc60a8678238fb92bbf05b2c912816ad560",
+  "final_pkg7_expected_hashes": {
+    "installer": "ebf7f94acac5c0d850b4c5636684e775689df84dbc44a0b97324b35e17421af2",
+    "binary": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+    "setup": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec",
+    "payload_manifest": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680"
+  },
+  "started_at_utc": "2026-10-22T05:59:30.955363+00:00",
+  "notes": [
+    "No client restart is claimed; the client must reconnect/restart after upgrade.",
+    "No installer expected-host override exists. An immediate prelaunch hash guard and the worker plan CAS are separate; they do not atomically bind the wrapper snapshot through the file-copy interval.",
+    "Read-only native calls may create normal private audit/state records; no workspace file content is requested or changed.",
+    "A failed run is preserved. No automatic retry, rollback, config rewrite, or conflict override."
+  ],
+  "inno_standard_option_source": "https://jrsoftware.org/ishelp/topic_setupcmdline.htm",
+  "semantic_acceptance": "NOT_RUN",
+  "first_failure": {
+    "type": "AssertionError",
+    "message": "Codex command is not the expected per-user Odin"
+  },
+  "completed_at_utc": "2026-10-22T05:59:31.473005+00:00",
+  "actual_user_installation": "NOT_RUN"
+}

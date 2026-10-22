@@ -1,0 +1,32 @@
+{
+  "scope": "INDEPENDENT_INERT_DATA_AUDIT_NO_PAYLOAD_EXECUTION",
+  "actor_instance": "/root/review_sol",
+  "command": [
+    "C:\\Python314\\python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "C:\\OdinQA\\home-progress-1022\\review-sol\\payload07_inert_audit.py"
+  ],
+  "cwd": "C:\\OdinQA\\home-progress-1022\\review-sol",
+  "started_at_utc": "2026-10-22T05:31:17.412835+00:00",
+  "finished_at_utc": "2026-10-22T05:31:26.600795+00:00",
+  "exit_code": 0,
+  "elapsed_seconds": 9.187962099997094,
+  "script_sha256": "7e8ebfb61b096c362e5ca5b42ee4bd461ea9ca92cc979080e13955402e682923",
+  "runtime": {
+    "path": "C:\\Python314\\python.exe",
+    "sha256": "434b361fe0c5960d404974feed493db47f2603a1ace2574312104fbed0182c6f",
+    "version": "3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "logs": {
+    "stdout": {
+      "path": "C:\\OdinQA\\home-progress-1022\\review-sol\\payload07-inert-audit.stdout.log",
+      "sha256": "6919008c262897c8cbe2554e4590c46df545bec7d84adb474e0e00ed3f96780b"
+    },
+    "stderr": {
+      "path": "C:\\OdinQA\\home-progress-1022\\review-sol\\payload07-inert-audit.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

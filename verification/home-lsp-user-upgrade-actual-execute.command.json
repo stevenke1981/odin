@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "C:\\OdinQA\\home-progress-1022\\user-upgrade\\user_upgrade.py",
+    "--execute",
+    "--installer",
+    "C:/OdinQA/pkg7/odin-0.2.0-windows-x64-setup.exe",
+    "--expected-host-sha256",
+    "87c7559eb24ded23c6688f6f111f7ec37da47934bb77a22b8a666d5835871a2a",
+    "--expected-client-sha256",
+    "05aaddc8eac1c0ac524958b1819255f24d425a1c8b2fe83255a57a57c145846f",
+    "--workspace-a",
+    "E:/odin",
+    "--workspace-b",
+    "D:/chatgpt-web-bridge"
+  ],
+  "cwd": "E:/odin",
+  "script_sha256": "d15bb9a7a68a992390660a21d9516ae2d13684bd87a586195c3c4bb839f5c84e",
+  "started_at_utc": "2026-10-22T05:59:30.844911+00:00",
+  "exit_code": 1,
+  "seconds": 0.638,
+  "stdout": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\actual-execute.stdout.log",
+  "stderr": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\actual-execute.stderr.log",
+  "stdout_sha256": "dbea60200ab32430b5d53b6b6b624262f3bd24efc00a52c0c6b20f67de6b4b18",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

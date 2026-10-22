@@ -1,0 +1,61 @@
+{
+  "source_sha256": "a11d84c20db58b65f92363c58413af058219f3ba1c8691d49f8e5b406b5c56d2",
+  "checks": [
+    {
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "tests/expanded_installed_languages.py",
+        "--check-fixture-expectations"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "log": "C:\\OdinQA\\home-progress-1022\\driver-verified-check-fixture-expectations.log",
+      "log_sha256": "196cd62b988e905de8303c3fb8fa8434d44d7a2d896802adff1dbb0c68c11c9d"
+    },
+    {
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "tests/expanded_installed_languages.py",
+        "--check-reference-fixture-points"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "log": "C:\\OdinQA\\home-progress-1022\\driver-verified-check-reference-fixture-points.log",
+      "log_sha256": "abc6c027c4c571cb265ae10bf33979da5fc2c9585680d3850c3265ad5b489929"
+    },
+    {
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "tests/expanded_installed_languages.py",
+        "--check-diagnostic-mapping"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "log": "C:\\OdinQA\\home-progress-1022\\driver-verified-check-diagnostic-mapping.log",
+      "log_sha256": "f52f5fe515745947b9d2dedaae76046e15380aaf8d8ad3ab6f8b2aa0785dad4f"
+    },
+    {
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "tests/expanded_installed_languages.py",
+        "--check-rust-readiness"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "log": "C:\\OdinQA\\home-progress-1022\\driver-verified-check-rust-readiness.log",
+      "log_sha256": "8ae92a1fbabbaff16c514fbd7488dbd5c2eea751b9eefbee5c1af7257ddb1117"
+    }
+  ]
+}

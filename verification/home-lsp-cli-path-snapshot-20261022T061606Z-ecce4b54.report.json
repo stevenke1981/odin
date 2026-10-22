@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "scope": "READONLY_PATH_SNAPSHOT_WITH_PRIVATE_EXTERNAL_BACKUP",
+  "snapshot_path": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\private\\path-snapshot-20261022T061606Z-ecce4b54.json",
+  "snapshot_sha256": "975bbc02cb1113c659931a2b221b3bb75f94841793a22a1656812800c9c81d7a",
+  "user_path": {
+    "present": true,
+    "registry_kind": 2,
+    "raw_and_kind_sha256": "102cd36936c0e99c0968d55498d0c2a97ab47a97acdfb980ed4eec8e224742d3",
+    "raw_sha256": "660df7cd677210df5fbf0ab005864a3bae51c26112730272001ea3690e38b900",
+    "separator_segment_count": 26
+  },
+  "machine_path": {
+    "present": true,
+    "registry_kind": 2,
+    "raw_and_kind_sha256": "ce324676954a3d81d4eb116b059b2a63c9d4f17358f8368308927709ad395b84",
+    "raw_sha256": "066803702d400b5a168a03845b8e61027fab6ab5b8608d73c1e728f80621a459",
+    "separator_segment_count": 13
+  },
+  "home_identity_sha256": "efe3964f2a04a8ba1b59c473d0d657ef483a44d1e984fc3b1351632aa42d70c8",
+  "installed_binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+  "source_pins": {
+    "user_cli_path.py": "eaf81f8986d6b86568dd38efb31ddbefcd62f76d23b587516ba4ac1c2e1f03c3",
+    "secure_private_folder.ps1": "d4b83b28fc6e837d184fc87aa9f96fb6e9948c5a71ec92d619fc8dcf7672fa87",
+    "verify_fresh_cli.ps1": "1094d525fcddc5c1b54809c17b4d729b18d09feb06d3a81ca9c6d5466a9137f8"
+  },
+  "registry_write": "NOT_RUN",
+  "fresh_cli_execution": "NOT_RUN",
+  "guard_limit": "Expected raw value and RegistryValueKind are rechecked immediately before SetValueEx. The registry read and write are separate operations, not atomic CAS with external actors. No automatic retry or rollback is performed."
+}

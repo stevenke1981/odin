@@ -1,0 +1,50 @@
+{
+  "scope": "ACTUAL_INNO_TO_NODE_ARGV_ONLY",
+  "status": "PASS",
+  "argv": [
+    "--install",
+    "--host-config",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host space\\host.toml",
+    "--receipt",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host no root receipt.json"
+  ],
+  "raw_argv": [
+    "--install",
+    "--host-config",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host space\\host.toml",
+    "--receipt",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host no root receipt.json",
+    "--progress-file",
+    "C:\\Users\\steven\\AppData\\Local\\Temp\\is-MWN1VK6B6K.tmp\\odin-lsp-8c7422bef7aa74c972643e129dc15f32.progress",
+    "--cancel-file",
+    "C:\\Users\\steven\\AppData\\Local\\Temp\\is-MWN1VK6B6K.tmp\\odin-lsp-8c7422bef7aa74c972643e129dc15f32.cancel",
+    "--progress-run-id",
+    "8c7422bef7aa74c972643e129dc15f32",
+    "--setup-timeout-seconds",
+    "900"
+  ],
+  "full_argv": [
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host app space\\backends\\node\\node.exe",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host app space\\setup-lsps.mjs",
+    "--install",
+    "--host-config",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host space\\host.toml",
+    "--receipt",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host no root receipt.json",
+    "--progress-file",
+    "C:\\Users\\steven\\AppData\\Local\\Temp\\is-MWN1VK6B6K.tmp\\odin-lsp-8c7422bef7aa74c972643e129dc15f32.progress",
+    "--cancel-file",
+    "C:\\Users\\steven\\AppData\\Local\\Temp\\is-MWN1VK6B6K.tmp\\odin-lsp-8c7422bef7aa74c972643e129dc15f32.cancel",
+    "--progress-run-id",
+    "8c7422bef7aa74c972643e129dc15f32",
+    "--setup-timeout-seconds",
+    "900"
+  ],
+  "expected": [
+    "--install",
+    "--host-config",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host space\\host.toml",
+    "--receipt",
+    "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host no root receipt.json"
+  ]
+}

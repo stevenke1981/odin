@@ -1,0 +1,23 @@
+{
+  "name": "private_acl",
+  "argv": [
+    "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "-NoProfile",
+    "-NonInteractive",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "C:\\OdinQA\\home-progress-1022\\user-cli-path\\secure_private_folder.ps1",
+    "-Directory",
+    "C:\\OdinQA\\home-progress-1022\\user-cli-path\\private"
+  ],
+  "cwd": "C:\\OdinQA\\home-progress-1022\\user-cli-path",
+  "exit_code": 0,
+  "helper_sha256": "3b2d98eb17032dba83dce96c3aae5434d5f5b0fd96796b445bf057860fe749b3",
+  "stdout_log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062146Z-aba2cf2c.stdout.log",
+  "stdout_sha256": "9b6b1465e4c2b2e7e8f002b952dfb3a8b320ddfd038d48472d233a8b43086da0",
+  "stderr_log": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-commands\\20261022T062146Z-aba2cf2c.stderr.log",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "registry_execution": "NOT_RUN",
+  "odin_execution": "NOT_RUN"
+}

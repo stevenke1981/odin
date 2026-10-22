@@ -1,0 +1,3 @@
+{"status": "PASS", "scope": "READ_ONLY_EXISTING_CLIENT_IDENTITY_ONLY", "client_sha256": "05aaddc8eac1c0ac524958b1819255f24d425a1c8b2fe83255a57a57c145846f", "entry_unchanged": true, "installer_execution": "NOT_RUN", "native_execution": "NOT_RUN"}
+
+STDERR

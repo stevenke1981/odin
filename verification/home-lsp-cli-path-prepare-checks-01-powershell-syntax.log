@@ -1,0 +1,3 @@
+PASS: two PowerShell scripts syntax only; no ACL or CLI execution
+
+STDERR

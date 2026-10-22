@@ -1,0 +1,14 @@
+{
+  "name": "whitespace",
+  "argv": [
+    "git",
+    "diff",
+    "--cached",
+    "--check"
+  ],
+  "cwd": "E:\\odin",
+  "exit_code": 2,
+  "seconds": 0.09,
+  "log": "C:\\OdinQA\\home-progress-1022\\closeout-whitespace.log",
+  "log_sha256": "b7e9a2c3ebaf47075ba260d905bd80783747e204cfe137b0e7f4ccc5c43003a0"
+}

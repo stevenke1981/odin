@@ -1,0 +1,201 @@
+{
+  "task_id": "ODIN-HOME-PROGRESS-EXPANDED-REVIEW",
+  "actor_instance": "/root/review_sol",
+  "scope": "INDEPENDENT_READ_ONLY_ACTUAL_HKCU_PATH_PREFIX_AND_FRESH_FIXED_CLI_RECEIPT_AUDIT",
+  "status": "PASS_SCOPED",
+  "at_utc": "2026-10-22T06:28:27.921268+00:00",
+  "reviewed_report": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\apply-20261022T062509Z-c27297f5\\report.json",
+  "reviewed_report_sha256": "507d512af931f0c978ab4123ab83b1685d29539dd32131d7991bcab19ba03ac5",
+  "outer_command": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\actual-apply02.command.json",
+  "outer_command_sha256": "e5f6865ac99269b8701decf12404ad8ebd70d091dec486c0549f702d394a7063",
+  "source_pins": {
+    "user_cli_path.py": "3f5dc46f6822d69b08bdb80b63124da76ba08ef97fab89e50f4598ab93cebdf7",
+    "secure_private_folder.ps1": "3b2d98eb17032dba83dce96c3aae5434d5f5b0fd96796b445bf057860fe749b3",
+    "verify_fresh_cli.ps1": "1094d525fcddc5c1b54809c17b4d729b18d09feb06d3a81ca9c6d5466a9137f8"
+  },
+  "snapshot_sha256": "214c7acec7ba4052b27e87a0daf906ea7bb91db1330ecf30103ac7c551fe51b9",
+  "notification_report": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\environment-notification.json",
+  "notification_sha256": "632e1e1796c5681b6b6f0bdd990d034454490212562ec86b4072a48e67672800",
+  "checks": [
+    {
+      "name": "report_sha",
+      "status": "PASS"
+    },
+    {
+      "name": "outer_zero",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_apply_pass_once",
+      "status": "PASS"
+    },
+    {
+      "name": "current_source:user_cli_path.py",
+      "status": "PASS"
+    },
+    {
+      "name": "current_source:secure_private_folder.ps1",
+      "status": "PASS"
+    },
+    {
+      "name": "current_source:verify_fresh_cli.ps1",
+      "status": "PASS"
+    },
+    {
+      "name": "outer_raw_log:stdout",
+      "status": "PASS"
+    },
+    {
+      "name": "outer_raw_log:stderr",
+      "status": "PASS"
+    },
+    {
+      "name": "fresh_snapshot_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "snapshot_new_source_pins",
+      "status": "PASS"
+    },
+    {
+      "name": "original_snapshot_immutable",
+      "status": "PASS"
+    },
+    {
+      "name": "fresh_snapshot_same_raw_kind_not_conflict_refresh",
+      "status": "PASS"
+    },
+    {
+      "name": "private_backup_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "backup_before_exact_snapshot",
+      "status": "PASS"
+    },
+    {
+      "name": "current_hkcu_only_prefix_exact_full_old_suffix",
+      "status": "PASS"
+    },
+    {
+      "name": "current_hklm_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "reg_kind_retained",
+      "status": "PASS"
+    },
+    {
+      "name": "public_before_digest_exact",
+      "status": "PASS"
+    },
+    {
+      "name": "public_after_digest_exact",
+      "status": "PASS"
+    },
+    {
+      "name": "public_machine_digest_exact",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_child_exit0:candidate_prewrite",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_child_raw_log:candidate_prewrite:stdout",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_child_raw_log:candidate_prewrite:stderr",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_fresh_metadata_identity:candidate_prewrite",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_fresh_sources_digest:candidate_prewrite",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_child_exit0:private_acl",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_child_raw_log:private_acl:stdout",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_child_raw_log:private_acl:stderr",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_private_acl_no_write",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_child_exit0:actual_persisted_postwrite",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_child_raw_log:actual_persisted_postwrite:stdout",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_child_raw_log:actual_persisted_postwrite:stderr",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_fresh_metadata_identity:actual_persisted_postwrite",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_fresh_sources_digest:actual_persisted_postwrite",
+      "status": "PASS"
+    },
+    {
+      "name": "exact_three_child_commands",
+      "status": "PASS"
+    },
+    {
+      "name": "first_apply_fail_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "pre_resnapshot_no_original_conflict",
+      "status": "PASS"
+    },
+    {
+      "name": "host_client_not_changed_by_path_action",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_binary_still_exact",
+      "status": "PASS"
+    },
+    {
+      "name": "separate_notification_scoped",
+      "status": "PASS"
+    },
+    {
+      "name": "no_existing_process_refresh_claim",
+      "status": "PASS"
+    }
+  ],
+  "actual_root_execution": {
+    "exit_code": 0,
+    "seconds": 1.236,
+    "registry_write": "EXECUTED_ONCE",
+    "fresh_metadata_probes": 2,
+    "strict_existing_private_acl": "VALIDATED_EXISTING_NO_WRITE"
+  },
+  "reviewer_execution": "OWN_STDLIB_DATA_AND_WINREG_QUERY_ONLY; no registry/ACL write, no target executable/installer, no source mutation",
+  "privacy": "Private raw registry snapshots read only for equality/suffix checks; no raw PATH or private config content saved in this report",
+  "limits": [
+    "Expected registry value read/write is not atomic against concurrent actors",
+    "User PATH intentionally changed after the independently sealed unchanged-PATH installer slice; cannot call the complete environment PATH-unchanged",
+    "Notification receipt records delivery; existing processes/client have no refreshed-environment or restart claim",
+    "Legacy binary source not written by helper; no independently captured prior legacy binary hash is invented"
+  ],
+  "findings": []
+}

@@ -1,0 +1,333 @@
+{
+  "scope": "EXTRACTED_ACTUAL_USER_WORKER_HEALTH_AND_CAS_FIELDS_NOT_FULL_HOST_CONFIG",
+  "health": {
+    "scope": "BUNDLED_BACKEND_VERSION_EXECUTION_NOT_SEMANTIC_ACCEPTANCE",
+    "status": "PASS",
+    "bundle_manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+    "checks": [
+      {
+        "component": "node",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "24.21.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "v24.21.0\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "basedpyright",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "args": [
+          "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\basedpyright\\index.js",
+          "--version"
+        ],
+        "expected_version": "1.40.2",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "basedpyright 1.40.2\nbased on pyright 1.40.2\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "typescript-language-server",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "args": [
+          "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+          "--version"
+        ],
+        "expected_version": "6.0.2",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "6.0.2\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "typescript",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "args": [
+          "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\typescript\\lib\\tsc.js",
+          "--version"
+        ],
+        "expected_version": "6.0.3",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "Version 6.0.3\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "bash-language-server",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "args": [
+          "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\bash-language-server\\out\\cli.js",
+          "--version"
+        ],
+        "expected_version": "5.8.1",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "5.8.1\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "go",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\go\\bin\\go.exe",
+        "args": [
+          "version"
+        ],
+        "expected_version": "1.27.3",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "go version go1.27.3 windows/amd64\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "gopls",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\gopls\\gopls.exe",
+        "args": [
+          "version"
+        ],
+        "expected_version": "0.24.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "golang.org/x/tools/gopls v0.24.0\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "dotnet",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\dotnet\\dotnet.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "10.0.402",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "10.0.402\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "csharp-ls",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\dotnet\\dotnet.exe",
+        "args": [
+          "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\csharp\\CSharpLanguageServer.dll",
+          "--version"
+        ],
+        "expected_version": "0.28.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "csharp-ls, 0.28.0 (Klebi?kis)+72671fc7fa810c158864e72485db68e8b9b25c3d\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "lua-language-server",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\lua\\bin\\lua-language-server.exe",
+        "args": [
+          "--configpath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-rUSZsf\\lua-settings.json",
+          "--logpath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-rUSZsf\\lua\\log",
+          "--metapath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-rUSZsf\\lua\\meta",
+          "--version"
+        ],
+        "expected_version": "3.19.2",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "3.19.2\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "slint-lsp",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\slint\\slint-lsp.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "1.18.1",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "slint-lsp 1.18.1\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "clangd",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\clangd\\bin\\clangd.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "23.1.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "clangd version 23.1.0 (https://github.com/llvm/llvm-project ea7d852a70e8bdfaf601d6626a760f9771b2c4b4)\nFeatures: windows+grpc\nPlatform: x86_64-pc-windows-msvc\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "taplo",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\taplo\\taplo.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "0.10.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "taplo 0.10.0\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "yaml-language-server",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "args": [
+          "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\yaml-language-server\\bin\\yaml-language-server",
+          "--version"
+        ],
+        "expected_version": "2.0.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "2.0.0\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "marksman",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\marksman\\marksman.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "2026-02-08",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "2026-02-08\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "ruff",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\ruff\\ruff.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "0.17.1",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "ruff 0.17.1\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "ty",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\ty\\ty.exe",
+        "args": [
+          "version"
+        ],
+        "expected_version": "0.0.90",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "ty 0.0.90 (ebc8bbb31 2026-10-20)\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "rust-analyzer",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\rust-analyzer\\rust-analyzer.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "0.3.3089",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "rust-analyzer 0.3.3089-standalone (5ec20d044d 2026-10-18)\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "@vtsls/language-server",
+        "status": "PASS",
+        "program": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "args": [
+          "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\@vtsls\\language-server\\bin\\vtsls.js",
+          "--version"
+        ],
+        "expected_version": "0.3.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "0.3.0\n",
+        "stderr": "",
+        "error": null
+      }
+    ],
+    "post_health_integrity": {
+      "status": "PASS",
+      "manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680"
+    },
+    "semantic_acceptance": "NOT_RUN"
+  },
+  "plan": {
+    "schema_version": 1,
+    "scope": "OFFLINE_HOST_LSP_CONFIGURATION",
+    "status": "READY",
+    "before_sha256": "87c7559eb24ded23c6688f6f111f7ec37da47934bb77a22b8a666d5835871a2a",
+    "after_sha256": "5550667d1690b5e7b035aa1239db25af9e1df0346c4b6661d5192bb53b494144",
+    "bundle_manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+    "replace_language_profiles": false,
+    "selected_backends": {
+      "python": "basedpyright",
+      "typescript": "typescript-language-server"
+    },
+    "permissions": "Existing grants preserved; new workspace grants remain disabled",
+    "plan_sha256": "76452ec7931ba63da18f32095ca5cc22f6f01410058f8a67bb3860b32d6660f3"
+  },
+  "result": {
+    "status": "PASS",
+    "before_sha256": "87c7559eb24ded23c6688f6f111f7ec37da47934bb77a22b8a666d5835871a2a",
+    "after_sha256": "5550667d1690b5e7b035aa1239db25af9e1df0346c4b6661d5192bb53b494144",
+    "selected_backends": {
+      "python": "basedpyright",
+      "typescript": "typescript-language-server"
+    },
+    "bundle_manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+    "setup_semantics": "Host-file CAS with backups; no multi-file atomicity or OS-global CAS claimed"
+  },
+  "language_ids": [
+    "python",
+    "go",
+    "csharp",
+    "lua",
+    "javascript",
+    "typescript",
+    "bash",
+    "slint",
+    "c",
+    "cpp",
+    "toml",
+    "yaml",
+    "markdown",
+    "rust"
+  ]
+}

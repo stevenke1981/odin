@@ -1,0 +1,151 @@
+{
+    "allow_debug":  false,
+    "allow_formatters":  false,
+    "allow_inspections":  false,
+    "allow_shell":  false,
+    "allow_write":  false,
+    "command_profiles":  [
+
+                         ],
+    "debug_profiles":  [
+
+                       ],
+    "deny_globs":  [
+                       "**/.env",
+                       "**/.env.*",
+                       "**/*.pem",
+                       "**/*.key",
+                       "**/id_rsa",
+                       "**/id_ed25519"
+                   ],
+    "excluded_tools":  [
+
+                       ],
+    "formatter_profiles":  [
+
+                           ],
+    "inspection_profiles":  [
+
+                            ],
+    "languages":  [
+                      {
+                          "extensions":  [
+                                             "py",
+                                             "pyi"
+                                         ],
+                          "id":  "python"
+                      },
+                      {
+                          "extensions":  [
+                                             "go"
+                                         ],
+                          "id":  "go"
+                      },
+                      {
+                          "extensions":  [
+                                             "cs"
+                                         ],
+                          "id":  "csharp"
+                      },
+                      {
+                          "extensions":  [
+                                             "lua"
+                                         ],
+                          "id":  "lua"
+                      },
+                      {
+                          "extensions":  [
+                                             "js",
+                                             "jsx",
+                                             "mjs",
+                                             "cjs"
+                                         ],
+                          "id":  "javascript"
+                      },
+                      {
+                          "extensions":  [
+                                             "ts",
+                                             "tsx",
+                                             "mts",
+                                             "cts"
+                                         ],
+                          "id":  "typescript"
+                      },
+                      {
+                          "extensions":  [
+                                             "sh",
+                                             "bash"
+                                         ],
+                          "id":  "bash"
+                      },
+                      {
+                          "extensions":  [
+                                             "slint"
+                                         ],
+                          "id":  "slint"
+                      },
+                      {
+                          "extensions":  [
+                                             "c",
+                                             "h"
+                                         ],
+                          "id":  "c"
+                      },
+                      {
+                          "extensions":  [
+                                             "cc",
+                                             "cpp",
+                                             "cxx",
+                                             "hpp",
+                                             "hh",
+                                             "hxx"
+                                         ],
+                          "id":  "cpp"
+                      },
+                      {
+                          "extensions":  [
+                                             "toml"
+                                         ],
+                          "id":  "toml"
+                      },
+                      {
+                          "extensions":  [
+                                             "yaml",
+                                             "yml"
+                                         ],
+                          "id":  "yaml"
+                      },
+                      {
+                          "extensions":  [
+                                             "md",
+                                             "markdown"
+                                         ],
+                          "id":  "markdown"
+                      },
+                      {
+                          "extensions":  [
+                                             "rs"
+                                         ],
+                          "id":  "rust"
+                      }
+                  ],
+    "limits":  {
+                   "max_changes":  256,
+                   "max_file_bytes":  2097152,
+                   "max_files":  10000,
+                   "max_flow_sessions":  128,
+                   "max_flow_steps":  32,
+                   "max_matches":  200,
+                   "max_output_bytes":  131072,
+                   "max_session_bytes":  1048576,
+                   "rpc_timeout_secs":  60
+               },
+    "project":  "ws_452129433b8269f8112ace4404ad08d069e5a150d5535095",
+    "root":  "\\\\?\\C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-workspace",
+    "trace":  {
+                  "elapsed_ms":  0,
+                  "id":  "dc19895f-2a8f-4402-9c2a-303c156d8793",
+                  "result_bytes":  1293,
+                  "result_sha256":  "de88e6ae3eb37341ce7e082fe73105407c4fc3b7fa45a65737e52b91d5e44968"
+              }
+}

@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_lsp_payload_builder.py",
+    "-v"
+  ],
+  "cwd": "E:\\odin-worktrees\\expanded-payload-sol",
+  "exit_code": 0,
+  "status": "PASS",
+  "stdout": "C:\\OdinQA\\expanded-lsp\\unit-07.stdout",
+  "stderr": "C:\\OdinQA\\expanded-lsp\\unit-07.stderr",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "abecacec2a3f10573f1eb8c037e76076a00052fc0fcc0274aed9a9480a4b923c",
+  "elapsed_seconds": 1.04,
+  "source_sha256": {
+    "scripts/prepare_lsp_payload.py": "4601cb23ffb9d0be416d8aa899004ea412f04b1a298a102f45daeb9dd0e28eb5",
+    "scripts/collect_lsp_notices.py": "b72d7da99cbe6ac6e333f9599b15bf7aa34c248013e3adcfd99aa3a2feb2d154",
+    "tests/test_lsp_payload_builder.py": "471ed04a9f4b2791951f855a035a34aab3dfa9c73cf74772ba8a1db01417551b",
+    "packaging/lsp-package.json": "dcab523560cf5d65948b998e69d54f15ee34fdaf34b00ed7bac079f3e010bae7",
+    "packaging/lsp-package-lock.json": "58cb6e0a67c4283bc56e29c4cd89a4304bf587bbbba92fe4d38024d35082b4ba",
+    "packaging/lsp-native-sources.json": "bd1f02f0d3565e8e59b2ab0b7b9729dfe4949220281df93dabcd581d9a91a262"
+  }
+}

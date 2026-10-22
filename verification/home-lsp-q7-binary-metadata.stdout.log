@@ -1,0 +1,13 @@
+{
+  "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+  "external_tool_bridge": false,
+  "model_token_usage": "UNKNOWN",
+  "name": "Odin",
+  "profile": "release",
+  "revision": "190c308e9ab7bbbf2917f879f58fd2d8a948cee0",
+  "schema_version": 1,
+  "standalone": true,
+  "target": "x86_64-pc-windows-msvc",
+  "tracked_source_dirty": false,
+  "version": "0.2.0"
+}

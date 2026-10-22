@@ -1,0 +1,3 @@
+{"scope": "ARTIFACT_AND_CONTRACT_STATIC_CHECKS_ONLY", "status": "FAIL", "rust_files": 53, "rust_lines": 20815, "rust_test_declarations": 253, "rust_compilation": "NOT_PERFORMED_BY_STATIC_CHECK"}
+Checks: 1195 Fail: 1
+{'name': 'python_ast:verification\\home-lsp-published-evidence-audit07-first.py', 'status': 'FAIL', 'detail': 'invalid non-printable character U+FEFF (home-lsp-published-evidence-audit07-first.py, line 1)'}

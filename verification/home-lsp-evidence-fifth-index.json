@@ -1,0 +1,230 @@
+{
+  "status": "PASS_FOR_FINAL07_PACKAGE_AND_ISOLATED_LIFECYCLE",
+  "installer_sha256": "ebf7f94acac5c0d850b4c5636684e775689df84dbc44a0b97324b35e17421af2",
+  "portable_sha256": "015cbfa7635a1735eceeff5ad977e0ddd6be06540a4630016bfd02af239cd03c",
+  "manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+  "lifecycle_checks_passed": 60,
+  "source_files_unchanged": 60,
+  "operator_state_sealed_unchanged": true,
+  "semantic_tests": "Separate real MCP reports; not inferred from installer version/config checks",
+  "large_inno_logs": "Retained externally with raw SHA256 in q7-final-handoff; not truncated or mislabeled as published complete logs",
+  "actual_user_home_upgrade": "NOT_RUN_BY_THIS_SLICE",
+  "entries": [
+    {
+      "path": "verification/home-lsp-q7-final-handoff.json",
+      "published_sha256": "db6838613c76cad9105a610759520414747823365620b156a8882e5a04897fa5",
+      "bytes": 11048,
+      "original_source": "C:\\OdinQA\\q7\\final-handoff.json",
+      "original_raw_sha256": "18055370c5e1d377a01bbc072d41f0585084f0005fbad4196cb0c363caebfcc6",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-q7-run-report.json",
+      "published_sha256": "566f8c25caada5b4aa2347c7b4b3b9915b8fe95b6e24b1e3e6098e3d8fa6602c",
+      "bytes": 15085,
+      "original_source": "C:\\OdinQA\\q7\\run-report.json",
+      "original_raw_sha256": "0b5be00dea6f0be415c44490be400c50fe20a314c1c221c3370be6dec63e863e",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-q7-operator-before.json",
+      "published_sha256": "9f26ffc5d86e822e315a6e677505fe65416414d0e4a31043218dbdff55ad33e7",
+      "bytes": 1454,
+      "original_source": "C:\\OdinQA\\q7\\operator-before.json",
+      "original_raw_sha256": "f6d58aa7bb8e76dd7efdfdc7cc2319142578d086a9e07fc86a8903842200e65b",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-q7-operator-after.json",
+      "published_sha256": "9f26ffc5d86e822e315a6e677505fe65416414d0e4a31043218dbdff55ad33e7",
+      "bytes": 1454,
+      "original_source": "C:\\OdinQA\\q7\\operator-after.json",
+      "original_raw_sha256": "f6d58aa7bb8e76dd7efdfdc7cc2319142578d086a9e07fc86a8903842200e65b",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-q7-preflight.json",
+      "published_sha256": "e4899d6f28b60f5a76cfba08236bf8e27186921cfe7c654f42cfac253b9c9517",
+      "bytes": 6808,
+      "original_source": "C:\\OdinQA\\q7\\preflight.json",
+      "original_raw_sha256": "502a366083be26397766495ee0aaeb554c8d954ceb353035976356530d54079e",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-q7-package-doc-copy-integrity.json",
+      "published_sha256": "a98cd29565e90b4d77f56c859fe5968542dcf363d98a867c70bec35fb53bd169",
+      "bytes": 16074,
+      "original_source": "C:\\OdinQA\\q7\\package-doc-copy-integrity.json",
+      "original_raw_sha256": "8d1749757ae264d4d2210b0570e79a98f0143848ee17dcbb0b85ab397bce948e",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-q7-package.command.json",
+      "published_sha256": "d015941ac47495db9a15c5f15523a35dab9f0c777e3515adfda9899ad912017e",
+      "bytes": 878,
+      "original_source": "C:\\OdinQA\\q7\\package.command.json",
+      "original_raw_sha256": "77d6251b11dff642dafe6d0e233d5c3a607e2714b6b472ace07692f527a0ac33",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-q7-binary-metadata.command.json",
+      "published_sha256": "1b3db06ad94fcc42bb450b17b49b66833ac4f8b0699b6e0ddb44e84fd8ab0ffa",
+      "bytes": 463,
+      "original_source": "C:\\OdinQA\\q7\\binary-metadata.command.json",
+      "original_raw_sha256": "a31cd2c674dde371c3138404a034d00445cf2c8549a9768ae6ebde131bae6dcb",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-q7-installer-qa.command.json",
+      "published_sha256": "a772624f8e525493083e37d7c83aaf053f831c00eb99167776d5cf9e379043c5",
+      "bytes": 819,
+      "original_source": "C:\\OdinQA\\q7\\installer-qa.command.json",
+      "original_raw_sha256": "fb5804d38bd0ec409c328a822ef6da20adeaadf0cd1ec077c049a258ecec175c",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-q7-package.stdout.log",
+      "published_sha256": "7a0560715d2c6c96c2f00320e187945da9885e9c06077a5e10e7f5a092b45d3a",
+      "bytes": 25095,
+      "original_source": "C:\\OdinQA\\q7\\package.stdout.log",
+      "original_raw_sha256": "73b28c34dd39057293d015a45a76d8cbad7ca1db185c8513352ac51520aaefd5",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-q7-package.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\q7\\package.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-q7-binary-metadata.stdout.log",
+      "published_sha256": "8697d7797fa3ea7e8c183a3e4672adbcc866fd546246a2a86030e057519d9902",
+      "bytes": 361,
+      "original_source": "C:\\OdinQA\\q7\\binary-metadata.stdout.log",
+      "original_raw_sha256": "8697d7797fa3ea7e8c183a3e4672adbcc866fd546246a2a86030e057519d9902",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-q7-binary-metadata.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\q7\\binary-metadata.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-q7-installer-qa.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\q7\\installer-qa.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-q7-sealed-SHA256SUMS.txt",
+      "published_sha256": "e84d17fd4a743c90854b81581ab878378adcc9c331ab31ad755615b3ff7242f1",
+      "bytes": 4539,
+      "original_source": "C:\\OdinQA\\q7\\SHA256SUMS-final",
+      "original_raw_sha256": "98810057ed530251b830d989e63e1367af6266ca83892c750c26e00d2532d946",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-pkg7-package-report.json",
+      "published_sha256": "16cec38b32a8504d9de1207907a07cd7549842656acb731db2e1bf7e8460cb28",
+      "bytes": 25094,
+      "original_source": "C:\\OdinQA\\pkg7\\package-report.json",
+      "original_raw_sha256": "b19dcac7c7d0263a2fa806383282fa1d2f98e3f62fc87ceb3e71d510fab6ea18",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-pkg7-SHA256SUMS.txt",
+      "published_sha256": "4b483036313e0f9f75d38e3ee10c0491197a26a191b6989547841a7fded0754d",
+      "bytes": 203,
+      "original_source": "C:\\OdinQA\\pkg7\\SHA256SUMS",
+      "original_raw_sha256": "4b483036313e0f9f75d38e3ee10c0491197a26a191b6989547841a7fded0754d",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-q7-installer-report.json",
+      "published_sha256": "2d9e552105906de35b45b1dc30b91a198c275dffcd10f7a7fe244243c5f6bd30",
+      "bytes": 12287,
+      "original_source": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\installer-report.json",
+      "original_raw_sha256": "fef5ef83a53e9d4a22315dbf7e6277b8daa525e580ee21286a591f3da13964e5",
+      "serialization": "Logical JSON copy; only raw User/Process PATH string values replaced by exact UTF8 SHA256 plus character counts; all check/command/result fields retained. Full original retained externally."
+    },
+    {
+      "path": "verification/home-lsp-q7-path-observations.json",
+      "published_sha256": "104161f311db869e5ba5596310fd6488a51b91b5a8abc43cd9fa54ee5b059c08",
+      "bytes": 3276,
+      "original_source": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\path-observations.json",
+      "original_raw_sha256": "c37e68c63b9daefb765b79b289abe489ec2b598ae0dfc107009129c89843fb4c",
+      "serialization": "Logical JSON copy; only raw User/Process PATH string values replaced by exact UTF8 SHA256 plus character counts; all check/command/result fields retained. Full original retained externally."
+    },
+    {
+      "path": "verification/home-lsp-q7-portable-lsp-receipt.json",
+      "published_sha256": "4e9f9facfc35d07c0f6f1ca1abc55c1ebc6243dc95dc69f614398ce22d7f8b7f",
+      "bytes": 25933,
+      "original_source": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\portable-lsp-receipt.json",
+      "original_raw_sha256": "4e9f9facfc35d07c0f6f1ca1abc55c1ebc6243dc95dc69f614398ce22d7f8b7f",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-q7-portable-lsp-receipt.json.current-config.json",
+      "published_sha256": "d87dfa9c45ab78d9a8e3680727a025dbbeddcc920b7e88fb2ad9fb900faae31c",
+      "bytes": 5634,
+      "original_source": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\portable-lsp-receipt.json.current-config.json",
+      "original_raw_sha256": "feeb38207f1d0d529c3f32d21d84906cc9925647f3d56545115e03a27441386b",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-q7-lsp-install-receipt.json",
+      "published_sha256": "8385805ed218aa36c72e44126a1d38aaf9dd41a996b8b3a2f7b2f18470188878",
+      "bytes": 25532,
+      "original_source": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-install-receipt.json",
+      "original_raw_sha256": "8385805ed218aa36c72e44126a1d38aaf9dd41a996b8b3a2f7b2f18470188878",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-q7-lsp-install-receipt.json.current-config.json",
+      "published_sha256": "92be1ed684fb06a17b80e1df6a3f960b2aa60d6d5a78f881669c7e3f22d3b9fa",
+      "bytes": 5634,
+      "original_source": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-install-receipt.json.current-config.json",
+      "original_raw_sha256": "f4ff18e32681d9ef1ac836273669ab77b9c432252f358fc09a16a90d06dd4658",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-q7-lsp-reinstall-receipt.json",
+      "published_sha256": "d873d554014fc9118bc6cb156fd4523cdb439136386f48a813753a263b588cb2",
+      "bytes": 35897,
+      "original_source": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-reinstall-receipt.json",
+      "original_raw_sha256": "d873d554014fc9118bc6cb156fd4523cdb439136386f48a813753a263b588cb2",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-q7-lsp-reinstall-receipt.json.current-config.json",
+      "published_sha256": "0b281ce6dee2e8bc8b58ae7af001ecee14e47ce9cea8a4b5c7b87e052ec90b03",
+      "bytes": 5634,
+      "original_source": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-reinstall-receipt.json.current-config.json",
+      "original_raw_sha256": "bba619e7b18642d39265a9939d078b31a72319943bb66da830d3bc026b44b619",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-review-pkg7-artifact-input-review.json",
+      "published_sha256": "3169fd51f88f177b5b2104adfb327c560047071632026b638551564417411ff0",
+      "bytes": 4583,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\pkg7-artifact-input-review.json",
+      "original_raw_sha256": "3169fd51f88f177b5b2104adfb327c560047071632026b638551564417411ff0",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-review-q7-lifecycle-evidence-review.json",
+      "published_sha256": "4a799cd11c9c7e6ee7549095b6e13e1f1de7415957d174f40a69bb012ffa549a",
+      "bytes": 27334,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\q7-lifecycle-evidence-review.json",
+      "original_raw_sha256": "a13c61fc034d21c39e8ff913213e3850d9691f3dcfdd96181259c61da0396305",
+      "lf_normalized": true
+    }
+  ]
+}

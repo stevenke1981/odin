@@ -1,0 +1,6 @@
+
+STDERR
+usage: user_cli_path.py [-h] (--check-fixtures | --snapshot | --apply)
+                        [--snapshot-path SNAPSHOT_PATH]
+                        [--expected-snapshot-sha256 EXPECTED_SNAPSHOT_SHA256]
+user_cli_path.py: error: --apply requires --snapshot-path and --expected-snapshot-sha256

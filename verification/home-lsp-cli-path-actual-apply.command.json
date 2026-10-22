@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "C:\\Python314\\python.exe",
+    "-X",
+    "utf8",
+    "-B",
+    "C:\\OdinQA\\home-progress-1022\\user-cli-path\\user_cli_path.py",
+    "--apply",
+    "--snapshot-path",
+    "C:\\OdinQA\\home-progress-1022\\user-cli-path\\private\\path-snapshot-20261022T061606Z-ecce4b54.json",
+    "--expected-snapshot-sha256",
+    "975bbc02cb1113c659931a2b221b3bb75f94841793a22a1656812800c9c81d7a"
+  ],
+  "cwd": "E:/odin",
+  "script_sha256": "eaf81f8986d6b86568dd38efb31ddbefcd62f76d23b587516ba4ac1c2e1f03c3",
+  "exit_code": 1,
+  "seconds": 0.922,
+  "stdout_sha256": "0155d2dc156adb6d917e56129ad6b0ddbe0ac4cf9286d0dfea96699b6efecf48",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

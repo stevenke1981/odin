@@ -1,0 +1,4 @@
+{"case": "toml", "status": "PARTIAL", "counts": {"PASS": 21, "NOT_VERIFIED": 4}}
+{"case": "yaml", "status": "PARTIAL", "counts": {"PASS": 21, "NOT_VERIFIED": 4}}
+{"case": "markdown", "status": "PARTIAL", "counts": {"PASS": 15, "NOT_VERIFIED": 4}}
+{"status": "PARTIAL", "counts": {"PASS": 57, "NOT_VERIFIED": 12}}

@@ -1,0 +1,237 @@
+{
+  "task_id": "ODIN-HOME-PROGRESS-EXPANDED-REVIEW",
+  "actor_instance": "/root/review_sol",
+  "scope": "READ_ONLY_EXTERNAL_USER_UPGRADE_RUNNER_STRICT_LOCAL_DRIVE_ALIAS_FIX_REVIEW",
+  "status": "PASS_SCOPED_NO_OPEN_FINDINGS",
+  "at_utc": "2026-10-22T06:05:13.516071+00:00",
+  "source_hashes": {
+    "user_upgrade.py": "4498b3bd5c0468cf795adc2567369790b051564a84dde2a8a5a2e77d94a2eb6a",
+    "read_operator_cert_state.ps1": "c17b2c8b91a37230816f0afcf9ba3fc60a8678238fb92bbf05b2c912816ad560",
+    "README.md": "21d3ff45d69edcfdbe439d70cc818b2f0054513dad48d98805f7ba92dd67d094"
+  },
+  "receipt": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-02\\prepare.command.json",
+  "receipt_sha256": "ca71b438654fe7472e163124dc190e82e7e91bd2cfd5515a96a89d534cf487b5",
+  "checks": [
+    {
+      "name": "receipt_sha",
+      "status": "PASS"
+    },
+    {
+      "name": "source:user_upgrade.py",
+      "status": "PASS"
+    },
+    {
+      "name": "source:read_operator_cert_state.ps1",
+      "status": "PASS"
+    },
+    {
+      "name": "source:README.md",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged_history:C:\\OdinQA\\home-progress-1022\\user-upgrade\\history\\user_upgrade.d15bb9a7a68a992390660a21d9516ae2d13684bd87a586195c3c4bb839f5c84e.py",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged_history:C:\\OdinQA\\home-progress-1022\\user-upgrade\\prepare-checks-01\\prepare.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged_history:C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T055930Z-005cb442\\report.json",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged_history:C:\\OdinQA\\home-progress-1022\\user-upgrade\\actual-execute.command.json",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged_history:C:\\OdinQA\\home-progress-1022\\user-upgrade\\actual-execute.stderr.log",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged_history:C:\\OdinQA\\home-progress-1022\\user-upgrade\\actual-execute.stdout.log",
+      "status": "PASS"
+    },
+    {
+      "name": "command_expected_exit:inert-guards",
+      "status": "PASS"
+    },
+    {
+      "name": "command_log:inert-guards",
+      "status": "PASS"
+    },
+    {
+      "name": "command_expected_exit:python-syntax",
+      "status": "PASS"
+    },
+    {
+      "name": "command_log:python-syntax",
+      "status": "PASS"
+    },
+    {
+      "name": "command_expected_exit:powershell-syntax",
+      "status": "PASS"
+    },
+    {
+      "name": "command_log:powershell-syntax",
+      "status": "PASS"
+    },
+    {
+      "name": "command_expected_exit:readonly-existing-client-identity",
+      "status": "PASS"
+    },
+    {
+      "name": "command_log:readonly-existing-client-identity",
+      "status": "PASS"
+    },
+    {
+      "name": "command_expected_exit:missing-mode",
+      "status": "PASS"
+    },
+    {
+      "name": "command_log:missing-mode",
+      "status": "PASS"
+    },
+    {
+      "name": "command_expected_exit:execute-without-required-identities",
+      "status": "PASS"
+    },
+    {
+      "name": "command_log:execute-without-required-identities",
+      "status": "PASS"
+    },
+    {
+      "name": "command_expected_exit:mutually-exclusive-modes",
+      "status": "PASS"
+    },
+    {
+      "name": "command_log:mutually-exclusive-modes",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:require",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:canonical",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:sha",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:object_sha",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:file_sha",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:write_new",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:no_redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:scopes",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:config_projection",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:grant_view",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:rust_view",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:profile_summary",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:native_profile_ids",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:verify_host_change",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:verify_receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:installer_command",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:verify_client",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:project_binding",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:decode_tool",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:Peer",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:os_home",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:operator_state",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:Runner",
+      "status": "PASS"
+    },
+    {
+      "name": "original_function_AST_unchanged:main",
+      "status": "PASS"
+    },
+    {
+      "name": "no_redirect_exact_source_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "log_only_known_stderr_marker_suffix",
+      "status": "PASS"
+    },
+    {
+      "name": "35_executed_inert_guards",
+      "status": "PASS"
+    }
+  ],
+  "static_review": [
+    "Only valid extended absolute DOS drive spelling aliases to plain drive spelling; unsupported namespaces/malformed components reject",
+    "Original no_redirect function source unchanged; target identity hashes, grants/Rust/client preservation, owned-only cleanup and prelaunch guards unchanged",
+    "Actual existing client path verified read-only by author command; 35 inert guards are not installer/native execution"
+  ],
+  "first_attempt": {
+    "runner_sha256": "d15bb9a7a68a992390660a21d9516ae2d13684bd87a586195c3c4bb839f5c84e",
+    "report": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T055930Z-005cb442\\report.json",
+    "status": "FAIL_PRELAUNCH_NO_TARGET_COMMANDS",
+    "discovered_by": "Root actual first attempt; earlier static review missed valid extended-drive alias",
+    "current_resolution": "FIXED_EXTERNAL_RUNNER_4498; actual second execution pending"
+  },
+  "actual_installer_execution_by_reviewer": "NOT_RUN",
+  "actual_user_feature_acceptance": "PENDING_ROOT_SECOND_EXECUTION",
+  "product_source_mutations": "NONE",
+  "findings": [],
+  "reviewer_parser_first_failure": "C:\\OdinQA\\home-progress-1022\\review-sol\\user-upgrade-runner-review-02.parser-first-failure.json"
+}

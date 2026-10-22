@@ -1,0 +1,15 @@
+{
+  "scope": "SEPARATE_STANDARD_ENVIRONMENT_CHANGE_NOTIFICATION_AFTER_SEALED_USER_PATH_UPDATE",
+  "status": "DELIVERED",
+  "api": "SendMessageTimeoutW",
+  "message": "WM_SETTINGCHANGE",
+  "payload": "Environment",
+  "timeout_ms": 5000,
+  "elapsed_seconds": 0.076,
+  "api_return": 1,
+  "last_error": 0,
+  "registry_write": false,
+  "existing_process_path_updated": "NOT_CLAIMED",
+  "client_restart": "NOT_RUN",
+  "note": "Notification only; already-open terminals/launchers may retain inherited PATH and need restart. This does not replace the fixed fresh-process CLI proof."
+}

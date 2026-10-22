@@ -1,0 +1,31 @@
+{
+  "scope": "ROOT_AUTHORIZED_OWNED_EXTERNAL_PRIVATE_ACL_DIAGNOSIS_ONLY",
+  "argv": [
+    "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+    "-NoProfile",
+    "-NonInteractive",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "C:\\OdinQA\\home-progress-1022\\user-cli-path\\secure_private_folder.ps1",
+    "-Directory",
+    "C:\\OdinQA\\home-progress-1022\\user-cli-path\\private"
+  ],
+  "cwd": "C:\\OdinQA\\home-progress-1022\\user-cli-path",
+  "exit_code": 1,
+  "started_at_utc": "2026-10-22T06:18:40.300640+00:00",
+  "completed_at_utc": "2026-10-22T06:18:40.579819+00:00",
+  "source_sha256": "d4b83b28fc6e837d184fc87aa9f96fb6e9948c5a71ec92d619fc8dcf7672fa87",
+  "logs": [
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-diagnosis-01\\original-helper.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\user-cli-path\\acl-diagnosis-01\\original-helper.stderr.log",
+      "sha256": "7af0deaca03fc416d6baf28486df84bdfece0023d153a89071645b021c62e938"
+    }
+  ],
+  "registry_execution": "NOT_RUN",
+  "odin_execution": "NOT_RUN"
+}

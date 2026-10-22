@@ -1,0 +1,788 @@
+{
+  "schema_version": 1,
+  "task_id": "ODIN-HOME-PROGRESS-EXPANDED-REVIEW",
+  "scope": "INDEPENDENT_READ_ONLY_FINAL07_PACKAGE_LIFECYCLE_EVIDENCE_AUDIT_NOT_REEXECUTION",
+  "status": "PASS_SCOPED",
+  "actor_instance": "/root/review_sol",
+  "generated_at_utc": "2026-10-22T06:00:08.658985+00:00",
+  "script_sha256": "9cd5714a94305bc5f164bbef552906b0f4c078aa443d693bff21721f4711717a",
+  "q7_seal_sha256": "18055370c5e1d377a01bbc072d41f0585084f0005fbad4196cb0c363caebfcc6",
+  "qa_report_sha256": "fef5ef83a53e9d4a22315dbf7e6277b8daa525e580ee21286a591f3da13964e5",
+  "packaging_revision": "ca190e867981b1351c74c0946b0cd45c427613ce",
+  "native_binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+  "payload_manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+  "checks": [
+    {
+      "name": "sealed_handoff_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "sealed_sums_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\package-lifecycle-q7.py",
+      "status": "PASS",
+      "sha256": "583f1ab79f3152171699d3874cc1f35168e4db3266e4cfca0bc5edc318efe170",
+      "bytes": 6758
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\pkg7\\SHA256SUMS",
+      "status": "PASS",
+      "sha256": "4b483036313e0f9f75d38e3ee10c0491197a26a191b6989547841a7fded0754d",
+      "bytes": 203
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\pkg7\\build-manifest.json",
+      "status": "PASS",
+      "sha256": "b19dcac7c7d0263a2fa806383282fa1d2f98e3f62fc87ceb3e71d510fab6ea18",
+      "bytes": 25374
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\pkg7\\odin-0.2.0-windows-x64-setup.exe",
+      "status": "PASS",
+      "sha256": "ebf7f94acac5c0d850b4c5636684e775689df84dbc44a0b97324b35e17421af2",
+      "bytes": 772524809
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\pkg7\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+      "status": "PASS",
+      "sha256": "015cbfa7635a1735eceeff5ad977e0ddd6be06540a4630016bfd02af239cd03c",
+      "bytes": 1004367633
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\pkg7\\package-report.json",
+      "status": "PASS",
+      "sha256": "b19dcac7c7d0263a2fa806383282fa1d2f98e3f62fc87ceb3e71d510fab6ea18",
+      "bytes": 25374
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\binary-metadata.command.json",
+      "status": "PASS",
+      "sha256": "a31cd2c674dde371c3138404a034d00445cf2c8549a9768ae6ebde131bae6dcb",
+      "bytes": 476
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\binary-metadata.stderr.log",
+      "status": "PASS",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\binary-metadata.stdout.log",
+      "status": "PASS",
+      "sha256": "8697d7797fa3ea7e8c183a3e4672adbcc866fd546246a2a86030e057519d9902",
+      "bytes": 361
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\check-package-doc-copy.py",
+      "status": "PASS",
+      "sha256": "c5dcc3e98c361764973928fbc1aea379181bb77345071d40aed0c3f1f49e01f6",
+      "bytes": 1554
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\install.log",
+      "status": "PASS",
+      "sha256": "bbbcbb8d3d3192bc959605ee427fdd755cf35ab57443f80a2c78751871af39c0",
+      "bytes": 15406032
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\installer-report.json",
+      "status": "PASS",
+      "sha256": "fef5ef83a53e9d4a22315dbf7e6277b8daa525e580ee21286a591f3da13964e5",
+      "bytes": 52327
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-install-receipt.json",
+      "status": "PASS",
+      "sha256": "8385805ed218aa36c72e44126a1d38aaf9dd41a996b8b3a2f7b2f18470188878",
+      "bytes": 25532
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-install-receipt.json.current-config.json",
+      "status": "PASS",
+      "sha256": "f4ff18e32681d9ef1ac836273669ab77b9c432252f358fc09a16a90d06dd4658",
+      "bytes": 5784
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-reinstall-receipt.json",
+      "status": "PASS",
+      "sha256": "d873d554014fc9118bc6cb156fd4523cdb439136386f48a813753a263b588cb2",
+      "bytes": 35897
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-reinstall-receipt.json.current-config.json",
+      "status": "PASS",
+      "sha256": "bba619e7b18642d39265a9939d078b31a72319943bb66da830d3bc026b44b619",
+      "bytes": 5784
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\path-observations.json",
+      "status": "PASS",
+      "sha256": "c37e68c63b9daefb765b79b289abe489ec2b598ae0dfc107009129c89843fb4c",
+      "bytes": 35906
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\portable-lsp-receipt.json",
+      "status": "PASS",
+      "sha256": "4e9f9facfc35d07c0f6f1ca1abc55c1ebc6243dc95dc69f614398ce22d7f8b7f",
+      "bytes": 25933
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\portable-lsp-receipt.json.current-config.json",
+      "status": "PASS",
+      "sha256": "feeb38207f1d0d529c3f32d21d84906cc9925647f3d56545115e03a27441386b",
+      "bytes": 5784
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\reinstall.log",
+      "status": "PASS",
+      "sha256": "410bc403a0bb7a0742fa88d0898a970077852b422b753ad456e167c3aea05b2f",
+      "bytes": 19022884
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\runtime-host.toml",
+      "status": "PASS",
+      "sha256": "30ba489ebe60d248bc5245ddc0088b089b79d2856e3588cbf44b9575e620173d",
+      "bytes": 200
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\uninstall.log",
+      "status": "PASS",
+      "sha256": "078b5d73c405852d11df83d6c268fa188994c6d656aa7816eb2cb576b5b07843",
+      "bytes": 7358369
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\installer-qa.command.json",
+      "status": "PASS",
+      "sha256": "fb5804d38bd0ec409c328a822ef6da20adeaadf0cd1ec077c049a258ecec175c",
+      "bytes": 843
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\installer-qa.stderr.log",
+      "status": "PASS",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\installer-qa.stdout.log",
+      "status": "PASS",
+      "sha256": "e597d0cb8467824aed5bee1dd3eb07ad16268208e30fa43b2ab7c097e461a6ba",
+      "bytes": 52329
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\operator-after.json",
+      "status": "PASS",
+      "sha256": "f6d58aa7bb8e76dd7efdfdc7cc2319142578d086a9e07fc86a8903842200e65b",
+      "bytes": 1494
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\operator-before.json",
+      "status": "PASS",
+      "sha256": "f6d58aa7bb8e76dd7efdfdc7cc2319142578d086a9e07fc86a8903842200e65b",
+      "bytes": 1494
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\package-doc-copy-integrity.json",
+      "status": "PASS",
+      "sha256": "8d1749757ae264d4d2210b0570e79a98f0143848ee17dcbb0b85ab397bce948e",
+      "bytes": 16454
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\package.command.json",
+      "status": "PASS",
+      "sha256": "77d6251b11dff642dafe6d0e233d5c3a607e2714b6b472ace07692f527a0ac33",
+      "bytes": 907
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\package.stderr.log",
+      "status": "PASS",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\package.stdout.log",
+      "status": "PASS",
+      "sha256": "73b28c34dd39057293d015a45a76d8cbad7ca1db185c8513352ac51520aaefd5",
+      "bytes": 25376
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\portable-early-hash.py",
+      "status": "PASS",
+      "sha256": "3a9d3407f7604217a722bf1264cd071ec42df039e3d286ea0df5d0b13992c43e",
+      "bytes": 691
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\portable-early.json",
+      "status": "PASS",
+      "sha256": "0ae22c80acb5a5b22933196b9a861db053f84f24bb149a18338bd79b1a8cb799",
+      "bytes": 303
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\preflight.json",
+      "status": "PASS",
+      "sha256": "502a366083be26397766495ee0aaeb554c8d954ceb353035976356530d54079e",
+      "bytes": 6884
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\run-report.json",
+      "status": "PASS",
+      "sha256": "0b5be00dea6f0be415c44490be400c50fe20a314c1c221c3370be6dec63e863e",
+      "bytes": 15289
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\scripts\\verify_installer.ps1",
+      "status": "PASS",
+      "sha256": "87ec5a74d863d04f4455440dec8c5295a7efebf87bcf1bcec14c1ecf9b8e55e6",
+      "bytes": 20545
+    },
+    {
+      "name": "sealed_file:C:\\OdinQA\\q7\\seal-handoff.py",
+      "status": "PASS",
+      "sha256": "ec7b0b36afae73706390a1b54214498e0d5729726ab111d5862365d7847dbec1",
+      "bytes": 4084
+    },
+    {
+      "name": "all_source_snapshots_equal",
+      "status": "PASS"
+    },
+    {
+      "name": "source_current:scripts/package.ps1",
+      "status": "PASS",
+      "sha256": "c9eee81691d2bf2ccac09883bb62858b7e23b3fb4404d9c1e0ea45d0f9734b45"
+    },
+    {
+      "name": "source_current:scripts/verify_installer.ps1",
+      "status": "PASS",
+      "sha256": "87ec5a74d863d04f4455440dec8c5295a7efebf87bcf1bcec14c1ecf9b8e55e6"
+    },
+    {
+      "name": "source_current:packaging/odin.iss",
+      "status": "PASS",
+      "sha256": "f4ef1cf39dc2d158a51cd2b28a175f992dcb6aec8969e44f4bd85ae21992d24a"
+    },
+    {
+      "name": "source_current:packaging/installer-progress.iss",
+      "status": "PASS",
+      "sha256": "6c1bd0ba4b7ff82d046746361d811ba718d882d3483e6ba5e0642efec0486090"
+    },
+    {
+      "name": "source_current:packaging/setup-lsps.mjs",
+      "status": "PASS",
+      "sha256": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec"
+    },
+    {
+      "name": "source_current:packaging/setup-progress.mjs",
+      "status": "PASS",
+      "sha256": "3e0a545584fc75502da9976beb0f32e2dc1b957fb62bb9e99bf1af360459473a"
+    },
+    {
+      "name": "source_current:packaging/windows-runtime.ps1",
+      "status": "PASS",
+      "sha256": "1034cfcf8325b6d828f72272c78e618ad69034230ca4dd5128e7c004a7e937af"
+    },
+    {
+      "name": "source_current:LICENSE",
+      "status": "PASS",
+      "sha256": "4dc38da916919233d88cd17b3b1cafa6fa723aead4776792d00d47e79f429043"
+    },
+    {
+      "name": "source_current:README.md",
+      "status": "PASS",
+      "sha256": "1cc06a6646977765d29d073c0e9883b9e2d7639524a0c991b6cb6ebe7c50f545"
+    },
+    {
+      "name": "source_current:THIRD_PARTY_NOTICES.md",
+      "status": "PASS",
+      "sha256": "16e2c0e0c36decfc4b891d5ccb3bc273a0d2984669ccf80578c75435680c82cb"
+    },
+    {
+      "name": "source_current:docs/API.md",
+      "status": "PASS",
+      "sha256": "b0257b4b7d6ecb46bd2efacefb914212d9b65b351ae120eac4bb67f0d3bf7ad4"
+    },
+    {
+      "name": "source_current:docs/ARCHITECTURE.md",
+      "status": "PASS",
+      "sha256": "a8e88f6e1aacc4d3f1f73b24040181e707b6a067a1d141db1077dc4104dcfed7"
+    },
+    {
+      "name": "source_current:docs/CORE_IMPLEMENTATION.md",
+      "status": "PASS",
+      "sha256": "7d9ff3c2a0530d5d792a6db75e1060725a0f80dde9ef4327dd168e99a94a07ae"
+    },
+    {
+      "name": "source_current:docs/CURRENT_WORKSPACE.md",
+      "status": "PASS",
+      "sha256": "50221dc4e6fe5499db8596836ffcf26c68d53ea94ad3cccd5bc7b6c58c20f95b"
+    },
+    {
+      "name": "source_current:docs/DEPENDENCIES.md",
+      "status": "PASS",
+      "sha256": "4e11b5a504eaf17d6cc169543fde5307bcdf93c91729fdd8a1be5ae403a4cab4"
+    },
+    {
+      "name": "source_current:docs/ENGINE_IMPLEMENTATION.md",
+      "status": "PASS",
+      "sha256": "5381bd75a582ef6612d307d8ad4cdad45a76cec1686b7f12fab34d820cb1d369"
+    },
+    {
+      "name": "source_current:docs/EXPANDED_LSP.md",
+      "status": "PASS",
+      "sha256": "7bbf722ac796eab01a3d0dc45f6c35eeb48a659bda1e564459bd694d5b09ccfb"
+    },
+    {
+      "name": "source_current:docs/FEATURE_SPEC.md",
+      "status": "PASS",
+      "sha256": "8d884a12033960be297b1cb90a63475f101dd219a06850d3110a07bacc3c5046"
+    },
+    {
+      "name": "source_current:docs/HOME_AND_INSTALLER_PROGRESS.md",
+      "status": "PASS",
+      "sha256": "c2460b8f6a43c7a11b3d5a8c56e9ecf0bf916eb998816e51ec45181322a6bb5c"
+    },
+    {
+      "name": "source_current:docs/IDE_IMPLEMENTATION.md",
+      "status": "PASS",
+      "sha256": "3eaf432c4b65486fffcd1f9d5522b8785e1775ac8acae69cd7a6d20572542f21"
+    },
+    {
+      "name": "source_current:docs/IMPLEMENTATION_BACKLOG.md",
+      "status": "PASS",
+      "sha256": "241ed5c182a4a3c1ea3629b08f59ea63ac0dfb5d990c589587a603eef31a49b9"
+    },
+    {
+      "name": "source_current:docs/KNOWN_LIMITATIONS.md",
+      "status": "PASS",
+      "sha256": "79e48ca7445a185cc71f44b57bf42666f8b14eee6d146832d9fe0ef5eafb05a7"
+    },
+    {
+      "name": "source_current:docs/LANGUAGE_BACKENDS.md",
+      "status": "PASS",
+      "sha256": "13cb5c7562f22be34783c37d30e083afa8666a3b318c05799a10242d311349ad"
+    },
+    {
+      "name": "source_current:docs/LANGUAGE_SUPPORT.md",
+      "status": "PASS",
+      "sha256": "55a9456c3a2e9f0d8df00f47daf6a5c998dea38e0ae0fc0d237a9c0971bc8789"
+    },
+    {
+      "name": "source_current:docs/LSP_PAYLOAD_BUILDER.md",
+      "status": "PASS",
+      "sha256": "1de53dcd14c57f293b1bf944a691c8ffb47e5a04af03d181ede5574f3f7ad79d"
+    },
+    {
+      "name": "source_current:docs/NATIVE_FORMATTERS.md",
+      "status": "PASS",
+      "sha256": "70280f5c8414c92b9efb7b334937e75380a95f44f0607e0363a840fa369f5b01"
+    },
+    {
+      "name": "source_current:docs/OS_SANDBOX.md",
+      "status": "PASS",
+      "sha256": "cf28280857d0b06c4ced2ce739a1b3f07e9a553d648ce0d4fbe579be973f5e89"
+    },
+    {
+      "name": "source_current:docs/PACKAGING_WINDOWS_LINUX.md",
+      "status": "PASS",
+      "sha256": "60a70bf326b843471c054bb2abfbc2b9e9aef127a3fd1ff5057e65b44aa4fbab"
+    },
+    {
+      "name": "source_current:docs/PLATFORM_IMPLEMENTATION.md",
+      "status": "PASS",
+      "sha256": "f02e580eb423ea42bc4e9fd3dd1150eed1c74ad0347e482faa8eeb2a96f3ad2c"
+    },
+    {
+      "name": "source_current:docs/PROTOCOL_IDE.md",
+      "status": "PASS",
+      "sha256": "45a4639dfefbba13f950f56206e1cd347e9d2705d1d4c9449b8690c93e2a07bf"
+    },
+    {
+      "name": "source_current:docs/PROTOCOL_IMPLEMENTATION.md",
+      "status": "PASS",
+      "sha256": "a6d85c256f04d51cd40b45c592d52ad449463a918d3eb4f89b7313d395eb572a"
+    },
+    {
+      "name": "source_current:docs/PUBLISH_GITHUB.md",
+      "status": "PASS",
+      "sha256": "a0b7d0ae468dd4d473401e2cae8d9a7b6e4f0fc5782dc2d70e727015c6405846"
+    },
+    {
+      "name": "source_current:docs/RELEASE_GATES.md",
+      "status": "PASS",
+      "sha256": "4bccc6ebdaf02193e6b241c615ef6be9c364d82bad1a59c97189371bbc53d234"
+    },
+    {
+      "name": "source_current:docs/ROADMAP.md",
+      "status": "PASS",
+      "sha256": "fffdfe79560cdc8f16cb2e5ac76b4a3d8f3ba348ea46148cfd79d48a1633544b"
+    },
+    {
+      "name": "source_current:docs/SECURITY.md",
+      "status": "PASS",
+      "sha256": "3a771cc166ec8d7afde525656e5e40b954e32b119710d1bfb52d4270ac4024a5"
+    },
+    {
+      "name": "source_current:docs/SERENA_COVERAGE_PLAN.md",
+      "status": "PASS",
+      "sha256": "ccaa2c91e8165f73d0d1b83e5ab29557951f912ff4d9846ebe483cae18732e77"
+    },
+    {
+      "name": "source_current:docs/SERENA_PARITY.md",
+      "status": "PASS",
+      "sha256": "247f75449cb9188af64a625cbcbe88afc36abd5dfe423780ea9d2b7a31014f05"
+    },
+    {
+      "name": "source_current:docs/SOURCES.md",
+      "status": "PASS",
+      "sha256": "943995dc7a750e6aa52c597bd58d6fdf4dc435c536eb4617d03989edfc9b6aa0"
+    },
+    {
+      "name": "source_current:docs/STANDALONE.md",
+      "status": "PASS",
+      "sha256": "3c2f7bc61db4ff58cd0a642448eb48de62190603a4b2fb31be06646527df1ff1"
+    },
+    {
+      "name": "source_current:docs/THIRD_PARTY_LICENSES.txt",
+      "status": "PASS",
+      "sha256": "4de450b34e325e2e0e4b493eb8f3a3a2d3a85fedd328ef0a260a2445b97c0b95"
+    },
+    {
+      "name": "source_current:docs/THIRD_PARTY_RUNTIME_NOTICES.txt",
+      "status": "PASS",
+      "sha256": "3909eadeb6220801da62ebfe18b7335639dcc2ebb49c1f05d916cc91d575f246"
+    },
+    {
+      "name": "source_current:docs/USAGE.md",
+      "status": "PASS",
+      "sha256": "095e8dc60d781a8a64b6ae68995ab297e68916f24f03e3242a50d3423386238b"
+    },
+    {
+      "name": "source_current:docs/dependency-licenses/index.json",
+      "status": "PASS",
+      "sha256": "98a44a0e1ae77a7b0a948ac59c3d59ee10118784500f7e2e0d0199d3dbe5592d"
+    },
+    {
+      "name": "source_current:docs/dependency-licenses/valuable-0.1.1-MIT.txt",
+      "status": "PASS",
+      "sha256": "ed60d479b8fd1f64e9cbc3de449a16a53ac1b3d1b6aeb9bf9d190a8e93061b44"
+    },
+    {
+      "name": "source_current:docs/dependency-licenses/winapi-0.4.0-MIT.txt",
+      "status": "PASS",
+      "sha256": "ce7bc3499fee93d5022ef430d5e4201e79a6d9154f3974e42f41349f0569e09b"
+    },
+    {
+      "name": "source_current:docs/dispatch-current-workspace.md",
+      "status": "PASS",
+      "sha256": "397a353fff75cc42a4b950749908c634e363f16c5ba79eb0becd6f16db8b5fe3"
+    },
+    {
+      "name": "source_current:docs/dispatch-four-lsp.md",
+      "status": "PASS",
+      "sha256": "c2f0954fb578cf26ebc38966af635d91368039741508009b6d68060f76953a3a"
+    },
+    {
+      "name": "source_current:docs/dispatch-language-installers-v3.md",
+      "status": "PASS",
+      "sha256": "ab620a154bba54a28abaf3a5927a1347840e452f06bb430be6ff730db7c55268"
+    },
+    {
+      "name": "source_current:docs/dispatch-plan.md",
+      "status": "PASS",
+      "sha256": "59756575702abc3269ec182c5b941e473de1692f481f18fa8ed24f5422354d9d"
+    },
+    {
+      "name": "source_current:docs/dispatch-sandbox-ide.md",
+      "status": "PASS",
+      "sha256": "817431aeda4d7a6715a69052e93416453216827b969542f9f0070f7843fea805"
+    },
+    {
+      "name": "source_current:docs/serena-parity.csv",
+      "status": "PASS",
+      "sha256": "e2beb7db815f3355179de261eeb07379bc5c1c2749e4489a869435b8974f847a"
+    },
+    {
+      "name": "source_current:docs/serena-parity.json",
+      "status": "PASS",
+      "sha256": "e5c5a1b3e17c5b665432f23916adf3d44c66327cb023b4e1997e7836fee848da"
+    },
+    {
+      "name": "source_current:docs/specs/CORE_PROTOCOL.md",
+      "status": "PASS",
+      "sha256": "83acb528b940c4fccbddb9cc4fb349a9670ad92eb0794c18a05b5596e8242308"
+    },
+    {
+      "name": "source_current:docs/specs/LANGUAGE_DEBUG_INSPECTIONS.md",
+      "status": "PASS",
+      "sha256": "f29bd61522b5b2f9185a37e30a9874520eb174965d645407398f60ec6db1b23f"
+    },
+    {
+      "name": "source_current:docs/specs/OPERATIONS_RELEASE.md",
+      "status": "PASS",
+      "sha256": "16f995704daa387041395123ff203c48a1c55ffd7e054817ee101982c7826ecc"
+    },
+    {
+      "name": "source_current:docs/specs/REFACTOR_TRANSACTION.md",
+      "status": "PASS",
+      "sha256": "579f31abc2fccdc6601b64ed619a51868b7ab7c66d06199ed02f5e508faa9ac9"
+    },
+    {
+      "name": "source_current:packaging/MICROSOFT_RUNTIME_NOTICES.txt",
+      "status": "PASS",
+      "sha256": "bdfc73b0ab0b0547208a29aa1b2a43479c7283b5985920b3d825d5d7bbf092ae"
+    },
+    {
+      "name": "source_current:packaging/odin.host.example.toml",
+      "status": "PASS",
+      "sha256": "c47f25aaf6a0d9f29cbbbc6786186a8f6ecd1c141ea373db9a57df47d8895648"
+    },
+    {
+      "name": "source_current:schemas/tools.json",
+      "status": "PASS",
+      "sha256": "a7621dc80de4829edfe171cf6848ab2c48071eaf6575a9dce2462f5731768cba"
+    },
+    {
+      "name": "source_current:verification/sbom.cdx.json",
+      "status": "PASS",
+      "sha256": "ff87a7793794945da79cb8fa1c1b5c326fc78f2711aa222b9e809bc16b07b999"
+    },
+    {
+      "name": "verifier_copy_exact_current",
+      "status": "PASS"
+    },
+    {
+      "name": "all_outer_commands_exit_zero",
+      "status": "PASS"
+    },
+    {
+      "name": "outer_log:binary-metadata:stdout",
+      "status": "PASS",
+      "sha256": "8697d7797fa3ea7e8c183a3e4672adbcc866fd546246a2a86030e057519d9902"
+    },
+    {
+      "name": "outer_log:binary-metadata:stderr",
+      "status": "PASS",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "outer_log:package:stdout",
+      "status": "PASS",
+      "sha256": "73b28c34dd39057293d015a45a76d8cbad7ca1db185c8513352ac51520aaefd5"
+    },
+    {
+      "name": "outer_log:package:stderr",
+      "status": "PASS",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "outer_log:installer-qa:stdout",
+      "status": "PASS",
+      "sha256": "e597d0cb8467824aed5bee1dd3eb07ad16268208e30fa43b2ab7c097e461a6ba"
+    },
+    {
+      "name": "outer_log:installer-qa:stderr",
+      "status": "PASS",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "operator_snapshots_byte_identical",
+      "status": "PASS",
+      "sha256": "f6d58aa7bb8e76dd7efdfdc7cc2319142578d086a9e07fc86a8903842200e65b"
+    },
+    {
+      "name": "exactly_60_lifecycle_checks_pass",
+      "status": "PASS"
+    },
+    {
+      "name": "all_9_nested_commands_exit_zero",
+      "status": "PASS"
+    },
+    {
+      "name": "native_release_revision",
+      "status": "PASS"
+    },
+    {
+      "name": "exact_final07_artifact_identities",
+      "status": "PASS"
+    },
+    {
+      "name": "portable-lsp-receipt.json:statuses",
+      "status": "PASS"
+    },
+    {
+      "name": "portable-lsp-receipt.json:same_cas_binding",
+      "status": "PASS"
+    },
+    {
+      "name": "portable-lsp-receipt.json:final07_manifest",
+      "status": "PASS"
+    },
+    {
+      "name": "portable-lsp-receipt.json:canonical19_actual_zero",
+      "status": "PASS"
+    },
+    {
+      "name": "portable-lsp-receipt.json:14_profiles_defaults",
+      "status": "PASS"
+    },
+    {
+      "name": "portable-lsp-receipt.json:committed_host_hash_retained",
+      "status": "PASS"
+    },
+    {
+      "name": "portable-lsp-receipt.json:actual_host14_profiles12_invocations",
+      "status": "PASS"
+    },
+    {
+      "name": "portable-lsp-receipt.json:live_native14_and_grants_false",
+      "status": "PASS"
+    },
+    {
+      "name": "portable-lsp-receipt.json:semantic_not_run_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-install-receipt.json:statuses",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-install-receipt.json:same_cas_binding",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-install-receipt.json:final07_manifest",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-install-receipt.json:canonical19_actual_zero",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-install-receipt.json:14_profiles_defaults",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-install-receipt.json:committed_host_hash_retained",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-install-receipt.json:actual_host14_profiles12_invocations",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-install-receipt.json:live_native14_and_grants_false",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-install-receipt.json:semantic_not_run_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-reinstall-receipt.json:statuses",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-reinstall-receipt.json:same_cas_binding",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-reinstall-receipt.json:final07_manifest",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-reinstall-receipt.json:canonical19_actual_zero",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-reinstall-receipt.json:14_profiles_defaults",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-reinstall-receipt.json:committed_host_hash_retained",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-reinstall-receipt.json:actual_host14_profiles12_invocations",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-reinstall-receipt.json:live_native14_and_grants_false",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp-reinstall-receipt.json:semantic_not_run_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "five_path_phases",
+      "status": "PASS"
+    },
+    {
+      "name": "path_unchanged:user_path",
+      "status": "PASS"
+    },
+    {
+      "name": "path_unchanged:user_path_raw",
+      "status": "PASS"
+    },
+    {
+      "name": "path_unchanged:process_path",
+      "status": "PASS"
+    },
+    {
+      "name": "limits_preserved",
+      "status": "PASS"
+    }
+  ],
+  "phases": [
+    {
+      "receipt": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\portable-lsp-receipt.json",
+      "receipt_sha256": "4e9f9facfc35d07c0f6f1ca1abc55c1ebc6243dc95dc69f614398ce22d7f8b7f",
+      "host_sha256": "f8f69c2a3d85bc3070e6d7187c6267af2d8e62b623dbab4305b880227c8ce528",
+      "probes": 19,
+      "profiles": 14,
+      "invocations": 12
+    },
+    {
+      "receipt": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-install-receipt.json",
+      "receipt_sha256": "8385805ed218aa36c72e44126a1d38aaf9dd41a996b8b3a2f7b2f18470188878",
+      "host_sha256": "febc247210a6b881224cba3b8e6554c68c7c3e487f455a7f2a0296fad7c41add",
+      "probes": 19,
+      "profiles": 14,
+      "invocations": 12
+    },
+    {
+      "receipt": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-reinstall-receipt.json",
+      "receipt_sha256": "d873d554014fc9118bc6cb156fd4523cdb439136386f48a813753a263b588cb2",
+      "host_sha256": "febc247210a6b881224cba3b8e6554c68c7c3e487f455a7f2a0296fad7c41add",
+      "probes": 19,
+      "profiles": 14,
+      "invocations": 12
+    }
+  ],
+  "actual_parent_execution": {
+    "package_exit_code": 0,
+    "package_seconds": 748.795,
+    "lifecycle_exit_code": 0,
+    "lifecycle_seconds": 722.819,
+    "lifecycle_checks_passed": 60,
+    "inventory_files": 35218
+  },
+  "reviewer_execution": {
+    "target_programs": "NOT_RUN",
+    "installer": "NOT_RUN",
+    "native_project_mutations": "NONE",
+    "artifact_extract": "NOT_RUN"
+  },
+  "limitations": {
+    "semantic_tests": "NOT_RUN_BY_THIS_SLICE; parent owns independent real MCP/LSP evidence",
+    "clean_machine": "NOT_RUN; current Windows host has developer tools and System32 CRT",
+    "cross_version_upgrade": "NOT_RUN; lifecycle reinstall uses same exact installer",
+    "visual_gui": "NOT_RUN",
+    "interrupted_install_recovery": "NOT_RUN",
+    "linux_macos": "NOT_RUN",
+    "slint_auxiliary_direct_shutdown": "FAIL_EXIT_3_RETAINED in payload07 loader proof; module paths and native MCP evidence are separate",
+    "license_inventory": "WITH_DECLARED_NOTICE_GAPS; source archive inventory is not an actual reproducible rebuild or legal certification"
+  },
+  "whole_user_feature": "PENDING_ACTUAL_USER_MIGRATION_AND_FINAL_EVIDENCE_REVIEW"
+}

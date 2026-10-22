@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "scope": "REAL_INSTALLED_NATIVE_LIVE_STRUCTURE_NOT_SEMANTIC_INFERENCE",
+  "binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+  "host_sha256": "5550667d1690b5e7b035aa1239db25af9e1df0346c4b6661d5192bb53b494144",
+  "runs": [
+    {
+      "argv": [
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--config",
+        "C:\\Users\\steven\\.config\\odin\\host.toml",
+        "--workspace",
+        "E:/odin",
+        "call",
+        "project_analysis",
+        "--project",
+        "ws_e81c9bc0804543c514cb6e002d7d90574122eb6ef92c6910",
+        "--args-file",
+        "C:\\OdinQA\\home-progress-1022\\user-live-analysis-args.json"
+      ],
+      "cwd": "E:/odin",
+      "exit_code": 0,
+      "seconds": 0.191,
+      "report": "C:\\OdinQA\\home-progress-1022\\user-live-analysis-1.json",
+      "report_raw_sha256": "e8ad6f99fbe938a10fc2f5fefa73aacc6fb8cce41724917994d4142c7914b059",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "checks": {
+        "root_matches": true,
+        "current_project_matches": true,
+        "no_backend_started": true,
+        "configured_backend_count": 14,
+        "analysis_kind": "LIVE_STRUCTURE_AND_CONFIGURATION"
+      }
+    },
+    {
+      "argv": [
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--config",
+        "C:\\Users\\steven\\.config\\odin\\host.toml",
+        "--workspace",
+        "D:/chatgpt-web-bridge",
+        "call",
+        "project_analysis",
+        "--project",
+        "ws_b12b1270a86ad555f0d3133d7c0a6de44e869420c0c92e36",
+        "--args-file",
+        "C:\\OdinQA\\home-progress-1022\\user-live-analysis-args.json"
+      ],
+      "cwd": "D:/chatgpt-web-bridge",
+      "exit_code": 0,
+      "seconds": 0.093,
+      "report": "C:\\OdinQA\\home-progress-1022\\user-live-analysis-2.json",
+      "report_raw_sha256": "8bd78796f2f514a09ddf4c3fe8bf6751834d55a17ac2f924258c8eed29649637",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "checks": {
+        "root_matches": true,
+        "current_project_matches": true,
+        "no_backend_started": true,
+        "configured_backend_count": 14,
+        "analysis_kind": "LIVE_STRUCTURE_AND_CONFIGURATION"
+      }
+    }
+  ]
+}

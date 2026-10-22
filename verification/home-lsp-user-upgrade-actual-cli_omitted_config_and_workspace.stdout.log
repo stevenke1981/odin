@@ -1,0 +1,34 @@
+{
+  "projects": [
+    {
+      "allow_debug": false,
+      "allow_inspections": false,
+      "allow_shell": false,
+      "allow_write": false,
+      "id": "ws_b421723f0c043cae1c815bfdf55dea8094fee9314741de7a",
+      "languages": [
+        "rust",
+        "python",
+        "go",
+        "csharp",
+        "lua",
+        "javascript",
+        "typescript",
+        "bash",
+        "slint",
+        "c",
+        "cpp",
+        "toml",
+        "yaml",
+        "markdown"
+      ],
+      "root": "\\\\?\\C:\\Users\\steven"
+    }
+  ],
+  "trace": {
+    "elapsed_ms": 0,
+    "id": "b1311d48-6fa2-4dca-85fb-cc5c40a2689a",
+    "result_bytes": 321,
+    "result_sha256": "b1b9afdc759ab057fa7330e406777a63225d886bebc161d5ce0bacf4ef6348d0"
+  }
+}

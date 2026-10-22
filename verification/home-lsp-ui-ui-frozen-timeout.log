@@ -1,0 +1,116 @@
+﻿2026-10-22 12:19:20.094   Log opened. (Time zone: UTC+08:00)
+2026-10-22 12:19:20.094   Setup version: Inno Setup version 7.1.0 (32-bit)
+2026-10-22 12:19:20.094   Original Setup EXE: C:\OdinQA\home-progress-1022\installer-author\ui-frozen\odin-0.2.0-windows-x64-setup.exe
+2026-10-22 12:19:20.094   Setup command line: /SL5="$4B08CE,94480870,890880,C:\OdinQA\home-progress-1022\installer-author\ui-frozen\odin-0.2.0-windows-x64-setup.exe" "/SUPPRESSMSGBOXES" "/NORESTART" "/SP-" "/NOICONS" "/ODIN_QA=1" "/DIR=C:\OdinQA\home-progress-1022\installer-author\ui-frozen\timeout app space" "/ODIN_HOST_CONFIG=C:\OdinQA\home-progress-1022\installer-author\ui-frozen\timeout host.toml" "/ODIN_SETUP_RECEIPT=C:\OdinQA\home-progress-1022\installer-author\ui-frozen\timeout.json" "/LOG=C:\OdinQA\home-progress-1022\installer-author\ui-frozen\timeout.log"
+2026-10-22 12:19:20.099   Windows version: 10.0.26300
+2026-10-22 12:19:20.099   Windows architecture: x64 (64-bit)
+2026-10-22 12:19:20.099   Machine types supported by system: x86 x64
+2026-10-22 12:19:20.099   User privileges: None
+2026-10-22 12:19:20.100   Administrative install mode: No
+2026-10-22 12:19:20.100   Install mode root key: HKEY_CURRENT_USER
+2026-10-22 12:19:20.100   64-bit install mode: Yes
+2026-10-22 12:19:20.100   RedirectionGuard status for current process: Enabled in enforcing mode
+2026-10-22 12:19:20.100   Created temporary directory: C:\Users\steven\AppData\Local\Temp\is-4PW9JF6YEZ.tmp
+2026-10-22 12:19:20.100   -- DLL function import --
+2026-10-22 12:19:20.100   Function and DLL name: CreateProcessW@kernel32.dll
+2026-10-22 12:19:20.100   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:19:20.100   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:19:20.100   -- DLL function import --
+2026-10-22 12:19:20.100   Function and DLL name: CreateJobObjectW@kernel32.dll
+2026-10-22 12:19:20.100   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:19:20.100   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:19:20.100   -- DLL function import --
+2026-10-22 12:19:20.100   Function and DLL name: SetInformationJobObject@kernel32.dll
+2026-10-22 12:19:20.100   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:19:20.100   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:19:20.100   -- DLL function import --
+2026-10-22 12:19:20.100   Function and DLL name: AssignProcessToJobObject@kernel32.dll
+2026-10-22 12:19:20.100   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:19:20.100   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:19:20.100   -- DLL function import --
+2026-10-22 12:19:20.100   Function and DLL name: ResumeThread@kernel32.dll
+2026-10-22 12:19:20.100   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:19:20.100   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:19:20.100   -- DLL function import --
+2026-10-22 12:19:20.100   Function and DLL name: TerminateProcess@kernel32.dll
+2026-10-22 12:19:20.100   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:19:20.100   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:19:20.100   -- DLL function import --
+2026-10-22 12:19:20.100   Function and DLL name: WaitForSingleObject@kernel32.dll
+2026-10-22 12:19:20.100   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:19:20.100   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:19:20.100   -- DLL function import --
+2026-10-22 12:19:20.100   Function and DLL name: GetExitCodeProcess@kernel32.dll
+2026-10-22 12:19:20.100   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:19:20.100   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:19:20.100   -- DLL function import --
+2026-10-22 12:19:20.100   Function and DLL name: CloseHandle@kernel32.dll
+2026-10-22 12:19:20.100   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:19:20.100   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:19:20.100   -- DLL function import --
+2026-10-22 12:19:20.100   Function and DLL name: GetTickCount64@kernel32.dll
+2026-10-22 12:19:20.100   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:19:20.100   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:19:20.100   -- DLL function import --
+2026-10-22 12:19:20.100   Function and DLL name: BCryptGenRandom@bcrypt.dll
+2026-10-22 12:19:20.100   Importing the DLL function. Dest DLL name: bcrypt.dll
+2026-10-22 12:19:20.100   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:19:20.100   -- DLL function import --
+2026-10-22 12:19:20.100   Function and DLL name: CreateFileW@kernel32.dll
+2026-10-22 12:19:20.100   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:19:20.100   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:19:20.100   -- DLL function import --
+2026-10-22 12:19:20.100   Function and DLL name: ReadFile@kernel32.dll
+2026-10-22 12:19:20.100   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:19:20.100   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:19:21.177   Found 1 files to register with RestartManager.
+2026-10-22 12:19:21.177   Calling RestartManager's RmGetList.
+2026-10-22 12:19:21.185   RmGetList finished successfully.
+2026-10-22 12:19:21.185   RestartManager found no applications using one of our files.
+2026-10-22 12:19:21.194   Starting the installation process.
+2026-10-22 12:19:21.194   Creating directory: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\timeout app space
+2026-10-22 12:19:21.198   Directory for uninstall files: C:\OdinQA\home-progress-1022\installer-author\ui-frozen\timeout app space
+2026-10-22 12:19:21.198   Creating new uninstall log: C:\OdinQA\home-progress-1022\installer-author\ui-frozen\timeout app space\unins000.dat
+2026-10-22 12:19:21.198   -- File entry --
+2026-10-22 12:19:21.198   Dest filename: C:\OdinQA\home-progress-1022\installer-author\ui-frozen\timeout app space\unins000.exe
+2026-10-22 12:19:21.198   Non-default bitness: 32-bit
+2026-10-22 12:19:21.198   Time stamp of our file: 2026-10-22T04:19:19.955Z
+2026-10-22 12:19:21.198   Installing the file.
+2026-10-22 12:19:21.214   Successfully installed the file.
+2026-10-22 12:19:21.214   -- File entry --
+2026-10-22 12:19:21.214   Dest filename: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\timeout app space\LICENSE
+2026-10-22 12:19:21.214   Time stamp of our file: 2026-10-22T04:18:42.000Z
+2026-10-22 12:19:21.214   Installing the file.
+2026-10-22 12:19:21.214   Successfully installed the file.
+2026-10-22 12:19:21.214   -- File entry --
+2026-10-22 12:19:21.214   Dest filename: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\timeout app space\README.md
+2026-10-22 12:19:21.214   Time stamp of our file: 2026-10-22T04:18:42.000Z
+2026-10-22 12:19:21.214   Installing the file.
+2026-10-22 12:19:21.214   Successfully installed the file.
+2026-10-22 12:19:21.214   -- File entry --
+2026-10-22 12:19:21.219   Dest filename: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\timeout app space\setup-lsps.mjs
+2026-10-22 12:19:21.219   Time stamp of our file: 2026-10-22T04:18:42.000Z
+2026-10-22 12:19:21.219   Installing the file.
+2026-10-22 12:19:21.219   Successfully installed the file.
+2026-10-22 12:19:21.219   -- File entry --
+2026-10-22 12:19:21.219   Dest filename: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\timeout app space\setup-progress.mjs
+2026-10-22 12:19:21.219   Time stamp of our file: 2026-10-22T04:18:42.000Z
+2026-10-22 12:19:21.219   Installing the file.
+2026-10-22 12:19:21.222   Successfully installed the file.
+2026-10-22 12:19:21.222   -- File entry --
+2026-10-22 12:19:21.222   Dest filename: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\timeout app space\backends\node\node.exe
+2026-10-22 12:19:21.222   Time stamp of our file: 2026-10-22T00:44:20.000Z
+2026-10-22 12:19:21.222   Installing the file.
+2026-10-22 12:19:21.222   Creating directory: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\timeout app space\backends
+2026-10-22 12:19:21.222   Creating directory: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\timeout app space\backends\node
+2026-10-22 12:19:22.028   Successfully installed the file.
+2026-10-22 12:19:22.028   Saving uninstall information.
+2026-10-22 12:19:22.033   Installation process succeeded.
+2026-10-22 12:19:23.024   Odin LSP setup phase=verify_before, component=fixture, elapsed_seconds=0
+2026-10-22 12:19:23.959   Odin LSP setup phase=probe, component=fixture, elapsed_seconds=1
+2026-10-22 12:19:26.715   Odin LSP setup phase=timeout, component=fixture, elapsed_seconds=3
+2026-10-22 12:19:26.715   Odin LSP setup worker exit=1460, elapsed_seconds=3
+2026-10-22 12:19:26.720   Odin setup needs attention: Language server setup stopped in phase timeout (exit 1460). Inert installer progress probe
+2026-10-22 12:19:26.720   Need to restart Windows? No
+2026-10-22 12:19:26.778   Deinitializing Setup.
+2026-10-22 12:19:26.783   Log closed.

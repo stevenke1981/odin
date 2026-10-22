@@ -1,0 +1,86 @@
+﻿2026-10-22 12:18:59.329   Log opened. (Time zone: UTC+08:00)
+2026-10-22 12:18:59.329   Setup version: Inno Setup version 7.1.0 (32-bit)
+2026-10-22 12:18:59.329   Original Uninstall EXE: C:\OdinQA\home-progress-1022\installer-author\ui-frozen\fresh_home app space\unins000.exe
+2026-10-22 12:18:59.329   Uninstall DAT: C:\OdinQA\home-progress-1022\installer-author\ui-frozen\fresh_home app space\unins000.dat
+2026-10-22 12:18:59.329   Current Uninstall EXE: C:\Users\steven\AppData\Local\Temp\is-6XF59CYYND-uninstall.tmp\_unins.tmp
+2026-10-22 12:18:59.329   Uninstall command line: /SECONDPHASE="C:\OdinQA\home-progress-1022\installer-author\ui-frozen\fresh_home app space\unins000.exe" /FIRSTPHASEWND=$C8036A "/VERYSILENT" "/SUPPRESSMSGBOXES" "/NORESTART" "/LOG=C:\OdinQA\home-progress-1022\installer-author\ui-frozen\fresh_home-uninstall.log"
+2026-10-22 12:18:59.329   Windows version: 10.0.26300
+2026-10-22 12:18:59.329   Windows architecture: x64 (64-bit)
+2026-10-22 12:18:59.329   Machine types supported by system: x86 x64
+2026-10-22 12:18:59.329   User privileges: None
+2026-10-22 12:18:59.329   Administrative install mode: No
+2026-10-22 12:18:59.329   Install mode root key: HKEY_CURRENT_USER
+2026-10-22 12:18:59.329   RedirectionGuard status for current process: Enabled in enforcing mode
+2026-10-22 12:18:59.329   Cleaning up any residual temporary files from previous Uninstall runs.
+2026-10-22 12:18:59.329   Deleted file: C:\Users\steven\AppData\Local\Temp\is-ZWWFV6140S-uninstall.tmp\_unins.tmp
+2026-10-22 12:18:59.334   Cleanup finished (2 directories found, 2 directories checked, 1 files deleted).
+2026-10-22 12:18:59.334   Created temporary directory: C:\Users\steven\AppData\Local\Temp\is-FPNU2ERJEX.tmp
+2026-10-22 12:18:59.334   -- DLL function import --
+2026-10-22 12:18:59.334   Function and DLL name: CreateProcessW@kernel32.dll
+2026-10-22 12:18:59.334   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:18:59.334   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:18:59.334   -- DLL function import --
+2026-10-22 12:18:59.334   Function and DLL name: CreateJobObjectW@kernel32.dll
+2026-10-22 12:18:59.334   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:18:59.334   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:18:59.334   -- DLL function import --
+2026-10-22 12:18:59.334   Function and DLL name: SetInformationJobObject@kernel32.dll
+2026-10-22 12:18:59.334   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:18:59.334   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:18:59.334   -- DLL function import --
+2026-10-22 12:18:59.334   Function and DLL name: AssignProcessToJobObject@kernel32.dll
+2026-10-22 12:18:59.334   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:18:59.334   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:18:59.334   -- DLL function import --
+2026-10-22 12:18:59.334   Function and DLL name: ResumeThread@kernel32.dll
+2026-10-22 12:18:59.334   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:18:59.334   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:18:59.334   -- DLL function import --
+2026-10-22 12:18:59.334   Function and DLL name: TerminateProcess@kernel32.dll
+2026-10-22 12:18:59.334   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:18:59.334   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:18:59.334   -- DLL function import --
+2026-10-22 12:18:59.334   Function and DLL name: WaitForSingleObject@kernel32.dll
+2026-10-22 12:18:59.334   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:18:59.334   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:18:59.334   -- DLL function import --
+2026-10-22 12:18:59.334   Function and DLL name: GetExitCodeProcess@kernel32.dll
+2026-10-22 12:18:59.334   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:18:59.334   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:18:59.334   -- DLL function import --
+2026-10-22 12:18:59.334   Function and DLL name: CloseHandle@kernel32.dll
+2026-10-22 12:18:59.334   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:18:59.334   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:18:59.334   -- DLL function import --
+2026-10-22 12:18:59.334   Function and DLL name: GetTickCount64@kernel32.dll
+2026-10-22 12:18:59.334   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:18:59.334   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:18:59.334   -- DLL function import --
+2026-10-22 12:18:59.334   Function and DLL name: BCryptGenRandom@bcrypt.dll
+2026-10-22 12:18:59.334   Importing the DLL function. Dest DLL name: bcrypt.dll
+2026-10-22 12:18:59.334   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:18:59.334   -- DLL function import --
+2026-10-22 12:18:59.334   Function and DLL name: CreateFileW@kernel32.dll
+2026-10-22 12:18:59.334   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:18:59.334   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:18:59.334   -- DLL function import --
+2026-10-22 12:18:59.334   Function and DLL name: ReadFile@kernel32.dll
+2026-10-22 12:18:59.334   Importing the DLL function. Dest DLL name: kernel32.dll
+2026-10-22 12:18:59.334   Successfully imported the DLL function. Delay loaded? No
+2026-10-22 12:18:59.350   Starting the uninstallation process.
+2026-10-22 12:18:59.350   Deleting file: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\fresh_home app space\backends\node\node.exe
+2026-10-22 12:18:59.355   Deleting directory: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\fresh_home app space\backends\node
+2026-10-22 12:18:59.355   Deleting directory: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\fresh_home app space\backends
+2026-10-22 12:18:59.355   Deleting file: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\fresh_home app space\setup-progress.mjs
+2026-10-22 12:18:59.360   Deleting file: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\fresh_home app space\setup-lsps.mjs
+2026-10-22 12:18:59.360   Deleting file: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\fresh_home app space\README.md
+2026-10-22 12:18:59.360   Deleting file: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\fresh_home app space\LICENSE
+2026-10-22 12:18:59.360   Deleting directory: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\fresh_home app space
+2026-10-22 12:18:59.360   Failed to delete directory (145). Will retry later.
+2026-10-22 12:18:59.360   Deleting Uninstall data files.
+2026-10-22 12:18:59.360   Creating "_unins-done.tmp" file.
+2026-10-22 12:18:59.881   Deleting directory: \\?\C:\OdinQA\home-progress-1022\installer-author\ui-frozen\fresh_home app space
+2026-10-22 12:18:59.883   Uninstallation process succeeded.
+2026-10-22 12:18:59.883   Removed all? Yes
+2026-10-22 12:18:59.883   Need to restart Windows? No
+2026-10-22 12:18:59.883   Log closed.

@@ -1,0 +1,442 @@
+{
+  "scope": "ISOLATED_WINDOWS_INSTALL_REINSTALL_UNINSTALL",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "portable_safe_member_paths",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_inventory_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_binary_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_lsp_setup_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_setup_result:portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_health:portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_languages:portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_default_providers:portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_host_identity:portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_committed_host_hash:portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_managed_profiles:portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_default_implementations:portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_generated_host_validates",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_live_host_config_exit:portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_live_host_profiles:portable-lsp-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "installer_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_binary_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_metadata_matches_portable",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_inventory_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_setup_result:lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_health:lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_languages:lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_default_providers:lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_host_identity:lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_committed_host_hash:lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_managed_profiles:lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_default_implementations:lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_generated_host_validates",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_live_host_config_exit:lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_live_host_profiles:lsp-install-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_fresh_host_has_no_elevated_grants",
+      "status": "PASS"
+    },
+    {
+      "name": "portable_installed_bundle_manifest_matches",
+      "status": "PASS"
+    },
+    {
+      "name": "shipped_template_permissions_disabled",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_tools_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_tool_contracts",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_runtime_signature:vcruntime140.dll",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_runtime_loaded_app_local",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_safe_default_configuration",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_setup_result:lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_health:lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_languages:lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_default_providers:lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_host_identity:lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_committed_host_hash:lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_managed_profiles:lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_default_implementations:lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_live_host_config_exit:lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "lsp_live_host_profiles:lsp-reinstall-receipt.json",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_preserves_host_content",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_preserves_user_file",
+      "status": "PASS"
+    },
+    {
+      "name": "reinstall_inventory_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "uninstaller_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "owned_binary_removed",
+      "status": "PASS"
+    },
+    {
+      "name": "owned_inventory_payload_removed",
+      "status": "PASS"
+    },
+    {
+      "name": "uninstall_preserves_user_file",
+      "status": "PASS"
+    },
+    {
+      "name": "uninstall_preserves_external_host",
+      "status": "PASS"
+    },
+    {
+      "name": "operator_path_unchanged",
+      "status": "PASS"
+    }
+  ],
+  "commands": [
+    {
+      "name": "portable_lsp_setup",
+      "exit_code": 0,
+      "receipt": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\portable-lsp-receipt.json"
+    },
+    {
+      "name": "portable_host_validate",
+      "exit_code": 0
+    },
+    {
+      "name": "lsp_live_host_profiles",
+      "command": [
+        "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\portable\\odin.exe",
+        "--config",
+        "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\portable-host\\host.toml",
+        "--workspace",
+        "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-workspace",
+        "call",
+        "get_current_config"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "install",
+      "exit_code": 0,
+      "log": "install.log"
+    },
+    {
+      "name": "installed_host_validate",
+      "exit_code": 0
+    },
+    {
+      "name": "lsp_live_host_profiles",
+      "command": [
+        "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\odin.exe",
+        "--config",
+        "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml",
+        "--workspace",
+        "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-workspace",
+        "call",
+        "get_current_config"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "reinstall",
+      "exit_code": 0,
+      "log": "reinstall.log"
+    },
+    {
+      "name": "lsp_live_host_profiles",
+      "command": [
+        "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\app\\odin.exe",
+        "--config",
+        "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\host\\host.toml",
+        "--workspace",
+        "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-workspace",
+        "call",
+        "get_current_config"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "uninstall",
+      "exit_code": 0,
+      "log": "uninstall.log"
+    }
+  ],
+  "operator_path_observations": [
+    {
+      "phase": "before",
+      "observed_at_utc": "2026-10-22T05:45:27.6177617Z",
+      "user_path": {
+        "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "characters": 1880,
+        "value": "REDACTED_PATH_STRING"
+      },
+      "user_path_raw": {
+        "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "characters": 1880,
+        "value": "REDACTED_PATH_STRING"
+      },
+      "process_path": {
+        "exact_utf8_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809",
+        "characters": 2564,
+        "value": "REDACTED_PATH_STRING"
+      }
+    },
+    {
+      "phase": "after_portable",
+      "observed_at_utc": "2026-10-22T05:52:04.6953963Z",
+      "user_path": {
+        "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "characters": 1880,
+        "value": "REDACTED_PATH_STRING"
+      },
+      "user_path_raw": {
+        "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "characters": 1880,
+        "value": "REDACTED_PATH_STRING"
+      },
+      "process_path": {
+        "exact_utf8_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809",
+        "characters": 2564,
+        "value": "REDACTED_PATH_STRING"
+      }
+    },
+    {
+      "phase": "after_install",
+      "observed_at_utc": "2026-10-22T05:53:53.9145576Z",
+      "user_path": {
+        "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "characters": 1880,
+        "value": "REDACTED_PATH_STRING"
+      },
+      "user_path_raw": {
+        "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "characters": 1880,
+        "value": "REDACTED_PATH_STRING"
+      },
+      "process_path": {
+        "exact_utf8_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809",
+        "characters": 2564,
+        "value": "REDACTED_PATH_STRING"
+      }
+    },
+    {
+      "phase": "after_reinstall",
+      "observed_at_utc": "2026-10-22T05:56:27.0227647Z",
+      "user_path": {
+        "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "characters": 1880,
+        "value": "REDACTED_PATH_STRING"
+      },
+      "user_path_raw": {
+        "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "characters": 1880,
+        "value": "REDACTED_PATH_STRING"
+      },
+      "process_path": {
+        "exact_utf8_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809",
+        "characters": 2564,
+        "value": "REDACTED_PATH_STRING"
+      }
+    },
+    {
+      "phase": "after_uninstall",
+      "observed_at_utc": "2026-10-22T05:57:17.3042023Z",
+      "user_path": {
+        "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "characters": 1880,
+        "value": "REDACTED_PATH_STRING"
+      },
+      "user_path_raw": {
+        "exact_utf8_sha256": "db78afebe0cd4f356e9a47436e20a4e7863d7cce217643c6b52d45a8dba55f34",
+        "characters": 1880,
+        "value": "REDACTED_PATH_STRING"
+      },
+      "process_path": {
+        "exact_utf8_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809",
+        "characters": 2564,
+        "value": "REDACTED_PATH_STRING"
+      }
+    }
+  ],
+  "error": null,
+  "installer_sha256": "ebf7f94acac5c0d850b4c5636684e775689df84dbc44a0b97324b35e17421af2",
+  "portable_sha256": "015cbfa7635a1735eceeff5ad977e0ddd6be06540a4630016bfd02af239cd03c",
+  "build": {
+    "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "external_tool_bridge": false,
+    "model_token_usage": "UNKNOWN",
+    "name": "Odin",
+    "profile": "release",
+    "revision": "190c308e9ab7bbbf2917f879f58fd2d8a948cee0",
+    "schema_version": 1,
+    "standalone": true,
+    "target": "x86_64-pc-windows-msvc",
+    "tracked_source_dirty": false,
+    "version": "0.2.0"
+  },
+  "inventory_files": 35218,
+  "qa_directory": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15",
+  "interruption_rollback": "NOT_RUN",
+  "cross_version_upgrade": "NOT_RUN",
+  "lsp_semantic_acceptance": "NOT_RUN",
+  "lsp_profile_acceptance": {
+    "version_probes": 19,
+    "primary_language_profiles": 14,
+    "default_backend_implementations": 12,
+    "live_host_profiles": 14,
+    "semantic_acceptance": "NOT_RUN"
+  },
+  "lsp_version_health": "See source-bound install receipts",
+  "native_binary_expected_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792"
+}

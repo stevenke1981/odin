@@ -1,0 +1,316 @@
+{
+  "scope": "FINAL07_WINDOWS_X64_PACKAGE_AND_ISOLATED_LIFECYCLE",
+  "status": "PASS",
+  "sealed_at_utc": "2026-10-22T05:57:37.629998+00:00",
+  "root_head_before": "ca190e867981b1351c74c0946b0cd45c427613ce",
+  "root_head_after": "ca190e867981b1351c74c0946b0cd45c427613ce",
+  "binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+  "payload_manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+  "commands": [
+    {
+      "name": "binary-metadata",
+      "exit_code": 0,
+      "elapsed_seconds": 0.014
+    },
+    {
+      "name": "package",
+      "exit_code": 0,
+      "elapsed_seconds": 748.795
+    },
+    {
+      "name": "installer-qa",
+      "exit_code": 0,
+      "elapsed_seconds": 722.819
+    }
+  ],
+  "lifecycle_checks": 60,
+  "lifecycle_failures": 0,
+  "source_files_unchanged": 60,
+  "normal_operator_state_unchanged": true,
+  "path_phases": [
+    "before",
+    "after_portable",
+    "after_install",
+    "after_reinstall",
+    "after_uninstall"
+  ],
+  "raw_user_and_process_path_unchanged_all_phases": true,
+  "verifier_original_copy_sha256": "87ec5a74d863d04f4455440dec8c5295a7efebf87bcf1bcec14c1ecf9b8e55e6",
+  "signed_package": false,
+  "limitations": {
+    "semantic_tests": "NOT_RUN_BY_THIS_SLICE; parent owns independent real MCP/LSP evidence",
+    "clean_machine": "NOT_RUN; current Windows host has developer tools and System32 CRT",
+    "cross_version_upgrade": "NOT_RUN; lifecycle reinstall uses same exact installer",
+    "visual_gui": "NOT_RUN",
+    "interrupted_install_recovery": "NOT_RUN",
+    "linux_macos": "NOT_RUN",
+    "slint_auxiliary_direct_shutdown": "FAIL_EXIT_3_RETAINED in payload07 loader proof; module paths and native MCP evidence are separate",
+    "license_inventory": "WITH_DECLARED_NOTICE_GAPS; source archive inventory is not an actual reproducible rebuild or legal certification"
+  },
+  "next_owner": "root: operator snapshots sealed, actual user upgrade may proceed after this receipt",
+  "files": [
+    {
+      "path": "C:\\OdinQA\\package-lifecycle-q7.py",
+      "bytes": 6758,
+      "sha256": "583f1ab79f3152171699d3874cc1f35168e4db3266e4cfca0bc5edc318efe170"
+    },
+    {
+      "path": "C:\\OdinQA\\pkg7\\SHA256SUMS",
+      "bytes": 203,
+      "sha256": "4b483036313e0f9f75d38e3ee10c0491197a26a191b6989547841a7fded0754d"
+    },
+    {
+      "path": "C:\\OdinQA\\pkg7\\build-manifest.json",
+      "bytes": 25374,
+      "sha256": "b19dcac7c7d0263a2fa806383282fa1d2f98e3f62fc87ceb3e71d510fab6ea18"
+    },
+    {
+      "path": "C:\\OdinQA\\pkg7\\odin-0.2.0-windows-x64-setup.exe",
+      "bytes": 772524809,
+      "sha256": "ebf7f94acac5c0d850b4c5636684e775689df84dbc44a0b97324b35e17421af2"
+    },
+    {
+      "path": "C:\\OdinQA\\pkg7\\odin-0.2.0-x86_64-pc-windows-msvc.zip",
+      "bytes": 1004367633,
+      "sha256": "015cbfa7635a1735eceeff5ad977e0ddd6be06540a4630016bfd02af239cd03c"
+    },
+    {
+      "path": "C:\\OdinQA\\pkg7\\package-report.json",
+      "bytes": 25374,
+      "sha256": "b19dcac7c7d0263a2fa806383282fa1d2f98e3f62fc87ceb3e71d510fab6ea18"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\binary-metadata.command.json",
+      "bytes": 476,
+      "sha256": "a31cd2c674dde371c3138404a034d00445cf2c8549a9768ae6ebde131bae6dcb"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\binary-metadata.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\binary-metadata.stdout.log",
+      "bytes": 361,
+      "sha256": "8697d7797fa3ea7e8c183a3e4672adbcc866fd546246a2a86030e057519d9902"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\check-package-doc-copy.py",
+      "bytes": 1554,
+      "sha256": "c5dcc3e98c361764973928fbc1aea379181bb77345071d40aed0c3f1f49e01f6"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\install.log",
+      "bytes": 15406032,
+      "sha256": "bbbcbb8d3d3192bc959605ee427fdd755cf35ab57443f80a2c78751871af39c0"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\installer-report.json",
+      "bytes": 52327,
+      "sha256": "fef5ef83a53e9d4a22315dbf7e6277b8daa525e580ee21286a591f3da13964e5"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-install-receipt.json",
+      "bytes": 25532,
+      "sha256": "8385805ed218aa36c72e44126a1d38aaf9dd41a996b8b3a2f7b2f18470188878"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-install-receipt.json.current-config.json",
+      "bytes": 5784,
+      "sha256": "f4ff18e32681d9ef1ac836273669ab77b9c432252f358fc09a16a90d06dd4658"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-reinstall-receipt.json",
+      "bytes": 35897,
+      "sha256": "d873d554014fc9118bc6cb156fd4523cdb439136386f48a813753a263b588cb2"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-reinstall-receipt.json.current-config.json",
+      "bytes": 5784,
+      "sha256": "bba619e7b18642d39265a9939d078b31a72319943bb66da830d3bc026b44b619"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\path-observations.json",
+      "bytes": 35906,
+      "sha256": "c37e68c63b9daefb765b79b289abe489ec2b598ae0dfc107009129c89843fb4c"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\portable-lsp-receipt.json",
+      "bytes": 25933,
+      "sha256": "4e9f9facfc35d07c0f6f1ca1abc55c1ebc6243dc95dc69f614398ce22d7f8b7f"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\portable-lsp-receipt.json.current-config.json",
+      "bytes": 5784,
+      "sha256": "feeb38207f1d0d529c3f32d21d84906cc9925647f3d56545115e03a27441386b"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\reinstall.log",
+      "bytes": 19022884,
+      "sha256": "410bc403a0bb7a0742fa88d0898a970077852b422b753ad456e167c3aea05b2f"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\runtime-host.toml",
+      "bytes": 200,
+      "sha256": "30ba489ebe60d248bc5245ddc0088b089b79d2856e3588cbf44b9575e620173d"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\uninstall.log",
+      "bytes": 7358369,
+      "sha256": "078b5d73c405852d11df83d6c268fa188994c6d656aa7816eb2cb576b5b07843"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\installer-qa.command.json",
+      "bytes": 843,
+      "sha256": "fb5804d38bd0ec409c328a822ef6da20adeaadf0cd1ec077c049a258ecec175c"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\installer-qa.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\installer-qa.stdout.log",
+      "bytes": 52329,
+      "sha256": "e597d0cb8467824aed5bee1dd3eb07ad16268208e30fa43b2ab7c097e461a6ba"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\operator-after.json",
+      "bytes": 1494,
+      "sha256": "f6d58aa7bb8e76dd7efdfdc7cc2319142578d086a9e07fc86a8903842200e65b"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\operator-before.json",
+      "bytes": 1494,
+      "sha256": "f6d58aa7bb8e76dd7efdfdc7cc2319142578d086a9e07fc86a8903842200e65b"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\package-doc-copy-integrity.json",
+      "bytes": 16454,
+      "sha256": "8d1749757ae264d4d2210b0570e79a98f0143848ee17dcbb0b85ab397bce948e"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\package.command.json",
+      "bytes": 907,
+      "sha256": "77d6251b11dff642dafe6d0e233d5c3a607e2714b6b472ace07692f527a0ac33"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\package.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\package.stdout.log",
+      "bytes": 25376,
+      "sha256": "73b28c34dd39057293d015a45a76d8cbad7ca1db185c8513352ac51520aaefd5"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\portable-early-hash.py",
+      "bytes": 691,
+      "sha256": "3a9d3407f7604217a722bf1264cd071ec42df039e3d286ea0df5d0b13992c43e"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\portable-early.json",
+      "bytes": 303,
+      "sha256": "0ae22c80acb5a5b22933196b9a861db053f84f24bb149a18338bd79b1a8cb799"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\preflight.json",
+      "bytes": 6884,
+      "sha256": "502a366083be26397766495ee0aaeb554c8d954ceb353035976356530d54079e"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\run-report.json",
+      "bytes": 15289,
+      "sha256": "0b5be00dea6f0be415c44490be400c50fe20a314c1c221c3370be6dec63e863e"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\scripts\\verify_installer.ps1",
+      "bytes": 20545,
+      "sha256": "87ec5a74d863d04f4455440dec8c5295a7efebf87bcf1bcec14c1ecf9b8e55e6"
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\seal-handoff.py",
+      "bytes": 4084,
+      "sha256": "ec7b0b36afae73706390a1b54214498e0d5729726ab111d5862365d7847dbec1"
+    }
+  ],
+  "per_phase_health": [
+    {
+      "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\portable-lsp-receipt.json",
+      "health_scope": "BUNDLED_BACKEND_VERSION_EXECUTION_NOT_SEMANTIC_ACCEPTANCE",
+      "actual_probes": 19,
+      "status": "PASS",
+      "semantic_acceptance": "NOT_RUN",
+      "languages": [
+        "python",
+        "go",
+        "csharp",
+        "lua",
+        "javascript",
+        "typescript",
+        "bash",
+        "slint",
+        "c",
+        "cpp",
+        "toml",
+        "yaml",
+        "markdown",
+        "rust"
+      ]
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-install-receipt.json",
+      "health_scope": "BUNDLED_BACKEND_VERSION_EXECUTION_NOT_SEMANTIC_ACCEPTANCE",
+      "actual_probes": 19,
+      "status": "PASS",
+      "semantic_acceptance": "NOT_RUN",
+      "languages": [
+        "python",
+        "go",
+        "csharp",
+        "lua",
+        "javascript",
+        "typescript",
+        "bash",
+        "slint",
+        "c",
+        "cpp",
+        "toml",
+        "yaml",
+        "markdown",
+        "rust"
+      ]
+    },
+    {
+      "path": "C:\\OdinQA\\q7\\dist\\installer-qa-4d082a32a4674abf946badf2e63cef15\\lsp-reinstall-receipt.json",
+      "health_scope": "BUNDLED_BACKEND_VERSION_EXECUTION_NOT_SEMANTIC_ACCEPTANCE",
+      "actual_probes": 19,
+      "status": "PASS",
+      "semantic_acceptance": "NOT_RUN",
+      "languages": [
+        "python",
+        "go",
+        "csharp",
+        "lua",
+        "javascript",
+        "typescript",
+        "bash",
+        "slint",
+        "c",
+        "cpp",
+        "toml",
+        "yaml",
+        "markdown",
+        "rust"
+      ]
+    }
+  ],
+  "profile_acceptance": {
+    "version_probes": 19,
+    "primary_language_profiles": 14,
+    "default_backend_implementations": 12,
+    "live_host_profiles": 14,
+    "semantic_acceptance": "NOT_RUN"
+  }
+}

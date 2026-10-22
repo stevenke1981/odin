@@ -1,0 +1,450 @@
+{
+  "status": "PARTIAL",
+  "historical_real_gui_cases": 9,
+  "historical_recipe_sha256": "1b952d78964ab2cc2623e00b7b6376234f92402715cab757b12e60b04509edac",
+  "current_recipe": "Only checkbox caption differs; exact helper/code reused; exact current recipe compilation PASS; full current-caption nine-case GUI and continuous visual NOT_RUN",
+  "provenance_audit": "PASS_298_BYTE_AND_PARTITION_CHECKS_NOT_NEW_LANGUAGE_CHECKS",
+  "final_installer_lifecycle": "NOT_RUN",
+  "entries": [
+    {
+      "path": "verification/home-lsp-review-final07-stage-evidence-review.json",
+      "published_sha256": "9a84245ab1953dca4eee4446c63f1dbe06d90eaddf1938dc8bedac9143268aa7",
+      "bytes": 4592,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\final07-stage-evidence-review.json",
+      "original_raw_sha256": "9a84245ab1953dca4eee4446c63f1dbe06d90eaddf1938dc8bedac9143268aa7",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-review-ui-source-equivalence-review.json",
+      "published_sha256": "50bbfe269ef3dfdc9bf6b9a3b9d4144e8b1e5a949893d338ed46ecf58f40be04",
+      "bytes": 20465,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\review-sol\\ui-source-equivalence-review.json",
+      "original_raw_sha256": "50bbfe269ef3dfdc9bf6b9a3b9d4144e8b1e5a949893d338ed46ecf58f40be04",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-report.json",
+      "published_sha256": "257e725bc736fa89b42a933c7ad0fcd1bd24b63fae5c12dc562c12f66ea5188f",
+      "bytes": 56801,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\report.json",
+      "original_raw_sha256": "2ef13e5e9d353f58280b68f6854a9739b46408b608c7c3e824ae6be90db6f689",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-argv-frozen-report.json",
+      "published_sha256": "a272c5f827dca3fdaaf9ca461f6e6d3d202f27b6440e65b2c5989e6395d8691e",
+      "bytes": 13590,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\report.json",
+      "original_raw_sha256": "8d368f85ccb826553ecbe4c76a7a8a24f72760ac58981a2338a4e3d3c2049789",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-installer-support-inno-01.command.json",
+      "published_sha256": "da08bc2e1ed9fa6f9101961e1d35012f6b0ee00e78b28b217639587f3529be89",
+      "bytes": 1641,
+      "original_source": "C:\\OdinQA\\expanded-setup-1022\\installer-support\\inno-01.command.json",
+      "original_raw_sha256": "97ccdf20b89c8d7dd0c02f90e0768316634dc56ef07d14f6bdb1f31e21e0b77d",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-installer-support-inno-01.log",
+      "published_sha256": "a3680b6601c39b586ea892ad2bbaa58a7f72b62a64f73917b09aa8c5f188110e",
+      "bytes": 8,
+      "original_source": "C:\\OdinQA\\expanded-setup-1022\\installer-support\\inno-01.log",
+      "original_raw_sha256": "a3680b6601c39b586ea892ad2bbaa58a7f72b62a64f73917b09aa8c5f188110e",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-success.json",
+      "published_sha256": "5b4c232f3988baf02a05a665bf7f626f32f41ff3e26dd6e80e2417c13ef8f1a9",
+      "bytes": 722,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\success.json",
+      "original_raw_sha256": "5b4c232f3988baf02a05a665bf7f626f32f41ff3e26dd6e80e2417c13ef8f1a9",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-success-ui.json",
+      "published_sha256": "5d55ffbecc04268cf162027d67fff0f04cac28775e4d58320257c6cc1d97485e",
+      "bytes": 5002,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\success-ui.json",
+      "original_raw_sha256": "9feaff4de1219b834332933d41e7f4677d73368377f1654f844cccd7c97402df",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-success.log",
+      "published_sha256": "6bb29178c940de498d6932e580ce5f880b17458cb416fc1f0275e95365ffea04",
+      "bytes": 9387,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\success.log",
+      "original_raw_sha256": "bfed022ce5e6e599116e1b237ed16fceac426ed8bc00bc26aacdc9ab9c554ab1",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-success-uninstall.log",
+      "published_sha256": "128ccd1eda47759dd3ab65a5070c7482681afa858f75a82d66f5d3edeebae5b3",
+      "bytes": 7191,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\success-uninstall.log",
+      "original_raw_sha256": "200efc664bea27bbc9ed3fc9514e20c5ba366d82e6b636db56d529b25a67a190",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-fresh_home.json",
+      "published_sha256": "8546d14f2bd8c696d750e1d577af08e79cb82d1a9644db579aa121bd058c6dd4",
+      "bytes": 772,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\fresh_home.json",
+      "original_raw_sha256": "8546d14f2bd8c696d750e1d577af08e79cb82d1a9644db579aa121bd058c6dd4",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-fresh_home-ui.json",
+      "published_sha256": "31c26bded73307cb2646dd16a18d3651f0fa13c745715c49dc0e8296eb4f6b9f",
+      "bytes": 5033,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\fresh_home-ui.json",
+      "original_raw_sha256": "dc32d0a4eedb9c65621b2f4d5d0d3d5d014ade80cebd0646c3c024160d5e779d",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-fresh_home.log",
+      "published_sha256": "182335fee330d3ef64fd93aad3b2ebfc86dde2bd96d1030325fe4760588e6855",
+      "bytes": 9345,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\fresh_home.log",
+      "original_raw_sha256": "6ef7f0bf6b96eecea4f5cdd45ec9ad2d228df0a427667c24fe83b6ca197d5b6b",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-fresh_home-uninstall.log",
+      "published_sha256": "18891570932bfa4be9e0635e43473fca5bd4e4f4fd358fff73f8c6abfd6363b9",
+      "bytes": 7230,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\fresh_home-uninstall.log",
+      "original_raw_sha256": "aca41e4aa399b0a15fcfea1ac81b144b105cce0e188a9b4ebf31d7f97fc162be",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-switch_existing.json",
+      "published_sha256": "3cc32451900a9e9d284fbb998a34f7c0ec03c517a82f22b0638d328f5cee5dc5",
+      "bytes": 755,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\switch_existing.json",
+      "original_raw_sha256": "3cc32451900a9e9d284fbb998a34f7c0ec03c517a82f22b0638d328f5cee5dc5",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-switch_existing-ui.json",
+      "published_sha256": "57a99a1351791bdf10d14b17894565423ce72fe2e30dc26d21462dad693bfb20",
+      "bytes": 5100,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\switch_existing-ui.json",
+      "original_raw_sha256": "a49c10c3befbbcb9f27fb20d0d2c69781d3a7e877bbd53c9d98844792a5fba09",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-switch_existing.log",
+      "published_sha256": "b3821ce7a1590599e373956a65237322874d9329c567f8c88c47edb8c605a5b6",
+      "bytes": 9507,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\switch_existing.log",
+      "original_raw_sha256": "08845a68d272dec136471551c7310a8ba5fddb8b37463b8a658c921aa1e8b2ee",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-switch_existing-uninstall.log",
+      "published_sha256": "12ed4a3805f9e7f23e440d5928722e69c3e5b1e4da85c29e7bf0094e95d1966d",
+      "bytes": 7296,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\switch_existing-uninstall.log",
+      "original_raw_sha256": "d2213e8a910f9abb2c79862bfdc0f95fe1954f195cc0abad7db4129744543fa1",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-cancel.json",
+      "published_sha256": "6c92e17ec36481afd2067e130ae36a7717716e30cdb1d1bef8f54ad363b960fe",
+      "bytes": 759,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\cancel.json",
+      "original_raw_sha256": "6c92e17ec36481afd2067e130ae36a7717716e30cdb1d1bef8f54ad363b960fe",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-cancel-ui.json",
+      "published_sha256": "de87704efc8fbd6f4b7c3bd1119df66698379c2c0bf24bf19f84a48efda16b73",
+      "bytes": 5477,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\cancel-ui.json",
+      "original_raw_sha256": "2e22759301be603d1917ab2035649e0dab5f97d5bafeece6734c2e1a3299d4e1",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-cancel.log",
+      "published_sha256": "18f0821718cd4ebd4663d3da307c13e5398d120756217afdaa1cc553beb1cd44",
+      "bytes": 9443,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\cancel.log",
+      "original_raw_sha256": "56f0fa030eccfd2c48a449f6fc30087f1e8fe03a8a3c45502171698b4138b510",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-cancel-uninstall.log",
+      "published_sha256": "95bd4e5ce7d6836baed4d71f6617e6aac9dab617b19a2db76ddf31f8ebd072c9",
+      "bytes": 7179,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\cancel-uninstall.log",
+      "original_raw_sha256": "6e718447fc7609b8d6ce340a92afbe95439c871528182f1d8b954fe190c2edb4",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-failure.json",
+      "published_sha256": "7858b655aa6e0c51b6c232fc9ad1028614c5845bf515284da44c486796cb8b30",
+      "bytes": 725,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\failure.json",
+      "original_raw_sha256": "7858b655aa6e0c51b6c232fc9ad1028614c5845bf515284da44c486796cb8b30",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-failure-ui.json",
+      "published_sha256": "6be13586c61150f84d06471c3e30b3a2b7f399e85254e8868856d3ec4104ed26",
+      "bytes": 4999,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\failure-ui.json",
+      "original_raw_sha256": "354aa60101d8be5e54473250098abc11cb3e45475611928d8ced493604f0e480",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-failure.log",
+      "published_sha256": "74485e15a70afa63c13414d59a20b7775530985e9599762af55603fa7907dce9",
+      "bytes": 9340,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\failure.log",
+      "original_raw_sha256": "cd097a1b2cb81336efb23c31833baad79da0e3ff5c8b5ddfca9d982eeff589f7",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-failure-uninstall.log",
+      "published_sha256": "93fa52f9b38c6349facab3297d2fd135bc0120a2a1f77aadbf92eec01f3426f7",
+      "bytes": 7191,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\failure-uninstall.log",
+      "original_raw_sha256": "b6672b4a1694c725a51f8fbaa973f0ed637d1018bc0bef421d01385095b88bc3",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-timeout.json",
+      "published_sha256": "20d731c9467544ac810222834c7b3ad27fcbf46c8200893631cd293da15f34f4",
+      "bytes": 729,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\timeout.json",
+      "original_raw_sha256": "20d731c9467544ac810222834c7b3ad27fcbf46c8200893631cd293da15f34f4",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-timeout-ui.json",
+      "published_sha256": "f1218b80be479595f4df040ca0e1c6a3d5fd209c947734f5cbf0678f05e2158e",
+      "bytes": 5008,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\timeout-ui.json",
+      "original_raw_sha256": "deb3c100bcea136cbd6fda0e3b2de5b4fef9a745cd72d5eaae9ce57fc6091885",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-timeout.log",
+      "published_sha256": "587b11d32b77bf0e1a2ee8d2f42f7bc604f84895e7cc4b786ad1dd425a16b549",
+      "bytes": 9259,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\timeout.log",
+      "original_raw_sha256": "9988075f9a9a9b67f809c6a61d6c03ff5b90ac3259e807d7d6778495adba9da7",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-timeout-uninstall.log",
+      "published_sha256": "4f0dde3e1ddd51532bb078f733450c569982a3f19a1098c954ea53d76c5290b8",
+      "bytes": 7191,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\timeout-uninstall.log",
+      "original_raw_sha256": "82a2a1aeb86e733de8899a0d85f18cf536e697d2cfab313e05a7d0513cff47c2",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-deadline.json",
+      "published_sha256": "cf0b6f98900c6d1ff078f6950505635e48364a5f80ed4f8bc0c2bce4c9cdbc1a",
+      "bytes": 730,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\deadline.json",
+      "original_raw_sha256": "cf0b6f98900c6d1ff078f6950505635e48364a5f80ed4f8bc0c2bce4c9cdbc1a",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-deadline-ui.json",
+      "published_sha256": "09294d23490993eab39a53c369e1a22f39e02c28dd75b31349fa23bd1dad9b41",
+      "bytes": 4973,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\deadline-ui.json",
+      "original_raw_sha256": "f738a2e0289c2466e468c471d4cf54f244e144c398a493b22558647c04212e41",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-deadline.log",
+      "published_sha256": "5452ea357a4d6c6c8c2ee4cc94b511e304a04a6a3b6312b9f1130976a939d8f4",
+      "bytes": 9298,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\deadline.log",
+      "original_raw_sha256": "47d0ec709ee019c6f67d3b8cc22bb62d5df8532c4a9430c02c5c997cb8c4c94a",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-deadline-uninstall.log",
+      "published_sha256": "d704617422de273e924332b10f2a220893d1b02be31e79428518a99ec3b14656",
+      "bytes": 7204,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\deadline-uninstall.log",
+      "original_raw_sha256": "589991b0677140b2f867b055bc2a73013bd39e3bbb16c3e0ce4dd79c03cb171a",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-wrong_nonce.json",
+      "published_sha256": "ff1519fbfd99a4f7991c0bf70d996ca644decd0b365c3983a6a5f1c77dbf5ab3",
+      "bytes": 735,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\wrong_nonce.json",
+      "original_raw_sha256": "ff1519fbfd99a4f7991c0bf70d996ca644decd0b365c3983a6a5f1c77dbf5ab3",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-wrong_nonce-ui.json",
+      "published_sha256": "a16d61c027d7d301b09fa12d2a5343723065a283382353f7f468655532f5bb10",
+      "bytes": 4859,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\wrong_nonce-ui.json",
+      "original_raw_sha256": "9d219f9f13b00771e3e526ef27b0ec30b987e0aa88f3eaf414d825ad3ee5adbb",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-wrong_nonce.log",
+      "published_sha256": "ca8329857391ac57fa9f8e233f374cd96cd69e5c54ce040d3086509142fce3dc",
+      "bytes": 9002,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\wrong_nonce.log",
+      "original_raw_sha256": "1ce2a9101eb4800e8e6b16d99fc1e8ac66a923d4795f49a91c08ec77b653be69",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-wrong_nonce-uninstall.log",
+      "published_sha256": "18e311aa5f9ae677a44ed19dd685d30c90ff3a79504cfff4da027be87b5b3fbd",
+      "bytes": 7243,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\wrong_nonce-uninstall.log",
+      "original_raw_sha256": "32742ebf500285f30dfc1f44a9465d224481e188ea78792bbcbb0aaf1c15201e",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-parent_exit-ui.json",
+      "published_sha256": "f45e2c39104d1e8c51e1271d649ed48c519aae7a7e0360c555ce296038c679ac",
+      "bytes": 4540,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\parent_exit-ui.json",
+      "original_raw_sha256": "272db60ffa12b07b776dbd9e3b636a7cb065ea0088886327045aba1b3d61c122",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-parent_exit.log",
+      "published_sha256": "7301f98b8a924882ac7d6b8e891982ea2e7a5013f845b72b2ee28b199bc3354b",
+      "bytes": 8951,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\parent_exit.log",
+      "original_raw_sha256": "9036c0b4b760a18645c9be1254fd47cc1a9e53f4b61a59b68360647b1f08e0ad",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-ui-frozen-parent_exit-uninstall.log",
+      "published_sha256": "d38e8a091c546b6ac587145f1cdd367a8092709e0eee01cd5c71ce21b8629e13",
+      "bytes": 7243,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\ui-frozen\\parent_exit-uninstall.log",
+      "original_raw_sha256": "69b0f0d91d39359f1e44374719c11a8ec338c07bf40670bb316e7203b84efb82",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-argv-frozen-existing host no root receipt.json",
+      "published_sha256": "9722895b68c1d6616a4b4bfe43bd26b1f0729ddfb2551b005a4233b08b6b3954",
+      "bytes": 2187,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing host no root receipt.json",
+      "original_raw_sha256": "9722895b68c1d6616a4b4bfe43bd26b1f0729ddfb2551b005a4233b08b6b3954",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-ui-argv-frozen-intentional failure receipt.json",
+      "published_sha256": "a0dd74b3ad328f94c82fbe295154e4a4e036fed4babee5b40719585f60f4129d",
+      "bytes": 1061,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional failure receipt.json",
+      "original_raw_sha256": "a0dd74b3ad328f94c82fbe295154e4a4e036fed4babee5b40719585f60f4129d",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-ui-argv-frozen-receipt space.json",
+      "published_sha256": "9629630044fda3a5d7117a657cd161db16c840e308791b462b766fc3d3612f50",
+      "bytes": 2659,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\receipt space.json",
+      "original_raw_sha256": "9629630044fda3a5d7117a657cd161db16c840e308791b462b766fc3d3612f50",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-ui-argv-frozen-existing-host-no-root.log",
+      "published_sha256": "278ba585454f6b571159ede2dc4b5e65b61418895004fe491370c38605177713",
+      "bytes": 9079,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\existing-host-no-root.log",
+      "original_raw_sha256": "b4e495027d2fd8869eeedaa17aa2aa087b2028ad8b03c1191668e605d150119a",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-argv-frozen-install.log",
+      "published_sha256": "febfba3282d822e4823af0a6ebaa5f8b5c02874c9d5076f21b315103ee6ff59c",
+      "bytes": 9124,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\install.log",
+      "original_raw_sha256": "82d22757a7a94e8e78eb156fa80f5ae3e4a0634a68004f81d1e6cef3b38b7ed7",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-argv-frozen-intentional-failure.log",
+      "published_sha256": "728de97dad32bfd585fc6791c093d756eba226e91e6c5c4c8e70a3789c18b3ad",
+      "bytes": 9355,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\intentional-failure.log",
+      "original_raw_sha256": "ee1fe23cc8a8800c37b201f89222330233b4644382e5bb411c2066bd8283fa81",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-argv-frozen-invalid-receipt.log",
+      "published_sha256": "ba38391184f0f36b9e5039ec4ef46c622f7ad7c18e602535972e2104d36b1af7",
+      "bytes": 5855,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\invalid-receipt.log",
+      "original_raw_sha256": "6d9ffa8a0f8d3fa3de6878aac29ce741fa9d209a5907773f803e61d48192fd38",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-argv-frozen-uninstall-0.log",
+      "published_sha256": "d38e7815ea622c3abfed16ad2e734ef42177d759313943dd9d62d22e86e3290c",
+      "bytes": 7235,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\uninstall-0.log",
+      "original_raw_sha256": "32400871fee9f89390288b5356ef25ff983d9ade5bc145316b81c2734bb63a41",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-argv-frozen-uninstall-1.log",
+      "published_sha256": "acdba5badecfddce74c9b32ba4b0d872188adfd07b64ea6674d14b0b36e253b2",
+      "bytes": 7169,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\uninstall-1.log",
+      "original_raw_sha256": "1175d1b5550ec94b77ce6bedb4f32094887c2f739ee373e581f195ca8432a3ae",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-ui-argv-frozen-uninstall-2.log",
+      "published_sha256": "90b714f248944d71f081b8da9ad1d6e39997b2ccd2a5c6993337b40712f79f38",
+      "bytes": 7229,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installer-author\\argv-frozen\\uninstall-2.log",
+      "original_raw_sha256": "6f2e6990c6961cf8cf703672fa2c244adfd18787eab3b790a818625f8073180a",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-published-evidence-audit07.json",
+      "published_sha256": "b93c5e43bfa03d0443e68a653dee4faa266ae4fc0b7f227131ff1e77f16f9fa3",
+      "bytes": 41251,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\published-evidence-audit07.json",
+      "original_raw_sha256": "a336b8338733b76780ff2e7d0d71cb1dc397a3b06a81f507aea3180ccecd876e",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-published-evidence-audit07.py",
+      "published_sha256": "3c20f26ac19546e568b01d820798b1bc1ffb442d667c8213fcdbd0935d6ca56d",
+      "bytes": 2732,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\published_evidence_audit07.py",
+      "original_raw_sha256": "9c6f25d8bd3eea7d2e760bfa5ec1ef37495f72097bd1dbb5af14cc26bba13f5a",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-published-evidence-audit07-first-attempt.json",
+      "published_sha256": "1ea56e2a7e8babd03789f8d726d665075a13b408a4f00588b88caeff3a975b98",
+      "bytes": 204,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\published-evidence-audit07-first-attempt.json",
+      "original_raw_sha256": "7bf461db7450647cac3e7d76a56ed972e740081dc631ac2c1b276e53bcf46c12",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-published-evidence-audit07-first.py",
+      "published_sha256": "2b4771213574b6a125d841c2e75ab936754cdc74692c915e93fb5a5590d4b6c9",
+      "bytes": 2715,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\published_evidence_audit07-first.py",
+      "original_raw_sha256": "2c378e2209eda6a316e078c96c8fb3535c5933259341dd824a1ee10e241f0edd",
+      "lf_normalized": true
+    }
+  ]
+}

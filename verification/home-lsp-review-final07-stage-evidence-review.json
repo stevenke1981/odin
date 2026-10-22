@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "task_id": "ODIN-HOME-PROGRESS-EXPANDED-REVIEW",
+  "actor_instance": "/root/review_sol",
+  "observed_at_utc": "2026-10-22T05:45:46.967614+00:00",
+  "scope": "Final payload07 stage real worker and Slint MCP evidence review; final package07 installer acceptance remains NOT_RUN here",
+  "review_result": "PASS_SCOPED",
+  "whole_user_feature_acceptance": "PARTIAL_PENDING_FINAL_PACKAGE07",
+  "head_sha": "ca190e867981b1351c74c0946b0cd45c427613ce",
+  "native_binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+  "payload_manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+  "current_stage_binding": "MATCH",
+  "checks": [
+    {
+      "name": "Final07 Slint actual installed MCP through Odin",
+      "status": "PASS",
+      "executor": "root; source/log/receipt hashes independently audited by reviewer",
+      "exit_code": 0,
+      "passed": 19,
+      "projects": 2,
+      "scope": "Real document symbols, source binding, readonly denial, versioned broken/recovered diagnostics and transactional restore; no refactor parity claim"
+    },
+    {
+      "name": "Final07 full-payload worker success/cancel/timeout",
+      "status": "PASS",
+      "executor": "root; source, run IDs, raw logs and receipt independently audited by reviewer",
+      "exit_codes": [
+        0,
+        1223,
+        1460
+      ],
+      "manifest_files": 35158,
+      "canonical_version_probes": 19,
+      "success_seconds": 262.129,
+      "post_health_integrity": "PASS",
+      "cancel_timeout_host_hashes_unchanged": true
+    },
+    {
+      "name": "Final package07 portable/install/reinstall/uninstall",
+      "status": "NOT_RUN",
+      "reason": "Packaging/isolated installer QA in progress; candidate06 package results are historical only"
+    },
+    {
+      "name": "Slint auxiliary direct-protocol shutdown",
+      "status": "FAIL",
+      "reason": "Both loader07 and08 retain duplicate shutdown response and exit3; module observer exit0/loaded CRT paths PASS is separate evidence"
+    },
+    {
+      "name": "Clean Windows, Slint rebuild, cross-version and crash rollback",
+      "status": "NOT_RUN"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\slint-final07-command.json",
+      "sha256": "5896923d3bf2e2a994e8e38e9e3e5cd5a89c4dbea0090d9f09b3a50b8091c0be"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\slint-final07.json",
+      "sha256": "70d061089b3e6ad2253a1610f586df19b7509a2a2227fb1dc98eb59333fcca91"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\slint-final07.log",
+      "sha256": "7f067be523d4ce64099ba4fc9c479a505724eb55f0784ec63ef7ab5ce8b834f8"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\worker-expanded07-report.json",
+      "sha256": "9d1521c54b6cafc434a97b089b7e1cfd6835e577c72118f9bc891e1d1fcdd2d6"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\expanded07-success-worker-receipt.json",
+      "sha256": "11df208bdce099d01920bc86ec912983c386076e239719a135882fdc774b6ae2"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\worker-expanded07.py",
+      "sha256": "35e763d75eb839ea5d7c100f54b7cef21341f8fc9fb792895f9570f0f5f89530"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\expanded07-success-worker.stdout.log",
+      "sha256": "11df208bdce099d01920bc86ec912983c386076e239719a135882fdc774b6ae2"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\expanded07-success-worker.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\expanded07-cancel-worker.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\expanded07-cancel-worker.stderr.log",
+      "sha256": "292cbcc1c2bb4db0f2d9b82dde6df7d25a57fe3ec22b8b17a48d963c4b98b6a2"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\expanded07-timeout-worker.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\expanded07-timeout-worker.stderr.log",
+      "sha256": "cc0a8519a7ed45960b112d4b5992226853210a19a93a463c932c12a965486182"
+    }
+  ],
+  "source_mutations_performed": false,
+  "backend_execution_by_reviewer": false,
+  "next_owner": "/root",
+  "next_action": "Complete final package07 source-bound QA receipt, then request final independent report. Keep current PARTIAL diagnostic states and auxiliary FAIL."
+}

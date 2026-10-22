@@ -1,0 +1,842 @@
+{
+  "task_id": "ODIN-ACTUAL-USER-UPGRADE",
+  "status": "PASS",
+  "runner_sha256": "4498b3bd5c0468cf795adc2567369790b051564a84dde2a8a5a2e77d94a2eb6a",
+  "checks": [
+    {
+      "name": "final_pkg7_installer_hash",
+      "status": "PASS"
+    },
+    {
+      "name": "reviewed_host_hash_before_snapshot",
+      "status": "PASS"
+    },
+    {
+      "name": "reviewed_client_hash_before_snapshot",
+      "status": "PASS"
+    },
+    {
+      "name": "existing_provider_choices_are_defaults",
+      "status": "PASS"
+    },
+    {
+      "name": "expected_client_sha256_immediately_before_installer",
+      "status": "PASS"
+    },
+    {
+      "name": "expected_host_sha256_immediately_before_installer",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_user_installer_exit_0",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_hash:odin.exe",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_hash:setup-lsps.mjs",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_hash:backends/manifest.json",
+      "status": "PASS"
+    },
+    {
+      "name": "actual_worker_19_health_probes_and_cas_receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "home_migration_all_prior_permissions_and_rust_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "codex_config_exact_bytes_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_backup_hash:a77993f760cd9a49cd759fd3b93fadcaa7e248e3cb79d26d7407c55073fb4c69",
+      "status": "PASS"
+    },
+    {
+      "name": "worker_backup_hash:b355322b2b83df6e1e87d0ab524bcc0ebbf670034d3a618e26e335975081a958",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_payload_closure_exit_0",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_payload_closure_identity",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_metadata_exit_0",
+      "status": "PASS"
+    },
+    {
+      "name": "installed_windows_target",
+      "status": "PASS"
+    },
+    {
+      "name": "default_host_current_config_exit_0",
+      "status": "PASS"
+    },
+    {
+      "name": "native_default_host_14_ids_extensions_readonly_grants",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_root_1_exit_0",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_root_2_exit_0",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_omitted_config_and_workspace_exit_0",
+      "status": "PASS"
+    },
+    {
+      "name": "native_configured_home_profiles_exit_0",
+      "status": "PASS"
+    },
+    {
+      "name": "native_default_host_14_profiles_12_invocations",
+      "status": "PASS"
+    },
+    {
+      "name": "preserved_operator_rust_version_exit_0",
+      "status": "PASS"
+    },
+    {
+      "name": "preserved_operator_rust_version_identity",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_client_root_1_readonly_transient_binding",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_client_root_1_owned_child_exit_0",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_client_root_2_readonly_transient_binding",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_client_root_2_owned_child_exit_0",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_omitted_config_and_workspace_readonly_transient_binding",
+      "status": "PASS"
+    },
+    {
+      "name": "mcp_omitted_config_and_workspace_owned_child_exit_0",
+      "status": "PASS"
+    },
+    {
+      "name": "two_explicit_transient_ids_and_default_home_match_cli_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "host_unchanged_by_readonly_verification",
+      "status": "PASS"
+    },
+    {
+      "name": "client_unchanged_by_readonly_verification",
+      "status": "PASS"
+    },
+    {
+      "name": "operator_state_preserved:user_path_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "operator_state_preserved:process_path_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "operator_state_preserved:certificate_state_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "final_snapshot_preserved:prior_grants",
+      "status": "PASS"
+    },
+    {
+      "name": "final_snapshot_preserved:existing_rust_profiles",
+      "status": "PASS"
+    },
+    {
+      "name": "final_snapshot_preserved:prior_non_language_policy",
+      "status": "PASS"
+    },
+    {
+      "name": "final_snapshot_preserved:client_config_bytes",
+      "status": "PASS"
+    }
+  ],
+  "commands": [
+    {
+      "name": "actual_user_installer",
+      "argv": [
+        "C:\\OdinQA\\pkg7\\odin-0.2.0-windows-x64-setup.exe",
+        "/VERYSILENT",
+        "/SUPPRESSMSGBOXES",
+        "/NORESTART",
+        "/SP-",
+        "/CLOSEAPPLICATIONS",
+        "/NOFORCECLOSEAPPLICATIONS",
+        "/NORESTARTAPPLICATIONS",
+        "/DIR=C:\\Users\\steven\\AppData\\Local\\Programs\\Odin",
+        "/ODIN_HOST_CONFIG=C:\\Users\\steven\\.config\\odin\\host.toml",
+        "/ODIN_WORKSPACE_ROOT=C:\\Users\\steven",
+        "/ODIN_SETUP_RECEIPT=C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\installer-worker-receipt.json",
+        "/LOG=C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e\\installer.log"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e",
+      "owned_pid": 5068,
+      "exit_code": 0,
+      "observer_deadline_seconds": 1800,
+      "elapsed_seconds": 356.947,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "installed_payload_closure",
+      "argv": [
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\setup-lsps.mjs",
+        "--verify-payload"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e",
+      "exit_code": 0,
+      "elapsed_seconds": 5.371,
+      "stdout_sha256": "8f5b92fce41ec0858cf36bc45b7320b051cbbde69d78771aa23d65e719e2db70",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_output_not_saved": false
+    },
+    {
+      "name": "installed_metadata",
+      "argv": [
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "metadata"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e",
+      "exit_code": 0,
+      "elapsed_seconds": 0.23,
+      "stdout_sha256": "8697d7797fa3ea7e8c183a3e4672adbcc866fd546246a2a86030e057519d9902",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_output_not_saved": false
+    },
+    {
+      "name": "default_host_current_config",
+      "argv": [
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "call",
+        "get_current_config"
+      ],
+      "cwd": "D:\\chatgpt-web-bridge",
+      "exit_code": 0,
+      "elapsed_seconds": 0.084,
+      "stdout_sha256": "0519ae9da1de3bb645c36678bc0c004869da1d4bb17b0f6febcd2f111b6b9619",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_output_not_saved": true
+    },
+    {
+      "name": "cli_root_1",
+      "argv": [
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--config",
+        "C:\\Users\\steven\\.config\\odin\\host.toml",
+        "--workspace",
+        "E:\\odin",
+        "call",
+        "list_projects"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "elapsed_seconds": 0.05,
+      "stdout_sha256": "45c2051277c811ccdbc71ff68dbde59172a9ae819861aae96c580111f0ff401e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_output_not_saved": false
+    },
+    {
+      "name": "cli_root_2",
+      "argv": [
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--config",
+        "C:\\Users\\steven\\.config\\odin\\host.toml",
+        "--workspace",
+        "D:\\chatgpt-web-bridge",
+        "call",
+        "list_projects"
+      ],
+      "cwd": "D:\\chatgpt-web-bridge",
+      "exit_code": 0,
+      "elapsed_seconds": 0.053,
+      "stdout_sha256": "14b2f2a04a83ffe73d0743620151267cfa68ac546e7b941899a598808f03d1ba",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_output_not_saved": false
+    },
+    {
+      "name": "cli_omitted_config_and_workspace",
+      "argv": [
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "call",
+        "list_projects"
+      ],
+      "cwd": "D:\\chatgpt-web-bridge",
+      "exit_code": 0,
+      "elapsed_seconds": 0.05,
+      "stdout_sha256": "dc07bd8e5e889b158840170ea3c5f60b470bbb68988cfe7884afbb4073f22a70",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_output_not_saved": false
+    },
+    {
+      "name": "native_configured_home_profiles",
+      "argv": [
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "languages",
+        "--project",
+        "ws_b421723f0c043cae1c815bfdf55dea8094fee9314741de7a"
+      ],
+      "cwd": "D:\\chatgpt-web-bridge",
+      "exit_code": 0,
+      "elapsed_seconds": 0.03,
+      "stdout_sha256": "ee4e202a85b7e32f447551ea83b25f01b4893f7e1767bc24b76b66a007b8f6ef",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_output_not_saved": true
+    },
+    {
+      "name": "preserved_operator_rust_version",
+      "argv": [
+        "C:\\Users\\steven\\.rustup\\toolchains\\stable-x86_64-pc-windows-msvc\\bin\\rust-analyzer.exe",
+        "--version"
+      ],
+      "cwd": "C:\\OdinQA\\home-progress-1022\\user-upgrade\\run-20261022T060434Z-6ca3d92e",
+      "exit_code": 0,
+      "elapsed_seconds": 0.131,
+      "stdout_sha256": "9d63be47a867faaff6b5a5ea546558947c93433a0c90c61cf8aa273c0521554f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "private_output_not_saved": false
+    },
+    {
+      "name": "mcp_client_root_1",
+      "argv": [
+        "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--config",
+        "\\\\?\\C:\\Users\\steven\\.config\\odin\\host.toml",
+        "--workspace",
+        ".",
+        "serve",
+        "--transport",
+        "stdio"
+      ],
+      "cwd": "E:\\odin",
+      "owned_pid": 25888,
+      "child_exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsed_seconds": 0.047
+    },
+    {
+      "name": "mcp_client_root_2",
+      "argv": [
+        "\\\\?\\C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--config",
+        "\\\\?\\C:\\Users\\steven\\.config\\odin\\host.toml",
+        "--workspace",
+        ".",
+        "serve",
+        "--transport",
+        "stdio"
+      ],
+      "cwd": "D:\\chatgpt-web-bridge",
+      "owned_pid": 14936,
+      "child_exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsed_seconds": 0.045
+    },
+    {
+      "name": "mcp_omitted_config_and_workspace",
+      "argv": [
+        "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "serve",
+        "--transport",
+        "stdio"
+      ],
+      "cwd": "E:\\odin",
+      "owned_pid": 21748,
+      "child_exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "elapsed_seconds": 0.047
+    }
+  ],
+  "certificate_reader_sha256": "c17b2c8b91a37230816f0afcf9ba3fc60a8678238fb92bbf05b2c912816ad560",
+  "final_pkg7_expected_hashes": {
+    "installer": "ebf7f94acac5c0d850b4c5636684e775689df84dbc44a0b97324b35e17421af2",
+    "binary": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+    "setup": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec",
+    "payload_manifest": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680"
+  },
+  "started_at_utc": "2026-10-22T06:04:34.227326+00:00",
+  "notes": [
+    "No client restart is claimed; the client must reconnect/restart after upgrade.",
+    "No installer expected-host override exists. An immediate prelaunch hash guard and the worker plan CAS are separate; they do not atomically bind the wrapper snapshot through the file-copy interval.",
+    "Read-only native calls may create normal private audit/state records; no workspace file content is requested or changed.",
+    "A failed run is preserved. No automatic retry, rollback, config rewrite, or conflict override."
+  ],
+  "inno_standard_option_source": "https://jrsoftware.org/ishelp/topic_setupcmdline.htm",
+  "semantic_acceptance": "NOT_RUN",
+  "before": {
+    "host_sha256": "87c7559eb24ded23c6688f6f111f7ec37da47934bb77a22b8a666d5835871a2a",
+    "client_sha256": "05aaddc8eac1c0ac524958b1819255f24d425a1c8b2fe83255a57a57c145846f",
+    "client_odin_entry_sha256": "8eadf9a801993f930a97e610fb909a1fa56400804215c460bc2c550fed0789b3",
+    "grants": [
+      {
+        "scope": "workspace",
+        "grants": {}
+      },
+      {
+        "scope": "project:e1bcc563fb21a156ac000c8e72205bfe5d145a49a485db1ada1f1e4358ceba61",
+        "grants": {
+          "allow_write": false,
+          "allow_shell": false,
+          "allow_debug": false,
+          "allow_inspections": false,
+          "allow_formatters": false
+        }
+      }
+    ],
+    "rust_profiles": [
+      {
+        "scope_sha256": "1871de04d1a88117af90b3e8bb6f40ad1047eadb38e21078e89c0913d8d8807b",
+        "id": "rust",
+        "profile_sha256": "f7ac3a8b73fa2f66fae2edb88657509cd6aab8ffe8f4d87b52719b53d2c68063"
+      },
+      {
+        "scope_sha256": "e1bcc563fb21a156ac000c8e72205bfe5d145a49a485db1ada1f1e4358ceba61",
+        "id": "rust",
+        "profile_sha256": "aa58f51f6ddda3675c34718a52bbbb207c2ff335801167c4889b561cfd317db4"
+      }
+    ],
+    "non_language_policy_sha256": "9b0467c3e5340a3479f6fd25b8df43d27911480406e71a92df0314b62c95fb0c",
+    "managed_marker_sha256": "11aebac6d2bbc6a91678d91099eb275dcb9b8ba50e2f8fa80cd2cbfb5ab901ad",
+    "installed_file_hashes": {
+      "odin.exe": "1e1ee04493736209d7ed093e6a28563221cfda57fc7e591f289fb2a8f104e7c8",
+      "setup-lsps.mjs": "094a036f50057d3ea74355d38348b240c8c079eeaf6aa102d8c37dbc907a9634",
+      "backends/manifest.json": "7819526b6df5d78815f8894491bd487e32a7cc987227948cfb62acbbd722ba55",
+      "SHA256SUMS.json": "73ca3e596be509a9ded9a4139d7f509e24b270406296053a2f991cdce7c9636c"
+    },
+    "operator_state": {
+      "user_path_sha256": "de87183a9821dbc24c9c85047cbeeecf74499263e196283b9c9d52df02d98e4e",
+      "process_path_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809",
+      "certificates": {
+        "CurrentUser/AddressBook": {
+          "status": "ABSENT",
+          "count": 0,
+          "hresult": -2147024894
+        },
+        "CurrentUser/AuthRoot": {
+          "status": "OBSERVED",
+          "count": 19,
+          "identities_sha256": "cb27ca394fb1c402cf8328433b1e63a5ab561dd19f2dabad57d2b6a6b320944a"
+        },
+        "CurrentUser/CertificateAuthority": {
+          "status": "ABSENT",
+          "count": 0,
+          "hresult": -2147024894
+        },
+        "CurrentUser/Disallowed": {
+          "status": "OBSERVED",
+          "count": 0,
+          "identities_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "CurrentUser/My": {
+          "status": "OBSERVED",
+          "count": 1,
+          "identities_sha256": "2edf561b2b726e7895cda6e356fb16e51589bf69d117d20df86d9fdc93175782"
+        },
+        "CurrentUser/Root": {
+          "status": "OBSERVED",
+          "count": 31,
+          "identities_sha256": "7c214f077500697f77bba3ddeb2a069b8f96571b9e05c3dd211992f8475383b1"
+        },
+        "CurrentUser/TrustedPeople": {
+          "status": "OBSERVED",
+          "count": 0,
+          "identities_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "CurrentUser/TrustedPublisher": {
+          "status": "OBSERVED",
+          "count": 0,
+          "identities_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "LocalMachine/AddressBook": {
+          "status": "ABSENT",
+          "count": 0,
+          "hresult": -2147024894
+        },
+        "LocalMachine/AuthRoot": {
+          "status": "OBSERVED",
+          "count": 19,
+          "identities_sha256": "cb27ca394fb1c402cf8328433b1e63a5ab561dd19f2dabad57d2b6a6b320944a"
+        },
+        "LocalMachine/CertificateAuthority": {
+          "status": "ABSENT",
+          "count": 0,
+          "hresult": -2147024894
+        },
+        "LocalMachine/Disallowed": {
+          "status": "OBSERVED",
+          "count": 0,
+          "identities_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "LocalMachine/My": {
+          "status": "OBSERVED",
+          "count": 0,
+          "identities_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "LocalMachine/Root": {
+          "status": "OBSERVED",
+          "count": 31,
+          "identities_sha256": "7c214f077500697f77bba3ddeb2a069b8f96571b9e05c3dd211992f8475383b1"
+        },
+        "LocalMachine/TrustedPeople": {
+          "status": "OBSERVED",
+          "count": 0,
+          "identities_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "LocalMachine/TrustedPublisher": {
+          "status": "OBSERVED",
+          "count": 0,
+          "identities_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "certificate_state_sha256": "53b30ab117be9f864c287458baa2edb4ce59d7f2ece11351345f54030bec6666"
+    }
+  },
+  "identities": {
+    "home": "C:\\Users\\steven",
+    "host": "C:\\Users\\steven\\.config\\odin\\host.toml",
+    "client": "C:\\Users\\steven\\.codex\\config.toml",
+    "install_root": "C:\\Users\\steven\\AppData\\Local\\Programs\\Odin",
+    "workspace_roots": [
+      "E:\\odin",
+      "D:\\chatgpt-web-bridge"
+    ]
+  },
+  "installed_file_hashes": {
+    "odin.exe": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+    "setup-lsps.mjs": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec",
+    "backends/manifest.json": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+    "setup-progress.mjs": "3e0a545584fc75502da9976beb0f32e2dc1b957fb62bb9e99bf1af360459473a",
+    "SHA256SUMS.json": "1759184ce177a2a35738a6d54bfa5aaa1dbf1ca7c79b65acf2ecbc3b9a24e024"
+  },
+  "actual_worker_health": {
+    "version_probe_count": 19,
+    "component_ids": [
+      "node",
+      "basedpyright",
+      "typescript-language-server",
+      "typescript",
+      "bash-language-server",
+      "go",
+      "gopls",
+      "dotnet",
+      "csharp-ls",
+      "lua-language-server",
+      "slint-lsp",
+      "clangd",
+      "taplo",
+      "yaml-language-server",
+      "marksman",
+      "ruff",
+      "ty",
+      "rust-analyzer",
+      "@vtsls/language-server"
+    ],
+    "post_health_integrity": {
+      "status": "PASS",
+      "manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680"
+    },
+    "semantic_acceptance": "NOT_RUN"
+  },
+  "actual_host_profiles": [
+    {
+      "scope_sha256": "1871de04d1a88117af90b3e8bb6f40ad1047eadb38e21078e89c0913d8d8807b",
+      "primary_profile_count": 14,
+      "primary_profile_ids": [
+        "rust",
+        "python",
+        "go",
+        "csharp",
+        "lua",
+        "javascript",
+        "typescript",
+        "bash",
+        "slint",
+        "c",
+        "cpp",
+        "toml",
+        "yaml",
+        "markdown"
+      ],
+      "backend_invocation_count": 12,
+      "profile_hashes": {
+        "rust": "f7ac3a8b73fa2f66fae2edb88657509cd6aab8ffe8f4d87b52719b53d2c68063",
+        "python": "6d8cddb5bf51116ec31781a7ff1ddc868ea04cd0d59e76029f2c738824f48fd3",
+        "go": "c03670705df20f9c59b72a3d77735be1dcf998ea825d5808eef2467dccba0b3a",
+        "csharp": "f5527c77ce5ff23cc9a87ebf1753c4791a5e78abcc48b3c01847c8b1c15e2f56",
+        "lua": "f2ff3ea9e9c9058ba4a6bcc11fd3fd299c1f4b7edd50cf122018a4ac67413fed",
+        "javascript": "be7b6312fad6e900a6c06dccc02044f3dd6e62bf5436ce84fa1a43c50da20cc6",
+        "typescript": "12d1c131e881fc0846184834a9decf796e87ea9d968d37c259d785b38f58bd9e",
+        "bash": "9b8ab2e57d1427e388d9debedb6f912fb0eaa4f21dbc160826f06e6d8da70dc5",
+        "slint": "5433b230fe9b6b51200f6a25fb1d830f6a5778812d8896b0211f9fd18d113988",
+        "c": "1ac13c879c07a49865e447cbdcec061da187d01b6745448a52fef4aad2636db7",
+        "cpp": "b497220e755dc86a929d0f073c0df87873ec12a6bb8ee3186822910858464a21",
+        "toml": "25290d06a373e1a4cae35098ce420f1b9740325259593414548bdbf81c4794cf",
+        "yaml": "117ba0630c92deaae82be02b1f67355d0483d7beb69129e4c0fc759a584b8408",
+        "markdown": "1d22d1a2610ffffd50eb3a53ca3db35f0297e955eb1e6a4628695131cf87083d"
+      }
+    },
+    {
+      "scope_sha256": "e1bcc563fb21a156ac000c8e72205bfe5d145a49a485db1ada1f1e4358ceba61",
+      "primary_profile_count": 14,
+      "primary_profile_ids": [
+        "rust",
+        "python",
+        "go",
+        "csharp",
+        "lua",
+        "javascript",
+        "typescript",
+        "bash",
+        "slint",
+        "c",
+        "cpp",
+        "toml",
+        "yaml",
+        "markdown"
+      ],
+      "backend_invocation_count": 12,
+      "profile_hashes": {
+        "rust": "aa58f51f6ddda3675c34718a52bbbb207c2ff335801167c4889b561cfd317db4",
+        "python": "6d8cddb5bf51116ec31781a7ff1ddc868ea04cd0d59e76029f2c738824f48fd3",
+        "go": "c03670705df20f9c59b72a3d77735be1dcf998ea825d5808eef2467dccba0b3a",
+        "csharp": "f5527c77ce5ff23cc9a87ebf1753c4791a5e78abcc48b3c01847c8b1c15e2f56",
+        "lua": "f2ff3ea9e9c9058ba4a6bcc11fd3fd299c1f4b7edd50cf122018a4ac67413fed",
+        "javascript": "be7b6312fad6e900a6c06dccc02044f3dd6e62bf5436ce84fa1a43c50da20cc6",
+        "typescript": "12d1c131e881fc0846184834a9decf796e87ea9d968d37c259d785b38f58bd9e",
+        "bash": "9b8ab2e57d1427e388d9debedb6f912fb0eaa4f21dbc160826f06e6d8da70dc5",
+        "slint": "5433b230fe9b6b51200f6a25fb1d830f6a5778812d8896b0211f9fd18d113988",
+        "c": "1ac13c879c07a49865e447cbdcec061da187d01b6745448a52fef4aad2636db7",
+        "cpp": "b497220e755dc86a929d0f073c0df87873ec12a6bb8ee3186822910858464a21",
+        "toml": "25290d06a373e1a4cae35098ce420f1b9740325259593414548bdbf81c4794cf",
+        "yaml": "117ba0630c92deaae82be02b1f67355d0483d7beb69129e4c0fc759a584b8408",
+        "markdown": "1d22d1a2610ffffd50eb3a53ca3db35f0297e955eb1e6a4628695131cf87083d"
+      }
+    }
+  ],
+  "worker_receipt_sha256": "e2ed29e1542ff89b39a9b929f44b37089fa529d6b0df99028c07674cc228488a",
+  "host_backup_sha256": "87c7559eb24ded23c6688f6f111f7ec37da47934bb77a22b8a666d5835871a2a",
+  "native_default_profile_ids": {
+    "primary_profile_ids": [
+      "rust",
+      "python",
+      "go",
+      "csharp",
+      "lua",
+      "javascript",
+      "typescript",
+      "bash",
+      "slint",
+      "c",
+      "cpp",
+      "toml",
+      "yaml",
+      "markdown"
+    ],
+    "primary_profile_count": 14,
+    "profile_invocation_evidence": "Separate native languages --project result and committed host profiles"
+  },
+  "native_default_profiles": {
+    "primary_profile_count": 14,
+    "primary_profile_ids": [
+      "rust",
+      "python",
+      "go",
+      "csharp",
+      "lua",
+      "javascript",
+      "typescript",
+      "bash",
+      "slint",
+      "c",
+      "cpp",
+      "toml",
+      "yaml",
+      "markdown"
+    ],
+    "backend_invocation_count": 12,
+    "profile_hashes": {
+      "rust": "f7ac3a8b73fa2f66fae2edb88657509cd6aab8ffe8f4d87b52719b53d2c68063",
+      "python": "6d8cddb5bf51116ec31781a7ff1ddc868ea04cd0d59e76029f2c738824f48fd3",
+      "go": "c03670705df20f9c59b72a3d77735be1dcf998ea825d5808eef2467dccba0b3a",
+      "csharp": "f5527c77ce5ff23cc9a87ebf1753c4791a5e78abcc48b3c01847c8b1c15e2f56",
+      "lua": "f2ff3ea9e9c9058ba4a6bcc11fd3fd299c1f4b7edd50cf122018a4ac67413fed",
+      "javascript": "be7b6312fad6e900a6c06dccc02044f3dd6e62bf5436ce84fa1a43c50da20cc6",
+      "typescript": "12d1c131e881fc0846184834a9decf796e87ea9d968d37c259d785b38f58bd9e",
+      "bash": "9b8ab2e57d1427e388d9debedb6f912fb0eaa4f21dbc160826f06e6d8da70dc5",
+      "slint": "5433b230fe9b6b51200f6a25fb1d830f6a5778812d8896b0211f9fd18d113988",
+      "c": "1ac13c879c07a49865e447cbdcec061da187d01b6745448a52fef4aad2636db7",
+      "cpp": "b497220e755dc86a929d0f073c0df87873ec12a6bb8ee3186822910858464a21",
+      "toml": "25290d06a373e1a4cae35098ce420f1b9740325259593414548bdbf81c4794cf",
+      "yaml": "117ba0630c92deaae82be02b1f67355d0483d7beb69129e4c0fc759a584b8408",
+      "markdown": "1d22d1a2610ffffd50eb3a53ca3db35f0297e955eb1e6a4628695131cf87083d"
+    }
+  },
+  "preserved_operator_rust_health": {
+    "status": "PASS",
+    "scope": "VERSION_ONLY_NOT_BUNDLED_RA_OR_SEMANTIC_ACCEPTANCE",
+    "configured_profile_sha256": "f7ac3a8b73fa2f66fae2edb88657509cd6aab8ffe8f4d87b52719b53d2c68063",
+    "resolved_program": "C:\\Users\\steven\\.rustup\\toolchains\\stable-x86_64-pc-windows-msvc\\bin\\rust-analyzer.exe",
+    "program_sha256": "6c320a8df1744573295b7b19acc5490b1e8253e58409516630ab8f522c481432",
+    "version_stdout_sha256": "9d63be47a867faaff6b5a5ea546558947c93433a0c90c61cf8aa273c0521554f"
+  },
+  "after_host_sha256": "5550667d1690b5e7b035aa1239db25af9e1df0346c4b6661d5192bb53b494144",
+  "client_odin_entry_unchanged": true,
+  "binding_ids": {
+    "explicit": [
+      "ws_e81c9bc0804543c514cb6e002d7d90574122eb6ef92c6910",
+      "ws_b12b1270a86ad555f0d3133d7c0a6de44e869420c0c92e36"
+    ],
+    "home_default": "ws_b421723f0c043cae1c815bfdf55dea8094fee9314741de7a"
+  },
+  "operator_state_after": {
+    "user_path_sha256": "de87183a9821dbc24c9c85047cbeeecf74499263e196283b9c9d52df02d98e4e",
+    "process_path_sha256": "49bcf2b3936c1390799edba891d0a3baa22a250205b74767efc5d3fd06d5c809",
+    "certificates": {
+      "CurrentUser/AddressBook": {
+        "status": "ABSENT",
+        "count": 0,
+        "hresult": -2147024894
+      },
+      "CurrentUser/AuthRoot": {
+        "status": "OBSERVED",
+        "count": 19,
+        "identities_sha256": "cb27ca394fb1c402cf8328433b1e63a5ab561dd19f2dabad57d2b6a6b320944a"
+      },
+      "CurrentUser/CertificateAuthority": {
+        "status": "ABSENT",
+        "count": 0,
+        "hresult": -2147024894
+      },
+      "CurrentUser/Disallowed": {
+        "status": "OBSERVED",
+        "count": 0,
+        "identities_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "CurrentUser/My": {
+        "status": "OBSERVED",
+        "count": 1,
+        "identities_sha256": "2edf561b2b726e7895cda6e356fb16e51589bf69d117d20df86d9fdc93175782"
+      },
+      "CurrentUser/Root": {
+        "status": "OBSERVED",
+        "count": 31,
+        "identities_sha256": "7c214f077500697f77bba3ddeb2a069b8f96571b9e05c3dd211992f8475383b1"
+      },
+      "CurrentUser/TrustedPeople": {
+        "status": "OBSERVED",
+        "count": 0,
+        "identities_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "CurrentUser/TrustedPublisher": {
+        "status": "OBSERVED",
+        "count": 0,
+        "identities_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "LocalMachine/AddressBook": {
+        "status": "ABSENT",
+        "count": 0,
+        "hresult": -2147024894
+      },
+      "LocalMachine/AuthRoot": {
+        "status": "OBSERVED",
+        "count": 19,
+        "identities_sha256": "cb27ca394fb1c402cf8328433b1e63a5ab561dd19f2dabad57d2b6a6b320944a"
+      },
+      "LocalMachine/CertificateAuthority": {
+        "status": "ABSENT",
+        "count": 0,
+        "hresult": -2147024894
+      },
+      "LocalMachine/Disallowed": {
+        "status": "OBSERVED",
+        "count": 0,
+        "identities_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "LocalMachine/My": {
+        "status": "OBSERVED",
+        "count": 0,
+        "identities_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "LocalMachine/Root": {
+        "status": "OBSERVED",
+        "count": 31,
+        "identities_sha256": "7c214f077500697f77bba3ddeb2a069b8f96571b9e05c3dd211992f8475383b1"
+      },
+      "LocalMachine/TrustedPeople": {
+        "status": "OBSERVED",
+        "count": 0,
+        "identities_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "LocalMachine/TrustedPublisher": {
+        "status": "OBSERVED",
+        "count": 0,
+        "identities_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "certificate_state_sha256": "53b30ab117be9f864c287458baa2edb4ce59d7f2ece11351345f54030bec6666"
+  },
+  "final_host_sha256": "5550667d1690b5e7b035aa1239db25af9e1df0346c4b6661d5192bb53b494144",
+  "final_client_sha256": "05aaddc8eac1c0ac524958b1819255f24d425a1c8b2fe83255a57a57c145846f",
+  "after_host_policy": {
+    "grants": [
+      {
+        "scope": "workspace",
+        "grants": {}
+      },
+      {
+        "scope": "project:e1bcc563fb21a156ac000c8e72205bfe5d145a49a485db1ada1f1e4358ceba61",
+        "grants": {
+          "allow_write": false,
+          "allow_shell": false,
+          "allow_debug": false,
+          "allow_inspections": false,
+          "allow_formatters": false
+        }
+      }
+    ],
+    "rust_profiles": [
+      {
+        "scope_sha256": "1871de04d1a88117af90b3e8bb6f40ad1047eadb38e21078e89c0913d8d8807b",
+        "id": "rust",
+        "profile_sha256": "f7ac3a8b73fa2f66fae2edb88657509cd6aab8ffe8f4d87b52719b53d2c68063"
+      },
+      {
+        "scope_sha256": "e1bcc563fb21a156ac000c8e72205bfe5d145a49a485db1ada1f1e4358ceba61",
+        "id": "rust",
+        "profile_sha256": "aa58f51f6ddda3675c34718a52bbbb207c2ff335801167c4889b561cfd317db4"
+      }
+    ],
+    "non_language_policy_sha256": "9b0467c3e5340a3479f6fd25b8df43d27911480406e71a92df0314b62c95fb0c"
+  },
+  "completed_at_utc": "2026-10-22T06:10:38.670577+00:00",
+  "actual_user_installation": "EXECUTED"
+}
