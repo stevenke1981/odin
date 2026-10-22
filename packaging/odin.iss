@@ -44,7 +44,7 @@ Name: "{group}\Odin documentation"; Filename: "{app}\README.md"; Check: ShouldRe
 [Code]
 var
   HostPage: TInputQueryWizardPage;
-  WorkspacePage: TInputDirWizardPage;
+  WorkspacePage: TInputQueryWizardPage;
   ReplaceProfiles: TNewCheckBox;
   LspSetupExitCode: Integer;
 
@@ -56,10 +56,6 @@ end;
 function WorkspaceRoot: String;
 begin
   Result := Trim(WorkspacePage.Values[0]);
-  { The directory page normalizes trailing delimiters; preserve an explicit
-    silent-install argument so normal Windows argv semantics remain intact. }
-  if WizardSilent and (ExpandConstant('{param:ODIN_WORKSPACE_ROOT|}') <> '') then
-    Result := Trim(ExpandConstant('{param:ODIN_WORKSPACE_ROOT|}'));
 end;
 
 function ValidAbsolutePath(Value: String): Boolean;
@@ -112,12 +108,11 @@ begin
   HostPage.Values[0] := ExpandConstant('{param:ODIN_HOST_CONFIG|}');
   if HostPage.Values[0] = '' then
     HostPage.Values[0] := ExpandConstant('{%USERPROFILE}') + '\.config\odin\host.toml';
-  WorkspacePage := CreateInputDirPage(HostPage.ID,
+  WorkspacePage := CreateInputQueryPage(HostPage.ID,
     'Odin workspace access', 'Select a project directory for a new host configuration',
     'New workspaces remain read-only. Shell, debugging and source writes stay disabled. ' +
-    'Leave this empty to retain the workspace roots of an existing host configuration.',
-    False, '');
-  WorkspacePage.Add('Workspace root (required for a new host configuration):');
+    'Leave this empty to retain the workspace roots of an existing host configuration.');
+  WorkspacePage.Add('Workspace root (required for a new host configuration):', False);
   WorkspacePage.Values[0] := ExpandConstant('{param:ODIN_WORKSPACE_ROOT|}');
   ReplaceProfiles := TNewCheckBox.Create(WorkspacePage);
   ReplaceProfiles.Parent := WorkspacePage.Surface;

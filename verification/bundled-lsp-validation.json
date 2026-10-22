@@ -2,7 +2,7 @@
   "schema_version": 1,
   "task_id": "ODIN-BUNDLED-LSP",
   "scope": "SEVEN_ADDED_LANGUAGE_PROFILES_AND_OFFLINE_WINDOWS_LSP_INSTALLATION",
-  "observed_at_utc": "2026-10-22T01:12:46.914801+00:00",
+  "observed_at_utc": "2026-10-22T01:30:05.743362+00:00",
   "status": "IMPLEMENTED_PENDING_INSTALLATION_ACCEPTANCE",
   "new_languages": [
     "python",
@@ -20,7 +20,7 @@
     "crates/odin-core/src/languages.rs": "71a99f5aeed928faf4fd23e78f3e13f465a8a365767716ef3e0b19b4f78d5f42",
     "crates/odin-protocol/tests/fixture_protocols.rs": "5fe65328abf7c442d3d51f0d654a8b2e16cc1dbe8e7940ef8f22518e97596576",
     "packaging/setup-lsps.mjs": "4dbfa58bf751514526cc633fc8450f1274af75bb9a579f0e61348dcff7138ef9",
-    "packaging/odin.iss": "067b5bddda40133da170ea9da86558cb3a81db5666c1f3a4572ac31d5c789f03",
+    "packaging/odin.iss": "a0fa3c46d85d1ee16bc6b4dce8e5df1da2e5d1c86937f2b3c7386bfa2540c37a",
     "packaging/lsp-package.json": "bdb3bdb25c9941d0d0e1e7a269e8f486fc5aa6e8c8351b23c72210d57808e41e",
     "packaging/lsp-package-lock.json": "89ee5b0fdce8ebf05d8f07d5a0b6dde4c7656ae441a905ade8ef6358b12bd43a",
     "scripts/package.ps1": "af0822134976d5182938a68118220fcb23e372e3247c2f263d2d6cb31680f1f2",

@@ -47,8 +47,15 @@ def main():
     (stage/'LICENSE').write_text('Inert Inno argv regression fixture. Not an Odin release.\n', encoding='utf-8')
     (stage/'README.md').write_text('No language support is provided by this probe.\n', encoding='utf-8')
     expected = ['--install', '--host-config', str(host), '--workspace-root', str(project)+'\\', '--replace-language-profiles', '--receipt', str(receipt)]
+    existing_app = base/'existing host app space'
+    existing_host = base/'existing host space'/'host.toml'
+    existing_host.parent.mkdir()
+    sentinel = b'# Existing operator host sentinel: retain exact bytes.\n'
+    existing_host.write_bytes(sentinel)
+    existing_receipt = base/'existing host no root receipt.json'
+    existing_argv = ['--install', '--host-config', str(existing_host), '--receipt', str(existing_receipt)]
     failure_receipt = base/'intentional failure receipt.json'
-    expected_file = {'argv':expected, 'script':str(app/'setup-lsps.mjs'), 'receipt':str(receipt), 'failure_receipt':str(failure_receipt)}
+    expected_file = {'argv':expected, 'script':str(app/'setup-lsps.mjs'), 'receipt':str(receipt), 'failure_receipt':str(failure_receipt), 'existing_argv':existing_argv, 'existing_script':str(existing_app/'setup-lsps.mjs'), 'existing_receipt':str(existing_receipt)}
     (stage/'expected-argv.json').write_text(json.dumps(expected_file), encoding='utf-8')
     (stage/'setup-lsps.mjs').write_text(
         "import fs from 'node:fs';\n"
@@ -56,8 +63,12 @@ def main():
         "const expected=JSON.parse(fs.readFileSync(path.join(import.meta.dirname,'expected-argv.json'),'utf8'));\n"
         "const argv=process.argv.slice(2);\n"
         "if(argv[argv.indexOf('--receipt')+1]===expected.failure_receipt){fs.writeFileSync(expected.failure_receipt,JSON.stringify({status:'EXPECTED_FAILURE',argv,exit_code:17}),{flag:'wx'});process.exit(17); }\n"
-        "const ok=JSON.stringify(argv)===JSON.stringify(expected.argv) && process.argv[1]===expected.script;\n"
-        "fs.writeFileSync(expected.receipt,JSON.stringify({scope:'ACTUAL_INNO_TO_NODE_ARGV_ONLY',status:ok?'PASS':'FAIL',argv,full_argv:process.argv,expected:expected.argv},null,2),{flag:'wx'});\n"
+        "const existing=argv[argv.indexOf('--receipt')+1]===expected.existing_receipt;\n"
+        "const want=existing?expected.existing_argv:expected.argv;\n"
+        "const script=existing?expected.existing_script:expected.script;\n"
+        "const report=existing?expected.existing_receipt:expected.receipt;\n"
+        "const ok=JSON.stringify(argv)===JSON.stringify(want) && process.argv[1]===script;\n"
+        "fs.writeFileSync(report,JSON.stringify({scope:'ACTUAL_INNO_TO_NODE_ARGV_ONLY',status:ok?'PASS':'FAIL',argv,full_argv:process.argv,expected:want},null,2),{flag:'wx'});\n"
         "if(!ok)process.exitCode=13;\n", encoding='utf-8', newline='\n')
     commands, error = [], None
     installed = []
@@ -97,6 +108,16 @@ def main():
             raise AssertionError('Actual Node argv did not exactly preserve the trailing workspace delimiter')
         if host.exists():
             raise AssertionError('An argv probe must not create an actual host config')
+        retained = run([installer, '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/SP-',
+                        '/NOICONS', '/ODIN_QA=1', f'/DIR={existing_app}', f'/ODIN_HOST_CONFIG={existing_host}',
+                        f'/ODIN_SETUP_RECEIPT={existing_receipt}', f'/LOG={base / "existing-host-no-root.log"}'], inno=True)
+        if (existing_app/'unins000.exe').is_file():
+            installed.append(existing_app)
+        if retained.returncode != 0 or existing_host.read_bytes() != sentinel:
+            raise AssertionError('Existing-host installation without a workspace root failed or changed the host')
+        no_root = json.loads(existing_receipt.read_text(encoding='utf-8'))
+        if no_root['status'] != 'PASS' or no_root['argv'] != existing_argv or '--workspace-root' in no_root['argv']:
+            raise AssertionError('Existing-host Node argv must omit the workspace flag and retain all other arguments')
         failed_app = base/'intentional failed app space'
         forced = run([installer, '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/SP-',
                       '/NOICONS', '/ODIN_QA=1', f'/DIR={failed_app}', f'/ODIN_HOST_CONFIG={host}',
@@ -132,6 +153,8 @@ def main():
               'test_driver_sha256':digest(Path(__file__)), 'node_sha256':digest(node),
               'iscc_sha256':digest(iscc), 'qa_directory':str(base), 'commands':commands,
               'argv_receipt':str(receipt), 'expected_node_argv':expected,
+              'existing_host_no_root_receipt':str(existing_receipt),
+              'existing_host_preserved':existing_host.read_bytes() == sentinel,
               'forced_setup_failure_exit_code':17, 'failure_receipt':str(failure_receipt),
               'qa_shortcut_preserved':shortcut_after == shortcut_before,
               'backend_health':'NOT_RUN', 'semantic_acceptance':'NOT_RUN',
