@@ -40,12 +40,45 @@ function Assert-Check([string]$Name, [bool]$Passed) {
     $Checks.Add([ordered]@{name=$Name; status=$(if($Passed){'PASS'}else{'FAIL'})})
     if (-not $Passed) { throw "Installer check failed: $Name" }
 }
-function Verify-LspReceipt([string]$ReceiptPath) {
+function Test-LspIds([object[]]$Actual, [string[]]$Expected) {
+    return ($Actual.Count -eq $Expected.Count -and @($Expected | Where-Object { $Actual -cnotcontains $_ }).Count -eq 0)
+}
+function Verify-LspReceipt([string]$ReceiptPath, [string]$HostConfig) {
     $Receipt = Get-Content -LiteralPath $ReceiptPath -Raw -Encoding UTF8 | ConvertFrom-Json
-    Assert-Check ('lsp_setup_result:' + [IO.Path]::GetFileName($ReceiptPath)) ($Receipt.result.status -eq 'PASS')
-    Assert-Check ('lsp_health:' + [IO.Path]::GetFileName($ReceiptPath)) ($Receipt.health.status -eq 'PASS' -and $Receipt.health.post_health_integrity.status -eq 'PASS' -and $Receipt.health.checks.Count -eq 10 -and @($Receipt.health.checks | Where-Object { $_.status -ne 'PASS' -or $_.exit_code -ne 0 }).Count -eq 0)
-    Assert-Check ('lsp_languages:' + [IO.Path]::GetFileName($ReceiptPath)) (@('python','go','csharp','lua','javascript','typescript','bash' | Where-Object { $Receipt.result.languages -notcontains $_ }).Count -eq 0)
+    $Suffix = [IO.Path]::GetFileName($ReceiptPath)
+    # Parser/license inventories are payload data, not executable version probes.
+    $ExpectedProbes = @('node','basedpyright','typescript-language-server','typescript','bash-language-server','go','gopls','dotnet','csharp-ls','lua-language-server','slint-lsp','clangd','taplo','yaml-language-server','marksman','ruff','ty','rust-analyzer','@vtsls/language-server')
+    $ExpectedLanguages = @('python','go','csharp','lua','javascript','typescript','bash','slint','c','cpp','toml','yaml','markdown','rust')
+    $Health = @($Receipt.health.checks)
+    Assert-Check ('lsp_setup_result:' + $Suffix) ($Receipt.result.status -eq 'PASS')
+    Assert-Check ('lsp_health:' + $Suffix) ($Receipt.health.status -eq 'PASS' -and $Receipt.health.post_health_integrity.status -eq 'PASS' -and (Test-LspIds @($Health | ForEach-Object { $_.component }) $ExpectedProbes) -and @($Health | Where-Object { $_.status -ne 'PASS' -or $_.exit_code -ne 0 }).Count -eq 0)
+    Assert-Check ('lsp_languages:' + $Suffix) (Test-LspIds @($Receipt.result.languages) $ExpectedLanguages)
+    Assert-Check ('lsp_default_providers:' + $Suffix) ($Receipt.result.selected_backends.python -ceq 'basedpyright' -and $Receipt.result.selected_backends.typescript -ceq 'typescript-language-server')
+    $HostIdentity = [IO.Path]::GetFullPath($HostConfig)
+    Assert-Check ('lsp_host_identity:' + $Suffix) ([IO.Path]::GetFullPath($Receipt.result.host_config) -ieq $HostIdentity -and [IO.Path]::GetFullPath($Receipt.plan.host_config) -ieq $HostIdentity)
+    Assert-Check ('lsp_committed_host_hash:' + $Suffix) ($Receipt.result.after_sha256 -match '^[a-f0-9]{64}$' -and $Receipt.result.after_sha256 -ceq $Receipt.plan.after_sha256 -and (Get-FileHash -LiteralPath $HostConfig -Algorithm SHA256).Hash -ieq $Receipt.result.after_sha256)
+    $Profiles = @($Receipt.plan.changes | Where-Object { $_.scope -ceq 'workspace' } | ForEach-Object { $_.after })
+    Assert-Check ('lsp_managed_profiles:' + $Suffix) ((Test-LspIds @($Profiles | ForEach-Object { $_.id }) $ExpectedLanguages) -and @($Profiles | Where-Object { [string]::IsNullOrWhiteSpace($_.program) }).Count -eq 0)
+    # JS/TS share one invocation, as do C/C++; IDs alone must not inflate implementations.
+    $Implementations = @($Profiles | ForEach-Object { [ordered]@{program=$_.program; args=@($_.args)} | ConvertTo-Json -Depth 4 -Compress } | Sort-Object -CaseSensitive -Unique)
+    Assert-Check ('lsp_default_implementations:' + $Suffix) ($Implementations.Count -eq 12)
+    $Receipt | Add-Member -NotePropertyName qa_verification -NotePropertyValue ([ordered]@{version_probes=$Health.Count; primary_language_profiles=$Profiles.Count; default_backend_implementations=$Implementations.Count; live_host_profiles='NOT_RUN'; semantic_acceptance='NOT_RUN'})
     return $Receipt
+}
+function Verify-LspHostProfiles([string]$Binary, [string]$HostConfig, [string]$Workspace, $Receipt, [string]$ReceiptPath) {
+    # This existing read-only tool reports the selected host configuration without
+    # probing an LSP. The language registry is separate setup guidance (32 IDs).
+    $Raw = & $Binary --config $HostConfig --workspace $Workspace call get_current_config
+    $Code = $LASTEXITCODE
+    $Commands.Add([ordered]@{name='lsp_live_host_profiles'; command=@($Binary,'--config',$HostConfig,'--workspace',$Workspace,'call','get_current_config'); exit_code=$Code})
+    Assert-Check ('lsp_live_host_config_exit:' + [IO.Path]::GetFileName($ReceiptPath)) ($Code -eq 0)
+    $Current = $Raw | ConvertFrom-Json
+    $Expected = @($Receipt.result.languages)
+    Assert-Check ('lsp_live_host_profiles:' + [IO.Path]::GetFileName($ReceiptPath)) (Test-LspIds @($Current.languages | ForEach-Object { $_.id }) $Expected)
+    $Receipt.qa_verification.live_host_profiles = @($Current.languages).Count
+    $Output = $ReceiptPath + '.current-config.json'
+    if (Test-Path -LiteralPath $Output) { throw 'Refusing to replace an existing live host configuration result.' }
+    [IO.File]::WriteAllText($Output, ($Current | ConvertTo-Json -Depth 12), [Text.UTF8Encoding]::new($false))
 }
 function ConvertTo-OdinCanonical($Value) {
     if ($null -eq $Value) { return $null }
@@ -90,10 +123,11 @@ try {
         $PortableSetupRaw = & (Join-Path $Extracted 'backends/node/node.exe') (Join-Path $Extracted 'setup-lsps.mjs') --install --host-config $PortableHost --workspace-root $LspWorkspace --receipt $PortableReceiptPath
         $Commands.Add([ordered]@{name='portable_lsp_setup'; exit_code=$LASTEXITCODE; receipt=$PortableReceiptPath})
         Assert-Check 'portable_lsp_setup_exit' ($LASTEXITCODE -eq 0)
-        $PortableLspReceipt = Verify-LspReceipt $PortableReceiptPath
+        $PortableLspReceipt = Verify-LspReceipt $PortableReceiptPath $PortableHost
         $PortableValidate = & (Join-Path $Extracted 'odin.exe') --config $PortableHost --workspace $LspWorkspace validate
         $Commands.Add([ordered]@{name='portable_host_validate'; exit_code=$LASTEXITCODE})
         Assert-Check 'portable_generated_host_validates' ($LASTEXITCODE -eq 0)
+        Verify-LspHostProfiles (Join-Path $Extracted 'odin.exe') $PortableHost $LspWorkspace $PortableLspReceipt $PortableReceiptPath
     }
     Record-OperatorPath 'after_portable'
     # Disable uninstall registration, icons and interactive prompts for this isolated QA installation.
@@ -109,10 +143,11 @@ try {
     if ($Portable) { Assert-Check 'installed_metadata_matches_portable' ((ConvertTo-OdinCanonical $Metadata | ConvertTo-Json -Depth 100 -Compress) -ceq (ConvertTo-OdinCanonical $PortableMetadata | ConvertTo-Json -Depth 100 -Compress)) }
     $Inventory = @(Verify-Payload $App)
     Assert-Check 'installed_inventory_sha256' ($Inventory.Count -gt 0)
-    $InstalledLspReceipt = Verify-LspReceipt $LspReceipt
+    $InstalledLspReceipt = Verify-LspReceipt $LspReceipt $LspHost
     $InstalledValidate = & $Binary --config $LspHost --workspace $LspWorkspace validate
     $Commands.Add([ordered]@{name='installed_host_validate'; exit_code=$LASTEXITCODE})
     Assert-Check 'installed_generated_host_validates' ($LASTEXITCODE -eq 0)
+    Verify-LspHostProfiles $Binary $LspHost $LspWorkspace $InstalledLspReceipt $LspReceipt
     $GeneratedHost = Get-Content -LiteralPath $LspHost -Raw -Encoding UTF8
     Assert-Check 'installed_fresh_host_has_no_elevated_grants' ($GeneratedHost -notmatch '(?m)^allow_(write|shell|debug|inspections|formatters)\s*=\s*true\s*$')
     $HostHashBeforeReinstall = (Get-FileHash -LiteralPath $LspHost -Algorithm SHA256).Hash
@@ -170,7 +205,8 @@ try {
     $Commands.Add([ordered]@{name='reinstall'; exit_code=$Process.ExitCode; log='reinstall.log'})
     Record-OperatorPath 'after_reinstall'
     Assert-Check 'reinstall_exit' ($Process.ExitCode -eq 0)
-    $ReinstallLspReceipt = Verify-LspReceipt $LspReinstallReceipt
+    $ReinstallLspReceipt = Verify-LspReceipt $LspReinstallReceipt $LspHost
+    Verify-LspHostProfiles $Binary $LspHost $LspWorkspace $ReinstallLspReceipt $LspReinstallReceipt
     Assert-Check 'reinstall_preserves_host_content' ((Get-FileHash -LiteralPath $LspHost -Algorithm SHA256).Hash -ceq $HostHashBeforeReinstall)
     Assert-Check 'reinstall_preserves_user_file' ((Get-Content -LiteralPath $UserData -Raw) -eq 'retain user data')
     $ReinstalledInventory = @(Verify-Payload $App)
@@ -197,7 +233,7 @@ finally {
         }
     }
 }
-$Report = [ordered]@{scope='ISOLATED_WINDOWS_INSTALL_REINSTALL_UNINSTALL'; status=$(if($Failure){'FAIL'}else{'PASS'}); checks=$Checks; commands=$Commands; operator_path_observations=$PathObservations; error=$Failure; installer_sha256=(Get-FileHash -LiteralPath $Installer -Algorithm SHA256).Hash.ToLowerInvariant(); portable_sha256=$(if($Portable){(Get-FileHash -LiteralPath $Portable -Algorithm SHA256).Hash.ToLowerInvariant()}else{$null}); build=$Metadata; inventory_files=$Inventory.Count; qa_directory=$QaRoot; interruption_rollback='NOT_RUN'; cross_version_upgrade='NOT_RUN'; lsp_semantic_acceptance='NOT_RUN'; lsp_version_health='See source-bound install receipts'; native_binary_expected_sha256=$ExpectedBinarySha256.ToLowerInvariant()}
+$Report = [ordered]@{scope='ISOLATED_WINDOWS_INSTALL_REINSTALL_UNINSTALL'; status=$(if($Failure){'FAIL'}else{'PASS'}); checks=$Checks; commands=$Commands; operator_path_observations=$PathObservations; error=$Failure; installer_sha256=(Get-FileHash -LiteralPath $Installer -Algorithm SHA256).Hash.ToLowerInvariant(); portable_sha256=$(if($Portable){(Get-FileHash -LiteralPath $Portable -Algorithm SHA256).Hash.ToLowerInvariant()}else{$null}); build=$Metadata; inventory_files=$Inventory.Count; qa_directory=$QaRoot; interruption_rollback='NOT_RUN'; cross_version_upgrade='NOT_RUN'; lsp_semantic_acceptance='NOT_RUN'; lsp_profile_acceptance=$InstalledLspReceipt.qa_verification; lsp_version_health='See source-bound install receipts'; native_binary_expected_sha256=$ExpectedBinarySha256.ToLowerInvariant()}
 [IO.File]::WriteAllText((Join-Path $QaRoot 'installer-report.json'), ($Report | ConvertTo-Json -Depth 12), [Text.UTF8Encoding]::new($false))
 $Report | ConvertTo-Json -Depth 12
 if ($Failure) { throw $Failure }

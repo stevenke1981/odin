@@ -5,8 +5,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import crypto from 'node:crypto';
-import { createRequire } from 'node:module';
-import { verifyPayload, buildPlan, applyPlan, backendEnvironment, parseArgs, LUA_SETTINGS, hostHomePaths, runnerHomeContext, throwSetupFailure } from '../packaging/setup-lsps.mjs';
+import { createRequire, syncBuiltinESMExports } from 'node:module';
+import childProcess from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { health, verifyPayload, buildPlan, applyPlan, backendEnvironment, parseArgs, LUA_SETTINGS, hostHomePaths, runnerHomeContext, throwSetupFailure } from '../packaging/setup-lsps.mjs';
 
 const parserRoot = process.env.ODIN_TEST_SMOL_TOML;
 if (!parserRoot || !path.isAbsolute(parserRoot)) throw new Error('Set ODIN_TEST_SMOL_TOML to the reviewed smol-toml 1.9.1 package root');
@@ -27,7 +29,7 @@ function fixture(t) {
   fs.cpSync(parserRoot, path.join(backendRoot, 'node_modules', 'smol-toml'), { recursive: true, verbatimSymlinks: true });
   const entries = ['node/node.exe','node_modules/basedpyright/index.js','node_modules/basedpyright/langserver.index.js','node_modules/typescript-language-server/lib/cli.mjs','node_modules/typescript/lib/tsserver.js','node_modules/typescript/lib/tsc.js','node_modules/bash-language-server/out/cli.js','go/bin/go.exe','go/src/runtime/runtime.go','gopls/gopls.exe','dotnet/dotnet.exe','dotnet/sdk/10.0.402/MSBuild.dll','csharp/CSharpLanguageServer.dll','lua/bin/lua-language-server.exe','lua/script/config.lua','slint/slint-lsp.exe','clangd/bin/clangd.exe','taplo/taplo.exe','node_modules/yaml-language-server/bin/yaml-language-server','marksman/marksman.exe','ruff/ruff.exe','ty/ty.exe','rust-analyzer/rust-analyzer.exe','node_modules/@vtsls/language-server/bin/vtsls.js'];
   for (const entry of entries) { const name = path.join(backendRoot, entry); fs.mkdirSync(path.dirname(name), { recursive: true }); fs.writeFileSync(name, 'inert fixture: '+entry); }
-  const manifest = { schema_version: 1, target: 'x86_64-pc-windows-msvc', components: ['node','basedpyright','typescript-language-server','typescript','bash-language-server','go','gopls','dotnet','csharp-ls','lua-language-server','slint-lsp','clangd','taplo','yaml-language-server','marksman','ruff','ty','rust-analyzer','vtsls'].map(id => ({id, version:'fixture-only'})), files: [] };
+  const manifest = { schema_version: 1, target: 'x86_64-pc-windows-msvc', components: ['node','basedpyright','typescript-language-server','typescript','bash-language-server','go','gopls','dotnet','csharp-ls','lua-language-server','slint-lsp','clangd','taplo','yaml-language-server','marksman','ruff','ty','rust-analyzer','@vtsls/language-server'].map(id => ({id, version:'fixture-only'})), files: [] };
   function refresh() {
     manifest.files = [];
     const walk = (directory, prefix='') => {
@@ -359,4 +361,29 @@ test('preserved Rust profiles cannot shadow another bundled extension or be over
     assert.equal(hashObject(plan.config.workspace.languages.find(row=>row.id===rust.id)),hashObject(rust));
     assert.throws(()=>applyPlan(plan,plan.plan.before_sha256),/Custom language profiles/);assert.deepEqual(fs.readFileSync(f.host),original);
   }
+});
+
+
+test('version probe component IDs agree with the declared npm package names and optional real manifest',t=>{
+  const f=fixture(t),canonical='@vtsls/language-server';
+  const npmFile=process.env.ODIN_TEST_LSP_PACKAGE || fileURLToPath(new URL('../packaging/lsp-package.json',import.meta.url));
+  const declarations=JSON.parse(fs.readFileSync(npmFile,'utf8')).dependencies;
+  assert.ok(Object.hasOwn(declarations,canonical),'the production npm declaration is the independent canonical ID source');
+  f.manifest.components.find(row=>row.id===canonical).version='canonical-version-fixture';f.refresh();
+  const payload=f.payload(),original=childProcess.spawnSync;
+  // Protocol fixture only: no inert .exe file is executed and no backend support is claimed.
+  childProcess.spawnSync=(_program,args)=>({status:0,signal:null,stdout:args.some(value=>value.endsWith(path.join('@vtsls','language-server','bin','vtsls.js')))?'canonical-version-fixture':'fixture-only',stderr:''});
+  syncBuiltinESMExports();
+  try {
+    const result=health(payload),ids=result.checks.map(row=>row.component);
+    assert.equal(result.status,'PASS');assert.equal(result.semantic_acceptance,'NOT_RUN');assert.equal(ids.length,19);
+    for(const id of Object.keys(declarations).filter(id=>id!=='smol-toml'))assert.ok(ids.includes(id),`declared npm component ${id} needs its canonical health identity`);
+    assert.equal(ids.includes('vtsls'),false);assert.equal(result.checks.find(row=>row.component===canonical).expected_version,'canonical-version-fixture');
+    if(process.env.ODIN_TEST_LSP_MANIFEST){
+      const manifest=JSON.parse(fs.readFileSync(process.env.ODIN_TEST_LSP_MANIFEST,'utf8'));
+      assert.deepEqual(new Set(ids),new Set(manifest.components.filter(row=>row.id!=='smol-toml').map(row=>row.id)));
+    }
+  } finally {childProcess.spawnSync=original;syncBuiltinESMExports();}
+  f.manifest.components.find(row=>row.id===canonical).id='vtsls';f.refresh();
+  assert.throws(()=>f.payload(),/Missing required payload component: @vtsls\/language-server/);
 });

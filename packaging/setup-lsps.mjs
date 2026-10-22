@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 import { SetupProgress } from './setup-progress.mjs';
 
 const SELF = fileURLToPath(import.meta.url);
-const REQUIRED = ['node', 'basedpyright', 'typescript-language-server', 'typescript', 'bash-language-server', 'go', 'gopls', 'dotnet', 'csharp-ls', 'lua-language-server', 'slint-lsp', 'clangd', 'taplo', 'yaml-language-server', 'marksman', 'ruff', 'ty', 'rust-analyzer', 'vtsls'];
+const REQUIRED = ['node', 'basedpyright', 'typescript-language-server', 'typescript', 'bash-language-server', 'go', 'gopls', 'dotnet', 'csharp-ls', 'lua-language-server', 'slint-lsp', 'clangd', 'taplo', 'yaml-language-server', 'marksman', 'ruff', 'ty', 'rust-analyzer', '@vtsls/language-server'];
 const ENTRY_POINTS = ['node/node.exe', 'node_modules/smol-toml/package.json', 'node_modules/basedpyright/index.js', 'node_modules/basedpyright/langserver.index.js', 'node_modules/typescript-language-server/lib/cli.mjs', 'node_modules/typescript/lib/tsserver.js', 'node_modules/typescript/lib/tsc.js', 'node_modules/bash-language-server/out/cli.js', 'go/bin/go.exe', 'gopls/gopls.exe', 'dotnet/dotnet.exe', 'csharp/CSharpLanguageServer.dll', 'lua/bin/lua-language-server.exe', 'slint/slint-lsp.exe', 'clangd/bin/clangd.exe', 'taplo/taplo.exe', 'node_modules/yaml-language-server/bin/yaml-language-server', 'marksman/marksman.exe', 'ruff/ruff.exe', 'ty/ty.exe', 'rust-analyzer/rust-analyzer.exe', 'node_modules/@vtsls/language-server/bin/vtsls.js'];
 export const LUA_SETTINGS = Object.freeze({ 'runtime.plugin': '', 'workspace.checkThirdParty': 'Disable', 'addonManager.enable': false });
 const LUA_JSON = JSON.stringify(LUA_SETTINGS, null, 2) + '\n';
@@ -386,7 +386,7 @@ export function health(payload, monitor = null) {
     ['ruff', p.ruff, ['--version']],
     ['ty', p.ty, ['version']],
     ['rust-analyzer', p.rust, ['--version']],
-    ['vtsls', p.node, [p.vtsls, '--version']],
+    ['@vtsls/language-server', p.node, [p.vtsls, '--version']],
   ];
   const results = [];
   let postHealthIntegrity = { status: 'NOT_RUN' };

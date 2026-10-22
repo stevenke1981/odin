@@ -8,7 +8,7 @@ Markdown 記憶與受限 JSON 流程。產品沒有 Serena bridge、Python REPL�
 任意 eval 或自動上游 fallback。
 
 Linux x86-64 已完成本機 VM 的正式編譯、完整 workspace 測試，以及 `.deb`／tar
-的安裝、重裝與移除。本次 Windows 已完成七種新增語言、14 個獨立測試專案的必要
+的安裝、重裝與移除。先前 Windows 候選曾完成七種新增語言、14 個獨立測試專案的必要
 LSP 操作驗證，以及新版安裝、同版重裝與卸載；見
 [Windows LSP 驗收](verification/bundled-lsp-validation.json)。當前專案功能另有
 [workspace 驗收](verification/current-workspace-validation.json)；不替代完整 IDE／其他平台驗收。**40 項規格尚未全數驗收；目前不是跨平台穩定版。** 最新命令、

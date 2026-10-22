@@ -130,7 +130,7 @@ begin
   ReplaceProfiles.Top := WorkspacePage.Edits[0].Top + WorkspacePage.Edits[0].Height + ScaleY(18);
   ReplaceProfiles.Width := WorkspacePage.SurfaceWidth;
   ReplaceProfiles.Height := ScaleY(48);
-  ReplaceProfiles.Caption := 'Replace custom profiles for the seven bundled languages';
+  ReplaceProfiles.Caption := 'Replace custom profiles for all bundled languages except Rust (custom Rust settings are kept)';
   ReplaceProfiles.Checked := ExpandConstant('{param:ODIN_REPLACE_LANGUAGE_PROFILES|0}') = '1';
   InitializeLspProgress;
 end;
