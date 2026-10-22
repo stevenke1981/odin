@@ -2543,7 +2543,15 @@
       "semantic_acceptance": "NOT_RUN"
     }
   },
-  "publication": "NOT_RUN",
+  "publication": {
+    "status": "PASS",
+    "accepted_source_commit": "71caea9f1a42e303e5b2d8026d0a01a21751a63c",
+    "remote_head_at_verification": "71caea9f1a42e303e5b2d8026d0a01a21751a63c",
+    "report": "verification/bundled-lsp-publication.json",
+    "report_sha256": "abcf8ec7d0a940853d92bd5a836f4823914016507dc60369e3c5476a75146bcf",
+    "reviewed_test_capture_validation_sha256": "ce53fee356a912f7fbf7b388d562a69c9e4ef7b40d42c96498cf4ef5a950fdb4",
+    "note": "Only this publication field changed after the independently reviewed test capture in accepted source commit71caea9. The later receipt commit changes documentation/evidence metadata only."
+  },
   "known_gaps": [
     "JavaScript and TypeScript unversioned diagnostics are NOT_VERIFIED; never clean-build proof.",
     "Bash syntax/lint diagnostics require optional ShellCheck, which is explicitly disabled and absent. First missing-brace negative was not detected; navigation and CAS acceptance are separate.",

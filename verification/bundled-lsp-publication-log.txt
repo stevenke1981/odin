@@ -1,0 +1,86 @@
+
+===== switch-main RAW SHA256 f7f5629d02bfd316403767d37ff80754c479dd432698a6c3821abeac048b9910 =====
+Your branch is up to date with 'origin/main'.
+Switched to branch 'main'
+
+===== fast-forward-main RAW SHA256 4902379f856bf88e4f66c0a08a2778c76c7b7853390c802ed3bbe53234660ab2 =====
+Updating 7ded308..71caea9
+Fast-forward
+ MANIFEST.sha256                                    |    51 +-
+ README.md                                          |    24 +-
+ THIRD_PARTY_NOTICES.md                             |     2 +-
+ crates/odin-core/src/languages.rs                  |    18 +-
+ crates/odin-protocol/tests/fixture_protocols.rs    |    58 +-
+ docs/ARCHITECTURE.md                               |     6 +
+ docs/KNOWN_LIMITATIONS.md                          |     4 +
+ docs/LSP_PAYLOAD_BUILDER.md                        |    40 +
+ docs/PACKAGING_WINDOWS_LINUX.md                    |   111 +-
+ docs/dispatch-four-lsp.md                          |    22 +
+ packaging/lsp-package-lock.json                    |   499 +
+ packaging/lsp-package.json                         |    13 +
+ packaging/odin.iss                                 |   135 +-
+ packaging/setup-lsps.mjs                           |   380 +
+ scripts/package.ps1                                |    33 +-
+ scripts/prepare_lsp_payload.py                     |   563 +
+ scripts/verify_installer.ps1                       |    56 +-
+ tests/inno_argv_probe.py                           |   169 +
+ tests/lsp_installer.test.mjs                       |   198 +
+ tests/real_installed_languages.py                  |   332 +
+ tests/test_lsp_payload_builder.py                  |   254 +
+ verification/bundled-lsp-build-receipt.json        |   955 +
+ verification/bundled-lsp-builder-tests.txt         |     5 +
+ verification/bundled-lsp-command-log.txt           |   425 +
+ verification/bundled-lsp-dotnet-first-use.json     |    98 +
+ verification/bundled-lsp-dotnet-unit-logs.txt      |    39 +
+ verification/bundled-lsp-final-command-log.txt     |   603 +
+ verification/bundled-lsp-inno-argv.json            |   167 +
+ verification/bundled-lsp-installer-tests.txt       |    29 +
+ verification/bundled-lsp-prior-failures.json       |   301 +
+ verification/bundled-lsp-review.json               |   192 +
+ verification/bundled-lsp-semantic-matrix.json      | 27562 +++++++++++++++++++
+ verification/bundled-lsp-transcript-bash.json      |  3155 +++
+ verification/bundled-lsp-transcript-csharp.json    |  5718 ++++
+ verification/bundled-lsp-transcript-go.json        |  3788 +++
+ .../bundled-lsp-transcript-javascript.json         | 20491 ++++++++++++++
+ verification/bundled-lsp-transcript-lua.json       |  4400 +++
+ verification/bundled-lsp-transcript-python.json    |  6652 +++++
+ .../bundled-lsp-transcript-typescript.json         | 19121 +++++++++++++
+ verification/bundled-lsp-validation.json           |  3849 +++
+ verification/delivery-status.json                  |    27 +
+ 41 files changed, 100485 insertions(+), 60 deletions(-)
+ create mode 100644 docs/LSP_PAYLOAD_BUILDER.md
+ create mode 100644 docs/dispatch-four-lsp.md
+ create mode 100644 packaging/lsp-package-lock.json
+ create mode 100644 packaging/lsp-package.json
+ create mode 100644 packaging/setup-lsps.mjs
+ create mode 100644 scripts/prepare_lsp_payload.py
+ create mode 100644 tests/inno_argv_probe.py
+ create mode 100644 tests/lsp_installer.test.mjs
+ create mode 100644 tests/real_installed_languages.py
+ create mode 100644 tests/test_lsp_payload_builder.py
+ create mode 100644 verification/bundled-lsp-build-receipt.json
+ create mode 100644 verification/bundled-lsp-builder-tests.txt
+ create mode 100644 verification/bundled-lsp-command-log.txt
+ create mode 100644 verification/bundled-lsp-dotnet-first-use.json
+ create mode 100644 verification/bundled-lsp-dotnet-unit-logs.txt
+ create mode 100644 verification/bundled-lsp-final-command-log.txt
+ create mode 100644 verification/bundled-lsp-inno-argv.json
+ create mode 100644 verification/bundled-lsp-installer-tests.txt
+ create mode 100644 verification/bundled-lsp-prior-failures.json
+ create mode 100644 verification/bundled-lsp-review.json
+ create mode 100644 verification/bundled-lsp-semantic-matrix.json
+ create mode 100644 verification/bundled-lsp-transcript-bash.json
+ create mode 100644 verification/bundled-lsp-transcript-csharp.json
+ create mode 100644 verification/bundled-lsp-transcript-go.json
+ create mode 100644 verification/bundled-lsp-transcript-javascript.json
+ create mode 100644 verification/bundled-lsp-transcript-lua.json
+ create mode 100644 verification/bundled-lsp-transcript-python.json
+ create mode 100644 verification/bundled-lsp-transcript-typescript.json
+ create mode 100644 verification/bundled-lsp-validation.json
+
+===== push-source RAW SHA256 fbb6ba555e0ecc27ef4db9705b718022686112ba6f01449673c756df7d11d8b4 =====
+To https://github.com/stevenke1981/odin.git
+   7ded308..71caea9  main -> main
+
+===== verify-source-remote RAW SHA256 1332529042c32d919b4e7a468c6cd40e9a674268c39ed18c43d178b77345b8f3 =====
+71caea9f1a42e303e5b2d8026d0a01a21751a63c	refs/heads/main

@@ -724,7 +724,7 @@
     "task_id": "ODIN-BUNDLED-LSP",
     "status": "PASS_WITH_DOCUMENTED_FEATURE_GAPS",
     "report": "verification/bundled-lsp-validation.json",
-    "report_sha256": "ce53fee356a912f7fbf7b388d562a69c9e4ef7b40d42c96498cf4ef5a950fdb4",
+    "report_sha256": "0badf5ec5dfbbc109f707f0dcaa62d4b5808be77c31007d51c8c7ee2e7608ac1",
     "seven_added_languages": [
       "python",
       "go",
@@ -740,7 +740,15 @@
     "note": "This record is the current Windows bundled-language scope; pre-existing source_change/extension entries remain historical evidence and are not overwritten by these results.",
     "actual_installed_client_entry": "PASS",
     "current_codex_process_restarted": "NOT_RUN",
-    "publication": "NOT_RUN",
+    "publication": {
+      "status": "PASS",
+      "accepted_source_commit": "71caea9f1a42e303e5b2d8026d0a01a21751a63c",
+      "remote_head_at_verification": "71caea9f1a42e303e5b2d8026d0a01a21751a63c",
+      "report": "verification/bundled-lsp-publication.json",
+      "report_sha256": "abcf8ec7d0a940853d92bd5a836f4823914016507dc60369e3c5476a75146bcf",
+      "reviewed_test_capture_validation_sha256": "ce53fee356a912f7fbf7b388d562a69c9e4ef7b40d42c96498cf4ef5a950fdb4",
+      "note": "Only this publication field changed after the independently reviewed test capture in accepted source commit71caea9. The later receipt commit changes documentation/evidence metadata only."
+    },
     "installer_sha256": "c3f7452c0af8868657b8efc3be89dbc9aceffbd6904553f561060b7bfca8b448",
     "required_semantic_checks_passed": 203,
     "independent_review_status": "PASS_WITH_DOCUMENTED_FEATURE_GAPS",

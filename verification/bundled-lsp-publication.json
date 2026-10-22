@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "scope": "ACCEPTED_SOURCE_PUBLICATION",
+  "accepted_source_commit": "71caea9f1a42e303e5b2d8026d0a01a21751a63c",
+  "remote_head_at_verification": "71caea9f1a42e303e5b2d8026d0a01a21751a63c",
+  "repository": "https://github.com/stevenke1981/odin",
+  "remote_ref": "refs/heads/main",
+  "verified_at_utc": "2026-10-22T02:28:58.727141+00:00",
+  "commands": [
+    {
+      "name": "switch-main",
+      "argv": [
+        "git",
+        "switch",
+        "main"
+      ],
+      "exit_code": 0,
+      "seconds": 0.06,
+      "log": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\switch-main.log",
+      "log_sha256": "f7f5629d02bfd316403767d37ff80754c479dd432698a6c3821abeac048b9910"
+    },
+    {
+      "name": "fast-forward-main",
+      "argv": [
+        "git",
+        "merge",
+        "--ff-only",
+        "feat/bundled-language-backends"
+      ],
+      "exit_code": 0,
+      "seconds": 0.1,
+      "log": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\fast-forward-main.log",
+      "log_sha256": "4902379f856bf88e4f66c0a08a2778c76c7b7853390c802ed3bbe53234660ab2"
+    },
+    {
+      "name": "push-source",
+      "argv": [
+        "git",
+        "push",
+        "origin",
+        "main"
+      ],
+      "exit_code": 0,
+      "seconds": 3.06,
+      "log": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\push-source.log",
+      "log_sha256": "fbb6ba555e0ecc27ef4db9705b718022686112ba6f01449673c756df7d11d8b4"
+    },
+    {
+      "name": "verify-source-remote",
+      "argv": [
+        "git",
+        "ls-remote",
+        "origin",
+        "refs/heads/main"
+      ],
+      "exit_code": 0,
+      "seconds": 0.53,
+      "log": "C:\\Users\\steven\\AppData\\Local\\Temp\\odin-four-lsp-3db6cad776cc4d80a17076ca6796111e\\verify-source-remote.log",
+      "log_sha256": "1332529042c32d919b4e7a468c6cd40e9a674268c39ed18c43d178b77345b8f3"
+    }
+  ],
+  "cloud_ci_started": false,
+  "remote_repository_created": false,
+  "reviewed_test_capture_validation_sha256": "ce53fee356a912f7fbf7b388d562a69c9e4ef7b40d42c96498cf4ef5a950fdb4",
+  "note": "This receipt binds actual source push and remote verification. A later documentation-only commit records this completed event; no claim of embedding its own commit hash."
+}
