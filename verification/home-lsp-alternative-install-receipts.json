@@ -1,0 +1,86 @@
+{
+  "runs": [
+    {
+      "choice": "vtsls",
+      "argv": [
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\setup-lsps.mjs",
+        "--install",
+        "--host-config",
+        "C:\\OdinQA\\x6\\hosts\\vtsls\\host.toml",
+        "--workspace-root",
+        "C:\\OdinQA\\x6\\workspaces",
+        "--typescript-backend",
+        "vtsls",
+        "--receipt",
+        "C:\\OdinQA\\x6\\hosts\\vtsls\\install-receipt.json"
+      ],
+      "cwd": "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin",
+      "exit_code": 0,
+      "seconds": 61.78,
+      "host": "C:\\OdinQA\\x6\\hosts\\vtsls\\host.toml",
+      "host_sha256": "2de160a9679e1060b2e7201813abb848f355e841c2738bacd40d123ba1d3226f",
+      "worker_sha256": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec",
+      "manifest_sha256": "2d559814338225275ec297f60fc30347682caca18fca983140341a0196d6645a",
+      "logs": {
+        "stdout": "63db3655e8a1c80a07902d1f87770645411b49c44d10f9f6ce2b486a6d268d7a",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "choice": "ruff",
+      "argv": [
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\setup-lsps.mjs",
+        "--install",
+        "--host-config",
+        "C:\\OdinQA\\x6\\hosts\\ruff\\host.toml",
+        "--workspace-root",
+        "C:\\OdinQA\\x6\\workspaces",
+        "--python-backend",
+        "ruff",
+        "--receipt",
+        "C:\\OdinQA\\x6\\hosts\\ruff\\install-receipt.json"
+      ],
+      "cwd": "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin",
+      "exit_code": 0,
+      "seconds": 61.78,
+      "host": "C:\\OdinQA\\x6\\hosts\\ruff\\host.toml",
+      "host_sha256": "81b08e3392ea705b6078b45e582b7b663b1cf7be5c72cdce3f1002ac86e799d2",
+      "worker_sha256": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec",
+      "manifest_sha256": "2d559814338225275ec297f60fc30347682caca18fca983140341a0196d6645a",
+      "logs": {
+        "stdout": "cffa28e2f82e953dfb1b5f310bfa2b4893ae87fbb98fa4896dc52b4cbcac4d9e",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "choice": "ty",
+      "argv": [
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\setup-lsps.mjs",
+        "--install",
+        "--host-config",
+        "C:\\OdinQA\\x6\\hosts\\ty\\host.toml",
+        "--workspace-root",
+        "C:\\OdinQA\\x6\\workspaces",
+        "--python-backend",
+        "ty",
+        "--receipt",
+        "C:\\OdinQA\\x6\\hosts\\ty\\install-receipt.json"
+      ],
+      "cwd": "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin",
+      "exit_code": 0,
+      "seconds": 61.79,
+      "host": "C:\\OdinQA\\x6\\hosts\\ty\\host.toml",
+      "host_sha256": "7de87ea0700bc6431f802500bc89bd1be2f29e7c81fe4cdba492a21925d79c5a",
+      "worker_sha256": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec",
+      "manifest_sha256": "2d559814338225275ec297f60fc30347682caca18fca983140341a0196d6645a",
+      "logs": {
+        "stdout": "194911ba734a5f01ad196e3b4a2744b84ad36fb07ad56cea72cdf80ef00eb813",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "status": "PASS"
+}

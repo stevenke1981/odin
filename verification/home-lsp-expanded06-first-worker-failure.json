@@ -1,0 +1,29 @@
+{
+  "status": "FAIL",
+  "scope": "FIRST_FINAL06_WORKER_ATTEMPT",
+  "command": [
+    "python",
+    "-X",
+    "utf8",
+    "C:\\OdinQA\\home-progress-1022\\worker-expanded06.py"
+  ],
+  "cwd": "E:/odin",
+  "driver_sha256": "ab597d0034dc6dac37d4bd1f8e0be5f577fdc1753fa3832fe926cb59116679dc",
+  "observed_worker_exit_code": 1,
+  "observed_driver_exit_code": 1,
+  "error": "Missing required payload component: vtsls",
+  "classification": "Manifest canonical npm ID @vtsls/language-server disagrees with setup REQUIRED/health ID vtsls",
+  "host_applied": false,
+  "raw_logs": [
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\expanded06-success-worker.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:\\OdinQA\\home-progress-1022\\expanded06-success-worker.stderr.log",
+      "sha256": "9a1d1880f9572bd56ab8fa2dc883f34460bc9bf24cebf6791ed1d4bfb37ebb21"
+    }
+  ],
+  "payload_manifest_sha256": "2d559814338225275ec297f60fc30347682caca18fca983140341a0196d6645a",
+  "source_worker_sha256": "f565e72683fa742f133e557bfd8ee3a0a38c7ff7e80506041c7d8b2b512cb2bd"
+}

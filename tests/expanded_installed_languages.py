@@ -113,6 +113,262 @@ def check_fixture_expectations():
     return {'status': 'PASS', 'checks': [name for name, _, _ in cases], 'scope': 'INERT_FIXTURE_EXPECTATION_GENERATION_NOT_BACKEND_ACCEPTANCE'}
 
 
+
+def diagnostic_status(value, expect_error):
+    summary = value.get('summary', {})
+    errors = summary.get('errors')
+    current = (value.get('available') is True and value.get('version_verified') is True
+               and summary.get('complete') is True and type(errors) is int and errors >= 0)
+    if not current:
+        return 'NOT_VERIFIED'
+    return 'PASS' if (errors > 0) == expect_error else 'FAIL'
+
+
+def current_ruff_f821(value):
+    return diagnostic_status(value, True) == 'PASS' and any(
+        isinstance(row, dict) and row.get('rule_id') == 'F821'
+        for row in value.get('findings', []))
+
+
+def check_diagnostic_mapping():
+    # Explicit normalized Odin responses, not raw LSP diagnostics arrays.
+    clean = {'available': True, 'version_verified': True, 'summary': {'complete': True, 'errors': 0, 'warnings': 0}, 'findings': []}
+    errors = {'available': True, 'version_verified': True, 'summary': {'complete': True, 'errors': 1, 'warnings': 0}, 'findings': [{'severity': 'error', 'rule_id': 'syntax-error'}]}
+    warnings = {'available': True, 'version_verified': True, 'summary': {'complete': True, 'errors': 0, 'warnings': 1}, 'findings': [{'severity': 'warning', 'rule_id': 'warning-rule'}]}
+    pending = {'available': False, 'version_verified': False, 'summary': {'complete': False, 'errors': 0}, 'findings': []}
+    unversioned = {'available': True, 'version_verified': False, 'summary': {'complete': False, 'errors': 1}, 'findings': [{'rule_id': 'F821'}]}
+    incomplete = {'available': True, 'version_verified': True, 'summary': {'complete': False, 'errors': 1}, 'findings': [{'rule_id': 'F821'}]}
+    ruff = {'available': True, 'version_verified': True, 'summary': {'complete': True, 'errors': 1}, 'findings': [{'severity': 'error', 'rule_id': 'F821'}]}
+    legacy_code = {'available': True, 'version_verified': True, 'summary': {'complete': True, 'errors': 1}, 'findings': [{'code': 'F821'}]}
+    cases = [
+        ('current_errors_are_errors', errors, True, 'PASS'),
+        ('current_errors_are_not_clean', errors, False, 'FAIL'),
+        ('current_clean_is_clean', clean, False, 'PASS'),
+        ('current_clean_is_not_errors', clean, True, 'FAIL'),
+        ('warnings_do_not_satisfy_syntax_errors', warnings, True, 'FAIL'),
+        ('warnings_are_not_errors_for_valid_source', warnings, False, 'PASS'),
+        ('pending_never_passes_clean', pending, False, 'NOT_VERIFIED'),
+        ('pending_never_passes_errors', pending, True, 'NOT_VERIFIED'),
+        ('unversioned_errors_never_pass', unversioned, True, 'NOT_VERIFIED'),
+        ('incomplete_errors_never_pass', incomplete, True, 'NOT_VERIFIED'),
+    ]
+    for name, value, expect_error, expected in cases:
+        assert diagnostic_status(value, expect_error) == expected, name
+    ruff_cases = [
+        ('ruff_rule_id_f821', ruff, True),
+        ('ruff_legacy_code_is_not_rule_id', legacy_code, False),
+        ('ruff_unversioned_f821_never_passes', unversioned, False),
+        ('ruff_incomplete_f821_never_passes', incomplete, False),
+    ]
+    for name, value, expected in ruff_cases:
+        assert current_ruff_f821(value) is expected, name
+    return {'status': 'PASS', 'checks': [name for name, *_ in cases + ruff_cases], 'scope': 'INERT_NORMALIZED_DIAGNOSTIC_MAPPING_NOT_BACKEND_ACCEPTANCE'}
+
+
+
+def check_reference_fixture_points():
+    cpp = '#include "shared.h"\nint consume(void){return greet(2)+Greeter::greet_member(2); }\n'
+    normal = 'from sample import greet\nmessage = greet("Caller")\n'
+    def at(line, start, end):
+        return {'locations': [{'external': False, 'relative_path': 'consumer', 'location': {
+            'range': {'start': {'line': line, 'character': start}, 'end': {'line': line, 'character': end}}}}]}
+    cases = [
+        ('cpp_free_function_call', at(1, 25, 30), cpp, 'greet(', True),
+        ('cpp_member_cannot_satisfy_free_function_reference', at(1, 43, 55), cpp, 'greet(', False),
+        ('cpp_member_call', at(1, 43, 55), cpp, 'greet_member(', True),
+        ('cpp_free_function_cannot_satisfy_member_reference', at(1, 25, 30), cpp, 'greet_member(', False),
+        ('normal_consumer_call', at(1, 10, 15), normal, 'greet(', True),
+        ('normal_import_is_not_the_consumer_call', at(0, 19, 24), normal, 'greet(', False),
+    ]
+    for name, value, text, token, expected in cases:
+        assert local_location(value, 'consumer', text, token) is expected, name
+    return {'status': 'PASS', 'checks': [name for name, *_ in cases], 'scope': 'INERT_REFERENCE_FIXTURE_POINTS_NOT_BACKEND_ACCEPTANCE'}
+
+
+
+def rust_readiness_value(response, allow_zero_symbol=False):
+    result = response.get('result', {})
+    if 'error' in response or not isinstance(result, dict):
+        raise RuntimeError(json.dumps(response))
+    value = result.get('structuredContent')
+    if value is None and result.get('content'):
+        value = json.loads(result['content'][0]['text'])
+    if not isinstance(value, dict) or value.get('truncated'):
+        raise RuntimeError('Unexpected Rust readiness response: ' + json.dumps(response))
+    if result.get('isError'):
+        fault = value.get('error', {})
+        if (allow_zero_symbol and fault.get('code') == 'BACKEND_ERROR'
+                and fault.get('message') == 'Expected exactly one symbol named greet; found 0'):
+            return None, True
+        raise RuntimeError(json.dumps(response))
+    return value, False
+
+
+def wait_rust_references(request, arguments, positive, observations, seconds=45,
+                         clock=time.monotonic, pause=time.sleep, record=None):
+    if not 0 < seconds <= 45:
+        raise ValueError('Rust startup readiness budget must be in (0, 45] seconds')
+    started = clock()
+    deadline = started + seconds
+    def remaining():
+        left = deadline - clock()
+        if left <= 0:
+            raise TimeoutError('Rust startup readiness deadline without ready status and required cross-file references')
+        return left
+    while True:
+        remaining()
+        row = {'attempt': len(observations) + 1, 'elapsed_before_secs': clock() - started}
+        observations.append(row)
+        try:
+            row['status_response'] = request('get_capabilities', {'probe': True, 'language': 'rust'}, remaining())
+            status_value, _ = rust_readiness_value(row['status_response'])
+            entries = [entry for entry in status_value.get('languages', []) if entry.get('id') == 'rust']
+            if len(entries) != 1:
+                raise AssertionError('Rust readiness requires exactly one actual Rust capability entry')
+            entry = entries[0]
+            status = entry.get('status')
+            if not isinstance(status, dict) or not isinstance(status.get('transport'), dict):
+                raise AssertionError('Rust startup status and transport must be objects')
+            server_status = status['transport'].get('server_status')
+            if server_status is not None and not isinstance(server_status, dict):
+                raise AssertionError('Rust startup server_status must be an object or null')
+            health = server_status.get('health') if server_status is not None else None
+            row['readiness'] = status.get('readiness', 'unknown')
+            row['server_status_received'] = server_status is not None
+            row['server_health'] = health
+            if row['readiness'] in ('error', 'closed') or health == 'error' or entry.get('ready') is not True:
+                raise RuntimeError('Rust startup status is error or closed: ' + json.dumps(row['status_response']))
+            if server_status is None or row['readiness'] != 'ready' or status.get('initialized') is not True:
+                row['outcome'] = 'waiting_for_ready_status'
+            else:
+                row['references_response'] = request('find_referencing_symbols', arguments, remaining())
+                value, transient = rust_readiness_value(row['references_response'], allow_zero_symbol=True)
+                if transient:
+                    row['outcome'] = 'exact_zero_symbol_transient'
+                else:
+                    locations = value.get('locations')
+                    if not isinstance(locations, list):
+                        raise AssertionError('Rust readiness response lacks a locations array')
+                    if positive(value):
+                        remaining()  # A response arriving after the deadline cannot pass.
+                        row['outcome'] = 'ready_and_required_reference_observed'
+                        row['elapsed_secs'] = clock() - started
+                        if record:
+                            record()
+                        remaining()  # Evidence I/O cannot turn a late result into PASS.
+                        return value
+                    if locations:
+                        raise AssertionError('Nonempty Rust references do not contain the required consumer call')
+                    row['outcome'] = 'empty_references'
+        except Exception as error:
+            row['outcome'] = 'failed'
+            row['error'] = {'type': type(error).__name__, 'message': str(error)}
+            row['elapsed_secs'] = clock() - started
+            if record:
+                record()
+            raise
+        row['elapsed_secs'] = clock() - started
+        if record:
+            record()
+        pause(min(0.25, remaining()))
+
+
+def check_rust_readiness():
+    def response(value, error=False):
+        return {'result': {'isError': error, 'structuredContent': value}}
+    def status(readiness='ready', health='ok'):
+        return response({'languages': [{'id': 'rust', 'ready': True, 'status': {
+            'initialized': True, 'readiness': readiness,
+            'transport': {'server_status': {'health': health, 'quiescent': readiness == 'ready'}}}}]})
+    empty = response({'locations': []})
+    positive = response({'locations': [{'fixture_required_consumer_call': True}]})
+    transient = response({'error': {'code': 'BACKEND_ERROR', 'message': 'Expected exactly one symbol named greet; found 0'}}, True)
+    other = response({'error': {'code': 'BACKEND_ERROR', 'message': 'OTHER backend error'}}, True)
+    wrong_code = response({'error': {'code': 'INVALID_ARGUMENT', 'message': 'Expected exactly one symbol named greet; found 0'}}, True)
+    class Fixture:
+        def __init__(self, references, statuses=None):
+            self.now = 0
+            self.references = list(references)
+            self.statuses = list(statuses or [status()])
+            self.calls = []
+        def clock(self):
+            return self.now
+        def pause(self, seconds):
+            self.now += seconds
+        def request(self, tool, arguments, remaining):
+            assert 0 < remaining <= 45
+            self.calls.append(tool)
+            self.now += min(0.01, remaining)
+            values = self.statuses if tool == 'get_capabilities' else self.references
+            return values.pop(0) if len(values) > 1 else values[0]
+    def run(fixture, observations, seconds=1):
+        return wait_rust_references(fixture.request, {'relative_path': 'sample.rs', 'name_path': 'greet'},
+                                    lambda value: bool(value['locations']) and value['locations'][0].get('fixture_required_consumer_call') is True,
+                                    observations, seconds=seconds, clock=fixture.clock, pause=fixture.pause)
+    checks = []
+    fixture, observed = Fixture([empty, transient, positive]), []
+    assert run(fixture, observed) == positive['result']['structuredContent']
+    assert [row['outcome'] for row in observed] == ['empty_references', 'exact_zero_symbol_transient', 'ready_and_required_reference_observed']
+    assert observed[1]['references_response'] == transient and observed[-1]['elapsed_secs'] < 1
+    checks.append('empty_and_exact_transient_wait_for_actual_positive')
+    for name, error in [('other_error_immediately_raises', other), ('same_message_wrong_code_immediately_raises', wrong_code)]:
+        fixture, observed = Fixture([error, positive]), []
+        try:
+            run(fixture, observed)
+            raise AssertionError('Unexpected error was retried')
+        except RuntimeError:
+            assert len(observed) == 1 and fixture.calls == ['get_capabilities', 'find_referencing_symbols']
+            assert observed[0]['references_response'] == error
+        checks.append(name)
+    for name, fixture in [('empty_references_deadline_fails', Fixture([empty])), ('unknown_status_never_passes', Fixture([positive], [status('unknown')]))]:
+        observed = []
+        try:
+            run(fixture, observed, seconds=0.5)
+            raise AssertionError('Deadline must fail without ready and required references')
+        except TimeoutError:
+            assert fixture.now <= 0.500001 and observed
+        checks.append(name)
+    fixture, observed = Fixture([positive], [status('pending'), status()]), []
+    assert run(fixture, observed) == positive['result']['structuredContent']
+    assert observed[0]['outcome'] == 'waiting_for_ready_status' and fixture.calls.count('find_referencing_symbols') == 1
+    checks.append('pending_status_requires_ready_and_actual_reference')
+    fixture, observed = Fixture([positive], [status('error', 'error')]), []
+    try:
+        run(fixture, observed)
+        raise AssertionError('Error status must not pass')
+    except RuntimeError:
+        assert fixture.calls == ['get_capabilities']
+    checks.append('error_status_fails_without_reference_retry')
+    null_status = response({'languages': [{'id': 'rust', 'ready': True, 'status': {
+        'initialized': True, 'readiness': 'unknown', 'transport': {'server_status': None, 'active_progress': {}}}}]})
+    fixture, observed = Fixture([positive], [null_status, status('pending'), status()]), []
+    assert run(fixture, observed) == positive['result']['structuredContent']
+    assert [row['outcome'] for row in observed] == ['waiting_for_ready_status', 'waiting_for_ready_status', 'ready_and_required_reference_observed']
+    assert observed[0]['status_response'] == null_status and observed[0]['server_status_received'] is False
+    assert fixture.calls.count('find_referencing_symbols') == 1
+    checks.append('real_null_status_then_pending_then_ready_requires_positive')
+    fixture, observed = Fixture([positive], [null_status]), []
+    try:
+        run(fixture, observed, seconds=0.5)
+        raise AssertionError('Null status must not pass or query references before ready')
+    except TimeoutError:
+        assert fixture.now <= 0.500001 and observed and 'find_referencing_symbols' not in fixture.calls
+        assert all(row['server_status_received'] is False for row in observed)
+    checks.append('always_null_status_deadline_fails')
+    for name, malformed in [('string_server_status_fails', 'starting'), ('array_server_status_fails', [])]:
+        malformed_status = response({'languages': [{'id': 'rust', 'ready': True, 'status': {
+            'initialized': True, 'readiness': 'unknown', 'transport': {'server_status': malformed}}}]})
+        fixture, observed = Fixture([positive], [malformed_status]), []
+        try:
+            run(fixture, observed)
+            raise AssertionError('Malformed server status must fail immediately')
+        except AssertionError as error:
+            assert str(error) == 'Rust startup server_status must be an object or null'
+            assert fixture.calls == ['get_capabilities'] and observed[0]['outcome'] == 'failed'
+        checks.append(name)
+    return {'status': 'PASS', 'checks': checks, 'scope': 'INERT_RUST_STARTUP_READINESS_NOT_BACKEND_ACCEPTANCE'}
+
+
 def source_hashes(item):
     return {name: digest((item['root'] / name).read_bytes()) for name in item['source_files']}
 
@@ -132,12 +388,11 @@ class Driver(BaseDriver):
         return names[0]['name_path']
 
     def diagnostic(self, peer, item, name, finding):
-        value = self.retry(lambda: self.call(peer, 'get_diagnostics_for_file', {'relative_path': item['source']}), lambda v: v.get('available') is True and bool(v.get('diagnostics')) == finding, seconds=15)
-        confirmed = value.get('available') is True and value.get('version_verified') is True and value.get('summary', {}).get('complete') is True
-        present = bool(value.get('diagnostics'))
-        self.record(name, ('PASS' if present == finding else 'FAIL') if confirmed else 'NOT_VERIFIED', value)
-        if item['language'] == 'ruff' and finding and confirmed:
-            self.record(name + '_ruff_undefined_name', any(str(row.get('code')) == 'F821' for row in value.get('diagnostics', [])), value)
+        value = self.retry(lambda: self.call(peer, 'get_diagnostics_for_file', {'relative_path': item['source']}), lambda v: diagnostic_status(v, finding) == 'PASS', seconds=15)
+        status = diagnostic_status(value, finding)
+        self.record(name, status, value)
+        if item['language'] == 'ruff' and finding:
+            self.record(name + '_ruff_undefined_name', 'NOT_VERIFIED' if status == 'NOT_VERIFIED' else current_ruff_f821(value), value)
 
     def config(self, path, roots, profile, write=False):
         state = path.with_suffix('.state')
@@ -213,17 +468,30 @@ class Driver(BaseDriver):
         print(json.dumps({'case': case, 'status': self.current['status'], 'counts': dict(Counter(outcomes))}), flush=True)
         self.save()
 
+    def rust_readiness_request(self, peer, tool, arguments, remaining):
+        response = peer.request('tools/call', {'name': tool, 'arguments': arguments}, timeout=min(self.args.timeout, remaining))
+        self.report['transcript'].append({'language': self.current['language'], 'tool': tool, 'arguments': arguments,
+                                          'phase': 'rust_startup_readiness', 'response': response})
+        return response
+
     def semantic(self, peer, a, b, before):
         name_path = self.overview(peer, a)
         self.call(peer, 'get_symbols_overview', {'relative_path': a['consumer']})
         consumer = (a['root'] / a['consumer']).read_text(encoding='utf-8')
-        refs = self.retry(lambda: self.call(peer, 'find_referencing_symbols', {'relative_path': a['source'], 'name_path': name_path}), lambda v: local_location(v, a['consumer'], consumer, 'greet'))
-        self.record('cross_file_references', local_location(refs, a['consumer'], consumer, 'greet'), refs)
+        if a['language'] == 'rust':
+            observations = []
+            self.current['rust_startup_readiness'] = {'budget_seconds': 45, 'observations': observations}
+            refs = wait_rust_references(lambda tool, arguments, remaining: self.rust_readiness_request(peer, tool, arguments, remaining),
+                                        {'relative_path': a['source'], 'name_path': name_path},
+                                        lambda value: local_location(value, a['consumer'], consumer, 'greet('), observations, record=self.save)
+        else:
+            refs = self.retry(lambda: self.call(peer, 'find_referencing_symbols', {'relative_path': a['source'], 'name_path': name_path}), lambda v: local_location(v, a['consumer'], consumer, 'greet('))
+        self.record('cross_file_references', local_location(refs, a['consumer'], consumer, 'greet('), refs)
         if a['language'] == 'cpp':
             header = self.call(peer, 'get_symbols_overview', {'relative_path': 'shared.h'})
             member = next(row for row in header.get('symbols', []) if row.get('name', '').startswith('greet_member'))
-            references = self.retry(lambda: self.call(peer, 'find_referencing_symbols', {'relative_path': 'shared.h', 'name_path': member['name_path']}), lambda value: local_location(value, a['consumer'], consumer, 'greet_member'))
-            self.record('cpp_dot_h_class_member_references', local_location(references, a['consumer'], consumer, 'greet_member'), references)
+            references = self.retry(lambda: self.call(peer, 'find_referencing_symbols', {'relative_path': 'shared.h', 'name_path': member['name_path']}), lambda value: local_location(value, a['consumer'], consumer, 'greet_member('))
+            self.record('cpp_dot_h_class_member_references', local_location(references, a['consumer'], consumer, 'greet_member('), references)
         definition = self.call(peer, 'find_declaration', {'relative_path': a['source'], 'position': position(a['text'], a['call_needle'], 1)})
         self.record('definition_navigation', any(p.get('relative_path') in (a['source'], 'shared.h', 'shared.hpp') and p.get('external') is False for p in definition.get('locations', [])), definition)
         hover = self.call(peer, 'hover', {'relative_path': a['source'], 'position': position(a['text'], a['call_needle'], 1)})
@@ -327,7 +595,16 @@ def main():
     if sys.argv[1:] == ['--check-fixture-expectations']:
         print(json.dumps(check_fixture_expectations()))
         return 0
-    parser = argparse.ArgumentParser(description=__doc__, epilog='Use --check-fixture-expectations alone for inert import/member expected-text regressions.')
+    if sys.argv[1:] == ['--check-diagnostic-mapping']:
+        print(json.dumps(check_diagnostic_mapping()))
+        return 0
+    if sys.argv[1:] == ['--check-reference-fixture-points']:
+        print(json.dumps(check_reference_fixture_points()))
+        return 0
+    if sys.argv[1:] == ['--check-rust-readiness']:
+        print(json.dumps(check_rust_readiness()))
+        return 0
+    parser = argparse.ArgumentParser(description=__doc__, epilog='Use --check-fixture-expectations, --check-diagnostic-mapping, --check-reference-fixture-points or --check-rust-readiness alone for inert QA regressions.')
     for flag in ('binary', 'host-config', 'install-root', 'output'):
         parser.add_argument('--' + flag, type=Path, required=True)
     for flag in ('ty-host-config', 'ruff-host-config', 'vtsls-host-config', 'rust-toolchain-bin'):

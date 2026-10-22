@@ -5,7 +5,10 @@
 Run from a host-controlled checkout, with a fresh output directory outside every Git checkout:
 
 ```powershell
-python -B scripts/prepare_lsp_payload.py --output C:/OdinBuild/release/backends --cache-dir C:/OdinBuild/archive-cache --versions
+python -B scripts/prepare_lsp_payload.py --output C:/OdinBuild/release/backends `
+  --cache-dir C:/OdinBuild/archive-cache `
+  --msvc-runtime-dir 'C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/VC/Redist/MSVC/14.44.35112/x64/Microsoft.VC143.CRT' `
+  --versions
 ```
 
 The output directory must not exist, even if empty. The default create-only receipt is `C:/OdinBuild/release/backends.build-receipt.json`. `--receipt` selects another external path outside the payload and cache. A failed build retains its partial output, logs, caches, and FAIL receipt; use a different fresh output and receipt after investigating. The builder never replaces a cache hash conflict.
@@ -47,4 +50,12 @@ These tests exercise safe extraction, cache preservation, output boundaries, man
 
 Slint LSP is distributed as a separate GPL-3.0-only executable. A compressed corresponding-source sidecar includes the pinned Slint tree, Skia, 993 crate archives and 14 native dependency archives, with 1,009 inner source hashes. This sidecar stays compressed during installation. It contains a source/rebuild inventory, not an executed rebuild: actual reproduction of the official binary is `NOT_RUN`. Odin does not link Slint into its Rust service or change its own source license. See [expanded support and limits](EXPANDED_LSP.md) and the payload's `licenses/` and `sources/` indexes before redistribution.
 
-The final prepared payload has 35,153 manifest-covered files. File and version counts identify that payload only; a new build must derive and verify its own manifest. The build receipt records four development commands plus 19 version probes; a successful payload build is separate from Odin release gates and installed semantic/installer acceptance.
+The final prepared payload has 35,158 manifest-covered files. File and version counts identify that payload only; a new build must derive and verify its own manifest. The build receipt records five development/signature-validation commands plus 19 version probes; a successful payload build is separate from Odin release gates and installed semantic/installer acceptance.
+
+## Slint app-local MSVC closure
+
+`--msvc-runtime-dir` is a required, explicit host input. The selected canonical directory must be an official Visual Studio x64 CRT redistribution directory, without symlink/reparse ancestors. The reviewed recipe pins MSVCP140.dll, VCRUNTIME140.dll and VCRUNTIME140_1.dll version 14.44.35211.0 by exact SHA256. A fixed PowerShell read-only helper validates each Microsoft Authenticode signature; its literal source hash, JSON input hash, exact argv, return code, version and source path are recorded. No global runtime installer or execution-policy change runs.
+
+A bounded PE64 direct-import parser checks the pinned Slint executable and the recursive CRT closure against explicit Windows 10 OS DLL and CRT lists; unknown dependencies, nonzero delay-import directories, missing files, changed hashes or invalid signatures fail closed. Windows system DLLs/UCRT remain OS-provided. The three DLLs, Microsoft redistribution notice and `slint/app-local-runtime.json` are included beside the Slint executable and in the payload manifest. They are dependencies of the existing Slint component, not extra LSPs or version probes.
+
+Final payload07 adds exactly these five files to payload06; all 35,153 existing file hashes remain identical. Actual Slint process-module observation confirms loading the three app-local files on the tested host. This is distinct from clean-machine acceptance, which remains NOT_RUN. Auxiliary direct-LSP shutdown probes recorded duplicate shutdown responses/exit 3; those FAIL receipts remain preserved and do not become semantic or cleanup PASS claims. Installed Odin MCP symbols and diagnostics are verified separately.

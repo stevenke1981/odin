@@ -56,3 +56,5 @@ Slint／TOML／YAML／Markdown 的驗收依實際 capabilities 分項；不保�
 Notice inventory 保留 `WITH_DECLARED_NOTICE_GAPS`：Taplo 6、Ruff 9、ty 9、rust-analyzer 7、Marksman 3 筆上游補充授權文字缺口。Cargo lock supersets 含 dev／非 Windows packages，彼此可重複；它們不是精確 linked SBOM。版本、hash、側錄不等於法律認證或簽章。
 
 最新 source-bound 的 Rust gates、真實 LSP MCP、Home、完整安裝／重裝／移除結果在 [本輪驗收](../verification/home-root-installer-validation.json)。每一項保留實際命令、exit code 與 binary／manifest hash；尚未執行的項目保留 `NOT_RUN`。版本健康檢查與 protocol fixtures 不替代語意證據。Linux／macOS、乾淨 Windows、完整 client 應用矩陣與上游重建仍需個別驗收。
+
+Slint 的三個 MSVC DLL 以固定 SHA／版本與 Microsoft 有效簽章一併封裝，位於 Slint 程式旁；沒有安裝全域 runtime 或要求終端使用者安裝 Visual Studio。建置端需明確提供官方 VS x64 CRT 目錄，指令見後端建置文件。實際 module path 只能證明測試主機從 app-local 載入；乾淨主機矩陣仍為 `NOT_RUN`。上游 Slint 額外 direct-protocol shutdown probe 的 duplicate response／exit 3 另列為未解限制，不以版本或符號測試替代正常 shutdown 證據。

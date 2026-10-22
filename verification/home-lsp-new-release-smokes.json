@@ -1,0 +1,106 @@
+{
+  "binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+  "checks": [
+    {
+      "name": "stdio",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "scripts/mcp_smoke.py",
+        "--binary",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--output",
+        "C:\\OdinQA\\home-progress-1022\\new-release-stdio.json"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "seconds": 0.75,
+      "log": "C:\\OdinQA\\home-progress-1022\\new-release-stdio.log",
+      "log_sha256": "ac06da8a74ff39110e54f492e6db9bd03caf1e40c3115278c4c827e659e397b9",
+      "driver_sha256": "70153bb47861eb3740f9e1e7f884238be936c10e1eed4f6a32e9a9e0c5856ead"
+    },
+    {
+      "name": "cancel",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "scripts/mcp_cancel_smoke.py",
+        "--binary",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--output",
+        "C:\\OdinQA\\home-progress-1022\\new-release-cancel.json"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "seconds": 0.75,
+      "log": "C:\\OdinQA\\home-progress-1022\\new-release-cancel.log",
+      "log_sha256": "6c589fafd68dc2279d0e7a5260e090127420ecf753e1013d523554cd7a9d2ca0",
+      "driver_sha256": "4dc49b3efa569bdcddfa8279faf83caa311c16bccbd2c9eb15b0adb25bd19496"
+    },
+    {
+      "name": "workspace",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "scripts/workspace_smoke.py",
+        "--binary",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--output",
+        "C:\\OdinQA\\home-progress-1022\\new-release-workspace.json"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "seconds": 0.81,
+      "log": "C:\\OdinQA\\home-progress-1022\\new-release-workspace.log",
+      "log_sha256": "d6f4db9b247901f1b7a2fa24ffc74d85106961cb53a6c19712ef0ccbc6871426",
+      "driver_sha256": "38061f6cb6c3a909af8e3a279c3415c9ec7aa1e3c3ac17906a147e70fb804820"
+    },
+    {
+      "name": "cli",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "scripts/cli_smoke.py",
+        "--binary",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--output",
+        "C:\\OdinQA\\home-progress-1022\\new-release-cli.json"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "seconds": 0.83,
+      "log": "C:\\OdinQA\\home-progress-1022\\new-release-cli.log",
+      "log_sha256": "6af6178eeab8263563df9561942d6ddcea3c1fbc1a3767e9ea02fb4efe9b9b0c",
+      "driver_sha256": "9a1120a4dbefcf1ea6689c89b874e414a229404fcf21a73ee51b17f96064ddb9"
+    },
+    {
+      "name": "http",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "scripts/http_smoke.py",
+        "--binary",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--output",
+        "C:\\OdinQA\\home-progress-1022\\new-release-http.json"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "seconds": 0.95,
+      "log": "C:\\OdinQA\\home-progress-1022\\new-release-http.log",
+      "log_sha256": "191d3331fc6361721c9fb19df7f874acbc4d33cce2175b4df944692e11e62df5",
+      "driver_sha256": "dcff3f862fa0eaf4785917cee78be183bd33ce8b5a378c92aa94f1923f1a770f"
+    }
+  ],
+  "status": "PASS"
+}

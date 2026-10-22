@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "cargo",
+    "build",
+    "-p",
+    "odin-agent",
+    "--release",
+    "--locked"
+  ],
+  "cwd": "E:\\odin",
+  "source_commit": "190c308e9ab7bbbf2917f879f58fd2d8a948cee0",
+  "exit_code": 0,
+  "seconds": 101.35,
+  "log": "C:\\OdinQA\\home-progress-1022\\release-190c308.log",
+  "log_sha256": "bae07d9a8137426fa4b80be3381d2bf712817fc84800888255ed1c1b72652164",
+  "binary": "E:\\odin\\target\\release\\odin.exe",
+  "binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+  "metadata": {
+    "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "external_tool_bridge": false,
+    "model_token_usage": "UNKNOWN",
+    "name": "Odin",
+    "profile": "release",
+    "revision": "190c308e9ab7bbbf2917f879f58fd2d8a948cee0",
+    "schema_version": 1,
+    "standalone": true,
+    "target": "x86_64-pc-windows-msvc",
+    "tracked_source_dirty": false,
+    "version": "0.2.0"
+  }
+}

@@ -180,9 +180,43 @@
     "notice_status": "WITH_DECLARED_NOTICE_GAPS",
     "slint_rebuild": "NOT_RUN"
   },
-  "final_release_binary": "NOT_RUN",
+  "final_release_binary": {
+    "argv": [
+      "cargo",
+      "build",
+      "-p",
+      "odin-agent",
+      "--release",
+      "--locked"
+    ],
+    "cwd": "E:\\odin",
+    "source_commit": "190c308e9ab7bbbf2917f879f58fd2d8a948cee0",
+    "exit_code": 0,
+    "seconds": 101.35,
+    "log": "C:\\OdinQA\\home-progress-1022\\release-190c308.log",
+    "log_sha256": "bae07d9a8137426fa4b80be3381d2bf712817fc84800888255ed1c1b72652164",
+    "binary": "E:\\odin\\target\\release\\odin.exe",
+    "binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+    "metadata": {
+      "compiler": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+      "external_tool_bridge": false,
+      "model_token_usage": "UNKNOWN",
+      "name": "Odin",
+      "profile": "release",
+      "revision": "190c308e9ab7bbbf2917f879f58fd2d8a948cee0",
+      "schema_version": 1,
+      "standalone": true,
+      "target": "x86_64-pc-windows-msvc",
+      "tracked_source_dirty": false,
+      "version": "0.2.0"
+    }
+  },
   "new_installed_semantic_mcp": "NOT_RUN",
-  "home_installed_mcp": "NOT_RUN",
+  "home_installed_mcp": {
+    "status": "PASS",
+    "checks": 30,
+    "evidence": "verification/home-lsp-installed-home06.json"
+  },
   "full_expanded_installer_lifecycle": "NOT_RUN",
   "final_independent_review": "NOT_RUN",
   "cloud_ci_started": false,
@@ -191,5 +225,198 @@
     "New workspace write/shell/debug grants remain false",
     "Windows only; Unix permission regression tests NOT_RUN on this host",
     "No full 40 requirement/IDE/clean-machine/legal certification claim"
-  ]
+  ],
+  "native_windows_passed": 249,
+  "native_windows_ignored": 6,
+  "node_current": {
+    "argv": [
+      "C:\\OdinQA\\expanded-lsp\\payload06\\backends\\node\\node.exe",
+      "--test",
+      "tests/lsp_installer.test.mjs",
+      "tests/setup_progress.test.mjs"
+    ],
+    "cwd": "E:\\odin",
+    "controlled_env": {
+      "ODIN_TEST_SMOL_TOML": "C:\\OdinQA\\expanded-lsp\\payload06\\backends\\node_modules\\smol-toml"
+    },
+    "parser_package_sha256": "d7ad6488e35b31d46bac6412d2d35225db4d693f02a415d872714ceb7e3d7138",
+    "exit_code": 0,
+    "seconds": 5.088,
+    "log": "C:\\OdinQA\\home-progress-1022\\node49-configured.log",
+    "log_sha256": "ffb8472b8c61e9f69f4eed18758ebbf5f15765c1e1792084122017afd225c69f",
+    "source_sha256": {
+      "packaging/setup-lsps.mjs": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec",
+      "packaging/setup-progress.mjs": "3e0a545584fc75502da9976beb0f32e2dc1b957fb62bb9e99bf1af360459473a",
+      "tests/lsp_installer.test.mjs": "bfe37951cfede445cd944b1f1ac4bd2a906b2ced13a5d425cee551ee195f0c1a",
+      "tests/setup_progress.test.mjs": "e5c34d34e1165e0803a5f8f8e89fefa715275b958473a7e7f0d775bdb8182574"
+    }
+  },
+  "builder_current": {
+    "argv": [
+      "C:\\Python314\\python.exe",
+      "-X",
+      "utf8",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_lsp_payload_builder.py",
+      "-v"
+    ],
+    "cwd": "E:\\odin",
+    "exit_code": 0,
+    "seconds": 0.845,
+    "log": "C:\\OdinQA\\home-progress-1022\\root-builder07.log",
+    "log_sha256": "cd76912aed4fa07ecc7607ad19c1fb2a0ffaaca9a4e77c0b88bc034ec98d0bdd",
+    "source_sha256": {
+      "scripts/prepare_lsp_payload.py": "4601cb23ffb9d0be416d8aa899004ea412f04b1a298a102f45daeb9dd0e28eb5",
+      "tests/test_lsp_payload_builder.py": "471ed04a9f4b2791951f855a035a34aab3dfa9c73cf74772ba8a1db01417551b"
+    }
+  },
+  "binary_smokes": {
+    "binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+    "checks": [
+      {
+        "name": "stdio",
+        "argv": [
+          "C:\\Python314\\python.exe",
+          "-X",
+          "utf8",
+          "-B",
+          "scripts/mcp_smoke.py",
+          "--binary",
+          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\odin.exe",
+          "--output",
+          "C:\\OdinQA\\home-progress-1022\\new-release-stdio.json"
+        ],
+        "cwd": "E:\\odin",
+        "exit_code": 0,
+        "seconds": 0.75,
+        "log": "C:\\OdinQA\\home-progress-1022\\new-release-stdio.log",
+        "log_sha256": "ac06da8a74ff39110e54f492e6db9bd03caf1e40c3115278c4c827e659e397b9",
+        "driver_sha256": "70153bb47861eb3740f9e1e7f884238be936c10e1eed4f6a32e9a9e0c5856ead"
+      },
+      {
+        "name": "cancel",
+        "argv": [
+          "C:\\Python314\\python.exe",
+          "-X",
+          "utf8",
+          "-B",
+          "scripts/mcp_cancel_smoke.py",
+          "--binary",
+          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\odin.exe",
+          "--output",
+          "C:\\OdinQA\\home-progress-1022\\new-release-cancel.json"
+        ],
+        "cwd": "E:\\odin",
+        "exit_code": 0,
+        "seconds": 0.75,
+        "log": "C:\\OdinQA\\home-progress-1022\\new-release-cancel.log",
+        "log_sha256": "6c589fafd68dc2279d0e7a5260e090127420ecf753e1013d523554cd7a9d2ca0",
+        "driver_sha256": "4dc49b3efa569bdcddfa8279faf83caa311c16bccbd2c9eb15b0adb25bd19496"
+      },
+      {
+        "name": "workspace",
+        "argv": [
+          "C:\\Python314\\python.exe",
+          "-X",
+          "utf8",
+          "-B",
+          "scripts/workspace_smoke.py",
+          "--binary",
+          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\odin.exe",
+          "--output",
+          "C:\\OdinQA\\home-progress-1022\\new-release-workspace.json"
+        ],
+        "cwd": "E:\\odin",
+        "exit_code": 0,
+        "seconds": 0.81,
+        "log": "C:\\OdinQA\\home-progress-1022\\new-release-workspace.log",
+        "log_sha256": "d6f4db9b247901f1b7a2fa24ffc74d85106961cb53a6c19712ef0ccbc6871426",
+        "driver_sha256": "38061f6cb6c3a909af8e3a279c3415c9ec7aa1e3c3ac17906a147e70fb804820"
+      },
+      {
+        "name": "cli",
+        "argv": [
+          "C:\\Python314\\python.exe",
+          "-X",
+          "utf8",
+          "-B",
+          "scripts/cli_smoke.py",
+          "--binary",
+          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\odin.exe",
+          "--output",
+          "C:\\OdinQA\\home-progress-1022\\new-release-cli.json"
+        ],
+        "cwd": "E:\\odin",
+        "exit_code": 0,
+        "seconds": 0.83,
+        "log": "C:\\OdinQA\\home-progress-1022\\new-release-cli.log",
+        "log_sha256": "6af6178eeab8263563df9561942d6ddcea3c1fbc1a3767e9ea02fb4efe9b9b0c",
+        "driver_sha256": "9a1120a4dbefcf1ea6689c89b874e414a229404fcf21a73ee51b17f96064ddb9"
+      },
+      {
+        "name": "http",
+        "argv": [
+          "C:\\Python314\\python.exe",
+          "-X",
+          "utf8",
+          "-B",
+          "scripts/http_smoke.py",
+          "--binary",
+          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\odin.exe",
+          "--output",
+          "C:\\OdinQA\\home-progress-1022\\new-release-http.json"
+        ],
+        "cwd": "E:\\odin",
+        "exit_code": 0,
+        "seconds": 0.95,
+        "log": "C:\\OdinQA\\home-progress-1022\\new-release-http.log",
+        "log_sha256": "191d3331fc6361721c9fb19df7f874acbc4d33cce2175b4df944692e11e62df5",
+        "driver_sha256": "dcff3f862fa0eaf4785917cee78be183bd33ce8b5a378c92aa94f1923f1a770f"
+      }
+    ],
+    "status": "PASS"
+  },
+  "home_private_mcp": {
+    "status": "PASS",
+    "checks": 14,
+    "evidence": "verification/home-lsp-private-home-mcp.json"
+  },
+  "seven_language_regression": {
+    "status": "PASS",
+    "checks_passed": 203,
+    "not_verified": 6,
+    "unavailable": 3,
+    "not_run": 1,
+    "index": "verification/home-lsp-seven06-index.json"
+  },
+  "expanded_semantics": {
+    "status": "PARTIAL",
+    "checks_passed": 316,
+    "not_verified": 20,
+    "failures": 0,
+    "tested_manifest_sha256": "2d559814338225275ec297f60fc30347682caca18fca983140341a0196d6645a",
+    "driver_sha256": "a11d84c20db58b65f92363c58413af058219f3ba1c8691d49f8e5b406b5c56d2",
+    "command_receipt_external": "C:/OdinQA/home-progress-1022/expanded-retry06-commands.json",
+    "remaining_not_verified": "TOML/YAML/Markdown/vtsls document diagnostics without verified versions; no clean-source assertion"
+  },
+  "final_payload_candidate": {
+    "manifest_sha256": "c12a4062e256a0cb6da19c5c2a383d83f9324fb892eb8609ac8bd9754c821680",
+    "files": 35158,
+    "components": 20,
+    "version_probes": 19,
+    "build_commands": 24,
+    "build_status": "PASS",
+    "previous_payload06": "Historical: missing Slint app-local MSVC closure; superseded",
+    "existing_35153_files": "All same SHA as06; 3 MSVC DLLs, notice and runtime JSON added only in slint/",
+    "slint_final07_mcp": "NOT_RUN",
+    "full_installer07_lifecycle": "NOT_RUN"
+  },
+  "default_root_actual_user_migration": "NOT_RUN",
+  "evidence_index": "verification/home-lsp-evidence-initial-index.json"
 }

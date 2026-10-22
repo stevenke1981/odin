@@ -1,0 +1,21 @@
+{
+  "command": [
+    "python",
+    "-X",
+    "utf8",
+    "-B",
+    "C:\\OdinQA\\home-progress-1022\\private-home-mcp.py"
+  ],
+  "cwd": "E:/odin",
+  "exit_code": 0,
+  "exit_observed_from": "exec session6562 final tool output chunk50b962",
+  "driver_sha256": "186156ec52d1065064ee27ece94b6896f1bb0f4c984a342dd1d4c5ad6273cfc4",
+  "report": "C:\\OdinQA\\home-progress-1022\\private-home-mcp.json",
+  "report_sha256": "bd5ea227d6e547b16724dd38e033f2c0dd13d0ab518f224687bf7e746e8ae6a9",
+  "stdout_capture_kind": "Tool-returned stdout preserved verbatim; not a redirected original process stream",
+  "stdout": "C:\\OdinQA\\home-progress-1022\\private-home-mcp.tool-stdout.log",
+  "stdout_sha256": "e6bf10c0409a93bd8c2c0dd735272fb9727e614803295216b7eac5ba6f15192f",
+  "raw_stderr": "Tool returned none",
+  "wall_seconds": "NOT_CAPTURED",
+  "binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792"
+}

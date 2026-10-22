@@ -1,0 +1,743 @@
+{
+  "plan": {
+    "schema_version": 1,
+    "scope": "OFFLINE_HOST_LSP_CONFIGURATION",
+    "status": "READY",
+    "host_config": "C:\\OdinQA\\x6\\Home 中文\\.config\\odin\\host.toml",
+    "before_sha256": "absent",
+    "after_sha256": "543b834c5ba42e468caf7233e4a53d24cdf11c0fc568ce27f164907f1895f5ec",
+    "install_root": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin",
+    "bundle_manifest_sha256": "2d559814338225275ec297f60fc30347682caca18fca983140341a0196d6645a",
+    "state_dir": "C:\\OdinQA\\x6\\Home 中文\\.config\\odin\\state",
+    "added_workspace_roots": [
+      "C:\\OdinQA\\x6\\Home 中文"
+    ],
+    "authorized_workspace_roots": [
+      "C:\\OdinQA\\x6\\Home 中文"
+    ],
+    "replace_language_profiles": false,
+    "selected_backends": {
+      "python": "basedpyright",
+      "typescript": "typescript-language-server"
+    },
+    "backend_limits": {
+      "python": "basedpyright remains the default Python semantic provider",
+      "ruff_native": "Native inspection and stdin formatter execution still require separate explicit host grants and OS sandbox; setup does not enable them",
+      "selection": "One configured provider per Python/JavaScript/TypeScript extension; no automatic fallback"
+    },
+    "languages": [
+      "python",
+      "go",
+      "csharp",
+      "lua",
+      "javascript",
+      "typescript",
+      "bash",
+      "slint",
+      "c",
+      "cpp",
+      "toml",
+      "yaml",
+      "markdown",
+      "rust"
+    ],
+    "changes": [
+      {
+        "scope": "workspace",
+        "language": "python",
+        "action": "add",
+        "before": null,
+        "after": {
+          "id": "python",
+          "extensions": [
+            "py",
+            "pyi"
+          ],
+          "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+          "args": [
+            "--preserve-symlinks",
+            "--preserve-symlinks-main",
+            "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\basedpyright\\langserver.index.js",
+            "--stdio"
+          ]
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "go",
+        "action": "add",
+        "before": null,
+        "after": {
+          "id": "go",
+          "extensions": [
+            "go"
+          ],
+          "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+          "args": [
+            "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\setup-lsps.mjs",
+            "--run-backend",
+            "go",
+            "--state-dir",
+            "C:\\OdinQA\\x6\\Home 中文\\.config\\odin\\state",
+            "--host-config",
+            "C:\\OdinQA\\x6\\Home 中文\\.config\\odin\\host.toml"
+          ],
+          "initialization_options": {
+            "env": {
+              "PATH": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\go\\bin;C:\\WINDOWS\\System32;C:\\WINDOWS",
+              "GOROOT": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\go",
+              "GOPATH": "C:\\OdinQA\\x6\\Home 中文\\.config\\odin\\state\\lsp-cache\\go\\gopath",
+              "GOCACHE": "C:\\OdinQA\\x6\\Home 中文\\.config\\odin\\state\\lsp-cache\\go\\build",
+              "GOMODCACHE": "C:\\OdinQA\\x6\\Home 中文\\.config\\odin\\state\\lsp-cache\\go\\modules",
+              "GOTOOLCHAIN": "local",
+              "GOENV": "off",
+              "GOFLAGS": "-mod=readonly",
+              "GOPROXY": "https://proxy.golang.org",
+              "GOSUMDB": "sum.golang.org"
+            }
+          }
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "csharp",
+        "action": "add",
+        "before": null,
+        "after": {
+          "id": "csharp",
+          "extensions": [
+            "cs"
+          ],
+          "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+          "args": [
+            "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\setup-lsps.mjs",
+            "--run-backend",
+            "csharp",
+            "--state-dir",
+            "C:\\OdinQA\\x6\\Home 中文\\.config\\odin\\state",
+            "--host-config",
+            "C:\\OdinQA\\x6\\Home 中文\\.config\\odin\\host.toml"
+          ]
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "lua",
+        "action": "add",
+        "before": null,
+        "after": {
+          "id": "lua",
+          "extensions": [
+            "lua"
+          ],
+          "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+          "args": [
+            "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\setup-lsps.mjs",
+            "--run-backend",
+            "lua",
+            "--state-dir",
+            "C:\\OdinQA\\x6\\Home 中文\\.config\\odin\\state",
+            "--host-config",
+            "C:\\OdinQA\\x6\\Home 中文\\.config\\odin\\host.toml",
+            "--lua-config",
+            "C:\\OdinQA\\x6\\Home 中文\\.config\\odin\\host.toml.lua-settings.46444fb804eda6b8.json"
+          ],
+          "settings": {
+            "Lua": {
+              "runtime": {
+                "plugin": ""
+              },
+              "workspace": {
+                "checkThirdParty": "Disable"
+              },
+              "addonManager": {
+                "enable": false
+              }
+            }
+          }
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "javascript",
+        "action": "add",
+        "before": null,
+        "after": {
+          "id": "javascript",
+          "extensions": [
+            "js",
+            "jsx",
+            "mjs",
+            "cjs"
+          ],
+          "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+          "args": [
+            "--preserve-symlinks",
+            "--preserve-symlinks-main",
+            "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+            "--stdio"
+          ],
+          "initialization_options": {
+            "tsserver": {
+              "path": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\typescript\\lib\\tsserver.js"
+            },
+            "disableAutomaticTypingAcquisition": true
+          }
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "typescript",
+        "action": "add",
+        "before": null,
+        "after": {
+          "id": "typescript",
+          "extensions": [
+            "ts",
+            "tsx",
+            "mts",
+            "cts"
+          ],
+          "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+          "args": [
+            "--preserve-symlinks",
+            "--preserve-symlinks-main",
+            "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+            "--stdio"
+          ],
+          "initialization_options": {
+            "tsserver": {
+              "path": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\typescript\\lib\\tsserver.js"
+            },
+            "disableAutomaticTypingAcquisition": true
+          }
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "bash",
+        "action": "add",
+        "before": null,
+        "after": {
+          "id": "bash",
+          "extensions": [
+            "sh",
+            "bash"
+          ],
+          "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+          "args": [
+            "--preserve-symlinks",
+            "--preserve-symlinks-main",
+            "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\bash-language-server\\out\\cli.js",
+            "start"
+          ],
+          "settings": {
+            "bashIde": {
+              "shellcheckPath": "",
+              "shfmt": {
+                "path": ""
+              },
+              "explainshellEndpoint": ""
+            }
+          }
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "slint",
+        "action": "add",
+        "before": null,
+        "after": {
+          "id": "slint",
+          "extensions": [
+            "slint"
+          ],
+          "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\slint\\slint-lsp.exe",
+          "args": []
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "c",
+        "action": "add",
+        "before": null,
+        "after": {
+          "id": "c",
+          "extensions": [
+            "c",
+            "h"
+          ],
+          "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\clangd\\bin\\clangd.exe",
+          "args": [
+            "--enable-config=false"
+          ]
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "cpp",
+        "action": "add",
+        "before": null,
+        "after": {
+          "id": "cpp",
+          "extensions": [
+            "cc",
+            "cpp",
+            "cxx",
+            "hpp",
+            "hh",
+            "hxx"
+          ],
+          "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\clangd\\bin\\clangd.exe",
+          "args": [
+            "--enable-config=false"
+          ]
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "toml",
+        "action": "add",
+        "before": null,
+        "after": {
+          "id": "toml",
+          "extensions": [
+            "toml"
+          ],
+          "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\taplo\\taplo.exe",
+          "args": [
+            "lsp",
+            "stdio"
+          ],
+          "settings": {
+            "evenBetterToml": {
+              "taplo": {
+                "configFile": {
+                  "enabled": false
+                }
+              },
+              "schema": {
+                "enabled": false,
+                "catalogs": [],
+                "associations": {}
+              }
+            }
+          }
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "yaml",
+        "action": "add",
+        "before": null,
+        "after": {
+          "id": "yaml",
+          "extensions": [
+            "yaml",
+            "yml"
+          ],
+          "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+          "args": [
+            "--preserve-symlinks",
+            "--preserve-symlinks-main",
+            "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\yaml-language-server\\bin\\yaml-language-server",
+            "--stdio"
+          ],
+          "settings": {
+            "yaml": {
+              "schemaStore": {
+                "enable": false,
+                "url": ""
+              },
+              "schemas": {},
+              "validate": true
+            }
+          }
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "markdown",
+        "action": "add",
+        "before": null,
+        "after": {
+          "id": "markdown",
+          "extensions": [
+            "md",
+            "markdown"
+          ],
+          "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\marksman\\marksman.exe",
+          "args": [
+            "server"
+          ]
+        }
+      },
+      {
+        "scope": "workspace",
+        "language": "rust",
+        "action": "add",
+        "before": null,
+        "after": {
+          "id": "rust",
+          "extensions": [
+            "rs"
+          ],
+          "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\rust-analyzer\\rust-analyzer.exe",
+          "args": [],
+          "settings": {
+            "rust-analyzer": {
+              "checkOnSave": false,
+              "cargo": {
+                "buildScripts": {
+                  "enable": false
+                }
+              },
+              "procMacro": {
+                "enable": false
+              }
+            }
+          }
+        }
+      }
+    ],
+    "collisions": [],
+    "permissions": "Existing grants preserved; new workspace grants remain disabled",
+    "optional_rust": "Bundled rust-analyzer is added without an existing Rust/.rs profile; unedited managed Rust can update with the installation, operator Rust profiles are retained and Rust toolchain is not bundled",
+    "sidecars": [
+      {
+        "path": "C:\\OdinQA\\x6\\Home 中文\\.config\\odin\\host.toml.odin-lsps.json",
+        "before_sha256": "absent",
+        "after_sha256": "1a8b452903272a4da14d8cf0c8ed0a260be9c4f2d86c466139f17e28326b0558"
+      },
+      {
+        "path": "C:\\OdinQA\\x6\\Home 中文\\.config\\odin\\host.toml.lua-settings.46444fb804eda6b8.json",
+        "before_sha256": "absent",
+        "after_sha256": "46444fb804eda6b8ebc50c6f39ea7116b02974160d3a1a87357379efe1bf4fff"
+      }
+    ],
+    "plan_sha256": "d94cc5b6e32e1266c51a88c83e8a564ff0723cab02cc8499d05cc12e2a67de4e"
+  },
+  "health": {
+    "scope": "BUNDLED_BACKEND_VERSION_EXECUTION_NOT_SEMANTIC_ACCEPTANCE",
+    "status": "PASS",
+    "bundle_manifest_sha256": "2d559814338225275ec297f60fc30347682caca18fca983140341a0196d6645a",
+    "checks": [
+      {
+        "component": "node",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "24.21.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "v24.21.0\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "basedpyright",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "args": [
+          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\basedpyright\\index.js",
+          "--version"
+        ],
+        "expected_version": "1.40.2",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "basedpyright 1.40.2\nbased on pyright 1.40.2\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "typescript-language-server",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "args": [
+          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\typescript-language-server\\lib\\cli.mjs",
+          "--version"
+        ],
+        "expected_version": "6.0.2",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "6.0.2\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "typescript",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "args": [
+          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\typescript\\lib\\tsc.js",
+          "--version"
+        ],
+        "expected_version": "6.0.3",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "Version 6.0.3\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "bash-language-server",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "args": [
+          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\bash-language-server\\out\\cli.js",
+          "--version"
+        ],
+        "expected_version": "5.8.1",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "5.8.1\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "go",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\go\\bin\\go.exe",
+        "args": [
+          "version"
+        ],
+        "expected_version": "1.27.3",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "go version go1.27.3 windows/amd64\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "gopls",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\gopls\\gopls.exe",
+        "args": [
+          "version"
+        ],
+        "expected_version": "0.24.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "golang.org/x/tools/gopls v0.24.0\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "dotnet",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\dotnet\\dotnet.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "10.0.402",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "10.0.402\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "csharp-ls",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\dotnet\\dotnet.exe",
+        "args": [
+          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\csharp\\CSharpLanguageServer.dll",
+          "--version"
+        ],
+        "expected_version": "0.28.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "csharp-ls, 0.28.0 (Klebi?kis)+72671fc7fa810c158864e72485db68e8b9b25c3d\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "lua-language-server",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\lua\\bin\\lua-language-server.exe",
+        "args": [
+          "--configpath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-3VlR1i\\lua-settings.json",
+          "--logpath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-3VlR1i\\lua\\log",
+          "--metapath=C:\\Users\\steven\\AppData\\Local\\Temp\\odin-lsp-health-3VlR1i\\lua\\meta",
+          "--version"
+        ],
+        "expected_version": "3.19.2",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "3.19.2\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "slint-lsp",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\slint\\slint-lsp.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "1.18.1",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "slint-lsp 1.18.1\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "clangd",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\clangd\\bin\\clangd.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "23.1.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "clangd version 23.1.0 (https://github.com/llvm/llvm-project ea7d852a70e8bdfaf601d6626a760f9771b2c4b4)\nFeatures: windows+grpc\nPlatform: x86_64-pc-windows-msvc\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "taplo",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\taplo\\taplo.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "0.10.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "taplo 0.10.0\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "yaml-language-server",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "args": [
+          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\yaml-language-server\\bin\\yaml-language-server",
+          "--version"
+        ],
+        "expected_version": "2.0.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "2.0.0\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "marksman",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\marksman\\marksman.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "2026-02-08",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "2026-02-08\r\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "ruff",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\ruff\\ruff.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "0.17.1",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "ruff 0.17.1\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "ty",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\ty\\ty.exe",
+        "args": [
+          "version"
+        ],
+        "expected_version": "0.0.90",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "ty 0.0.90 (ebc8bbb31 2026-10-20)\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "rust-analyzer",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\rust-analyzer\\rust-analyzer.exe",
+        "args": [
+          "--version"
+        ],
+        "expected_version": "0.3.3089",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "rust-analyzer 0.3.3089-standalone (5ec20d044d 2026-10-18)\n",
+        "stderr": "",
+        "error": null
+      },
+      {
+        "component": "@vtsls/language-server",
+        "status": "PASS",
+        "program": "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node\\node.exe",
+        "args": [
+          "C:\\OdinQA\\x6\\Home 中文\\AppData\\Local\\Programs\\Odin\\backends\\node_modules\\@vtsls\\language-server\\bin\\vtsls.js",
+          "--version"
+        ],
+        "expected_version": "0.3.0",
+        "exit_code": 0,
+        "signal": null,
+        "stdout": "0.3.0\n",
+        "stderr": "",
+        "error": null
+      }
+    ],
+    "post_health_integrity": {
+      "status": "PASS",
+      "manifest_sha256": "2d559814338225275ec297f60fc30347682caca18fca983140341a0196d6645a"
+    },
+    "semantic_acceptance": "NOT_RUN"
+  },
+  "result": {
+    "status": "PASS",
+    "host_config": "C:\\OdinQA\\x6\\Home 中文\\.config\\odin\\host.toml",
+    "before_sha256": "absent",
+    "after_sha256": "543b834c5ba42e468caf7233e4a53d24cdf11c0fc568ce27f164907f1895f5ec",
+    "backups": [],
+    "languages": [
+      "python",
+      "go",
+      "csharp",
+      "lua",
+      "javascript",
+      "typescript",
+      "bash",
+      "slint",
+      "c",
+      "cpp",
+      "toml",
+      "yaml",
+      "markdown",
+      "rust"
+    ],
+    "selected_backends": {
+      "python": "basedpyright",
+      "typescript": "typescript-language-server"
+    },
+    "backend_limits": {
+      "python": "basedpyright remains the default Python semantic provider",
+      "ruff_native": "Native inspection and stdin formatter execution still require separate explicit host grants and OS sandbox; setup does not enable them",
+      "selection": "One configured provider per Python/JavaScript/TypeScript extension; no automatic fallback"
+    },
+    "bundle_manifest_sha256": "2d559814338225275ec297f60fc30347682caca18fca983140341a0196d6645a",
+    "setup_semantics": "Host-file CAS with backups; no multi-file atomicity or OS-global CAS claimed"
+  },
+  "receipt_path": "C:\\OdinQA\\home-progress-1022\\expanded06b-success-worker-receipt.json"
+}

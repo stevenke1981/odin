@@ -11,6 +11,7 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import platform
+import re
 import shutil
 import stat
 import subprocess
@@ -537,6 +538,168 @@ def write_source_sidecar(output: Path, sidecar: dict, sources: dict[str, Path]) 
         raise BuildError("Generated source sidecar differs from reviewed bytes")
 
 
+MSVC_VERSION = "14.44.35211.0"
+MSVC_SHA256 = {
+    "msvcp140.dll": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+    "vcruntime140.dll": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+    "vcruntime140_1.dll": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f",
+}
+MSVC_NOTICE_SHA256 = "bdfc73b0ab0b0547208a29aa1b2a43479c7283b5985920b3d825d5d7bbf092ae"
+WINDOWS_SYSTEM_DLLS = frozenset({
+    "bcryptprimitives.dll", "kernel32.dll", "ws2_32.dll", "ntdll.dll", "user32.dll", "oleaut32.dll",
+    "advapi32.dll", "comctl32.dll", "gdi32.dll", "shlwapi.dll", "shell32.dll", "iphlpapi.dll",
+    "uiautomationcore.dll", "combase.dll", "opengl32.dll", "dwmapi.dll", "ole32.dll", "dwrite.dll",
+    "dxgi.dll", "setupapi.dll", "imm32.dll", "bcrypt.dll", "uxtheme.dll", "d3d12.dll", "d3dcompiler_47.dll",
+})
+RUNTIME_SIGNATURE_SCRIPT = r'''param([Parameter(Mandatory)][string]$Manifest, [Parameter(Mandatory)][string]$ExpectedManifestSha256, [Parameter(Mandatory)][string]$Output)
+$ErrorActionPreference = 'Stop'
+[Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
+if ((Get-FileHash -LiteralPath $Manifest -Algorithm SHA256).Hash -ine $ExpectedManifestSha256) { throw 'Runtime input JSON hash mismatch.' }
+$Files = Get-Content -LiteralPath $Manifest -Raw -Encoding UTF8 | ConvertFrom-Json
+$Rows = @($Files | ForEach-Object {
+    $Item = Get-Item -LiteralPath $_.source
+    $Signature = Get-AuthenticodeSignature -LiteralPath $_.source
+    [ordered]@{name=$_.name; source=$Item.FullName; sha256=(Get-FileHash -LiteralPath $_.source -Algorithm SHA256).Hash.ToLowerInvariant(); version=$Item.VersionInfo.FileVersion; signature=[string]$Signature.Status; signer=$Signature.SignerCertificate.Subject}
+})
+$Bytes = [Text.UTF8Encoding]::new($false).GetBytes((ConvertTo-Json -InputObject $Rows -Depth 5))
+$Stream = [IO.File]::Open($Output, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write)
+try { $Stream.Write($Bytes, 0, $Bytes.Length) } finally { $Stream.Dispose() }
+'''
+
+RUNTIME_SIGNATURE_SCRIPT_SHA256 = "ad11b2df0dbbc094e5c6b32c74d4a3c6b172129eba43fa5c93a13952da04194e"
+
+
+def pe_imports(path: Path) -> list[str]:
+    """Bounded PE64 direct imports; unreviewed delay imports fail closed."""
+    data = path.read_bytes()
+    def number(offset: int, size: int = 4) -> int:
+        if offset < 0 or offset + size > len(data):
+            raise BuildError("Truncated PE metadata")
+        return int.from_bytes(data[offset:offset + size], "little")
+    if len(data) < 256 or data[:2] != b"MZ":
+        raise BuildError("Expected a PE64 executable")
+    pe = number(60)
+    if data[pe:pe + 4] != b"PE\0\0" or number(pe + 4, 2) != 0x8664:
+        raise BuildError("Expected x86-64 PE")
+    optional, optional_size, count = pe + 24, number(pe + 20, 2), number(pe + 6, 2)
+    if number(optional, 2) != 0x20B or optional_size < 224 or not 1 <= count <= 96:
+        raise BuildError("Invalid PE64 headers")
+    if number(optional + 216):
+        raise BuildError("Delay-load imports require a separate runtime dependency review")
+    sections = []
+    for index in range(count):
+        entry = optional + optional_size + 40 * index
+        sections.append((number(entry + 12), max(number(entry + 8), number(entry + 16)), number(entry + 20)))
+    def position(rva: int) -> int:
+        for start, size, raw in sections:
+            if start <= rva < start + size:
+                value = raw + rva - start
+                if value < len(data):
+                    return value
+        raise BuildError("PE RVA is outside the file")
+    if not number(optional + 120):
+        return []
+    descriptor, imports = position(number(optional + 120)), []
+    for _ in range(4096):
+        name_rva = number(descriptor + 12)
+        if not name_rva:
+            return imports
+        offset = position(name_rva)
+        end = data.find(b"\0", offset, min(offset + 256, len(data)))
+        if end < 0:
+            raise BuildError("Unterminated PE DLL name")
+        try:
+            name = data[offset:end].decode("ascii").lower()
+        except UnicodeDecodeError as error:
+            raise BuildError("Non-ASCII DLL name") from error
+        if not re.fullmatch(r"[a-z0-9_.-]+\.dll", name):
+            raise BuildError("Invalid PE DLL name")
+        imports.append(name)
+        descriptor += 20
+    raise BuildError("PE import descriptor budget exceeded")
+
+
+def runtime_dependencies(binary: Path, runtime_dir: Path) -> tuple[list[dict], list[str]]:
+    reject_reparse(runtime_dir)
+    runtime_dir = runtime_dir.resolve()
+    if not re.search(r"/VC/Redist/MSVC/[0-9.]+/x64/Microsoft\.VC143\.CRT$", runtime_dir.as_posix(), re.IGNORECASE):
+        raise BuildError("Runtime must be explicitly selected from official Visual Studio VC/Redist x64 CRT")
+    queue, seen, dependencies, system = [binary], set(), [], set()
+    while queue:
+        for name in pe_imports(queue.pop(0)):
+            if name in seen:
+                continue
+            seen.add(name)
+            if name.startswith(("api-ms-win-", "ext-ms-win-")) or name in WINDOWS_SYSTEM_DLLS:
+                system.add(name)
+                continue
+            if name not in MSVC_SHA256:
+                raise BuildError("Unclassified native runtime dependency: " + name)
+            source = runtime_dir / name
+            reject_reparse(source)
+            if not source.is_file():
+                raise BuildError("Required pinned app-local runtime is absent: " + name)
+            if hash_file(source) != MSVC_SHA256[name]:
+                raise BuildError("Pinned app-local runtime hash mismatch: " + name)
+            dependencies.append({"name": name, "source": str(source), "sha256": MSVC_SHA256[name]})
+            queue.append(source)
+    if {item["name"] for item in dependencies} != set(MSVC_SHA256):
+        raise BuildError("Slint runtime closure differs from the reviewed three-DLL dependency set")
+    return sorted(dependencies, key=lambda item: item["name"]), sorted(system)
+
+
+def runtime_signatures(dependencies: list[dict], runner: Runner, env: dict[str, str]) -> list[dict]:
+    script, manifest, result = (runner.work / name for name in ("runtime-signature.ps1", "runtime-input.json", "runtime-signatures.json"))
+    script_bytes, manifest_bytes = RUNTIME_SIGNATURE_SCRIPT.encode("utf-8"), json_bytes(dependencies)
+    if hashlib.sha256(script_bytes).hexdigest() != RUNTIME_SIGNATURE_SCRIPT_SHA256:
+        raise BuildError("Runtime signature helper differs from the reviewed fixed script")
+    write_new(script, script_bytes)
+    write_new(manifest, manifest_bytes)
+    runner.receipt["inputs"]["runtime_signature_helper"] = {"sha256": hashlib.sha256(script_bytes).hexdigest(), "input_sha256": hashlib.sha256(manifest_bytes).hexdigest()}
+    powershell = Path(os.environ.get("SystemRoot", "C:/Windows")) / "System32/WindowsPowerShell/v1.0/powershell.exe"
+    runner.run([str(powershell), "-NoLogo", "-NoProfile", "-File", str(script),
+                "-Manifest", str(manifest), "-ExpectedManifestSha256", hashlib.sha256(manifest_bytes).hexdigest(),
+                "-Output", str(result)], runner.work, env, timeout=120)
+    return json.loads(result.read_bytes())
+
+
+def add_slint_runtime(output: Path, runtime_dir: Path, runner: Runner, env: dict[str, str]) -> dict:
+    dependencies, system = runtime_dependencies(output / "slint/slint-lsp.exe", runtime_dir)
+    notice = REPO / "packaging/MICROSOFT_RUNTIME_NOTICES.txt"
+    reject_reparse(notice)
+    notice_bytes = notice.read_bytes()
+    if hashlib.sha256(notice_bytes).hexdigest() != MSVC_NOTICE_SHA256:
+        raise BuildError("Runtime redistribution notice differs from reviewed bytes")
+    expected = {item["name"]: item for item in dependencies}
+    rows = runtime_signatures(dependencies, runner, env)
+    if not isinstance(rows, list) or len(rows) != len(expected) or {row.get("name") for row in rows} != set(expected):
+        raise BuildError("Runtime signature probe returned an incomplete or unexpected set")
+    for row in rows:
+        item = expected[row["name"]]
+        if (row.get("signature") != "Valid" or "O=Microsoft Corporation" not in row.get("signer", "") or
+                row.get("sha256") != item["sha256"] or row.get("version") != MSVC_VERSION or
+                Path(row.get("source", "")).resolve() != Path(item["source"]).resolve()):
+            raise BuildError("Pinned runtime signature/version/source verification failed: " + row["name"])
+        if (output / "slint" / row["name"]).exists():
+            raise BuildError("Refusing to replace an existing app-local runtime: " + row["name"])
+    for row in rows:
+        source = Path(row["source"])
+        reject_reparse(source)
+        data = source.read_bytes()
+        if hashlib.sha256(data).hexdigest() != row["sha256"]:
+            raise BuildError("Runtime changed after signature verification: " + row["name"])
+        write_new(output / "slint" / row["name"], data)
+    write_new(output / "slint/MICROSOFT_RUNTIME_NOTICES.txt", notice_bytes)
+    info = {"schema_version": 1, "scope": "PINNED_SIGNED_MICROSOFT_APP_LOCAL_SLINT_CRT_CLOSURE", "minimum_os": "Windows 10 x64 or Windows 11 x64 with OS-provided UCRT",
+            "dependencies": sorted(rows, key=lambda item: item["name"]), "os_provided": system,
+            "redistribution": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution",
+            "notice_sha256": MSVC_NOTICE_SHA256, "global_runtime_installation": False,
+            "clean_machine_acceptance": "NOT_RUN"}
+    write_new(output / "slint/app-local-runtime.json", json_bytes(info))
+    runner.receipt["inputs"]["msvc_runtime"] = info
+    return info
+
+
 def build(args: argparse.Namespace, receipt: dict, output: Path, cache: Path) -> None:
     collector = REPO / "scripts/collect_lsp_notices.py"
     if hash_file(collector) != NOTICE_COLLECTOR_SHA256:
@@ -572,6 +735,7 @@ def build(args: argparse.Namespace, receipt: dict, output: Path, cache: Path) ->
     write_new(output / "licenses/csharp-ls/LICENSE", sources[CSHARP_LICENSE.id].read_bytes())
     (output / "gopls").mkdir()
     env = build_environment(output, work)
+    slint_runtime = add_slint_runtime(output, args.msvc_runtime_dir, runner, env)
     node, go, dotnet = output / "node/node.exe", output / "go/bin/go.exe", output / "dotnet/dotnet.exe"
     runner.run([str(node), str(output / "node/node_modules/npm/bin/npm-cli.js"), "ci", "--ignore-scripts", "--no-audit", "--no-fund"], output, env)
     npm_inventory(output, lock)
@@ -615,6 +779,7 @@ def build(args: argparse.Namespace, receipt: dict, output: Path, cache: Path) ->
                        "sha256": hash_file(output / "gopls/gopls.exe")})
     components.extend({"id": item["id"], "version": item["version"], "source": item["url"],
                        "sha256": item["sha256"], **({"release": item["release"]} if "release" in item else {})} for item in native_components)
+    next(item for item in components if item["id"] == "slint-lsp")["app_local_runtime"] = slint_runtime
     if sidecar:
         next(item for item in components if item["id"] == "slint-lsp")["source_sidecar"] = receipt["source_sidecar"]
     manifest = {"schema_version": 1, "target": TARGET, "components": sorted(components, key=lambda item: item["id"]),
@@ -631,6 +796,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--cache-dir", type=Path, required=True, help="External original archive cache; hashes checked on every use")
     parser.add_argument("--package-json", type=Path, default=REPO / "packaging/lsp-package.json")
     parser.add_argument("--package-lock", type=Path, default=REPO / "packaging/lsp-package-lock.json")
+    parser.add_argument("--msvc-runtime-dir", type=Path, required=True, help="Explicit official VS Redist x64 CRT directory; pinned hashes and Microsoft signatures are required")
     parser.add_argument("--native-sources", type=Path, default=REPO / "packaging/lsp-native-sources.json")
     parser.add_argument("--receipt", type=Path, help="Create-only external JSON; default sibling <output>.build-receipt.json")
     parser.add_argument("--versions", action="store_true", help="Run actual version probes; does not certify IDE functionality")

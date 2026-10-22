@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "C:\\OdinQA\\expanded-lsp\\payload06\\backends\\node\\node.exe",
+    "--test",
+    "tests/lsp_installer.test.mjs",
+    "tests/setup_progress.test.mjs"
+  ],
+  "cwd": "E:\\odin",
+  "controlled_env": {
+    "ODIN_TEST_SMOL_TOML": "C:\\OdinQA\\expanded-lsp\\payload06\\backends\\node_modules\\smol-toml"
+  },
+  "parser_package_sha256": "d7ad6488e35b31d46bac6412d2d35225db4d693f02a415d872714ceb7e3d7138",
+  "exit_code": 0,
+  "seconds": 5.088,
+  "log": "C:\\OdinQA\\home-progress-1022\\node49-configured.log",
+  "log_sha256": "ffb8472b8c61e9f69f4eed18758ebbf5f15765c1e1792084122017afd225c69f",
+  "source_sha256": {
+    "packaging/setup-lsps.mjs": "be6ead44f0a2cd68915dfc1144c2f7b608fb54bfb943a8d09bf3b015c8b0abec",
+    "packaging/setup-progress.mjs": "3e0a545584fc75502da9976beb0f32e2dc1b957fb62bb9e99bf1af360459473a",
+    "tests/lsp_installer.test.mjs": "bfe37951cfede445cd944b1f1ac4bd2a906b2ced13a5d425cee551ee195f0c1a",
+    "tests/setup_progress.test.mjs": "e5c34d34e1165e0803a5f8f8e89fefa715275b958473a7e7f0d775bdb8182574"
+  }
+}

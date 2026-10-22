@@ -1,0 +1,627 @@
+{
+  "schema_version": 1,
+  "scope": "ACTUAL_FINAL_PAYLOAD_HASH_CLOSURE_VERSION_RECEIPT_AND_PINNED_SOURCE_INVENTORY_ONLY",
+  "status": "PASS",
+  "manifest_sha256": "2d559814338225275ec297f60fc30347682caca18fca983140341a0196d6645a",
+  "build_receipt_sha256": "becabe09243cfba0eb224d69935b3cac698912c4b3cf558e72c8df1646df21ac",
+  "file_count": 35153,
+  "component_count": 20,
+  "components": [
+    {
+      "id": "@vtsls/language-server",
+      "integrity": "sha512-EYTkCHNGz3MFSP7z0DZ5+WBQY5CWEH7bCUu53EaDloBTjghoi2vfZqSrS0+7WsRG03MhBhjGG9ifNee/2kixvQ==",
+      "source": "https://registry.npmjs.org/@vtsls/language-server/-/language-server-0.3.0.tgz",
+      "version": "0.3.0"
+    },
+    {
+      "id": "basedpyright",
+      "integrity": "sha512-9uld8+5tZC2Gxf8nIynyunK0N4xn01W1ApzLMXDAcuA8uJq2QSfldYn9gSbxn9MWR8wmHDo7GaEHLhlnLFHaJA==",
+      "source": "https://registry.npmjs.org/basedpyright/-/basedpyright-1.40.2.tgz",
+      "version": "1.40.2"
+    },
+    {
+      "id": "bash-language-server",
+      "integrity": "sha512-F3g0hKZhCiKbLUf9wkrST6+ZypsHvJqaJxw/+J7WK2ywhFyc8+7jSHSTU1UDYncZkyWgbKV6+eZy5qWTZtoXww==",
+      "source": "https://registry.npmjs.org/bash-language-server/-/bash-language-server-5.8.1.tgz",
+      "version": "5.8.1"
+    },
+    {
+      "id": "clangd",
+      "sha256": "23412a240756a162e7b98a282f36aa2a23a88db5ce16a0cbc4fef7253768c810",
+      "source": "https://github.com/clangd/clangd/releases/download/23.1.0/clangd-windows-23.1.0.zip",
+      "version": "23.1.0"
+    },
+    {
+      "id": "csharp-ls",
+      "sha256": "8f815e4f22674106a8244beba07e4b4b062e31528e404aa8489312effb8c0e0c",
+      "source": "https://api.nuget.org/v3-flatcontainer/csharp-ls/0.28.0/csharp-ls.0.28.0.nupkg",
+      "version": "0.28.0"
+    },
+    {
+      "id": "dotnet",
+      "sha256": "24d057ab968986a9d7c7a01606b2a0192cbe6485221ba38e9c685522e93d8798",
+      "source": "https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.402/dotnet-sdk-10.0.402-win-x64.zip",
+      "version": "10.0.402"
+    },
+    {
+      "id": "go",
+      "sha256": "f26081f438319757f8a1b46d7d0b2c5ec7583d4038e485e0aa725cfde7885fff",
+      "source": "https://go.dev/dl/go1.27.3.windows-amd64.zip",
+      "version": "1.27.3"
+    },
+    {
+      "id": "gopls",
+      "sha256": "df2f78d456011cc1618ced854769ff8a07914549291cc519ac4293dbcadb4e14",
+      "source": "https://proxy.golang.org/golang.org/x/tools/gopls/@v/v0.24.0.info",
+      "version": "0.24.0"
+    },
+    {
+      "id": "lua-language-server",
+      "sha256": "4a3dc851b3b31e7b75a23f645d1ba4a2137579a55f5fa4edbb17a3e2a6254044",
+      "source": "https://github.com/LuaLS/lua-language-server/releases/download/3.19.2/lua-language-server-3.19.2-win32-x64.zip",
+      "version": "3.19.2"
+    },
+    {
+      "id": "marksman",
+      "sha256": "a6d05beb08ebe41b0a9f09c98a438540421436fa5531424c22e0bb1d22529705",
+      "source": "https://github.com/artempyanykh/marksman/releases/download/2026-02-08/marksman.exe",
+      "version": "2026-02-08"
+    },
+    {
+      "id": "node",
+      "sha256": "158f7685b44de51f6c0df1d153526cbcd3e1bc739a8dfc607721cef75de9e541",
+      "source": "https://nodejs.org/dist/v24.21.0/node-v24.21.0-win-x64.zip",
+      "version": "24.21.0"
+    },
+    {
+      "id": "ruff",
+      "sha256": "a841fb7e59680508b9394bfea32e369b3907cc6620a491c65d8d1f479498db82",
+      "source": "https://github.com/astral-sh/ruff/releases/download/0.17.1/ruff-x86_64-pc-windows-msvc.zip",
+      "version": "0.17.1"
+    },
+    {
+      "id": "rust-analyzer",
+      "release": "2026-10-19",
+      "sha256": "7df6e1a2595d1906e8441cb83fd58170b47d32eb09bc52c1b2184538cfd49a71",
+      "source": "https://github.com/rust-lang/rust-analyzer/releases/download/2026-10-19/rust-analyzer-x86_64-pc-windows-msvc.zip",
+      "version": "0.3.3089"
+    },
+    {
+      "id": "slint-lsp",
+      "sha256": "4dc30c4b2024c5676092c647cb7471a1419a843fae46e632b50b68e2732fa912",
+      "source": "https://github.com/slint-ui/slint/releases/download/v1.18.1/slint-lsp-x86_64-pc-windows-msvc.zip",
+      "source_sidecar": {
+        "destination": "sources/slint-lsp-1.18.1-source-sidecar.zip",
+        "sha256": "efa11b55b9a7bf7798c321a356c18450cb927fd303a52e7cfe148ee7c4a546ae",
+        "source_closure_status": "PINNED_SLINT_CARGO_AND_SKIA_DEPS_SOURCE_INVENTORY"
+      },
+      "version": "1.18.1"
+    },
+    {
+      "id": "smol-toml",
+      "integrity": "sha512-j7WyPdf0CJoutMzMoPLF/bVXHtKZIT9Rb4eGeEbWw8X2t5oirjPgpL+OpaENZrILYaXqYwnVH+qgUwVbl+pUJQ==",
+      "source": "https://registry.npmjs.org/smol-toml/-/smol-toml-1.9.1.tgz",
+      "version": "1.9.1"
+    },
+    {
+      "id": "taplo",
+      "sha256": "1615eed140039bd58e7089109883b1c434de5d6de8f64a993e6e8c80ca57bdf9",
+      "source": "https://github.com/tamasfe/taplo/releases/download/0.10.0/taplo-windows-x86_64.zip",
+      "version": "0.10.0"
+    },
+    {
+      "id": "ty",
+      "sha256": "39ac9cac22d18cd2b5f8c896dab4e3e8a8cd7459c0718aae5f26cc279e1f9a36",
+      "source": "https://github.com/astral-sh/ty/releases/download/0.0.90/ty-x86_64-pc-windows-msvc.zip",
+      "version": "0.0.90"
+    },
+    {
+      "id": "typescript",
+      "integrity": "sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==",
+      "source": "https://registry.npmjs.org/typescript/-/typescript-6.0.3.tgz",
+      "version": "6.0.3"
+    },
+    {
+      "id": "typescript-language-server",
+      "integrity": "sha512-Ph7Ql+xkUJvMamnkh1h+aKP6HxLR7lrWIYkPn9/LZBkJdJZgtIj7OoVhkDYtQ7zFPTPmqZHOVXaUKGyz9M2q1Q==",
+      "source": "https://registry.npmjs.org/typescript-language-server/-/typescript-language-server-6.0.2.tgz",
+      "version": "6.0.2"
+    },
+    {
+      "id": "yaml-language-server",
+      "integrity": "sha512-vT6ZEMTkXJA9Ixo07ByLgPkkt/L22fJdVDGAoB3EpPq3DCfKkMYeEeZdK5ECU6alwFUofhETo94/OV8GUxGuBg==",
+      "source": "https://registry.npmjs.org/yaml-language-server/-/yaml-language-server-2.0.0.tgz",
+      "version": "2.0.0"
+    }
+  ],
+  "file_hash_errors": [],
+  "missing": [],
+  "extra": [],
+  "runtime_comparison": {
+    "baseline_manifest_sha256": "783626a35bba1a70af6df7243280819f8002a718cd53aedf1eb6878f5a4787b5",
+    "runtime_file_count": 35079,
+    "changed": [],
+    "added": [],
+    "status": "PASS"
+  },
+  "build_command_exit_codes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "actual_version_probes": 19,
+  "sidecar": {
+    "sha256": "efa11b55b9a7bf7798c321a356c18450cb927fd303a52e7cfe148ee7c4a546ae",
+    "bytes": 399893506,
+    "slint_source_commit": "372cf0ee5577c3dfec309a45e7b778ba4e81b734",
+    "crate_count": 993,
+    "skia_native_dependency_count": 14,
+    "all_source_hashes_match": true,
+    "checks": 1009,
+    "rebuild": "NOT_RUN"
+  },
+  "notice_inventory": {
+    "groups": [
+      {
+        "aggregate_sha256": "3f41bfe3ec0a3c0c5d95520d39a041916326aebf254a50789f4601265a45f325",
+        "id": "taplo",
+        "missing_notice_text": 6,
+        "package_count": 309,
+        "scope": "CARGO_LOCK_SUPERSET_NOT_LINKED_BINARY_SBOM",
+        "unresolved": [
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "Vurich <jackefransham@hotmail.co.uk>"
+            ],
+            "license": "MIT",
+            "package": "crunchy",
+            "repository": null,
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "1bf90cf2d0a8cfcb2c5592275a23ab028dff6468",
+            "version": "0.2.2"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "Armin Ronacher <armin.ronacher@active-4.com>",
+              "Jan Michael Auer <mail@jauer.org>"
+            ],
+            "license": "MIT",
+            "package": "symbolic-common",
+            "repository": "https://github.com/getsentry/symbolic",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": null,
+            "version": "12.10.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "Mullvad VPN"
+            ],
+            "license": "MIT OR Apache-2.0",
+            "package": "system-configuration-sys",
+            "repository": "https://github.com/mullvad/system-configuration-rs",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "592a485494be9d63a60e54944dd2fcc4f077ec58",
+            "version": "0.5.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [],
+            "license": "MIT",
+            "package": "valuable",
+            "repository": "https://github.com/tokio-rs/valuable",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": null,
+            "version": "0.1.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "Peter Atashian <retep998@gmail.com>"
+            ],
+            "license": "MIT/Apache-2.0",
+            "package": "winapi-i686-pc-windows-gnu",
+            "repository": "https://github.com/retep998/winapi-rs",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": null,
+            "version": "0.4.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "Peter Atashian <retep998@gmail.com>"
+            ],
+            "license": "MIT/Apache-2.0",
+            "package": "winapi-x86_64-pc-windows-gnu",
+            "repository": "https://github.com/retep998/winapi-rs",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": null,
+            "version": "0.4.0"
+          }
+        ]
+      },
+      {
+        "aggregate_sha256": "40dcf9f177b73a472db3189918854fedac46545f171e3b0eb67dee992b3fee4c",
+        "id": "ruff",
+        "missing_notice_text": 9,
+        "package_count": 498,
+        "scope": "CARGO_LOCK_SUPERSET_NOT_LINKED_BINARY_SBOM",
+        "unresolved": [
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [],
+            "license": "MIT",
+            "package": "collection_literals",
+            "repository": "https://github.com/staedoix/collection_literals",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "5c5e88a5cfbf5603123187039c4382366d46edd1",
+            "version": "1.0.2"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "Dima Kudosh <dimakudosh@gmail.com>"
+            ],
+            "license": "MIT",
+            "package": "difflib",
+            "repository": "https://github.com/DimaKudosh/difflib",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": null,
+            "version": "0.4.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [],
+            "license": "MIT",
+            "package": "quote-use",
+            "repository": "https://github.com/ModProg/quote-use",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "05096f346f8b17fba8a57a235b958917ad9d99e0",
+            "version": "0.8.4"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [],
+            "license": "MIT",
+            "package": "quote-use-macros",
+            "repository": "https://github.com/ModProg/quote-use",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "05096f346f8b17fba8a57a235b958917ad9d99e0",
+            "version": "0.8.4"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [],
+            "license": "MIT OR Apache-2.0 OR LGPL-2.1-or-later",
+            "package": "r-efi",
+            "repository": "https://github.com/r-efi/r-efi",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "97b55bed1c2c91dcbf787674849f05337ff80b33",
+            "version": "5.3.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [],
+            "license": "MIT OR Apache-2.0 OR LGPL-2.1-or-later",
+            "package": "r-efi",
+            "repository": "https://github.com/r-efi/r-efi",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "7e1b0322d31d625f81a5656096330934f9cd835d",
+            "version": "6.0.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "ticki <ticki@users.noreply.github.com>",
+              "Tom Almeida <tom@tommoa.me>"
+            ],
+            "license": "MIT",
+            "package": "seahash",
+            "repository": "https://gitlab.redox-os.org/redox-os/seahash",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "94b632aeac099031c373599313d5b5f0acbbaec0",
+            "version": "4.1.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "Peter Atashian <retep998@gmail.com>"
+            ],
+            "license": "MIT/Apache-2.0",
+            "package": "winapi-i686-pc-windows-gnu",
+            "repository": "https://github.com/retep998/winapi-rs",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": null,
+            "version": "0.4.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "Peter Atashian <retep998@gmail.com>"
+            ],
+            "license": "MIT/Apache-2.0",
+            "package": "winapi-x86_64-pc-windows-gnu",
+            "repository": "https://github.com/retep998/winapi-rs",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": null,
+            "version": "0.4.0"
+          }
+        ]
+      },
+      {
+        "aggregate_sha256": "12a2a082828b1cdc075eddb40789438b355f21134e32b2daeb813d38e5b9ad87",
+        "id": "ty",
+        "missing_notice_text": 9,
+        "package_count": 498,
+        "scope": "CARGO_LOCK_SUPERSET_NOT_LINKED_BINARY_SBOM",
+        "unresolved": [
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [],
+            "license": "MIT",
+            "package": "collection_literals",
+            "repository": "https://github.com/staedoix/collection_literals",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "5c5e88a5cfbf5603123187039c4382366d46edd1",
+            "version": "1.0.2"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "Dima Kudosh <dimakudosh@gmail.com>"
+            ],
+            "license": "MIT",
+            "package": "difflib",
+            "repository": "https://github.com/DimaKudosh/difflib",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": null,
+            "version": "0.4.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [],
+            "license": "MIT",
+            "package": "quote-use",
+            "repository": "https://github.com/ModProg/quote-use",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "05096f346f8b17fba8a57a235b958917ad9d99e0",
+            "version": "0.8.4"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [],
+            "license": "MIT",
+            "package": "quote-use-macros",
+            "repository": "https://github.com/ModProg/quote-use",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "05096f346f8b17fba8a57a235b958917ad9d99e0",
+            "version": "0.8.4"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [],
+            "license": "MIT OR Apache-2.0 OR LGPL-2.1-or-later",
+            "package": "r-efi",
+            "repository": "https://github.com/r-efi/r-efi",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "97b55bed1c2c91dcbf787674849f05337ff80b33",
+            "version": "5.3.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [],
+            "license": "MIT OR Apache-2.0 OR LGPL-2.1-or-later",
+            "package": "r-efi",
+            "repository": "https://github.com/r-efi/r-efi",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "7e1b0322d31d625f81a5656096330934f9cd835d",
+            "version": "6.0.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "ticki <ticki@users.noreply.github.com>",
+              "Tom Almeida <tom@tommoa.me>"
+            ],
+            "license": "MIT",
+            "package": "seahash",
+            "repository": "https://gitlab.redox-os.org/redox-os/seahash",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "94b632aeac099031c373599313d5b5f0acbbaec0",
+            "version": "4.1.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "Peter Atashian <retep998@gmail.com>"
+            ],
+            "license": "MIT/Apache-2.0",
+            "package": "winapi-i686-pc-windows-gnu",
+            "repository": "https://github.com/retep998/winapi-rs",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": null,
+            "version": "0.4.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "Peter Atashian <retep998@gmail.com>"
+            ],
+            "license": "MIT/Apache-2.0",
+            "package": "winapi-x86_64-pc-windows-gnu",
+            "repository": "https://github.com/retep998/winapi-rs",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": null,
+            "version": "0.4.0"
+          }
+        ]
+      },
+      {
+        "aggregate_sha256": "2814df83c61317b6854f4393937761b91951a33f2cd1d4469f524bd7e7b5b3b7",
+        "id": "rust-analyzer",
+        "missing_notice_text": 7,
+        "package_count": 332,
+        "scope": "CARGO_LOCK_SUPERSET_NOT_LINKED_BINARY_SBOM",
+        "unresolved": [
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [],
+            "license": "MIT OR Apache-2.0",
+            "package": "la-arena",
+            "repository": "https://github.com/rust-lang/rust-analyzer/tree/master/lib/la-arena",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": null,
+            "version": "0.3.1"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "Jim Blandy <jimb@red-bean.com>"
+            ],
+            "license": "MIT OR Apache-2.0",
+            "package": "perf-event-open-sys",
+            "repository": "https://github.com/jimblandy/perf-event-open-sys.git",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "3aecf09156daa67b5579cc7742168cc95dcbe063",
+            "version": "4.0.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "Sebastian Thiel <byronimo@gmail.com>",
+              "Dylan Owen <dyltotheo@gmail.com>",
+              "Alessandro Ogier <alessandro.ogier@gmail.com>",
+              "Zixian Cai <2891235+caizixian@users.noreply.github.com>"
+            ],
+            "license": "Apache-2.0",
+            "package": "pulldown-cmark-to-cmark",
+            "repository": "https://github.com/Byron/pulldown-cmark-to-cmark",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "5f6ec453d5c44d45d09100749d1c1e2891e05bf7",
+            "version": "10.0.4"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [],
+            "license": "MIT OR Apache-2.0 OR LGPL-2.1-or-later",
+            "package": "r-efi",
+            "repository": "https://github.com/r-efi/r-efi",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "97b55bed1c2c91dcbf787674849f05337ff80b33",
+            "version": "5.3.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [],
+            "license": "MIT OR Apache-2.0 OR LGPL-2.1-or-later",
+            "package": "r-efi",
+            "repository": "https://github.com/r-efi/r-efi",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "7e1b0322d31d625f81a5656096330934f9cd835d",
+            "version": "6.0.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [
+              "Nathan Vegdahl <cessen@cessen.com>"
+            ],
+            "license": "MIT OR Apache-2.0",
+            "package": "tenthash",
+            "repository": "https://github.com/cessen/tenthash/tree/main/tenthash-rust",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "d420ce80cfbf9a9cbbc41a55efb620ca9ed72efa",
+            "version": "1.1.0"
+          },
+          {
+            "applicability": "UNKNOWN_CARGO_LOCK_SUPERSET_INCLUDES_DEV_AND_OTHER_PLATFORMS",
+            "authors": [],
+            "license": "MIT OR Apache-2.0",
+            "package": "ungrammar",
+            "repository": "https://github.com/matklad/ungrammar",
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "814f04797bbd67f224cbb1b48c7541fdd8bc3d79",
+            "version": "1.16.1"
+          }
+        ]
+      },
+      {
+        "aggregate_sha256": "9b63a3c4989977663ac557593b77ef2b0777218448b4d6f75f97925426b882ad",
+        "id": "marksman",
+        "missing_notice_text": 3,
+        "package_count": 20,
+        "scope": "ACTUAL_EMBEDDED_DEPS_JSON_NUGET_AND_SELF_CONTAINED_RUNTIME",
+        "unresolved": [
+          {
+            "applicability": "ACTUAL_EMBEDDED_PACKAGE",
+            "authors": "Jordan Marr",
+            "license": "MIT",
+            "package": "FSharp.SystemCommandLine",
+            "repository": {
+              "commit": "4d55668f278a4c52e18c3a65a782aff7de81d659",
+              "type": "git"
+            },
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "4d55668f278a4c52e18c3a65a782aff7de81d659",
+            "version": "2.0.0"
+          },
+          {
+            "applicability": "ACTUAL_EMBEDDED_PACKAGE",
+            "authors": "Alexandre Mutel",
+            "license": "BSD-2-Clause",
+            "package": "Markdig",
+            "repository": {
+              "commit": "8c01cf054971a1ec4cd663edaca6e2d035236133",
+              "type": "git",
+              "url": "https://github.com/xoofx/markdig"
+            },
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "8c01cf054971a1ec4cd663edaca6e2d035236133",
+            "version": "0.43.0"
+          },
+          {
+            "applicability": "ACTUAL_EMBEDDED_PACKAGE",
+            "authors": "Alexandre Mutel",
+            "license": "BSD-2-Clause",
+            "package": "Tomlyn",
+            "repository": {
+              "commit": "ee3e3ca5b1f016b0db21ceb74d6c85d28a08ca16",
+              "type": "git",
+              "url": "https://github.com/xoofx/Tomlyn"
+            },
+            "status": "NO_LICENSE_TEXT_IN_PUBLISHED_ARCHIVE_OR_FIXED_SOURCE",
+            "supplemental_source_revision": "ee3e3ca5b1f016b0db21ceb74d6c85d28a08ca16",
+            "version": "0.19.0"
+          }
+        ]
+      }
+    ],
+    "schema_version": 1,
+    "scope": "DATA_ONLY_PINNED_NATIVE_NOTICE_COLLECTION_NOT_LEGAL_CERTIFICATION",
+    "status": "WITH_DECLARED_NOTICE_GAPS"
+  },
+  "semantic_validation": "NOT_RUN_BY_PAYLOAD_AUTHOR_ROOT_OWNS_MCP_MATRIX",
+  "signature": "UPSTREAM_ASSETS_UNMODIFIED_SIGNATURE_STATUS_NOT_CERTIFIED",
+  "odin_cargo_gates": "N/A_NO_RUST_SOURCE_CHANGE_ROOT_OWNS_FINAL_INTEGRATION_GATES"
+}

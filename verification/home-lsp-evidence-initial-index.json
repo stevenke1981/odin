@@ -1,0 +1,388 @@
+{
+  "status": "PARTIAL",
+  "native_mutation": "Expected-hash Odin Transactions",
+  "new_final_payload_and_expanded_matrix": "NOT_RUN",
+  "entries": [
+    {
+      "path": "verification/home-lsp-expanded-gates.json",
+      "published_sha256": "7cd0283c5cff64a107fac8b4fcc65e27ad2509dfc71747fc4fa2ba47cf077a46",
+      "bytes": 8593,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded-gates.json",
+      "original_raw_sha256": "88459ac5ca7283510c89d8f5fa121ac9a5d28c3573dd59b43ef144a9faab60e3",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-expanded-gate-fmt.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded-gate-fmt.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-expanded-gate-test.log",
+      "published_sha256": "4c4b421b532dd3e573e8b1c362ff4700e62f5fa44f08139eaad173b7ea6ccf4c",
+      "bytes": 23472,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded-gate-test.log",
+      "original_raw_sha256": "4c4b421b532dd3e573e8b1c362ff4700e62f5fa44f08139eaad173b7ea6ccf4c",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-expanded-gate-clippy.log",
+      "published_sha256": "fa693d7d5b7fa904db3255b01db7679653cb0a158e083e6379071371a27506af",
+      "bytes": 308,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded-gate-clippy.log",
+      "original_raw_sha256": "fa693d7d5b7fa904db3255b01db7679653cb0a158e083e6379071371a27506af",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-node49-configured.json",
+      "published_sha256": "92c8e4bd3168e3a361ae4f4e76c1b726dccdd432a81dd7dd5ef7acda7d280467",
+      "bytes": 1043,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\node49-configured.json",
+      "original_raw_sha256": "89679eaaeaab52f550c245fc72ba314e78309f87c0cf5211629618884bce2ed9",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-node49-configured.log",
+      "published_sha256": "ffb8472b8c61e9f69f4eed18758ebbf5f15765c1e1792084122017afd225c69f",
+      "bytes": 4990,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\node49-configured.log",
+      "original_raw_sha256": "ffb8472b8c61e9f69f4eed18758ebbf5f15765c1e1792084122017afd225c69f",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-root-builder-final.json",
+      "published_sha256": "952f0e9ff42eee162672c92342aec2eb27a0cc242388e5301c7fef0bb363c9ad",
+      "bytes": 1047,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\root-builder-final.json",
+      "original_raw_sha256": "1df8c50973438cbd9b4c0b25746cae8a4c927a6cb93f662b4885d43c0c60c5c2",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-root-builder-final.log",
+      "published_sha256": "f7b0eaff798c9665f8d217bd49e27f664d3fe4f2ee05e91093667680901e7f85",
+      "bytes": 4547,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\root-builder-final.log",
+      "original_raw_sha256": "3bf6d2eddca3c9ed4e3a40946cba7716f0248ad3760df6b1a757931ea6363469",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-release-190c308.json",
+      "published_sha256": "898b8e6b88036de613ee1ba0b8e671c219cdfa2b62d2b0aecc4e0f42a09c4c86",
+      "bytes": 914,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\release-190c308.json",
+      "original_raw_sha256": "57ea1958d5a95de17a0e7c9893538b37ccffd4de80c881fb5533ff9377a9006b",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-release-190c308.log",
+      "published_sha256": "bae07d9a8137426fa4b80be3381d2bf712817fc84800888255ed1c1b72652164",
+      "bytes": 299,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\release-190c308.log",
+      "original_raw_sha256": "bae07d9a8137426fa4b80be3381d2bf712817fc84800888255ed1c1b72652164",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-new-release-smokes.json",
+      "published_sha256": "17b36aa7a0736c4bb41be458f267d299d19c0924893870aa6b7b1db78864a921",
+      "bytes": 3567,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\new-release-smokes.json",
+      "original_raw_sha256": "8df0b59af429c63070c5e7aeeeea20d7a55c4397aeefd41a2342688f0451de66",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-worker-expanded06b-report.json",
+      "published_sha256": "fcb423540ee79effe8c617563fc9998b8723eb50aafc1a6c69160154dfa18641",
+      "bytes": 219898,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\worker-expanded06b-report.json",
+      "original_raw_sha256": "74a01b2ffec82b23a03d7066fe5109f7241e5014c317aee247c400a6e8fef03f",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-expanded06b-success-worker-receipt.json",
+      "published_sha256": "05200efd276cf26d5dbb20437f0451d18ef8a1528804f9138f56a171ca8909e3",
+      "bytes": 24306,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded06b-success-worker-receipt.json",
+      "original_raw_sha256": "05200efd276cf26d5dbb20437f0451d18ef8a1528804f9138f56a171ca8909e3",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-expanded06-first-worker-failure.json",
+      "published_sha256": "8ef4e05d1bfabe44fd2514c128234eb14095807e300c587f6148d122369ff841",
+      "bytes": 1129,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded06-first-worker-failure.json",
+      "original_raw_sha256": "79f19cf9deb422f9a1e634817f208970383a013a3cc7905c2bb39275806e885b",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-alternative-install-receipts.json",
+      "published_sha256": "96ed658280c78428873aaa22f71a737ad51b46d3e0d2929eb73b01bb8b313218",
+      "bytes": 3628,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\alternative-install-receipts.json",
+      "original_raw_sha256": "7a822e30810f17c8bb6dc78b23836cd4bb1cce01c9b526a2a5376f270e6450ec",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-installed-home06.json",
+      "published_sha256": "581e68a61d45ba5cad1993d53f2967fe78572018925303cd4d9b801617540be3",
+      "bytes": 209221,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installed-home06.json",
+      "original_raw_sha256": "4273bf0118f66455380f7c41208940a293a12f1f18642a56508f75af769cdeb7",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-private-home-mcp.json",
+      "published_sha256": "c1045663ab82e8aa55732bdcf9d116135a3e232d761f630afdce388f8c44110d",
+      "bytes": 30347,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\private-home-mcp.json",
+      "original_raw_sha256": "bd5ea227d6e547b16724dd38e033f2c0dd13d0ab518f224687bf7e746e8ae6a9",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-private-home-mcp-command.json",
+      "published_sha256": "fd24b28ade32002ddfe701ecde561e4711c9f5bdc600163b8458fee6e7cd75b1",
+      "bytes": 917,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\private-home-mcp-command.json",
+      "original_raw_sha256": "77bfe23506c9138d2a2a004171571fcc34efc298e8a32b874221fdc4e46ca824",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-private-home-mcp.tool-stdout.log",
+      "published_sha256": "02b11f43db69d21425aea84d11745a031cf785268899d5ba80585eff09eb4cf7",
+      "bytes": 48,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\private-home-mcp.tool-stdout.log",
+      "original_raw_sha256": "e6bf10c0409a93bd8c2c0dd735272fb9727e614803295216b7eac5ba6f15192f",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-installed06-commands.json",
+      "published_sha256": "09d05a800235f0a896997cb6d95022d67102a3a771aa8763f4ffff4c9c4ef612",
+      "bytes": 3652,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\installed06-commands.json",
+      "original_raw_sha256": "790ec52a2056c92a1f4ff1a1ace79a29cca05786eedae153de03d4d92387bc54",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-smoke-cli.json",
+      "published_sha256": "f41c0a2e1dec8fc6faaff904a5ea8771ee104f1b21739674b755c9a384b9b83e",
+      "bytes": 5260,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\new-release-cli.json",
+      "original_raw_sha256": "dd2fb64a5d6e62153a3f371cfa74dd77c11503e987537e334153b4ec538735e1",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-smoke-cli.log",
+      "published_sha256": "610efbbcae08238b8ae1d9a8c2c7b67b11dee9e96a4a40fc248ddb5cdd4563c4",
+      "bytes": 3828,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\new-release-cli.log",
+      "original_raw_sha256": "6af6178eeab8263563df9561942d6ddcea3c1fbc1a3767e9ea02fb4efe9b9b0c",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-smoke-stdio.json",
+      "published_sha256": "5563f765bf3859cf78044033e0fdc2284b6285636808009fa81a016e74812cdf",
+      "bytes": 2191,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\new-release-stdio.json",
+      "original_raw_sha256": "b0d05fca55e6e71a1319638daa862bd73fa7752a714ae61952863097fb02c38d",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-smoke-stdio.log",
+      "published_sha256": "76f986832f562757ea2d6937c7658b13aebb5f0f1cdca70fe75af4ab4199ede1",
+      "bytes": 1639,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\new-release-stdio.log",
+      "original_raw_sha256": "ac06da8a74ff39110e54f492e6db9bd03caf1e40c3115278c4c827e659e397b9",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-smoke-http.json",
+      "published_sha256": "a6c2eda6a1b01b9ef6d43c50f7d55701e40bb21cde6e09193159fcf6dae2b413",
+      "bytes": 3299,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\new-release-http.json",
+      "original_raw_sha256": "93a678408b6c7aedf2dd329658a8a1be2b1b77721100c0922f494ba2c46c1abc",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-smoke-http.log",
+      "published_sha256": "670b60a590036851c0699474fbeaf0585018742df0e403abef1c5bfd6ff50f10",
+      "bytes": 2483,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\new-release-http.log",
+      "original_raw_sha256": "191d3331fc6361721c9fb19df7f874acbc4d33cce2175b4df944692e11e62df5",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-smoke-cancel.json",
+      "published_sha256": "3347afdadcd9ebf52f1caf208c1c7b75f554fe4f74c75c113c4c64b38588f20c",
+      "bytes": 2093,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\new-release-cancel.json",
+      "original_raw_sha256": "e9592580edb379def128df409911ee6f4bde24d18ae384d42c5a34d89d060f7b",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-smoke-cancel.log",
+      "published_sha256": "ca15495c10437ef724a00cfa51f24b9fc7ba6f2ebea3171c0bb75f686599d046",
+      "bytes": 1647,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\new-release-cancel.log",
+      "original_raw_sha256": "6c589fafd68dc2279d0e7a5260e090127420ecf753e1013d523554cd7a9d2ca0",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-smoke-workspace.json",
+      "published_sha256": "b3abdfd5a082735a1fec4cd77cb760c82c6e56d777fe251425511c7ec9a1029a",
+      "bytes": 3130,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\new-release-workspace.json",
+      "original_raw_sha256": "d8b65c71c8f1ca3b93c1fa4454c4f097e402843e9e30064cf48ce1b0afc6db80",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-smoke-workspace.log",
+      "published_sha256": "14da51fb04902350afbfa182cab1213521c99c0667a33b4c8ff1cf46e84e915b",
+      "bytes": 2338,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\new-release-workspace.log",
+      "original_raw_sha256": "d6f4db9b247901f1b7a2fa24ffc74d85106961cb53a6c19712ef0ccbc6871426",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-worker06-success.stdout.log",
+      "published_sha256": "05200efd276cf26d5dbb20437f0451d18ef8a1528804f9138f56a171ca8909e3",
+      "bytes": 24306,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded06b-success-worker.stdout.log",
+      "original_raw_sha256": "05200efd276cf26d5dbb20437f0451d18ef8a1528804f9138f56a171ca8909e3",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-worker06-success.stderr.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded06b-success-worker.stderr.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-worker06-cancel.stdout.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded06b-cancel-worker.stdout.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-worker06-cancel.stderr.log",
+      "published_sha256": "292cbcc1c2bb4db0f2d9b82dde6df7d25a57fe3ec22b8b17a48d963c4b98b6a2",
+      "bytes": 91,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded06b-cancel-worker.stderr.log",
+      "original_raw_sha256": "292cbcc1c2bb4db0f2d9b82dde6df7d25a57fe3ec22b8b17a48d963c4b98b6a2",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-worker06-timeout.stdout.log",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded06b-timeout-worker.stdout.log",
+      "original_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-worker06-timeout.stderr.log",
+      "published_sha256": "cc0a8519a7ed45960b112d4b5992226853210a19a93a463c932c12a965486182",
+      "bytes": 100,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\expanded06b-timeout-worker.stderr.log",
+      "original_raw_sha256": "cc0a8519a7ed45960b112d4b5992226853210a19a93a463c932c12a965486182",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-alternative-ty.json",
+      "published_sha256": "194911ba734a5f01ad196e3b4a2744b84ad36fb07ad56cea72cdf80ef00eb813",
+      "bytes": 23895,
+      "original_source": "C:\\OdinQA\\x6\\hosts\\ty\\install-receipt.json",
+      "original_raw_sha256": "194911ba734a5f01ad196e3b4a2744b84ad36fb07ad56cea72cdf80ef00eb813",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-alternative-ruff.json",
+      "published_sha256": "cffa28e2f82e953dfb1b5f310bfa2b4893ae87fbb98fa4896dc52b4cbcac4d9e",
+      "bytes": 24214,
+      "original_source": "C:\\OdinQA\\x6\\hosts\\ruff\\install-receipt.json",
+      "original_raw_sha256": "cffa28e2f82e953dfb1b5f310bfa2b4893ae87fbb98fa4896dc52b4cbcac4d9e",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-alternative-vtsls.json",
+      "published_sha256": "63db3655e8a1c80a07902d1f87770645411b49c44d10f9f6ce2b486a6d268d7a",
+      "bytes": 24763,
+      "original_source": "C:\\OdinQA\\x6\\hosts\\vtsls\\install-receipt.json",
+      "original_raw_sha256": "63db3655e8a1c80a07902d1f87770645411b49c44d10f9f6ce2b486a6d268d7a",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-payload06-build.json",
+      "published_sha256": "becabe09243cfba0eb224d69935b3cac698912c4b3cf558e72c8df1646df21ac",
+      "bytes": 882451,
+      "original_source": "C:\\OdinQA\\expanded-lsp\\build-06.json",
+      "original_raw_sha256": "becabe09243cfba0eb224d69935b3cac698912c4b3cf558e72c8df1646df21ac",
+      "lf_normalized": false
+    },
+    {
+      "path": "verification/home-lsp-payload06-closure.json",
+      "published_sha256": "62b4132e13a310856017cfe0c073270ad6e25e81839abb3e2c587a73f499536c",
+      "bytes": 26628,
+      "original_source": "C:\\OdinQA\\expanded-lsp\\closure-06.json",
+      "original_raw_sha256": "83e9ff4119bd4f96c5f839fb8cdad741ada55f7cb016c48342cf0f77e7fa5585",
+      "lf_normalized": true
+    },
+    {
+      "path": "verification/home-lsp-seven06-python.json",
+      "published_sha256": "52c0b2ce5824106d48dca091540ddb2bc5ed2ebf9f68557376cd399cb77fd7e8",
+      "bytes": 281988
+    },
+    {
+      "path": "verification/home-lsp-seven06-go.json",
+      "published_sha256": "17edfc8190a39a77fcba8583a7d37313572a56130254634af019f49167996ba2",
+      "bytes": 157795
+    },
+    {
+      "path": "verification/home-lsp-seven06-csharp.json",
+      "published_sha256": "d5b5de19337c027eb19603c55c560ec9b028846ea128fbb408740b5dee157cd3",
+      "bytes": 284890
+    },
+    {
+      "path": "verification/home-lsp-seven06-lua.json",
+      "published_sha256": "d3cba722e87dac37d345bcae4e49f975265c385d68205e2fa4f190abdc96f46b",
+      "bytes": 175986
+    },
+    {
+      "path": "verification/home-lsp-seven06-javascript.json",
+      "published_sha256": "420f11e587e221054df7d130f2ac59839963ba6d8ec5631e722e878d0db83b90",
+      "bytes": 719493
+    },
+    {
+      "path": "verification/home-lsp-seven06-typescript.json",
+      "published_sha256": "040f272d8084f2c1cce4ef1dc1ed21c1f5d1d1c22d397346ada51ae7d8bf3e72",
+      "bytes": 666643
+    },
+    {
+      "path": "verification/home-lsp-seven06-bash.json",
+      "published_sha256": "b5c2d5e7332698495ea77c0afd22ba0d69528671da7b982baea2dd8d60498c94",
+      "bytes": 126680
+    },
+    {
+      "path": "verification/home-lsp-seven06-index.json",
+      "published_sha256": "3085c5094e745b1a392247bb3c2aee85d5664c2b5ca46e0bbcab0d11cbca7179",
+      "bytes": 23534
+    },
+    {
+      "path": "verification/home-lsp-expanded06-first-failure.json",
+      "published_sha256": "40931c1e11729656b77da10bd7f56d47f516caae474cd5bd87677719b193d5e7",
+      "bytes": 286062
+    },
+    {
+      "path": "verification/home-lsp-private-home-mcp-driver.py",
+      "published_sha256": "f6a0cec8e497ad3d07a8af0db1269d5f2fa7379888160268970fd0c2ed8ec828",
+      "bytes": 4128,
+      "original_source": "C:\\OdinQA\\home-progress-1022\\private-home-mcp.py",
+      "original_raw_sha256": "186156ec52d1065064ee27ece94b6896f1bb0f4c984a342dd1d4c5ad6273cfc4",
+      "lf_normalized": true
+    }
+  ]
+}

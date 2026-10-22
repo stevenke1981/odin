@@ -9,6 +9,7 @@ import json
 import os
 from pathlib import Path
 import stat
+import struct
 import subprocess
 import sys
 import tempfile
@@ -334,6 +335,98 @@ class BuilderTests(unittest.TestCase):
         metadata, files = notices.archive_notices(data.getvalue(), "nuget")
         self.assertEqual(metadata["authors"], "Microsoft")
         self.assertIn(("THIRD-PARTY-NOTICES.TXT", b"runtime third party notices"), files)
+
+    def pe_fixture(self, name="MSVCP140.dll", delay=False):
+        data = bytearray(1024)
+        data[:2] = b"MZ"
+        struct.pack_into("<I", data, 60, 128)
+        data[128:132] = b"PE\0\0"
+        struct.pack_into("<HH", data, 132, 0x8664, 1)
+        struct.pack_into("<H", data, 148, 240)
+        struct.pack_into("<H", data, 152, 0x20B)
+        struct.pack_into("<I", data, 272, 0x1000)
+        struct.pack_into("<I", data, 368, 0x1050 if delay else 0)
+        struct.pack_into("<III", data, 400, 512, 0x1000, 512)
+        struct.pack_into("<I", data, 412, 512)
+        struct.pack_into("<I", data, 524, 0x1040)
+        encoded = name.encode("ascii") + b"\0"
+        data[576:576 + len(encoded)] = encoded
+        path = self.root / "fixture.exe"
+        path.write_bytes(data)
+        return path
+
+    def test_pe_direct_imports_parse_and_unreviewed_delay_or_truncation_fail(self):
+        self.assertEqual(builder.pe_imports(self.pe_fixture()), ["msvcp140.dll"])
+        with self.assertRaisesRegex(builder.BuildError, "Delay-load"):
+            builder.pe_imports(self.pe_fixture(delay=True))
+        path = self.pe_fixture()
+        path.write_bytes(path.read_bytes()[:540])
+        with self.assertRaises(builder.BuildError):
+            builder.pe_imports(path)
+
+    def runtime_fixture(self):
+        directory = self.root / "VC/Redist/MSVC/14.44.35112/x64/Microsoft.VC143.CRT"
+        directory.mkdir(parents=True)
+        dependencies = []
+        for name in builder.MSVC_SHA256:
+            source = directory / name
+            source.write_bytes(name.encode())
+            dependencies.append({"name": name, "source": str(source), "sha256": builder.hash_file(source)})
+        graph = {"slint-lsp.exe": ["msvcp140.dll", "vcruntime140.dll", "user32.dll"],
+                 "msvcp140.dll": ["vcruntime140.dll", "vcruntime140_1.dll"],
+                 "vcruntime140.dll": ["kernel32.dll"], "vcruntime140_1.dll": ["kernel32.dll"]}
+        return directory, dependencies, graph
+
+    def test_recursive_runtime_requires_missing_dll_and_unknown_dependency_rejection(self):
+        directory, dependencies, graph = self.runtime_fixture()
+        pins = {item["name"]: item["sha256"] for item in dependencies}
+        with mock.patch.object(builder, "MSVC_SHA256", pins), mock.patch.object(builder, "pe_imports", side_effect=lambda p: graph[p.name]):
+            actual, system = builder.runtime_dependencies(self.root / "slint-lsp.exe", directory)
+            self.assertEqual({item["name"] for item in actual}, set(pins))
+            self.assertIn("user32.dll", system)
+            (directory / "vcruntime140_1.dll").unlink()
+            with self.assertRaisesRegex(builder.BuildError, "absent"):
+                builder.runtime_dependencies(self.root / "slint-lsp.exe", directory)
+            graph["slint-lsp.exe"] = ["unclassified-plugin.dll"]
+            with self.assertRaisesRegex(builder.BuildError, "Unclassified"):
+                builder.runtime_dependencies(self.root / "slint-lsp.exe", directory)
+        with self.assertRaisesRegex(builder.BuildError, "official Visual Studio"):
+            builder.runtime_dependencies(self.root / "slint-lsp.exe", self.root / "arbitrary")
+
+    def test_runtime_wrong_signature_signer_and_version_refuse_publication(self):
+        directory, dependencies, _ = self.runtime_fixture()
+        rows = [{**item, "version": builder.MSVC_VERSION, "signature": "Valid", "signer": "CN=Microsoft Windows, O=Microsoft Corporation"} for item in dependencies]
+        runner = builder.Runner(self.root, {"inputs": {}, "commands": []})
+        for key, value in (("signature", "NotSigned"), ("signer", "O=Untrusted"), ("version", "0.0")):
+            changed = [dict(row) for row in rows]
+            changed[0][key] = value
+            output = self.root / key
+            with mock.patch.object(builder, "runtime_dependencies", return_value=(dependencies, [])), mock.patch.object(builder, "runtime_signatures", return_value=changed):
+                with self.assertRaisesRegex(builder.BuildError, "signature/version/source"):
+                    builder.add_slint_runtime(output, directory, runner, {})
+            self.assertFalse((output / "slint").exists())
+
+    def test_runtime_conflict_and_post_signature_source_change_are_preserved(self):
+        directory, dependencies, _ = self.runtime_fixture()
+        rows = [{**item, "version": builder.MSVC_VERSION, "signature": "Valid", "signer": "O=Microsoft Corporation"} for item in dependencies]
+        runner = builder.Runner(self.root, {"inputs": {}, "commands": []})
+        output = self.root / "conflict"
+        (output / "slint").mkdir(parents=True)
+        target = output / "slint" / rows[0]["name"]
+        target.write_bytes(b"operator conflict")
+        with mock.patch.object(builder, "runtime_dependencies", return_value=(dependencies, [])), mock.patch.object(builder, "runtime_signatures", return_value=rows):
+            with self.assertRaisesRegex(builder.BuildError, "Refusing to replace"):
+                builder.add_slint_runtime(output, directory, runner, {})
+        self.assertEqual(target.read_bytes(), b"operator conflict")
+        Path(rows[0]["source"]).write_bytes(b"changed after valid signature probe")
+        with mock.patch.object(builder, "runtime_dependencies", return_value=(dependencies, [])), mock.patch.object(builder, "runtime_signatures", return_value=rows):
+            with self.assertRaisesRegex(builder.BuildError, "changed after signature"):
+                builder.add_slint_runtime(self.root / "changed", directory, runner, {})
+
+    def test_runtime_signature_helper_is_fixed_and_does_not_change_host_policy(self):
+        self.assertEqual(hashlib.sha256(builder.RUNTIME_SIGNATURE_SCRIPT.encode()).hexdigest(), builder.RUNTIME_SIGNATURE_SCRIPT_SHA256)
+        self.assertNotIn("Set-ExecutionPolicy", builder.RUNTIME_SIGNATURE_SCRIPT)
+        self.assertNotIn("Invoke-Expression", builder.RUNTIME_SIGNATURE_SCRIPT)
 
     def test_native_metadata_matches_reviewed_official_closure(self):
         data, components, artifacts = builder.native_inputs(builder.REPO / "packaging/lsp-native-sources.json")

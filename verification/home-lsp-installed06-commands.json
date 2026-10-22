@@ -1,0 +1,106 @@
+{
+  "runs": [
+    {
+      "name": "home",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "tests/home_installed_smoke.py",
+        "--binary",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--install-root",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin",
+        "--synthetic-home",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587",
+        "--output",
+        "C:\\OdinQA\\home-progress-1022\\installed-home06.json"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "seconds": 32.44,
+      "binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+      "driver_sha256": "aa845b352721b7e389e9685efd3704bd0dca07515ccb2893820791db2a5507d2",
+      "logs": {
+        "stdout": "572458d2a53291d1e2a386819b20eb4664a8ff2ad1b2e93ac7af3698ca69e410",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "seven",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "tests/real_installed_languages.py",
+        "--binary",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--install-root",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin",
+        "--host-config",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\.config\\odin\\host.toml",
+        "--output",
+        "C:\\OdinQA\\home-progress-1022\\installed-seven06.json"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 0,
+      "seconds": 107.25,
+      "binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+      "driver_sha256": "280a756f953d859bf742e5a1b084923c8e390d3671973cd394124088719c794f",
+      "logs": {
+        "stdout": "c0fc9defeab6167d43eaf654a02de4555cc3dde026c98fdb6b0268ce37745a80",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "expanded",
+      "argv": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-B",
+        "tests/expanded_installed_languages.py",
+        "--binary",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin\\odin.exe",
+        "--install-root",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\AppData\\Local\\Programs\\Odin",
+        "--host-config",
+        "C:\\OdinQA\\x6\\Home \u4e2d\u6587\\.config\\odin\\host.toml",
+        "--output",
+        "C:\\OdinQA\\home-progress-1022\\installed-expanded06.json",
+        "--ty-host-config",
+        "C:/OdinQA/x6/hosts/ty/host.toml",
+        "--ruff-host-config",
+        "C:/OdinQA/x6/hosts/ruff/host.toml",
+        "--vtsls-host-config",
+        "C:/OdinQA/x6/hosts/vtsls/host.toml",
+        "--rust-toolchain-bin",
+        "C:/Users/steven/.rustup/toolchains/stable-x86_64-pc-windows-msvc/bin",
+        "--cases",
+        "slint",
+        "c",
+        "cpp",
+        "toml",
+        "yaml",
+        "markdown",
+        "rust",
+        "ty",
+        "ruff",
+        "vtsls-javascript",
+        "vtsls-typescript"
+      ],
+      "cwd": "E:\\odin",
+      "exit_code": 1,
+      "seconds": 307.96,
+      "binary_sha256": "2e1c11b040ab1c13e4843a0de7b912b0f8b9452d2284a5c353077df32e021792",
+      "driver_sha256": "01148ab40e8aa3e3b1c41211a2c55d79d45f0bc8ef4fcbf7caf3bc0b35bbbeeb",
+      "logs": {
+        "stdout": "be2191b50eb611a21bdc360aa286367bccb57c1eb9c7b4d9b22dd1e0bd9c88a6",
+        "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "status": "FAIL"
+}
