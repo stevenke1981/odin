@@ -1,0 +1,380 @@
+
+running 9 tests
+test setup::tests::hooks_are_idempotent_and_disable_restores_surroundings ... ok
+test http::tests::tokens_are_compared_exactly ... ok
+test setup::tests::malformed_sections_are_rejected ... ok
+test http::tests::audit_export_uses_a_metadata_allowlist ... ok
+test setup::tests::client_command_preserves_restrictive_policy_selection ... ok
+test setup::tests::preserves_unrelated_json_and_toml_settings ... ok
+test setup::tests::workspace_setup_and_guidance_do_not_pin_setup_directory ... ok
+test home_cli_tests::writable_init_requires_an_explicit_root_before_creating_host_files ... ok
+test home_cli_tests::omitted_root_and_config_are_distinct_from_explicit_cwd ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test redirected_userprofile_is_rejected_before_canonicalization ... ok
+test explicit_root_keeps_legacy_registration_and_relative_config_support ... ok
+test normal_absolute_home_host_path_cannot_bypass_standard_location ... ok
+test default_home_is_usable_while_explicit_cwd_remains_project_specific ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.18s
+
+
+running 56 tests
+test memory::tests::memory_name_traversal_is_rejected ... ok
+test languages::tests::multiplexed_ids_and_custom_profiles_are_not_conflated ... ok
+test languages::tests::registry_ids_are_unique_with_nonempty_document_extensions ... ok
+test languages::tests::expanded_profiles_are_guidance_with_separate_c_and_cpp_extensions ... ok
+test config::tests::context_then_mode_only_reduce_explicit_host_grants ... ok
+test config::tests::aliases_cannot_bypass_project_scope ... ok
+test memory::tests::reference_replacement_is_exact ... ok
+test config::tests::unknown_context_fails_closed ... ok
+test config::tests::host_configuration_is_protected_inside_workspace ... ok
+test config::tests::windows_project_ids_cannot_share_a_state_namespace_by_case ... ok
+test memory::tests::reference_expansion_is_rejected_before_allocating_the_result ... ok
+test paths::tests::deny_secrets ... ok
+test config::tests::windows_case_aliases_cannot_rewrite_host_policy_or_state ... ok
+test memory::tests::global_writes_require_separate_permission ... ok
+test paths::tests::traversal_is_denied ... ok
+test paths::tests::missing_parent_is_not_created ... ok
+test process::tests::environment_is_an_explicit_allowlist ... ok
+test paths::tests::hardlinked_files_cannot_alias_outside_or_protected_data ... ok
+test sandbox::enumeration_tests::enumeration_requires_explicit_native_support_without_promoting_grants ... ok
+test paths::tests::limits_and_utf8 ... ok
+test search::tests::match_limit_is_explicit ... ok
+test search::tests::search_returns_live_hash_and_line ... ok
+test paths::tests::handle_relative_write_preserves_content_and_cleans_temporary_files ... ok
+test memory::tests::memory_import_rejects_digest_tampering_and_unresolved_refs ... ok
+test process::tests::closing_job_terminates_a_live_child ... ok
+test transaction::tests::case_aliases_are_duplicate_targets_on_windows ... ok
+test transaction::tests::crash_process_worker ... ok
+test paths::tests::windows_junction_is_denied ... ok
+test config::tests::nested_home_host_exception_rejects_a_redirected_config_directory ... ok
+test transaction::tests::conflict_before_commit_has_no_partial_write ... ok
+test memory::tests::windows_memory_aliases_cannot_bypass_readonly_or_reference_policy ... ok
+test config::tests::standard_client_exception_is_exact_and_cannot_target_host_state_or_installation ... ok
+test config::tests::home_policy_rejects_other_defaults_and_untrusted_nested_host_files ... ok
+test config::tests::home_view_does_not_hide_invalid_unselected_registrations ... ok
+test transaction::tests::idempotency_key_cannot_change_meaning ... ok
+test config::tests::future_private_paths_normalize_parent_components_before_becoming_deny_patterns ... ok
+test config::tests::readonly_home_view_excludes_registered_roots_without_swallowing_their_policy ... ok
+test store::tests::trace_audit_contains_metadata_without_source ... ok
+test config::tests::home_default_is_real_readonly_root_with_private_storage_exclusions ... ok
+test transaction::tests::prepare_does_not_write_and_apply_is_idempotent ... ok
+test store::tests::fts_excludes_stale_contents ... ok
+test transaction::tests::recovery_refuses_to_destroy_an_external_change ... ok
+test config::tests::home_privacy_contract_excludes_every_standard_app_and_credential_path ... ok
+test transaction::tests::recovery_restores_a_simulated_interrupted_commit ... ok
+test memory::tests::new_windows_notes_cannot_use_existing_parent_case_aliases ... ok
+test memory::tests::scope_move_never_rebinds_cross_project_local_references ... ok
+test memory::tests::prepared_import_detects_external_writes ... ok
+test config::tests::home_policy_protects_all_projects_and_never_selects_private_roots ... ok
+test store::tests::incremental_refresh_updates_additions_changes_and_deletions ... ok
+test transaction::tests::undo_create_and_edit ... ok
+test memory::tests::memory_bundle_roundtrip_is_previewed_and_owned ... ok
+test memory::tests::memory_rename_updates_references ... ok
+test memory::tests::scope_move_updates_references_in_one_cas_journal ... ok
+test config::tests::windows_short_aliases_use_canonical_host_policy ... ok
+test transaction::tests::real_process_crashes_at_transaction_checkpoints_are_recoverable ... ok
+test transaction::tests::aggregate_snapshot_budget_is_checked_before_journal_creation ... ok
+
+test result: ok. 56 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.18s
+
+
+running 8 tests
+test new_execution_permissions_are_not_implicitly_enabled ... ok
+test formatter_argv_is_fixed_isolated_stdin_only_and_placeholder_is_exact ... ok
+test policies_can_only_reduce_inspection_permission ... ok
+test formatter_policy_is_explicit_reducible_and_cannot_grant_write ... ok
+test sandbox_policy_binds_executor_and_protects_host_storage ... ok
+test sandbox_writable_grants_cannot_cover_configuration_or_state ... ok
+test inspection_profiles_cannot_enable_source_writing_flags ... ok
+test enumeration_is_explicit_directory_only_and_distinct_from_content_grants ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 4 tests
+test abort_and_native_timeout_reap_the_sandbox_tree ... ignored, Requires explicit trusted native MXC path/hash and a supported Windows host
+test bounded_execution_retains_guard_until_abort_and_timeout_reaping ... ignored, Requires explicit trusted native MXC path/hash and a supported Windows host
+test filesystem_network_stdio_and_descendant_isolation ... ignored, Requires explicit trusted native MXC path/hash and a supported Windows host
+test lifetime_guard_can_be_retained_in_a_shared_rpc_process ... ok
+
+test result: ok. 1 passed; 0 failed; 3 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 2 tests
+test transaction_process_worker ... ok
+test two_native_processes_cannot_silently_overwrite_each_other ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+
+running 6 tests
+test execution_rejects_unbounded_input_capture_and_deadlines_before_spawn ... ok
+test concurrent_output_draining_prevents_stdin_backpressure_deadlock ... ok
+test zero_exit_does_not_make_partial_stdin_a_success ... ok
+test invalid_utf8_and_nonzero_exit_are_not_usable_source ... ok
+test unicode_snapshot_roundtrips_exactly_and_empty_input_closes_pipe ... ok
+test deadline_includes_child_that_does_not_read_stdin ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.25s
+
+
+running 9 tests
+test repository_host_configuration_is_rejected_before_parsing ... ok
+test windows_case_alias_keeps_same_state_identity ... ok
+test distinct_unicode_directory_names_never_share_workspace_state ... ok
+test outside_roots_and_unselected_template_fail_closed ... ok
+test repo_owned_configuration_is_not_loaded_as_host_policy ... ok
+test workspace_selection_preserves_other_projects_and_allowed_roots_for_host_output ... ok
+test registered_project_selected_by_nested_cwd_retains_host_policy ... ok
+test startup_roots_have_stable_distinct_ids_and_no_implicit_grants ... ok
+test protected_state_and_its_descendants_cannot_be_selected_as_roots ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+
+running 38 tests
+test flow::tests::source_strings_are_inert ... ok
+test flow::tests::missing_reference_is_an_error ... ok
+test flow::tests::refs_select_values_not_code ... ok
+test flow::tests::repeated_references_and_namespace_growth_fail_before_large_clones ... ok
+test formatter::tests::invalid_process_outcomes_never_become_source_text ... ok
+test inspections::tests::provider_versions_distinguish_clippy_from_cargo_and_unknown_output ... ok
+test refactor::tests::does_not_accept_command_only_or_mixed_action ... ok
+test refactor::tests::enforces_semantic_action_kind_and_unambiguous_title ... ok
+test schema::tests::accepts_nullable ... ok
+test schema::tests::rejects_missing ... ok
+test schema::tests::rejects_unknown_fields ... ok
+test symbols::tests::repeated_overlapping_bodies_exhaust_budget_before_copy ... ok
+test tests::inserts_into_empty_document ... ok
+test tests::preserves_crlf_line_edit ... ok
+test tests::literal_replacement_count ... ok
+test occurrences::tests::occurrence_ids_change_with_content_or_flags ... ok
+test occurrences::tests::empty_regex_matches_are_rejected ... ok
+test symbols::tests::exact_and_case_insensitive_matching ... ok
+test text_replace::tests::length_first_rejects_many_literal_and_capture_expansions ... ok
+test inspections::tests::eslint_utf16_columns_and_global_fix_indices_preserve_bom ... ok
+test occurrences::tests::regex_expands_only_selected_capture_and_preserves_crlf ... ok
+test tests::regex_replacement_captures ... ok
+test inspections::tests::malformed_analyzer_coordinates_and_overlapping_edits_are_rejected ... ok
+test symbols::tests::filters_kind_depth_scope_and_name ... ok
+test inspections::tests::parser_count_output_and_resulting_file_size_limits_are_enforced ... ok
+test inspections::tests::clippy_machine_applicable_bytes_are_converted_and_build_completion_is_required ... ok
+test inspections::tests::unsafe_suggestions_cross_file_locations_and_unknown_sources_never_become_safe_fixes ... ok
+test text_replace::tests::bounded_template_matches_upstream_capture_interpolation ... ok
+test results::tests::expired_results_are_removed_without_evicting_fresh_results ... ok
+test inspections::tests::ruff_scalar_columns_bom_and_crlf_convert_to_utf16_with_safe_fix ... ok
+test flow::tests::measurement_handles_escaping_and_node_limit_without_serialized_copy ... ok
+test inspections::tests::repeated_primary_clippy_suggestions_have_an_aggregate_preallocation_budget ... ok
+test flow::tests::a_locked_session_does_not_lock_other_sessions_and_clear_rejects_busy ... ok
+test formatter::tests::invalid_output_is_rejected_before_a_transaction_is_prepared ... ok
+test inspections::tests::inspection_profiles_reject_write_flags_and_require_provider_safety_flags ... ok
+test inspections::tests::sandbox_write_and_temp_grants_cannot_overlap_sources_or_state ... ok
+test formatter::tests::noop_has_no_journal_and_external_writes_are_never_overwritten ... ok
+test formatter::tests::unicode_bom_and_crlf_preview_preserves_bytes_until_apply_and_rollback ... ok
+
+test result: ok. 38 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.37s
+
+
+running 19 tests
+test symbol_body_rejects_external_write_while_backend_response_is_pending ... ok
+test debug_batch_fails_closed_without_host_debug_permission ... ok
+test symbol_diagnostics_summary_matches_filtered_severities_and_status ... ok
+test flow_builtins_run_as_data_and_failed_drafts_do_not_commit ... ok
+test trace_digest_and_audit_id_match_without_logging_contents ... ok
+test occurrence_ids_reject_new_snapshots_and_duplicate_targets ... ok
+test multiline_regex_selection_preserves_crlf_and_expands_captures ... ok
+test five_matches_can_select_exactly_two_and_never_write_before_apply ... ok
+test protocol_fixture_quickfix_uses_diagnostics_and_resolve_but_rejects_server_commands ... ok
+test version_schema_capabilities_and_policy_agree ... ok
+test flow_repeated_references_tool_outputs_and_namespace_are_bounded_before_copying ... ok
+test literal_capture_memory_and_occurrence_growth_fail_before_materializing_output ... ok
+test incremental_query_sees_new_content_and_deleted_files ... ok
+test protocol_fixture_debug_batch_is_session_bound_and_reports_each_request ... ok
+test protocol_fixture_symbol_filters_and_capability_probe_use_actual_backend_messages ... ok
+test protocol_fixture_move_and_inline_produce_transaction_previews_without_text_fallback ... ok
+test memory_bundle_import_and_scope_move_are_previewed_owned_and_guarded ... ok
+test results_roundtrip_in_utf8_chunks_with_project_scope_digest_and_expiry ... ok
+test symbol_offset_skips_body_resolution_before_copying ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.81s
+
+
+running 3 tests
+test batch_launch_policy_is_applied_before_any_adapter_request_and_preserves_per_step_outcomes ... ok
+test unconfigured_debug_policy_preserves_explicit_privileged_host_behavior_and_reports_it ... ok
+test immutable_single_launch_uses_host_payload_and_rejects_other_launch_or_missing_attach ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.79s
+
+
+running 4 tests
+test native_formatter_rejects_source_writable_sandbox_grants_before_launch ... ok
+test formatter_metadata_is_redacted_and_does_not_invent_lsp_capabilities ... ok
+test native_profile_caller_range_options_and_argv_are_never_silently_used ... ok
+test native_formatter_permissions_and_explicit_routing_do_not_enable_a_fallback ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.55s
+
+
+running 8 tests
+test range_formatting_and_empty_edits_keep_explicit_preview_semantics ... ok
+test inspection_catalog_metadata_permissions_and_required_sandbox_are_consistent ... ok
+test workspace_symbols_and_call_hierarchy_are_local_bounded_and_real_rpc ... ok
+test formatting_only_previews_cas_and_revalidates_on_apply ... ok
+test source_changed_during_ide_rpc_is_a_conflict_for_reads_and_formatting ... ok
+test lsp_coordinates_over_one_hundred_thousand_are_valid_but_utf16_boundaries_still_apply ... ok
+test ide_policy_hashes_utf16_and_missing_capabilities_fail_closed ... ok
+test ide_reads_resolve_metadata_and_never_execute_backend_commands ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.02s
+
+
+running 12 tests
+test legacy_bridge_configuration_is_rejected ... ok
+test removed_bridge_tools_are_unknown ... ok
+test project_override_is_rejected ... ok
+test malformed_arguments_do_not_fall_back_to_defaults ... ok
+test standalone_status_and_catalog_agree ... ok
+test flow_cannot_reach_mutating_tools ... ok
+test readonly_rejects_source_creation ... ok
+test cross_project_queries_are_read_only ... ok
+test exact_hash_required_after_read ... ok
+test flow_state_is_scoped_to_project ... ok
+test memory_roundtrip_has_hash ... ok
+test source_edits_are_preview_then_apply ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.88s
+
+
+running 4 tests
+test language_profile_id_and_partial_extensions_do_not_hide_backend_gaps ... ok
+test analysis_reports_scan_evidence_limits_and_unreadable_markers ... ok
+test workspace_stores_and_memory_namespaces_are_isolated ... ok
+test live_analysis_updates_structure_and_evidence_without_running_backends ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.39s
+
+
+running 35 tests
+test text::tests::ascii_offsets ... ok
+test lsp::tests::hierarchy_budget_counts_escaped_utf8_and_all_retained_fields ... ok
+test lsp::tests::nested_symbols_keep_name_paths ... ok
+test rpc::tests::diagnostic_uri_keys_match_real_windows_drive_aliases ... ok
+test lsp::tests::semantic_tokens_reject_surrogate_splits_overlaps_and_bad_legends ... ok
+test rpc::tests::diagnostic_uri_keys_are_lexical_and_preserve_path_case ... ok
+test text::tests::crlf ... ok
+test lsp::tests::hierarchy_budget_rejects_expired_synchronous_serialization ... ok
+test text::tests::disjoint_edits ... ok
+test text::tests::invalid_line ... ok
+test text::tests::overlapping_edits_fail ... ok
+test text::tests::same_position_inserts_preserve_the_server_order ... ok
+test rpc::tests::clean_eof ... ok
+test rpc::tests::framed_json_roundtrip ... ok
+test rpc::tests::duplicate_length_is_rejected ... ok
+test text::tests::unicode_utf16 ... ok
+test text::tests::utf8_byte_offsets_round_trip_utf16_and_line_endings ... ok
+test rpc::tests::truncated_frame_is_rejected ... ok
+test rpc::tests::oversize_frame_is_rejected ... ok
+test rpc::tests::malformed_headers_are_rejected ... ok
+test text::tests::bare_cr_is_a_line_break_and_end_position_uses_utf16 ... ok
+test lsp::tests::diagnostic_findings_have_provenance_and_pending_never_means_clean ... ok
+test text::tests::trailing_empty_line ... ok
+test workspace::tests::annotation_confirmation_and_ambiguous_shapes_fail_closed ... ok
+test workspace::tests::external_protected_directory_and_missing_parent_paths_are_rejected ... ok
+test workspace::tests::empty_workspace_edit_alternative_never_relaxes_version_or_overwrite_policy ... ok
+test workspace::tests::delete_and_recreate_keeps_original_hash ... ok
+test workspace::tests::successive_text_document_edits_use_the_prior_result ... ok
+test workspace::tests::resource_conflicts_never_overwrite_existing_content ... ok
+test workspace::tests::snapshot_version_and_external_changes_are_all_checked ... ok
+test workspace::tests::ignored_resource_operations_remain_safe_and_ordered ... ok
+test workspace::tests::empty_or_null_workspace_edit_alternatives_preserve_cas_guards ... ok
+test workspace::tests::unchanged_existing_source_still_has_a_transaction_hash_guard ... ok
+test workspace::tests::target_created_after_preview_conflicts_without_any_project_write ... ok
+test workspace::tests::ordered_resources_are_one_guarded_core_transaction ... ok
+
+test result: ok. 35 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+
+running 34 tests
+test backend_timeout_is_reported_not_retried ... ok
+test dap_cancelled_launch_keeps_an_unknown_outcome_until_disconnect ... ok
+test lsp_fixture_lifecycle_and_symbols ... ok
+test dap_restart_ticket_allows_a_new_configuration_cycle_without_deadlock ... ok
+test real_java_rename_workspace_edit_probe ... ignored, Requires explicitly supplied real JDTLS fixture/profile; records its raw rename WorkspaceEdit
+test real_push_diagnostic_uri_probe ... ignored, Requires explicitly supplied basedpyright and TypeScript tools; records real diagnostic URI behavior
+test real_rust_analyzer_smoke ... ignored, Requires installed rust-analyzer, Rust sysroot, and real fixture project; run explicitly
+test dap_launch_does_not_block_configuration_done ... ok
+test ide_workspace_symbols_are_scoped_limited_and_project_local ... ok
+test sandbox_startup_failure_never_retries_backend_without_sandbox ... ok
+test dap_capabilities_and_state_guard_the_complete_session_lifecycle ... ok
+test ide_formatting_prepares_a_versioned_workspace_edit_for_core_cas_only ... ok
+test diagnostic_uri_aliases_share_cache_lookup_and_invalidation ... ok
+test dropping_request_future_cancels_and_backend_remains_usable ... ok
+test ide_reads_and_resolves_are_fresh_inert_and_utf16_negotiated ... ok
+test lsp_incremental_sync_uses_utf16_old_document_range ... ok
+test ide_call_and_type_hierarchies_preserve_opaque_items_and_ranges ... ok
+test code_action_resolution_preserves_diagnostics_without_executing_edits ... ok
+test malformed_diagnostic_uri_is_a_protocol_error_not_a_clean_report ... ok
+test backend_progress_and_explicit_restart_are_observable ... ok
+test lsp_open_close_only_sync_reopens_changed_document ... ok
+test stale_push_diagnostics_are_pending_until_current_version_arrives ... ok
+test aliased_push_diagnostics_preserve_stale_and_unversioned_status ... ok
+test hierarchy_prepare_quota_rejects_before_any_related_rpc ... ok
+test request_timeout_cancels_once_and_leaves_no_pending_registration ... ok
+test ide_queries_reject_stale_resolve_hashes_and_response_time_changes ... ok
+test hierarchy_json_quota_is_cumulative_and_stops_before_fifth_related_rpc ... ok
+test ide_invalid_capabilities_encoding_and_payloads_are_explicit_errors ... ok
+test hierarchy_relation_and_range_counts_are_bounded_before_validation ... ok
+test configured_language_profile_uses_file_specific_lsp_language_id ... ok
+test aliased_push_diagnostics_track_current_errors_clean_recovery_and_source_hash ... ok
+test ide_diagnostics_include_inspection_metadata_and_preserve_backend_failure ... ok
+test workspace_edit_empty_alternatives_route_rename_through_hash_guarded_transactions ... ok
+test hierarchy_timeout_covers_prepare_and_all_related_rpcs_together ... ok
+
+test result: ok. 31 passed; 0 failed; 3 ignored; 0 measured; 0 filtered out; finished in 2.67s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Compiling odin-core v0.2.0 (E:\odin\crates\odin-core)
+   Compiling odin-agent v0.2.0 (E:\odin\crates\odin)
+   Compiling odin-protocol v0.2.0 (E:\odin\crates\odin-protocol)
+   Compiling odin-engine v0.2.0 (E:\odin\crates\odin-engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 20.70s
+     Running unittests src\main.rs (target\debug\deps\odin-ee6eb30859d9c5bd.exe)
+     Running ..\..\tests\home_workspace_native.rs (target\debug\deps\home_workspace_native-e8479a934e2a0757.exe)
+     Running unittests src\lib.rs (target\debug\deps\odin_core-42e323cf5dd03548.exe)
+     Running tests\host_execution_policy.rs (target\debug\deps\host_execution_policy-3c384c6afa3601d6.exe)
+     Running tests\os_sandbox_native.rs (target\debug\deps\os_sandbox_native-90dfc574e918d402.exe)
+     Running tests\process_contention.rs (target\debug\deps\process_contention-c81460d1d0048942.exe)
+     Running tests\stdin_execution.rs (target\debug\deps\stdin_execution-b3bbceef96f70e9f.exe)
+     Running tests\workspace_binding.rs (target\debug\deps\workspace_binding-7527e2bea90b6016.exe)
+     Running unittests src\lib.rs (target\debug\deps\odin_engine-9b6207c7e95d7c19.exe)
+     Running tests\completion.rs (target\debug\deps\completion-3ac18227ac0e594e.exe)
+     Running tests\debug_launch_policy.rs (target\debug\deps\debug_launch_policy-6c42af7af858e791.exe)
+     Running tests\formatter_profiles.rs (target\debug\deps\formatter_profiles-5324d818687bfffd.exe)
+     Running tests\ide_tools.rs (target\debug\deps\ide_tools-14535230beb1ede0.exe)
+     Running tests\invariants.rs (target\debug\deps\invariants-537b43f923288b92.exe)
+     Running tests\project_analysis.rs (target\debug\deps\project_analysis-e7db5e0595dcd814.exe)
+     Running unittests src\lib.rs (target\debug\deps\odin_protocol-7e00f6e984a174f8.exe)
+     Running tests\fixture_protocols.rs (target\debug\deps\fixture_protocols-962908626428e73d.exe)
+   Doc-tests odin_core
+   Doc-tests odin_engine
+   Doc-tests odin_protocol
