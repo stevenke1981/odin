@@ -754,5 +754,18 @@
     "independent_review_status": "PASS_WITH_DOCUMENTED_FEATURE_GAPS",
     "independent_review_report": "verification/bundled-lsp-review.json",
     "independent_review_sha256": "7e2c48d8d0ab63ae02e52dd08e07c3ec5df232bb61d850bd5b71379bfeec24d2"
+  },
+  "home_and_expanded_lsp": {
+    "status": "PARTIAL",
+    "evidence": "verification/home-root-installer-validation.json",
+    "primary_profiles": 14,
+    "default_lsp_implementations": 12,
+    "bundled_lsp_implementations": 15,
+    "version_probes": 19,
+    "candidate_native_and_unit_gates": "PASS",
+    "new_release_binary": "NOT_RUN",
+    "actual_installed_expanded_mcp": "NOT_RUN",
+    "final_installer_lifecycle": "NOT_RUN",
+    "existing_history_preserved": true
   }
 }

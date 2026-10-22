@@ -9,3 +9,11 @@ Rust dependencies and external language servers/debug adapters retain their resp
 The Cargo inventory covers crate packages. The static Linux build also links Rust standard-library and native runtime code; their upstream license and copyright texts are shipped in [runtime notices](docs/THIRD_PARTY_RUNTIME_NOTICES.txt), with exact source hashes recorded separately under `verification/runtime-notices-v3-*`. External build tools are not bundled merely because they were used to compile the app. This notice inventory does not certify legal compliance.
 
 The Python test fixtures are newly authored protocol mocks, not actual language servers or debuggers. Python is test/verification tooling, not a dependency of the Odin Rust runtime; a separately selected backend may have its own runtime requirements.
+
+## Expanded Windows language-server programs
+
+The Windows payload also includes fixed Slint LSP, clangd, Taplo, YAML LS, Marksman, Ruff, ty, vtsls and rust-analyzer. Exact official asset/source URLs and hashes are in `packaging/lsp-native-sources.json` and the shipped `backends/manifest.json`. Executables retain their own licenses; installing them does not turn their code into MIT-licensed Odin source. Rust toolchains and ShellCheck are not bundled.
+
+Slint LSP is a separate GPL-3.0-only program, accompanied by the license text and compressed corresponding-source sidecar with source/build inventory. The sidecar's input hashes are checked; rebuilding the upstream binary has not been executed. The presence of another Slint license text is not a claim that the standalone LSP is offered under the royalty-free API license.
+
+The native notice collector records Cargo.lock supersets (including dev/non-Windows packages), actual embedded Marksman NuGet dependency metadata, upstream supplied texts, source URLs, and declared supplemental license-text gaps. Its status is `WITH_DECLARED_NOTICE_GAPS`, not a complete linked SBOM or legal certification. Component gap counts: Taplo 6, Ruff 9, ty 9, rust-analyzer 7, Marksman 3; supersets overlap. Review the shipped `licenses/` and `sources/` inventory and upstream terms for redistribution. No missing upstream text is replaced with invented attribution. See `docs/EXPANDED_LSP.md` and `docs/LSP_PAYLOAD_BUILDER.md`.

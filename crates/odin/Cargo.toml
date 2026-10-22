@@ -21,3 +21,7 @@ axum.workspace = true
 tracing.workspace = true
 tracing-subscriber.workspace = true
 toml.workspace = true
+
+[[test]]
+name = "home_workspace_native"
+path = "../../tests/home_workspace_native.rs"

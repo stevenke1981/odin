@@ -8,6 +8,8 @@
     "typescript-language-server": "6.0.2",
     "typescript": "6.0.3",
     "bash-language-server": "5.8.1",
-    "smol-toml": "1.9.1"
+    "smol-toml": "1.9.1",
+    "yaml-language-server": "2.0.0",
+    "@vtsls/language-server": "0.3.0"
   }
 }

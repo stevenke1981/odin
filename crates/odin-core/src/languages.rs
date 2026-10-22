@@ -78,10 +78,18 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "https://github.com/razzmatazz/csharp-language-server"
     ),
     adapter!(
-        "cpp",
-        ["c", "h", "cc", "cpp", "cxx", "hpp", "hh", "hxx"],
+        "c",
+        ["c", "h"],
         "clangd",
-        [],
+        ["--enable-config=false"],
+        ["compile_commands.json", "CMakeLists.txt"],
+        "https://clangd.llvm.org/"
+    ),
+    adapter!(
+        "cpp",
+        ["cc", "cpp", "cxx", "hpp", "hh", "hxx"],
+        "clangd",
+        ["--enable-config=false"],
         ["compile_commands.json", ".clangd", "CMakeLists.txt"],
         "https://clangd.llvm.org/"
     ),
@@ -222,6 +230,30 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "https://github.com/redhat-developer/yaml-language-server"
     ),
     adapter!(
+        "slint",
+        ["slint"],
+        "slint-lsp",
+        [],
+        ["Cargo.toml"],
+        "https://docs.slint.dev/latest/docs/language/"
+    ),
+    adapter!(
+        "toml",
+        ["toml"],
+        "taplo",
+        ["lsp", "stdio"],
+        [],
+        "https://taplo.tamasfe.dev/"
+    ),
+    adapter!(
+        "markdown",
+        ["md", "markdown"],
+        "marksman",
+        ["server"],
+        [".marksman.toml"],
+        "https://github.com/artempyanykh/marksman"
+    ),
+    adapter!(
         "vue",
         ["vue"],
         "vue-language-server",
@@ -304,6 +336,30 @@ mod tests {
         ] {
             assert_eq!(language_id_for_path(profile, Path::new(file)), expected);
         }
+    }
+
+    #[test]
+    fn expanded_profiles_are_guidance_with_separate_c_and_cpp_extensions() {
+        for (id, server, args) in [
+            ("slint", "slint-lsp", &[][..]),
+            ("c", "clangd", &["--enable-config=false"][..]),
+            ("cpp", "clangd", &["--enable-config=false"][..]),
+            ("toml", "taplo", &["lsp", "stdio"][..]),
+            ("yaml", "yaml-language-server", &["--stdio"][..]),
+            ("markdown", "marksman", &["server"][..]),
+        ] {
+            let profile = ADAPTERS.iter().find(|entry| entry.id == id).unwrap();
+            assert_eq!(profile.server, server);
+            assert_eq!(profile.args, args);
+        }
+        let c = ADAPTERS.iter().find(|entry| entry.id == "c").unwrap();
+        let cpp = ADAPTERS.iter().find(|entry| entry.id == "cpp").unwrap();
+        assert!(c.extensions.contains(&"c"));
+        assert!(
+            c.extensions
+                .iter()
+                .all(|extension| !cpp.extensions.contains(extension))
+        );
     }
 
     #[test]

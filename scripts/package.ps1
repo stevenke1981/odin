@@ -53,7 +53,7 @@ try {
     }
     if (-not (Test-Path -LiteralPath (Join-Path $LspPayload 'manifest.json') -PathType Leaf)) { throw 'LSP payload manifest is required.' }
     Copy-Item -LiteralPath $LspPayload -Destination (Join-Path $Stage 'backends') -Recurse
-    Copy-Item -LiteralPath (Join-Path $Root 'packaging/setup-lsps.mjs') -Destination (Join-Path $Stage 'setup-lsps.mjs')
+    foreach ($SetupScript in @('setup-lsps.mjs','setup-progress.mjs')) { Copy-Item -LiteralPath (Join-Path $Root ('packaging/' + $SetupScript)) -Destination (Join-Path $Stage $SetupScript) }
     $Node = Join-Path $Stage 'backends/node/node.exe'
     if (-not (Test-Path -LiteralPath $Node -PathType Leaf)) { throw 'The LSP payload must bundle Node.' }
     $LspVerificationRaw = & $Node (Join-Path $Stage 'setup-lsps.mjs') --verify-payload

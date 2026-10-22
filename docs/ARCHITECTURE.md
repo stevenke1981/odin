@@ -54,7 +54,7 @@ Python uses basedpyright, JavaScript/TypeScript share TSLS with a fixed tsserver
 
 LSP、DAP 依需求啟動。每個 `(project_id, language_id)` 使用各自 LSP；每個 project 有自己的 DAP session。關閉時先嘗試標準 shutdown/disconnect，再清理 RPC task 與 process tree。Windows Job Objects／Unix groups 管理生命週期；選用 MXC 的 workload 在執行前進入 OS 邊界，policy/scratch guard 保留至 tree close 與 parent reap。未選用 MXC 的程序只有原生命週期控制。
 
-所有可改變專案的請求先進入 `Engine::run`。每次指定 project，沒有全程序可變的 active_project。啟動後不允許 Agent 新增任意 root；更改 host config 需重啟。`--workspace PATH` 在 Engine 建立前從 host 註冊 root 或 workspace.allowed_roots 綁定單一 immutable project；新 root 唯讀，state ID 以 canonical root hash 隔離，沒有 process-global active_project。workspace 模式只讀專案外的絕對 host config；細節見 [當前專案](CURRENT_WORKSPACE.md)。不同 project 的語意範圍分開；此版未提供使用者身分／多租戶 ACL。
+所有可改變專案的請求先進入 `Engine::run`。每次指定 project，沒有全程序可變的 active_project。啟動後不允許 Agent 新增任意 root；更改 host config 需重啟。`--workspace PATH` 在 Engine 建立前從 host 註冊 root 或 workspace.allowed_roots 綁定單一 immutable project；新 root 唯讀，state ID 以 canonical root hash 隔離，沒有 process-global active_project。workspace 模式使用絕對可信 host config；一般要求在專案外，home 的窄例外僅限固定 `home/.config/odin/host.toml` 且拒絕 redirect。Host 宣告的 default_root 可在省略 workspace 時綁定 home；強制私有樹保護與 deny-only protected_roots 套用所有專案。細節見 [當前專案](CURRENT_WORKSPACE.md) 與 [Home 邊界](HOME_AND_INSTALLER_PROGRESS.md)。不同 project 的語意範圍分開；此版未提供使用者身分／多租戶 ACL。
 
 ## 4. MCP 服務層
 

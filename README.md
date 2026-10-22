@@ -20,20 +20,13 @@ exit code、來源／binary hash 以 [交付狀態](verification/delivery-status
 
 ### Windows 隨附 LSP
 
-Windows 安裝包與 portable recipe 現在包含 Python、Go、C#、Lua、JavaScript、
-TypeScript、Bash 的固定版本 LSP 與所需 Node／Go／.NET 執行環境，安裝時完成
-離線部署、host 設定與版本健康檢查。JavaScript／TypeScript 共用 TSLS；保留既有
-Rust 設定後是 **8 種語言 profile、7 套後端實作**。Rust 的 rust-analyzer 與
-Rust toolchain 仍由既有主機提供，不因 registry 存在就宣稱已安裝。
+Windows 安裝包與 portable recipe 隨附 **14 種語言 profile**：Rust、Python、Go、C#、Lua、JavaScript、TypeScript、Bash、C、C++、Slint、TOML、YAML、Markdown。預設使用 **12 套 LSP 實作**（JS／TS 共用 TSLS、C／C++ 共用 clangd）；另附 Ruff、ty、vtsls 三套可明確切換的後端，共 **15 套 LSP**。Node／Go／.NET 執行環境一併離線部署；Rust toolchain、Python interpreter 與專案依賴仍由主機提供。
 
-新 workspace 維持唯讀；既有權限與自訂設定保留，自訂語言設定衝突需操作者
-明確處理。安裝來源、重建指令、完整性檢查及限制見
-[後端建置](docs/LSP_PAYLOAD_BUILDER.md) 與
-[安裝方式](docs/PACKAGING_WINDOWS_LINUX.md)。逐語言真實 MCP／安裝驗收
-以最新 `verification/bundled-lsp-validation.json` 為準；版本命令成功不等於完整 IDE 功能通過。
-JS／TS 未帶版本的 diagnostics 維持未確認；Bash 完整語法／lint 需另設 ShellCheck。
-驗收包含實際安裝與 Codex 啟動命令；已開啟的 Codex 程序需重新啟動才載入新設定。
-Linux／macOS 不包含這份 Windows runtime payload。
+安裝時檢查完整 payload hash、19 個 LSP／runtime 版本命令，並以 expected hash 更新可信 host 設定。新 workspace 維持唯讀；既有 grants 與自訂 Rust profiles 保留，其他自訂 profile 衝突必須明確處理。Registry 的 32 筆設定指引不代表 32 套 LSP 已隨附。
+
+Python 預設 basedpyright，JS／TS 預設 TSLS；可用 `--python-backend ty|ruff` 或 `--typescript-backend vtsls` 明確切換，重裝保留受管選擇。Ruff 提供 lint／format／code actions；語意導航與型別分析需選其他 Python provider。沒有自動 fallback 或額外授予 native inspection／formatter 的執行權限。
+
+版本、能力邊界、Slint 獨立程式的來源與授權側錄見 [擴充 LSP](docs/EXPANDED_LSP.md)、[後端建置](docs/LSP_PAYLOAD_BUILDER.md) 與 [安裝方式](docs/PACKAGING_WINDOWS_LINUX.md)。本輪真實 MCP／Home／完整安裝的最新執行狀態見 [Home 與擴充驗收](verification/home-root-installer-validation.json)；舊 [七語驗收](verification/bundled-lsp-validation.json) 保留其原始 binary／payload 身分。版本命令成功不等於語意／完整 IDE 驗收。Linux／macOS 不包含這份 Windows payload；已開啟的 client 需重新啟動才載入新執行檔與設定。
 
 ### 可用功能
 
@@ -88,6 +81,11 @@ write、shell、debug。命令與除錯需操作者在可信任 host 設定明�
 已有獨立 smoke，不表示已在每個真實 client 應用中完成安裝。
 
 ### 依當前專案使用
+
+新安裝與 `odin init` 的預設 root 為使用者 home；省略 `--config` 使用
+`home/.config/odin/host.toml`。Home 的應用設定、憑證、Odin state／安裝目錄
+會排除於原生工具之外；新工作區維持唯讀。安裝末段有獨立 LSP 進度與停止檢查，
+細節與安全邊界見 [Home 與安裝進度](docs/HOME_AND_INSTALLER_PROGRESS.md)。
 
 同一 client entry 可加入 `--workspace .`，依每次啟動的 cwd 選用專案，
 不再固定 sigma。新 root 必須在可信 host 的 `workspace.allowed_roots` 內，

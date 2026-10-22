@@ -21,10 +21,13 @@ odin --config C:\Odin\host.toml --workspace . serve --transport stdio
 odin --config C:\Odin\host.toml --workspace . setup --client codex
 ```
 
-workspace 模式的 `--config` 必須是絕對路徑，且在最後選定的專案外；不讀取
-cwd 的 odin.toml 作為 host policy。`projects` 可省略，但這時所有會載入設定
-的命令都必須指定 `--workspace PATH`。沒有匹配/允許的 root 時明確拒絕，
-不回退到 sigma，也不自動擴大授權。沒有 `--workspace` 的既有多專案行為保留。
+workspace 模式的 `--config` 必須是絕對路徑；省略時使用固定
+`home/.config/odin/host.toml`，不讀取 cwd 的 odin.toml 作為 host policy。
+一般 host 仍須位於選定專案外；固定 home host 透過強制私有樹保護提供窄例外。
+`projects` 可省略，這時需明確 workspace 或 host 宣告的 `workspace.default_root`。
+新安裝的 default_root 是 home，但不登記成共同 ancestor project。沒有匹配／允許的
+root 時明確拒絕；未宣告 default_root 的舊設定保留原有多專案行為。詳見
+[Home 預設與私有路徑](HOME_AND_INSTALLER_PROGRESS.md)。
 
 啟動目錄位於已登記 root 裡時，選該登記專案，保留其明確 host policy。
 其餘目錄精確綁定指定 PATH，不向上搜尋 .git 或 manifest；開在 src 子目錄
@@ -59,5 +62,6 @@ MCP cwd，請在該 client 指定正確 cwd 或傳絕對 --workspace root。
 
 私人 state 及其任何子目錄不能成為 project root。setup/hook 的 host-output
 防護保留全部已登記 roots 與 workspace.allowed_roots；即使 runtime 只選 A，
-也不能用 host 輸出功能寫入 B。host 設定/輸出請放在這些專案父目錄之外。
+也不能用 host 輸出功能寫入 B。Home policy 僅對固定標準 client 設定檔的
+明確 setup/CAS 提供窄 host-output 例外；Hook 與任意 home 檔案不適用。
 backend gaps 按實際觀察到的副檔名檢查；例如只配置 ts 不能覆蓋 tsx。

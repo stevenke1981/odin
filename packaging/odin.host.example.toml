@@ -1,4 +1,5 @@
-# Inert operator template. Prefer `odin --config <host-file> init --root <existing-project>`.
+# Inert operator template. `odin init` creates a protected read-only home workspace.
+# For an explicit registration use `odin --config <host-file> init --root <existing-project>`.
 # Replace BOTH placeholders with operator-chosen paths before selecting this file.
 # Keep host configuration and state outside the installation and untrusted repository.
 state_dir = 'CHOOSE_HOST_STATE_DIRECTORY_OUTSIDE_INSTALLATION'

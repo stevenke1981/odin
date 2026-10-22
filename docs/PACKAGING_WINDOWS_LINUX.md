@@ -1,12 +1,9 @@
 # Windows 與 Linux 安裝包
 
-Odin app 是 CLI、MCP 服務與本機 Dashboard。Windows 安裝包現在包含 Python、
-Go、C#、Lua、JavaScript、TypeScript、Bash 的固定 LSP 與所需 Node／Go／.NET runtime，
-安裝時離線解包並執行版本健康檢查、產生可信 host profiles。Linux／macOS 的舊有
-封裝路徑仍需另行配置後端；Windows payload 不代表其他平台也已驗收。
+Odin app 是 CLI、MCP 服務與本機 Dashboard。Windows 包含 14 種語言 profiles、12 套預設 LSP 與 Ruff／ty／vtsls 三套明確替代後端，固定 Node／Go／.NET runtime 一併離線部署，版本表見 [EXPANDED_LSP.md](EXPANDED_LSP.md)。Rust toolchain 與 Python interpreter 仍需主機提供。Linux／macOS 封裝路徑需另行配置後端；Windows payload 不代表其他平台驗收。
 安裝不會自動啟動 daemon、修改 MCP client 或 PATH，也不會提高 write/shell/debug。
-既有 host grants 保持原值；新 workspace 預設唯讀。Rust 保留既有 host profile 與工具鏈。
-`odin.example.toml` 仍是未啟用的 inert 範本；實際設定由下述 setup 流程建立在專案外。
+既有 host grants 與操作者 Rust profiles 保持原值；新 workspace 預設唯讀。
+`odin.example.toml` 是未啟用的 inert 範本；實際設定由下述 setup 建立。
 
 [Inno Setup 官方說明](https://jrsoftware.org/isinfo.php) 指定 Windows 應用程式；
 Windows 使用已安裝的 Inno Setup 7 產生 `.exe`，Linux 使用原生 `.deb` 與
@@ -48,7 +45,7 @@ $sha = (Get-FileHash -LiteralPath $binary -Algorithm SHA256).Hash
 
 驗證器在新的 `dist/installer-qa-*` 目錄實際安裝、同版重裝與卸載，
 檢查 portable／安裝內容 inventory、binary hash、metadata、使用者檔案保留與
-PATH 不變，並對 portable 及 Inno 安裝結果實際執行十個 backend/runtime 版本命令、
+PATH 不變，並對 portable 及 Inno 安裝結果實際執行19 個 LSP／runtime 版本命令、
 健康檢查前後 closure hash、生成 host config 的 Odin validate、同版重裝設定保留。
 這些是版本／安裝驗證；真正 document symbols、definition 等語意結果仍需獨立 MCP
 整合測試，不能由版本成功推論。
@@ -60,8 +57,9 @@ PATH 不變，並對 portable 及 Inno 安裝結果實際執行十個 backend/ru
 ## Windows：安裝時設定 LSP
 
 Inno 安裝頁要求選定專案外的絕對 host config 路徑，預設為
-`%USERPROFILE%\.config\odin\host.toml`。新設定必須明確選一個既存 workspace root；
-既有設定可保留原本 roots。安裝程式先複製固定 payload，再由 bundled Node 執行
+`%USERPROFILE%\.config\odin\host.toml`。新設定的 workspace root 預填使用者 home，
+也可明確改成其他既存目錄；既有設定未給新 root 時保留原 roots/default/grants。
+Home 下的 host/state/install 由強制私有樹保護，詳見 [Home 與進度](HOME_AND_INSTALLER_PROGRESS.md)。安裝程式先複製固定 payload，再由 bundled Node 執行
 `setup-lsps.mjs --install`，依序完成 plan、版本健康檢查及 expected-hash apply。
 任何一個必要元件失敗或 payload 在健康檢查時改變，都不套用新 host config。
 
@@ -72,11 +70,11 @@ Inno 安裝頁要求選定專案外的絕對 host config 路徑，預設為
   /ODIN_WORKSPACE_ROOT="D:\Source\my-project"
 ```
 
-既有 workspace 與所有已註冊 projects 會加入七語 profiles；既有 roots、write/shell/debug
-等 grants、commands、其他設定值及 Rust profile 保留。TOML 會重新排版，註解不保留。
+既有 workspace 與所有已註冊 projects 會加入隨附 profiles；既有 roots、write/shell/debug
+等 grants、commands、其他設定值及操作者 Rust／`.rs` profiles 保留；未修改的受管 Rust profile 可隨安裝路徑更新。TOML 會重新排版，註解不保留。
 只有 marker 中 digest 仍吻合的受管 profile 可以自動更新。自訂同名 profile 預設
 產生 CONFLICT；操作者審查 plan 後，才可在安裝頁勾選替換，或明確傳
-`/ODIN_REPLACE_LANGUAGE_PROFILES=1`。其他自訂 language ID 若已佔用七語副檔名，
+`/ODIN_REPLACE_LANGUAGE_PROFILES=1`。其他自訂 language ID 若已佔用隨附語言副檔名，
 須先明確編輯該 host profile，不能靠替換選項刪除不相關 profile。
 
 Portable 解壓後使用同一支腳本：
@@ -96,16 +94,18 @@ $app = 'C:\Tools\Odin'
 
 `absent` 只適用新檔；既有檔必須使用 plan 的確切 SHA-256。需要替換自訂 profile 時，
 plan 與 apply 都應明確加入 `--replace-language-profiles`。Host config、state、marker、
-Lua JSON 與 receipts 必須在所有 registered／allowed workspace roots 之外。
+Lua JSON 與 receipts 一般必須在 registered／allowed workspace roots 之外。
+固定 home host 的例外會保護整個 host 目錄、state、install 與 client 憑證樹；
+home 內的 receipts 只准 create-only 寫入受保護的標準 host 目錄。
 Apply 以獨占 lock、重驗 hash、備份及同目錄 staged replace 處理衝突；拒絕連結、
 hardlink host file 及第三方變更。這不是多檔瞬間原子交易，也沒有宣稱消除外部程序
 在最後 CAS 檢查與 rename 間的競態。安裝後 receipt 與備份寫在 host 目錄，卸載保留。
 移動 portable 後，應在新位置重新 plan/apply，使絕對 backend 路徑更新。
 
-固定 profiles 的邊界：
+Python／JS／TS 可用明確 provider flags 切換；重裝未指定時保留受管選擇，見 [擴充設定](EXPANDED_LSP.md)。固定 profiles 的邊界：
 
-- Python 使用 Node basedpyright；Python 執行器、虛擬環境及專案依賴由操作者管理。
-- JavaScript／TypeScript 共用 TSLS 與固定 bundled tsserver，停用自動 typing acquisition。
+- Python 預設 Node basedpyright；Python 執行器、虛擬環境及專案依賴由操作者管理。
+- JavaScript／TypeScript 預設共用 TSLS 與固定 bundled tsserver，停用自動 typing acquisition。
 - Go 固定 runner 設 GOROOT、GOTOOLCHAIN=local、GOFLAGS=-mod=readonly 與 host cache。
   安裝離線；日常 gopls 可透過官方 Go proxy／sumdb 下載缺少的 modules 到 cache，
   不自動下載新 toolchain。
@@ -130,6 +130,9 @@ Child environment 僅傳必要 Windows runtime 變數並覆寫 SDK 設定，不�
 
 版本健康檢查、完整 closure、installer lifecycle、真實逐語 LSP、乾淨主機、跨版本
 升級與中斷 rollback 各自記錄；新增腳本或某一層 PASS 不替代其他層驗收。
+安裝最後階段有獨立視窗顯示真實檔案 hash／LSP 探測／提交進度，UI 持續處理訊息；
+每個 probe 最多 60 秒、worker 預設總期限 900 秒。可停止驗證，提交階段不強殺；
+停止不回滾已複製的應用檔案。失敗完成頁與 exit code 不會冒充成功。
 安裝器會傳回 post-install setup 的失敗 exit code；不能只靠 Inno 的檔案複製成功
 宣稱 LSP 設定成功。QA 模式另外以 recipe Check 禁止建立正常使用者的文件捷徑。
 

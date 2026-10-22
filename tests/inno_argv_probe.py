@@ -61,15 +61,20 @@ def main():
         "import fs from 'node:fs';\n"
         "import path from 'node:path';\n"
         "const expected=JSON.parse(fs.readFileSync(path.join(import.meta.dirname,'expected-argv.json'),'utf8'));\n"
-        "const argv=process.argv.slice(2);\n"
-        "if(argv[argv.indexOf('--receipt')+1]===expected.failure_receipt){fs.writeFileSync(expected.failure_receipt,JSON.stringify({status:'EXPECTED_FAILURE',argv,exit_code:17}),{flag:'wx'});process.exit(17); }\n"
+        "const rawArgv=process.argv.slice(2);\n"
+        "const managed=['--progress-file','--cancel-file','--progress-run-id','--setup-timeout-seconds'];\n"
+        "const values={};const removed=new Set();for(const key of managed){const at=rawArgv.indexOf(key);if(at<0||rawArgv.lastIndexOf(key)!==at)throw Error('Missing or duplicate progress option');values[key]=rawArgv[at+1];removed.add(at);removed.add(at+1);}\n"
+        "if(!/^[a-f0-9]{32}$/.test(values['--progress-run-id'])||values['--setup-timeout-seconds']!=='900'||path.dirname(values['--progress-file'])!==path.dirname(values['--cancel-file']))throw Error('Invalid progress contract');\n"
+        "const argv=rawArgv.filter((_,index)=>!removed.has(index));\n"
+        "function status(phase,code){fs.writeFileSync(values['--progress-file'],['ODIN_SETUP_PROGRESS_V1',values['--progress-run-id'],phase,'1','1','',String(code),'Inert argv fixture'].join('\\n')+'\\n',{flag:'wx'});}\n"
+        "if(argv[argv.indexOf('--receipt')+1]===expected.failure_receipt){fs.writeFileSync(expected.failure_receipt,JSON.stringify({status:'EXPECTED_FAILURE',argv,raw_argv:rawArgv,exit_code:17}),{flag:'wx'});status('failed',17);process.exit(17); }\n"
         "const existing=argv[argv.indexOf('--receipt')+1]===expected.existing_receipt;\n"
         "const want=existing?expected.existing_argv:expected.argv;\n"
         "const script=existing?expected.existing_script:expected.script;\n"
         "const report=existing?expected.existing_receipt:expected.receipt;\n"
         "const ok=JSON.stringify(argv)===JSON.stringify(want) && process.argv[1]===script;\n"
-        "fs.writeFileSync(report,JSON.stringify({scope:'ACTUAL_INNO_TO_NODE_ARGV_ONLY',status:ok?'PASS':'FAIL',argv,full_argv:process.argv,expected:want},null,2),{flag:'wx'});\n"
-        "if(!ok)process.exitCode=13;\n", encoding='utf-8', newline='\n')
+        "fs.writeFileSync(report,JSON.stringify({scope:'ACTUAL_INNO_TO_NODE_ARGV_ONLY',status:ok?'PASS':'FAIL',argv,raw_argv:rawArgv,full_argv:process.argv,expected:want},null,2),{flag:'wx'});\n"
+        "status(ok?'done':'failed',ok?0:13);if(!ok)process.exitCode=13;\n", encoding='utf-8', newline='\n')
     commands, error = [], None
     installed = []
     shortcut = Path(os.environ['APPDATA'])/'Microsoft'/'Windows'/'Start Menu'/'Programs'/'Odin'/'Odin documentation.lnk'
@@ -150,6 +155,7 @@ def main():
               'status':'FAIL' if error else 'PASS', 'error':error,
               'observed_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
               'recipe_sha256':digest(ROOT/'packaging'/'odin.iss'),
+              'helper_sha256':digest(ROOT/'packaging'/'installer-progress.iss'),
               'test_driver_sha256':digest(Path(__file__)), 'node_sha256':digest(node),
               'iscc_sha256':digest(iscc), 'qa_directory':str(base), 'commands':commands,
               'argv_receipt':str(receipt), 'expected_node_argv':expected,

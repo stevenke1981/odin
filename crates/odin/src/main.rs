@@ -23,8 +23,8 @@ use std::{
     about = "Standalone Rust code intelligence and journaled editing"
 )]
 struct Cli {
-    #[arg(long, global = true, default_value = "odin.toml")]
-    config: PathBuf,
+    #[arg(long, global = true)]
+    config: Option<PathBuf>,
     /// Select this startup workspace (use . to follow the client's launch cwd).
     #[arg(long, global = true)]
     workspace: Option<PathBuf>,
@@ -40,8 +40,8 @@ struct Cli {
 enum Commands {
     /// Create new host configuration. Shell/debug remain disabled.
     Init {
-        #[arg(long, default_value = ".")]
-        root: PathBuf,
+        #[arg(long)]
+        root: Option<PathBuf>,
         #[arg(long, default_value = "workspace")]
         name: String,
         #[arg(long)]
@@ -163,13 +163,25 @@ async fn main() -> Result<()> {
             root,
             name,
             writable,
-        } => return init(&cli.config, root, name, *writable),
+        } => {
+            let config_path = cli
+                .config
+                .clone()
+                .map(Ok)
+                .unwrap_or_else(odin_core::workspace::default_host_config_path)?;
+            return init(&config_path, root.as_deref(), name, *writable);
+        }
         _ => {}
     }
-    if cli.workspace.is_some() && !cli.config.is_absolute() {
+    let config_path = cli
+        .config
+        .clone()
+        .map(Ok)
+        .unwrap_or_else(odin_core::workspace::default_host_config_path)?;
+    if cli.workspace.is_some() && !config_path.is_absolute() {
         bail!("--workspace requires an absolute --config path to trusted host configuration");
     }
-    let config = Config::load_with_workspace(&cli.config, cli.workspace.as_deref())?
+    let config = Config::load_with_workspace(&config_path, cli.workspace.as_deref())?
         .with_policy(cli.context.as_deref(), cli.mode.as_deref())?;
     match &cli.command {
         Commands::Languages { project: Some(id) } => {
@@ -190,7 +202,7 @@ async fn main() -> Result<()> {
             expected_sha256,
         } => {
             if *apply {
-                ensure_host_output(&config, output.as_deref())?;
+                ensure_host_output(&config, output.as_deref(), Some(*client))?;
             }
             let before = output
                 .as_deref()
@@ -198,7 +210,7 @@ async fn main() -> Result<()> {
                 .transpose()?
                 .flatten();
             let binary = std::env::current_exe()?.canonicalize()?;
-            let host_config = cli.config.canonicalize()?;
+            let host_config = config_path.canonicalize()?;
             let content = setup::client_config(
                 *client,
                 &binary,
@@ -234,7 +246,7 @@ async fn main() -> Result<()> {
             expected_sha256,
         } => {
             if *apply {
-                ensure_host_output(&config, output.as_deref())?;
+                ensure_host_output(&config, output.as_deref(), None)?;
             }
             let project = choose_project(&config, project.clone())?;
             let before = output
@@ -378,7 +390,11 @@ fn choose_project(config: &Config, project: Option<String>) -> Result<String> {
     Ok(project)
 }
 
-fn ensure_host_output(config: &Config, output: Option<&Path>) -> Result<()> {
+fn ensure_host_output(
+    config: &Config,
+    output: Option<&Path>,
+    client: Option<setup::Client>,
+) -> Result<()> {
     let output = output.context("--apply requires an explicit --output host file")?;
     let parent = output
         .parent()
@@ -386,7 +402,22 @@ fn ensure_host_output(config: &Config, output: Option<&Path>) -> Result<()> {
         .unwrap_or(Path::new("."))
         .canonicalize()?;
     let output = parent.join(output.file_name().context("Missing output filename")?);
-    if config.contains_workspace_path(&output) {
+    let output = if output.exists() {
+        output.canonicalize()?
+    } else {
+        output
+    };
+    let standard = client.is_some_and(|client| {
+        config.is_standard_client_output(
+            match client {
+                setup::Client::Codex => "codex",
+                setup::Client::Claude => "claude",
+                setup::Client::Opencode => "opencode",
+            },
+            &output,
+        )
+    });
+    if config.contains_workspace_path(&output) && !standard {
         bail!(
             "--output must be outside configured project roots; use native Transactions for workspace edits"
         );
@@ -465,25 +496,49 @@ async fn doctor(engine: &Arc<Engine>, probe_lsp: bool, probe_sandbox: bool) -> V
         "note":"LSP PASS means initialize handshake only, not indexing or feature parity. DAP presence does not prove integration. No write permissions are enabled."})
 }
 
-fn init(path: &Path, root: &Path, name: &str, writable: bool) -> Result<()> {
+fn init(path: &Path, root: Option<&Path>, name: &str, writable: bool) -> Result<()> {
     odin_core::config::validate_id(name)?;
-    let root = root.canonicalize()?;
+    if writable && root.is_none() {
+        bail!("--writable requires an explicit --root; default home remains read-only");
+    }
+    let explicit_root = root.is_some();
+    let root = match root {
+        Some(root) => root.canonicalize()?,
+        None => odin_core::workspace::home_root()?,
+    };
     if !root.is_dir() {
         bail!("Project root must be a directory");
     }
-    let parent = path
+    let host_parent = path
         .parent()
         .filter(|p| !p.as_os_str().is_empty())
-        .unwrap_or(Path::new("."))
-        .canonicalize()?;
+        .unwrap_or(Path::new("."));
+    let standard = if explicit_root {
+        odin_core::workspace::default_host_config_path().ok()
+    } else {
+        Some(odin_core::workspace::default_host_config_path()?)
+    };
+    let absolute = odin_core::workspace::host_config_path_identity(path)?;
+    let standard_home = standard.as_ref() == Some(&absolute);
+    if !explicit_root && absolute.starts_with(&root) && !standard_home {
+        bail!(
+            "Default home requires the standard private host configuration or an external host file"
+        );
+    }
+    init_host_parent(host_parent, standard_home)?;
+    let parent = host_parent.canonicalize()?;
     let mut projects = serde_json::Map::new();
     projects.insert(name.into(), json!({"root":root,"allow_write":writable,"allow_shell":false,"allow_debug":false,
         "languages":[{"id":"rust","extensions":["rs"],"program":"rust-analyzer","args":[]}],
         "commands":{"test":{"program":"cargo","args":["test","--workspace","--locked"],"timeout_secs":120},
                     "check":{"program":"cargo","args":["check","--workspace","--locked"],"timeout_secs":120}}}));
-    let config: Config = serde_json::from_value(
-        json!({"state_dir":parent.join(".odin").join("state"),"projects":projects}),
-    )?;
+    let value = if explicit_root {
+        json!({"state_dir":parent.join(".odin").join("state"),"projects":projects})
+    } else {
+        json!({"state_dir":parent.join(".odin").join("state"),"workspace":{
+            "default_root":root,"allowed_roots":[root],"languages":[{"id":"rust","extensions":["rs"],"program":"rust-analyzer","args":[]}]}})
+    };
+    let config: Config = serde_json::from_value(value)?;
     let text = toml::to_string_pretty(&config)?;
     let mut file = std::fs::OpenOptions::new()
         .create_new(true)
@@ -493,8 +548,55 @@ fn init(path: &Path, root: &Path, name: &str, writable: bool) -> Result<()> {
     file.write_all(text.as_bytes())?;
     file.sync_all()?;
     print_json(
-        &json!({"created":path,"allow_write":writable,"allow_shell":false,"allow_debug":false}),
+        &json!({"created":path,"root":root,"workspace_template":!explicit_root,"allow_write":writable,"allow_shell":false,"allow_debug":false}),
     )
+}
+
+// Initialization must not change permissions on an operator's existing directory.
+// Only a newly created standard home host directory receives private permissions.
+fn init_host_parent(path: &Path, standard_home: bool) -> Result<()> {
+    fn check_ancestors(path: &Path) -> Result<()> {
+        for ancestor in path.ancestors() {
+            match std::fs::symlink_metadata(ancestor) {
+                Ok(meta) => {
+                    let redirect = meta.file_type().is_symlink();
+                    #[cfg(windows)]
+                    let redirect = {
+                        use std::os::windows::fs::MetadataExt;
+                        redirect || meta.file_attributes() & 0x400 != 0
+                    };
+                    if redirect {
+                        bail!("Host directory contains a symlink or reparse point");
+                    }
+                }
+                Err(error) if error.kind() == std::io::ErrorKind::NotFound => {}
+                Err(error) => return Err(error.into()),
+            }
+        }
+        Ok(())
+    }
+    check_ancestors(path)?;
+    if path.is_dir() {
+        return Ok(());
+    }
+    if let Some(parent) = path
+        .parent()
+        .filter(|parent| !parent.as_os_str().is_empty())
+    {
+        std::fs::create_dir_all(parent)?;
+    }
+    match std::fs::create_dir(path) {
+        Ok(()) if standard_home => odin_core::paths::private_dir(path)?,
+        Ok(()) => {}
+        Err(error) if error.kind() == std::io::ErrorKind::AlreadyExists => {
+            check_ancestors(path)?;
+            if !path.is_dir() {
+                return Err(error.into());
+            }
+        }
+        Err(error) => return Err(error.into()),
+    }
+    Ok(())
 }
 
 fn exists_program(program: &str) -> bool {
@@ -516,4 +618,56 @@ fn exists_program(program: &str) -> bool {
             false
         })
     })
+}
+
+#[cfg(test)]
+mod home_cli_tests {
+    use super::*;
+    #[test]
+    fn omitted_root_and_config_are_distinct_from_explicit_cwd() {
+        let cli = Cli::try_parse_from(["odin", "init"]).unwrap();
+        assert!(cli.config.is_none());
+        assert!(matches!(
+            cli.command,
+            Commands::Init {
+                root: None,
+                writable: false,
+                ..
+            }
+        ));
+        let explicit = Cli::try_parse_from([
+            "odin",
+            "--config",
+            "legacy.toml",
+            "init",
+            "--root",
+            ".",
+            "--writable",
+        ])
+        .unwrap();
+        assert_eq!(explicit.config.unwrap(), PathBuf::from("legacy.toml"));
+        assert!(matches!(
+            explicit.command,
+            Commands::Init {
+                root: Some(_),
+                writable: true,
+                ..
+            }
+        ));
+        let dynamic = Cli::try_parse_from(["odin", "--workspace", ".", "analyze"]).unwrap();
+        assert_eq!(dynamic.workspace.unwrap(), PathBuf::from("."));
+    }
+    #[test]
+    fn writable_init_requires_an_explicit_root_before_creating_host_files() {
+        let temp = std::env::temp_dir().join(format!(
+            "odin-home-init-{}-{}",
+            std::process::id(),
+            odin_core::unix_ms()
+        ));
+        std::fs::create_dir(&temp).unwrap();
+        let path = temp.join("nested/host.toml");
+        assert!(init(&path, None, "workspace", true).is_err());
+        assert!(!path.parent().unwrap().exists());
+        std::fs::remove_dir(&temp).unwrap();
+    }
 }

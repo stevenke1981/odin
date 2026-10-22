@@ -16,6 +16,8 @@ AppPublisher=Odin contributors
 DefaultDirName={localappdata}\Programs\Odin
 DefaultGroupName=Odin
 PrivilegesRequired=lowest
+; The native progress helper uses explicit Win32 record layouts.
+SetupArchitecture=x86
 MinVersion=10.0
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
@@ -47,6 +49,7 @@ var
   WorkspacePage: TInputQueryWizardPage;
   ReplaceProfiles: TNewCheckBox;
   LspSetupExitCode: Integer;
+  WorkspaceDefaultHost, WorkspaceDefaultValue: String;
 
 function HostConfigPath: String;
 begin
@@ -98,6 +101,8 @@ begin
   Result := Trim(ExpandConstant('{param:ODIN_SETUP_RECEIPT|}'));
 end;
 
+#include "installer-progress.iss"
+
 procedure InitializeWizard;
 begin
   HostPage := CreateInputQueryPage(wpSelectDir,
@@ -109,11 +114,16 @@ begin
   if HostPage.Values[0] = '' then
     HostPage.Values[0] := ExpandConstant('{%USERPROFILE}') + '\.config\odin\host.toml';
   WorkspacePage := CreateInputQueryPage(HostPage.ID,
-    'Odin workspace access', 'Select a project directory for a new host configuration',
-    'New workspaces remain read-only. Shell, debugging and source writes stay disabled. ' +
-    'Leave this empty to retain the workspace roots of an existing host configuration.');
+    'Odin workspace access', 'Choose the folders Odin may analyze',
+    'Your home folder is preselected for a new host. Odin analyzes the project you use inside it. ' +
+    'Access stays read-only; source writes, shell and debugging stay disabled. ' +
+    'Leave this empty to retain the roots of an existing host configuration.');
   WorkspacePage.Add('Workspace root (required for a new host configuration):', False);
   WorkspacePage.Values[0] := ExpandConstant('{param:ODIN_WORKSPACE_ROOT|}');
+  if (WorkspacePage.Values[0] = '') and (not FileExists(HostConfigPath)) then
+    WorkspacePage.Values[0] := ExpandConstant('{%USERPROFILE}');
+  WorkspaceDefaultHost := HostConfigPath;
+  WorkspaceDefaultValue := WorkspacePage.Values[0];
   ReplaceProfiles := TNewCheckBox.Create(WorkspacePage);
   ReplaceProfiles.Parent := WorkspacePage.Surface;
   ReplaceProfiles.Left := 0;
@@ -122,12 +132,15 @@ begin
   ReplaceProfiles.Height := ScaleY(48);
   ReplaceProfiles.Caption := 'Replace custom profiles for the seven bundled languages';
   ReplaceProfiles.Checked := ExpandConstant('{param:ODIN_REPLACE_LANGUAGE_PROFILES|0}') = '1';
+  InitializeLspProgress;
 end;
 
 function PrepareToInstall(var NeedsRestart: Boolean): String;
 begin
   Result := '';
-  if not ValidAbsolutePath(HostConfigPath) then
+  if (LspSetupTimeout < 1) or (LspSetupTimeout > 1800) then
+    Result := 'Setup timeout must be between 1 and 1800 seconds.'
+  else if not ValidAbsolutePath(HostConfigPath) then
     Result := 'Choose an absolute host configuration path outside projects.'
   else if (ExpandConstant('{param:ODIN_QA|0}') = '1') and
       (ExpandConstant('{param:ODIN_HOST_CONFIG|}') = '') then
@@ -156,14 +169,31 @@ begin
     Receipt := SetupReceiptPath;
     if Receipt <> '' then Parameters := Parameters + ' --receipt ' + QuoteWindowsArg(Receipt);
     LspSetupExitCode := 1;
-    if not Exec(ExpandConstant('{app}\backends\node\node.exe'), Parameters,
-        ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, ExitCode) then
-      RaiseException('Could not launch bundled LSP setup. Existing host settings were not intentionally replaced.')
-    else if ExitCode <> 0 then begin
-      if ExitCode > 0 then LspSetupExitCode := ExitCode;
-      RaiseException('Bundled LSP setup failed with exit code ' + IntToStr(ExitCode) +
-        '. Inspect setup-lsps.mjs --plan and the host installation receipt. Custom profiles require an explicit replacement decision.');
-    end else LspSetupExitCode := 0;
+    ExitCode := RunLspWorker(Parameters);
+    LspSetupExitCode := ExitCode;
+    if ExitCode <> 0 then Log('Odin setup needs attention: ' + LspFailureMessage);
+  end;
+end;
+
+procedure CurPageChanged(CurPageID: Integer);
+begin
+  if (CurPageID = WorkspacePage.ID) and
+      (ExpandConstant('{param:ODIN_WORKSPACE_ROOT|}') = '') and
+      (WorkspaceDefaultHost <> HostConfigPath) then begin
+    { Refresh automatic roots after a host-path decision, preserving an edited root. }
+    if Trim(WorkspacePage.Values[0]) = WorkspaceDefaultValue then begin
+      if FileExists(HostConfigPath) then WorkspaceDefaultValue := ''
+      else WorkspaceDefaultValue := ExpandConstant('{%USERPROFILE}');
+      WorkspacePage.Values[0] := WorkspaceDefaultValue;
+    end;
+    WorkspaceDefaultHost := HostConfigPath;
+  end;
+  if (CurPageID = wpFinished) and (LspSetupExitCode <> 0) then begin
+    WizardForm.FinishedHeadingLabel.Caption := 'Odin language server setup needs attention';
+    WizardForm.FinishedLabel.Caption := LspFailureMessage + #13#10#13#10 +
+      'Odin files were copied, but language server setup did not complete. ' +
+      'Checks stop before host changes; a configuration commit already in progress is allowed to finish. ' +
+      'Inspect the setup receipt and host backup before retrying setup-lsps.mjs --install.';
   end;
 end;
 

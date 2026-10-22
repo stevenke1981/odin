@@ -20,6 +20,8 @@ pub struct Config {
     /// Not configurable by TOML/JSON and never an additional runtime project.
     #[serde(skip)]
     protected_project_roots: Vec<PathBuf>,
+    #[serde(skip)]
+    standard_client_outputs: BTreeMap<String, PathBuf>,
     #[serde(default)]
     pub memory_read_only_patterns: Vec<String>,
     #[serde(default)]
@@ -332,6 +334,12 @@ impl Config {
                 .values()
                 .any(|project| path.starts_with(&project.root))
     }
+    /// Exact operator-only client output exceptions. Never authorizes native file APIs.
+    pub fn is_standard_client_output(&self, client: &str, path: &Path) -> bool {
+        self.standard_client_outputs
+            .get(client)
+            .is_some_and(|standard| standard == path)
+    }
     pub fn with_policy(mut self, context: Option<&str>, mode: Option<&str>) -> Result<Self> {
         for (name, policies) in [(context, &self.contexts), (mode, &self.modes)] {
             if let Some(name) = name {
@@ -361,12 +369,37 @@ impl Config {
     /// Bind only an operator-selected startup directory, before normal root,
     /// storage and permission validation. MCP callers cannot change this binding.
     pub fn load_with_workspace(path: &Path, workspace: Option<&Path>) -> Result<Self> {
+        let home = crate::workspace::home_root().ok();
+        let installation = std::env::current_exe()?
+            .canonicalize()?
+            .parent()
+            .ok_or_else(|| Fault::invalid("Executable has no parent"))?
+            .to_owned();
+        Self::load_workspace_at(path, workspace, home.as_deref(), &installation)
+    }
+    fn load_workspace_at(
+        path: &Path,
+        workspace: Option<&Path>,
+        home: Option<&Path>,
+        installation: &Path,
+    ) -> Result<Self> {
+        // Only a fixed OS-derived private host location can use the nested-home
+        // exception. A repository TOML cannot declare itself trusted.
+        let requested_host = path.to_owned();
+        let expected_host =
+            home.and_then(|home| canonical_storage_path(&home.join(".config/odin/host.toml")).ok());
+        if workspace.is_some_and(|workspace| workspace.canonicalize().ok().as_deref() == home) {
+            canonical_storage_path(path)?;
+        }
+        let trusted_home_host = expected_host.as_ref().is_some_and(|expected| {
+            canonical_storage_path(path).is_ok_and(|actual| &actual == expected)
+        });
         let path = path.canonicalize()?;
         if let Some(workspace) = workspace {
             let root = workspace.canonicalize()?;
-            if path.starts_with(root) {
+            if path.starts_with(&root) && !(Some(root.as_path()) == home && trusted_home_host) {
                 return Err(Fault::denied(
-                    "Workspace mode requires trusted host configuration outside the selected workspace",
+                    "Workspace mode requires external host configuration or the standard private home host",
                 ));
             }
         }
@@ -380,11 +413,63 @@ impl Config {
         }
         config.state_dir = canonical_storage_path(&normalize_absolute(&config.state_dir))?;
         if let Some(template) = config.workspace.as_mut() {
-            template.normalize(parent)?;
+            template.normalize(parent, home)?;
         }
-        let selected = workspace
+        let home_policy = config.workspace.as_ref().is_some_and(|template| {
+            template.default_root.is_some() || !template.protected_roots.is_empty()
+        });
+        if home_policy {
+            canonical_storage_path(&requested_host)?;
+        }
+        let configured_default = config
+            .workspace
+            .as_ref()
+            .and_then(|template| template.default_root.clone());
+        let effective_workspace = workspace.map(Path::to_path_buf).or(configured_default);
+        let registered_ids = config
+            .projects
+            .keys()
+            .cloned()
+            .collect::<std::collections::BTreeSet<_>>();
+        let selected = effective_workspace
+            .as_deref()
             .map(|root| crate::workspace::bind(&mut config, root, parent))
             .transpose()?;
+        let home_view = home_policy
+            && selected.as_ref().is_some_and(|id| {
+                !registered_ids.contains(id)
+                    && config
+                        .projects
+                        .get(id)
+                        .is_some_and(|project| project.root.canonicalize().ok().as_deref() == home)
+            });
+        let mut private_roots = vec![config.state_dir.clone()];
+        let critical_roots = [
+            parent.to_owned(),
+            config.state_dir.clone(),
+            installation.to_owned(),
+        ];
+        if home_policy {
+            private_roots.extend(critical_roots.iter().cloned());
+            let home =
+                home.ok_or_else(|| Fault::invalid("Home policy requires the actual host home"))?;
+            private_roots.extend(crate::workspace::private_home_paths(home)?);
+            private_roots.extend(
+                config
+                    .workspace
+                    .as_ref()
+                    .unwrap()
+                    .protected_roots
+                    .iter()
+                    .cloned(),
+            );
+            for client in ["codex", "claude", "opencode"] {
+                let target = crate::workspace::client_config_path_in(home, client)?;
+                if !critical_roots.iter().any(|root| target.starts_with(root)) {
+                    config.standard_client_outputs.insert(client.into(), target);
+                }
+            }
+        }
         if config.projects.is_empty() {
             return Err(Fault::invalid(
                 "At least one project is required; workspace templates require --workspace PATH",
@@ -433,19 +518,25 @@ impl Config {
             if !project.root.is_dir() {
                 return Err(Fault::invalid(format!("Project {id} is not a directory")));
             }
-            if project.root.starts_with(&config.state_dir) {
+            if private_roots
+                .iter()
+                .any(|private| project.root.starts_with(private))
+            {
                 return Err(Fault::denied(
-                    "Project root must not be inside protected host state",
+                    "Project root must not be inside protected host storage",
                 ));
             }
-            if selected.as_ref() == Some(id) && path.starts_with(&project.root) {
+            if selected.as_ref() == Some(id)
+                && path.starts_with(&project.root)
+                && !(home_policy && Some(project.root.as_path()) == home && trusted_home_host)
+            {
                 return Err(Fault::denied(
                     "Workspace mode requires trusted host configuration outside the bound project",
                 ));
             }
             // Configuration and state are host-owned, even when stored under a
             // workspace. An agent must not rewrite its permissions on restart.
-            for protected in [&path, &config.state_dir] {
+            for protected in std::iter::once(&path).chain(private_roots.iter()) {
                 if let Ok(relative) = protected.strip_prefix(&project.root) {
                     if relative.as_os_str().is_empty() {
                         return Err(Fault::invalid(
@@ -502,9 +593,42 @@ impl Config {
         }
         // An overlapping root under another ID could bypass the same-file gate
         // or present a writable alias for a read-only project. Reject at startup.
+        let excluded_from_home = if home_view {
+            let home = home.unwrap();
+            config
+                .projects
+                .iter()
+                .filter(|(id, project)| {
+                    registered_ids.contains(*id) && project.root.starts_with(home)
+                })
+                .map(|(_, project)| project.root.clone())
+                .collect::<Vec<_>>()
+        } else {
+            Vec::new()
+        };
+        if home_view {
+            let home = home.unwrap();
+            let project = config.projects.get_mut(selected.as_ref().unwrap()).unwrap();
+            for root in &excluded_from_home {
+                let relative = root
+                    .strip_prefix(home)
+                    .map_err(|_| Fault::invalid("Invalid home exclusion"))?;
+                project
+                    .deny_globs
+                    .push(literal_glob(&relative.to_string_lossy().replace('\\', "/")));
+            }
+        }
         let roots = config.projects.iter().collect::<Vec<_>>();
         for (index, (left_id, left)) in roots.iter().enumerate() {
             for (right_id, right) in roots.iter().skip(index + 1) {
+                if home_view
+                    && ((selected.as_ref() == Some(*left_id)
+                        && excluded_from_home.contains(&right.root))
+                        || (selected.as_ref() == Some(*right_id)
+                            && excluded_from_home.contains(&left.root)))
+                {
+                    continue;
+                }
                 if left.root.starts_with(&right.root) || right.root.starts_with(&left.root) {
                     return Err(Fault::invalid(format!(
                         "Overlapping project roots: {left_id} and {right_id}"
@@ -696,7 +820,7 @@ fn validate_program(program: &str) -> Result<()> {
     Ok(())
 }
 
-fn normalize_absolute(path: &Path) -> PathBuf {
+pub(crate) fn normalize_absolute(path: &Path) -> PathBuf {
     let mut output = PathBuf::new();
     for component in path.components() {
         match component {
@@ -753,6 +877,258 @@ fn literal_glob(value: &str) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
+    fn home_fixture() -> (tempfile::TempDir, PathBuf, PathBuf, PathBuf) {
+        let temp = tempfile::tempdir().unwrap();
+        let home = temp.path().join("home");
+        std::fs::create_dir_all(home.join(".config/odin")).unwrap();
+        let home = home.canonicalize().unwrap();
+        let host = home.join(".config/odin/host.toml");
+        let installation = home.join("application");
+        std::fs::create_dir_all(&installation).unwrap();
+        std::fs::create_dir_all(home.join("project/private-host")).unwrap();
+        std::fs::create_dir_all(home.join(".local/state")).unwrap();
+        std::fs::create_dir_all(home.join(".codex")).unwrap();
+        std::fs::write(home.join("notes.txt"), "public source").unwrap();
+        std::fs::write(home.join(".codex/auth.json"), "private credentials").unwrap();
+        std::fs::write(home.join(".npmrc"), "private registry credentials").unwrap();
+        std::fs::write(home.join("project/private-host/secret.txt"), "private").unwrap();
+        let value = serde_json::json!({"state_dir":home.join(".local/state"),"workspace":{
+            "default_root":home,"allowed_roots":[home],"protected_roots":[home.join("project/private-host")]}});
+        std::fs::write(&host, toml::to_string(&value).unwrap()).unwrap();
+        (temp, home, host, installation)
+    }
+    #[test]
+    fn home_default_is_real_readonly_root_with_private_storage_exclusions() {
+        let (_temp, home, host, install) = home_fixture();
+        let config = Config::load_workspace_at(&host, None, Some(&home), &install).unwrap();
+        let project = config.projects.values().next().unwrap();
+        assert_eq!(project.root, home);
+        assert!(!project.allow_write && !project.allow_shell && !project.allow_debug);
+        assert!(project.commands.is_empty() && project.debuggers.is_empty());
+        let root = crate::paths::SafeRoot::new(&home, &project.deny_globs, 10000).unwrap();
+        assert!(root.read("notes.txt").is_ok());
+        for file in [
+            ".config/odin/host.toml",
+            ".codex/auth.json",
+            ".npmrc",
+            "project/private-host/secret.txt",
+        ] {
+            assert_eq!(
+                root.read(file).unwrap_err().code,
+                "PERMISSION_DENIED",
+                "{file}"
+            );
+        }
+        for path in [
+            ".config/odin/new.json",
+            ".codex/new.json",
+            ".local/state/new",
+            "application/new",
+        ] {
+            assert_eq!(
+                root.resolve(path, true).unwrap_err().code,
+                "PERMISSION_DENIED",
+                "{path}"
+            );
+        }
+        let explicit =
+            Config::load_workspace_at(&host, Some(&home), Some(&home), &install).unwrap();
+        assert_eq!(
+            config.projects.keys().next(),
+            explicit.projects.keys().next()
+        );
+    }
+    #[test]
+    fn home_policy_protects_all_projects_and_never_selects_private_roots() {
+        let (_temp, home, host, install) = home_fixture();
+        let first =
+            Config::load_workspace_at(&host, Some(&home.join("project")), Some(&home), &install)
+                .unwrap();
+        let project = first.projects.values().next().unwrap();
+        let safe = crate::paths::SafeRoot::new(&project.root, &project.deny_globs, 10000).unwrap();
+        assert_eq!(
+            safe.read("private-host/secret.txt").unwrap_err().code,
+            "PERMISSION_DENIED"
+        );
+        for root in [
+            home.join(".config"),
+            home.join(".codex"),
+            home.join(".local/state"),
+            install,
+            home.join("project/private-host"),
+        ] {
+            assert_eq!(
+                Config::load_workspace_at(
+                    &host,
+                    Some(&root),
+                    Some(&home),
+                    &home.join("application")
+                )
+                .unwrap_err()
+                .code,
+                "PERMISSION_DENIED"
+            );
+        }
+    }
+    #[test]
+    fn readonly_home_view_excludes_registered_roots_without_swallowing_their_policy() {
+        let (_temp, home, host, install) = home_fixture();
+        let mut value: toml::Value =
+            toml::from_str(&std::fs::read_to_string(&host).unwrap()).unwrap();
+        value.as_table_mut().unwrap().insert("projects".into(), toml::Value::try_from(serde_json::json!({"explicit":{"root":home.join("project"),"allow_write":true,"allow_shell":false,"allow_debug":false}})).unwrap());
+        std::fs::write(&host, toml::to_string(&value).unwrap()).unwrap();
+        let view = Config::load_workspace_at(&host, None, Some(&home), &install).unwrap();
+        let project = view.projects.values().next().unwrap();
+        let root = crate::paths::SafeRoot::new(&project.root, &project.deny_globs, 10000).unwrap();
+        assert_eq!(
+            root.resolve("project", false).unwrap_err().code,
+            "PERMISSION_DENIED"
+        );
+        assert!(!project.allow_write);
+        let selected =
+            Config::load_workspace_at(&host, Some(&home.join("project")), Some(&home), &install)
+                .unwrap();
+        assert_eq!(selected.projects.keys().next().unwrap(), "explicit");
+        assert!(selected.projects["explicit"].allow_write);
+        assert_ne!(view.projects.keys().next(), selected.projects.keys().next());
+    }
+    #[test]
+    fn home_view_does_not_hide_invalid_unselected_registrations() {
+        let (_temp, home, host, install) = home_fixture();
+        std::fs::create_dir_all(home.join("project/child")).unwrap();
+        let mut value: toml::Value =
+            toml::from_str(&std::fs::read_to_string(&host).unwrap()).unwrap();
+        value.as_table_mut().unwrap().insert("projects".into(), toml::Value::try_from(serde_json::json!({"one":{"root":home.join("project")},"two":{"root":home.join("project/child")}})).unwrap());
+        std::fs::write(&host, toml::to_string(&value).unwrap()).unwrap();
+        assert!(Config::load_workspace_at(&host, None, Some(&home), &install).is_err());
+    }
+    #[test]
+    fn home_policy_rejects_other_defaults_and_untrusted_nested_host_files() {
+        let (_temp, home, host, install) = home_fixture();
+        let repo_host = home.join("project/host.toml");
+        std::fs::write(&repo_host, "not valid TOML").unwrap();
+        assert_eq!(
+            Config::load_workspace_at(
+                &repo_host,
+                Some(&home.join("project")),
+                Some(&home),
+                &install
+            )
+            .unwrap_err()
+            .code,
+            "PERMISSION_DENIED"
+        );
+        let original = std::fs::read_to_string(&host).unwrap();
+        for field in ["default_root", "protected_roots"] {
+            let mut value: toml::Value = toml::from_str(&original).unwrap();
+            value["workspace"][field] = if field == "default_root" {
+                toml::Value::String(home.join("project").to_str().unwrap().into())
+            } else {
+                toml::Value::Array(vec![toml::Value::String("relative-private".into())])
+            };
+            std::fs::write(&host, toml::to_string(&value).unwrap()).unwrap();
+            assert!(Config::load_workspace_at(&host, None, Some(&home), &install).is_err());
+        }
+        let arbitrary = home.join("project/arbitrary-host.toml");
+        std::fs::write(&arbitrary, &original).unwrap();
+        assert_eq!(
+            Config::load_workspace_at(&arbitrary, None, Some(&home), &install)
+                .unwrap_err()
+                .code,
+            "PERMISSION_DENIED"
+        );
+    }
+    #[test]
+    fn standard_client_exception_is_exact_and_cannot_target_host_state_or_installation() {
+        let (_temp, home, host, install) = home_fixture();
+        let config = Config::load_workspace_at(&host, None, Some(&home), &install).unwrap();
+        let client = home.join(".codex/config.toml");
+        assert!(config.contains_workspace_path(&client));
+        assert!(config.is_standard_client_output("codex", &client));
+        assert!(!config.is_standard_client_output("claude", &client));
+        assert!(!config.is_standard_client_output("codex", &home.join(".codex/auth.json")));
+        assert!(!config.is_standard_client_output("codex", &home.join("AGENTS.md")));
+        assert!(!config.is_standard_client_output("codex", &host));
+        assert!(!config.is_standard_client_output("codex", &install.join("config.toml")));
+    }
+    #[test]
+    fn home_privacy_contract_excludes_every_standard_app_and_credential_path() {
+        let (_temp, home, host, install) = home_fixture();
+        let mut directories = vec![
+            ".config", ".local", ".codex", ".claude", ".ssh", ".aws", ".azure", ".gnupg", ".kube",
+            ".docker",
+        ];
+        if cfg!(windows) {
+            directories.push("AppData");
+        }
+        for directory in &directories {
+            std::fs::create_dir_all(home.join(directory)).unwrap();
+            std::fs::write(home.join(directory).join("private-probe.txt"), "private").unwrap();
+        }
+        let files = [".npmrc", ".pypirc", ".git-credentials", ".netrc"];
+        for file in files {
+            std::fs::write(home.join(file), "private").unwrap();
+        }
+        let config = Config::load_workspace_at(&host, None, Some(&home), &install).unwrap();
+        let project = config.projects.values().next().unwrap();
+        let root = crate::paths::SafeRoot::new(&project.root, &project.deny_globs, 10000).unwrap();
+        for file in directories
+            .iter()
+            .map(|directory| format!("{directory}/private-probe.txt"))
+            .chain(files.into_iter().map(str::to_owned))
+        {
+            assert_eq!(
+                root.read(&file).unwrap_err().code,
+                "PERMISSION_DENIED",
+                "{file}"
+            );
+        }
+        #[cfg(windows)]
+        assert_eq!(
+            root.read(".CODEX/AUTH.JSON").unwrap_err().code,
+            "PERMISSION_DENIED"
+        );
+    }
+    #[cfg(windows)]
+    #[test]
+    fn nested_home_host_exception_rejects_a_redirected_config_directory() {
+        let (_temp, home, host, install) = home_fixture();
+        let link = home.join(".config");
+        let target = home.join("redirected-config");
+        std::fs::rename(&link, &target).unwrap();
+        let result = std::process::Command::new("cmd")
+            .args(["/C", "mklink", "/J"])
+            .arg(&link)
+            .arg(&target)
+            .output()
+            .unwrap();
+        assert!(
+            result.status.success(),
+            "{}",
+            String::from_utf8_lossy(&result.stderr)
+        );
+        let result = Config::load_workspace_at(&host, Some(&home), Some(&home), &install);
+        std::fs::remove_dir(&link).unwrap();
+        assert_eq!(result.unwrap_err().code, "PERMISSION_DENIED");
+    }
+    #[test]
+    fn future_private_paths_normalize_parent_components_before_becoming_deny_patterns() {
+        let (_temp, home, host, install) = home_fixture();
+        let mut value: toml::Value =
+            toml::from_str(&std::fs::read_to_string(&host).unwrap()).unwrap();
+        value["workspace"]["protected_roots"] =
+            toml::Value::try_from(vec![home.join("project/absent/../future-private")]).unwrap();
+        std::fs::write(&host, toml::to_string(&value).unwrap()).unwrap();
+        let config = Config::load_workspace_at(&host, None, Some(&home), &install).unwrap();
+        std::fs::create_dir(home.join("project/future-private")).unwrap();
+        std::fs::write(home.join("project/future-private/secret"), "private").unwrap();
+        let project = config.projects.values().next().unwrap();
+        let root = crate::paths::SafeRoot::new(&project.root, &project.deny_globs, 10000).unwrap();
+        assert_eq!(
+            root.read("project/future-private/secret").unwrap_err().code,
+            "PERMISSION_DENIED"
+        );
+    }
     #[test]
     fn host_configuration_is_protected_inside_workspace() {
         let directory = tempfile::tempdir().unwrap();

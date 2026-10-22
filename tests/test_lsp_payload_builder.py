@@ -12,6 +12,8 @@ import stat
 import subprocess
 import sys
 import tempfile
+import io
+import tarfile
 import unittest
 from unittest import mock
 import zipfile
@@ -22,6 +24,10 @@ assert SPEC is not None and SPEC.loader is not None
 builder = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = builder
 SPEC.loader.exec_module(builder)
+NOTICE_SPEC = importlib.util.spec_from_file_location("odin_native_notices", SOURCE.with_name("collect_lsp_notices.py"))
+assert NOTICE_SPEC is not None and NOTICE_SPEC.loader is not None
+notices = importlib.util.module_from_spec(NOTICE_SPEC)
+NOTICE_SPEC.loader.exec_module(notices)
 
 
 class BuilderTests(unittest.TestCase):
@@ -231,6 +237,157 @@ class BuilderTests(unittest.TestCase):
             self.assertEqual(os.environ[keys[0]], "true")
             self.assertEqual(os.environ[keys[1]], "true")
             self.assertEqual(os.environ[keys[2]], "inherited-host-home")
+
+    def test_explicit_windows_separator_normalization_keeps_all_path_guards(self):
+        path, artifact = self.archive([("licenses\\LICENSE", b"notice"), ("server.exe", b"binary")])
+        builder.extract_zip(path, self.root / "winzip", artifact, windows_separators=True)
+        self.assertEqual((self.root / "winzip/licenses/LICENSE").read_bytes(), b"notice")
+        path.unlink()
+        for index, names in enumerate((("..\\escape",), ("C:\\absolute",), ("\\absolute",),
+                                       ("safe\\file", "safe/file"), ("safe\\NUL.txt",))):
+            path, artifact = self.archive([(name, b"bad") for name in names])
+            with self.assertRaises(builder.BuildError):
+                builder.extract_zip(path, self.root / f"unsafe-{index}", artifact, windows_separators=True)
+            self.assertFalse((self.root / f"unsafe-{index}").exists())
+            path.unlink()
+
+    def test_source_sidecar_is_deterministic_and_rechecks_each_archive(self):
+        source = self.root / "source.tar.gz"
+        source.write_bytes(b"inert compressed upstream source")
+        item = {"id": "source", "member": "source.tar.gz", "sha256": builder.hash_file(source)}
+        sidecar = {"destination": "sources/sidecar.zip", "readme": "NOT_RUN rebuild", "index": {"rebuild": "NOT_RUN"},
+                   "inputs": [item], "sha256": "unknown"}
+        # Compute the independently expected ZIP bytes using the public ZIP format.
+        expected = self.root / "expected.zip"
+        with zipfile.ZipFile(expected, "x") as archive:
+            for name, data in (("README-SOURCE.txt", b"NOT_RUN rebuild"),
+                               ("source-index.json", builder.json_bytes({"rebuild": "NOT_RUN"})),
+                               ("source.tar.gz", source.read_bytes())):
+                info = zipfile.ZipInfo(name, (1980, 1, 1, 0, 0, 0))
+                info.compress_type = zipfile.ZIP_STORED
+                info.external_attr = 0o100644 << 16
+                archive.writestr(info, data)
+        sidecar["sha256"] = builder.hash_file(expected)
+        builder.write_source_sidecar(self.root / "one", sidecar, {"source": source})
+        builder.write_source_sidecar(self.root / "two", sidecar, {"source": source})
+        self.assertEqual((self.root / "one/sources/sidecar.zip").read_bytes(), expected.read_bytes())
+        self.assertEqual((self.root / "two/sources/sidecar.zip").read_bytes(), expected.read_bytes())
+        source.write_bytes(b"tampered")
+        with self.assertRaises(builder.BuildError):
+            builder.write_source_sidecar(self.root / "tampered", sidecar, {"source": source})
+
+    def native_crate(self, entries):
+        path = self.root / "source.crate"
+        with tarfile.open(path, "w:gz") as archive:
+            for name, content in entries:
+                member = tarfile.TarInfo("fixture-1/" + name)
+                member.size = len(content)
+                archive.addfile(member, io.BytesIO(content))
+        return path
+
+    def test_notice_collector_reads_archives_as_data_and_preserves_raw_notices(self):
+        marker = self.root / "HOOK_EXECUTED"
+        path = self.native_crate([("Cargo.toml", b'[package]\nname="fixture"\nversion="1"\nlicense="MIT"\nauthors=["Actual upstream author"]\n'),
+                                  ("LICENSE", b"raw upstream notice\r\n"),
+                                  ("build.rs", ('fn main() { panic!("' + str(marker) + '"); }').encode())])
+        metadata = {"notice_sets": [{"id": "fixture", "scope": "CARGO_LOCK_SUPERSET_NOT_LINKED_BINARY_SBOM",
+                    "applicability": "UNKNOWN", "sources": [{"id": "fixture", "package": "fixture", "version": "1",
+                    "filename": path.name, "kind": "crate", "url": "https://static.crates.io/crates/fixture/fixture-1.crate",
+                    "sha256": builder.hash_file(path)}]}]}
+        result = notices.collect(metadata, self.root, self.root / "notices")
+        self.assertEqual(result["groups"][0]["missing_notice_text"], 0)
+        self.assertIn(b"raw upstream notice\r\n", (self.root / "notices/fixture/THIRD-PARTY-NOTICES.txt").read_bytes())
+        inventory = json.loads((self.root / "notices/fixture/inventory.json").read_bytes())
+        self.assertEqual(inventory["packages"][0]["authors"], ["Actual upstream author"])
+        self.assertFalse(marker.exists())
+
+    def test_notice_collector_records_missing_text_without_inventing_author(self):
+        path = self.native_crate([("Cargo.toml", b'[package]\nname="fixture"\nversion="1"\nlicense="MIT"\n')])
+        metadata = {"notice_sets": [{"id": "fixture", "scope": "LOCK_SUPERSET", "applicability": "UNKNOWN",
+                    "sources": [{"id": "fixture", "package": "fixture", "version": "1", "filename": path.name,
+                    "kind": "crate", "url": "https://static.crates.io/crates/fixture/fixture-1.crate", "sha256": builder.hash_file(path)}]}]}
+        result = notices.collect(metadata, self.root, self.root / "missing")
+        self.assertEqual(result["status"], "WITH_DECLARED_NOTICE_GAPS")
+        missing = result["groups"][0]["unresolved"][0]
+        self.assertEqual(missing["license"], "MIT")
+        self.assertEqual(missing["authors"], [])
+        self.assertEqual(missing["applicability"], "UNKNOWN")
+
+    def test_notice_collector_rejects_changed_archive_and_existing_output(self):
+        source = self.root / "source.crate"
+        source.write_bytes(b"changed bytes")
+        metadata = {"notice_sets": [{"id": "fixture", "scope": "LOCK_SUPERSET", "applicability": "UNKNOWN",
+                    "sources": [{"id": "fixture", "package": "fixture", "version": "1", "filename": source.name,
+                    "kind": "crate", "sha256": "0" * 64}]}]}
+        with self.assertRaisesRegex(ValueError, "SHA256 mismatch"):
+            notices.collect(metadata, self.root, self.root / "changed")
+        output = self.root / "existing"
+        output.mkdir()
+        with self.assertRaisesRegex(ValueError, "fresh and absent"):
+            notices.collect(metadata, self.root, output)
+
+    def test_nuget_notice_collection_includes_runtime_third_party_text(self):
+        data = io.BytesIO()
+        with zipfile.ZipFile(data, "w") as archive:
+            archive.writestr("runtime.nuspec", '<package><metadata><license type="expression">MIT</license><authors>Microsoft</authors></metadata></package>')
+            archive.writestr("THIRD-PARTY-NOTICES.TXT", b"runtime third party notices")
+        metadata, files = notices.archive_notices(data.getvalue(), "nuget")
+        self.assertEqual(metadata["authors"], "Microsoft")
+        self.assertIn(("THIRD-PARTY-NOTICES.TXT", b"runtime third party notices"), files)
+
+    def test_native_metadata_matches_reviewed_official_closure(self):
+        data, components, artifacts = builder.native_inputs(builder.REPO / "packaging/lsp-native-sources.json")
+        self.assertEqual(hashlib.sha256(data).hexdigest(), builder.NATIVE_SOURCES_SHA256)
+        self.assertEqual({item["id"] for item in components},
+                         {"slint-lsp", "clangd", "taplo", "marksman", "ruff", "ty", "rust-analyzer"})
+        self.assertEqual(len({artifact.id for artifact in artifacts}), len(artifacts))
+        for item in components:
+            self.assertNotIn("latest", item["url"])
+            self.assertTrue(item["entrypoint"].endswith(".exe"))
+            self.assertEqual(len(item["sha256"]), 64)
+            self.assertTrue(item["license_sources"] or item["id"] in {"slint-lsp", "clangd"})
+        self.assertEqual(next(item for item in components if item["id"] == "clangd")["args"], ["--enable-config=false"])
+
+    def test_native_source_metadata_tampering_rejected(self):
+        path = self.root / "native.json"
+        original = (builder.REPO / "packaging/lsp-native-sources.json").read_bytes()
+        path.write_bytes(original + b" ")
+        with self.assertRaises(builder.BuildError):
+            builder.native_inputs(path)
+
+    def test_native_zip_and_license_closure(self):
+        path, artifact = self.archive([("sdk/server.exe", b"binary"), ("sdk/LICENSE", b"license")])
+        notice = self.root / "NOTICE"
+        notice.write_bytes(b"upstream notice")
+        component = {"id": artifact.id, "version": artifact.version, "filename": artifact.filename,
+                     "url": artifact.url, "sha256": artifact.digest, "archive": True, "directory": "server",
+                     "prefix": "sdk/", "entrypoint": "server/server.exe", "license_sources": [
+                         {"sha256": builder.hash_file(notice), "destination": "licenses/server/NOTICE"}]}
+        output = self.root / "native"
+        builder.extract_native({"test": path, "test-license-0": notice}, [component], output)
+        self.assertEqual((output / "server/server.exe").read_bytes(), b"binary")
+        self.assertEqual((output / "server/LICENSE").read_bytes(), b"license")
+        self.assertEqual((output / "licenses/server/NOTICE").read_bytes(), b"upstream notice")
+
+    def test_raw_binary_changed_after_validation_is_rejected(self):
+        path = self.root / "server.exe"
+        path.write_bytes(b"original")
+        component = {"id": "server", "version": "1", "filename": path.name,
+                     "url": "https://github.com/org/server/releases/download/v1/server.exe",
+                     "sha256": builder.hash_file(path), "archive": False, "entrypoint": "server/server.exe",
+                     "license_sources": []}
+        path.write_bytes(b"changed")
+        with self.assertRaises(builder.BuildError):
+            builder.extract_native({"server": path}, [component], self.root / "native")
+        self.assertFalse((self.root / "native").exists())
+
+    def test_native_entrypoint_absence_fails(self):
+        path, artifact = self.archive([("different.exe", b"binary")])
+        component = {"id": artifact.id, "version": artifact.version, "filename": artifact.filename,
+                     "url": artifact.url, "sha256": artifact.digest, "archive": True,
+                     "directory": "server", "prefix": "", "entrypoint": "server/required.exe", "license_sources": []}
+        with self.assertRaises(builder.BuildError):
+            builder.extract_native({"test": path}, [component], self.root / "native")
 
     def test_command_failure_records_actual_exit_and_logs(self):
         receipt = {"commands": []}

@@ -24,19 +24,25 @@ import zipfile
 
 TARGET = "x86_64-pc-windows-msvc"
 REPO = Path(__file__).resolve().parents[1]
-LOCK_SHA256 = "89ee5b0fdce8ebf05d8f07d5a0b6dde4c7656ae441a905ade8ef6358b12bd43a"
+LOCK_SHA256 = "58cb6e0a67c4283bc56e29c4cd89a4304bf587bbbba92fe4d38024d35082b4ba"
+NATIVE_SOURCES_SHA256 = "bd1f02f0d3565e8e59b2ab0b7b9729dfe4949220281df93dabcd581d9a91a262"
 NPM_VERSIONS = {
     "basedpyright": "1.40.2",
     "typescript-language-server": "6.0.2",
     "typescript": "6.0.3",
     "bash-language-server": "5.8.1",
     "smol-toml": "1.9.1",
+    "yaml-language-server": "2.0.0",
+    "@vtsls/language-server": "0.3.0",
 }
+NOTICE_COLLECTOR_SHA256 = "b72d7da99cbe6ac6e333f9599b15bf7aa34c248013e3adcfd99aa3a2feb2d154"
 GOPLS_VERSION = "v0.24.0"
 OFFICIAL_HOSTS = frozenset({
     "nodejs.org", "go.dev", "dl.google.com", "builds.dotnet.microsoft.com",
     "api.nuget.org", "github.com", "release-assets.githubusercontent.com",
     "objects.githubusercontent.com", "raw.githubusercontent.com",
+    "codeload.github.com", "static.crates.io",
+    "skia.googlesource.com", "chromium.googlesource.com",
 })
 MAX_ARCHIVE_BYTES = 2 * 1024**3
 MAX_EXPANDED_BYTES = 8 * 1024**3
@@ -182,9 +188,10 @@ def cached_artifact(artifact: Artifact, cache: Path) -> Path:
             temporary.unlink()
 
 
-def safe_member(info: zipfile.ZipInfo) -> tuple[str, ...]:
-    name = info.filename
-    if not name or info.orig_filename != name or "\x00" in name or "\\" in name or ":" in name or name.startswith("/"):
+def safe_member(info: zipfile.ZipInfo, windows_separators: bool = False) -> tuple[str, ...]:
+    original = info.orig_filename
+    name = original.replace("\\", "/") if windows_separators else info.filename
+    if not name or "\x00" in original or (not windows_separators and original != name) or "\x00" in name or "\\" in name or ":" in name or name.startswith("/"):
         raise BuildError(f"Unsafe ZIP member: {name!r}")
     trimmed = name[:-1] if name.endswith("/") else name
     parts = tuple(trimmed.split("/"))
@@ -203,14 +210,14 @@ def safe_member(info: zipfile.ZipInfo) -> tuple[str, ...]:
     return parts
 
 
-def zip_plan(archive: zipfile.ZipFile) -> list[tuple[zipfile.ZipInfo, tuple[str, ...]]]:
+def zip_plan(archive: zipfile.ZipFile, windows_separators: bool = False) -> list[tuple[zipfile.ZipInfo, tuple[str, ...]]]:
     entries = archive.infolist()
     if len(entries) > MAX_ARCHIVE_ENTRIES or sum(i.file_size for i in entries) > MAX_EXPANDED_BYTES:
         raise BuildError("ZIP exceeds entry or expanded byte limit")
     plan = []
     names: dict[str, bool] = {}
     for info in entries:
-        parts = safe_member(info)
+        parts = safe_member(info, windows_separators)
         folded = "/".join(parts).casefold()
         if folded in names:
             raise BuildError(f"ZIP duplicate/case collision: {info.filename!r}")
@@ -224,7 +231,7 @@ def zip_plan(archive: zipfile.ZipFile) -> list[tuple[zipfile.ZipInfo, tuple[str,
     return plan
 
 
-def extract_zip(path: Path, destination: Path, artifact: Artifact, prefix: str = "") -> None:
+def extract_zip(path: Path, destination: Path, artifact: Artifact, prefix: str = "", windows_separators: bool = False) -> None:
     reject_reparse(path)
     # Hash the same open handle consumed by ZipFile.
     with path.open("rb") as source:
@@ -235,7 +242,7 @@ def extract_zip(path: Path, destination: Path, artifact: Artifact, prefix: str =
             raise BuildError(f"Archive changed after cache validation: {path}")
         source.seek(0)
         with zipfile.ZipFile(source) as archive:
-            plan = zip_plan(archive)  # Preflight all entries, including those outside prefix.
+            plan = zip_plan(archive, windows_separators)  # Preflight all entries, including those outside prefix.
             selected = 0
             for info, parts in plan:
                 member = "/".join(parts)
@@ -454,23 +461,112 @@ def npm_bin(output: Path, package: str, name: str) -> Path:
     return path
 
 
+def native_inputs(path: Path) -> tuple[bytes, list[dict], tuple[Artifact, ...]]:
+    reject_reparse(path)
+    data = path.read_bytes()
+    if hashlib.sha256(data).hexdigest() != NATIVE_SOURCES_SHA256:
+        raise BuildError("Native source bytes differ from the reviewed pinned SHA256")
+    metadata = json.loads(data)
+    components = metadata["components"]
+    artifacts = []
+    for component in components:
+        artifacts.append(Artifact(component["id"], component["version"], component["filename"],
+                                  component["url"], "sha256", component["sha256"]))
+        for index, license_source in enumerate(component["license_sources"]):
+            artifacts.append(Artifact(component["id"] + "-license-" + str(index), component["version"],
+                                      license_source["filename"], license_source["url"], "sha256", license_source["sha256"]))
+    for source in metadata.get("source_sidecar", {}).get("inputs", []):
+        artifacts.append(Artifact(source["id"], "1.18.1", source["filename"],
+                                  source["url"], "sha256", source["sha256"]))
+    for group in metadata.get("notice_sets", []):
+        for source in group["sources"]:
+            artifacts.append(Artifact(source["id"], source["version"], source["filename"], source["url"], "sha256", source["sha256"]))
+            for notice in source.get("supplemental_notice_sources", []):
+                artifacts.append(Artifact(notice["id"], source["version"], notice["filename"], notice["url"], "sha256", notice["sha256"]))
+    unique = {}
+    for artifact in artifacts:
+        previous = unique.get(artifact.id)
+        if previous is not None and previous != artifact:
+            raise BuildError("Conflicting pinned source identity: " + artifact.id)
+        unique[artifact.id] = artifact
+    return data, components, tuple(unique.values())
+
+
+def extract_native(sources: dict[str, Path], components: list[dict], output: Path) -> None:
+    for component in components:
+        artifact = Artifact(component["id"], component["version"], component["filename"],
+                            component["url"], "sha256", component["sha256"])
+        source = sources[component["id"]]
+        if component["archive"]:
+            extract_zip(source, output / component["directory"], artifact, component["prefix"], component.get("windows_separators", False))
+        else:
+            # The open handle is rehashed before publishing raw executable bytes.
+            data = source.read_bytes()
+            if hashlib.sha256(data).hexdigest() != artifact.digest:
+                raise BuildError("Raw binary changed after cache validation: " + artifact.id)
+            write_new(output / component["entrypoint"], data)
+        for index, license_source in enumerate(component["license_sources"]):
+            data = sources[component["id"] + "-license-" + str(index)].read_bytes()
+            if hashlib.sha256(data).hexdigest() != license_source["sha256"]:
+                raise BuildError("License changed after cache validation: " + component["id"])
+            write_new(output / license_source["destination"], data)
+        if not (output / component["entrypoint"]).is_file():
+            raise BuildError("Native entrypoint missing: " + component["entrypoint"])
+
+
+def write_source_sidecar(output: Path, sidecar: dict, sources: dict[str, Path]) -> None:
+    target = output / sidecar["destination"]
+    reject_reparse(target)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    # Compressed upstream archives remain inert; no source/build hook is executed.
+    with zipfile.ZipFile(target, "x", compression=zipfile.ZIP_STORED, allowZip64=True) as archive:
+        def member(name: str, data: bytes) -> None:
+            info = zipfile.ZipInfo(name, (1980, 1, 1, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_STORED
+            info.external_attr = 0o100644 << 16
+            archive.writestr(info, data)
+        for name, data in sorted((("README-SOURCE.txt", sidecar["readme"].encode("utf-8")),
+                                  ("source-index.json", json_bytes(sidecar["index"])) )):
+            member(name, data)
+        for source in sorted(sidecar["inputs"], key=lambda item: item["member"]):
+            data = sources[source["id"]].read_bytes()
+            if hashlib.sha256(data).hexdigest() != source["sha256"]:
+                raise BuildError("Source archive changed after validation: " + source["id"])
+            member(source["member"], data)
+    if hash_file(target) != sidecar["sha256"]:
+        raise BuildError("Generated source sidecar differs from reviewed bytes")
+
+
 def build(args: argparse.Namespace, receipt: dict, output: Path, cache: Path) -> None:
+    collector = REPO / "scripts/collect_lsp_notices.py"
+    if hash_file(collector) != NOTICE_COLLECTOR_SHA256:
+        raise BuildError("Notice collector differs from the reviewed source SHA256")
     package_bytes, lock_bytes, lock = package_inputs(args.package_json, args.package_lock)
     receipt["inputs"] = {"package_json": {"path": str(args.package_json), "sha256": hashlib.sha256(package_bytes).hexdigest()},
                          "package_lock": {"path": str(args.package_lock), "sha256": hashlib.sha256(lock_bytes).hexdigest()}}
+    native_bytes, native_components, native_artifacts = native_inputs(args.native_sources)
+    receipt["inputs"]["native_sources"] = {"path": str(args.native_sources), "sha256": hashlib.sha256(native_bytes).hexdigest()}
+    receipt["inputs"]["notice_collector"] = {"path": str(collector), "sha256": NOTICE_COLLECTOR_SHA256}
     output.parent.mkdir(parents=True, exist_ok=True)
     output.mkdir()  # Fresh root is the transaction boundary for this external build.
     work = Path(tempfile.mkdtemp(prefix="odin-lsp-build-", dir=output.parent))
     receipt["work_directory"] = str(work)
     runner = Runner(work, receipt)
-    sources = {artifact.id: cached_artifact(artifact, cache) for artifact in (*ARTIFACTS, CSHARP_LICENSE)}
+    all_artifacts = (*ARTIFACTS, CSHARP_LICENSE, *native_artifacts)
+    sources = {artifact.id: cached_artifact(artifact, cache) for artifact in all_artifacts}
     receipt["sources"] = [{"id": a.id, "version": a.version, "url": a.url, "cache": str(sources[a.id]),
-                           "algorithm": a.algorithm, "digest": a.digest} for a in (*ARTIFACTS, CSHARP_LICENSE)]
+                           "algorithm": a.algorithm, "digest": a.digest} for a in all_artifacts]
     by_id = {artifact.id: artifact for artifact in ARTIFACTS}
     for component, directory, prefix in (("node", "node", "node-v24.21.0-win-x64/"),
                                           ("lua-language-server", "lua", ""), ("go", "go", "go/"),
                                           ("dotnet", "dotnet", ""), ("csharp-ls", "csharp", "tools/net10.0/any/")):
         extract_zip(sources[component], output / directory, by_id[component], prefix)
+    extract_native(sources, native_components, output)
+    sidecar = json.loads(native_bytes).get("source_sidecar")
+    if sidecar:
+        write_source_sidecar(output, sidecar, sources)
+        receipt["source_sidecar"] = {key: sidecar[key] for key in ("destination", "sha256", "source_closure_status")}
+    write_new(output / "licenses/native-sources.json", native_bytes)
     write_new(output / "package.json", package_bytes)
     write_new(output / "package-lock.json", lock_bytes)
     write_new(output / "licenses/csharp-ls/LICENSE", sources[CSHARP_LICENSE.id].read_bytes())
@@ -479,6 +575,10 @@ def build(args: argparse.Namespace, receipt: dict, output: Path, cache: Path) ->
     node, go, dotnet = output / "node/node.exe", output / "go/bin/go.exe", output / "dotnet/dotnet.exe"
     runner.run([str(node), str(output / "node/node_modules/npm/bin/npm-cli.js"), "ci", "--ignore-scripts", "--no-audit", "--no-fund"], output, env)
     npm_inventory(output, lock)
+    runner.run([sys.executable, str(collector), "--metadata", str(args.native_sources),
+                "--expected-metadata-sha256", NATIVE_SOURCES_SHA256, "--cache-dir", str(cache),
+                "--output", str(output / "licenses/native-dependencies")], work, env)
+    receipt["notice_inventory"] = json.loads((output / "licenses/native-dependencies/inventory.json").read_bytes())
     runner.run([str(go), "install", "-trimpath", "golang.org/x/tools/gopls@" + GOPLS_VERSION], work, env)
     runner.run([str(go), "version", "-m", str(output / "gopls/gopls.exe")], work, env)
     copy_go_notices(work / "go-modules", output)
@@ -495,7 +595,9 @@ def build(args: argparse.Namespace, receipt: dict, output: Path, cache: Path) ->
                      "--logpath=" + str(work / "lua-log"), "--metapath=" + str(work / "lua-meta")]]
         commands += [[str(node), str(npm_bin(output, package, binary)), "--version"] for package, binary in (
             ("basedpyright", "basedpyright"), ("typescript-language-server", "typescript-language-server"),
-            ("typescript", "tsc"), ("bash-language-server", "bash-language-server"))]
+            ("typescript", "tsc"), ("bash-language-server", "bash-language-server"),
+            ("yaml-language-server", "yaml-language-server"), ("@vtsls/language-server", "vtsls"))]
+        commands += [[str(output / component["entrypoint"]), *component["health_args"]] for component in native_components]
         for command in commands:
             runner.run(command, work, env, timeout=120)
         if payload_files(output) != files:
@@ -511,6 +613,10 @@ def build(args: argparse.Namespace, receipt: dict, output: Path, cache: Path) ->
     components.append({"id": "gopls", "version": GOPLS_VERSION.removeprefix("v"),
                        "source": "https://proxy.golang.org/golang.org/x/tools/gopls/@v/v0.24.0.info",
                        "sha256": hash_file(output / "gopls/gopls.exe")})
+    components.extend({"id": item["id"], "version": item["version"], "source": item["url"],
+                       "sha256": item["sha256"], **({"release": item["release"]} if "release" in item else {})} for item in native_components)
+    if sidecar:
+        next(item for item in components if item["id"] == "slint-lsp")["source_sidecar"] = receipt["source_sidecar"]
     manifest = {"schema_version": 1, "target": TARGET, "components": sorted(components, key=lambda item: item["id"]),
                 "files": files}
     write_new(output / "manifest.json", json_bytes(manifest))
@@ -525,6 +631,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--cache-dir", type=Path, required=True, help="External original archive cache; hashes checked on every use")
     parser.add_argument("--package-json", type=Path, default=REPO / "packaging/lsp-package.json")
     parser.add_argument("--package-lock", type=Path, default=REPO / "packaging/lsp-package-lock.json")
+    parser.add_argument("--native-sources", type=Path, default=REPO / "packaging/lsp-native-sources.json")
     parser.add_argument("--receipt", type=Path, help="Create-only external JSON; default sibling <output>.build-receipt.json")
     parser.add_argument("--versions", action="store_true", help="Run actual version probes; does not certify IDE functionality")
     args = parser.parse_args(argv)
