@@ -1446,7 +1446,7 @@ fn diagnostic_output(
         "findings"
     };
     Ok(
-        json!({"available":available,"pending":!available,"stale":freshness=="stale","source":source,"provider":provider,
+        json!({"available":available,"pending":freshness=="pending","stale":freshness=="stale","source":source,"provider":provider,
         "report":report,"document":snapshot.metadata(),"current_version":snapshot.version,"reported_version":report.and_then(|r|r.get("version")),
         "version_verified":current,"freshness":freshness,"status":status,"findings":findings,
         "summary":{"errors":counts[0],"warnings":counts[1],"information":counts[2],"hints":counts[3],"unknown":counts[4],
@@ -1587,6 +1587,8 @@ mod tests {
         assert_eq!(output["findings"][0]["source_sha256"], snapshot.hash);
         let pending = diagnostic_output(&snapshot, None, "lsp_push", "rust", "pending").unwrap();
         assert_eq!(pending["status"], "pending");
+        assert_eq!(pending["pending"], true);
+        assert_eq!(pending["stale"], false);
         assert_eq!(pending["summary"]["complete"], false);
         let unverified = diagnostic_output(
             &snapshot,
@@ -1601,6 +1603,8 @@ mod tests {
         let stale=diagnostic_output(&snapshot,Some(&json!({"version":1,"diagnostics":[{"range":{"start":{"line":50,"character":0},"end":{"line":50,"character":9}},"message":"old error","severity":1}]})),"lsp_push","rust","stale").unwrap();
         assert_eq!(stale["status"], "stale");
         assert_eq!(stale["available"], false);
+        assert_eq!(stale["pending"], false);
+        assert_eq!(stale["stale"], true);
         assert!(stale["findings"][0]["source_sha256"].is_null());
         assert!(
             diagnostic_output(
