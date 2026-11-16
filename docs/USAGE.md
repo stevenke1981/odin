@@ -71,6 +71,10 @@ launch / attach 回 ticket；等待 initialize event / adapter-specific 規範�
 
 無 language server 時可用檔案／記憶／FTS5；有 language server 才能執行相應語意能力；有 DAP adapter 且明確授權才提供除錯。無後端能力時會回錯誤，不做猜測式替代。詳見 `STANDALONE.md`。
 
+## MCP 工具公開範圍
+
+`serve` 預設 `--tool-profile core`：只公開日常的讀取、搜尋、符號、引用與交易編輯工具，且隱藏 host 政策對所有專案都停用的工具（例如唯讀專案的編輯工具）；單一專案時 `project` 參數可省略。`ide` 加上導航、IDE 查詢與其餘編輯工具，`full` 公開全部 86 個、契約與 catalog 完全相同。`--include-tools a,b` 個別加入。CLI `call` 不受影響。公開範圍不是權限邊界：每次呼叫仍由 engine 檢查 host policy。
+
 ## HTTP
 
 只支援 loopback listener；MCP endpoint `/mcp` 及 `/api/*` 都需要 Bearer。Dashboard 是 `/`，輸入 token 後讀取資料；不在網頁自動載入外部 scripts 或字型。stdio MCP 不需要開 HTTP port。

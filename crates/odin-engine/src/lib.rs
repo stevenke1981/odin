@@ -140,10 +140,26 @@ impl Engine {
                 .cloned()
                 .ok_or_else(|| Fault::invalid("No project"))?)
         } else {
-            Err(Fault::invalid(
-                "Choose an explicit project ID; Odin has no shared active project",
-            ))
+            Err(Fault::invalid(format!(
+                "Pass an explicit project argument; configured project IDs: {}",
+                self.projects.keys().cloned().collect::<Vec<_>>().join(", ")
+            )))
         }
+    }
+    /// Whether host policy permits this catalog tool for a project. Mirrors the
+    /// gate in `run`; used for capability reports and MCP tool exposure.
+    pub fn tool_enabled(config: &ProjectConfig, tool: &Value) -> bool {
+        let name = tool["name"].as_str().unwrap_or("");
+        !config.excluded_tools.iter().any(|item| item == name)
+            && (!matches!(name, "run_inspections" | "prepare_inspection_fix")
+                || (config.allow_inspections && config.sandbox.is_some()))
+            && match tool["policy"].as_str() {
+                Some("write") => config.allow_write,
+                Some("execute") if name.starts_with("debug_") => config.allow_debug,
+                Some("execute") if name == "run_inspections" => config.allow_inspections,
+                Some("execute") => config.allow_shell,
+                _ => true,
+            }
     }
     pub fn read_tool(&self, name: &str) -> bool {
         self.tool(name).is_some_and(|t| t["policy"] == "read")
@@ -196,22 +212,32 @@ impl Engine {
         let trace_id = uuid::Uuid::new_v4().to_string();
         let result = async {
             if project.config.excluded_tools.iter().any(|n| n == tool) {
-                return Err(Fault::denied("Tool disabled by host policy"));
+                return Err(Fault::denied(format!(
+                    "Tool {tool} is disabled by host policy (excluded_tools) for project {project_id}; ask the operator to remove it from excluded_tools in the host config or the selected --context/--mode"
+                )));
             }
             match spec["policy"].as_str().unwrap_or("") {
                 "write" if !project.config.allow_write => {
-                    return Err(Fault::denied("Project writes are disabled"));
+                    return Err(Fault::denied(format!(
+                        "Project {project_id} is read-only. Ask the operator to set allow_write = true under [projects.{project_id}] in the host config (or re-run odin init --writable --root <path>), then restart the MCP server. Nothing was changed."
+                    )));
                 }
                 "execute" if tool.starts_with("debug_") && !project.config.allow_debug => {
-                    return Err(Fault::denied("Debug execution disabled"));
+                    return Err(Fault::denied(format!(
+                        "Debugging is disabled for project {project_id}; the operator must set allow_debug = true and configure [projects.{project_id}.debuggers] in the host config"
+                    )));
                 }
                 "execute" if tool == "execute_shell_command" && !project.config.allow_shell => {
-                    return Err(Fault::denied("Command execution disabled"));
+                    return Err(Fault::denied(format!(
+                        "Command profiles are disabled for project {project_id}; the operator must set allow_shell = true in the host config. Until then, ask the user to run the build/test command"
+                    )));
                 }
                 _ if matches!(tool, "run_inspections" | "prepare_inspection_fix")
                     && !project.config.allow_inspections =>
                 {
-                    return Err(Fault::denied("Native inspections are disabled by the host"));
+                    return Err(Fault::denied(
+                        "Native inspections are disabled by the host; the operator must set allow_inspections = true and configure a native sandbox",
+                    ));
                 }
                 _ => {}
             }
@@ -436,21 +462,7 @@ impl Engine {
                     .iter()
                     .map(|tool| {
                         let name = tool["name"].as_str().unwrap_or("");
-                        let enabled = !p.config.excluded_tools.iter().any(|item| item == name)
-                            && (!matches!(name, "run_inspections" | "prepare_inspection_fix")
-                                || (p.config.allow_inspections && p.config.sandbox.is_some()))
-                            && match tool["policy"].as_str() {
-                                Some("write") => p.config.allow_write,
-                                Some("execute") if name.starts_with("debug_") => {
-                                    p.config.allow_debug
-                                }
-                                Some("execute") if name == "run_inspections" => {
-                                    p.config.allow_inspections
-                                }
-                                Some("execute") => p.config.allow_shell,
-                                _ => true,
-                            };
-                        json!({"name":name,"policy":tool["policy"],"enabled":enabled})
+                        json!({"name":name,"policy":tool["policy"],"enabled":Self::tool_enabled(&p.config, tool)})
                     })
                     .collect::<Vec<_>>();
                 Ok(
@@ -1150,7 +1162,7 @@ impl Engine {
         if p.config.languages.is_empty() {
             return Err(Fault::new(
                 "MISSING_BACKEND",
-                "Symbol search requires a host-configured language server",
+                "Symbol search requires a host-configured language server; add [[projects.<id>.languages]] to the host config. Use search_for_pattern for text search meanwhile",
             ));
         }
         let query_filter = symbols::Filter::new(a, self.config.limits.max_matches)?;
@@ -1372,6 +1384,14 @@ fn backend_error(error: anyhow::Error) -> Fault {
     .into_iter()
     .find(|code| message.starts_with(code))
     .unwrap_or("BACKEND_ERROR");
+    if message.contains("Backend process exited") {
+        return Fault::new(
+            code,
+            format!(
+                "{message}: the language server stopped (often not installed for this toolchain, e.g. rustup component add rust-analyzer, or it crashed on this workspace). Its stderr is in the MCP client log; run odin doctor --probe-lsp, then restart_language_server. Use search_for_pattern meanwhile"
+            ),
+        );
+    }
     Fault::new(code, message)
 }
 fn read_expected(p: &Project, path: &str, expected: &str) -> Result<String> {

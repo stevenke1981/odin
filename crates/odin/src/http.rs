@@ -22,7 +22,12 @@ struct Auth {
     hosts: Arc<Vec<String>>,
     origins: Arc<Vec<String>>,
 }
-pub async fn serve(engine: Arc<Engine>, address: SocketAddr, token: String) -> Result<()> {
+pub async fn serve(
+    engine: Arc<Engine>,
+    exposure: Arc<crate::mcp::Exposure>,
+    address: SocketAddr,
+    token: String,
+) -> Result<()> {
     if !address.ip().is_loopback() {
         bail!(
             "This release binds only loopback. Remote deployment requires a separately reviewed authenticated gateway."
@@ -49,6 +54,7 @@ pub async fn serve(engine: Arc<Engine>, address: SocketAddr, token: String) -> R
         move || {
             Ok(OdinMcp {
                 engine: service_engine.clone(),
+                exposure: exposure.clone(),
             })
         },
         LocalSessionManager::default().into(),

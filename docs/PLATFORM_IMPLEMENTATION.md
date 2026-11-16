@@ -22,11 +22,12 @@ onboard 讀取 bounded project evidence；不執行 README、AGENTS.md 或其他
 
 ```powershell
 odin --config C:\Odin\host.toml setup --client codex
-odin --config C:\Odin\host.toml setup --client claude --output C:\Odin\client.json
+odin --config C:\Odin\host.toml setup --client claude
+odin --config C:\Odin\host.toml setup --client claude-desktop --output C:\Odin\client.json
 odin --config C:\Odin\host.toml setup --client opencode --output C:\Odin\opencode.json
 ```
 
-預設回 DRY_RUN JSON，`content` 是生成的 managed entry；不顯示既有無關設定值。三種輸出分別採 Codex `mcp_servers.odin` TOML、Claude `mcpServers.odin` JSON、OpenCode `mcp.odin` local argv 陣列。argv 使用獨立字串，包含絕對 binary／host config 路徑與選定 context/mode。設定格式依 [Codex 官方文件](https://learn.chatgpt.com/docs/extend/mcp?surface=cli)、[Claude Code 官方文件](https://code.claude.com/docs/en/mcp)、[OpenCode 官方文件](https://opencode.ai/docs/mcp-servers/)。
+預設回 DRY_RUN JSON，`content` 是生成的 managed entry；不顯示既有無關設定值。輸出分別採 Codex `mcp_servers.odin` TOML、Claude Code／Claude Desktop `mcpServers.odin` JSON、OpenCode `mcp.odin` local argv 陣列；`--client claude` 另回 `claude_code.user_scope_command`（`claude mcp add`，Odin 不執行）。Windows verbatim `\\?\` 路徑會轉成一般路徑。Claude Code 的 `~/.claude.json` 不提供 `--apply` 例外，並列入 home 私有路徑。argv 使用獨立字串，包含絕對 binary／host config 路徑與選定 context/mode。設定格式依 [Codex 官方文件](https://learn.chatgpt.com/docs/extend/mcp?surface=cli)、[Claude Code 官方文件](https://code.claude.com/docs/en/mcp)、[OpenCode 官方文件](https://opencode.ai/docs/mcp-servers/)。
 
 要寫入明確指定的 host file，使用 `--apply --output <path>`。新檔只允許 create_new；既有檔須指定 preview 回傳的 `--expected-sha256 <hash>`。寫入前再比對原內容，先保存 `<name>.odin-backup-<full-sha256>`，然後同目錄暫存檔＋rename。不同設定值會保留；JSON/TOML 的空白、排序、註解不保證原樣。JSONC 明確拒絕，不能先刪註解再假裝無損。寫入不會授權 Odin shell/debug/project writes。這條 host setup 路徑拒絕 configured project root 內的輸出，工作區改動仍走 Transactions。
 

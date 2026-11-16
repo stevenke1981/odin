@@ -115,7 +115,7 @@ def run(binary, output):
                     time.sleep(.01)
                 raise TimeoutError('Expected fixture event did not arrive')
 
-            with Peer([str(binary.resolve()), '--config', str(config), 'serve', '--transport', 'stdio']) as peer:
+            with Peer([str(binary.resolve()), '--config', str(config), '--tool-profile', 'full', 'serve', '--transport', 'stdio']) as peer:
                 response = peer.request('initialize', {'protocolVersion':'2025-11-25','capabilities':{},'clientInfo':{'name':'cancellation-regression','version':'1'}})
                 check('real_binary_initialize', response.get('result',{}).get('serverInfo',{}).get('name') == 'odin')
                 peer.notify('notifications/initialized')

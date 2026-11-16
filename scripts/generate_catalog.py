@@ -120,6 +120,72 @@ add("debug_stop","Disconnect debuggee with termination requested and drop the ad
 add("debug_batch","Run 1..32 allowlisted DAP requests in an explicit project session with per-step request IDs","execute",{"session_id":s(),"commands":arr(obj({"command":s(),"arguments":obj(additional=True)},["command","arguments"]),32),"stop_on_error":b(True)},["session_id","commands"])
 add("result_read","Read a spilled large result by byte chunks; offsets remain UTF-8 aligned","read",{"result_id":s(),"offset":n(0,0,16777216),"max_bytes":n(16384,256,32768)},["result_id"])
 add("audit_log","Read redacted tool audit records without input/output source contents","read",{"limit":n(50,1,1000)})
+# Agent-facing descriptions (Claude first): the first sentence says WHEN to use the
+# tool; constraints follow. These supersede the terse internal summaries above.
+DESCRIPTIONS={
+ "project_analysis":"Start here in an unfamiliar workspace: live layout, detected languages and which semantic backends are missing. Read-only; runs no repository commands.",
+ "get_capabilities":"Use when unsure what is allowed: reports enabled tools and write/shell/debug grants; probe=true also starts the language server to check it works.",
+ "list_projects":"List configured project IDs and their permissions. Only needed when more than one project is configured.",
+ "list_dir":"List project files (respects .gitignore and host deny rules); recursive by default.",
+ "find_file":"Find project files by glob, e.g. **/lib.rs (respects .gitignore and host deny rules).",
+ "read_file":"Read a UTF-8 file (1-based inclusive start_line/end_line) and get its sha256. Call this before any Odin edit: every edit tool requires expected_sha256.",
+ "search_for_pattern":"Regex search over project files; returns 1-based lines and each file's sha256. Prefer find_symbol for definitions and find_referencing_symbols for usages.",
+ "index_build":"Rebuild the local SQLite FTS5 full-text index. Lexical only, not semantic; index_query refreshes it incrementally anyway.",
+ "index_query":"Ranked full-text (FTS5) word search with snippets; refreshes changed files first. Use for fuzzy word lookup in large repos.",
+ "get_symbols_overview":"Use to understand a file without reading it all: its symbols (functions, types, fields) with kinds and nesting, from the language server.",
+ "find_symbol":"Use to locate definitions by name across the project via the language server (substring/exact/glob/regex). Returns name_path for other symbol tools; include_body=true returns source.",
+ "find_referencing_symbols":"Use before changing a symbol: all semantic references to it (relative_path + name_path from find_symbol), each with its enclosing symbol. Unlike text search, ignores comments and same-named items.",
+ "find_implementations":"Find implementations of a trait/interface or method (relative_path + name_path) via the language server.",
+ "find_declaration":"Go to definition/declaration of the identifier at a position (0-based line, UTF-16 character).",
+ "get_type_hierarchy":"Supertypes or subtypes of a type (relative_path + name_path), when the language server supports it.",
+ "get_diagnostics_for_file":"Compiler/linter diagnostics the language server reports for one file. Pending or empty results do not prove a clean build; run the test profile for that.",
+ "get_diagnostics_for_symbol":"Diagnostics limited to one symbol's range.",
+ "code_actions":"List language-server code actions (quick fixes, refactors) for a range. Never executes them; use prepare_code_action to preview one.",
+ "hover":"Type and documentation of the identifier at a position (0-based line, UTF-16 character).",
+ "signature_help":"Function signature and active parameter at a call position.",
+ "workspace_symbols":"Fast fuzzy symbol search via the language server for one configured language (e.g. language=rust).",
+ "call_hierarchy":"Callers (incoming) or callees (outgoing) of the function at a position.",
+ "format_document":"Format a file with the language server (or an explicit host Ruff profile). Returns a transaction preview; transaction_apply writes it.",
+ "prepare_code_action":"Preview one edit-only code action, selected by its exact title from code_actions, as a transaction.",
+ "apply_quick_fix":"Preview one quickfix code action (exact title) as a transaction; transaction_apply writes it.",
+ "restart_language_server":"Restart this project's language servers, e.g. after a crash or a toolchain/config change. They start lazily on the next query.",
+ "transaction_prepare":"Stage full new contents for one or more files at once (expected_sha256=null creates). Returns a transaction preview; transaction_apply writes it.",
+ "transaction_preview":"Show the diff and state of a prepared transaction. Review it before transaction_apply.",
+ "transaction_apply":"Write a prepared transaction after re-checking every file hash; refuses (CONFLICT) if a file changed since preview. Applying is not a passing build.",
+ "transaction_rollback":"Undo an applied transaction with a new conflict-checked transaction.",
+ "transaction_list":"List transactions and their journal phases.",
+ "create_text_file":"Create a file (expected_sha256=null) or overwrite one (expected_sha256=current hash). Returns a transaction preview; transaction_apply writes it.",
+ "replace_content":"Use for a targeted text edit in one file: literal (or regex=true) needle to replacement, guarded by expected_sha256 and expected_matches. Returns a transaction preview; transaction_apply writes it.",
+ "replacement_preview":"Preview a multi-file search/replace and get occurrence IDs to select for replace_in_files. Changes nothing.",
+ "replace_in_files":"Multi-file replace of all or selected occurrence IDs, guarded by per-file sha256 and the total match count. Returns a transaction preview.",
+ "replace_lines":"Replace lines start_line..end_line (1-based, inclusive) with content. Returns a transaction preview.",
+ "delete_lines":"Delete lines start_line..end_line (1-based, inclusive). Returns a transaction preview.",
+ "insert_at_line":"Insert content before start_line (1-based). Returns a transaction preview.",
+ "replace_symbol_body":"Use to rewrite a whole function/type: replaces the symbol's full definition (name_path) with body. Returns a transaction preview; transaction_apply writes it.",
+ "insert_before_symbol":"Insert source just before a symbol definition (name_path), e.g. a new function or import. Returns a transaction preview.",
+ "insert_after_symbol":"Insert source just after a symbol definition (name_path), e.g. a sibling function. Returns a transaction preview.",
+ "rename_symbol":"Use to rename across files: semantic rename via the language server (relative_path + name_path). Returns a transaction preview; transaction_apply writes it.",
+ "safe_delete_symbol":"Delete a symbol only when the language server reports no static references. Returns a transaction preview.",
+ "execute_shell_command":"Run a host-defined command profile by name (e.g. test, check); no free-form shell. Judge the result by success/exit_code, not by the call succeeding.",
+ "result_read":"Read a large spilled result (result_id) in UTF-8-aligned byte chunks.",
+}
+# MCP exposure tiers for --tool-profile: core (default) is the small everyday set,
+# ide adds navigation/refactoring/editing helpers, everything else is full only.
+CORE="""project_analysis get_capabilities read_file search_for_pattern get_symbols_overview find_symbol
+find_referencing_symbols find_implementations find_declaration get_diagnostics_for_file rename_symbol
+replace_symbol_body replace_content transaction_preview transaction_apply transaction_rollback
+execute_shell_command result_read""".split()
+IDE="""list_projects list_dir find_file index_build index_query workspace_symbols hover signature_help
+call_hierarchy get_type_hierarchy get_diagnostics_for_symbol code_actions prepare_code_action apply_quick_fix
+format_document insert_before_symbol insert_after_symbol safe_delete_symbol move_symbol inline_symbol
+create_text_file replace_lines delete_lines insert_at_line replacement_preview replace_in_files
+transaction_prepare transaction_list transaction_recover restart_language_server status""".split()
+_names={t['name'] for t in TOOLS}
+assert not (set(DESCRIPTIONS)|set(CORE)|set(IDE))-_names, 'unknown tool in DESCRIPTIONS/CORE/IDE'
+assert not set(CORE)&set(IDE)
+for tool in TOOLS:
+    tool['description']=DESCRIPTIONS.get(tool['name'],tool['description'])
+    tool['tier']='core' if tool['name'] in CORE else 'ide' if tool['name'] in IDE else 'full'
 (ROOT/'crates/odin-engine/tools.json').write_text(json.dumps(TOOLS,ensure_ascii=False,indent=2)+'\n', encoding='utf-8', newline='\n')
 (ROOT/'schemas/tools.json').write_text(json.dumps(TOOLS,ensure_ascii=False,indent=2)+'\n', encoding='utf-8', newline='\n')
 print(f'Generated {len(TOOLS)} tool contracts')

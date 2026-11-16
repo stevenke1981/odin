@@ -32,6 +32,13 @@ struct Cli {
     context: Option<String>,
     #[arg(long, global = true)]
     mode: Option<String>,
+    /// MCP tools to advertise: core (default, everyday set), ide, or full (all).
+    /// Exposure only; host policy still decides what may run.
+    #[arg(long, global = true, value_enum)]
+    tool_profile: Option<mcp::ToolProfile>,
+    /// Extra tool names to advertise on top of --tool-profile (comma-separated).
+    #[arg(long, global = true, value_delimiter = ',')]
+    include_tools: Vec<String>,
     #[command(subcommand)]
     command: Commands,
 }
@@ -211,32 +218,28 @@ async fn main() -> Result<()> {
                 .flatten();
             let binary = std::env::current_exe()?.canonicalize()?;
             let host_config = config_path.canonicalize()?;
-            let content = setup::client_config(
-                *client,
-                &binary,
-                &host_config,
-                before.as_deref(),
-                cli.context.as_deref(),
-                cli.mode.as_deref(),
-                cli.workspace.as_deref(),
-            )?;
-            let fragment = setup::client_config(
-                *client,
-                &binary,
-                &host_config,
-                None,
-                cli.context.as_deref(),
-                cli.mode.as_deref(),
-                cli.workspace.as_deref(),
-            )?;
-            return print_json(&setup::emit_or_apply(
+            let launch = setup::LaunchArgs {
+                context: cli.context.as_deref(),
+                mode: cli.mode.as_deref(),
+                workspace: cli.workspace.as_deref(),
+                tool_profile: cli.tool_profile.map(mcp::ToolProfile::name),
+                include_tools: &cli.include_tools,
+            };
+            let content =
+                setup::client_config(*client, &binary, &host_config, before.as_deref(), &launch)?;
+            let fragment = setup::client_config(*client, &binary, &host_config, None, &launch)?;
+            let mut report = setup::emit_or_apply(
                 output.as_deref(),
                 before.as_deref(),
                 &content,
                 &fragment,
                 *apply,
                 expected_sha256.as_deref(),
-            )?);
+            )?;
+            if matches!(client, setup::Client::Claude) {
+                report["claude_code"] = setup::claude_code_hints(&binary, &host_config, &launch)?;
+            }
+            return print_json(&report);
         }
         Commands::Hook {
             project,
@@ -355,7 +358,12 @@ async fn main() -> Result<()> {
             ..
         } => {
             // stdout belongs exclusively to the SDK JSON-RPC transport.
-            let service = mcp::OdinMcp { engine }
+            let exposure = Arc::new(mcp::Exposure::new(
+                &engine,
+                cli.tool_profile.unwrap_or_default(),
+                &cli.include_tools,
+            )?);
+            let service = mcp::OdinMcp { engine, exposure }
                 .serve(rmcp::transport::stdio())
                 .await?;
             service.waiting().await?;
@@ -367,7 +375,12 @@ async fn main() -> Result<()> {
         } => {
             let token = std::env::var(&token_env)
                 .with_context(|| format!("Set {token_env} to a random local bearer token"))?;
-            http::serve(engine, listen, token).await?;
+            let exposure = Arc::new(mcp::Exposure::new(
+                &engine,
+                cli.tool_profile.unwrap_or_default(),
+                &cli.include_tools,
+            )?);
+            http::serve(engine, exposure, listen, token).await?;
         }
         Commands::Languages { .. } => {
             unreachable!("language guidance returned before state creation")
@@ -407,17 +420,14 @@ fn ensure_host_output(
     } else {
         output
     };
-    let standard = client.is_some_and(|client| {
-        config.is_standard_client_output(
-            match client {
-                setup::Client::Codex => "codex",
-                setup::Client::Claude => "claude",
-                setup::Client::Opencode => "opencode",
-            },
-            &output,
-        )
-    });
+    let standard =
+        client.is_some_and(|client| config.is_standard_client_output(client.id(), &output));
     if config.contains_workspace_path(&output) && !standard {
+        if matches!(client, Some(setup::Client::Claude)) {
+            bail!(
+                "--output is inside a configured project root. For Claude Code run the printed claude_code.user_scope_command (dry run, no --apply) instead of writing ~/.claude.json or a repository .mcp.json"
+            );
+        }
         bail!(
             "--output must be outside configured project roots; use native Transactions for workspace edits"
         );

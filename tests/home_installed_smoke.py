@@ -44,7 +44,7 @@ class Driver(BaseDriver):
             command += ['--config', str(self.args.host_config)]
         if current_workspace:
             command += ['--workspace', '.']
-        command += ['serve', '--transport', 'stdio']
+        command += ['--tool-profile', 'full', 'serve', '--transport', 'stdio']
         self.report['client_entries'].append({'command': command, 'cwd': str(cwd)})
         peer = Peer(command, cwd=cwd, env=self.environment)
         result = peer.request('initialize', {'protocolVersion': '2025-11-25', 'capabilities': {}, 'clientInfo': {'name': 'odin-synthetic-home-smoke', 'version': '1'}}, timeout=30)

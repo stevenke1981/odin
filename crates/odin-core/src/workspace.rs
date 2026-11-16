@@ -116,7 +116,9 @@ pub(crate) fn client_config_path_in(home: &Path, client: &str) -> Result<PathBuf
     let path = match client {
         "codex" => home.join(".codex/config.toml"),
         "opencode" => home.join(".config/opencode/opencode.json"),
-        "claude" => {
+        // Claude Code user/local MCP registrations live in this file.
+        "claude" => home.join(".claude.json"),
+        "claude-desktop" => {
             #[cfg(windows)]
             {
                 let roaming = if home_root().ok().as_deref() == Some(home) {
@@ -153,6 +155,7 @@ pub(crate) fn private_home_paths(home: &Path) -> Result<Vec<PathBuf>> {
         ".local",
         ".codex",
         ".claude",
+        ".claude.json",
         ".ssh",
         ".aws",
         ".azure",
@@ -169,7 +172,8 @@ pub(crate) fn private_home_paths(home: &Path) -> Result<Vec<PathBuf>> {
     if cfg!(windows) {
         paths.push(home.join("AppData"));
     }
-    for client in ["codex", "claude", "opencode"] {
+    // Claude Code's file sits directly in home; it is listed above by name.
+    for client in ["codex", "claude-desktop", "opencode"] {
         paths.push(
             client_config_path_in(home, client)?
                 .parent()

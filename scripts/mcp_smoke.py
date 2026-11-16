@@ -20,7 +20,7 @@ def main():
             (rw/'a.txt').write_bytes(b'alpha\n');(ro/'b.txt').write_bytes(b'beta\n')
             config=base/'host.toml'
             config.write_text(f'state_dir = {json.dumps(str(base/"state"))}\n[projects.rw]\nroot = {json.dumps(str(rw))}\nallow_write = true\n[projects.ro]\nroot = {json.dumps(str(ro))}\nallow_write = false\n', encoding='utf-8')
-            with Peer([str(args.binary.resolve()),'--config',str(config),'serve','--transport','stdio']) as peer:
+            with Peer([str(args.binary.resolve()),'--config',str(config),'--tool-profile','full','serve','--transport','stdio']) as peer:
                 response=peer.request('initialize',{'protocolVersion':'2025-11-25','capabilities':{},'clientInfo':{'name':'odin-smoke','version':'0.1'}})
                 check('initialize',response.get('result',{}).get('serverInfo',{}).get('name')=='odin')
                 peer.notify('notifications/initialized')
@@ -58,6 +58,16 @@ def main():
                 for removed_name in ['serena_tools','serena_call']:
                     removed=peer.request('tools/call',{'name':removed_name,'arguments':{'project':'rw'}})
                     check('removed_tool:'+removed_name,removed.get('error',{}).get('code')==-32601)
+            # Default MCP exposure is the small core tier; hidden tools fail with guidance.
+            with Peer([str(args.binary.resolve()),'--config',str(config),'serve','--transport','stdio']) as peer:
+                peer.request('initialize',{'protocolVersion':'2025-11-25','capabilities':{},'clientInfo':{'name':'odin-smoke','version':'0.1'}})
+                peer.notify('notifications/initialized')
+                core=peer.request('tools/list')['result']['tools']
+                tiers={t['name']:t.get('tier') for t in catalog}
+                check('core_profile_subset',bool(core) and all(tiers[t['name']]=='core' for t in core) and len(core)<len(catalog))
+                check('core_profile_keeps_edit_tools','transaction_apply' in {t['name'] for t in core})
+                hidden=peer.request('tools/call',{'name':'flow_run','arguments':{'project':'rw'}})
+                check('hidden_tool_guidance',hidden.get('error',{}).get('code')==-32601 and '--tool-profile' in hidden['error'].get('message',''))
         status='PASS'
     except Exception as exc:error=str(exc)
     report={'scope':'REAL_ODIN_BINARY_STDIO_SMOKE','status':status,'binary':str(args.binary.resolve()),'binary_sha256':hashlib.sha256(args.binary.read_bytes()).hexdigest() if args.binary.is_file() else None,'platform':platform.platform(),'checks':results,'error':error,'real_lsp_dap_tested':False,'timestamp_unix':time.time()}

@@ -21,7 +21,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "get_version",
@@ -45,7 +46,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "get_schemas",
@@ -72,11 +74,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "get_capabilities",
-    "description": "Report effective tool policy and optionally initialize configured language servers to probe capabilities",
+    "description": "Use when unsure what is allowed: reports enabled tools and write/shell/debug grants; probe=true also starts the language server to check it works.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -103,11 +106,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "list_projects",
-    "description": "List operator-registered projects without changing a global active project",
+    "description": "List configured project IDs and their permissions. Only needed when more than one project is configured.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -127,7 +131,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "get_current_config",
@@ -151,7 +156,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "initial_instructions",
@@ -175,7 +181,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "onboarding",
@@ -199,11 +206,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "project_analysis",
-    "description": "Analyze live project structure, language hints and host backend gaps without executing repository commands or starting backends",
+    "description": "Start here in an unfamiliar workspace: live layout, detected languages and which semantic backends are missing. Read-only; runs no repository commands.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -235,11 +243,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "list_dir",
-    "description": "List project files respecting ignore rules and path policy",
+    "description": "List project files (respects .gitignore and host deny rules); recursive by default.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -266,11 +275,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "find_file",
-    "description": "Find paths using a glob, respecting ignore rules",
+    "description": "Find project files by glob, e.g. **/lib.rs (respects .gitignore and host deny rules).",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -294,11 +304,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "read_file",
-    "description": "Read bounded UTF-8 text; start/end lines are 1-based and inclusive",
+    "description": "Read a UTF-8 file (1-based inclusive start_line/end_line) and get its sha256. Call this before any Odin edit: every edit tool requires expected_sha256.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -333,11 +344,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "search_for_pattern",
-    "description": "Live regex search; returned line numbers are 1-based",
+    "description": "Regex search over project files; returns 1-based lines and each file's sha256. Prefer find_symbol for definitions and find_referencing_symbols for usages.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -361,11 +373,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "index_build",
-    "description": "Rebuild a local SQLite FTS5 lexical snapshot (not vector semantic search)",
+    "description": "Rebuild the local SQLite FTS5 full-text index. Lexical only, not semantic; index_query refreshes it incrementally anyway.",
     "policy": "state",
     "inputSchema": {
       "type": "object",
@@ -385,11 +398,12 @@
       "destructiveHint": false,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "index_query",
-    "description": "Refresh changed/new/deleted files then query local FTS5 lexical search",
+    "description": "Ranked full-text (FTS5) word search with snippets; refreshes changed files first. Use for fuzzy word lookup in large repos.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -419,11 +433,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "get_symbols_overview",
-    "description": "File symbols from a configured LSP with kind, scope and hierarchy depth filters",
+    "description": "Use to understand a file without reading it all: its symbols (functions, types, fields) with kinds and nesting, from the language server.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -488,11 +503,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "find_symbol",
-    "description": "Find real LSP name paths with exact/substring/glob/regex matching, filters and pagination",
+    "description": "Use to locate definitions by name across the project via the language server (substring/exact/glob/regex). Returns name_path for other symbol tools; include_body=true returns source.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -577,11 +593,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "find_referencing_symbols",
-    "description": "Find LSP references and enclosing project symbols",
+    "description": "Use before changing a symbol: all semantic references to it (relative_path + name_path from find_symbol), each with its enclosing symbol. Unlike text search, ignores comments and same-named items.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -609,11 +626,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "find_implementations",
-    "description": "Find implementations using server capability negotiation",
+    "description": "Find implementations of a trait/interface or method (relative_path + name_path) via the language server.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -641,11 +659,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "find_declaration",
-    "description": "Find definition/declaration at a zero-based UTF-16 position",
+    "description": "Go to definition/declaration of the identifier at a position (0-based line, UTF-16 character).",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -694,11 +713,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "get_type_hierarchy",
-    "description": "Query LSP type hierarchy if the server advertises support",
+    "description": "Supertypes or subtypes of a type (relative_path + name_path), when the language server supports it.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -734,11 +754,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "get_diagnostics_for_file",
-    "description": "Get pull/push diagnostics; pending or unversioned is not a clean-build proof",
+    "description": "Compiler/linter diagnostics the language server reports for one file. Pending or empty results do not prove a clean build; run the test profile for that.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -762,11 +783,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "get_diagnostics_for_symbol",
-    "description": "Filter file diagnostics to a symbol range",
+    "description": "Diagnostics limited to one symbol's range.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -794,11 +816,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "code_actions",
-    "description": "List LSP code actions only; never auto-execute a server command",
+    "description": "List language-server code actions (quick fixes, refactors) for a range. Never executes them; use prepare_code_action to preview one.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -873,7 +896,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "completion",
@@ -928,11 +952,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "hover",
-    "description": "Get native LSP hover information with UTF-16 coordinates",
+    "description": "Type and documentation of the identifier at a position (0-based line, UTF-16 character).",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -977,11 +1002,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "signature_help",
-    "description": "Get native LSP signature help for the current document",
+    "description": "Function signature and active parameter at a call position.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -1026,7 +1052,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "completion_resolve",
@@ -1064,11 +1091,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "workspace_symbols",
-    "description": "Search real LSP workspace symbols for an explicit configured language; bounded local URI results",
+    "description": "Fast fuzzy symbol search via the language server for one configured language (e.g. language=rust).",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -1105,11 +1133,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "call_hierarchy",
-    "description": "Prepare and query real LSP incoming or outgoing calls; missing backend capabilities are errors",
+    "description": "Callers (incoming) or callees (outgoing) of the function at a position.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -1162,11 +1191,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "format_document",
-    "description": "Prepare LSP formatting or an explicitly selected host Ruff stdin profile as a SHA-256 guarded transaction; no fallback",
+    "description": "Format a file with the language server (or an explicit host Ruff profile). Returns a transaction preview; transaction_apply writes it.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -1279,7 +1309,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "inlay_hints",
@@ -1363,7 +1394,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "inlay_hint_resolve",
@@ -1401,7 +1433,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "semantic_tokens",
@@ -1479,7 +1512,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "list_inspection_providers",
@@ -1503,7 +1537,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "run_inspections",
@@ -1537,7 +1572,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": true
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "prepare_inspection_fix",
@@ -1582,11 +1618,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "prepare_code_action",
-    "description": "Prepare exactly one edit-only LSP code action as a CAS transaction; reject commands and ambiguous titles",
+    "description": "Preview one edit-only code action, selected by its exact title from code_actions, as a transaction.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -1675,11 +1712,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "apply_quick_fix",
-    "description": "Preview one real LSP quickfix WorkspaceEdit; transaction_apply is still required",
+    "description": "Preview one quickfix code action (exact title) as a transaction; transaction_apply writes it.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -1765,7 +1803,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "move_symbol",
@@ -1812,7 +1851,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "inline_symbol",
@@ -1855,11 +1895,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "restart_language_server",
-    "description": "Drop project LSP processes; lazily start clean instances on the next query",
+    "description": "Restart this project's language servers, e.g. after a crash or a toolchain/config change. They start lazily on the next query.",
     "policy": "state",
     "inputSchema": {
       "type": "object",
@@ -1879,11 +1920,12 @@
       "destructiveHint": false,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "transaction_prepare",
-    "description": "Stage full-file changes guarded by expected SHA-256; null means create-only",
+    "description": "Stage full new contents for one or more files at once (expected_sha256=null creates). Returns a transaction preview; transaction_apply writes it.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -1937,11 +1979,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "transaction_preview",
-    "description": "Read a durable transaction preview",
+    "description": "Show the diff and state of a prepared transaction. Review it before transaction_apply.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -1965,11 +2008,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "transaction_apply",
-    "description": "Apply a staged transaction with revalidation and recovery journal",
+    "description": "Write a prepared transaction after re-checking every file hash; refuses (CONFLICT) if a file changed since preview. Applying is not a passing build.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -1993,11 +2037,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "transaction_rollback",
-    "description": "Undo a committed transaction using a new conflict-checked transaction",
+    "description": "Undo an applied transaction with a new conflict-checked transaction.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -2021,11 +2066,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "transaction_list",
-    "description": "List journal phases",
+    "description": "List transactions and their journal phases.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -2045,7 +2091,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "transaction_recover",
@@ -2069,11 +2116,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "create_text_file",
-    "description": "Prepare a file create/overwrite; explicit transaction_apply is required",
+    "description": "Create a file (expected_sha256=null) or overwrite one (expected_sha256=current hash). Returns a transaction preview; transaction_apply writes it.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -2111,11 +2159,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "replace_content",
-    "description": "Prepare guarded literal/regex replacement, preserving full-file hash precondition",
+    "description": "Use for a targeted text edit in one file: literal (or regex=true) needle to replacement, guarded by expected_sha256 and expected_matches. Returns a transaction preview; transaction_apply writes it.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -2161,11 +2210,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "replacement_preview",
-    "description": "List source-hash-bound occurrence IDs and before/after text without changing source",
+    "description": "Preview a multi-file search/replace and get occurrence IDs to select for replace_in_files. Changes nothing.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -2249,11 +2299,12 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "replace_in_files",
-    "description": "Prepare selected immutable occurrence IDs or all matches with exact source hashes and total count",
+    "description": "Multi-file replace of all or selected occurrence IDs, guarded by per-file sha256 and the total match count. Returns a transaction preview.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -2338,11 +2389,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "replace_lines",
-    "description": "Prepare line edit; line indices are 1-based and end is inclusive",
+    "description": "Replace lines start_line..end_line (1-based, inclusive) with content. Returns a transaction preview.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -2386,11 +2438,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "delete_lines",
-    "description": "Prepare line edit; line indices are 1-based and end is inclusive",
+    "description": "Delete lines start_line..end_line (1-based, inclusive). Returns a transaction preview.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -2430,11 +2483,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "insert_at_line",
-    "description": "Prepare line edit; line indices are 1-based and end is inclusive",
+    "description": "Insert content before start_line (1-based). Returns a transaction preview.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -2472,11 +2526,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "replace_symbol_body",
-    "description": "Prepare a symbol-bound edit using UTF-16 ranges and an exact content hash",
+    "description": "Use to rewrite a whole function/type: replaces the symbol's full definition (name_path) with body. Returns a transaction preview; transaction_apply writes it.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -2512,11 +2567,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "insert_before_symbol",
-    "description": "Prepare a symbol-bound edit using UTF-16 ranges and an exact content hash",
+    "description": "Insert source just before a symbol definition (name_path), e.g. a new function or import. Returns a transaction preview.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -2552,11 +2608,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "insert_after_symbol",
-    "description": "Prepare a symbol-bound edit using UTF-16 ranges and an exact content hash",
+    "description": "Insert source just after a symbol definition (name_path), e.g. a sibling function. Returns a transaction preview.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -2592,11 +2649,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "rename_symbol",
-    "description": "Ask LSP for a workspace rename, validate all text edits, return a transaction preview",
+    "description": "Use to rename across files: semantic rename via the language server (relative_path + name_path). Returns a transaction preview; transaction_apply writes it.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -2628,11 +2686,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "safe_delete_symbol",
-    "description": "Prepare deletion only when LSP reports no static references; dynamic uses remain outside the guarantee",
+    "description": "Delete a symbol only when the language server reports no static references. Returns a transaction preview.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -2664,7 +2723,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "ide"
   },
   {
     "name": "list_memories",
@@ -2688,7 +2748,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "read_memory",
@@ -2716,7 +2777,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "write_memory",
@@ -2755,7 +2817,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "edit_memory",
@@ -2801,7 +2864,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "delete_memory",
@@ -2833,7 +2897,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "rename_memory",
@@ -2869,7 +2934,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "memory_export",
@@ -2893,7 +2959,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "memory_import",
@@ -2968,7 +3035,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "memory_move_scope",
@@ -3008,7 +3076,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "memory_transaction_preview",
@@ -3036,7 +3105,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "memory_transaction_apply",
@@ -3064,7 +3134,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "check_memories",
@@ -3088,7 +3159,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "search_memories",
@@ -3116,7 +3188,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "recover_memories",
@@ -3140,7 +3213,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "query_project",
@@ -3178,7 +3252,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "flow_run",
@@ -3265,7 +3340,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "flow_vars",
@@ -3293,7 +3369,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "flow_clear",
@@ -3321,11 +3398,12 @@
       "destructiveHint": false,
       "idempotentHint": false,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "execute_shell_command",
-    "description": "Run a fixed operator-defined argv profile; no caller-supplied shell string",
+    "description": "Run a host-defined command profile by name (e.g. test, check); no free-form shell. Judge the result by success/exit_code, not by the call succeeding.",
     "policy": "execute",
     "inputSchema": {
       "type": "object",
@@ -3349,7 +3427,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": true
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "debug_start",
@@ -3377,7 +3456,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": true
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "debug_request",
@@ -3414,7 +3494,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": true
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "debug_events",
@@ -3441,7 +3522,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": true
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "debug_stop",
@@ -3468,7 +3550,8 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": true
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "debug_batch",
@@ -3523,11 +3606,12 @@
       "destructiveHint": true,
       "idempotentHint": false,
       "openWorldHint": true
-    }
+    },
+    "tier": "full"
   },
   {
     "name": "result_read",
-    "description": "Read a spilled large result by byte chunks; offsets remain UTF-8 aligned",
+    "description": "Read a large spilled result (result_id) in UTF-8-aligned byte chunks.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -3563,7 +3647,8 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "core"
   },
   {
     "name": "audit_log",
@@ -3593,6 +3678,7 @@
       "destructiveHint": false,
       "idempotentHint": true,
       "openWorldHint": false
-    }
+    },
+    "tier": "full"
   }
 ]

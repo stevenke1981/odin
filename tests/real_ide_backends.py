@@ -468,7 +468,7 @@ class Run:
                                         cwd=fixture.root, env=environment, capture_output=True, text=True, encoding="utf-8", timeout=self.args.timeout)
                 self.current["restore"] = {"exit_code": result.returncode, "stdout": self.sanitize(result.stdout), "stderr": self.sanitize(result.stderr)}
                 self.require("fixture_offline_restore", result.returncode == 0)
-            with Peer([str(self.args.binary), "--config", str(config), "serve"], env=environment) as self.peer:
+            with Peer([str(self.args.binary), "--config", str(config), "--tool-profile", "full", "serve"], env=environment) as self.peer:
                 initialized = self.peer.request("initialize", {"protocolVersion": "2025-11-25", "capabilities": {}, "clientInfo": {"name": "odin-real-ide", "version": "1"}}, timeout=20)
                 self.require("mcp_initialize", initialized.get("result", {}).get("serverInfo", {}).get("name") == "odin")
                 self.peer.notify("notifications/initialized")
@@ -570,7 +570,7 @@ class Run:
                         "lsp_acceptance": "NOT_RUN: explicit native formatter test never initializes the language server"}
         self.report["projects"].append(self.current)
         try:
-            with Peer([str(self.args.binary), "--config", str(config), "serve"], env={**environment, **fixture.environment}) as self.peer:
+            with Peer([str(self.args.binary), "--config", str(config), "--tool-profile", "full", "serve"], env={**environment, **fixture.environment}) as self.peer:
                 initialized = self.peer.request("initialize", {"protocolVersion": "2025-11-25", "capabilities": {},
                     "clientInfo": {"name": "odin-real-native-formatter", "version": "1"}}, timeout=20)
                 self.require("mcp_initialize", initialized.get("result", {}).get("serverInfo", {}).get("name") == "odin")

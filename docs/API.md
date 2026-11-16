@@ -2,100 +2,102 @@
 
 此表由 `schemas/tools.json` 生成；實作與實際測試證據見 verification/local-validation.json；本表本身不是測試結果。
 
+Tier 是 MCP `--tool-profile` 暴露層級：`core`（預設）⊂ `ide` ⊂ `full`；CLI `call` 不受影響。
+
 所有工具以明確 `project` 範圍執行；CLI 在提供 `--project` 時可注入該欄位。`read` / `state` / `write` / `execute` 是內部策略分類，不是 OS 隔離保證。read 工具仍可能啟動語言伺服器、寫 audit/cache。
 
 `write`：來源 edits 先回 transaction preview，需另 apply；記憶 CRUD 直接經 journal commit，import/move 先回 preview。`execute`：要求相應 shell/debug/inspections 權限；native inspections 另強制使用 host 設定的 OS sandbox。本版本沒有外部工具橋接。
 
 LSP position 為 0-based UTF-16；檔案行數為 1-based inclusive。參數細節、範圍與 additionalProperties 規則請讀 JSON schema。此版 schema validator 實作契約需要的有限 JSON Schema 子集，非通用 JSON Schema 驗證器。
 
-| Tool | Policy | 必填參數 | 作用 |
-|---|---|---|---|
-| `status` | read | `project` | Effective standalone project status and backend boundaries |
-| `get_version` | read | `project` | Return Odin version and native schema format version |
-| `get_schemas` | read | `project` | Return tool contracts or one named tool schema |
-| `get_capabilities` | read | `project` | Report effective tool policy and optionally initialize configured language servers to probe capabilities |
-| `list_projects` | read | `project` | List operator-registered projects without changing a global active project |
-| `get_current_config` | read | `project` | Redacted effective host configuration |
-| `initial_instructions` | read | `project` | Return Odin's project and transaction usage instructions |
-| `onboarding` | read | `project` | Inspect project files and return evidence and memory guidance; never invent build results |
-| `project_analysis` | read | `project` | Analyze live project structure, language hints and host backend gaps without executing repository commands or starting backends |
-| `list_dir` | read | `project` | List project files respecting ignore rules and path policy |
-| `find_file` | read | `project`, `file_mask` | Find paths using a glob, respecting ignore rules |
-| `read_file` | read | `project`, `relative_path` | Read bounded UTF-8 text; start/end lines are 1-based and inclusive |
-| `search_for_pattern` | read | `project`, `pattern` | Live regex search; returned line numbers are 1-based |
-| `index_build` | state | `project` | Rebuild a local SQLite FTS5 lexical snapshot (not vector semantic search) |
-| `index_query` | read | `project`, `query` | Refresh changed/new/deleted files then query local FTS5 lexical search |
-| `get_symbols_overview` | read | `project`, `relative_path` | File symbols from a configured LSP with kind, scope and hierarchy depth filters |
-| `find_symbol` | read | `project`, `query` | Find real LSP name paths with exact/substring/glob/regex matching, filters and pagination |
-| `find_referencing_symbols` | read | `project`, `relative_path`, `name_path` | Find LSP references and enclosing project symbols |
-| `find_implementations` | read | `project`, `relative_path`, `name_path` | Find implementations using server capability negotiation |
-| `find_declaration` | read | `project`, `relative_path`, `position` | Find definition/declaration at a zero-based UTF-16 position |
-| `get_type_hierarchy` | read | `project`, `relative_path`, `name_path`, `direction` | Query LSP type hierarchy if the server advertises support |
-| `get_diagnostics_for_file` | read | `project`, `relative_path` | Get pull/push diagnostics; pending or unversioned is not a clean-build proof |
-| `get_diagnostics_for_symbol` | read | `project`, `relative_path`, `name_path` | Filter file diagnostics to a symbol range |
-| `code_actions` | read | `project`, `relative_path`, `range` | List LSP code actions only; never auto-execute a server command |
-| `completion` | read | `project`, `relative_path`, `position` | Request native LSP completions with document freshness metadata |
-| `hover` | read | `project`, `relative_path`, `position` | Get native LSP hover information with UTF-16 coordinates |
-| `signature_help` | read | `project`, `relative_path`, `position` | Get native LSP signature help for the current document |
-| `completion_resolve` | read | `project`, `relative_path`, `item`, `expected_sha256` | Resolve completion metadata against an exact source hash; never execute item commands or apply text edits |
-| `workspace_symbols` | read | `project`, `language`, `query` | Search real LSP workspace symbols for an explicit configured language; bounded local URI results |
-| `call_hierarchy` | read | `project`, `relative_path`, `position`, `direction` | Prepare and query real LSP incoming or outgoing calls; missing backend capabilities are errors |
-| `format_document` | write | `project`, `relative_path`, `expected_sha256` | Prepare LSP formatting or an explicitly selected host Ruff stdin profile as a SHA-256 guarded transaction; no fallback |
-| `inlay_hints` | read | `project`, `relative_path` | Get bounded native LSP inlay hints with document metadata; never execute label commands |
-| `inlay_hint_resolve` | read | `project`, `relative_path`, `hint`, `expected_sha256` | Resolve an LSP inlay hint against an exact source hash without executing commands or edits |
-| `semantic_tokens` | read | `project`, `relative_path` | Get real LSP semantic tokens and legend/encoding metadata, with current document freshness |
-| `list_inspection_providers` | read | `project` | List native provider types and configured host profile metadata without commands or secrets |
-| `run_inspections` | execute | `project`, `profile` | Run one host-fixed Clippy/Ruff/ESLint profile inside a mandatory configured OS sandbox; return bounded source-verified findings |
-| `prepare_inspection_fix` | write | `project`, `profile`, `finding_id`, `expected_sha256` | Rerun an authorized native inspection and preview one current safe single-file finding fix as a hash-guarded transaction |
-| `prepare_code_action` | write | `project`, `relative_path`, `range`, `action_title`, `expected_sha256` | Prepare exactly one edit-only LSP code action as a CAS transaction; reject commands and ambiguous titles |
-| `apply_quick_fix` | write | `project`, `relative_path`, `range`, `action_title`, `expected_sha256` | Preview one real LSP quickfix WorkspaceEdit; transaction_apply is still required |
-| `move_symbol` | write | `project`, `relative_path`, `name_path`, `action_title`, `expected_sha256`, `target_path` | Preview backend-provided refactor.move edit-only code action; no text fallback or server command execution |
-| `inline_symbol` | write | `project`, `relative_path`, `name_path`, `action_title`, `expected_sha256` | Preview backend-provided refactor.inline edit-only code action; no text fallback or server command execution |
-| `restart_language_server` | state | `project` | Drop project LSP processes; lazily start clean instances on the next query |
-| `transaction_prepare` | write | `project`, `changes` | Stage full-file changes guarded by expected SHA-256; null means create-only |
-| `transaction_preview` | read | `project`, `transaction_id` | Read a durable transaction preview |
-| `transaction_apply` | write | `project`, `transaction_id` | Apply a staged transaction with revalidation and recovery journal |
-| `transaction_rollback` | write | `project`, `transaction_id` | Undo a committed transaction using a new conflict-checked transaction |
-| `transaction_list` | read | `project` | List journal phases |
-| `transaction_recover` | write | `project` | Restore interrupted transactions without overwriting external modifications |
-| `create_text_file` | write | `project`, `relative_path`, `content`, `expected_sha256` | Prepare a file create/overwrite; explicit transaction_apply is required |
-| `replace_content` | write | `project`, `relative_path`, `needle`, `replacement`, `expected_sha256` | Prepare guarded literal/regex replacement, preserving full-file hash precondition |
-| `replacement_preview` | read | `project`, `files`, `needle`, `replacement` | List source-hash-bound occurrence IDs and before/after text without changing source |
-| `replace_in_files` | write | `project`, `files`, `needle`, `replacement`, `expected_total_matches` | Prepare selected immutable occurrence IDs or all matches with exact source hashes and total count |
-| `replace_lines` | write | `project`, `relative_path`, `start_line`, `expected_sha256`, `end_line`, `content` | Prepare line edit; line indices are 1-based and end is inclusive |
-| `delete_lines` | write | `project`, `relative_path`, `start_line`, `expected_sha256`, `end_line` | Prepare line edit; line indices are 1-based and end is inclusive |
-| `insert_at_line` | write | `project`, `relative_path`, `start_line`, `expected_sha256`, `content` | Prepare line edit; line indices are 1-based and end is inclusive |
-| `replace_symbol_body` | write | `project`, `relative_path`, `name_path`, `body`, `expected_sha256` | Prepare a symbol-bound edit using UTF-16 ranges and an exact content hash |
-| `insert_before_symbol` | write | `project`, `relative_path`, `name_path`, `body`, `expected_sha256` | Prepare a symbol-bound edit using UTF-16 ranges and an exact content hash |
-| `insert_after_symbol` | write | `project`, `relative_path`, `name_path`, `body`, `expected_sha256` | Prepare a symbol-bound edit using UTF-16 ranges and an exact content hash |
-| `rename_symbol` | write | `project`, `relative_path`, `name_path`, `new_name` | Ask LSP for a workspace rename, validate all text edits, return a transaction preview |
-| `safe_delete_symbol` | write | `project`, `relative_path`, `name_path`, `expected_sha256` | Prepare deletion only when LSP reports no static references; dynamic uses remain outside the guarantee |
-| `list_memories` | read | `project` | List Markdown memory names without loading content |
-| `read_memory` | read | `project`, `name` | Read Markdown memory and its current hash |
-| `write_memory` | write | `project`, `name`, `content`, `expected_sha256` | Write a Markdown memory with compare-and-swap; null hash is create-only |
-| `edit_memory` | write | `project`, `name`, `needle`, `replacement`, `expected_sha256` | Guarded literal replacement in an existing Markdown memory |
-| `delete_memory` | write | `project`, `name`, `expected_sha256` | Delete a Markdown memory guarded by hash; use check_memories to inspect dangling references |
-| `rename_memory` | write | `project`, `old_name`, `new_name`, `expected_sha256` | Rename Markdown and exact mem: references with a shared recovery journal |
-| `memory_export` | read | `project` | Export versioned Markdown notes with SHA-256 without writing repository files |
-| `memory_import` | write | `project`, `bundle` | Prepare create-only import of a checked versioned memory bundle; apply separately |
-| `memory_move_scope` | write | `project`, `name`, `destination_project`, `destination_name`, `expected_sha256` | Prepare permission-checked memory move to a configured project or global scope; reject dangling references |
-| `memory_transaction_preview` | read | `project`, `transaction_id` | Preview a memory transaction owned by this initiating project |
-| `memory_transaction_apply` | write | `project`, `transaction_id` | Apply a memory transaction after rechecking initiating project, affected scopes and source hashes |
-| `check_memories` | read | `project` | Validate explicit mem: reference integrity |
-| `search_memories` | read | `project`, `pattern` | Search names/body by regex without returning every memory body |
-| `recover_memories` | write | `project` | Recover an interrupted memory journal; shared across configured projects |
-| `query_project` | read | `project`, `target_project`, `tool`, `arguments` | Call a read-only native tool against another configured project |
-| `flow_run` | read | `project`, `session`, `steps` | Run session-isolated bounded JSON dataflow with pointer/map/filter/count/sum; no eval, imports or arbitrary Python |
-| `flow_vars` | read | `project`, `session` | List retained per-project flow variable names and sizes |
-| `flow_clear` | state | `project`, `session` | Clear this per-project flow session |
-| `execute_shell_command` | execute | `project`, `profile` | Run a fixed operator-defined argv profile; no caller-supplied shell string |
-| `debug_start` | execute | `project`, `profile` | Start a configured DAP adapter; requires allow_debug |
-| `debug_request` | execute | `project`, `command`, `arguments` | Send an allowlisted DAP request; launch/attach/restart return tickets; native cancel_ticket requests best-effort cancellation |
-| `debug_events` | execute | `project` | Drain DAP events and completed launch tickets |
-| `debug_stop` | execute | `project` | Disconnect debuggee with termination requested and drop the adapter |
-| `debug_batch` | execute | `project`, `session_id`, `commands` | Run 1..32 allowlisted DAP requests in an explicit project session with per-step request IDs |
-| `result_read` | read | `project`, `result_id` | Read a spilled large result by byte chunks; offsets remain UTF-8 aligned |
-| `audit_log` | read | `project` | Read redacted tool audit records without input/output source contents |
+| Tool | Policy | Tier | 必填參數 | 作用 |
+|---|---|---|---|---|
+| `status` | read | ide | `project` | Effective standalone project status and backend boundaries |
+| `get_version` | read | full | `project` | Return Odin version and native schema format version |
+| `get_schemas` | read | full | `project` | Return tool contracts or one named tool schema |
+| `get_capabilities` | read | core | `project` | Use when unsure what is allowed: reports enabled tools and write/shell/debug grants; probe=true also starts the language server to check it works. |
+| `list_projects` | read | ide | `project` | List configured project IDs and their permissions. Only needed when more than one project is configured. |
+| `get_current_config` | read | full | `project` | Redacted effective host configuration |
+| `initial_instructions` | read | full | `project` | Return Odin's project and transaction usage instructions |
+| `onboarding` | read | full | `project` | Inspect project files and return evidence and memory guidance; never invent build results |
+| `project_analysis` | read | core | `project` | Start here in an unfamiliar workspace: live layout, detected languages and which semantic backends are missing. Read-only; runs no repository commands. |
+| `list_dir` | read | ide | `project` | List project files (respects .gitignore and host deny rules); recursive by default. |
+| `find_file` | read | ide | `project`, `file_mask` | Find project files by glob, e.g. **/lib.rs (respects .gitignore and host deny rules). |
+| `read_file` | read | core | `project`, `relative_path` | Read a UTF-8 file (1-based inclusive start_line/end_line) and get its sha256. Call this before any Odin edit: every edit tool requires expected_sha256. |
+| `search_for_pattern` | read | core | `project`, `pattern` | Regex search over project files; returns 1-based lines and each file's sha256. Prefer find_symbol for definitions and find_referencing_symbols for usages. |
+| `index_build` | state | ide | `project` | Rebuild the local SQLite FTS5 full-text index. Lexical only, not semantic; index_query refreshes it incrementally anyway. |
+| `index_query` | read | ide | `project`, `query` | Ranked full-text (FTS5) word search with snippets; refreshes changed files first. Use for fuzzy word lookup in large repos. |
+| `get_symbols_overview` | read | core | `project`, `relative_path` | Use to understand a file without reading it all: its symbols (functions, types, fields) with kinds and nesting, from the language server. |
+| `find_symbol` | read | core | `project`, `query` | Use to locate definitions by name across the project via the language server (substring/exact/glob/regex). Returns name_path for other symbol tools; include_body=true returns source. |
+| `find_referencing_symbols` | read | core | `project`, `relative_path`, `name_path` | Use before changing a symbol: all semantic references to it (relative_path + name_path from find_symbol), each with its enclosing symbol. Unlike text search, ignores comments and same-named items. |
+| `find_implementations` | read | core | `project`, `relative_path`, `name_path` | Find implementations of a trait/interface or method (relative_path + name_path) via the language server. |
+| `find_declaration` | read | core | `project`, `relative_path`, `position` | Go to definition/declaration of the identifier at a position (0-based line, UTF-16 character). |
+| `get_type_hierarchy` | read | ide | `project`, `relative_path`, `name_path`, `direction` | Supertypes or subtypes of a type (relative_path + name_path), when the language server supports it. |
+| `get_diagnostics_for_file` | read | core | `project`, `relative_path` | Compiler/linter diagnostics the language server reports for one file. Pending or empty results do not prove a clean build; run the test profile for that. |
+| `get_diagnostics_for_symbol` | read | ide | `project`, `relative_path`, `name_path` | Diagnostics limited to one symbol's range. |
+| `code_actions` | read | ide | `project`, `relative_path`, `range` | List language-server code actions (quick fixes, refactors) for a range. Never executes them; use prepare_code_action to preview one. |
+| `completion` | read | full | `project`, `relative_path`, `position` | Request native LSP completions with document freshness metadata |
+| `hover` | read | ide | `project`, `relative_path`, `position` | Type and documentation of the identifier at a position (0-based line, UTF-16 character). |
+| `signature_help` | read | ide | `project`, `relative_path`, `position` | Function signature and active parameter at a call position. |
+| `completion_resolve` | read | full | `project`, `relative_path`, `item`, `expected_sha256` | Resolve completion metadata against an exact source hash; never execute item commands or apply text edits |
+| `workspace_symbols` | read | ide | `project`, `language`, `query` | Fast fuzzy symbol search via the language server for one configured language (e.g. language=rust). |
+| `call_hierarchy` | read | ide | `project`, `relative_path`, `position`, `direction` | Callers (incoming) or callees (outgoing) of the function at a position. |
+| `format_document` | write | ide | `project`, `relative_path`, `expected_sha256` | Format a file with the language server (or an explicit host Ruff profile). Returns a transaction preview; transaction_apply writes it. |
+| `inlay_hints` | read | full | `project`, `relative_path` | Get bounded native LSP inlay hints with document metadata; never execute label commands |
+| `inlay_hint_resolve` | read | full | `project`, `relative_path`, `hint`, `expected_sha256` | Resolve an LSP inlay hint against an exact source hash without executing commands or edits |
+| `semantic_tokens` | read | full | `project`, `relative_path` | Get real LSP semantic tokens and legend/encoding metadata, with current document freshness |
+| `list_inspection_providers` | read | full | `project` | List native provider types and configured host profile metadata without commands or secrets |
+| `run_inspections` | execute | full | `project`, `profile` | Run one host-fixed Clippy/Ruff/ESLint profile inside a mandatory configured OS sandbox; return bounded source-verified findings |
+| `prepare_inspection_fix` | write | full | `project`, `profile`, `finding_id`, `expected_sha256` | Rerun an authorized native inspection and preview one current safe single-file finding fix as a hash-guarded transaction |
+| `prepare_code_action` | write | ide | `project`, `relative_path`, `range`, `action_title`, `expected_sha256` | Preview one edit-only code action, selected by its exact title from code_actions, as a transaction. |
+| `apply_quick_fix` | write | ide | `project`, `relative_path`, `range`, `action_title`, `expected_sha256` | Preview one quickfix code action (exact title) as a transaction; transaction_apply writes it. |
+| `move_symbol` | write | ide | `project`, `relative_path`, `name_path`, `action_title`, `expected_sha256`, `target_path` | Preview backend-provided refactor.move edit-only code action; no text fallback or server command execution |
+| `inline_symbol` | write | ide | `project`, `relative_path`, `name_path`, `action_title`, `expected_sha256` | Preview backend-provided refactor.inline edit-only code action; no text fallback or server command execution |
+| `restart_language_server` | state | ide | `project` | Restart this project's language servers, e.g. after a crash or a toolchain/config change. They start lazily on the next query. |
+| `transaction_prepare` | write | ide | `project`, `changes` | Stage full new contents for one or more files at once (expected_sha256=null creates). Returns a transaction preview; transaction_apply writes it. |
+| `transaction_preview` | read | core | `project`, `transaction_id` | Show the diff and state of a prepared transaction. Review it before transaction_apply. |
+| `transaction_apply` | write | core | `project`, `transaction_id` | Write a prepared transaction after re-checking every file hash; refuses (CONFLICT) if a file changed since preview. Applying is not a passing build. |
+| `transaction_rollback` | write | core | `project`, `transaction_id` | Undo an applied transaction with a new conflict-checked transaction. |
+| `transaction_list` | read | ide | `project` | List transactions and their journal phases. |
+| `transaction_recover` | write | ide | `project` | Restore interrupted transactions without overwriting external modifications |
+| `create_text_file` | write | ide | `project`, `relative_path`, `content`, `expected_sha256` | Create a file (expected_sha256=null) or overwrite one (expected_sha256=current hash). Returns a transaction preview; transaction_apply writes it. |
+| `replace_content` | write | core | `project`, `relative_path`, `needle`, `replacement`, `expected_sha256` | Use for a targeted text edit in one file: literal (or regex=true) needle to replacement, guarded by expected_sha256 and expected_matches. Returns a transaction preview; transaction_apply writes it. |
+| `replacement_preview` | read | ide | `project`, `files`, `needle`, `replacement` | Preview a multi-file search/replace and get occurrence IDs to select for replace_in_files. Changes nothing. |
+| `replace_in_files` | write | ide | `project`, `files`, `needle`, `replacement`, `expected_total_matches` | Multi-file replace of all or selected occurrence IDs, guarded by per-file sha256 and the total match count. Returns a transaction preview. |
+| `replace_lines` | write | ide | `project`, `relative_path`, `start_line`, `expected_sha256`, `end_line`, `content` | Replace lines start_line..end_line (1-based, inclusive) with content. Returns a transaction preview. |
+| `delete_lines` | write | ide | `project`, `relative_path`, `start_line`, `expected_sha256`, `end_line` | Delete lines start_line..end_line (1-based, inclusive). Returns a transaction preview. |
+| `insert_at_line` | write | ide | `project`, `relative_path`, `start_line`, `expected_sha256`, `content` | Insert content before start_line (1-based). Returns a transaction preview. |
+| `replace_symbol_body` | write | core | `project`, `relative_path`, `name_path`, `body`, `expected_sha256` | Use to rewrite a whole function/type: replaces the symbol's full definition (name_path) with body. Returns a transaction preview; transaction_apply writes it. |
+| `insert_before_symbol` | write | ide | `project`, `relative_path`, `name_path`, `body`, `expected_sha256` | Insert source just before a symbol definition (name_path), e.g. a new function or import. Returns a transaction preview. |
+| `insert_after_symbol` | write | ide | `project`, `relative_path`, `name_path`, `body`, `expected_sha256` | Insert source just after a symbol definition (name_path), e.g. a sibling function. Returns a transaction preview. |
+| `rename_symbol` | write | core | `project`, `relative_path`, `name_path`, `new_name` | Use to rename across files: semantic rename via the language server (relative_path + name_path). Returns a transaction preview; transaction_apply writes it. |
+| `safe_delete_symbol` | write | ide | `project`, `relative_path`, `name_path`, `expected_sha256` | Delete a symbol only when the language server reports no static references. Returns a transaction preview. |
+| `list_memories` | read | full | `project` | List Markdown memory names without loading content |
+| `read_memory` | read | full | `project`, `name` | Read Markdown memory and its current hash |
+| `write_memory` | write | full | `project`, `name`, `content`, `expected_sha256` | Write a Markdown memory with compare-and-swap; null hash is create-only |
+| `edit_memory` | write | full | `project`, `name`, `needle`, `replacement`, `expected_sha256` | Guarded literal replacement in an existing Markdown memory |
+| `delete_memory` | write | full | `project`, `name`, `expected_sha256` | Delete a Markdown memory guarded by hash; use check_memories to inspect dangling references |
+| `rename_memory` | write | full | `project`, `old_name`, `new_name`, `expected_sha256` | Rename Markdown and exact mem: references with a shared recovery journal |
+| `memory_export` | read | full | `project` | Export versioned Markdown notes with SHA-256 without writing repository files |
+| `memory_import` | write | full | `project`, `bundle` | Prepare create-only import of a checked versioned memory bundle; apply separately |
+| `memory_move_scope` | write | full | `project`, `name`, `destination_project`, `destination_name`, `expected_sha256` | Prepare permission-checked memory move to a configured project or global scope; reject dangling references |
+| `memory_transaction_preview` | read | full | `project`, `transaction_id` | Preview a memory transaction owned by this initiating project |
+| `memory_transaction_apply` | write | full | `project`, `transaction_id` | Apply a memory transaction after rechecking initiating project, affected scopes and source hashes |
+| `check_memories` | read | full | `project` | Validate explicit mem: reference integrity |
+| `search_memories` | read | full | `project`, `pattern` | Search names/body by regex without returning every memory body |
+| `recover_memories` | write | full | `project` | Recover an interrupted memory journal; shared across configured projects |
+| `query_project` | read | full | `project`, `target_project`, `tool`, `arguments` | Call a read-only native tool against another configured project |
+| `flow_run` | read | full | `project`, `session`, `steps` | Run session-isolated bounded JSON dataflow with pointer/map/filter/count/sum; no eval, imports or arbitrary Python |
+| `flow_vars` | read | full | `project`, `session` | List retained per-project flow variable names and sizes |
+| `flow_clear` | state | full | `project`, `session` | Clear this per-project flow session |
+| `execute_shell_command` | execute | core | `project`, `profile` | Run a host-defined command profile by name (e.g. test, check); no free-form shell. Judge the result by success/exit_code, not by the call succeeding. |
+| `debug_start` | execute | full | `project`, `profile` | Start a configured DAP adapter; requires allow_debug |
+| `debug_request` | execute | full | `project`, `command`, `arguments` | Send an allowlisted DAP request; launch/attach/restart return tickets; native cancel_ticket requests best-effort cancellation |
+| `debug_events` | execute | full | `project` | Drain DAP events and completed launch tickets |
+| `debug_stop` | execute | full | `project` | Disconnect debuggee with termination requested and drop the adapter |
+| `debug_batch` | execute | full | `project`, `session_id`, `commands` | Run 1..32 allowlisted DAP requests in an explicit project session with per-step request IDs |
+| `result_read` | read | core | `project`, `result_id` | Read a large spilled result (result_id) in UTF-8-aligned byte chunks. |
+| `audit_log` | read | full | `project` | Read redacted tool audit records without input/output source contents |
 
 ## 結果／錯誤
 

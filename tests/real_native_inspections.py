@@ -95,7 +95,7 @@ def main():
                           'args = '+json.dumps(version_args), 'timeout_secs = 30']
             config = base/'host.toml'
             config.write_text('\n'.join(lines)+'\n',encoding='utf-8')
-            with Peer([str(args.binary.resolve()),'--config',str(config),'serve'],env=env) as peer:
+            with Peer([str(args.binary.resolve()),'--config',str(config),'--tool-profile','full','serve'],env=env) as peer:
                 try:
                     initialized = peer.request('initialize',{'protocolVersion':'2025-11-25','capabilities':{},'clientInfo':{'name':'odin-native-inspections','version':'1'}},timeout=15)
                     check('real_mcp_handshake', initialized.get('result',{}).get('serverInfo',{}).get('name') == 'odin')

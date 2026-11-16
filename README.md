@@ -76,9 +76,21 @@ write、shell、debug。命令與除錯需操作者在可信任 host 設定明�
 .\target\release\odin.exe --config C:\Odin\host.toml doctor --probe-sandbox
 ```
 
-`setup` 支援 Codex、Claude、OpenCode。真正寫入需 `--apply --output`；
+`setup` 支援 Claude Code（`--client claude`，另印出 `claude mcp add` 指令）、Claude Desktop（`claude-desktop`）、Codex、OpenCode。真正寫入需 `--apply --output`；
 既有檔案還需 preview hash，並保存備份。生成 entry 的 MCP handshake
 已有獨立 smoke，不表示已在每個真實 client 應用中完成安裝。
+
+### Claude Code 快速上手
+
+```powershell
+.\target\release\odin.exe --config C:\Odin\host.toml --workspace . setup --client claude
+# 依輸出的 claude_code.user_scope_command 自行執行，例如：
+claude mcp add --scope user odin -- C:\Odin\odin.exe --config C:\Odin\host.toml --workspace . serve --transport stdio
+```
+
+MCP 預設只公開 `core` 工具組（唯讀專案 12 個、可寫 18 個，tools/list 約 8–12 KB；全部 86 個約 55 KB）。
+`--tool-profile ide|full` 或 `--include-tools NAME` 可擴充；這只影響公開清單，權限仍由 host 設定決定。
+權限、寫入開關與工作流程見 [Claude Code 指南](docs/CLAUDE_CODE.md)。
 
 ### 依當前專案使用
 

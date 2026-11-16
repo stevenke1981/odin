@@ -463,7 +463,8 @@ impl Config {
                     .iter()
                     .cloned(),
             );
-            for client in ["codex", "claude", "opencode"] {
+            // Claude Code (~/.claude.json) has no write exception: use `claude mcp add`.
+            for client in ["codex", "claude-desktop", "opencode"] {
                 let target = crate::workspace::client_config_path_in(home, client)?;
                 if !critical_roots.iter().any(|root| target.starts_with(root)) {
                     config.standard_client_outputs.insert(client.into(), target);

@@ -1,5 +1,21 @@
 # Changelog
 
+## Unreleased — Claude-first MCP surface
+
+- MCP `serve` advertises `--tool-profile core` by default (12 tools / 8,008 bytes
+  for a read-only project, 18 / 11,625 writable) instead of all 86 tools (53,189 bytes).
+  `ide` and `full` widen it; `--include-tools` adds single tools. Policy-disabled tools
+  are hidden in core/ide and the `project` argument is optional with one project.
+  Hidden tools fail with guidance. Exposure is not a permission boundary.
+- Agent-facing English tool descriptions that state when to use each tool;
+  catalog entries carry a `tier`. Permission, missing-backend and LSP-exit errors
+  now say what to do next.
+- `setup --client claude` targets Claude Code: `.mcp.json`-shaped entry plus
+  printed `claude mcp add` commands; `--client claude-desktop` keeps the Desktop
+  output. Generated entries use plain Windows paths instead of `\\?\` verbatim paths.
+  `~/.claude.json` is treated as a private home path.
+- Added CLAUDE.md, an agent quick reference in AGENTS.md and docs/CLAUDE_CODE.md.
+
 ## 0.2.0 — Sandbox and IDE extension, 2026-10-21
 
 Expanded to 85 native tool contracts with completion/resolve, hover, signature

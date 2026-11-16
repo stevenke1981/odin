@@ -16,8 +16,109 @@ const HOOK_END: &str = "<!-- ODIN MANAGED GUIDANCE END -->";
 #[derive(Clone, Copy, ValueEnum)]
 pub enum Client {
     Codex,
+    /// Claude Code (CLI/IDE): .mcp.json / ~/.claude.json shape plus a `claude mcp add` command.
     Claude,
+    /// Claude Desktop app: claude_desktop_config.json.
+    ClaudeDesktop,
     Opencode,
+}
+impl Client {
+    pub fn id(self) -> &'static str {
+        match self {
+            Self::Codex => "codex",
+            Self::Claude => "claude",
+            Self::ClaudeDesktop => "claude-desktop",
+            Self::Opencode => "opencode",
+        }
+    }
+}
+
+/// Server launch options copied into a client entry. Only restrictive or
+/// exposure-reducing selections exist here; none of them grants permissions.
+#[derive(Default)]
+pub struct LaunchArgs<'a> {
+    pub context: Option<&'a str>,
+    pub mode: Option<&'a str>,
+    pub workspace: Option<&'a Path>,
+    pub tool_profile: Option<&'a str>,
+    pub include_tools: &'a [String],
+}
+
+/// Windows canonicalize() yields verbatim `\\?\C:\...` paths. Clients and shells
+/// handle the plain form better, so strip the prefix when it is a drive or UNC path.
+pub fn plain_path(path: &Path) -> Result<String> {
+    let text = path
+        .to_str()
+        .context("Client config requires UTF-8 paths")?;
+    if let Some(rest) = text.strip_prefix(r"\\?\UNC\") {
+        return Ok(format!(r"\\{rest}"));
+    }
+    if let Some(rest) = text.strip_prefix(r"\\?\")
+        && rest.as_bytes().get(1) == Some(&b':')
+    {
+        return Ok(rest.to_owned());
+    }
+    Ok(text.to_owned())
+}
+
+fn launch_argv(config: &str, launch: &LaunchArgs) -> Result<Vec<String>> {
+    let mut args = vec!["--config".to_owned(), config.to_owned()];
+    if let Some(context) = launch.context {
+        args.extend(["--context".into(), context.into()]);
+    }
+    if let Some(mode) = launch.mode {
+        args.extend(["--mode".into(), mode.into()]);
+    }
+    if let Some(workspace) = launch.workspace {
+        args.extend([
+            "--workspace".into(),
+            workspace
+                .to_str()
+                .context("Workspace path must be UTF-8")?
+                .into(),
+        ]);
+    }
+    if let Some(profile) = launch.tool_profile {
+        args.extend(["--tool-profile".into(), profile.into()]);
+    }
+    if !launch.include_tools.is_empty() {
+        args.extend(["--include-tools".into(), launch.include_tools.join(",")]);
+    }
+    args.extend(["serve".into(), "--transport".into(), "stdio".into()]);
+    Ok(args)
+}
+
+fn shell_quote(word: &str) -> String {
+    if !word.is_empty()
+        && word
+            .chars()
+            .all(|c| c.is_ascii_alphanumeric() || "-_./:\\=,@".contains(c))
+    {
+        word.to_owned()
+    } else {
+        format!("\"{}\"", word.replace('"', "\\\""))
+    }
+}
+
+/// Claude Code registration hints. Printed only; Odin never runs `claude`.
+pub fn claude_code_hints(binary: &Path, config: &Path, launch: &LaunchArgs) -> Result<Value> {
+    let binary = plain_path(binary)?;
+    let argv = launch_argv(&plain_path(config)?, launch)?;
+    let command = |scope: &str| {
+        std::iter::once(format!("claude mcp add --scope {scope} odin --"))
+            .chain(std::iter::once(shell_quote(&binary)))
+            .chain(argv.iter().map(|arg| shell_quote(arg)))
+            .collect::<Vec<_>>()
+            .join(" ")
+    };
+    Ok(json!({
+        "user_scope_command": command("user"),
+        "local_scope_command": command("local"),
+        "project_file": ".mcp.json (the content field; machine-specific paths, so prefer user/local scope)",
+        "verify": "claude mcp list   (inside Claude Code: /mcp)",
+        "permissions": "Claude Code asks before each mcp__odin__* call; allow read-only tools in .claude/settings.json permissions.allow, e.g. \"mcp__odin__find_symbol\".",
+        "note": "Odin does not run claude or edit ~/.claude.json; run one command yourself. Add --workspace . before setup to follow Claude Code's project directory."
+    }))
 }
 
 pub fn read_output(path: &Path) -> Result<Option<String>> {
@@ -57,30 +158,11 @@ pub fn client_config(
     binary: &Path,
     config: &Path,
     before: Option<&str>,
-    context: Option<&str>,
-    mode: Option<&str>,
-    workspace: Option<&Path>,
+    launch: &LaunchArgs,
 ) -> Result<String> {
-    let binary = binary
-        .to_str()
-        .context("Client config requires a UTF-8 executable path")?;
-    let config = config
-        .to_str()
-        .context("Client config requires a UTF-8 host config path")?;
-    let mut args = vec!["--config", config];
-    if let Some(context) = context {
-        args.extend(["--context", context]);
-    }
-    if let Some(mode) = mode {
-        args.extend(["--mode", mode]);
-    }
-    if let Some(workspace) = workspace {
-        args.extend([
-            "--workspace",
-            workspace.to_str().context("Workspace path must be UTF-8")?,
-        ]);
-    }
-    args.extend(["serve", "--transport", "stdio"]);
+    let binary = plain_path(binary)?;
+    let binary = binary.as_str();
+    let args = launch_argv(&plain_path(config)?, launch)?;
     if matches!(client, Client::Codex) {
         let mut document: toml::Value =
             toml::from_str(before.unwrap_or("")).context("Invalid Codex TOML")?;
@@ -103,13 +185,15 @@ pub fn client_config(
         None => json!({}),
     };
     let root = json_object(&mut document)?;
-    let (section, entry) = if matches!(client, Client::Claude) {
+    let (section, entry) = if matches!(client, Client::Claude | Client::ClaudeDesktop) {
         (
             "mcpServers",
             json!({"type":"stdio", "command": binary, "args": args}),
         )
     } else {
-        let command = std::iter::once(binary).chain(args).collect::<Vec<_>>();
+        let command = std::iter::once(binary.to_owned())
+            .chain(args)
+            .collect::<Vec<_>>();
         (
             "mcp",
             json!({"type": "local", "command": command, "enabled": true}),
@@ -254,9 +338,7 @@ mod tests {
             Path::new("odin"),
             Path::new("host.toml"),
             Some(r#"{"theme":"dark","mcpServers":{"other":{"command":"else"}}}"#),
-            None,
-            None,
-            None,
+            &LaunchArgs::default(),
         )
         .unwrap();
         let value: Value = serde_json::from_str(&json).unwrap();
@@ -267,9 +349,7 @@ mod tests {
             Path::new("odin"),
             Path::new("host.toml"),
             Some("model = 'existing'\n[mcp_servers.other]\ncommand = 'else'\n"),
-            None,
-            None,
-            None,
+            &LaunchArgs::default(),
         )
         .unwrap();
         let value: toml::Value = toml::from_str(&toml).unwrap();
@@ -301,9 +381,7 @@ mod tests {
                 Path::new("odin"),
                 Path::new("host.toml"),
                 Some(r#"{"mcpServers":[]}"#),
-                None,
-                None,
-                None,
+                &LaunchArgs::default(),
             )
             .is_err()
         );
@@ -313,9 +391,7 @@ mod tests {
                 Path::new("odin"),
                 Path::new("host.toml"),
                 Some("// comment"),
-                None,
-                None,
-                None,
+                &LaunchArgs::default(),
             )
             .is_err()
         );
@@ -327,9 +403,11 @@ mod tests {
             Path::new("odin"),
             Path::new("host.toml"),
             None,
-            Some("reviewer"),
-            Some("readonly"),
-            None,
+            &LaunchArgs {
+                context: Some("reviewer"),
+                mode: Some("readonly"),
+                ..Default::default()
+            },
         )
         .unwrap();
         let value: Value = serde_json::from_str(&text).unwrap();
@@ -351,15 +429,21 @@ mod tests {
     }
     #[test]
     fn workspace_setup_and_guidance_do_not_pin_setup_directory() {
-        for client in [Client::Codex, Client::Claude, Client::Opencode] {
+        for client in [
+            Client::Codex,
+            Client::Claude,
+            Client::ClaudeDesktop,
+            Client::Opencode,
+        ] {
             let text = client_config(
                 client,
                 Path::new("odin"),
                 Path::new("host.toml"),
                 None,
-                None,
-                None,
-                Some(Path::new(".")),
+                &LaunchArgs {
+                    workspace: Some(Path::new(".")),
+                    ..Default::default()
+                },
             )
             .unwrap();
             let args: Value = match client {
@@ -368,10 +452,9 @@ mod tests {
                         .clone(),
                 )
                 .unwrap(),
-                Client::Claude => {
-                    serde_json::from_str::<Value>(&text).unwrap()["mcpServers"]["odin"]["args"]
-                        .clone()
-                }
+                Client::Claude | Client::ClaudeDesktop => serde_json::from_str::<Value>(&text)
+                    .unwrap()["mcpServers"]["odin"]["args"]
+                    .clone(),
                 Client::Opencode => {
                     serde_json::from_str::<Value>(&text).unwrap()["mcp"]["odin"]["command"].clone()
                 }
@@ -385,5 +468,36 @@ mod tests {
         let text = hook_content("", None, false).unwrap();
         assert!(text.contains("list_projects") && text.contains("project_analysis"));
         assert!(!text.contains("sigma") && !text.contains("ws_"));
+    }
+    #[test]
+    fn verbatim_paths_are_plain_and_claude_hints_carry_profile() {
+        assert_eq!(
+            plain_path(Path::new(r"\\?\F:\odin\odin.exe")).unwrap(),
+            r"F:\odin\odin.exe"
+        );
+        assert_eq!(
+            plain_path(Path::new(r"\\?\UNC\srv\share\h.toml")).unwrap(),
+            r"\\srv\share\h.toml"
+        );
+        assert_eq!(
+            plain_path(Path::new("/usr/bin/odin")).unwrap(),
+            "/usr/bin/odin"
+        );
+        let include = vec!["hover".to_owned()];
+        let hints = claude_code_hints(
+            Path::new(r"\\?\C:\Program Files\Odin\odin.exe"),
+            Path::new(r"\\?\C:\Odin\host.toml"),
+            &LaunchArgs {
+                workspace: Some(Path::new(".")),
+                tool_profile: Some("ide"),
+                include_tools: &include,
+                ..Default::default()
+            },
+        )
+        .unwrap();
+        assert_eq!(
+            hints["user_scope_command"],
+            r#"claude mcp add --scope user odin -- "C:\Program Files\Odin\odin.exe" --config C:\Odin\host.toml --workspace . --tool-profile ide --include-tools hover serve --transport stdio"#
+        );
     }
 }

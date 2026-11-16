@@ -143,7 +143,7 @@ class Driver:
         return value
 
     def start(self, config, root):
-        command = [str(self.args.binary), '--config', str(config), '--workspace', '.', 'serve', '--transport', 'stdio']
+        command = [str(self.args.binary), '--config', str(config), '--workspace', '.', '--tool-profile', 'full', 'serve', '--transport', 'stdio']
         self.report['client_entries'].append({'command': command, 'cwd': str(root)})
         peer = Peer(command, cwd=root, env=self.environment)
         result = peer.request('initialize', {'protocolVersion': '2025-11-25', 'capabilities': {}, 'clientInfo': {'name': 'odin-installed-lsp', 'version': '1'}}, timeout=30)

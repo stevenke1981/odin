@@ -84,7 +84,8 @@ def main():
                     check('generated_config_initialize:'+client, response.get('result',{}).get('serverInfo',{}).get('name') == 'odin')
                     peer.notify('notifications/initialized')
                     tools = peer.request('tools/list')['result']['tools']
-                    check('generated_config_tools_list:'+client, sorted(t['name'] for t in tools) == sorted(t['name'] for t in catalog))
+                    tiers = {t['name']: t.get('tier') for t in catalog}
+                    check('generated_config_tools_list:'+client, bool(tools) and all(tiers.get(t['name']) == 'core' for t in tools))
                 current = hashlib.sha256(output.read_bytes()).hexdigest()
                 check('setup_idempotent:'+client, run('setup', '--client', client, '--output', str(output), '--apply', '--expected-sha256', current)['operation'] == 'UNCHANGED')
             check('setup_lock_cleanup', not list(base.glob('*.odin-setup.lock')))

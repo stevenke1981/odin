@@ -83,7 +83,7 @@ def main():
                       'args = ["-m", "debugpy.adapter"]', 'timeout_secs = 30']
             config = base/'host.toml'
             config.write_text('\n'.join(lines)+'\n', encoding='utf-8')
-            with Peer([str(args.binary.resolve()), '--config', str(config), 'serve']) as peer:
+            with Peer([str(args.binary.resolve()), '--config', str(config), '--tool-profile', 'full', 'serve']) as peer:
                 initialized = peer.request('initialize', {'protocolVersion': '2025-11-25', 'capabilities': {}, 'clientInfo': {'name':'odin-real-backends', 'version':'1'}})
                 check('real_mcp_initialize', initialized.get('result', {}).get('serverInfo', {}).get('name') == 'odin')
                 peer.notify('notifications/initialized')

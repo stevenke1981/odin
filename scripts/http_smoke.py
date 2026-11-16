@@ -37,7 +37,7 @@ def main():
             token = secrets.token_urlsafe(32)
             env = dict(os.environ, ODIN_TOKEN=token)
             with (root/'http.log').open('w', encoding='utf-8') as log:
-                process = subprocess.Popen([str(args.binary.resolve()), '--config', str(config), 'serve', '--transport', 'http', '--listen', f'127.0.0.1:{port}'], env=env, stdout=log, stderr=log)
+                process = subprocess.Popen([str(args.binary.resolve()), '--config', str(config), '--tool-profile', 'full', 'serve', '--transport', 'http', '--listen', f'127.0.0.1:{port}'], env=env, stdout=log, stderr=log)
                 base = f'http://127.0.0.1:{port}'
                 opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
 
