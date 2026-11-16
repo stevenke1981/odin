@@ -144,3 +144,13 @@ profiles; process lifetime controls are not OS security sandboxes.
 Primary references: [LSP completion](https://github.com/microsoft/language-server-protocol/blob/gh-pages/_specifications/lsp/3.17/language/completion.md),
 [semantic tokens](https://github.com/microsoft/language-server-protocol/blob/gh-pages/_specifications/lsp/3.17/language/semanticTokens.md),
 [inlay hints](https://github.com/microsoft/language-server-protocol/blob/gh-pages/_specifications/lsp/3.17/language/inlayHint.md).
+
+# Diagnostics freshness
+
+`get_diagnostics_for_file` and `get_diagnostics_for_symbol` expose `source`,
+`provider`, document metadata, current and reported versions, `freshness`,
+`version_verified` and bounded findings. `pending` means no report was received;
+`stale` means a report was received for a different version and is unavailable
+for the current document. An unversioned push is `unverified`, not proof of a
+clean document. A pull is tied to the requested snapshot; a matching versioned
+push is current. Even `clean` does not prove a clean build.

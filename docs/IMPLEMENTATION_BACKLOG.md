@@ -1,5 +1,7 @@
 # Odin 實作與驗收看板
 
+> **歷史看板：** 本頁的 85 契約與 Windows 候選敘述屬先前版本，並非目前交付狀態。現行與歷史候選的來源、產物及證據入口見 [交付狀態索引](CURRENT_DELIVERY_INDEX.md)。
+
 **現行85契約；40項原始需求尚未全數接受。** 原58保留、前版72再新增13。完整原DoD與相依見 [FEATURE_SPEC.md](FEATURE_SPEC.md)，逐需求結果見 [feature-evidence.json](../verification/feature-evidence.json)。以下分開記錄歷史實跑與最終候選，不把不同來源／binary的結果合併成PASS。
 
 最終 Windows 候選由來源 `69e769be9baa4e825139b72ce1a9b48bf8143114` 編譯，binary SHA-256 為 `83a81d14718308973697030fb19d86df7f64f482e2cb555b7899df7ea5d3ec44`。`cargo build --workspace --release --locked` exit0；metadata 的 CreateProcess 遭 AppControl 4551 拒絕，沒有原生 exit code。最終六語／十二專案矩陣、CLI runtime 與 installer 驗收均 **BLOCKED／NOT_RUN**，不能從編譯成功推論可執行。[最終 host block](../verification/language-installers-v3-final-host-block.json) 保留最初 invocation 與 stale LASTEXITCODE 的更正；[finalrun-plan](../verification/language-sandbox-v3-finalrun-plan.json) 是準備好的重跑計畫，不是執行收據。
