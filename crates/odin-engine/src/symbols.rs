@@ -81,8 +81,8 @@ impl Filter {
             excluded: kinds("exclude_kinds"),
             scope: optional_string(args, "scope").map(str::to_owned),
             depth: number(args, "depth", u64::MAX),
-            offset: number(args, "offset", 0) as usize,
-            limit: (number(args, "limit", maximum as u64) as usize).min(maximum),
+            offset: crate::number_usize(args, "offset", 0),
+            limit: crate::number_usize(args, "limit", maximum).min(maximum),
         })
     }
     pub fn accepts(&self, symbol: &Symbol) -> bool {

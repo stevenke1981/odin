@@ -126,10 +126,19 @@ impl Exposure {
     }
 }
 
+/// Startup-selected default. It is advertised in MCP instructions only; every tool call
+/// still names its project explicitly and this value grants no permission.
+#[derive(Clone, Debug)]
+pub struct SessionProject {
+    pub id: String,
+    pub source: &'static str,
+}
+
 #[derive(Clone)]
 pub struct OdinMcp {
     pub engine: Arc<Engine>,
     pub exposure: Arc<Exposure>,
+    pub session_project: Option<SessionProject>,
 }
 impl OdinMcp {
     fn sdk_tool(value: &Value) -> std::result::Result<Tool, serde_json::Error> {
@@ -146,7 +155,7 @@ impl ServerHandler for OdinMcp {
         ServerConfig::new(ServerCapabilities::builder().enable_tools().build())
             .with_server_info(Implementation::new("odin", env!("CARGO_PKG_VERSION")))
             .with_instructions(format!(
-                "{}\nConfigured project IDs: {}{}\n{}",
+                "{}\nConfigured project IDs: {}{}{}\n{}",
                 odin_engine::INSTRUCTIONS,
                 self.engine
                     .projects
@@ -159,6 +168,13 @@ impl ServerHandler for OdinMcp {
                 } else {
                     ""
                 },
+                self.session_project.as_ref().map_or_else(String::new, |session| {
+                    format!(
+                        "\nSession default project: {} (selected by {}). Pass \"project\": \"{}\" in tool calls unless the user names another configured project.",
+                        session.id, session.source, session.id
+                    )
+                })
+,
                 self.exposure.summary()
             ))
     }

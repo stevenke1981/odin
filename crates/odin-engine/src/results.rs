@@ -1,5 +1,5 @@
 //! Project-local, bounded result retention. Digests cover the exact stored JSON bytes.
-use crate::{Engine, Project, number, string};
+use crate::{Engine, Project, string};
 use odin_core::{Fault, Result, paths::atomic_write, sha256, unix_ms};
 use serde::{Deserialize, Serialize};
 use serde_json::{Value, json};
@@ -124,10 +124,18 @@ pub fn read(engine: &Engine, project: &Project, args: &Value) -> Result<Value> {
     }
     let text = std::str::from_utf8(&bytes)
         .map_err(|_| Fault::new("CORRUPT_STATE", "Stored result is not UTF-8"))?;
-    let start = number(args, "offset", 0) as usize;
-    let size = (number(args, "max_bytes", 16384) as usize)
+    let start = crate::number_usize(args, "offset", 0);
+    let size = crate::number_usize(args, "max_bytes", 16384)
         .min(engine.config.limits.max_output_bytes / 8)
         .min(32768);
+    let (start, end) = chunk_bounds(text, start, size)?;
+    Ok(
+        json!({"result_id":id,"text":&text[start..end],"offset":start,"next_offset":if end<text.len(){Some(end)}else{None},
+        "total_bytes":metadata.bytes,"sha256":metadata.sha256,"chunk_sha256":sha256(&bytes[start..end]),"expires_ms":metadata.expires_ms}),
+    )
+}
+
+fn chunk_bounds(text: &str, start: usize, size: usize) -> Result<(usize, usize)> {
     if start > text.len() || !text.is_char_boundary(start) {
         return Err(Fault::invalid(
             "Offset must be a UTF-8 boundary within the result",
@@ -140,15 +148,25 @@ pub fn read(engine: &Engine, project: &Project, args: &Value) -> Result<Value> {
     if end == start && start < text.len() {
         end += text[start..].chars().next().map_or(0, char::len_utf8);
     }
-    Ok(
-        json!({"result_id":id,"text":&text[start..end],"offset":start,"next_offset":if end<text.len(){Some(end)}else{None},
-        "total_bytes":metadata.bytes,"sha256":metadata.sha256,"chunk_sha256":sha256(&bytes[start..end]),"expires_ms":metadata.expires_ms}),
-    )
+    Ok((start, end))
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn oversized_offset_and_size_are_bounded_without_panic() {
+        let text = "héllo";
+        let huge = crate::saturating_usize(u64::MAX);
+        assert!(chunk_bounds(text, huge, 16).is_err());
+        assert_eq!(chunk_bounds(text, 0, huge).unwrap(), (0, text.len()));
+        assert_eq!(
+            chunk_bounds(text, text.len(), huge).unwrap(),
+            (text.len(), text.len())
+        );
+        assert_eq!(chunk_bounds(text, 1, huge).unwrap(), (1, text.len()));
+        assert_eq!(chunk_bounds(text, 0, 2).unwrap(), (0, 1));
+    }
     #[test]
     fn expired_results_are_removed_without_evicting_fresh_results() {
         let dir = tempfile::tempdir().unwrap();

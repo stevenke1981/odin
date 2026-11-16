@@ -82,18 +82,19 @@ pub fn pattern(
                 continue;
             }
         };
-        let hash = sha256(content.as_bytes());
+        let mut hash = None;
         for (line, text) in content.lines().enumerate() {
             if regex.is_match(text) {
                 if matches.len() == max_matches {
                     truncated = true;
                     break 'files;
                 }
+                let digest = hash.get_or_insert_with(|| sha256(content.as_bytes()));
                 matches.push(Match {
                     path: path.clone(),
                     line: line + 1,
                     text: text.chars().take(1000).collect(),
-                    sha256: hash.clone(),
+                    sha256: digest.clone(),
                 });
             }
         }
@@ -120,5 +121,24 @@ mod tests {
         std::fs::write(d.path().join("a"), "a\na\n").unwrap();
         let r = SafeRoot::new(d.path(), &[], 1000).unwrap();
         assert_eq!(pattern(&r, "a", 10, 1).unwrap()["truncated"], true);
+    }
+    #[test]
+    fn pattern_reports_hash_only_for_matching_files() {
+        let d = tempfile::tempdir().unwrap();
+        std::fs::write(d.path().join("a"), "one\ntwo\ntwo\n").unwrap();
+        std::fs::write(d.path().join("b"), "nothing here\n").unwrap();
+        let r = SafeRoot::new(d.path(), &[], 1000).unwrap();
+        let value = pattern(&r, "two", 10, 10).unwrap();
+        let matches = value["matches"].as_array().unwrap();
+        assert_eq!(matches.len(), 2);
+        for (m, line) in matches.iter().zip([2, 3]) {
+            assert_eq!(m["path"], "a");
+            assert_eq!(m["line"], line);
+            assert_eq!(m["text"], "two");
+            assert_eq!(m["sha256"], sha256(b"one\ntwo\ntwo\n"));
+        }
+        assert_eq!(value["truncated"], false);
+        assert_eq!(value["skipped_nontext_or_large_files"], 0);
+        assert_eq!(value["line_base"], 1);
     }
 }

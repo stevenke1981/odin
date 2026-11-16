@@ -133,8 +133,8 @@ async fn run_capture(
     let stdout = collect(out).await?;
     let stderr = collect(err).await?;
     Ok(
-        json!({"program":config.program,"args":config.args,"exit_code":status.as_ref().and_then(|s|s.code()),
-        "success":status.as_ref().is_some_and(|s|s.success())&&!timed_out&&input_error.is_none(),
+        json!({"program":config.program,"args":config.args,"exit_code":status.as_ref().and_then(std::process::ExitStatus::code),
+        "success":status.as_ref().is_some_and(std::process::ExitStatus::success)&&!timed_out&&input_error.is_none(),
         "timed_out":timed_out,"stdout":stdout.text,"stderr":stderr.text,"output_truncated":stdout.truncated||stderr.truncated,
         "stdout_utf8_valid":stdout.utf8_valid,"stderr_utf8_valid":stderr.utf8_valid,
         "stdin_complete":!timed_out&&input_error.is_none(),"stdin_error":input_error,

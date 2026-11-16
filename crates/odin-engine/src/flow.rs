@@ -1,6 +1,6 @@
 //! A deliberately non-Turing-complete, read-only JSON dataflow interface.
 //! References resolve JSON values, not executable source text.
-use crate::{Engine, number, string};
+use crate::{Engine, string};
 use odin_core::{Fault, Result, config::validate_id};
 use serde_json::{Value, json};
 use std::{collections::BTreeMap, sync::Arc};
@@ -48,7 +48,8 @@ pub async fn run(engine: &Arc<Engine>, project: &str, args: &Value) -> Result<Va
                     "Flows can call nonrecursive native read tools only",
                 ));
             }
-            let arguments = resolve(step.get("arguments").unwrap_or(&json!({})), &vars, maximum)?;
+            let empty = json!({});
+            let arguments = resolve(step.get("arguments").unwrap_or(&empty), &vars, maximum)?;
             engine
                 .invoke(project.into(), tool.into(), arguments)
                 .await?
@@ -67,7 +68,7 @@ pub async fn run(engine: &Arc<Engine>, project: &str, args: &Value) -> Result<Va
             value = bounded_clone(selected, maximum)?;
         }
         if step.get("take").is_some() {
-            let take = number(step, "take", 0) as usize;
+            let take = crate::number_usize(step, "take", 0);
             let array = value
                 .as_array_mut()
                 .ok_or_else(|| Fault::invalid("take requires an array"))?;

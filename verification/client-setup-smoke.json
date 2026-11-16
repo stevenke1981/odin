@@ -1,0 +1,520 @@
+{
+  "scope": "REAL_ODIN_BINARY_CLIENT_SETUP_AND_MCP_LAUNCH",
+  "status": "PASS",
+  "binary": "E:\\odin\\target\\release\\odin.exe",
+  "binary_sha256": "fb288ff14c3c23939cbd3d3ac389d2377fa1e9b52436c913ed2f52659b8fa4b7",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "checks": [
+    {
+      "name": "init_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "init_creates_config",
+      "status": "PASS"
+    },
+    {
+      "name": "project_add_dry_run_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "project_add_dry_run_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "project_add_languages_not_probed",
+      "status": "PASS"
+    },
+    {
+      "name": "project_add_dry_run_expected_sha256",
+      "status": "PASS"
+    },
+    {
+      "name": "project_add_conflict_refused",
+      "status": "PASS"
+    },
+    {
+      "name": "project_add_apply_exit",
+      "status": "PASS"
+    },
+    {
+      "name": "project_add_backup",
+      "status": "PASS"
+    },
+    {
+      "name": "project_add_present",
+      "status": "PASS"
+    },
+    {
+      "name": "project_add_demo_kept",
+      "status": "PASS"
+    },
+    {
+      "name": "project_add_default_permissions",
+      "status": "PASS"
+    },
+    {
+      "name": "project_add_detects_rust",
+      "status": "PASS"
+    },
+    {
+      "name": "project_add_duplicate_dry_run_refused",
+      "status": "PASS"
+    },
+    {
+      "name": "project_add_duplicate_apply_refused",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_dry_run_exit:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_dry_run:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_metadata:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_registration_command:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_auto_project:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_apply_exit:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_backup:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "unrelated_preserved:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "odin_entry_shape:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_idempotent:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_initialize:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_session_default:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_tools_list:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_status_call:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_exit_after_eof:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_dry_run_exit:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_dry_run:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_metadata:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_registration_command:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_auto_project:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_apply_exit:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_backup:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "unrelated_preserved:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "odin_entry_shape:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_idempotent:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_initialize:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_session_default:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_tools_list:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_status_call:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_exit_after_eof:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_dry_run_exit:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_dry_run:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_metadata:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_registration_command:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_auto_project:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_apply_exit:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_backup:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "unrelated_preserved:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "odin_entry_shape:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_idempotent:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_initialize:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_session_default:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_tools_list:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_status_call:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_exit_after_eof:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_dry_run_exit:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_dry_run:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_metadata:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_registration_command:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_auto_project:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_apply_exit:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_backup:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "unrelated_preserved:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "odin_entry_shape:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_idempotent:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_initialize:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_session_default:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_tools_list:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_status_call:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_exit_after_eof:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_dry_run_exit:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_dry_run:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_metadata:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_registration_command:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_auto_project:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_apply_exit:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_backup:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "unrelated_preserved:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "odin_entry_shape:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_idempotent:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_initialize:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_session_default:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_tools_list:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_status_call:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_exit_after_eof:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_dry_run_exit:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_dry_run:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_metadata:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_registration_command:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_auto_project:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_apply_exit:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_backup:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "unrelated_preserved:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "odin_entry_shape:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_idempotent:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_initialize:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_session_default:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_tools_list:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_status_call:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_exit_after_eof:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_dry_run_exit:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_dry_run:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_metadata:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_registration_command:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_auto_project:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_apply_exit:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_backup:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "unrelated_preserved:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "odin_entry_shape:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_idempotent:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_initialize:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_session_default:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_tools_list:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_status_call:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_exit_after_eof:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "unscoped_initialize",
+      "status": "PASS"
+    },
+    {
+      "name": "unscoped_no_session_default",
+      "status": "PASS"
+    },
+    {
+      "name": "unscoped_exit_after_eof",
+      "status": "PASS"
+    },
+    {
+      "name": "serve_unknown_default_project_refused",
+      "status": "PASS"
+    },
+    {
+      "name": "setup_unknown_default_project_refused",
+      "status": "PASS"
+    },
+    {
+      "name": "serve_default_project_selected",
+      "status": "PASS"
+    },
+    {
+      "name": "serve_default_project_exit_after_eof",
+      "status": "PASS"
+    }
+  ],
+  "error": null,
+  "actual_client_applications_tested": false,
+  "timestamp_unix": 1792586052.206317
+}

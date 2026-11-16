@@ -274,7 +274,7 @@ impl ProjectConfig {
             _ => return Ok(caller.clone()),
         }
         .ok_or_else(|| Fault::denied("DAP command has no immutable host launch payload"))?;
-        let empty = caller.is_null() || caller.as_object().is_some_and(|map| map.is_empty());
+        let empty = caller.is_null() || caller.as_object().is_some_and(serde_json::Map::is_empty);
         if !empty && caller != configured {
             return Err(Fault::denied(
                 "DAP launch arguments differ from the immutable host payload",
@@ -383,6 +383,27 @@ impl Config {
         home: Option<&Path>,
         installation: &Path,
     ) -> Result<Self> {
+        let raw = std::fs::read_to_string(path)?;
+        Self::parse_workspace_at(&raw, path, workspace, home, installation)
+    }
+    /// Fully validate host configuration text as `Config::load` does. `path` names
+    /// the host file; relative roots and state resolve against its parent directory.
+    pub fn parse(text: &str, path: &Path) -> Result<Self> {
+        let home = crate::workspace::home_root().ok();
+        let installation = std::env::current_exe()?
+            .canonicalize()?
+            .parent()
+            .ok_or_else(|| Fault::invalid("Executable has no parent"))?
+            .to_owned();
+        Self::parse_workspace_at(text, path, None, home.as_deref(), &installation)
+    }
+    fn parse_workspace_at(
+        text: &str,
+        path: &Path,
+        workspace: Option<&Path>,
+        home: Option<&Path>,
+        installation: &Path,
+    ) -> Result<Self> {
         // Only a fixed OS-derived private host location can use the nested-home
         // exception. A repository TOML cannot declare itself trusted.
         let requested_host = path.to_owned();
@@ -403,8 +424,7 @@ impl Config {
                 ));
             }
         }
-        let raw = std::fs::read_to_string(&path)?;
-        let mut config: Self = toml::from_str(&raw).map_err(|e| Fault::invalid(e.to_string()))?;
+        let mut config: Self = toml::from_str(text).map_err(|e| Fault::invalid(e.to_string()))?;
         let parent = path
             .parent()
             .ok_or_else(|| Fault::invalid("Config has no parent"))?;
@@ -519,6 +539,15 @@ impl Config {
             if !project.root.is_dir() {
                 return Err(Fault::invalid(format!("Project {id} is not a directory")));
             }
+            // Both sides are canonical here; state may not exist yet, which
+            // canonical_storage_path already accounts for.
+            // State is protected host storage, so this is a denial like the
+            // protected-root check below, with a more specific message.
+            if path_within(&config.state_dir, &project.root) {
+                return Err(Fault::denied(
+                    "Project root cannot be inside the state directory",
+                ));
+            }
             if private_roots
                 .iter()
                 .any(|private| project.root.starts_with(private))
@@ -547,6 +576,10 @@ impl Config {
                     let relative = relative.to_string_lossy().replace('\\', "/");
                     project.deny_globs.push(literal_glob(&relative));
                 }
+            }
+            if let Ok(relative) = path.strip_prefix(&project.root) {
+                let relative = relative.to_string_lossy().replace('\\', "/");
+                project.deny_globs.push(host_side_files_glob(&relative));
             }
             let mut ids = std::collections::BTreeSet::new();
             for lang in &project.languages {
@@ -658,6 +691,27 @@ impl Config {
         }
         Ok(config)
     }
+}
+/// Component-wise containment of canonical paths. The `\\?\` verbatim prefix that
+/// `canonicalize` adds is ignored on every platform. On Windows only, comparison also
+/// folds case with Unicode `to_lowercase`, not ASCII-only folding.
+pub fn path_within(root: &Path, candidate: &Path) -> bool {
+    let root = comparable_components(root);
+    let candidate = comparable_components(candidate);
+    candidate.starts_with(&root)
+}
+fn comparable_components(path: &Path) -> Vec<String> {
+    let raw = path.to_string_lossy().into_owned();
+    let trimmed = raw.strip_prefix(r"\\?\").unwrap_or(raw.as_str());
+    let folded = if cfg!(windows) {
+        trimmed.to_lowercase()
+    } else {
+        trimmed.to_owned()
+    };
+    Path::new(&folded)
+        .components()
+        .map(|component| component.as_os_str().to_string_lossy().into_owned())
+        .collect()
 }
 pub fn validate_id(id: &str) -> Result<()> {
     if id.is_empty()
@@ -865,15 +919,29 @@ pub(crate) fn canonical_storage_path(path: &Path) -> Result<PathBuf> {
     }
     Ok(canonical)
 }
+/// Escapes glob metacharacters as one-character classes. Backslash escapes are not used:
+/// globset disables them on Windows, where `\` is a path separator.
 fn literal_glob(value: &str) -> String {
     let mut output = String::new();
     for ch in value.chars() {
         if "*?[]{}\\".contains(ch) {
-            output.push('\\');
+            output.push('[');
+            output.push(ch);
+            output.push(']');
+        } else {
+            output.push(ch);
         }
-        output.push(ch);
     }
     output
+}
+/// Setup writes `<name>.odin-backup-<hash>`, `<name>.odin-setup.lock` and
+/// `<name>.odin-pending-*` beside the host file. `relative` uses forward slashes.
+fn host_side_files_glob(relative: &str) -> String {
+    let (dir, name) = match relative.rsplit_once('/') {
+        Some((dir, name)) => (format!("{}/", literal_glob(dir)), name),
+        None => (String::new(), relative),
+    };
+    format!("{dir}{}.odin-*", literal_glob(name))
 }
 #[cfg(test)]
 mod tests {
@@ -1296,5 +1364,136 @@ mod tests {
         )
         .unwrap();
         assert_eq!(Config::load(&path).unwrap_err().code, "INVALID_ARGUMENT");
+    }
+    #[test]
+    fn parse_matches_load_and_rejects_the_same_inputs() {
+        let directory = tempfile::tempdir().unwrap();
+        std::fs::create_dir(directory.path().join("app")).unwrap();
+        let path = directory.path().join("host.toml");
+        let text = "[projects.app]\nroot = 'app'\nallow_write = true\n";
+        std::fs::write(&path, text).unwrap();
+        let loaded = Config::load(&path).unwrap();
+        let parsed = Config::parse(text, &path).unwrap();
+        assert_eq!(
+            serde_json::to_value(&loaded).unwrap(),
+            serde_json::to_value(&parsed).unwrap()
+        );
+        let nested = "[projects.outer]\nroot = 'app'\n[projects.inner]\nroot = 'app/src'\n";
+        std::fs::create_dir_all(directory.path().join("app/src")).unwrap();
+        assert!(Config::parse(nested, &path).is_err());
+        std::fs::write(&path, nested).unwrap();
+        assert!(Config::load(&path).is_err());
+    }
+    #[test]
+    fn path_within_is_component_wise() {
+        assert!(path_within(Path::new("/work/app"), Path::new("/work/app")));
+        assert!(path_within(
+            Path::new("/work/app"),
+            Path::new("/work/app/src")
+        ));
+        assert!(!path_within(
+            Path::new("/work/app"),
+            Path::new("/work/apple")
+        ));
+        assert!(!path_within(
+            Path::new("/work/app/src"),
+            Path::new("/work/app")
+        ));
+    }
+    #[cfg(windows)]
+    #[test]
+    fn path_within_ignores_windows_case_and_verbatim_prefix() {
+        assert!(path_within(
+            Path::new(r"\\?\C:\Work\App"),
+            Path::new(r"c:\work\app\Sub")
+        ));
+        assert!(!path_within(
+            Path::new(r"\\?\C:\Work\App"),
+            Path::new(r"\\?\C:\Work\Application")
+        ));
+    }
+    #[test]
+    fn host_config_side_files_inside_root_are_denied() {
+        let directory = tempfile::tempdir().unwrap();
+        std::fs::create_dir(directory.path().join("sub")).unwrap();
+        let config_path = directory.path().join("sub").join("h[1].toml");
+        std::fs::write(
+            &config_path,
+            "[projects.demo]\nroot = '..'\nallow_write = true\n",
+        )
+        .unwrap();
+        for name in [
+            "sub/h[1].toml.odin-backup-x",
+            "sub/h[1].toml.odin-setup.lock",
+            "sub/h[1].toml.odin-pending-1-2",
+        ] {
+            std::fs::write(directory.path().join(name), "host").unwrap();
+        }
+        std::fs::write(directory.path().join("sub/h1.toml.odin-backup-x"), "other").unwrap();
+        let config = Config::load(&config_path).unwrap();
+        let project = &config.projects["demo"];
+        let root = crate::paths::SafeRoot::new(&project.root, &project.deny_globs, 10000).unwrap();
+        for name in [
+            "sub/h[1].toml",
+            "sub/h[1].toml.odin-backup-x",
+            "sub/h[1].toml.odin-setup.lock",
+            "sub/h[1].toml.odin-pending-1-2",
+        ] {
+            assert_eq!(
+                root.read(name).unwrap_err().code,
+                "PERMISSION_DENIED",
+                "{name}"
+            );
+        }
+        assert!(root.read("sub/h1.toml.odin-backup-x").is_ok());
+    }
+    #[test]
+    fn literal_glob_matches_metacharacters_literally() {
+        let name = "a*?[]{}.toml";
+        let matcher = globset::GlobBuilder::new(&literal_glob(name))
+            .build()
+            .unwrap()
+            .compile_matcher();
+        assert!(matcher.is_match(name));
+        assert!(!matcher.is_match("axxxxxxxxx.toml"));
+        assert!(!matcher.is_match("a*?[]{}.tomlx"));
+    }
+    #[test]
+    fn host_config_side_files_at_root_level_are_denied() {
+        let directory = tempfile::tempdir().unwrap();
+        let config_path = directory.path().join("odin.toml");
+        std::fs::write(&config_path, "[projects.demo]\nroot = '.'\n").unwrap();
+        std::fs::write(directory.path().join("odin.toml.odin-backup-x"), "old").unwrap();
+        let config = Config::load(&config_path).unwrap();
+        let project = &config.projects["demo"];
+        let root = crate::paths::SafeRoot::new(&project.root, &project.deny_globs, 10000).unwrap();
+        assert_eq!(
+            root.read("odin.toml.odin-backup-x").unwrap_err().code,
+            "PERMISSION_DENIED"
+        );
+    }
+    #[test]
+    fn project_root_cannot_be_or_sit_inside_state_directory() {
+        let directory = tempfile::tempdir().unwrap();
+        std::fs::create_dir_all(directory.path().join("data").join("inside")).unwrap();
+        let path = directory.path().join("host.toml");
+        for text in [
+            "state_dir = 'data'\n[projects.inside]\nroot = 'data/inside'\n",
+            "state_dir = 'data'\n[projects.data]\nroot = 'data'\n",
+        ] {
+            std::fs::write(&path, text).unwrap();
+            let error = Config::load(&path).unwrap_err();
+            assert_eq!(error.code, "PERMISSION_DENIED");
+            assert_eq!(
+                error.message,
+                "Project root cannot be inside the state directory"
+            );
+        }
+        std::fs::write(
+            &path,
+            "state_dir = 'not-created-yet'\n[projects.root]\nroot = '.'\n",
+        )
+        .unwrap();
+        assert!(Config::load(&path).is_ok());
     }
 }
