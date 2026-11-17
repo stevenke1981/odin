@@ -33,6 +33,7 @@ add("list_projects","List operator-registered projects without changing a global
 add("get_current_config","Redacted effective host configuration","read")
 add("initial_instructions","Return Odin's project and transaction usage instructions","read")
 add("onboarding","Inspect project files and return evidence and memory guidance; never invent build results","read")
+add("refactor_rules","Report host-defined refactor rules enforced by semantic refactor tools","read")
 add("project_analysis","Analyze live project structure, language hints and host backend gaps without executing repository commands or starting backends","read",{"max_evidence":n(20,1,64),"sample_files":n(20,0,100)})
 add("list_dir","List project files respecting ignore rules and path policy","read",{"relative_path":s(),"recursive":b(True)})
 add("find_file","Find paths using a glob, respecting ignore rules","read",{"file_mask":s()},["file_mask"])
@@ -123,6 +124,9 @@ add("audit_log","Read redacted tool audit records without input/output source co
 # Agent-facing descriptions (Claude first): the first sentence says WHEN to use the
 # tool; constraints follow. These supersede the terse internal summaries above.
 DESCRIPTIONS={
+ "refactor_rules":"Host-defined refactor rules enforced by rename_symbol, safe_delete_symbol, move_symbol, inline_symbol, prepare_code_action and apply_quick_fix (violations fail with REFACTOR_RULE_VIOLATION). Call before refactoring. Read-only.",
+ "move_symbol":"Preview a backend-provided refactor.move code action (needs target_path); no text fallback. Host refactor_rules may reject it.",
+ "inline_symbol":"Preview a backend-provided refactor.inline code action; no text fallback. Host refactor_rules may reject it.",
  "project_analysis":"Start here in an unfamiliar workspace: live layout, detected languages and which semantic backends are missing. Read-only; runs no repository commands.",
  "get_capabilities":"Use when unsure what is allowed: reports enabled tools and write/shell/debug grants; probe=true also starts the language server to check it works.",
  "list_projects":"List configured project IDs and their permissions. Only needed when more than one project is configured.",
@@ -146,8 +150,8 @@ DESCRIPTIONS={
  "workspace_symbols":"Fast fuzzy symbol search via the language server for one configured language (e.g. language=rust).",
  "call_hierarchy":"Callers (incoming) or callees (outgoing) of the function at a position.",
  "format_document":"Format a file with the language server (or an explicit host Ruff profile). Returns a transaction preview; transaction_apply writes it.",
- "prepare_code_action":"Preview one edit-only code action, selected by its exact title from code_actions, as a transaction.",
- "apply_quick_fix":"Preview one quickfix code action (exact title) as a transaction; transaction_apply writes it.",
+ "prepare_code_action":"Preview one edit-only code action, selected by its exact title from code_actions, as a transaction. Host refactor_rules may reject it.",
+ "apply_quick_fix":"Preview one quickfix code action (exact title) as a transaction; transaction_apply writes it. Host refactor_rules may reject it.",
  "restart_language_server":"Restart this project's language servers, e.g. after a crash or a toolchain/config change. They start lazily on the next query.",
  "transaction_prepare":"Stage full new contents for one or more files at once (expected_sha256=null creates). Returns a transaction preview; transaction_apply writes it.",
  "transaction_preview":"Show the diff and state of a prepared transaction. Review it before transaction_apply.",
@@ -164,14 +168,14 @@ DESCRIPTIONS={
  "replace_symbol_body":"Use to rewrite a whole function/type: replaces the symbol's full definition (name_path) with body. Returns a transaction preview; transaction_apply writes it.",
  "insert_before_symbol":"Insert source just before a symbol definition (name_path), e.g. a new function or import. Returns a transaction preview.",
  "insert_after_symbol":"Insert source just after a symbol definition (name_path), e.g. a sibling function. Returns a transaction preview.",
- "rename_symbol":"Use to rename across files: semantic rename via the language server (relative_path + name_path). Returns a transaction preview; transaction_apply writes it.",
- "safe_delete_symbol":"Delete a symbol only when the language server reports no static references. Returns a transaction preview.",
+ "rename_symbol":"Use to rename across files: semantic rename via the language server (relative_path + name_path). Returns a transaction preview; transaction_apply writes it. Host refactor_rules may reject it.",
+ "safe_delete_symbol":"Delete a symbol only when the language server reports no static references. Returns a transaction preview. Host refactor_rules may reject it.",
  "execute_shell_command":"Run a host-defined command profile by name (e.g. test, check); no free-form shell. Judge the result by success/exit_code, not by the call succeeding.",
  "result_read":"Read a large spilled result (result_id) in UTF-8-aligned byte chunks.",
 }
 # MCP exposure tiers for --tool-profile: core (default) is the small everyday set,
 # ide adds navigation/refactoring/editing helpers, everything else is full only.
-CORE="""project_analysis get_capabilities read_file search_for_pattern get_symbols_overview find_symbol
+CORE="""project_analysis get_capabilities refactor_rules read_file search_for_pattern get_symbols_overview find_symbol
 find_referencing_symbols find_implementations find_declaration get_diagnostics_for_file rename_symbol
 replace_symbol_body replace_content transaction_preview transaction_apply transaction_rollback
 execute_shell_command result_read""".split()

@@ -2,7 +2,16 @@
 
 ## Unreleased — Claude-first MCP surface
 
-- MCP `serve` advertises `--tool-profile core` by default (12 tools / 8,008 bytes
+- Added `[projects.<id>.refactor_rules]` (`max_files`, `protected_globs`, `naming`,
+  `guidance`) and the read-only `refactor_rules` tool. The six refactor tools
+  (`rename_symbol`, `safe_delete_symbol`, `move_symbol`, `inline_symbol`,
+  `prepare_code_action`, `apply_quick_fix`) fail with `REFACTOR_RULE_VIOLATION`.
+  `naming` applies only to `rename_symbol`. Generic edit tools are not covered and
+  `--workspace` workspaces get no rules.
+  Real-backend enforcement is NOT_RUN (fixture tests only). The catalog is now 87
+  tools; `core` is 13 read-only / 19 writable. tools/list on this repository (one
+  project, no shell) grew from 7,996 to 8,534 bytes read-only and 55,167 to 55,895 for `full`.
+- (Before `refactor_rules`.) MCP `serve` advertises `--tool-profile core` by default (12 tools / 8,008 bytes
   for a read-only project, 18 / 11,625 writable) instead of all 86 tools (53,189 bytes).
   `ide` and `full` widen it; `--include-tools` adds single tools. Policy-disabled tools
   are hidden in core/ide and the `project` argument is optional with one project.

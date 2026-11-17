@@ -34,6 +34,8 @@ while (message := read_message()) is not None:
     if method == 'initialize':
         result = {'capabilities': {'documentSymbolProvider': True, 'definitionProvider': True, 'referencesProvider': True, 'implementationProvider': True,
                                    'codeActionProvider': {'resolveProvider': True}, 'diagnosticProvider': {'interFileDependencies': False, 'workspaceDiagnostics': False}}}
+        if '--rename' in sys.argv:
+            result['capabilities']['renameProvider'] = True
     elif method == 'textDocument/documentSymbol':
         if '--pause-symbols' in sys.argv:
             marker = Path(sys.argv[sys.argv.index('--request-marker') + 1])
@@ -62,6 +64,8 @@ while (message := read_message()) is not None:
                     item['severity'] = severity
                 return item
             result['items'] = [diagnostic(0, 1, 'foo error'), diagnostic(1, 2, 'bar warning'), diagnostic(1, None, 'bar unknown')]
+    elif method == 'textDocument/references' and '--no-references' in sys.argv:
+        result = []
     elif method in ('textDocument/definition', 'textDocument/references', 'textDocument/implementation'):
         result = [{'uri': uri, 'range': {'start': {'line': 0, 'character': 3}, 'end': {'line': 0, 'character': 6}}}]
     elif method == 'textDocument/codeAction':
@@ -79,6 +83,14 @@ while (message := read_message()) is not None:
     elif method == 'codeAction/resolve':
         result = dict(params)
         result['edit'] = {'changes': {params['data']['uri']: [{'range': INSERT, 'newText': '// resolved\n'}]}}
+    elif method == 'textDocument/rename':
+        # Optional extra files (comma separated root-relative paths) get a harmless insert.
+        base = uri.rsplit('/', 1)[0]
+        extras = sys.argv[sys.argv.index('--rename-extra') + 1].split(',') if '--rename-extra' in sys.argv else []
+        changes = {uri: [{'range': {'start': {'line': 0, 'character': 3}, 'end': {'line': 0, 'character': 6}}, 'newText': params['newName']}]}
+        for extra in extras:
+            changes[base + '/' + extra] = [{'range': INSERT, 'newText': '// renamed\n'}]
+        result = {'changes': changes}
     elif method == 'shutdown':
         result = None
     else:

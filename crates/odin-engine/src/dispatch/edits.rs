@@ -126,6 +126,12 @@ impl Engine {
                     }],
                 )
                 .map_err(backend_error)?;
+                if tool == "safe_delete_symbol" {
+                    let normalized = p.root.relative(&p.root.resolve(path, false)?)?;
+                    p.config
+                        .refactor_rules
+                        .check(tool, None, &[normalized.as_str()])?;
+                }
                 let mut result = p.transactions.prepare(
                     vec![Change {
                         path: path.into(),
@@ -175,11 +181,15 @@ impl Engine {
                         "Target changed while locating the rename symbol",
                     ));
                 }
+                let new_name = string(a, "new_name")?;
+                p.config
+                    .refactor_rules
+                    .check(tool, Some((new_name, symbol.kind)), &[])?;
                 let workspace_edit = client
                     .rename(
                         path,
                         symbol.selection_range.start,
-                        string(a, "new_name")?,
+                        new_name,
                         &sha256(target_before.as_bytes()),
                     )
                     .await
@@ -188,6 +198,9 @@ impl Engine {
                     .changes(&workspace_edit, &snapshots)
                     .await
                     .map_err(backend_error)?;
+                let paths = crate::refactor::rule_paths(p, &changes)?;
+                let paths = paths.iter().map(String::as_str).collect::<Vec<_>>();
+                p.config.refactor_rules.check(tool, None, &paths)?;
                 p.transactions.prepare(changes, None)
             }
             _ => Err(Fault::new(

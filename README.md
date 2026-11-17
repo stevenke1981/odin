@@ -2,7 +2,7 @@
 
 ## 獨立 Rust 程式碼工具服務 · 原生預覽 0.2.0
 
-Odin 提供 **86 個原生工具契約**，以 MCP stdio、本機 HTTP 或 CLI 供 Coding
+Odin 提供 **87 個原生工具契約**，以 MCP stdio、本機 HTTP 或 CLI 供 Coding
 Agent 使用。四個 Rust crates 共用專案政策、SHA-256 交易、直接 LSP／DAP、
 Markdown 記憶與受限 JSON 流程。產品沒有 Serena bridge、Python REPL、
 任意 eval 或自動上游 fallback。
@@ -98,7 +98,7 @@ agent 從 MCP instructions 得知本次 session 的預設專案，此為建議�
 claude mcp add --scope user odin -- C:\Odin\odin.exe --config C:\Odin\host.toml --workspace . serve --transport stdio
 ```
 
-MCP 預設只公開 `core` 工具組（唯讀專案 12 個、可寫 18 個，tools/list 約 8–12 KB；全部 86 個約 55 KB）。
+MCP 預設只公開 `core` 工具組（唯讀專案 13 個、可寫 19 個；tools/list 約 8.5–11.7 KB；全部 87 個約 56 KB，2026-11-17 於本 repo 量測）。
 `--tool-profile ide|full` 或 `--include-tools NAME` 可擴充；這只影響公開清單，權限仍由 host 設定決定。
 權限、寫入開關與工作流程見 [Claude Code 指南](docs/CLAUDE_CODE.md)。
 
@@ -126,6 +126,10 @@ MCP 預設只公開 `core` 工具組（唯讀專案 12 個、可寫 18 個，too
 
 記憶匯入／scope move 使用專屬 `memory_transaction_preview/apply`，綁定發起
 project。交易是逐檔原子替換與可恢復日誌，沒有多檔瞬間原子可見性。
+
+### 專案 refactor 規則
+
+host 可用 `[projects.<id>.refactor_rules]` 設定檔案數上限、受保護路徑與命名規則；agent 先呼叫唯讀的 `refactor_rules` 取得規則，違規回 `REFACTOR_RULE_VIOLATION`。規則只套用於六個 refactor 工具，不取代 `deny_globs`，邊界見 [已知限制](docs/KNOWN_LIMITATIONS.md)。
 
 ### 本機 HTTP
 

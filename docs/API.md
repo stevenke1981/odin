@@ -20,6 +20,7 @@ LSP position 為 0-based UTF-16；檔案行數為 1-based inclusive。參數細�
 | `get_current_config` | read | full | `project` | Redacted effective host configuration |
 | `initial_instructions` | read | full | `project` | Return Odin's project and transaction usage instructions |
 | `onboarding` | read | full | `project` | Inspect project files and return evidence and memory guidance; never invent build results |
+| `refactor_rules` | read | core | `project` | Host-defined refactor rules enforced by rename_symbol, safe_delete_symbol, move_symbol, inline_symbol, prepare_code_action and apply_quick_fix (violations fail with REFACTOR_RULE_VIOLATION). Call before refactoring. Read-only. |
 | `project_analysis` | read | core | `project` | Start here in an unfamiliar workspace: live layout, detected languages and which semantic backends are missing. Read-only; runs no repository commands. |
 | `list_dir` | read | ide | `project` | List project files (respects .gitignore and host deny rules); recursive by default. |
 | `find_file` | read | ide | `project`, `file_mask` | Find project files by glob, e.g. **/lib.rs (respects .gitignore and host deny rules). |
@@ -49,10 +50,10 @@ LSP position 為 0-based UTF-16；檔案行數為 1-based inclusive。參數細�
 | `list_inspection_providers` | read | full | `project` | List native provider types and configured host profile metadata without commands or secrets |
 | `run_inspections` | execute | full | `project`, `profile` | Run one host-fixed Clippy/Ruff/ESLint profile inside a mandatory configured OS sandbox; return bounded source-verified findings |
 | `prepare_inspection_fix` | write | full | `project`, `profile`, `finding_id`, `expected_sha256` | Rerun an authorized native inspection and preview one current safe single-file finding fix as a hash-guarded transaction |
-| `prepare_code_action` | write | ide | `project`, `relative_path`, `range`, `action_title`, `expected_sha256` | Preview one edit-only code action, selected by its exact title from code_actions, as a transaction. |
-| `apply_quick_fix` | write | ide | `project`, `relative_path`, `range`, `action_title`, `expected_sha256` | Preview one quickfix code action (exact title) as a transaction; transaction_apply writes it. |
-| `move_symbol` | write | ide | `project`, `relative_path`, `name_path`, `action_title`, `expected_sha256`, `target_path` | Preview backend-provided refactor.move edit-only code action; no text fallback or server command execution |
-| `inline_symbol` | write | ide | `project`, `relative_path`, `name_path`, `action_title`, `expected_sha256` | Preview backend-provided refactor.inline edit-only code action; no text fallback or server command execution |
+| `prepare_code_action` | write | ide | `project`, `relative_path`, `range`, `action_title`, `expected_sha256` | Preview one edit-only code action, selected by its exact title from code_actions, as a transaction. Host refactor_rules may reject it. |
+| `apply_quick_fix` | write | ide | `project`, `relative_path`, `range`, `action_title`, `expected_sha256` | Preview one quickfix code action (exact title) as a transaction; transaction_apply writes it. Host refactor_rules may reject it. |
+| `move_symbol` | write | ide | `project`, `relative_path`, `name_path`, `action_title`, `expected_sha256`, `target_path` | Preview a backend-provided refactor.move code action (needs target_path); no text fallback. Host refactor_rules may reject it. |
+| `inline_symbol` | write | ide | `project`, `relative_path`, `name_path`, `action_title`, `expected_sha256` | Preview a backend-provided refactor.inline code action; no text fallback. Host refactor_rules may reject it. |
 | `restart_language_server` | state | ide | `project` | Restart this project's language servers, e.g. after a crash or a toolchain/config change. They start lazily on the next query. |
 | `transaction_prepare` | write | ide | `project`, `changes` | Stage full new contents for one or more files at once (expected_sha256=null creates). Returns a transaction preview; transaction_apply writes it. |
 | `transaction_preview` | read | core | `project`, `transaction_id` | Show the diff and state of a prepared transaction. Review it before transaction_apply. |
@@ -70,8 +71,8 @@ LSP position 為 0-based UTF-16；檔案行數為 1-based inclusive。參數細�
 | `replace_symbol_body` | write | core | `project`, `relative_path`, `name_path`, `body`, `expected_sha256` | Use to rewrite a whole function/type: replaces the symbol's full definition (name_path) with body. Returns a transaction preview; transaction_apply writes it. |
 | `insert_before_symbol` | write | ide | `project`, `relative_path`, `name_path`, `body`, `expected_sha256` | Insert source just before a symbol definition (name_path), e.g. a new function or import. Returns a transaction preview. |
 | `insert_after_symbol` | write | ide | `project`, `relative_path`, `name_path`, `body`, `expected_sha256` | Insert source just after a symbol definition (name_path), e.g. a sibling function. Returns a transaction preview. |
-| `rename_symbol` | write | core | `project`, `relative_path`, `name_path`, `new_name` | Use to rename across files: semantic rename via the language server (relative_path + name_path). Returns a transaction preview; transaction_apply writes it. |
-| `safe_delete_symbol` | write | ide | `project`, `relative_path`, `name_path`, `expected_sha256` | Delete a symbol only when the language server reports no static references. Returns a transaction preview. |
+| `rename_symbol` | write | core | `project`, `relative_path`, `name_path`, `new_name` | Use to rename across files: semantic rename via the language server (relative_path + name_path). Returns a transaction preview; transaction_apply writes it. Host refactor_rules may reject it. |
+| `safe_delete_symbol` | write | ide | `project`, `relative_path`, `name_path`, `expected_sha256` | Delete a symbol only when the language server reports no static references. Returns a transaction preview. Host refactor_rules may reject it. |
 | `list_memories` | read | full | `project` | List Markdown memory names without loading content |
 | `read_memory` | read | full | `project`, `name` | Read Markdown memory and its current hash |
 | `write_memory` | write | full | `project`, `name`, `content`, `expected_sha256` | Write a Markdown memory with compare-and-swap; null hash is create-only |

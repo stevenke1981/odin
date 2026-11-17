@@ -14,3 +14,16 @@ args = []
 program = 'cargo'
 args = ['test']
 timeout_secs = 120
+
+# Optional refactor rules (commented out). max_files and protected_globs are
+# enforced by the six refactor tools; naming only by rename_symbol. Generic
+# edit tools are not checked. kinds are LSP SymbolKind numbers (1-26); every
+# naming rule that applies to a symbol's kind must match (rules are ANDed).
+# [projects.demo.refactor_rules]
+# max_files = 5
+# protected_globs = ['src/generated/**']
+# guidance = ['Keep public API names stable; rename private helpers freely.']
+# [[projects.demo.refactor_rules.naming]]
+# kinds = [12, 6]   # Function, Method (empty = all kinds)
+# pattern = '[a-z][a-z0-9_]*'   # whole-name match
+# description = 'functions and methods use snake_case'
