@@ -62,8 +62,12 @@ fn default_home_is_usable_while_explicit_cwd_remains_project_specific() {
     std::fs::write(home.join("notes.txt"), "ordinary source").unwrap();
     std::fs::write(home.join(".codex/auth.json"), "synthetic-private-marker").unwrap();
     let created = ok(call(&home, &first, &["init"]));
+    // init writes the readable form (no Windows verbatim prefix) of the same directory.
+    assert!(!created["root"].as_str().unwrap().starts_with(r"\\?\"));
     assert_eq!(
-        PathBuf::from(created["root"].as_str().unwrap()),
+        PathBuf::from(created["root"].as_str().unwrap())
+            .canonicalize()
+            .unwrap(),
         home.canonicalize().unwrap()
     );
     assert_eq!(created["workspace_template"], true);
@@ -72,7 +76,9 @@ fn default_home_is_usable_while_explicit_cwd_remains_project_specific() {
     let config: toml::Value = toml::from_str(&std::fs::read_to_string(&host).unwrap()).unwrap();
     assert!(config["projects"].as_table().unwrap().is_empty());
     assert_eq!(
-        PathBuf::from(config["workspace"]["default_root"].as_str().unwrap()),
+        PathBuf::from(config["workspace"]["default_root"].as_str().unwrap())
+            .canonicalize()
+            .unwrap(),
         home.canonicalize().unwrap()
     );
     let default = ok(call(&home, &first, &["analyze"]));

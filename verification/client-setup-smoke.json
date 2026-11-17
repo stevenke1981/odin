@@ -1,9 +1,9 @@
 {
   "scope": "REAL_ODIN_BINARY_CLIENT_SETUP_AND_MCP_LAUNCH",
   "status": "PASS",
-  "binary": "E:\\odin\\target\\release\\odin.exe",
-  "binary_sha256": "fb288ff14c3c23939cbd3d3ac389d2377fa1e9b52436c913ed2f52659b8fa4b7",
-  "platform": "Windows-10-10.0.19045-SP0",
+  "binary": "F:\\odin\\target\\release\\odin.exe",
+  "binary_sha256": "6fb4428f34f782832a1ec6109e23d9f64d295babc9443ee496265608a371f639",
+  "platform": "Windows-11-10.0.22631-SP0",
   "checks": [
     {
       "name": "init_exit",
@@ -118,7 +118,11 @@
       "status": "PASS"
     },
     {
-      "name": "launch_status_call:codex",
+      "name": "launch_core_profile_hides_status:codex",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_core_tool_call:codex",
       "status": "PASS"
     },
     {
@@ -178,7 +182,11 @@
       "status": "PASS"
     },
     {
-      "name": "launch_status_call:claude",
+      "name": "launch_core_profile_hides_status:claude",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_core_tool_call:claude",
       "status": "PASS"
     },
     {
@@ -238,7 +246,11 @@
       "status": "PASS"
     },
     {
-      "name": "launch_status_call:opencode",
+      "name": "launch_core_profile_hides_status:opencode",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_core_tool_call:opencode",
       "status": "PASS"
     },
     {
@@ -298,7 +310,11 @@
       "status": "PASS"
     },
     {
-      "name": "launch_status_call:agy",
+      "name": "launch_core_profile_hides_status:agy",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_core_tool_call:agy",
       "status": "PASS"
     },
     {
@@ -358,7 +374,11 @@
       "status": "PASS"
     },
     {
-      "name": "launch_status_call:gemini",
+      "name": "launch_core_profile_hides_status:gemini",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_core_tool_call:gemini",
       "status": "PASS"
     },
     {
@@ -418,7 +438,11 @@
       "status": "PASS"
     },
     {
-      "name": "launch_status_call:cursor",
+      "name": "launch_core_profile_hides_status:cursor",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_core_tool_call:cursor",
       "status": "PASS"
     },
     {
@@ -478,7 +502,11 @@
       "status": "PASS"
     },
     {
-      "name": "launch_status_call:vscode",
+      "name": "launch_core_profile_hides_status:vscode",
+      "status": "PASS"
+    },
+    {
+      "name": "launch_core_tool_call:vscode",
       "status": "PASS"
     },
     {
@@ -516,5 +544,5 @@
   ],
   "error": null,
   "actual_client_applications_tested": false,
-  "timestamp_unix": 1792586052.206317
+  "timestamp_unix": 1794876351.9309044
 }

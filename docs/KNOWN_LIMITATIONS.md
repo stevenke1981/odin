@@ -43,3 +43,5 @@ Transaction before/after snapshots 總量上限 32 MiB；來源快照、記憶�
 24. Added binary notice inventory preserves `WITH_DECLARED_NOTICE_GAPS` and records lock supersets rather than an exact linked SBOM. The Slint compressed source sidecar has checked source hashes; an actual upstream rebuild is NOT_RUN. Unsigned binaries/inventories and notice collection are not publisher authentication or legal certification.
 
 25. Slint now includes hash/version-pinned, Microsoft-signed app-local MSVC dependencies. Module-path observation is not clean-machine acceptance. Auxiliary direct LSP shutdown probes received duplicate shutdown responses and exit 3; those failures are retained. Odin MCP functional checks and process cleanup/installer tests are separate evidence, not an upstream graceful-shutdown certification.
+
+- LSP 安裝建議（`install_hint`、`odin languages` 的 `install`）只是指引：Odin 不會執行安裝指令，也不驗證套件管理器是否存在；指令依各上游文件整理，平台差異（例如 clangd 的 winget／brew／apt）以多個替代指令列出，未逐一在每個平台實測（NOT_RUN）。安裝後須重啟 MCP server 並以 `odin doctor --probe-lsp` 確認。

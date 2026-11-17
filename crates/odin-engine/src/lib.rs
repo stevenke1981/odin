@@ -484,7 +484,7 @@ impl Engine {
         if p.config.languages.is_empty() {
             return Err(Fault::new(
                 "MISSING_BACKEND",
-                "Symbol search requires a host-configured language server; add [[projects.<id>.languages]] to the host config. Use search_for_pattern for text search meanwhile",
+                "Symbol search requires a host-configured language server; add [[projects.<id>.languages]] to the host config (project_analysis install_hint lists install commands). Use search_for_pattern for text search meanwhile",
             ));
         }
         let query_filter = symbols::Filter::new(a, self.config.limits.max_matches)?;
@@ -722,7 +722,7 @@ fn backend_error(error: anyhow::Error) -> Fault {
         return Fault::new(
             code,
             format!(
-                "{message}: the language server stopped (often not installed for this toolchain, e.g. rustup component add rust-analyzer, or it crashed on this workspace). Its stderr is in the MCP client log; run odin doctor --probe-lsp, then restart_language_server. Use search_for_pattern meanwhile"
+                "{message}: the language server stopped (often not installed for this toolchain, e.g. rustup component add rust-analyzer, or it crashed on this workspace). Its stderr is in the MCP client log; run odin doctor --probe-lsp for the install_hint, then restart_language_server. Use search_for_pattern meanwhile"
             ),
         );
     }

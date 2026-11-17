@@ -18,6 +18,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:CLAUDE.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:DELIVERY.zh-TW.md",
       "status": "PASS",
       "detail": ""
@@ -44,11 +49,6 @@
     },
     {
       "name": "utf8:THIRD_PARTY_NOTICES.md",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "utf8:.claude\\settings.local.json",
       "status": "PASS",
       "detail": ""
     },
@@ -173,6 +173,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:crates\\odin-core\\src\\workspace.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:crates\\odin-core\\tests\\host_execution_policy.rs",
       "status": "PASS",
       "detail": ""
@@ -193,6 +198,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:crates\\odin-core\\tests\\workspace_binding.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:crates\\odin-core\\tests\\fixtures\\os_sandbox_workload.rs",
       "status": "PASS",
       "detail": ""
@@ -209,6 +219,11 @@
     },
     {
       "name": "utf8:crates\\odin-engine\\tools.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:crates\\odin-engine\\src\\analysis.rs",
       "status": "PASS",
       "detail": ""
     },
@@ -343,6 +358,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:crates\\odin-engine\\tests\\project_analysis.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:crates\\odin-engine\\tests\\fixtures\\dap_peer.py",
       "status": "PASS",
       "detail": ""
@@ -413,6 +433,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:docs\\CLAUDE_CODE.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:docs\\CLIENT_SETUP.md",
       "status": "PASS",
       "detail": ""
@@ -423,7 +448,27 @@
       "detail": ""
     },
     {
+      "name": "utf8:docs\\CURRENT_DELIVERY_INDEX.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs\\CURRENT_WORKSPACE.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:docs\\DEPENDENCIES.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs\\dispatch-current-workspace.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs\\dispatch-four-lsp.md",
       "status": "PASS",
       "detail": ""
     },
@@ -448,7 +493,17 @@
       "detail": ""
     },
     {
+      "name": "utf8:docs\\EXPANDED_LSP.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:docs\\FEATURE_SPEC.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs\\HOME_AND_INSTALLER_PROGRESS.md",
       "status": "PASS",
       "detail": ""
     },
@@ -478,6 +533,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:docs\\LSP_PAYLOAD_BUILDER.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:docs\\NATIVE_FORMATTERS.md",
       "status": "PASS",
       "detail": ""
@@ -494,6 +554,11 @@
     },
     {
       "name": "utf8:docs\\PLATFORM_IMPLEMENTATION.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:docs\\PROJECT_IMPROVEMENT_REVIEW_2026-10-29.md",
       "status": "PASS",
       "detail": ""
     },
@@ -608,6 +673,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:examples\\odin.workspace.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:examples\\prepare-create.json",
       "status": "PASS",
       "detail": ""
@@ -624,6 +694,21 @@
     },
     {
       "name": "utf8:examples\\rust-fixture\\src\\lib.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:packaging\\lsp-native-sources.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:packaging\\lsp-package-lock.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:packaging\\lsp-package.json",
       "status": "PASS",
       "detail": ""
     },
@@ -698,6 +783,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:scripts\\collect_lsp_notices.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:scripts\\final_verify.py",
       "status": "PASS",
       "detail": ""
@@ -758,6 +848,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:scripts\\prepare_lsp_payload.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:scripts\\publish_public.ps1",
       "status": "PASS",
       "detail": ""
@@ -798,6 +893,36 @@
       "detail": ""
     },
     {
+      "name": "utf8:scripts\\workspace_smoke.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:tests\\expanded_installed_languages.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:tests\\home_installed_smoke.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:tests\\home_workspace_native.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:tests\\inno_argv_probe.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:tests\\inno_progress_probe.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:tests\\protocol_harness.py",
       "status": "PASS",
       "detail": ""
@@ -813,7 +938,17 @@
       "detail": ""
     },
     {
+      "name": "utf8:tests\\real_installed_languages.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:tests\\real_native_inspections.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:tests\\test_lsp_payload_builder.py",
       "status": "PASS",
       "detail": ""
     },
@@ -824,6 +959,81 @@
     },
     {
       "name": "utf8:verification\\build-environment.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\bundled-lsp-build-receipt.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\bundled-lsp-dotnet-first-use.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\bundled-lsp-inno-argv.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\bundled-lsp-prior-failures.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\bundled-lsp-publication.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\bundled-lsp-review.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\bundled-lsp-semantic-matrix.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\bundled-lsp-transcript-bash.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\bundled-lsp-transcript-csharp.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\bundled-lsp-transcript-go.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\bundled-lsp-transcript-javascript.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\bundled-lsp-transcript-lua.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\bundled-lsp-transcript-python.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\bundled-lsp-transcript-typescript.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\bundled-lsp-validation.json",
       "status": "PASS",
       "detail": ""
     },
@@ -844,6 +1054,71 @@
     },
     {
       "name": "utf8:verification\\client-apps-local.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\client-setup-smoke.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\current-workspace-cancellation-smoke.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\current-workspace-cli-smoke.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\current-workspace-handoff.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\current-workspace-host-integration.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\current-workspace-http-smoke.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\current-workspace-installed-entry-probe.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\current-workspace-mcp-smoke.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\current-workspace-publication.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\current-workspace-review.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\current-workspace-source-check.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\current-workspace-validation.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\current-workspace-workspace-smoke.json",
       "status": "PASS",
       "detail": ""
     },
@@ -963,12 +1238,947 @@
       "detail": ""
     },
     {
+      "name": "utf8:verification\\home-lsp-alternative-install-receipts.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-alternative-ruff.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-alternative-ty.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-alternative-vtsls.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-acl-commands-20261022T062146Z-7374dafb.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-acl-commands-20261022T062146Z-aba2cf2c.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-acl-commands-20261022T062452Z-3b68b947.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-acl-commands-20261022T062509Z-255ed4e1.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-acl-diagnosis-01-original-helper.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-acl-fix-verification-01-acl.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-actual-apply.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-actual-apply02.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-actual-snapshot.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-actual-snapshot02.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-apply-20261022T061645Z-e7ca95b5-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-apply-20261022T062509Z-c27297f5-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-before-source-fix-resnapshot.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-environment-notification.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-history-secure-private-folder.d4b83b28fc6e837d184fc87aa9f96fb6e9948c5a71ec92d619fc8dcf7672fa87.ps1",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-history-user-cli-path.eaf81f8986d6b86568dd38efb31ddbefcd62f76d23b587516ba4ac1c2e1f03c3.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-history-verify-fresh-cli.1094d525fcddc5c1b54809c17b4d729b18d09feb06d3a81ca9c6d5466a9137f8.ps1",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-prepare-checks-01-prepare.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-prepare-checks-02-prepare.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-README.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-secure-private-folder.ps1",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-snapshot-20261022T061606Z-ecce4b54.report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-snapshot-20261022T062453Z-26441757.report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-user-cli-path.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-cli-path-verify-fresh-cli.ps1",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-closeout-generated.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-closeout-policy.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-closeout-requirements.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-closeout-source.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-closeout-source.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-closeout-source02.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-closeout-source02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-closeout-whitespace.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-closeout-whitespace02.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-driver-verified-inert.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-evidence-eighth-index.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-evidence-fifth-index.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-evidence-fourth-index.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-evidence-initial-index.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-evidence-ninth-index.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-evidence-second-index.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-evidence-seventh-index.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-evidence-sixth-index.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-evidence-third-index.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded-gates.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded-retry06-a-c.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded-retry06-a-cpp.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded-retry06-a-index.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded-retry06-a-slint.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded-retry06-b-index.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded-retry06-b-markdown.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded-retry06-b-toml.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded-retry06-b-yaml.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded-retry06-c-index.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded-retry06-c-ruff.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded-retry06-c-ty.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded-retry06-c-vtsls-javascript.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded-retry06-c-vtsls-typescript.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded-retry06-commands.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded06-first-failure.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded06-first-worker-failure.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-expanded06b-success-worker-receipt.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-final-eighth-index-supplement.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-final-findings.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-final-review.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-final-review.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-installed-home06.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-installed06-commands.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-new-release-smokes.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-node49-configured.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-payload-build-07.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-payload-closure-07.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-payload-slint-loader-07.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-payload-slint-loader-08.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-payload-unit-07.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-payload06-build.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-payload06-closure.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-pkg7-package-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-private-home-mcp-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-private-home-mcp-driver.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-private-home-mcp.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-published-evidence-audit07-first-attempt.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-published-evidence-audit07-first.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-published-evidence-audit07.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-published-evidence-audit07.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-binary-metadata.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-final-handoff.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-installer-qa.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-installer-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-lsp-install-receipt.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-lsp-install-receipt.json.current-config.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-lsp-reinstall-receipt.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-lsp-reinstall-receipt.json.current-config.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-operator-after.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-operator-before.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-package-doc-copy-integrity.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-package.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-path-observations.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-portable-lsp-receipt.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-portable-lsp-receipt.json.current-config.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-preflight.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-q7-run-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-release-190c308.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-review-actual-cli-path-evidence-review.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-review-actual-user-upgrade-evidence-review.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-review-final07-stage-evidence-review.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-review-payload07-inert-audit.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-review-payload07-inert-audit.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-review-pkg7-artifact-input-review.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-review-published-evidence-review-01.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-review-published-evidence-review-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-review-published-evidence-review-03.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-review-q7-lifecycle-evidence-review.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-review-static-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-review-static-02.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-review-ui-source-equivalence-review.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-review-user-upgrade-runner-review-02.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-root-builder-final.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-root-builder07.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-seven06-bash.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-seven06-csharp.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-seven06-go.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-seven06-index.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-seven06-javascript.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-seven06-lua.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-seven06-python.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-seven06-typescript.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-slint-final07-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-slint-final07.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-smoke-cancel.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-smoke-cli.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-smoke-http.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-smoke-stdio.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-smoke-workspace.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-stage07.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-argv-frozen-existing host no root receipt.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-argv-frozen-intentional failure receipt.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-argv-frozen-receipt space.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-argv-frozen-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-installer-support-inno-01.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-cancel-ui.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-cancel.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-deadline-ui.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-deadline.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-failure-ui.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-failure.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-fresh_home-ui.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-fresh_home.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-parent_exit-ui.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-success-ui.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-success.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-switch_existing-ui.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-switch_existing.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-timeout-ui.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-timeout.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-wrong_nonce-ui.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-ui-ui-frozen-wrong_nonce.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-live-analysis-1.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-live-analysis-2.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-live-analysis-command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-upgrade-actual-execute.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-upgrade-actual-execute02.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-upgrade-actual-mcp_client_root_1.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-upgrade-actual-mcp_client_root_2.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-upgrade-actual-mcp_omitted_config_and_workspace.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-upgrade-actual-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-upgrade-first-prelaunch-failure.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-upgrade-first-runner-d15.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-upgrade-prepare-checks-01-prepare.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-upgrade-prepare-checks-02-prepare.command.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-upgrade-read-operator-cert-state.ps1",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-upgrade-README.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-upgrade-user-upgrade.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-user-upgrade-worker-health-cas-summary.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-worker-expanded06b-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-worker07-driver.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-worker07-report.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-lsp-worker07-success-receipt.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-root-installer-plan.md",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\home-root-installer-validation.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:verification\\host-policy-stage.json",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "utf8:verification\\http-smoke-status.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\improvement-real-ide-20261029.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\improvement-validation-20261029.md",
       "status": "PASS",
       "detail": ""
     },
@@ -1674,6 +2884,11 @@
     },
     {
       "name": "utf8:verification\\local-cli-smoke.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "utf8:verification\\local-fixture-selftest.json",
       "status": "PASS",
       "detail": ""
     },
@@ -3028,17 +4243,17 @@
       "detail": ""
     },
     {
+      "name": "toml:examples\\odin.workspace.toml",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "toml:examples\\rust-fixture\\Cargo.toml",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "toml:packaging\\odin.host.example.toml",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "json:.claude\\settings.local.json",
       "status": "PASS",
       "detail": ""
     },
@@ -3079,6 +4294,21 @@
     },
     {
       "name": "json:examples\\write-memory.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "json:packaging\\lsp-native-sources.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "json:packaging\\lsp-package-lock.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "json:packaging\\lsp-package.json",
       "status": "PASS",
       "detail": ""
     },
@@ -3148,6 +4378,11 @@
       "detail": ""
     },
     {
+      "name": "python_ast:scripts\\collect_lsp_notices.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "python_ast:scripts\\final_verify.py",
       "status": "PASS",
       "detail": ""
@@ -3198,6 +4433,11 @@
       "detail": ""
     },
     {
+      "name": "python_ast:scripts\\prepare_lsp_payload.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "python_ast:scripts\\supply_chain.py",
       "status": "PASS",
       "detail": ""
@@ -3209,6 +4449,31 @@
     },
     {
       "name": "python_ast:scripts\\verify_manifest.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:scripts\\workspace_smoke.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:tests\\expanded_installed_languages.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:tests\\home_installed_smoke.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:tests\\inno_argv_probe.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:tests\\inno_progress_probe.py",
       "status": "PASS",
       "detail": ""
     },
@@ -3228,7 +4493,17 @@
       "detail": ""
     },
     {
+      "name": "python_ast:tests\\real_installed_languages.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "python_ast:tests\\real_native_inspections.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:tests\\test_lsp_payload_builder.py",
       "status": "PASS",
       "detail": ""
     },
@@ -3254,6 +4529,46 @@
     },
     {
       "name": "python_ast:verification\\engine-verify.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\home-lsp-cli-path-history-user-cli-path.eaf81f8986d6b86568dd38efb31ddbefcd62f76d23b587516ba4ac1c2e1f03c3.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\home-lsp-cli-path-user-cli-path.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\home-lsp-private-home-mcp-driver.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\home-lsp-published-evidence-audit07-first.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\home-lsp-published-evidence-audit07.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\home-lsp-user-upgrade-first-runner-d15.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\home-lsp-user-upgrade-user-upgrade.py",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "python_ast:verification\\home-lsp-worker07-driver.py",
       "status": "PASS",
       "detail": ""
     },
@@ -3593,6 +4908,16 @@
       "detail": ""
     },
     {
+      "name": "standalone_production_source:crates\\odin-core\\src\\workspace.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "standalone_production_source:crates\\odin-engine\\src\\analysis.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "standalone_production_source:crates\\odin-engine\\src\\flow.rs",
       "status": "PASS",
       "detail": ""
@@ -3703,17 +5028,17 @@
       "detail": ""
     },
     {
+      "name": "json_schema_validation",
+      "status": "NOT_RUN",
+      "detail": "Install jsonschema to run optional contract-schema validation"
+    },
+    {
       "name": "scoped_contract:status",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:status",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:status",
       "status": "PASS",
       "detail": ""
     },
@@ -3728,22 +5053,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:get_version",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:get_schemas",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:get_schemas",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:get_schemas",
       "status": "PASS",
       "detail": ""
     },
@@ -3758,22 +5073,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:get_capabilities",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:list_projects",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:list_projects",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:list_projects",
       "status": "PASS",
       "detail": ""
     },
@@ -3788,22 +5093,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:get_current_config",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:initial_instructions",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:initial_instructions",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:initial_instructions",
       "status": "PASS",
       "detail": ""
     },
@@ -3818,7 +5113,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:onboarding",
+      "name": "scoped_contract:project_analysis",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:project_analysis",
       "status": "PASS",
       "detail": ""
     },
@@ -3833,22 +5133,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:list_dir",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:find_file",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:find_file",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:find_file",
       "status": "PASS",
       "detail": ""
     },
@@ -3863,22 +5153,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:read_file",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:search_for_pattern",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:search_for_pattern",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:search_for_pattern",
       "status": "PASS",
       "detail": ""
     },
@@ -3893,22 +5173,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:index_build",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:index_query",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:index_query",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:index_query",
       "status": "PASS",
       "detail": ""
     },
@@ -3923,22 +5193,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:get_symbols_overview",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:find_symbol",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:find_symbol",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:find_symbol",
       "status": "PASS",
       "detail": ""
     },
@@ -3953,22 +5213,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:find_referencing_symbols",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:find_implementations",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:find_implementations",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:find_implementations",
       "status": "PASS",
       "detail": ""
     },
@@ -3983,22 +5233,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:find_declaration",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:get_type_hierarchy",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:get_type_hierarchy",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:get_type_hierarchy",
       "status": "PASS",
       "detail": ""
     },
@@ -4013,22 +5253,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:get_diagnostics_for_file",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:get_diagnostics_for_symbol",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:get_diagnostics_for_symbol",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:get_diagnostics_for_symbol",
       "status": "PASS",
       "detail": ""
     },
@@ -4043,22 +5273,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:code_actions",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:completion",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:completion",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:completion",
       "status": "PASS",
       "detail": ""
     },
@@ -4073,22 +5293,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:hover",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:signature_help",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:signature_help",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:signature_help",
       "status": "PASS",
       "detail": ""
     },
@@ -4103,22 +5313,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:completion_resolve",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:workspace_symbols",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:workspace_symbols",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:workspace_symbols",
       "status": "PASS",
       "detail": ""
     },
@@ -4133,22 +5333,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:call_hierarchy",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:format_document",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:format_document",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:format_document",
       "status": "PASS",
       "detail": ""
     },
@@ -4163,22 +5353,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:inlay_hints",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:inlay_hint_resolve",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:inlay_hint_resolve",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:inlay_hint_resolve",
       "status": "PASS",
       "detail": ""
     },
@@ -4193,22 +5373,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:semantic_tokens",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:list_inspection_providers",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:list_inspection_providers",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:list_inspection_providers",
       "status": "PASS",
       "detail": ""
     },
@@ -4223,22 +5393,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:run_inspections",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:prepare_inspection_fix",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:prepare_inspection_fix",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:prepare_inspection_fix",
       "status": "PASS",
       "detail": ""
     },
@@ -4253,22 +5413,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:prepare_code_action",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:apply_quick_fix",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:apply_quick_fix",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:apply_quick_fix",
       "status": "PASS",
       "detail": ""
     },
@@ -4283,22 +5433,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:move_symbol",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:inline_symbol",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:inline_symbol",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:inline_symbol",
       "status": "PASS",
       "detail": ""
     },
@@ -4313,22 +5453,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:restart_language_server",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:transaction_prepare",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:transaction_prepare",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:transaction_prepare",
       "status": "PASS",
       "detail": ""
     },
@@ -4343,22 +5473,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:transaction_preview",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:transaction_apply",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:transaction_apply",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:transaction_apply",
       "status": "PASS",
       "detail": ""
     },
@@ -4373,22 +5493,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:transaction_rollback",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:transaction_list",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:transaction_list",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:transaction_list",
       "status": "PASS",
       "detail": ""
     },
@@ -4403,22 +5513,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:transaction_recover",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:create_text_file",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:create_text_file",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:create_text_file",
       "status": "PASS",
       "detail": ""
     },
@@ -4433,22 +5533,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:replace_content",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:replacement_preview",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:replacement_preview",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:replacement_preview",
       "status": "PASS",
       "detail": ""
     },
@@ -4463,22 +5553,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:replace_in_files",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:replace_lines",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:replace_lines",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:replace_lines",
       "status": "PASS",
       "detail": ""
     },
@@ -4493,22 +5573,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:delete_lines",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:insert_at_line",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:insert_at_line",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:insert_at_line",
       "status": "PASS",
       "detail": ""
     },
@@ -4523,22 +5593,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:replace_symbol_body",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:insert_before_symbol",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:insert_before_symbol",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:insert_before_symbol",
       "status": "PASS",
       "detail": ""
     },
@@ -4553,22 +5613,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:insert_after_symbol",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:rename_symbol",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:rename_symbol",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:rename_symbol",
       "status": "PASS",
       "detail": ""
     },
@@ -4583,22 +5633,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:safe_delete_symbol",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:list_memories",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:list_memories",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:list_memories",
       "status": "PASS",
       "detail": ""
     },
@@ -4613,22 +5653,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:read_memory",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:write_memory",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:write_memory",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:write_memory",
       "status": "PASS",
       "detail": ""
     },
@@ -4643,22 +5673,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:edit_memory",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:delete_memory",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:delete_memory",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:delete_memory",
       "status": "PASS",
       "detail": ""
     },
@@ -4673,22 +5693,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:rename_memory",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:memory_export",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:memory_export",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:memory_export",
       "status": "PASS",
       "detail": ""
     },
@@ -4703,22 +5713,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:memory_import",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:memory_move_scope",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:memory_move_scope",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:memory_move_scope",
       "status": "PASS",
       "detail": ""
     },
@@ -4733,22 +5733,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:memory_transaction_preview",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:memory_transaction_apply",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:memory_transaction_apply",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:memory_transaction_apply",
       "status": "PASS",
       "detail": ""
     },
@@ -4763,22 +5753,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:check_memories",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:search_memories",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:search_memories",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:search_memories",
       "status": "PASS",
       "detail": ""
     },
@@ -4793,22 +5773,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:recover_memories",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:query_project",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:query_project",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:query_project",
       "status": "PASS",
       "detail": ""
     },
@@ -4823,22 +5793,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:flow_run",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:flow_vars",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:flow_vars",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:flow_vars",
       "status": "PASS",
       "detail": ""
     },
@@ -4853,22 +5813,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:flow_clear",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:execute_shell_command",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:execute_shell_command",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:execute_shell_command",
       "status": "PASS",
       "detail": ""
     },
@@ -4883,22 +5833,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:debug_start",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:debug_request",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:debug_request",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:debug_request",
       "status": "PASS",
       "detail": ""
     },
@@ -4913,22 +5853,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:debug_events",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:debug_stop",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:debug_stop",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:debug_stop",
       "status": "PASS",
       "detail": ""
     },
@@ -4943,11 +5873,6 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:debug_batch",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:result_read",
       "status": "PASS",
       "detail": ""
@@ -4958,42 +5883,12 @@
       "detail": ""
     },
     {
-      "name": "schema_valid:result_read",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
       "name": "scoped_contract:audit_log",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "dispatcher_marker:audit_log",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "schema_valid:audit_log",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "example_contract:flow-files.json",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "example_contract:flow-symbols.json",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "example_contract:prepare-create.json",
-      "status": "PASS",
-      "detail": ""
-    },
-    {
-      "name": "example_contract:write-memory.json",
       "status": "PASS",
       "detail": ""
     },
@@ -5103,6 +5998,11 @@
       "detail": ""
     },
     {
+      "name": "no_stub_macro:crates\\odin-core\\src\\workspace.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "no_stub_macro:crates\\odin-core\\tests\\host_execution_policy.rs",
       "status": "PASS",
       "detail": ""
@@ -5123,12 +6023,22 @@
       "detail": ""
     },
     {
+      "name": "no_stub_macro:crates\\odin-core\\tests\\workspace_binding.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "no_stub_macro:crates\\odin-core\\tests\\fixtures\\os_sandbox_workload.rs",
       "status": "PASS",
       "detail": ""
     },
     {
       "name": "no_stub_macro:crates\\odin-core\\tests\\fixtures\\stdin_workload.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "no_stub_macro:crates\\odin-engine\\src\\analysis.rs",
       "status": "PASS",
       "detail": ""
     },
@@ -5268,6 +6178,11 @@
       "detail": ""
     },
     {
+      "name": "no_stub_macro:crates\\odin-engine\\tests\\project_analysis.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "no_stub_macro:crates\\odin-protocol\\src\\dap.rs",
       "status": "PASS",
       "detail": ""
@@ -5318,12 +6233,12 @@
       "detail": ""
     }
   ],
-  "rust_files": 59,
-  "rust_lines": 21524,
-  "rust_test_declarations": 275,
+  "rust_files": 63,
+  "rust_lines": 23667,
+  "rust_test_declarations": 308,
   "rust_tests_executed_by_this_check": 0,
   "rust_compilation": "NOT_PERFORMED_BY_STATIC_CHECK",
-  "tool_contracts": 85,
+  "tool_contracts": 86,
   "compiler_presence": {
     "rustc": "C:\\Users\\steven\\.cargo\\bin\\rustc.EXE",
     "cargo": "C:\\Users\\steven\\.cargo\\bin\\cargo.EXE",

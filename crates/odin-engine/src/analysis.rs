@@ -122,10 +122,15 @@ pub(crate) fn analyze_listing(
         if !uncovered.is_empty() {
             gaps.push(adapter.id);
         }
-        languages.push(json!({"id":adapter.id,"source_file_count":source_count,
+        let mut hint = json!({"id":adapter.id,"source_file_count":source_count,
             "detection":if source_count > 0 {"EXTENSION_HINT"} else {"MARKER_HINT_ONLY"},"marker_hints":markers,
             "host_backend_configured":configured,"observed_extensions":observed,"unconfigured_extensions":uncovered,
-            "backend_probe":"NOT_RUN","suggested_server":adapter.server}));
+            "backend_probe":"NOT_RUN","suggested_server":adapter.server});
+        if !configured {
+            // Not installed or probed here; doctor --probe-lsp reports actual availability.
+            hint["install_hint"] = odin_core::languages::install_guidance(adapter);
+        }
+        languages.push(hint);
     }
     let configured = project
         .config

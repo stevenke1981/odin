@@ -425,15 +425,14 @@ fn project_add_detect_languages_adds_rust_guidance_for_cargo_marker() {
     );
     assert!(output.status.success(), "{}", stderr_text(&output));
     let value = stdout_json(&output);
-    // Cargo.toml is a marker for both the Rust and the Slint adapter.
-    assert_eq!(value["detected_languages"], json!(["rust", "slint"]));
+    assert_eq!(value["detected_languages"], json!(["rust"]));
     assert_eq!(value["languages_installed"], "NOT_PROBED");
     let config = Config::load(&fixture.config).unwrap();
     let languages = &config.projects["crate-root"].languages;
-    assert_eq!(languages.len(), 2);
-    let rust = languages.iter().find(|l| l.id == "rust").unwrap();
-    assert_eq!(rust.program, "rust-analyzer");
-    assert_eq!(rust.extensions, vec!["rs".to_string()]);
+    assert_eq!(languages.len(), 1);
+    assert_eq!(languages[0].id, "rust");
+    assert_eq!(languages[0].program, "rust-analyzer");
+    assert_eq!(languages[0].extensions, vec!["rs".to_string()]);
 }
 
 #[test]

@@ -1,9 +1,9 @@
 {
   "scope": "REAL_ODIN_BINARY_CLI_AND_GENERATED_MCP_CONFIG",
   "status": "PASS",
-  "binary": "E:\\odin\\target\\release\\odin.exe",
-  "binary_sha256": "fb288ff14c3c23939cbd3d3ac389d2377fa1e9b52436c913ed2f52659b8fa4b7",
-  "platform": "Windows-10-10.0.19045-SP0",
+  "binary": "F:\\odin\\target\\release\\odin.exe",
+  "binary_sha256": "6fb4428f34f782832a1ec6109e23d9f64d295babc9443ee496265608a371f639",
+  "platform": "Windows-11-10.0.22631-SP0",
   "checks": [
     {
       "name": "exit:metadata",
@@ -264,5 +264,5 @@
   ],
   "error": null,
   "actual_codex_claude_opencode_applications_tested": false,
-  "timestamp_unix": 1792586046.4676812
+  "timestamp_unix": 1794876350.617845
 }

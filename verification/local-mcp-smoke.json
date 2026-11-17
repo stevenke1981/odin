@@ -1,9 +1,9 @@
 {
   "scope": "REAL_ODIN_BINARY_STDIO_SMOKE",
   "status": "PASS",
-  "binary": "E:\\odin\\target\\release\\odin.exe",
-  "binary_sha256": "fb288ff14c3c23939cbd3d3ac389d2377fa1e9b52436c913ed2f52659b8fa4b7",
-  "platform": "Windows-10-10.0.19045-SP0",
+  "binary": "F:\\odin\\target\\release\\odin.exe",
+  "binary_sha256": "6fb4428f34f782832a1ec6109e23d9f64d295babc9443ee496265608a371f639",
+  "platform": "Windows-11-10.0.22631-SP0",
   "checks": [
     {
       "name": "initialize",
@@ -100,9 +100,21 @@
     {
       "name": "removed_tool:serena_call",
       "status": "PASS"
+    },
+    {
+      "name": "core_profile_subset",
+      "status": "PASS"
+    },
+    {
+      "name": "core_profile_keeps_edit_tools",
+      "status": "PASS"
+    },
+    {
+      "name": "hidden_tool_guidance",
+      "status": "PASS"
     }
   ],
   "error": null,
   "real_lsp_dap_tested": false,
-  "timestamp_unix": 1792586043.5576758
+  "timestamp_unix": 1794876348.8753676
 }
