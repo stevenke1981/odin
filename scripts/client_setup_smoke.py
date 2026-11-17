@@ -231,8 +231,10 @@ def client_setup(rec, fx, client):
         rec.check(f'launch_session_default:{client}', SESSION_LINE in result.get('instructions', ''))
         tools = peer.request('tools/list', timeout=TIMEOUT).get('result', {}).get('tools', [])
         rec.check(f'launch_tools_list:{client}', len(tools) > 0)
-        called = peer.request('tools/call', {'name': 'status', 'arguments': {'project': 'demo'}}, timeout=TIMEOUT)
-        rec.check(f'launch_status_call:{client}', 'result' in called and not called['result'].get('isError', False))
+        # serve advertises the core tool profile by default; status is an ide-tier tool.
+        rec.check(f'launch_core_profile_hides_status:{client}', not any(t.get('name') == 'status' for t in tools))
+        called = peer.request('tools/call', {'name': 'get_capabilities', 'arguments': {'project': 'demo'}}, timeout=TIMEOUT)
+        rec.check(f'launch_core_tool_call:{client}', 'result' in called and not called['result'].get('isError', False))
         rec.check(f'launch_exit_after_eof:{client}', finish(peer) == 0)
 
 
