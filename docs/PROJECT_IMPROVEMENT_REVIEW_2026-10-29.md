@@ -17,25 +17,25 @@ Odin 採獨立 Rust 核心、直接 LSP/DAP、明確 host 權限及 expected-has
 
 ### 2. P1：補齊真實後端與 client 的能力矩陣
 
-- **依據：** `docs/KNOWN_LIMITATIONS.md` 第 6、18、19、23 項與交付狀態仍區分 profile、真實 IDE 能力及未版本化 diagnostics；現行記錄中的 client restart 仍為 NOT_RUN。
+- **依據：** `docs/KNOWN_LIMITATIONS.md` 第 14、15、16、27 項與交付狀態仍區分 profile、真實 IDE 能力及未版本化 diagnostics；現行記錄中的 client restart 仍為 NOT_RUN。
 - **建議：** 先以使用頻率最高的 Rust、Python、TypeScript 為一批，列出實際 client／平台／後端版本及 navigation、references、diagnostics freshness、rename preview/apply/rollback；另外驗證現有 client 重連後的 workspace 綁定。後端不宣告的功能保留 UNAVAILABLE，未完成的保留 NOT_RUN 或 NOT_VERIFIED。
 - **驗收：** 每個結果附 source／binary hash、backend 版本、專案及實際命令或操作收據；fixture、版本探測與真實 MCP 測試分開記錄。不要用 regex 或結構 hints 充作語意結果。
 
 ### 3. P1：補強安裝、升級與故障復原驗收
 
-- **依據：** `docs/KNOWN_LIMITATIONS.md` 第 14、21、22 項列出乾淨機、跨版升級、取消／崩潰復原及多檔設定非瞬間原子提交等限制；目前已有的同版生命週期實證不涵蓋這些情境。
+- **依據：** `docs/KNOWN_LIMITATIONS.md` 第 30、31、32 項列出乾淨機、跨版升級、取消／崩潰復原及多檔設定非瞬間原子提交等限制；目前已有的同版生命週期實證不涵蓋這些情境。
 - **建議：** 在隔離測試機建立乾淨安裝、舊版升級、重裝、卸載保留設定，以及各明確中斷點的測試；記錄 host 設定、備份和檔案 hash，提出可執行的人工復原步驟。
 - **驗收：** 每個中斷點均核對檔案、設定、備份與實際行為，外部修改衝突不得被覆寫；各平台、版本與簽章狀態分開呈現。
 
 ### 4. P1：建立資料保留與復原操作方式
 
-- **依據：** `crates/odin-engine/src/results.rs` 對結果 spool 已有清理與配額；`docs/KNOWN_LIMITATIONS.md` 第 13 項指出 journal、audit、index 尚無完整保留／加密／備份策略。`crates/odin-core/src/transaction.rs` 的 journal 也承載交易復原資料。
+- **依據：** `crates/odin-engine/src/results.rs` 對結果 spool 已有清理與配額；`docs/KNOWN_LIMITATIONS.md` 第 23 項指出 journal、audit、index 尚無完整保留／加密／備份策略。`crates/odin-core/src/transaction.rs` 的 journal 也承載交易復原資料。
 - **建議：** 先提供狀態與磁碟用量檢視、備份／還原文件和明確的保留策略選項；清理前需保留未完成及需要復原的交易。加密與 ACL 改善可依實際部署需求規劃，不預設刪除既有紀錄。
 - **驗收：** 使用測試副本驗證備份還原、保留期限與空間上限；Prepared／RecoveryRequired 交易及衝突情境不可因清理而失去復原依據。
 
 ### 5. P2：先量測索引與專案分析，再決定最佳化
 
-- **依據：** `crates/odin-engine/src/analysis.rs` 每次呼叫 `search::files`，並回報截斷狀態；`crates/odin-core/src/search.rs` 使用目錄走訪。已知限制第 9、15、18 項指出查詢前掃描與 benchmark 尚未完成，尚無足夠數據斷定瓶頸或改善幅度。
+- **依據：** `crates/odin-engine/src/analysis.rs` 每次呼叫 `search::files`，並回報截斷狀態；`crates/odin-core/src/search.rs` 使用目錄走訪。已知限制第 2、19、27 項指出查詢前掃描與 benchmark 尚未完成，尚無足夠數據斷定瓶頸或改善幅度。
 - **建議：** 對小、中、大三種具可重現內容的專案測量冷／熱查詢、更新後查詢、P50/P95 延遲、CPU、記憶體與 I/O，並記錄 ignored files、檔案數與截斷情況。視結果再評估增量更新或 watcher；保留完整重掃及失效處理。
 - **驗收：** 發布測試方法、硬體、樣本及原始數據；同時檢查建立、修改、刪除、ignore 規則變更及超過限制的結果正確性。未測前不宣稱效能優勢。
 
@@ -47,7 +47,7 @@ Odin 採獨立 Rust 核心、直接 LSP/DAP、明確 host 權限及 expected-has
 
 ### 7. P2：整理供應鏈與發行身分
 
-- **依據：** 已知限制第 24、25 項記錄 notice gaps、lock superset 非精確 linked SBOM、Slint upstream rebuild 未執行，且產物與 inventory 未簽章。
+- **依據：** 已知限制第 33、34 項記錄 notice gaps、lock superset 非精確 linked SBOM、Slint upstream rebuild 未執行，且產物與 inventory 未簽章。
 - **建議：** 對實際發布產物產生可追溯的依賴與 runtime 清單，逐項處理已列出的 notice 缺口；評估簽署與驗證發行產物，並在可重現環境執行 Slint 來源重建。
 - **驗收：** 清單與實際 artifact hash 綁定；未能確認的依賴、重建與法律審查保留未完成狀態。簽章驗證和 hash 完整性分開報告。
 
