@@ -18,6 +18,12 @@
 - The Slint profile no longer treats `Cargo.toml` as a project marker: `analyze`
   suggests Slint only when `.slint` sources exist, and `project add
   --detect-languages` no longer adds Slint to every Rust crate.
+- Missing or failing language servers now come with install suggestions:
+  `doctor` (server not on PATH or probe FAIL), `get_capabilities` probe errors and
+  `project_analysis` hints for unconfigured languages add an `install_hint` with
+  commands such as `rustup component add rust-analyzer`, the upstream URL and
+  `automatic_installation: false`. `odin languages` lists the same `install`
+  commands for all 32 profiles. Odin never runs them.
 - `init` writes plain Windows paths (no `\\?\` verbatim prefix) for roots and
   state, matching `project add`; they load as the same canonical directories.
 

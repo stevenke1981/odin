@@ -22,6 +22,7 @@ async fn live_analysis_updates_structure_and_evidence_without_running_backends()
     assert_eq!(first["permissions"]["write"], false);
     assert_eq!(first["language_hints"][0]["id"], "rust");
     assert_eq!(first["language_hints"][0]["host_backend_configured"], true);
+    assert!(first["language_hints"][0].get("install_hint").is_none());
     let evidence_hash = first["evidence"][0]["sha256"].clone();
     std::fs::write(root.path().join("Cargo.toml"), "[package]\nname='changed'").unwrap();
     std::fs::write(root.path().join("new.py"), "print('new')").unwrap();
@@ -40,6 +41,18 @@ async fn live_analysis_updates_structure_and_evidence_without_running_backends()
             .unwrap()
             .contains(&json!("python"))
     );
+    let python = second["language_hints"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|hint| hint["id"] == "python")
+        .unwrap();
+    assert_eq!(python["install_hint"]["server"], "basedpyright-langserver");
+    assert_eq!(
+        python["install_hint"]["commands"][0],
+        "pip install basedpyright"
+    );
+    assert_eq!(python["install_hint"]["automatic_installation"], false);
     let onboarding = tokio::time::timeout(
         std::time::Duration::from_secs(3),
         e.call("current".into(), "onboarding".into(), json!({})),

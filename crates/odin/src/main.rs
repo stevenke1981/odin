@@ -775,6 +775,13 @@ async fn doctor(engine: &Arc<Engine>, probe_lsp: bool, probe_sandbox: bool) -> V
             } else {
                 ok &= found;
             }
+            let unavailable = !found || entry["integration"] == "FAIL";
+            if unavailable
+                && let Some(adapter) =
+                    odin_core::languages::adapter_for(&language.id, &language.program)
+            {
+                entry["install_hint"] = odin_core::languages::install_guidance(adapter);
+            }
             languages.push(entry);
         }
         let debuggers = project.config.debuggers.iter().map(|(name, backend)| {

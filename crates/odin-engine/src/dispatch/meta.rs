@@ -71,7 +71,15 @@ impl Engine {
                             entry["capabilities"] = client.capabilities.clone();
                             entry["status"] = client.status().map_err(backend_error)?;
                         }
-                        Some(Err(error)) => entry["error"] = serde_json::to_value(error)?,
+                        Some(Err(error)) => {
+                            entry["error"] = serde_json::to_value(error)?;
+                            if let Some(adapter) =
+                                odin_core::languages::adapter_for(&language.id, &language.program)
+                            {
+                                entry["install_hint"] =
+                                    odin_core::languages::install_guidance(adapter);
+                            }
+                        }
                         None => {}
                     }
                     languages.push(entry);

@@ -11,12 +11,15 @@ pub struct LanguageAdapter {
     pub args: &'static [&'static str],
     pub project_markers: &'static [&'static str],
     pub upstream: &'static str,
+    /// Suggested install commands (alternatives, any one suffices). Guidance only:
+    /// Odin never runs them. Empty means "follow `upstream`".
+    pub install: &'static [&'static str],
 }
 
 macro_rules! adapter {
-    ($id:literal, [$($ext:literal),+], $server:literal, [$($arg:literal),*], [$($marker:literal),*], $url:literal) => {
+    ($id:literal, [$($ext:literal),+], $server:literal, [$($arg:literal),*], [$($marker:literal),*], $url:literal, [$($install:literal),*]) => {
         LanguageAdapter { id:$id, extensions:&[$($ext),+], server:$server,
-            args:&[$($arg),*], project_markers:&[$($marker),*], upstream:$url }
+            args:&[$($arg),*], project_markers:&[$($marker),*], upstream:$url, install:&[$($install),*] }
     }
 }
 
@@ -27,7 +30,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "rust-analyzer",
         [],
         ["Cargo.toml"],
-        "https://rust-analyzer.github.io/"
+        "https://rust-analyzer.github.io/",
+        ["rustup component add rust-analyzer"]
     ),
     adapter!(
         "python",
@@ -35,7 +39,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "basedpyright-langserver",
         ["--stdio"],
         ["pyproject.toml", "pyrightconfig.json"],
-        "https://docs.basedpyright.com/"
+        "https://docs.basedpyright.com/",
+        ["pip install basedpyright", "uv tool install basedpyright"]
     ),
     adapter!(
         "typescript",
@@ -43,7 +48,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "typescript-language-server",
         ["--stdio"],
         ["tsconfig.json"],
-        "https://github.com/typescript-language-server/typescript-language-server"
+        "https://github.com/typescript-language-server/typescript-language-server",
+        ["npm install -g typescript typescript-language-server"]
     ),
     adapter!(
         "javascript",
@@ -51,7 +57,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "typescript-language-server",
         ["--stdio"],
         ["jsconfig.json", "package.json"],
-        "https://github.com/typescript-language-server/typescript-language-server"
+        "https://github.com/typescript-language-server/typescript-language-server",
+        ["npm install -g typescript typescript-language-server"]
     ),
     adapter!(
         "go",
@@ -59,7 +66,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "gopls",
         [],
         ["go.mod", "go.work"],
-        "https://go.dev/gopls/"
+        "https://go.dev/gopls/",
+        ["go install golang.org/x/tools/gopls@latest"]
     ),
     adapter!(
         "java",
@@ -67,7 +75,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "jdtls",
         [],
         ["pom.xml", "build.gradle", "build.gradle.kts"],
-        "https://github.com/eclipse-jdtls/eclipse.jdt.ls"
+        "https://github.com/eclipse-jdtls/eclipse.jdt.ls",
+        ["brew install jdtls"]
     ),
     adapter!(
         "csharp",
@@ -75,7 +84,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "csharp-ls",
         [],
         ["global.json", "Directory.Build.props"],
-        "https://github.com/razzmatazz/csharp-language-server"
+        "https://github.com/razzmatazz/csharp-language-server",
+        ["dotnet tool install --global csharp-ls"]
     ),
     adapter!(
         "c",
@@ -83,7 +93,12 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "clangd",
         ["--enable-config=false"],
         ["compile_commands.json", "CMakeLists.txt"],
-        "https://clangd.llvm.org/"
+        "https://clangd.llvm.org/",
+        [
+            "winget install LLVM.LLVM",
+            "brew install llvm",
+            "sudo apt install clangd"
+        ]
     ),
     adapter!(
         "cpp",
@@ -91,7 +106,12 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "clangd",
         ["--enable-config=false"],
         ["compile_commands.json", ".clangd", "CMakeLists.txt"],
-        "https://clangd.llvm.org/"
+        "https://clangd.llvm.org/",
+        [
+            "winget install LLVM.LLVM",
+            "brew install llvm",
+            "sudo apt install clangd"
+        ]
     ),
     adapter!(
         "ruby",
@@ -99,7 +119,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "ruby-lsp",
         [],
         ["Gemfile"],
-        "https://shopify.github.io/ruby-lsp/"
+        "https://shopify.github.io/ruby-lsp/",
+        ["gem install ruby-lsp"]
     ),
     adapter!(
         "php",
@@ -107,7 +128,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "phpactor",
         ["language-server"],
         ["composer.json"],
-        "https://phpactor.readthedocs.io/"
+        "https://phpactor.readthedocs.io/",
+        []
     ),
     adapter!(
         "lua",
@@ -115,7 +137,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "lua-language-server",
         [],
         [".luarc.json"],
-        "https://luals.github.io/"
+        "https://luals.github.io/",
+        ["brew install lua-language-server"]
     ),
     adapter!(
         "swift",
@@ -123,7 +146,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "sourcekit-lsp",
         [],
         ["Package.swift"],
-        "https://github.com/swiftlang/sourcekit-lsp"
+        "https://github.com/swiftlang/sourcekit-lsp",
+        []
     ),
     adapter!(
         "kotlin",
@@ -131,7 +155,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "kotlin-lsp",
         [],
         ["settings.gradle.kts"],
-        "https://github.com/Kotlin/kotlin-lsp"
+        "https://github.com/Kotlin/kotlin-lsp",
+        ["brew install JetBrains/utils/kotlin-lsp"]
     ),
     adapter!(
         "scala",
@@ -139,7 +164,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "metals",
         [],
         ["build.sbt"],
-        "https://scalameta.org/metals/"
+        "https://scalameta.org/metals/",
+        ["cs install metals"]
     ),
     adapter!(
         "dart",
@@ -147,7 +173,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "dart",
         ["language-server", "--protocol=lsp"],
         ["pubspec.yaml"],
-        "https://dart.dev/tools/dart-language-server"
+        "https://dart.dev/tools/dart-language-server",
+        []
     ),
     adapter!(
         "elixir",
@@ -155,7 +182,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "elixir-ls",
         [],
         ["mix.exs"],
-        "https://github.com/elixir-lsp/elixir-ls"
+        "https://github.com/elixir-lsp/elixir-ls",
+        ["brew install elixir-ls"]
     ),
     adapter!(
         "haskell",
@@ -163,7 +191,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "haskell-language-server-wrapper",
         ["--lsp"],
         ["cabal.project", "stack.yaml"],
-        "https://haskell-language-server.readthedocs.io/"
+        "https://haskell-language-server.readthedocs.io/",
+        ["ghcup install hls"]
     ),
     adapter!(
         "ocaml",
@@ -171,7 +200,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "ocamllsp",
         [],
         ["dune-project"],
-        "https://github.com/ocaml/ocaml-lsp"
+        "https://github.com/ocaml/ocaml-lsp",
+        ["opam install ocaml-lsp-server"]
     ),
     adapter!(
         "r",
@@ -179,7 +209,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "R",
         ["--slave", "-e", "languageserver::run()"],
         ["DESCRIPTION"],
-        "https://github.com/REditorSupport/languageserver"
+        "https://github.com/REditorSupport/languageserver",
+        ["R -e \"install.packages('languageserver')\""]
     ),
     adapter!(
         "zig",
@@ -187,7 +218,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "zls",
         [],
         ["build.zig"],
-        "https://zigtools.org/zls/"
+        "https://zigtools.org/zls/",
+        ["brew install zls"]
     ),
     adapter!(
         "bash",
@@ -195,7 +227,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "bash-language-server",
         ["start"],
         [".shellcheckrc"],
-        "https://github.com/bash-lsp/bash-language-server"
+        "https://github.com/bash-lsp/bash-language-server",
+        ["npm install -g bash-language-server"]
     ),
     adapter!(
         "html",
@@ -203,7 +236,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "vscode-html-language-server",
         ["--stdio"],
         [],
-        "https://github.com/microsoft/vscode-html-languageservice"
+        "https://github.com/microsoft/vscode-html-languageservice",
+        ["npm install -g vscode-langservers-extracted"]
     ),
     adapter!(
         "css",
@@ -211,7 +245,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "vscode-css-language-server",
         ["--stdio"],
         [],
-        "https://github.com/microsoft/vscode-css-languageservice"
+        "https://github.com/microsoft/vscode-css-languageservice",
+        ["npm install -g vscode-langservers-extracted"]
     ),
     adapter!(
         "json",
@@ -219,7 +254,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "vscode-json-language-server",
         ["--stdio"],
         [],
-        "https://github.com/microsoft/vscode-json-languageservice"
+        "https://github.com/microsoft/vscode-json-languageservice",
+        ["npm install -g vscode-langservers-extracted"]
     ),
     adapter!(
         "yaml",
@@ -227,7 +263,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "yaml-language-server",
         ["--stdio"],
         [],
-        "https://github.com/redhat-developer/yaml-language-server"
+        "https://github.com/redhat-developer/yaml-language-server",
+        ["npm install -g yaml-language-server"]
     ),
     adapter!(
         "slint",
@@ -236,7 +273,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         [],
         // Slint has no project file of its own; Cargo.toml would flag every Rust crate.
         [],
-        "https://docs.slint.dev/latest/docs/language/"
+        "https://docs.slint.dev/latest/docs/language/",
+        ["cargo install slint-lsp"]
     ),
     adapter!(
         "toml",
@@ -244,7 +282,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "taplo",
         ["lsp", "stdio"],
         [],
-        "https://taplo.tamasfe.dev/"
+        "https://taplo.tamasfe.dev/",
+        ["cargo install taplo-cli --locked --features lsp"]
     ),
     adapter!(
         "markdown",
@@ -252,7 +291,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "marksman",
         ["server"],
         [".marksman.toml"],
-        "https://github.com/artempyanykh/marksman"
+        "https://github.com/artempyanykh/marksman",
+        ["brew install marksman"]
     ),
     adapter!(
         "vue",
@@ -260,7 +300,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "vue-language-server",
         ["--stdio"],
         ["package.json"],
-        "https://github.com/vuejs/language-tools"
+        "https://github.com/vuejs/language-tools",
+        ["npm install -g @vue/language-server"]
     ),
     adapter!(
         "svelte",
@@ -268,7 +309,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "svelteserver",
         ["--stdio"],
         ["svelte.config.js"],
-        "https://github.com/sveltejs/language-tools"
+        "https://github.com/sveltejs/language-tools",
+        ["npm install -g svelte-language-server"]
     ),
     adapter!(
         "terraform",
@@ -276,9 +318,50 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "terraform-ls",
         ["serve"],
         [".terraform.lock.hcl"],
-        "https://github.com/hashicorp/terraform-ls"
+        "https://github.com/hashicorp/terraform-ls",
+        ["brew install hashicorp/tap/terraform-ls"]
     ),
 ];
+
+/// The registry profile for a host language entry: by ID first, then by server program
+/// (host IDs may be custom). Returns None for programs Odin has no guidance for.
+pub fn adapter_for(id: &str, program: &str) -> Option<&'static LanguageAdapter> {
+    let program = Path::new(program)
+        .file_stem()
+        .and_then(|stem| stem.to_str())
+        .unwrap_or(program);
+    ADAPTERS
+        .iter()
+        .find(|adapter| adapter.id == id)
+        .or_else(|| ADAPTERS.iter().find(|adapter| adapter.server == program))
+}
+
+fn install_note(id: &str) -> Option<&'static str> {
+    match id {
+        "java" => Some("Or download a jdtls milestone from the upstream page"),
+        "php" => Some("Install the phpactor PHAR per the upstream guide"),
+        "swift" => Some("Bundled with the Swift toolchain (swift.org) and Xcode"),
+        "dart" => Some("Bundled with the Dart/Flutter SDK"),
+        "lua" => Some("Or download an upstream release"),
+        "zig" => Some("Or download an upstream release matching your Zig version"),
+        "markdown" => Some("Or download an upstream release"),
+        "elixir" => Some("Or download an upstream release"),
+        _ => None,
+    }
+}
+
+/// Install suggestion for a missing or failing language server. Advisory only:
+/// Odin never installs backends, so the host operator decides what to run.
+pub fn install_guidance(adapter: &LanguageAdapter) -> serde_json::Value {
+    serde_json::json!({
+        "server": adapter.server,
+        "commands": adapter.install,
+        "note": install_note(adapter.id),
+        "upstream": adapter.upstream,
+        "automatic_installation": false,
+        "after_install": "Restart the MCP server (or restart_language_server), then run odin doctor --probe-lsp",
+    })
+}
 
 /// Multiplexed servers require the document's LSP ID, not the host profile name.
 /// Custom host profile IDs are preserved; no source-text heuristics are used.
@@ -361,6 +444,31 @@ mod tests {
                 .iter()
                 .all(|extension| !cpp.extensions.contains(extension))
         );
+    }
+
+    #[test]
+    fn every_profile_suggests_an_install_command_or_an_upstream_note() {
+        for adapter in ADAPTERS {
+            assert!(
+                !adapter.install.is_empty() || install_note(adapter.id).is_some(),
+                "{}",
+                adapter.id
+            );
+            assert!(adapter.upstream.starts_with("https://"), "{}", adapter.id);
+        }
+        let rust = adapter_for("rust", "rust-analyzer").unwrap();
+        assert_eq!(rust.install, ["rustup component add rust-analyzer"]);
+        let guidance = install_guidance(rust);
+        assert_eq!(guidance["automatic_installation"], false);
+        assert_eq!(
+            guidance["commands"][0],
+            "rustup component add rust-analyzer"
+        );
+        assert_eq!(
+            adapter_for("custom-rs", r"C:\Tools\rust-analyzer.exe").map(|a| a.id),
+            Some("rust")
+        );
+        assert!(adapter_for("custom", "unknown-ls").is_none());
     }
 
     #[test]
