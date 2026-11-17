@@ -363,6 +363,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:crates\\odin-engine\\tests\\refactor_rules.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:crates\\odin-engine\\tests\\fixtures\\dap_peer.py",
       "status": "PASS",
       "detail": ""
@@ -5113,6 +5118,16 @@
       "detail": ""
     },
     {
+      "name": "scoped_contract:refactor_rules",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "dispatcher_marker:refactor_rules",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "scoped_contract:project_analysis",
       "status": "PASS",
       "detail": ""
@@ -6183,6 +6198,11 @@
       "detail": ""
     },
     {
+      "name": "no_stub_macro:crates\\odin-engine\\tests\\refactor_rules.rs",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "no_stub_macro:crates\\odin-protocol\\src\\dap.rs",
       "status": "PASS",
       "detail": ""
@@ -6233,12 +6253,12 @@
       "detail": ""
     }
   ],
-  "rust_files": 63,
-  "rust_lines": 23667,
-  "rust_test_declarations": 308,
+  "rust_files": 64,
+  "rust_lines": 24285,
+  "rust_test_declarations": 320,
   "rust_tests_executed_by_this_check": 0,
   "rust_compilation": "NOT_PERFORMED_BY_STATIC_CHECK",
-  "tool_contracts": 86,
+  "tool_contracts": 87,
   "compiler_presence": {
     "rustc": "C:\\Users\\steven\\.cargo\\bin\\rustc.EXE",
     "cargo": "C:\\Users\\steven\\.cargo\\bin\\cargo.EXE",

@@ -45,13 +45,18 @@ Every advertised tool schema costs context in every session. Odin therefore
 advertises a small set by default (`--tool-profile` is a global flag; pass it to
 `setup` so it is copied into the client entry):
 
-| Profile | Tools advertised (QBoss, read-only / writable) | tools/list bytes |
+| Profile | Tools advertised (read-only / writable) | tools/list bytes (read-only / writable) |
 |---|---|---|
-| `core` (default) | 12 / 18: analysis, read_file, search, symbols, references, declaration, implementations, diagnostics, rename, symbol/text edits, transactions, command profiles | 8,008 / 11,625 |
-| `ide` | 28 / 49: core + list/find files, FTS index, hover, call/type hierarchy, code actions, formatting, line edits, multi-file replace | 17,533 / 33,479 |
-| `full` | 86: everything (memories, flows, DAP, completion, inlay hints...) | 55,167 (was 53,189 before this change) |
+| `core` (default) | 13 / 19: analysis, refactor_rules, read_file, search, symbols, references, declaration, implementations, diagnostics, rename, symbol/text edits, transactions, command profiles | 8,534 / 11,661 |
+| `ide` | 29 / 50: core + list/find files, FTS index, hover, call/type hierarchy, code actions, formatting, line edits, multi-file replace | 18,043 / 33,609 |
+| `full` | 87: everything (memories, flows, DAP, completion, inlay hints...) | 55,895 |
 
-Measured on a real 12-crate workspace. In `core`/`ide`, tools that host policy
+Bytes were measured on 2026-11-17 with the release binary against this repository
+as a single project without `allow_shell`, so the writable counts measured were
+18 / 49 (the command-profile tool is hidden). The same setup measured
+7,996 / 11,088, 17,505 / 32,911 and 55,167 before `refactor_rules` was added.
+Earlier figures on a real 12-crate workspace with shell enabled were
+8,008 / 11,625, 17,533 / 33,479 and 55,167 (12 / 18, 28 / 49, 86 tools). In `core`/`ide`, tools that host policy
 disables for every project (edits on a read-only project, commands without
 `allow_shell`) are not advertised, and with a single project the `project`
 argument becomes optional. `--include-tools hover,index_query` adds individual
@@ -79,7 +84,10 @@ enforces host policy on every call regardless.
 1. `project_analysis` (once), `get_capabilities` if a semantic call fails.
 2. `find_symbol` / `get_symbols_overview` to locate code; `find_referencing_symbols`
    before changing a signature.
-3. `rename_symbol` for renames; `replace_symbol_body` / `replace_content` for edits;
+3. Before a refactor (`rename_symbol`, `safe_delete_symbol`, `move_symbol`,
+   `inline_symbol`, `prepare_code_action`, `apply_quick_fix`) call `refactor_rules`;
+   a host rule violation fails with `REFACTOR_RULE_VIOLATION` and prepares nothing.
+   `rename_symbol` for renames; `replace_symbol_body` / `replace_content` for edits;
    review the preview; `transaction_apply`.
 4. Run the `test` command profile (or Bash) and judge by `exit_code`.
 

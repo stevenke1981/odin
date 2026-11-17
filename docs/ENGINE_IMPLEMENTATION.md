@@ -1,6 +1,6 @@
 # Odin 引擎補完與驗證範圍
 
-原生工具契約、策略與可預覽修改目前共 86 個工具，由 `scripts/generate_catalog.py` 生成到兩份 `tools.json`；`scripts/generate_docs.py --api-only` 更新 API，不會改動另外管理的發布與對照文件。新增 IDE 查詢、格式化交易與 native inspections 詳見 [IDE_IMPLEMENTATION.md](IDE_IMPLEMENTATION.md)。Odin 不載入或呼叫 Serena。
+原生工具契約、策略與可預覽修改目前共 87 個工具，由 `scripts/generate_catalog.py` 生成到兩份 `tools.json`；`scripts/generate_docs.py --api-only` 更新 API，不會改動另外管理的發布與對照文件。新增 IDE 查詢、格式化交易與 native inspections 詳見 [IDE_IMPLEMENTATION.md](IDE_IMPLEMENTATION.md)。Odin 不載入或呼叫 Serena。
 
 ## 已實作行為
 
@@ -31,6 +31,10 @@ debug_start 回 project-scoped session UUID。debug_batch 最多 32 個 allowlis
 shell 執行 host 固定 argv profile，使用 core 的環境 allowlist 與 ProcessTree。Windows Job Object／Unix process group 的生命周期管理不等於安全隔離；程序啟動與 Job 指派之間仍有窗口。
 
 成功工具結果附 trace ID、elapsed_ms、加 trace 前的 JSON bytes/digest；metadata audit 使用同一 ID，不保存原始輸入輸出。schema 驗證前被拒絕的請求尚不產生 audit trace。大結果保留 exact bytes SHA-256、每塊 digest、到期時間，並依 project 隔離。固定保留 24 小時／最多 128 份／128 MiB，滿額拒絕新 spill；到期於 spill/read 時清理，沒有背景排程、加密或備份。
+
+## refactor_rules
+
+`[projects.<id>.refactor_rules]` 由 host 設定，含 `max_files`、`protected_globs`、`naming`（`[{kinds, pattern, description}]`）與 `guidance`。`refactor_rules` 唯讀回報有效規則，並在 `rename_symbol`、`safe_delete_symbol`、`move_symbol`、`inline_symbol`、`prepare_code_action`、`apply_quick_fix` 上強制執行（`naming` 只檢查 `rename_symbol`），違反時回 `REFACTOR_RULE_VIOLATION`。規則不來自 repository 檔案，也不改變 `deny_globs` 或既有寫入開關。`--workspace` 綁定的 workspace 不套用規則；通用編輯工具不受此檢查。目前只有 fixture 測試覆蓋，真實後端的強制執行為 NOT_RUN。邊界見 [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md)。
 
 ## 證據與限制
 

@@ -2,7 +2,7 @@
   "scope": "REAL_ODIN_BINARY_STDIO_SMOKE",
   "status": "PASS",
   "binary": "F:\\odin\\target\\release\\odin.exe",
-  "binary_sha256": "6fb4428f34f782832a1ec6109e23d9f64d295babc9443ee496265608a371f639",
+  "binary_sha256": "26b0cfdf2a74ef3aa11248aecb724d1d37500c2f3108240ec6124c80c463b17a",
   "platform": "Windows-11-10.0.22631-SP0",
   "checks": [
     {
@@ -116,5 +116,5 @@
   ],
   "error": null,
   "real_lsp_dap_tested": false,
-  "timestamp_unix": 1794876348.8753676
+  "timestamp_unix": 1794878500.6336133
 }

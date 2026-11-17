@@ -210,6 +210,31 @@
     "tier": "full"
   },
   {
+    "name": "refactor_rules",
+    "description": "Host-defined refactor rules enforced by rename_symbol, safe_delete_symbol, move_symbol, inline_symbol, prepare_code_action and apply_quick_fix (violations fail with REFACTOR_RULE_VIOLATION). Call before refactoring. Read-only.",
+    "policy": "read",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "string",
+          "description": "Configured project ID; never an arbitrary root path"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project"
+      ]
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "tier": "core"
+  },
+  {
     "name": "project_analysis",
     "description": "Start here in an unfamiliar workspace: live layout, detected languages and which semantic backends are missing. Read-only; runs no repository commands.",
     "policy": "read",
@@ -1623,7 +1648,7 @@
   },
   {
     "name": "prepare_code_action",
-    "description": "Preview one edit-only code action, selected by its exact title from code_actions, as a transaction.",
+    "description": "Preview one edit-only code action, selected by its exact title from code_actions, as a transaction. Host refactor_rules may reject it.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -1717,7 +1742,7 @@
   },
   {
     "name": "apply_quick_fix",
-    "description": "Preview one quickfix code action (exact title) as a transaction; transaction_apply writes it.",
+    "description": "Preview one quickfix code action (exact title) as a transaction; transaction_apply writes it. Host refactor_rules may reject it.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -1808,7 +1833,7 @@
   },
   {
     "name": "move_symbol",
-    "description": "Preview backend-provided refactor.move edit-only code action; no text fallback or server command execution",
+    "description": "Preview a backend-provided refactor.move code action (needs target_path); no text fallback. Host refactor_rules may reject it.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -1856,7 +1881,7 @@
   },
   {
     "name": "inline_symbol",
-    "description": "Preview backend-provided refactor.inline edit-only code action; no text fallback or server command execution",
+    "description": "Preview a backend-provided refactor.inline code action; no text fallback. Host refactor_rules may reject it.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -2654,7 +2679,7 @@
   },
   {
     "name": "rename_symbol",
-    "description": "Use to rename across files: semantic rename via the language server (relative_path + name_path). Returns a transaction preview; transaction_apply writes it.",
+    "description": "Use to rename across files: semantic rename via the language server (relative_path + name_path). Returns a transaction preview; transaction_apply writes it. Host refactor_rules may reject it.",
     "policy": "write",
     "inputSchema": {
       "type": "object",
@@ -2691,7 +2716,7 @@
   },
   {
     "name": "safe_delete_symbol",
-    "description": "Delete a symbol only when the language server reports no static references. Returns a transaction preview.",
+    "description": "Delete a symbol only when the language server reports no static references. Returns a transaction preview. Host refactor_rules may reject it.",
     "policy": "write",
     "inputSchema": {
       "type": "object",

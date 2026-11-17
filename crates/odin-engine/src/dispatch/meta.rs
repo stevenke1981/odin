@@ -106,8 +106,28 @@ impl Engine {
                 "allow_shell":p.config.allow_shell,"allow_debug":p.config.allow_debug,"allow_inspections":p.config.allow_inspections,"allow_formatters":p.config.allow_formatters,"formatter_profiles":formatter::profiles(p),"limits":limit,
                 "excluded_tools":p.config.excluded_tools,"deny_globs":p.config.deny_globs,
                 "languages":p.config.languages.iter().map(|l|json!({"id":l.id,"extensions":l.extensions})).collect::<Vec<_>>(),
-                "command_profiles":p.config.commands.keys().collect::<Vec<_>>(),"debug_profiles":p.config.debuggers.keys().collect::<Vec<_>>(),"inspection_profiles":p.config.inspections.iter().map(|(name,profile)|json!({"name":name,"provider":profile.provider})).collect::<Vec<_>>()}),
+                "command_profiles":p.config.commands.keys().collect::<Vec<_>>(),"debug_profiles":p.config.debuggers.keys().collect::<Vec<_>>(),"inspection_profiles":p.config.inspections.iter().map(|(name,profile)|json!({"name":name,"provider":profile.provider})).collect::<Vec<_>>(),
+                "refactor_rules":p.config.refactor_rules}),
             ),
+            "refactor_rules" => {
+                let rules = &p.config.refactor_rules;
+                Ok(json!({"configured":!rules.is_empty(),
+                    "enforced_tools":["rename_symbol","safe_delete_symbol","move_symbol","inline_symbol","prepare_code_action","apply_quick_fix"],
+                    "max_files":rules.max_files,"protected_globs":rules.protected_globs,
+                    "naming":rules.naming.iter().map(|rule|json!({"kinds":rule.kinds,"pattern":rule.pattern,"description":rule.description})).collect::<Vec<_>>(),
+                    "guidance":rules.guidance,"violation_code":odin_core::config::REFACTOR_RULE_VIOLATION,
+                    "naming_semantics":"every rule whose kinds include the symbol kind (or with empty kinds) must match the whole new name",
+                    "path_semantics":"max_files and protected_globs apply to canonical root-relative paths of changes that alter a file",
+                    "not_enforced_on":"generic edit tools and transaction_prepare",
+                    "workflow":[
+                        "refactor_rules: read these host rules",
+                        "locate the symbol (find_symbol / get_symbols_overview)",
+                        "run the refactor tool (rename_symbol, safe_delete_symbol, move_symbol, inline_symbol, prepare_code_action or apply_quick_fix)",
+                        "review the preview diff (transaction_preview)",
+                        "transaction_apply",
+                        "get_diagnostics_for_file on each changed file",
+                        "run an authorized test profile and inspect its exit status"]}))
+            }
             "initial_instructions" => Ok(json!({"instructions":INSTRUCTIONS})),
             "project_analysis" => crate::analysis::analyze(self, p, a),
             "onboarding" => {

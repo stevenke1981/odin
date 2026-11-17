@@ -106,6 +106,160 @@ pub struct ProjectConfig {
     pub inspections: BTreeMap<String, InspectionProfile>,
     #[serde(default)]
     pub formatters: BTreeMap<String, FormatterProfile>,
+    /// Host-owned rules for the semantic refactor tools. Never read from the repository.
+    #[serde(default, skip_serializing_if = "RefactorRules::is_empty")]
+    pub refactor_rules: RefactorRules,
+}
+
+/// Host-defined refactor rules enforced by the six semantic refactor tools
+/// (rename_symbol, safe_delete_symbol, move_symbol, inline_symbol,
+/// prepare_code_action, apply_quick_fix). Generic edit tools are not covered;
+/// hard path protection remains `deny_globs`.
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+#[serde(default, deny_unknown_fields)]
+pub struct RefactorRules {
+    /// Maximum number of files one refactor may change (>= 1).
+    pub max_files: Option<usize>,
+    /// Root-relative globs a refactor must not change (at most 64).
+    pub protected_globs: Vec<String>,
+    /// Naming rules applied to rename_symbol's new_name (at most 32). Rules are
+    /// ANDed: every rule whose `kinds` include the symbol kind (or whose
+    /// `kinds` is empty) must match the whole new name.
+    pub naming: Vec<NamingRule>,
+    /// Host-authored guidance strings (at most 16, 500 chars each).
+    pub guidance: Vec<String>,
+}
+
+/// A whole-name regex for new symbol names of the given LSP SymbolKinds.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct NamingRule {
+    /// LSP SymbolKind values 1..=26; empty applies to every kind.
+    #[serde(default)]
+    pub kinds: Vec<u64>,
+    /// Regex matched against the whole name as `^(?:pattern)$`.
+    pub pattern: String,
+    #[serde(default)]
+    pub description: String,
+}
+
+pub const REFACTOR_RULE_VIOLATION: &str = "REFACTOR_RULE_VIOLATION";
+const REFACTOR_RULE_SUFFIX: &str = "Nothing was prepared; call refactor_rules.";
+
+impl NamingRule {
+    fn regex(&self) -> Result<regex::Regex> {
+        Ok(regex::Regex::new(&format!("^(?:{})$", self.pattern))?)
+    }
+    fn applies_to(&self, kind: u64) -> bool {
+        self.kinds.is_empty() || self.kinds.contains(&kind)
+    }
+}
+
+impl RefactorRules {
+    pub fn is_empty(&self) -> bool {
+        self.max_files.is_none()
+            && self.protected_globs.is_empty()
+            && self.naming.is_empty()
+            && self.guidance.is_empty()
+    }
+
+    fn glob_set(&self) -> Result<globset::GlobSet> {
+        let mut builder = globset::GlobSetBuilder::new();
+        for pattern in &self.protected_globs {
+            builder.add(
+                globset::GlobBuilder::new(pattern)
+                    .case_insensitive(cfg!(windows))
+                    .build()
+                    .map_err(|e| Fault::invalid(e.to_string()))?,
+            );
+        }
+        builder.build().map_err(|e| Fault::invalid(e.to_string()))
+    }
+
+    pub fn validate(&self) -> Result<()> {
+        if self.max_files == Some(0)
+            || self.protected_globs.len() > 64
+            || self.naming.len() > 32
+            || self.guidance.len() > 16
+            || self
+                .protected_globs
+                .iter()
+                .any(|glob| glob.is_empty() || glob.len() > 1024)
+            || self
+                .guidance
+                .iter()
+                .any(|text| text.is_empty() || text.chars().count() > 500)
+        {
+            return Err(Fault::invalid("Refactor rules exceed supported bounds"));
+        }
+        for rule in &self.naming {
+            if rule.pattern.is_empty()
+                || rule.pattern.len() > 1024
+                || rule.description.chars().count() > 500
+                || rule.kinds.len() > 26
+                || rule.kinds.iter().any(|kind| !(1..=26).contains(kind))
+            {
+                return Err(Fault::invalid(
+                    "Refactor naming rule needs a pattern and LSP SymbolKind values 1..=26",
+                ));
+            }
+            rule.regex()?;
+        }
+        self.glob_set()?;
+        Ok(())
+    }
+
+    /// Check one refactor before it is prepared. `new_name` carries the
+    /// requested name and the backend-reported LSP SymbolKind; `paths` are the
+    /// root-relative '/' paths of the final changes. Compile failures are
+    /// faults, never panics: tests may build Config without Config::load.
+    pub fn check(&self, tool: &str, new_name: Option<(&str, u64)>, paths: &[&str]) -> Result<()> {
+        if let Some((name, kind)) = new_name {
+            for (index, rule) in self.naming.iter().enumerate() {
+                if rule.applies_to(kind) && !rule.regex()?.is_match(name) {
+                    let label = if rule.description.is_empty() {
+                        String::new()
+                    } else {
+                        format!(" ({})", rule.description)
+                    };
+                    return Err(Fault::new(
+                        REFACTOR_RULE_VIOLATION,
+                        format!(
+                            "{tool}: new name {name:?} for symbol kind {kind} violates naming rule {index} \
+                             pattern {:?}{label}. {REFACTOR_RULE_SUFFIX}",
+                            rule.pattern
+                        ),
+                    ));
+                }
+            }
+        }
+        if let Some(max) = self.max_files
+            && paths.len() > max
+        {
+            return Err(Fault::new(
+                REFACTOR_RULE_VIOLATION,
+                format!(
+                    "{tool}: refactor changes {} files, exceeding max_files {max}. {REFACTOR_RULE_SUFFIX}",
+                    paths.len()
+                ),
+            ));
+        }
+        if !self.protected_globs.is_empty() {
+            let set = self.glob_set()?;
+            for path in paths {
+                if let Some(index) = set.matches(path).first() {
+                    return Err(Fault::new(
+                        REFACTOR_RULE_VIOLATION,
+                        format!(
+                            "{tool}: refactor would change {path:?}, matched by protected_globs {:?}. {REFACTOR_RULE_SUFFIX}",
+                            self.protected_globs[*index]
+                        ),
+                    ));
+                }
+            }
+        }
+        Ok(())
+    }
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
@@ -624,6 +778,7 @@ impl Config {
             if let Some(sandbox) = &mut project.sandbox {
                 validate_sandbox_policy(sandbox, parent, &path, &config.state_dir)?;
             }
+            project.refactor_rules.validate()?;
         }
         // An overlapping root under another ID could bypass the same-file gate
         // or present a writable alias for a read-only project. Reject at startup.
@@ -1495,5 +1650,160 @@ mod tests {
         )
         .unwrap();
         assert!(Config::load(&path).is_ok());
+    }
+    fn refactor_config(rules: &str) -> Result<Config> {
+        let directory = tempfile::tempdir().unwrap();
+        std::fs::create_dir(directory.path().join("app")).unwrap();
+        let path = directory.path().join("host.toml");
+        let text = format!("[projects.app]\nroot = 'app'\n{rules}");
+        std::fs::write(&path, &text).unwrap();
+        Config::parse(&text, &path)
+    }
+    #[test]
+    fn refactor_rules_parse_and_default_to_empty() {
+        let config = refactor_config("").unwrap();
+        let project = &config.projects["app"];
+        assert!(project.refactor_rules.is_empty());
+        assert!(
+            serde_json::to_value(project)
+                .unwrap()
+                .get("refactor_rules")
+                .is_none()
+        );
+        let config = refactor_config(
+            "[projects.app.refactor_rules]\nmax_files = 20\nprotected_globs = ['vendor/**', '**/*.generated.rs']\n\
+             guidance = ['Run the test profile after transaction_apply']\n\
+             [[projects.app.refactor_rules.naming]]\nkinds = [12, 6]\npattern = '[a-z][a-z0-9_]*'\n\
+             description = 'snake_case functions'\n",
+        )
+        .unwrap();
+        let rules = &config.projects["app"].refactor_rules;
+        assert_eq!(rules.max_files, Some(20));
+        assert_eq!(rules.protected_globs.len(), 2);
+        assert_eq!(rules.naming[0].kinds, vec![12, 6]);
+        assert_eq!(rules.guidance.len(), 1);
+        assert!(!rules.is_empty());
+    }
+    #[test]
+    fn refactor_rules_reject_invalid_configuration() {
+        for rules in [
+            "[projects.app.refactor_rules]\nmax_files = 0\n",
+            "[projects.app.refactor_rules]\nunknown = 1\n",
+            "[projects.app.refactor_rules]\nprotected_globs = ['a/[']\n",
+            "[projects.app.refactor_rules]\nguidance = ['']\n",
+            "[[projects.app.refactor_rules.naming]]\npattern = '('\n",
+            "[[projects.app.refactor_rules.naming]]\npattern = ''\n",
+            "[[projects.app.refactor_rules.naming]]\nkinds = [0]\npattern = 'a'\n",
+            "[[projects.app.refactor_rules.naming]]\nkinds = [27]\npattern = 'a'\n",
+            "[[projects.app.refactor_rules.naming]]\npattern = 'a'\nextra = true\n",
+        ] {
+            let error = refactor_config(rules).unwrap_err();
+            assert_eq!(error.code, "INVALID_ARGUMENT", "{rules}");
+        }
+        let too_long = format!(
+            "[projects.app.refactor_rules]\nguidance = ['{}']\n",
+            "x".repeat(501)
+        );
+        assert_eq!(
+            refactor_config(&too_long).unwrap_err().code,
+            "INVALID_ARGUMENT"
+        );
+        let too_many = format!(
+            "[projects.app.refactor_rules]\nguidance = [{}]\n",
+            vec!["'g'"; 17].join(",")
+        );
+        assert_eq!(
+            refactor_config(&too_many).unwrap_err().code,
+            "INVALID_ARGUMENT"
+        );
+    }
+    #[test]
+    fn refactor_rules_check_enforces_naming_max_files_and_protected_globs() {
+        let rules = RefactorRules {
+            max_files: Some(2),
+            protected_globs: vec!["vendor/**".into(), "**/*.generated.rs".into()],
+            naming: vec![NamingRule {
+                kinds: vec![12, 6],
+                pattern: "[a-z][a-z0-9_]*".into(),
+                description: "snake_case functions".into(),
+            }],
+            guidance: Vec::new(),
+        };
+        rules.validate().unwrap();
+        assert!(
+            rules
+                .check("rename_symbol", Some(("new_name", 12)), &[])
+                .is_ok()
+        );
+        // Whole-name match: a valid prefix is not enough.
+        let error = rules
+            .check("rename_symbol", Some(("newName", 12)), &[])
+            .unwrap_err();
+        assert_eq!(error.code, REFACTOR_RULE_VIOLATION);
+        assert!(error.message.contains("snake_case functions"));
+        assert!(
+            error
+                .message
+                .ends_with("Nothing was prepared; call refactor_rules.")
+        );
+        // Kinds outside the rule are not constrained.
+        assert!(
+            rules
+                .check("rename_symbol", Some(("NewType", 23)), &[])
+                .is_ok()
+        );
+        assert!(
+            rules
+                .check("move_symbol", None, &["src/a.rs", "src/b.rs"])
+                .is_ok()
+        );
+        let error = rules
+            .check("move_symbol", None, &["a.rs", "b.rs", "c.rs"])
+            .unwrap_err();
+        assert_eq!(error.code, REFACTOR_RULE_VIOLATION);
+        assert!(error.message.contains("max_files 2"));
+        for path in ["vendor/lib.rs", "src/schema.generated.rs"] {
+            let error = rules
+                .check("safe_delete_symbol", None, &[path])
+                .unwrap_err();
+            assert_eq!(error.code, REFACTOR_RULE_VIOLATION, "{path}");
+            assert!(error.message.contains(path));
+        }
+        let all_kinds = RefactorRules {
+            naming: vec![NamingRule {
+                kinds: Vec::new(),
+                pattern: "[a-z]+".into(),
+                description: String::new(),
+            }],
+            ..RefactorRules::default()
+        };
+        assert!(
+            all_kinds
+                .check("rename_symbol", Some(("Abc", 5)), &[])
+                .is_err()
+        );
+        assert!(
+            RefactorRules::default()
+                .check("rename_symbol", Some(("Anything", 12)), &["vendor/x"])
+                .is_ok()
+        );
+    }
+    #[test]
+    fn refactor_rules_check_faults_instead_of_panicking_on_unvalidated_rules() {
+        let bad: RefactorRules = serde_json::from_value(serde_json::json!({
+            "protected_globs": ["a/["],
+            "naming": [{"pattern": "("}]
+        }))
+        .unwrap();
+        assert_eq!(
+            bad.check("rename_symbol", Some(("x", 12)), &[])
+                .unwrap_err()
+                .code,
+            "INVALID_ARGUMENT"
+        );
+        assert_eq!(
+            bad.check("move_symbol", None, &["a.rs"]).unwrap_err().code,
+            "INVALID_ARGUMENT"
+        );
     }
 }

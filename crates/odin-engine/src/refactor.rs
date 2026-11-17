@@ -48,6 +48,43 @@ fn reject_command(action: &Value) -> Result<()> {
     Ok(())
 }
 
+/// Canonical root-relative '/' paths of the changes that actually alter a file,
+/// for host refactor_rules path checks. Backend URIs may spell a file with a
+/// Windows case or 8.3 alias, so each path is resolved through SafeRoot (a
+/// missing leaf, e.g. a move target or created file, keeps its canonical
+/// parent). Any resolution failure is returned: the check fails closed.
+/// Changes whose content equals the expected file hash are not counted.
+pub(crate) fn rule_paths(
+    project: &Project,
+    changes: &[odin_core::transaction::Change],
+) -> Result<Vec<String>> {
+    let rules = &project.config.refactor_rules;
+    if rules.max_files.is_none() && rules.protected_globs.is_empty() {
+        return Ok(Vec::new());
+    }
+    let mut paths = Vec::new();
+    for change in changes {
+        let unchanged = match (&change.expected_sha256, &change.content) {
+            (Some(expected), Some(content)) => *expected == sha256(content.as_bytes()),
+            _ => false,
+        };
+        if unchanged {
+            continue;
+        }
+        let canonical = project.root.resolve(&change.path, true)?;
+        let relative = canonical
+            .strip_prefix(project.root.root())
+            .map_err(|_| Fault::denied("Refactor change is outside project"))?
+            .to_str()
+            .ok_or_else(|| Fault::invalid("Paths must be UTF-8"))?
+            .replace('\\', "/");
+        if !paths.contains(&relative) {
+            paths.push(relative);
+        }
+    }
+    Ok(paths)
+}
+
 pub async fn prepare(
     engine: &Arc<Engine>,
     project: &Arc<Project>,
@@ -175,6 +212,9 @@ pub async fn prepare(
             ));
         }
     }
+    let paths = rule_paths(project, &changes)?;
+    let paths = paths.iter().map(String::as_str).collect::<Vec<_>>();
+    project.config.refactor_rules.check(tool, None, &paths)?;
     let mut preview = project
         .transactions
         .prepare(changes, optional_string(args, "request_id"))?;

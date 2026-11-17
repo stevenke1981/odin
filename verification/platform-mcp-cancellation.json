@@ -2,7 +2,7 @@
   "scope": "REAL_BINARY_MCP_CANCELLATION_WITH_PROTOCOL_FIXTURE",
   "status": "PASS",
   "binary": "F:\\odin\\target\\release\\odin.exe",
-  "binary_sha256": "6fb4428f34f782832a1ec6109e23d9f64d295babc9443ee496265608a371f639",
+  "binary_sha256": "26b0cfdf2a74ef3aa11248aecb724d1d37500c2f3108240ec6124c80c463b17a",
   "platform": "Windows-11-10.0.22631-SP0",
   "checks": [
     {
@@ -42,7 +42,7 @@
     "queued_write_source_sha256": "ef00998678cc4f84733e80f0cff82163b01e89ff0bf311daed29ce44e50e5182",
     "original_sha256": "ef00998678cc4f84733e80f0cff82163b01e89ff0bf311daed29ce44e50e5182",
     "transaction_phase_after_cancel": "draft",
-    "gate_release_after_cancel_seconds": 0.0033641999998508254,
+    "gate_release_after_cancel_seconds": 0.003592400000343332,
     "fixture_events": [
       {
         "kind": "slow_started",
@@ -78,5 +78,5 @@
   "fixture_is_real_language_server": false,
   "real_language_semantics_tested": false,
   "sdk_cancelled_response_behavior": "rmcp 3.6 suppresses wire responses for cancelled request IDs",
-  "timestamp_unix": 1794876349.2254112
+  "timestamp_unix": 1794878500.9802155
 }

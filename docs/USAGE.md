@@ -31,6 +31,30 @@ $apply = @{project='demo'; transaction_id=$preview.transaction_id} | ConvertTo-J
 
 注意 `examples/prepare-create.json` 是 create-only；若 notes.md 已存在則拒絕，不會覆蓋。新檔案的父目錄必須已存在。
 
+## 專案 refactor 規則
+
+host 可在專案下設定 `[projects.<id>.refactor_rules]`，未設定即無規則：
+
+- `max_files`：單次 refactor 最多可修改的檔案數。
+- `protected_globs`：refactor 不可修改的路徑 glob，與 `deny_globs` 分開；硬性路徑保護仍是 `deny_globs`。
+  `max_files` 與 `protected_globs` 以正規化後的專案相對路徑計算，只計內容真的改變的檔案。
+- `naming`：`[{kinds, pattern, description}]` 陣列，只由 `rename_symbol` 檢查。`kinds` 為 LSP SymbolKind 數值（1–26，空陣列表示全部），`pattern` 為整個名稱的 regex（等同 `^(?:pattern)$`），`description` 為違規時提供給 agent 的說明。多條規則是 AND：所有 `kinds` 含該 symbol kind（或 `kinds` 為空）的規則都必須符合，不能用多條規則表達「任一符合」。
+- `guidance`：字串陣列，host 撰寫的重構指引。
+
+Agent 不應自行推測規則，先呼叫唯讀的 `refactor_rules`（參數只需 `project`）取得有效規則。違反規則的 refactor 會回傳錯誤碼 `REFACTOR_RULE_VIOLATION`；此時應調整命名或範圍，不可改用 `replace_content`、`replace_in_files` 等通用編輯工具繞過。
+
+建議的 agent 流程：
+
+1. `refactor_rules`：讀取有效規則。
+2. `find_symbol`：定位要重構的符號。
+3. refactor 工具（`rename_symbol`、`move_symbol`、`inline_symbol`、`safe_delete_symbol`、`prepare_code_action`、`apply_quick_fix`）：產生交易預覽。
+4. 審查預覽的 diff。
+5. `transaction_apply`：以 expected hash 套用；衝突即拒絕。
+6. `get_diagnostics_for_file`：檢查修改後的診斷。
+7. 在 host 已授權 `allow_shell` 與測試 profile 的前提下執行測試（見下節「驗證建置」），以 `success`／`exit_code` 判定結果。
+
+規則只約束上述六個 refactor 工具，其餘邊界見 [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md)。
+
 ## 驗證建置
 
 host 中設定命令 profile 後，還必須明確打開 allow_shell。Agent 只能傳 profile 名稱：
@@ -73,7 +97,7 @@ launch / attach 回 ticket；等待 initialize event / adapter-specific 規範�
 
 ## MCP 工具公開範圍
 
-`serve` 預設 `--tool-profile core`：只公開日常的讀取、搜尋、符號、引用與交易編輯工具，且隱藏 host 政策對所有專案都停用的工具（例如唯讀專案的編輯工具）；單一專案時 `project` 參數可省略。`ide` 加上導航、IDE 查詢與其餘編輯工具，`full` 公開全部 86 個、契約與 catalog 完全相同。`--include-tools a,b` 個別加入。CLI `call` 不受影響。公開範圍不是權限邊界：每次呼叫仍由 engine 檢查 host policy。
+`serve` 預設 `--tool-profile core`：只公開日常的讀取、搜尋、符號、引用與交易編輯工具，且隱藏 host 政策對所有專案都停用的工具（例如唯讀專案的編輯工具）；單一專案時 `project` 參數可省略。`ide` 加上導航、IDE 查詢與其餘編輯工具，`full` 公開全部 87 個、契約與 catalog 完全相同。`--include-tools a,b` 個別加入。CLI `call` 不受影響。公開範圍不是權限邊界：每次呼叫仍由 engine 檢查 host policy。
 
 ## HTTP
 
