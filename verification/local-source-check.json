@@ -2888,6 +2888,11 @@
       "detail": ""
     },
     {
+      "name": "utf8:verification\\local-fixture-selftest.json",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
       "name": "utf8:verification\\local-http-smoke.json",
       "status": "PASS",
       "detail": ""
@@ -6229,8 +6234,8 @@
     }
   ],
   "rust_files": 63,
-  "rust_lines": 23494,
-  "rust_test_declarations": 305,
+  "rust_lines": 23526,
+  "rust_test_declarations": 307,
   "rust_tests_executed_by_this_check": 0,
   "rust_compilation": "NOT_PERFORMED_BY_STATIC_CHECK",
   "tool_contracts": 86,

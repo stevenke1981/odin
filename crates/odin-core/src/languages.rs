@@ -234,7 +234,8 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         ["slint"],
         "slint-lsp",
         [],
-        ["Cargo.toml"],
+        // Slint has no project file of its own; Cargo.toml would flag every Rust crate.
+        [],
         "https://docs.slint.dev/latest/docs/language/"
     ),
     adapter!(
@@ -360,6 +361,18 @@ mod tests {
                 .iter()
                 .all(|extension| !cpp.extensions.contains(extension))
         );
+    }
+
+    #[test]
+    fn slint_is_detected_by_slint_sources_not_by_cargo_manifests() {
+        let slint = ADAPTERS.iter().find(|entry| entry.id == "slint").unwrap();
+        assert!(slint.project_markers.is_empty());
+        let cargo_owners = ADAPTERS
+            .iter()
+            .filter(|entry| entry.project_markers.contains(&"Cargo.toml"))
+            .map(|entry| entry.id)
+            .collect::<Vec<_>>();
+        assert_eq!(cargo_owners, ["rust"]);
     }
 
     #[test]

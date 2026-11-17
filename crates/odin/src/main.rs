@@ -835,15 +835,18 @@ fn init(path: &Path, root: Option<&Path>, name: &str, writable: bool) -> Result<
     }
     init_host_parent(host_parent, standard_home)?;
     let parent = host_parent.canonicalize()?;
+    // Store readable paths (no Windows `\\?\` prefix); they canonicalize to the same directories.
+    let state_dir = display_path(&parent.join(".odin").join("state"));
+    let root = PathBuf::from(display_path(&root));
     let mut projects = serde_json::Map::new();
     projects.insert(name.into(), json!({"root":root,"allow_write":writable,"allow_shell":false,"allow_debug":false,
         "languages":[{"id":"rust","extensions":["rs"],"program":"rust-analyzer","args":[]}],
         "commands":{"test":{"program":"cargo","args":["test","--workspace","--locked"],"timeout_secs":120},
                     "check":{"program":"cargo","args":["check","--workspace","--locked"],"timeout_secs":120}}}));
     let value = if explicit_root {
-        json!({"state_dir":parent.join(".odin").join("state"),"projects":projects})
+        json!({"state_dir":state_dir,"projects":projects})
     } else {
-        json!({"state_dir":parent.join(".odin").join("state"),"workspace":{
+        json!({"state_dir":state_dir,"workspace":{
             "default_root":root,"allowed_roots":[root],"languages":[{"id":"rust","extensions":["rs"],"program":"rust-analyzer","args":[]}]}})
     };
     let config: Config = serde_json::from_value(value)?;
@@ -964,6 +967,23 @@ mod home_cli_tests {
         ));
         let dynamic = Cli::try_parse_from(["odin", "--workspace", ".", "analyze"]).unwrap();
         assert_eq!(dynamic.workspace.unwrap(), PathBuf::from("."));
+    }
+    #[test]
+    fn init_writes_paths_without_the_windows_verbatim_prefix() {
+        let temp = std::env::temp_dir().join(format!(
+            "odin-init-plain-{}-{}",
+            std::process::id(),
+            odin_core::unix_ms()
+        ));
+        let root = temp.join("root");
+        std::fs::create_dir_all(&root).unwrap();
+        let path = temp.join("host.toml");
+        init(&path, Some(&root), "demo", false).unwrap();
+        let text = std::fs::read_to_string(&path).unwrap();
+        assert!(!text.contains(r"\\?\"), "{text}");
+        let config = Config::load(&path).unwrap();
+        assert_eq!(config.projects["demo"].root, root.canonicalize().unwrap());
+        std::fs::remove_dir_all(&temp).unwrap();
     }
     #[test]
     fn writable_init_requires_an_explicit_root_before_creating_host_files() {
