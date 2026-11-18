@@ -392,7 +392,7 @@ async fn protocol_fixture_symbol_filters_and_capability_probe_use_actual_backend
             .as_array()
             .is_some_and(|tools| { tools.iter().any(|tool| tool["name"] == "get_capabilities") })
     );
-    let compact = call(
+    let mut compact = call(
         &engine,
         "get_capabilities",
         json!({"language":"fixture","include_tools":false}),
@@ -401,7 +401,10 @@ async fn protocol_fixture_symbol_filters_and_capability_probe_use_actual_backend
     assert!(compact.get("tools").is_none());
     assert_eq!(compact["languages"][0]["probed"], false);
     assert_eq!(compact["languages"][0]["ready"], false);
-    default_snapshot.as_object_mut().unwrap().remove("tools");
+    let default = default_snapshot.as_object_mut().unwrap();
+    default.remove("tools");
+    default.remove("trace");
+    compact.as_object_mut().unwrap().remove("trace");
     assert_eq!(compact, default_snapshot);
 
     let capabilities = call(
