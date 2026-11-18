@@ -21,8 +21,10 @@ configured server's LSP initialize handshake. Without it, Odin reports
 configured servers and any existing sessions without starting a backend.
 
 On the CLI, run `odin --config host.toml doctor --probe-lsp`. A failed
-initialize reports the backend's `error_code` and `error_message` when
-available. A passing initialize establishes handshake readiness only.
+initialize reports `error_code: LSP_NOT_READY` for a language that did
+not become ready. When the language reports an error, the entry also includes
+`backend_error_code` and `error_message`. A passing initialize establishes
+handshake readiness only.
 Use a semantic operation such as find_declaration to check that a backend
 can navigate a representative file in the project.
 

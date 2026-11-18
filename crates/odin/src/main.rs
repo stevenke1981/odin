@@ -761,12 +761,11 @@ async fn doctor(engine: &Arc<Engine>, probe_lsp: bool, probe_sandbox: bool) -> V
                         if ready {
                             entry["error_code"] = Value::Null;
                         } else {
+                            entry["error_code"] = json!("LSP_NOT_READY");
                             let error = language_status.and_then(|item| item.get("error"));
-                            entry["error_code"] = json!(
-                                error
-                                    .and_then(|fault| fault["code"].as_str())
-                                    .unwrap_or("LSP_NOT_READY")
-                            );
+                            if let Some(code) = error.and_then(|fault| fault["code"].as_str()) {
+                                entry["backend_error_code"] = json!(code);
+                            }
                             if let Some(message) = error.and_then(|fault| fault["message"].as_str())
                             {
                                 entry["error_message"] = json!(message);
