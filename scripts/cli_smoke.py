@@ -110,7 +110,8 @@ def main():
             report = json.loads(failure.stdout)
             missing = report['checks'][0]['languages'][0]
             check('doctor_missing_backend_not_pass', report['ok'] is False and missing['integration'] == 'FAIL' and missing['ready'] is False)
-            check('doctor_missing_backend_reports_cause', missing['error_code'] == 'BACKEND_ERROR'
+            check('doctor_missing_backend_preserves_status_code', missing['error_code'] == 'LSP_NOT_READY')
+            check('doctor_missing_backend_reports_cause', missing['backend_error_code'] == 'BACKEND_ERROR'
                   and 'Cannot start backend executable: ODIN_NONEXISTENT_BACKEND' in missing['error_message'])
         status = 'PASS'
     except Exception as exc:
