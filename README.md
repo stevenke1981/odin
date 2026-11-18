@@ -81,7 +81,7 @@ write、shell、debug。命令與除錯需操作者在可信任 host 設定明�
 `scripts/client_setup_smoke.py` 驗證（127/127）；真實 client 應用只有 Claude Code 與
 Codex CLI 完成工具呼叫，其餘狀態見 [自動載入說明](docs/CLIENT_SETUP.md) 與 [已知限制](docs/KNOWN_LIMITATIONS.md)。
 
-查語言伺服器問題時，先看 `doctor --probe-lsp` 的 `error_code` 與 `error_message`。
+查語言伺服器問題時，先看 `doctor --probe-lsp` 的 `error_code`；有後端錯誤詳情時，可再看 `backend_error_code` 與 `error_message`。
 在 MCP 中可用 `get_capabilities` 並設 `include_tools: false` 查 LSP 狀態；要啟動並確認握手時加上 `probe: true`。
 Gleam 與 Typst 需要自行安裝後端，設定方式見 [語言支援範圍](docs/LANGUAGE_SUPPORT.md#gleam-與-typst-設定指引)。
 
