@@ -39,8 +39,17 @@ baseline profiles 明確在 host 執行，OS 沙箱結果另見交付狀態。
 - diagnostics 必須區分 pending、stale、unversioned、available；有 diagnostics 不證明 clean build。獨立 Clippy/Ruff/ESLint providers 已有同 binary 的 30-check 原生沙箱驗收，仍不代表全部規則與私有 IDE inspection parity。
 - host 明確決定 executable、argv、write/shell/debug 權限。外部後端可能需要 Node/Python/Java 等 runtime；Odin 核心檔案/記憶功能不需要 Python。
 
+## Gleam 與 Typst 設定指引
+
+| `languageId` | 副檔名 | `project add --detect-languages` 偵測標記 | LSP 啟動命令 | 安裝方式 |
+|---|---|---|---|---|
+| `gleam` | `.gleam` | `gleam.toml` | `gleam lsp` | [安裝內含 LSP 的 Gleam CLI](https://gleam.run/install/) |
+| `typst` | `.typ` | `typst.toml` | `tinymist` | [下載對應平台的 Tinymist 執行檔](https://github.com/Myriad-Dreamin/tinymist/releases) 或執行 `brew install tinymist` |
+
+`--detect-languages` 檢查專案根目錄的標記。沒有 `typst.toml` 的獨立 `.typ` 文件可在 host 設定手動新增 `typst` profile。後端由使用者安裝並在 host 設定指定。兩個 profile 的真實後端驗收均為 NOT_RUN。
+
 ## 新增支援的驗收
 
-新增語言需記錄 server/runtime/OS/version、workspace config、至少兩個專案及反例；逐項測 symbols、references、rename、diagnostics、refactor、清理與失敗處理。目前六語受控專案只證明報告所列子集；第三方依賴、完整 build／launch、真實大型專案、完整重構與所有 OS 仍需新增驗收。未實測功能保留 NOT_RUN，後端未提供的能力才標 UNAVAILABLE，不用工具數量替代 support matrix。28 個 profiles 只是指引，JavaScript 等其他語言不因 registry 存在而取得 PASS。
+新增語言需記錄 server/runtime/OS/version、workspace config、至少兩個專案及反例；逐項測 symbols、references、rename、diagnostics、refactor、清理與失敗處理。目前六語受控專案只證明報告所列子集；第三方依賴、完整 build／launch、真實大型專案、完整重構與所有 OS 仍需新增驗收。未實測功能保留 NOT_RUN，後端未提供的能力才標 UNAVAILABLE，不用工具數量替代 support matrix。語言註冊表提供 30 個設定指引，可用 `odin languages` 查看。
 
 本輪 release revision：`c5084f4947fc4a07c9ab381fa9998ba1a1e2246d`；binary SHA-256：`f7e57a5a25229426b62be622770ac2d6b8f7cfd3fcbf47dbf25254aa739eb875`。逐後端設定、driver source／hash 與結果語意見 [LANGUAGE_BACKENDS.md](LANGUAGE_BACKENDS.md)。
