@@ -15,7 +15,7 @@ LSP position 為 0-based UTF-16；檔案行數為 1-based inclusive。參數細�
 | `status` | read | ide | `project` | Effective standalone project status and backend boundaries |
 | `get_version` | read | full | `project` | Return Odin version and native schema format version |
 | `get_schemas` | read | full | `project` | Return tool contracts or one named tool schema |
-| `get_capabilities` | read | core | `project` | Use when unsure what is allowed: reports enabled tools and write/shell/debug grants; probe=true also starts the language server to check it works. |
+| `get_capabilities` | read | core | `project` | Report effective policy and configured language server status. The tools list is included by default. For a compact language check, pass {"project":"demo","language":"rust","include_tools":false}. By default, only report current status. Set probe=true to attempt the LSP initialize handshake. |
 | `list_projects` | read | ide | `project` | List configured project IDs and their permissions. Only needed when more than one project is configured. |
 | `get_current_config` | read | full | `project` | Redacted effective host configuration |
 | `initial_instructions` | read | full | `project` | Return Odin's project and transaction usage instructions |

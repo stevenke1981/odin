@@ -107,7 +107,11 @@ def main():
             # A configured missing backend must be distinguishable from a successful probe.
             config.write_text(config.read_text(encoding='utf-8')+'\n[[projects.demo.languages]]\nid="missing"\nextensions=["miss"]\nprogram="ODIN_NONEXISTENT_BACKEND"\n', encoding='utf-8')
             failure = run('doctor', '--probe-lsp', success=False)
-            check('doctor_missing_backend_not_pass', json.loads(failure.stdout)['checks'][0]['languages'][0]['integration'] == 'FAIL')
+            report = json.loads(failure.stdout)
+            missing = report['checks'][0]['languages'][0]
+            check('doctor_missing_backend_not_pass', report['ok'] is False and missing['integration'] == 'FAIL' and missing['ready'] is False)
+            check('doctor_missing_backend_reports_cause', missing['error_code'] == 'BACKEND_ERROR'
+                  and 'Cannot start backend executable: ODIN_NONEXISTENT_BACKEND' in missing['error_message'])
         status = 'PASS'
     except Exception as exc:
         error = str(exc)

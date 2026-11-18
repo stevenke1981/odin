@@ -28,7 +28,7 @@ def add(name,description,policy,props=None,required=None):
 add("status","Effective standalone project status and backend boundaries","read")
 add("get_version","Return Odin version and native schema format version","read")
 add("get_schemas","Return tool contracts or one named tool schema","read",{"tool":s()})
-add("get_capabilities","Report effective tool policy and optionally initialize configured language servers to probe capabilities","read",{"language":s(),"probe":b()})
+add("get_capabilities","Report effective tool policy and optionally initialize configured language servers to probe capabilities","read",{"language":s(),"probe":b(),"include_tools":b(True)})
 add("list_projects","List operator-registered projects without changing a global active project","read")
 add("get_current_config","Redacted effective host configuration","read")
 add("initial_instructions","Return Odin's project and transaction usage instructions","read")
@@ -128,7 +128,7 @@ DESCRIPTIONS={
  "move_symbol":"Preview a backend-provided refactor.move code action (needs target_path); no text fallback. Host refactor_rules may reject it.",
  "inline_symbol":"Preview a backend-provided refactor.inline code action; no text fallback. Host refactor_rules may reject it.",
  "project_analysis":"Start here in an unfamiliar workspace: live layout, detected languages and which semantic backends are missing. Read-only; runs no repository commands.",
- "get_capabilities":"Use when unsure what is allowed: reports enabled tools and write/shell/debug grants; probe=true also starts the language server to check it works.",
+ "get_capabilities":"Report effective policy and configured language server status. The tools list is included by default. For a compact language check, pass {\"project\":\"demo\",\"language\":\"rust\",\"include_tools\":false}. By default, only report current status. Set probe=true to attempt the LSP initialize handshake.",
  "list_projects":"List configured project IDs and their permissions. Only needed when more than one project is configured.",
  "list_dir":"List project files (respects .gitignore and host deny rules); recursive by default.",
  "find_file":"Find project files by glob, e.g. **/lib.rs (respects .gitignore and host deny rules).",

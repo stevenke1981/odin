@@ -747,28 +747,37 @@ async fn doctor(engine: &Arc<Engine>, probe_lsp: bool, probe_sandbox: bool) -> V
                     .call(
                         id.clone(),
                         "get_capabilities".into(),
-                        json!({"language":language.id,"probe":true}),
+                        json!({"language":language.id,"probe":true,"include_tools":false}),
                     )
                     .await
                 {
                     Ok(result) => {
-                        let ready = result["languages"].as_array().is_some_and(|items| {
-                            items
-                                .iter()
-                                .any(|l| l["id"] == language.id && l["ready"] == true)
-                        });
+                        let language_status = result["languages"]
+                            .as_array()
+                            .and_then(|items| items.iter().find(|item| item["id"] == language.id));
+                        let ready = language_status.is_some_and(|item| item["ready"] == true);
                         entry["integration"] = if ready { "PASS" } else { "FAIL" }.into();
                         entry["ready"] = ready.into();
-                        entry["error_code"] = if ready {
-                            Value::Null
+                        if ready {
+                            entry["error_code"] = Value::Null;
                         } else {
-                            json!("LSP_NOT_READY")
-                        };
+                            let error = language_status.and_then(|item| item.get("error"));
+                            entry["error_code"] = json!(
+                                error
+                                    .and_then(|fault| fault["code"].as_str())
+                                    .unwrap_or("LSP_NOT_READY")
+                            );
+                            if let Some(message) = error.and_then(|fault| fault["message"].as_str())
+                            {
+                                entry["error_message"] = json!(message);
+                            }
+                        }
                         ok &= ready;
                     }
                     Err(error) => {
                         entry["integration"] = "FAIL".into();
                         entry["error_code"] = error.code.into();
+                        entry["error_message"] = error.message.into();
                         ok = false;
                     }
                 }
