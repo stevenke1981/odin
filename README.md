@@ -22,7 +22,7 @@ exit code、來源／binary hash 以 [交付狀態](verification/delivery-status
 
 Windows 安裝包與 portable recipe 隨附 **14 種語言 profile**：Rust、Python、Go、C#、Lua、JavaScript、TypeScript、Bash、C、C++、Slint、TOML、YAML、Markdown。預設使用 **12 套 LSP 實作**（JS／TS 共用 TSLS、C／C++ 共用 clangd）；另附 Ruff、ty、vtsls 三套可明確切換的後端，共 **15 套 LSP**。Node／Go／.NET 執行環境一併離線部署；Rust toolchain、Python interpreter 與專案依賴仍由主機提供。
 
-安裝時檢查完整 payload hash、19 個 LSP／runtime 版本命令，並以 expected hash 更新可信 host 設定。新 workspace 維持唯讀；既有 grants 與自訂 Rust profiles 保留，其他自訂 profile 衝突必須明確處理。Registry 的 32 筆設定指引不代表 32 套 LSP 已隨附。
+安裝時檢查完整 payload hash、19 個 LSP／runtime 版本命令，並以 expected hash 更新可信 host 設定。新 workspace 維持唯讀；既有 grants 與自訂 Rust profiles 保留，其他自訂 profile 衝突必須明確處理。完整設定指引可用 `odin languages` 查詢，Windows 安裝包的隨附範圍如上。
 
 Python 預設 basedpyright，JS／TS 預設 TSLS；可用 `--python-backend ty|ruff` 或 `--typescript-backend vtsls` 明確切換，重裝保留受管選擇。Ruff 提供 lint／format／code actions；語意導航與型別分析需選其他 Python provider。沒有自動 fallback 或額外授予 native inspection／formatter 的執行權限。
 
@@ -80,6 +80,10 @@ write、shell、debug。命令與除錯需操作者在可信任 host 設定明�
 既有檔案還需 preview hash，並保存備份。七種 entry 的生成與 MCP 啟動已由
 `scripts/client_setup_smoke.py` 驗證（127/127）；真實 client 應用只有 Claude Code 與
 Codex CLI 完成工具呼叫，其餘狀態見 [自動載入說明](docs/CLIENT_SETUP.md) 與 [已知限制](docs/KNOWN_LIMITATIONS.md)。
+
+查語言伺服器問題時，先看 `doctor --probe-lsp` 的 `error_code` 與 `error_message`。
+在 MCP 中可用 `get_capabilities` 並設 `include_tools: false` 查 LSP 狀態；要啟動並確認握手時加上 `probe: true`。
+Gleam 與 Typst 需要自行安裝後端，設定方式見 [語言支援範圍](docs/LANGUAGE_SUPPORT.md#gleam-與-typst-設定指引)。
 
 ### 自動載入 Coding Agent
 
@@ -175,8 +179,8 @@ CI 僅手動 self-hosted，推送不啟動 hosted CI。
 
 Windows OS 沙箱需明確配置 native MXC 與最小檔案授權；見
 [設定範例](examples/odin.sandbox.toml) 與 [沙箱邊界](docs/OS_SANDBOX.md)。
-未配置的外部程序只有 Job／process group 清理。`odin languages` 的 28 個
-profile 是設定指引，不是 28 語驗收成功。IDE 功能依 backend capabilities
+未配置的外部程序只有 Job／process group 清理。`odin languages` 列出設定指引。
+IDE 功能依 backend capabilities
 回傳支援或明確錯誤；參見 [IDE 契約](docs/IDE_IMPLEMENTATION.md)。
 動態 safe delete、完整 watcher、跨平台／客戶端與 benchmark 矩陣仍有缺口。
 
