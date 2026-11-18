@@ -84,21 +84,23 @@ impl Engine {
                     }
                     languages.push(entry);
                 }
-                let tools = self
-                    .catalog
-                    .iter()
-                    .map(|tool| {
-                        let name = tool["name"].as_str().unwrap_or("");
-                        json!({"name":name,"policy":tool["policy"],"enabled":Self::tool_enabled(&p.config, tool)})
-                    })
-                    .collect::<Vec<_>>();
-                Ok(
-                    json!({"project":p.id,"standalone":true,"external_tool_bridge":false,"semantic_available":languages.iter().any(|l|l["ready"]==true),"languages":languages,
-                    "tools":tools,"write_allowed":p.config.allow_write,"shell_allowed":p.config.allow_shell,"debug_allowed":p.config.allow_debug,
+                let mut result = json!({"project":p.id,"standalone":true,"external_tool_bridge":false,"semantic_available":languages.iter().any(|l|l["ready"]==true),"languages":languages,
+                    "write_allowed":p.config.allow_write,"shell_allowed":p.config.allow_shell,"debug_allowed":p.config.allow_debug,
                     "inspections_allowed":p.config.allow_inspections,"inspection_profiles":p.config.inspections.iter().map(|(name,profile)|json!({"name":name,"provider":profile.provider,"requires_sandbox":true,"enabled":p.config.allow_inspections&&p.config.sandbox.is_some()})).collect::<Vec<_>>(),
                     "formatters_allowed":p.config.allow_formatters,"formatter_profiles":formatter::profiles(p),
-                    "result_retention":{"ttl_ms":results::TTL_MS,"max_results":results::MAX_RESULTS,"max_bytes":results::MAX_STORAGE_BYTES}}),
-                )
+                    "result_retention":{"ttl_ms":results::TTL_MS,"max_results":results::MAX_RESULTS,"max_bytes":results::MAX_STORAGE_BYTES}});
+                if boolean(a, "include_tools", true) {
+                    result["tools"] = Value::Array(
+                        self.catalog
+                            .iter()
+                            .map(|tool| {
+                                let name = tool["name"].as_str().unwrap_or("");
+                                json!({"name":name,"policy":tool["policy"],"enabled":Self::tool_enabled(&p.config, tool)})
+                            })
+                            .collect(),
+                    );
+                }
+                Ok(result)
             }
             "list_projects" => Ok(self.project_summaries()),
             "get_current_config" => Ok(

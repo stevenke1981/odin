@@ -385,12 +385,32 @@ fn setup_lsp() -> (tempfile::TempDir, tempfile::TempDir, Arc<Engine>) {
 #[tokio::test]
 async fn protocol_fixture_symbol_filters_and_capability_probe_use_actual_backend_messages() {
     let (_root, _state, engine) = setup_lsp();
+    let mut default_snapshot =
+        call(&engine, "get_capabilities", json!({"language":"fixture"})).await;
+    assert!(
+        default_snapshot["tools"]
+            .as_array()
+            .is_some_and(|tools| { tools.iter().any(|tool| tool["name"] == "get_capabilities") })
+    );
+    let compact = call(
+        &engine,
+        "get_capabilities",
+        json!({"language":"fixture","include_tools":false}),
+    )
+    .await;
+    assert!(compact.get("tools").is_none());
+    assert_eq!(compact["languages"][0]["probed"], false);
+    assert_eq!(compact["languages"][0]["ready"], false);
+    default_snapshot.as_object_mut().unwrap().remove("tools");
+    assert_eq!(compact, default_snapshot);
+
     let capabilities = call(
         &engine,
         "get_capabilities",
-        json!({"probe":true,"language":"fixture"}),
+        json!({"probe":true,"language":"fixture","include_tools":false}),
     )
     .await;
+    assert!(capabilities.get("tools").is_none());
     assert_eq!(capabilities["languages"][0]["ready"], true);
     assert_eq!(
         capabilities["languages"][0]["capabilities"]["codeActionProvider"]["resolveProvider"],
