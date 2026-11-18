@@ -321,6 +321,24 @@ pub const ADAPTERS: &[LanguageAdapter] = &[
         "https://github.com/hashicorp/terraform-ls",
         ["brew install hashicorp/tap/terraform-ls"]
     ),
+    adapter!(
+        "gleam",
+        ["gleam"],
+        "gleam",
+        ["lsp"],
+        ["gleam.toml"],
+        "https://gleam.run/install/",
+        ["winget install --id Gleam.Gleam", "brew install gleam"]
+    ),
+    adapter!(
+        "typst",
+        ["typ"],
+        "tinymist",
+        [],
+        ["typst.toml"],
+        "https://github.com/Myriad-Dreamin/tinymist/releases",
+        ["brew install tinymist"]
+    ),
 ];
 
 /// The registry profile for a host language entry: by ID first, then by server program
@@ -346,6 +364,7 @@ fn install_note(id: &str) -> Option<&'static str> {
         "zig" => Some("Or download an upstream release matching your Zig version"),
         "markdown" => Some("Or download an upstream release"),
         "elixir" => Some("Or download an upstream release"),
+        "typst" => Some("Or download and extract the upstream Tinymist binary for your platform"),
         _ => None,
     }
 }
@@ -481,6 +500,29 @@ mod tests {
             .map(|entry| entry.id)
             .collect::<Vec<_>>();
         assert_eq!(cargo_owners, ["rust"]);
+    }
+
+    #[test]
+    fn gleam_and_typst_profiles_supply_detection_and_launch_metadata() {
+        for (id, server, source, marker, args) in [
+            ("gleam", "gleam", "main.gleam", "gleam.toml", &["lsp"][..]),
+            ("typst", "tinymist", "main.typ", "typst.toml", &[][..]),
+        ] {
+            let profile = adapter_for(id, server).unwrap();
+            let path = Path::new(source);
+            let extension = path.extension().unwrap().to_str().unwrap();
+            let owners = ADAPTERS
+                .iter()
+                .filter(|entry| entry.extensions.contains(&extension))
+                .map(|entry| entry.id)
+                .collect::<Vec<_>>();
+            assert_eq!(owners, [id]);
+            assert_eq!(profile.project_markers, [marker]);
+            assert_eq!(profile.server, server);
+            assert_eq!(profile.args, args);
+            assert_eq!(language_id_for_path(profile.id, path), id);
+            assert_eq!(install_guidance(profile)["automatic_installation"], false);
+        }
     }
 
     #[test]

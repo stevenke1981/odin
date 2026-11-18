@@ -79,7 +79,7 @@
   },
   {
     "name": "get_capabilities",
-    "description": "Use when unsure what is allowed: reports enabled tools and write/shell/debug grants; probe=true also starts the language server to check it works.",
+    "description": "Report effective policy and configured language server status. The tools list is included by default. For a compact language check, pass {\"project\":\"demo\",\"language\":\"rust\",\"include_tools\":false}. By default, only report current status. Set probe=true to attempt the LSP initialize handshake.",
     "policy": "read",
     "inputSchema": {
       "type": "object",
@@ -94,6 +94,10 @@
         "probe": {
           "type": "boolean",
           "default": false
+        },
+        "include_tools": {
+          "type": "boolean",
+          "default": true
         }
       },
       "additionalProperties": false,

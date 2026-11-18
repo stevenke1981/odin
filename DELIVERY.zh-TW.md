@@ -22,7 +22,7 @@ Serena 僅用於開發代理導航；Odin 直接操作自己的 Rust core、LSP/
 
 ## 尚未完成
 
-40 項需求維持 38 PARTIAL、2 NOT_RUN。Windows 原生沙箱已有上述限定實測；Linux/macOS native sandbox、完整 OS 隔離矩陣、乾淨 Windows／跨版 installer lifecycle、Defender/CFA、全語言與完整 IDE inspections/refactor parity、性能／品質 benchmark 仍未完成。28 個 language profiles 是安裝指引，不是 28 語驗收。
+40 項需求維持 38 PARTIAL、2 NOT_RUN。Windows 原生沙箱已有上述限定實測；Linux/macOS native sandbox、完整 OS 隔離矩陣、乾淨 Windows／跨版 installer lifecycle、Defender/CFA、全語言與完整 IDE inspections/refactor parity、性能／品質 benchmark 仍未完成。目前的語言設定與逐語驗收範圍見 [語言支援](docs/LANGUAGE_SUPPORT.md)。
 
 Move/Inline/QuickFix 是後端 edit 的安全入口；成功 fixture 不代表真實語言重構編譯成功。Safe Delete 仍限靜態 references。記憶仍是 host central storage，沒有自動 repo-local migration；索引是查詢前增量 FTS5，沒有背景 watcher；flow 不是完整 DAG scheduler/Python REPL。未配置 MXC 的 LSP／DAP／固定命令只有程序清理，沒有 OS 隔離；inspections 則拒絕執行。
 
